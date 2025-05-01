@@ -16,5 +16,5 @@ export interface OdpSetup {
     /** Payment processor identifier */
     processor?: string;
     /** Reference ID for the program enabled for ODP issuance */
-    programId?: string;
+    issuerNetworkSettingsId?: string;
 }

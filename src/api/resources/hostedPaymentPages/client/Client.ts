@@ -70,7 +70,8 @@ export class HostedPaymentPages {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "sdk-node",
-                "X-Fern-SDK-Version": "0.0.58",
+                "X-Fern-SDK-Version": "0.0.58-1",
+                "User-Agent": "sdk-node/0.0.58-1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -172,7 +173,8 @@ export class HostedPaymentPages {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "sdk-node",
-                "X-Fern-SDK-Version": "0.0.58",
+                "X-Fern-SDK-Version": "0.0.58-1",
+                "User-Agent": "sdk-node/0.0.58-1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 idempotencyKey: idempotencyKey != null ? idempotencyKey : undefined,
@@ -274,7 +276,8 @@ export class HostedPaymentPages {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "sdk-node",
-                "X-Fern-SDK-Version": "0.0.58",
+                "X-Fern-SDK-Version": "0.0.58-1",
+                "User-Agent": "sdk-node/0.0.58-1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
