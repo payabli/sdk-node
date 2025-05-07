@@ -1818,6 +1818,76 @@ await client.chargeBacks.getChargebackAttachment("fileName", 1000000);
 </dl>
 </details>
 
+## CheckCapture
+
+<details><summary><code>client.checkCapture.<a href="/src/api/resources/checkCapture/client/Client.ts">checkProcessing</a>({ ...params }) -> Payabli.CheckCaptureResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Captures a check for Remote Deposit Capture (RDC) using the provided check images and details. This endpoint handles the OCR extraction of check data including MICR, routing number, account number, and amount. See the [RDC guide](/developer-guides/pay-in-rdc) for more details.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.checkCapture.checkProcessing({
+    entryPoint: "47abcfea12",
+    frontImage: "/9j/4AAQSkZJRgABAQEASABIAAD...",
+    rearImage: "/9j/4AAQSkZJRgABAQEASABIAAD...",
+    checkAmount: 12550,
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Payabli.CheckCaptureRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CheckCapture.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## Cloud
 
 <details><summary><code>client.cloud.<a href="/src/api/resources/cloud/client/Client.ts">addDevice</a>(entry, { ...params }) -> Payabli.AddDeviceResponse</code></summary>

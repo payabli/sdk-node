@@ -7,6 +7,7 @@ import * as core from "./core";
 import { Bill } from "./api/resources/bill/client/Client";
 import { Boarding } from "./api/resources/boarding/client/Client";
 import { ChargeBacks } from "./api/resources/chargeBacks/client/Client";
+import { CheckCapture } from "./api/resources/checkCapture/client/Client";
 import { Cloud } from "./api/resources/cloud/client/Client";
 import { Customer } from "./api/resources/customer/client/Client";
 import { Export } from "./api/resources/export/client/Client";
@@ -55,6 +56,7 @@ export class PayabliClient {
     protected _bill: Bill | undefined;
     protected _boarding: Boarding | undefined;
     protected _chargeBacks: ChargeBacks | undefined;
+    protected _checkCapture: CheckCapture | undefined;
     protected _cloud: Cloud | undefined;
     protected _customer: Customer | undefined;
     protected _export: Export | undefined;
@@ -91,6 +93,10 @@ export class PayabliClient {
 
     public get chargeBacks(): ChargeBacks {
         return (this._chargeBacks ??= new ChargeBacks(this._options));
+    }
+
+    public get checkCapture(): CheckCapture {
+        return (this._checkCapture ??= new CheckCapture(this._options));
     }
 
     public get cloud(): Cloud {
