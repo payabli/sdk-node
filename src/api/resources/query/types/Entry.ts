@@ -5,4 +5,4 @@
 /**
  * The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
  */
-export type Entry = string;
+export {};
