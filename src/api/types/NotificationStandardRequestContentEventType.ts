@@ -11,6 +11,10 @@ export type NotificationStandardRequestContentEventType =
     | "DeclinedPayment"
     | "OriginatedPayment"
     | "SettledPayment"
+    | "SubscriptionCreated"
+    | "SubscriptionUpdated"
+    | "SubscriptionCanceled"
+    | "SubscriptionCompleted"
     | "FundedPayment"
     | "VoidedPayment"
     | "RefundedPayment"
@@ -47,6 +51,12 @@ export type NotificationStandardRequestContentEventType =
     | "BillDisApproved"
     | "BillCanceled"
     | "BillProcessing"
+    | "CardCreated"
+    | "CardActivated"
+    | "CardDeactivated"
+    | "CardExpired"
+    | "CardExpiring"
+    | "CardLimitUpdated"
     | "PayOutFunded"
     | "PayOutProcessed"
     | "PayOutCanceled"
@@ -69,6 +79,10 @@ export const NotificationStandardRequestContentEventType = {
     DeclinedPayment: "DeclinedPayment",
     OriginatedPayment: "OriginatedPayment",
     SettledPayment: "SettledPayment",
+    SubscriptionCreated: "SubscriptionCreated",
+    SubscriptionUpdated: "SubscriptionUpdated",
+    SubscriptionCanceled: "SubscriptionCanceled",
+    SubscriptionCompleted: "SubscriptionCompleted",
     FundedPayment: "FundedPayment",
     VoidedPayment: "VoidedPayment",
     RefundedPayment: "RefundedPayment",
@@ -105,6 +119,12 @@ export const NotificationStandardRequestContentEventType = {
     BillDisApproved: "BillDisApproved",
     BillCanceled: "BillCanceled",
     BillProcessing: "BillProcessing",
+    CardCreated: "CardCreated",
+    CardActivated: "CardActivated",
+    CardDeactivated: "CardDeactivated",
+    CardExpired: "CardExpired",
+    CardExpiring: "CardExpiring",
+    CardLimitUpdated: "CardLimitUpdated",
     PayOutFunded: "PayOutFunded",
     PayOutProcessed: "PayOutProcessed",
     PayOutCanceled: "PayOutCanceled",

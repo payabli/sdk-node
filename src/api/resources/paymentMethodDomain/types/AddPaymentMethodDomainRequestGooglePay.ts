@@ -4,6 +4,9 @@
 
 import * as Payabli from "../../../index";
 
-export interface UpdatePaymentMethodDomainRequestApplePay {
+/**
+ * Google Pay configuration information.
+ */
+export interface AddPaymentMethodDomainRequestGooglePay {
     isEnabled?: Payabli.IsEnabled;
 }

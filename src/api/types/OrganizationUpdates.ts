@@ -5,6 +5,6 @@
 import * as Payabli from "../index";
 
 export interface OrganizationUpdates {
-    cascade?: Payabli.WalletApplePayCascade;
-    isEnabled?: Payabli.WalletApplePayIsEnabled;
+    cascade?: Payabli.WalletCascade;
+    isEnabled?: Payabli.WalletIsEnabled;
 }

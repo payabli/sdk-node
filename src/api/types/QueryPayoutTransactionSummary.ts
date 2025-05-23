@@ -20,6 +20,10 @@ export interface QueryPayoutTransactionSummary {
     totalPages?: number;
     totalPaid?: number;
     totalPaidAmount?: number;
+    /** Total number of transactions that are currently on hold. */
+    totalOnHold?: number;
+    /** Total amount of transactions that are currently on hold. */
+    totalOnHoldAmount?: number;
     totalProcessing?: number;
     totalProcessingAmount?: number;
     totalRecords?: number;

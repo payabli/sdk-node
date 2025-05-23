@@ -5,7 +5,7 @@
 import * as Payabli from "../index";
 
 /**
- * Customer information. May be required, depending on the paypoint's settings. Required for subscriptions. See [PayorData object Model](/api-reference/schemas/payordata) for a complete reference.
+ * Customer information. May be required, depending on the paypoint's settings. Required for subscriptions.
  */
 export interface PayorData {
     additionalData?: Payabli.AdditionalData;

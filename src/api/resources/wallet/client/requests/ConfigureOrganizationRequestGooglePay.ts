@@ -6,9 +6,13 @@ import * as Payabli from "../../../../index";
 
 /**
  * @example
- *     {}
+ *     {
+ *         cascade: true,
+ *         isEnabled: true,
+ *         orgId: 901
+ *     }
  */
-export interface ConfigureOrganizationRequest {
+export interface ConfigureOrganizationRequestGooglePay {
     cascade?: Payabli.Cascade;
     isEnabled?: Payabli.IsEnabled;
     orgId?: Payabli.OrganizationId;

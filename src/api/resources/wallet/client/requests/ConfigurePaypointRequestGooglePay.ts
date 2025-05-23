@@ -6,10 +6,13 @@ import * as Payabli from "../../../../index";
 
 /**
  * @example
- *     {}
+ *     {
+ *         entry: "8cfec329267",
+ *         isEnabled: true
+ *     }
  */
-export interface ConfigurePaypointRequest {
+export interface ConfigurePaypointRequestGooglePay {
     entry?: Payabli.Entry;
-    /** When `true`, Apple Pay is enabled. */
+    /** When `true`, Google Pay is enabled. */
     isEnabled?: Payabli.IsEnabled;
 }

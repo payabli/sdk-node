@@ -7,6 +7,8 @@ export interface MethodsList {
     amex?: boolean;
     /** When `true`, Apple Pay is accepted. */
     applePay?: boolean;
+    /** When `true`, Google Pay is accepted. */
+    googlePay?: boolean;
     /** When `true`, Discover is accepted. */
     discover?: boolean;
     /** When `true`, ACH is accepted. */

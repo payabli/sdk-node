@@ -4,12 +4,12 @@
 
 import * as Payabli from "../index";
 
-export interface ConfigurePaypointApiResponse {
+export interface ConfigureApplePaypointApiResponse {
     isSuccess?: Payabli.IsSuccess;
     pageIdentifier?: Payabli.PageIdentifier | undefined;
     responseCode?: Payabli.Responsecode | undefined;
     responseData?: Payabli.ApplePayPaypointRegistrationData;
     responseText?: Payabli.ResponseText | undefined;
-    /** Identifier for related message room for the application. */
+    /** Field not in use on this endpoint */
     roomId?: number;
 }

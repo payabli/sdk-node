@@ -109,8 +109,8 @@ export class Bill {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 idempotencyKey: idempotencyKey != null ? idempotencyKey : undefined,
@@ -187,8 +187,6 @@ export class Bill {
      *
      * @throws {@link Payabli.BadRequestError}
      * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.UnauthorizedError}
      * @throws {@link Payabli.InternalServerError}
      * @throws {@link Payabli.ServiceUnavailableError}
      *
@@ -229,8 +227,8 @@ export class Bill {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -249,10 +247,6 @@ export class Bill {
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
@@ -330,8 +324,8 @@ export class Bill {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -431,8 +425,8 @@ export class Bill {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -535,8 +529,8 @@ export class Bill {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -637,8 +631,8 @@ export class Bill {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -758,8 +752,8 @@ export class Bill {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -876,8 +870,8 @@ export class Bill {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -974,8 +968,8 @@ export class Bill {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1085,8 +1079,8 @@ export class Bill {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 idempotencyKey: idempotencyKey != null ? idempotencyKey : undefined,
@@ -1198,8 +1192,8 @@ export class Bill {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

@@ -5,6 +5,6 @@
 import * as Payabli from "../../../index";
 
 export interface ListPaymentMethodDomainsResponse {
-    records?: Payabli.PaymentMethodDomainApiResponse[];
-    summary?: Payabli.QuerySummaryNoAmt;
+    records: Payabli.PaymentMethodDomainApiResponse[];
+    summary: Payabli.QuerySummaryNoAmt;
 }

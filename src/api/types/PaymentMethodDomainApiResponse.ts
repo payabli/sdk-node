@@ -8,15 +8,18 @@ import * as Payabli from "../index";
  * Data related to the payment method domain.
  */
 export interface PaymentMethodDomainApiResponse {
-    applePay?: Payabli.ApplePayData;
+    /** The record type. For payment method domains, this is always `PaymentMethodDomain`. */
+    type: string | null;
+    applePay: Payabli.ApplePayData;
+    googlePay: Payabli.GooglePayData;
     /** Data about the domain's cascade status. */
     cascades?: Payabli.CascadeJobDetails[];
-    createdAt?: Payabli.CreatedAt;
-    domainName?: Payabli.DomainName;
-    entityId?: Payabli.EntityId;
-    entityType?: Payabli.EntityType;
-    id?: Payabli.PaymentMethodDomainId;
-    ownerEntityId?: Payabli.OwnerEntityId;
-    ownerEntityType?: Payabli.OwnerEntityType;
-    updatedAt?: Payabli.LastModified | undefined;
+    createdAt: Payabli.CreatedAt;
+    domainName: Payabli.DomainName;
+    entityId: Payabli.EntityId;
+    entityType: Payabli.EntityType;
+    id: Payabli.PaymentMethodDomainId;
+    ownerEntityId: Payabli.OwnerEntityId;
+    ownerEntityType: Payabli.OwnerEntityType;
+    updatedAt?: Payabli.LastModified;
 }

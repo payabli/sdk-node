@@ -5,7 +5,7 @@
 import * as Payabli from "../index";
 
 /**
- * Contains details about a file. See See [fileObject Object Model](/api-reference/schemas/filecontent) for a complete reference. Max upload size is 30 MB.
+ * Contains details about a file. Max upload size is 30 MB.
  */
 export interface FileContent {
     /**

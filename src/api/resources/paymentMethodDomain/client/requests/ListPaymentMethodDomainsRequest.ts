@@ -5,22 +5,27 @@
 /**
  * @example
  *     {
- *         entityId: 109
+ *         entityId: 1147,
+ *         entityType: "paypoint"
+ *     }
+ *
+ * @example
+ *     {
+ *         entityId: 39,
+ *         entityType: "organization"
  *     }
  */
 export interface ListPaymentMethodDomainsRequest {
     /**
      * Identifier for the organization or paypoint.
-     * - Set this to `organization` and use the org ID in `entityID` to get details for the organization.
-     * - Set this `paypoint` and use the paypoint's entryname in `entityId`` to get details for the paypoint.
+     * - For organization, provide the organization ID - For paypoint, provide the paypoint ID
      */
     entityId?: number;
     /**
      * The type of entity. Valid values:
      *   - organization
      *   - paypoint
-     * Set this to `organization` and use the org ID in `entityID` to get details for the organization.
-     * Set this `paypoint` and use the paypoint's entryname in `entityId`` to get details for the paypoint.
+     *   - psp
      */
     entityType?: string;
     /**

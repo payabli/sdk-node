@@ -6,8 +6,16 @@ import * as Payabli from "../../../../index";
 
 /**
  * @example
- *     {}
+ *     {
+ *         applePay: {
+ *             isEnabled: false
+ *         },
+ *         googlePay: {
+ *             isEnabled: false
+ *         }
+ *     }
  */
 export interface UpdatePaymentMethodDomainRequest {
-    applePay?: Payabli.UpdatePaymentMethodDomainRequestApplePay;
+    applePay?: Payabli.UpdatePaymentMethodDomainRequestWallet;
+    googlePay?: Payabli.UpdatePaymentMethodDomainRequestWallet;
 }

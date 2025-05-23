@@ -5,7 +5,7 @@
 import * as Payabli from "../index";
 
 /**
- * Data pertaining to single customer. See [customerData Object Model](/api-reference/schemas/customerdata) for a complete reference.
+ * Data pertaining to single customer.
  */
 export interface CustomerData {
     /** Additional Custom fields in format "key":"value". */

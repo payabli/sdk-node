@@ -34,27 +34,30 @@ export class Wallet {
     /**
      * Configure and activate Apple Pay for a Payabli organization
      *
-     * @param {Payabli.ConfigureOrganizationRequest} request
+     * @param {Payabli.ConfigureOrganizationRequestApplePay} request
      * @param {Wallet.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link Payabli.BadRequestError}
      * @throws {@link Payabli.BadRequestError}
      * @throws {@link Payabli.UnauthorizedError}
      * @throws {@link Payabli.InternalServerError}
      * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
-     *     await client.wallet.configureApplePayOrganization()
+     *     await client.wallet.configureApplePayOrganization({
+     *         cascade: true,
+     *         isEnabled: true,
+     *         orgId: 901
+     *     })
      */
     public configureApplePayOrganization(
-        request: Payabli.ConfigureOrganizationRequest = {},
+        request: Payabli.ConfigureOrganizationRequestApplePay = {},
         requestOptions?: Wallet.RequestOptions,
     ): core.HttpResponsePromise<Payabli.ConfigureApplePayOrganizationApiResponse> {
         return core.HttpResponsePromise.fromPromise(this.__configureApplePayOrganization(request, requestOptions));
     }
 
     private async __configureApplePayOrganization(
-        request: Payabli.ConfigureOrganizationRequest = {},
+        request: Payabli.ConfigureOrganizationRequestApplePay = {},
         requestOptions?: Wallet.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.ConfigureApplePayOrganizationApiResponse>> {
         const _response = await core.fetcher({
@@ -68,8 +71,8 @@ export class Wallet {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -91,8 +94,6 @@ export class Wallet {
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
@@ -135,29 +136,31 @@ export class Wallet {
     /**
      * Configure and activate Apple Pay for a Payabli paypoint
      *
-     * @param {Payabli.ConfigurePaypointRequest} request
+     * @param {Payabli.ConfigurePaypointRequestApplePay} request
      * @param {Wallet.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link Payabli.BadRequestError}
      * @throws {@link Payabli.BadRequestError}
      * @throws {@link Payabli.UnauthorizedError}
      * @throws {@link Payabli.InternalServerError}
      * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
-     *     await client.wallet.configureApplePayPaypoint()
+     *     await client.wallet.configureApplePayPaypoint({
+     *         entry: "8cfec329267",
+     *         isEnabled: true
+     *     })
      */
     public configureApplePayPaypoint(
-        request: Payabli.ConfigurePaypointRequest = {},
+        request: Payabli.ConfigurePaypointRequestApplePay = {},
         requestOptions?: Wallet.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.ConfigurePaypointApiResponse> {
+    ): core.HttpResponsePromise<Payabli.ConfigureApplePaypointApiResponse> {
         return core.HttpResponsePromise.fromPromise(this.__configureApplePayPaypoint(request, requestOptions));
     }
 
     private async __configureApplePayPaypoint(
-        request: Payabli.ConfigurePaypointRequest = {},
+        request: Payabli.ConfigurePaypointRequestApplePay = {},
         requestOptions?: Wallet.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.ConfigurePaypointApiResponse>> {
+    ): Promise<core.WithRawResponse<Payabli.ConfigureApplePaypointApiResponse>> {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -169,8 +172,8 @@ export class Wallet {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -184,13 +187,14 @@ export class Wallet {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return { data: _response.body as Payabli.ConfigurePaypointApiResponse, rawResponse: _response.rawResponse };
+            return {
+                data: _response.body as Payabli.ConfigureApplePaypointApiResponse,
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
@@ -221,6 +225,209 @@ export class Wallet {
             case "timeout":
                 throw new errors.PayabliTimeoutError(
                     "Timeout exceeded when calling POST /Wallet/applepay/configure-paypoint.",
+                );
+            case "unknown":
+                throw new errors.PayabliError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
+     * Configure and activate Google Pay for a Payabli organization
+     *
+     * @param {Payabli.ConfigureOrganizationRequestGooglePay} request
+     * @param {Wallet.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.wallet.configureGooglePayOrganization({
+     *         cascade: true,
+     *         isEnabled: true,
+     *         orgId: 901
+     *     })
+     */
+    public configureGooglePayOrganization(
+        request: Payabli.ConfigureOrganizationRequestGooglePay = {},
+        requestOptions?: Wallet.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.ConfigureApplePayOrganizationApiResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__configureGooglePayOrganization(request, requestOptions));
+    }
+
+    private async __configureGooglePayOrganization(
+        request: Payabli.ConfigureOrganizationRequestGooglePay = {},
+        requestOptions?: Wallet.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.ConfigureApplePayOrganizationApiResponse>> {
+        const _response = await core.fetcher({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                "Wallet/googlepay/configure-organization",
+            ),
+            method: "POST",
+            headers: {
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@payabli/sdk-node",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: request,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as Payabli.ConfigureApplePayOrganizationApiResponse,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.PayabliError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.PayabliTimeoutError(
+                    "Timeout exceeded when calling POST /Wallet/googlepay/configure-organization.",
+                );
+            case "unknown":
+                throw new errors.PayabliError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
+     * Configure and activate Google Pay for a Payabli paypoint
+     *
+     * @param {Payabli.ConfigurePaypointRequestGooglePay} request
+     * @param {Wallet.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.wallet.configureGooglePayPaypoint({
+     *         entry: "8cfec329267",
+     *         isEnabled: true
+     *     })
+     */
+    public configureGooglePayPaypoint(
+        request: Payabli.ConfigurePaypointRequestGooglePay = {},
+        requestOptions?: Wallet.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.ConfigureGooglePaypointApiResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__configureGooglePayPaypoint(request, requestOptions));
+    }
+
+    private async __configureGooglePayPaypoint(
+        request: Payabli.ConfigurePaypointRequestGooglePay = {},
+        requestOptions?: Wallet.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.ConfigureGooglePaypointApiResponse>> {
+        const _response = await core.fetcher({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                "Wallet/googlepay/configure-paypoint",
+            ),
+            method: "POST",
+            headers: {
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@payabli/sdk-node",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: request,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as Payabli.ConfigureGooglePaypointApiResponse,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.PayabliError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.PayabliTimeoutError(
+                    "Timeout exceeded when calling POST /Wallet/googlepay/configure-paypoint.",
                 );
             case "unknown":
                 throw new errors.PayabliError({

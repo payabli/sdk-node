@@ -854,6 +854,7 @@ await client.boarding.addApplication({
     mcountry: "US",
     mstate: "TN",
     mzip: "37615",
+    orgId: 123,
     ownership: [
         {
             oaddress: "33 North St",
@@ -9590,7 +9591,17 @@ Add a payment method domain to an organization or paypoint.
 <dd>
 
 ```typescript
-await client.paymentMethodDomain.addPaymentMethodDomain();
+await client.paymentMethodDomain.addPaymentMethodDomain({
+    domainName: "checkout.example.com",
+    entityId: 109,
+    entityType: "paypoint",
+    applePay: {
+        isEnabled: true,
+    },
+    googlePay: {
+        isEnabled: true,
+    },
+});
 ```
 
 </dd>
@@ -9653,7 +9664,7 @@ Cascades a payment method domain to all child entities. All paypoints and suborg
 <dd>
 
 ```typescript
-await client.paymentMethodDomain.cascadePaymentMethodDomain("pmd_12AB");
+await client.paymentMethodDomain.cascadePaymentMethodDomain("pmd_b8237fa45c964d8a9ef27160cd42b8c5");
 ```
 
 </dd>
@@ -9716,7 +9727,7 @@ Delete a payment method domain. You can't delete an inherited domain, you must d
 <dd>
 
 ```typescript
-await client.paymentMethodDomain.deletePaymentMethodDomain("pmd_12AB");
+await client.paymentMethodDomain.deletePaymentMethodDomain("pmd_b8237fa45c964d8a9ef27160cd42b8c5");
 ```
 
 </dd>
@@ -9779,7 +9790,7 @@ Get the details for a payment method domain.
 <dd>
 
 ```typescript
-await client.paymentMethodDomain.getPaymentMethodDomain("pmd_12AB");
+await client.paymentMethodDomain.getPaymentMethodDomain("pmd_b8237fa45c964d8a9ef27160cd42b8c5");
 ```
 
 </dd>
@@ -9843,7 +9854,8 @@ Get a list of payment method domains that belong to a PSP, organization, or payp
 
 ```typescript
 await client.paymentMethodDomain.listPaymentMethodDomains({
-    entityId: 109,
+    entityId: 1147,
+    entityType: "paypoint",
 });
 ```
 
@@ -9907,7 +9919,14 @@ Update a payment method domain's configuration values.
 <dd>
 
 ```typescript
-await client.paymentMethodDomain.updatePaymentMethodDomain("pmd_12AB");
+await client.paymentMethodDomain.updatePaymentMethodDomain("pmd_b8237fa45c964d8a9ef27160cd42b8c5", {
+    applePay: {
+        isEnabled: false,
+    },
+    googlePay: {
+        isEnabled: false,
+    },
+});
 ```
 
 </dd>
@@ -9978,7 +9997,7 @@ Verify a new payment method domain. If verification is successful, Apple Pay is 
 <dd>
 
 ```typescript
-await client.paymentMethodDomain.verifyPaymentMethodDomain("pmd_12AB");
+await client.paymentMethodDomain.verifyPaymentMethodDomain("pmd_b8237fa45c964d8a9ef27160cd42b8c5");
 ```
 
 </dd>
@@ -15349,7 +15368,11 @@ Configure and activate Apple Pay for a Payabli organization
 <dd>
 
 ```typescript
-await client.wallet.configureApplePayOrganization();
+await client.wallet.configureApplePayOrganization({
+    cascade: true,
+    isEnabled: true,
+    orgId: 901,
+});
 ```
 
 </dd>
@@ -15365,7 +15388,7 @@ await client.wallet.configureApplePayOrganization();
 <dl>
 <dd>
 
-**request:** `Payabli.ConfigureOrganizationRequest`
+**request:** `Payabli.ConfigureOrganizationRequestApplePay`
 
 </dd>
 </dl>
@@ -15384,7 +15407,7 @@ await client.wallet.configureApplePayOrganization();
 </dl>
 </details>
 
-<details><summary><code>client.wallet.<a href="/src/api/resources/wallet/client/Client.ts">configureApplePayPaypoint</a>({ ...params }) -> Payabli.ConfigurePaypointApiResponse</code></summary>
+<details><summary><code>client.wallet.<a href="/src/api/resources/wallet/client/Client.ts">configureApplePayPaypoint</a>({ ...params }) -> Payabli.ConfigureApplePaypointApiResponse</code></summary>
 <dl>
 <dd>
 
@@ -15412,7 +15435,10 @@ Configure and activate Apple Pay for a Payabli paypoint
 <dd>
 
 ```typescript
-await client.wallet.configureApplePayPaypoint();
+await client.wallet.configureApplePayPaypoint({
+    entry: "8cfec329267",
+    isEnabled: true,
+});
 ```
 
 </dd>
@@ -15428,7 +15454,140 @@ await client.wallet.configureApplePayPaypoint();
 <dl>
 <dd>
 
-**request:** `Payabli.ConfigurePaypointRequest`
+**request:** `Payabli.ConfigurePaypointRequestApplePay`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Wallet.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.wallet.<a href="/src/api/resources/wallet/client/Client.ts">configureGooglePayOrganization</a>({ ...params }) -> Payabli.ConfigureApplePayOrganizationApiResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Configure and activate Google Pay for a Payabli organization
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.wallet.configureGooglePayOrganization({
+    cascade: true,
+    isEnabled: true,
+    orgId: 901,
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Payabli.ConfigureOrganizationRequestGooglePay`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Wallet.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.wallet.<a href="/src/api/resources/wallet/client/Client.ts">configureGooglePayPaypoint</a>({ ...params }) -> Payabli.ConfigureGooglePaypointApiResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Configure and activate Google Pay for a Payabli paypoint
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.wallet.configureGooglePayPaypoint({
+    entry: "8cfec329267",
+    isEnabled: true,
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Payabli.ConfigurePaypointRequestGooglePay`
 
 </dd>
 </dl>

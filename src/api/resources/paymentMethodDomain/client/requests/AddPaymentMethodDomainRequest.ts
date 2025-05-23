@@ -6,11 +6,23 @@ import * as Payabli from "../../../../index";
 
 /**
  * @example
- *     {}
+ *     {
+ *         domainName: "checkout.example.com",
+ *         entityId: 109,
+ *         entityType: "paypoint",
+ *         applePay: {
+ *             isEnabled: true
+ *         },
+ *         googlePay: {
+ *             isEnabled: true
+ *         }
+ *     }
  */
 export interface AddPaymentMethodDomainRequest {
     /** Apple Pay configuration information. */
     applePay?: Payabli.AddPaymentMethodDomainRequestApplePay;
+    /** Google Pay configuration information. */
+    googlePay?: Payabli.AddPaymentMethodDomainRequestGooglePay;
     domainName?: Payabli.DomainName;
     entityId?: Payabli.EntityId;
     entityType?: Payabli.EntityType;

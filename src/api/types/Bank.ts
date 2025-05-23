@@ -18,4 +18,6 @@ export interface Bank {
     nickname?: Payabli.BankNickname;
     routingAccount?: Payabli.RoutingAccount | undefined;
     typeAccount?: Payabli.TypeAccount;
+    /** A user-defined internal identifier for the bank account. This allows you to easily specify which bank account should be used for payments in cases where multiple accounts are configured. */
+    accountId?: string;
 }

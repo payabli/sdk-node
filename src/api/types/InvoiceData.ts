@@ -5,7 +5,7 @@
 import * as Payabli from "../index";
 
 export interface InvoiceData {
-    /** Object describing the customer/payor. Required for POST requests. Which fields are required depends on the paypoint's custom identifier settings. See [PayorData Object Model](/api-reference/schemas/payordata) for a complete reference. */
+    /** Object describing the customer/payor. Required for POST requests. Which fields are required depends on the paypoint's custom identifier settings. */
     customerData?: Payabli.PayorData;
     /** Object describing the invoice. Required for POST requests. */
     invoiceData?: Payabli.BillData;

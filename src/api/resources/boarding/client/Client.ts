@@ -91,6 +91,7 @@ export class Boarding {
      *         mcountry: "US",
      *         mstate: "TN",
      *         mzip: "37615",
+     *         orgId: 123,
      *         ownership: [{
      *                 oaddress: "33 North St",
      *                 ocity: "Any City",
@@ -150,7 +151,8 @@ export class Boarding {
      *                 bankName: "First Miami Bank",
      *                 nickname: "Withdrawal Account",
      *                 routingAccount: "123123123",
-     *                 typeAccount: "Checking"
+     *                 typeAccount: "Checking",
+     *                 accountId: "123-456"
      *             }, {
      *                 accountNumber: "1XXXXXX3200",
      *                 bankAccountFunction: 0,
@@ -159,7 +161,8 @@ export class Boarding {
      *                 bankName: "First Miami Bank",
      *                 nickname: "Deposit Account",
      *                 routingAccount: "123123123",
-     *                 typeAccount: "Checking"
+     *                 typeAccount: "Checking",
+     *                 accountId: "123-789"
      *             }, {
      *                 accountNumber: "1XXXXXX3123",
      *                 bankAccountFunction: 3,
@@ -168,7 +171,8 @@ export class Boarding {
      *                 bankName: "First Miami Bank",
      *                 nickname: "Remittance Account",
      *                 routingAccount: "123123123",
-     *                 typeAccount: "Checking"
+     *                 typeAccount: "Checking",
+     *                 accountId: "123-100"
      *             }],
      *         bcity: "Miami",
      *         bcountry: "US",
@@ -270,7 +274,8 @@ export class Boarding {
      *                 bankName: "First Miami Bank",
      *                 nickname: "Withdrawal Account",
      *                 routingAccount: "123123123",
-     *                 typeAccount: "Checking"
+     *                 typeAccount: "Checking",
+     *                 accountId: "333-789"
      *             }, {
      *                 accountNumber: "1XXXXXX3200",
      *                 bankAccountFunction: 0,
@@ -279,7 +284,8 @@ export class Boarding {
      *                 bankName: "First Miami Bank",
      *                 nickname: "Deposit Account",
      *                 routingAccount: "123123123",
-     *                 typeAccount: "Checking"
+     *                 typeAccount: "Checking",
+     *                 accountId: "333-234"
      *             }, {
      *                 accountNumber: "1XXXXXX3123",
      *                 bankAccountFunction: 3,
@@ -288,7 +294,8 @@ export class Boarding {
      *                 bankName: "First Miami Bank",
      *                 nickname: "Remittance Account",
      *                 routingAccount: "123123123",
-     *                 typeAccount: "Checking"
+     *                 typeAccount: "Checking",
+     *                 accountId: "333-567"
      *             }],
      *         bcity: "Miami",
      *         bcountry: "US",
@@ -394,7 +401,8 @@ export class Boarding {
      *                 id: 123,
      *                 nickname: "Withdrawal Account",
      *                 routingAccount: "123123123",
-     *                 typeAccount: "Checking"
+     *                 typeAccount: "Checking",
+     *                 accountId: "123-789"
      *             }, {
      *                 accountNumber: "1XXXXXX3200",
      *                 bankAccountFunction: 0,
@@ -404,7 +412,8 @@ export class Boarding {
      *                 id: 456,
      *                 nickname: "Deposit Account",
      *                 routingAccount: "123123123",
-     *                 typeAccount: "Checking"
+     *                 typeAccount: "Checking",
+     *                 accountId: "123-456"
      *             }, {
      *                 accountNumber: "1XXXXXX3123",
      *                 bankAccountFunction: 3,
@@ -414,7 +423,8 @@ export class Boarding {
      *                 id: 987,
      *                 nickname: "Remittance Account",
      *                 routingAccount: "123123123",
-     *                 typeAccount: "Checking"
+     *                 typeAccount: "Checking",
+     *                 accountId: "123-100"
      *             }],
      *         bcity: "Miami",
      *         bcountry: "US",
@@ -510,8 +520,8 @@ export class Boarding {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -606,8 +616,8 @@ export class Boarding {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -701,8 +711,8 @@ export class Boarding {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -799,8 +809,8 @@ export class Boarding {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -892,8 +902,8 @@ export class Boarding {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -986,8 +996,8 @@ export class Boarding {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1094,8 +1104,8 @@ export class Boarding {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1189,8 +1199,8 @@ export class Boarding {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1308,8 +1318,8 @@ export class Boarding {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1429,8 +1439,8 @@ export class Boarding {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1525,8 +1535,8 @@ export class Boarding {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

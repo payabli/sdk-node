@@ -8,8 +8,8 @@ import * as Payabli from "../index";
  * Response for the add payment method domain operation.
  */
 export interface AddPaymentMethodDomainApiResponse {
-    isSuccess?: boolean;
-    pageidentifier?: string;
-    responseData?: Payabli.PaymentMethodDomainApiResponse;
-    responseText?: string;
+    isSuccess: Payabli.IsSuccess;
+    pageidentifier?: Payabli.PageIdentifier;
+    responseData: Payabli.PaymentMethodDomainApiResponse;
+    responseText: string;
 }

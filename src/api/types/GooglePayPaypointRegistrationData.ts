@@ -4,10 +4,10 @@
 
 import * as Payabli from "../index";
 
-export interface ApplePayPaypointRegistrationData {
+export interface GooglePayPaypointRegistrationData {
     entry?: Payabli.Entry;
     isEnabled?: Payabli.IsEnabled;
-    /** The wallet type. In this context it will always be `applePay`. */
+    /** The wallet type. In this context it will always be `googlePay`. */
     walletType?: string;
-    walletData?: Payabli.AppleWalletData;
+    walletData?: Payabli.GoogleWalletData;
 }

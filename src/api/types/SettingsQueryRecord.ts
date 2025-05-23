@@ -9,7 +9,7 @@ export interface SettingsQueryRecord {
     customFields?: Payabli.KeyValue[];
     forInvoices?: Payabli.KeyValue[];
     forPayOuts?: Payabli.KeyValue[];
-    /** Information about digital wallet settings for the entity. */
+    /** Information about digital wallet settings for the entity. Available values are `isApplePayEnabled` and `isGooglePayEnabled`. */
     forWallets?: Payabli.KeyValue[];
     /** */
     general?: Payabli.KeyValue[];

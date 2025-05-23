@@ -44,6 +44,7 @@ export interface ApplicationDataPayIn {
     mcountry?: Payabli.Mcountry | undefined;
     mstate?: Payabli.Mstate | undefined;
     mzip?: Payabli.Mzip | undefined;
+    orgId?: Payabli.Orgid | undefined;
     /** List of Owners with at least a 25% ownership. */
     ownership?: Payabli.ApplicationDataPayInOwnershipItem[];
     /** The business's phone number. */

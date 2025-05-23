@@ -3,6 +3,6 @@
  */
 
 /**
- * Masked account number for bank account.
+ * Account number for bank account. This value is returned masked in responses.
  */
 export type AccountNumber = string | undefined;

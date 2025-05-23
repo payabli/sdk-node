@@ -38,13 +38,22 @@ export class PaymentMethodDomain {
      * @param {PaymentMethodDomain.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.BadRequestError}
      * @throws {@link Payabli.UnauthorizedError}
      * @throws {@link Payabli.InternalServerError}
      * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
-     *     await client.paymentMethodDomain.addPaymentMethodDomain()
+     *     await client.paymentMethodDomain.addPaymentMethodDomain({
+     *         domainName: "checkout.example.com",
+     *         entityId: 109,
+     *         entityType: "paypoint",
+     *         applePay: {
+     *             isEnabled: true
+     *         },
+     *         googlePay: {
+     *             isEnabled: true
+     *         }
+     *     })
      */
     public addPaymentMethodDomain(
         request: Payabli.AddPaymentMethodDomainRequest = {},
@@ -68,8 +77,8 @@ export class PaymentMethodDomain {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -91,8 +100,6 @@ export class PaymentMethodDomain {
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
@@ -137,13 +144,12 @@ export class PaymentMethodDomain {
      * @param {PaymentMethodDomain.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.BadRequestError}
      * @throws {@link Payabli.UnauthorizedError}
      * @throws {@link Payabli.InternalServerError}
      * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
-     *     await client.paymentMethodDomain.cascadePaymentMethodDomain("pmd_12AB")
+     *     await client.paymentMethodDomain.cascadePaymentMethodDomain("pmd_b8237fa45c964d8a9ef27160cd42b8c5")
      */
     public cascadePaymentMethodDomain(
         domainId: string,
@@ -167,8 +173,8 @@ export class PaymentMethodDomain {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -189,8 +195,6 @@ export class PaymentMethodDomain {
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
@@ -243,7 +247,7 @@ export class PaymentMethodDomain {
      * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
-     *     await client.paymentMethodDomain.deletePaymentMethodDomain("pmd_12AB")
+     *     await client.paymentMethodDomain.deletePaymentMethodDomain("pmd_b8237fa45c964d8a9ef27160cd42b8c5")
      */
     public deletePaymentMethodDomain(
         domainId: string,
@@ -267,8 +271,8 @@ export class PaymentMethodDomain {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -337,13 +341,12 @@ export class PaymentMethodDomain {
      * @param {PaymentMethodDomain.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.BadRequestError}
      * @throws {@link Payabli.UnauthorizedError}
      * @throws {@link Payabli.InternalServerError}
      * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
-     *     await client.paymentMethodDomain.getPaymentMethodDomain("pmd_12AB")
+     *     await client.paymentMethodDomain.getPaymentMethodDomain("pmd_b8237fa45c964d8a9ef27160cd42b8c5")
      */
     public getPaymentMethodDomain(
         domainId: string,
@@ -367,8 +370,8 @@ export class PaymentMethodDomain {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -389,8 +392,6 @@ export class PaymentMethodDomain {
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
@@ -437,14 +438,20 @@ export class PaymentMethodDomain {
      * @param {PaymentMethodDomain.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.BadRequestError}
      * @throws {@link Payabli.UnauthorizedError}
      * @throws {@link Payabli.InternalServerError}
      * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
      *     await client.paymentMethodDomain.listPaymentMethodDomains({
-     *         entityId: 109
+     *         entityId: 1147,
+     *         entityType: "paypoint"
+     *     })
+     *
+     * @example
+     *     await client.paymentMethodDomain.listPaymentMethodDomains({
+     *         entityId: 39,
+     *         entityType: "organization"
      *     })
      */
     public listPaymentMethodDomains(
@@ -487,8 +494,8 @@ export class PaymentMethodDomain {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -510,8 +517,6 @@ export class PaymentMethodDomain {
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
@@ -557,13 +562,19 @@ export class PaymentMethodDomain {
      * @param {PaymentMethodDomain.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.BadRequestError}
      * @throws {@link Payabli.UnauthorizedError}
      * @throws {@link Payabli.InternalServerError}
      * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
-     *     await client.paymentMethodDomain.updatePaymentMethodDomain("pmd_12AB")
+     *     await client.paymentMethodDomain.updatePaymentMethodDomain("pmd_b8237fa45c964d8a9ef27160cd42b8c5", {
+     *         applePay: {
+     *             isEnabled: false
+     *         },
+     *         googlePay: {
+     *             isEnabled: false
+     *         }
+     *     })
      */
     public updatePaymentMethodDomain(
         domainId: string,
@@ -591,8 +602,8 @@ export class PaymentMethodDomain {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -614,8 +625,6 @@ export class PaymentMethodDomain {
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
@@ -662,13 +671,12 @@ export class PaymentMethodDomain {
      * @param {PaymentMethodDomain.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.BadRequestError}
      * @throws {@link Payabli.UnauthorizedError}
      * @throws {@link Payabli.InternalServerError}
      * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
-     *     await client.paymentMethodDomain.verifyPaymentMethodDomain("pmd_12AB")
+     *     await client.paymentMethodDomain.verifyPaymentMethodDomain("pmd_b8237fa45c964d8a9ef27160cd42b8c5")
      */
     public verifyPaymentMethodDomain(
         domainId: string,
@@ -692,8 +700,8 @@ export class PaymentMethodDomain {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.58-11",
-                "User-Agent": "@payabli/sdk-node/0.0.58-11",
+                "X-Fern-SDK-Version": "0.0.59",
+                "User-Agent": "@payabli/sdk-node/0.0.59",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -714,8 +722,6 @@ export class PaymentMethodDomain {
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:

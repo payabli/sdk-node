@@ -5,4 +5,4 @@
 /**
  * When `true`, the wallet service configuration cascades to all paypoints and suborganizations belonging to the parent entity.
  */
-export type Cascade = boolean;
+export type WalletCascade = boolean;

@@ -5,7 +5,7 @@
 import * as Payabli from "../../../index";
 
 export interface RequestTokenStorage {
-    /** Object describing the Customer/Payor owner of payment method. Required for POST requests. Which fields are required depends on the paypoint's custom identifier settings. See [PayorData Object Model](/api-reference/schemas/payordata) for a complete reference. */
+    /** Object describing the Customer/Payor owner of payment method. Required for POST requests. Which fields are required depends on the paypoint's custom identifier settings. */
     customerData?: Payabli.PayorData;
     /** Entrypoint identifier. Required for POST requests. */
     entryPoint?: Payabli.Entrypointfield;
