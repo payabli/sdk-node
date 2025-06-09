@@ -1,6 +1,6 @@
 {
-    "name": "sdk-node",
-    "version": "0.0.104",
+    "name": "@payabli/sdk-node",
+    "version": "0.0.105",
     "private": false,
     "repository": "https://github.com/payabli/sdk-node",
     "main": "./index.js",

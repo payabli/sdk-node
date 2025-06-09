@@ -93,8 +93,8 @@ export class Notification {
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "sdk-node",
-                "X-Fern-SDK-Version": "0.0.104",
+                "X-Fern-SDK-Name": "@payabli/sdk-node",
+                "X-Fern-SDK-Version": "0.0.105",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -188,8 +188,8 @@ export class Notification {
             method: "DELETE",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "sdk-node",
-                "X-Fern-SDK-Version": "0.0.104",
+                "X-Fern-SDK-Name": "@payabli/sdk-node",
+                "X-Fern-SDK-Version": "0.0.105",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -282,8 +282,8 @@ export class Notification {
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "sdk-node",
-                "X-Fern-SDK-Version": "0.0.104",
+                "X-Fern-SDK-Name": "@payabli/sdk-node",
+                "X-Fern-SDK-Version": "0.0.105",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -386,8 +386,8 @@ export class Notification {
             method: "PUT",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "sdk-node",
-                "X-Fern-SDK-Version": "0.0.104",
+                "X-Fern-SDK-Name": "@payabli/sdk-node",
+                "X-Fern-SDK-Version": "0.0.105",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

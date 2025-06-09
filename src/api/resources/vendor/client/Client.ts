@@ -114,8 +114,8 @@ export class Vendor {
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "sdk-node",
-                "X-Fern-SDK-Version": "0.0.104",
+                "X-Fern-SDK-Name": "@payabli/sdk-node",
+                "X-Fern-SDK-Version": "0.0.105",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -206,8 +206,8 @@ export class Vendor {
             method: "DELETE",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "sdk-node",
-                "X-Fern-SDK-Version": "0.0.104",
+                "X-Fern-SDK-Name": "@payabli/sdk-node",
+                "X-Fern-SDK-Version": "0.0.105",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -302,8 +302,8 @@ export class Vendor {
             method: "PUT",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "sdk-node",
-                "X-Fern-SDK-Version": "0.0.104",
+                "X-Fern-SDK-Name": "@payabli/sdk-node",
+                "X-Fern-SDK-Version": "0.0.105",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -394,8 +394,8 @@ export class Vendor {
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "sdk-node",
-                "X-Fern-SDK-Version": "0.0.104",
+                "X-Fern-SDK-Name": "@payabli/sdk-node",
+                "X-Fern-SDK-Version": "0.0.105",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
