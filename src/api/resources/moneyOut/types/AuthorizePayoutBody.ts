@@ -8,7 +8,7 @@ export interface AuthorizePayoutBody {
     accountId?: Payabli.Accountid | undefined;
     entryPoint: Payabli.Entrypointfield;
     /** Array of bills associated to the transaction */
-    invoiceData?: Payabli.BillPayOutData[];
+    invoiceData?: Payabli.BillPayOutDataRequest[];
     orderDescription?: Payabli.Orderdescription | undefined;
     orderId?: Payabli.Orderid | undefined;
     /** Object containing payment details. */

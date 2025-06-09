@@ -4,7 +4,7 @@
 
 import * as Payabli from "../../../index";
 
-export interface GetMethodResponseResponseDataCustomersItem extends Payabli.PayorData {
+export interface GetMethodResponseResponseDataCustomersItem extends Payabli.PayorDataRequest {
     /** Customer's current balance */
     balance?: number;
     /** Creation timestamp */
@@ -23,10 +23,10 @@ export interface GetMethodResponseResponseDataCustomersItem extends Payabli.Payo
     mfa?: boolean;
     /** MFA mode setting */
     mfaMode?: number;
-    pageindentifier?: Payabli.PageIdentifier | undefined;
+    pageindentifier?: Payabli.PageIdentifier;
     /** Parent organization ID */
     parentOrgId?: number;
-    parentOrgName?: Payabli.OrgParentName | undefined;
+    parentOrgName?: Payabli.OrgParentName;
     paypointDbaname?: Payabli.Dbaname | undefined;
     /** The paypoint entryname the customer is associated with */
     paypointEntryname?: string;

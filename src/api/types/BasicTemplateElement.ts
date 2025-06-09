@@ -6,6 +6,6 @@ import * as Payabli from "../index";
 
 export interface BasicTemplateElement {
     readOnly?: Payabli.ReadOnly | undefined;
-    required?: Payabli.RequiredElement | undefined;
+    required?: Payabli.RequiredElement;
     visible?: Payabli.Visible | undefined;
 }

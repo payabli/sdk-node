@@ -15,6 +15,6 @@ export interface VCardSummary {
     totalamounteactive: number;
     /** Total balance of active vCards. */
     totalbalanceactive: number;
-    pageIdentifier?: Payabli.PageIdentifier | undefined;
+    pageIdentifier?: Payabli.PageIdentifier;
     pageSize?: Payabli.Pagesize;
 }

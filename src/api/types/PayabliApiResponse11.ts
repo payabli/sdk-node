@@ -6,7 +6,7 @@ import * as Payabli from "../index";
 
 export interface PayabliApiResponse11 {
     isSuccess?: Payabli.IsSuccess;
-    pageIdentifier?: Payabli.PageIdentifier | undefined;
+    pageIdentifier?: Payabli.PageIdentifier;
     responseData?: Payabli.PayabliApiResponse11ResponseData;
-    responseText?: Payabli.ResponseText | undefined;
+    responseText?: Payabli.ResponseText;
 }

@@ -5,7 +5,7 @@
 import * as Payabli from "../../../index";
 
 export interface AddDeviceResponse extends Payabli.PayabliApiResponseGeneric2Part {
-    pageIdentifier?: Payabli.PageIdentifier | undefined;
+    pageIdentifier?: Payabli.PageIdentifier;
     /**
      * If `isSuccess` = true, this contains the device identifier.
      * If `isSuccess` = false, this contains the reason for the error.

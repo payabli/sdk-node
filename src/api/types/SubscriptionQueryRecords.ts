@@ -32,7 +32,7 @@ export interface SubscriptionQueryRecords {
     NetAmount?: Payabli.Netamountnullable | undefined;
     /** The next date the subscription will be processed. */
     NextDate?: Payabli.Datetimenullable | undefined;
-    ParentOrgName?: Payabli.OrgParentName | undefined;
+    ParentOrgName?: Payabli.OrgParentName;
     PaymentData?: Payabli.QueryPaymentData;
     /** The paypoint's DBA name. */
     PaypointDbaname?: Payabli.Dbaname | undefined;

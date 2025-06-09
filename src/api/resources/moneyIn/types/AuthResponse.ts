@@ -9,7 +9,7 @@ import * as Payabli from "../../../index";
  */
 export interface AuthResponse {
     isSuccess?: Payabli.IsSuccess;
-    pageIdentifier?: Payabli.PageIdentifier | undefined;
+    pageIdentifier?: Payabli.PageIdentifier;
     responseData?: Payabli.AuthResponseResponseData;
-    responseText?: Payabli.ResponseText | undefined;
+    responseText?: Payabli.ResponseText;
 }

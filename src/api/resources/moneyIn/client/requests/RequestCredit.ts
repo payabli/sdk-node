@@ -57,7 +57,7 @@ export interface RequestCredit {
     idempotencyKey?: Payabli.IdempotencyKey | undefined;
     accountId?: Payabli.Accountid | undefined;
     /** Object describing the customer/payor. */
-    customerData: Payabli.PayorData;
+    customerData: Payabli.PayorDataRequest;
     entrypoint?: Payabli.Entrypointfield;
     orderDescription?: Payabli.Orderdescription | undefined;
     orderId?: Payabli.Orderid | undefined;

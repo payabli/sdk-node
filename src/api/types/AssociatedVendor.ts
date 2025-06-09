@@ -43,7 +43,7 @@ export interface AssociatedVendor {
     PaypointDbaname?: Payabli.Dbaname | undefined;
     /** Paypoint's entryname. */
     PaypointEntryname?: Payabli.Entrypointfield;
-    ParentOrgName?: Payabli.OrgParentName | undefined;
+    ParentOrgName?: Payabli.OrgParentName;
     CreatedDate?: Payabli.CreatedAt;
     LastUpdated?: Payabli.LastModified | undefined;
     remitAddress1?: Payabli.Remitaddress1 | undefined;

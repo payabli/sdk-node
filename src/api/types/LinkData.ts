@@ -6,7 +6,7 @@ import * as Payabli from "../index";
 
 export interface LinkData {
     ro?: Payabli.ReadOnly | undefined;
-    rq?: Payabli.RequiredElement | undefined;
+    rq?: Payabli.RequiredElement;
     /**
      * The type of validation applied to the field. Available values:
      * - text

@@ -15,5 +15,5 @@ export interface UpdateSubscriptionResponse {
      * If `isSuccess` = false, this contains the reason for the failure.
      */
     responseData?: string;
-    responseText?: Payabli.ResponseText | undefined;
+    responseText?: Payabli.ResponseText;
 }

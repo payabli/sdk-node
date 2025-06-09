@@ -7,7 +7,7 @@ import * as Payabli from "../index";
 /**
  * Customer information. May be required, depending on the paypoint's settings. Required for subscriptions.
  */
-export interface PayorData {
+export interface PayorDataRequest {
     additionalData?: Payabli.AdditionalData;
     billingAddress1?: Payabli.BillingAddressNullable | undefined;
     billingAddress2?: Payabli.BillingAddressAddtlNullable | undefined;
@@ -29,8 +29,8 @@ export interface PayorData {
     lastName?: string;
     shippingAddress1?: Payabli.Shippingaddress | undefined;
     shippingAddress2?: Payabli.Shippingaddressadditional | undefined;
-    shippingCity?: Payabli.Shippingcity | undefined;
-    shippingCountry?: Payabli.Shippingcountry | undefined;
-    shippingState?: Payabli.Shippingstate | undefined;
+    shippingCity?: Payabli.Shippingcity;
+    shippingCountry?: Payabli.Shippingcountry;
+    shippingState?: Payabli.Shippingstate;
     shippingZip?: Payabli.Shippingzip | undefined;
 }

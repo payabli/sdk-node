@@ -7,7 +7,6 @@ import * as core from "../../../../core";
 import * as Payabli from "../../../index";
 import urlJoin from "url-join";
 import * as errors from "../../../../errors/index";
-import * as stream from "stream";
 import { toJson } from "../../../../core/json";
 
 export declare namespace Invoice {
@@ -81,7 +80,7 @@ export class Invoice {
         entry: string,
         request: Payabli.AddInvoiceRequest,
         requestOptions?: Invoice.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.PayabliApiResponse4> {
+    ): core.HttpResponsePromise<Payabli.InvoiceResponseWithoutData> {
         return core.HttpResponsePromise.fromPromise(this.__addInvoice(entry, request, requestOptions));
     }
 
@@ -89,7 +88,7 @@ export class Invoice {
         entry: string,
         request: Payabli.AddInvoiceRequest,
         requestOptions?: Invoice.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.PayabliApiResponse4>> {
+    ): Promise<core.WithRawResponse<Payabli.InvoiceResponseWithoutData>> {
         const { forceCustomerCreation, idempotencyKey, body: _body } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (forceCustomerCreation != null) {
@@ -107,8 +106,7 @@ export class Invoice {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.59",
-                "User-Agent": "@payabli/sdk-node/0.0.59",
+                "X-Fern-SDK-Version": "0.0.99",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 idempotencyKey: idempotencyKey != null ? idempotencyKey : undefined,
@@ -124,7 +122,7 @@ export class Invoice {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return { data: _response.body as Payabli.PayabliApiResponse4, rawResponse: _response.rawResponse };
+            return { data: _response.body as Payabli.InvoiceResponseWithoutData, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -195,7 +193,7 @@ export class Invoice {
         filename: string,
         idInvoice: number,
         requestOptions?: Invoice.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.PayabliApiResponse4> {
+    ): core.HttpResponsePromise<Payabli.InvoiceResponseWithoutData> {
         return core.HttpResponsePromise.fromPromise(
             this.__deleteAttachedFromInvoice(filename, idInvoice, requestOptions),
         );
@@ -205,7 +203,7 @@ export class Invoice {
         filename: string,
         idInvoice: number,
         requestOptions?: Invoice.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.PayabliApiResponse4>> {
+    ): Promise<core.WithRawResponse<Payabli.InvoiceResponseWithoutData>> {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -217,8 +215,7 @@ export class Invoice {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.59",
-                "User-Agent": "@payabli/sdk-node/0.0.59",
+                "X-Fern-SDK-Version": "0.0.99",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -231,7 +228,7 @@ export class Invoice {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return { data: _response.body as Payabli.PayabliApiResponse4, rawResponse: _response.rawResponse };
+            return { data: _response.body as Payabli.InvoiceResponseWithoutData, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -294,14 +291,14 @@ export class Invoice {
     public deleteInvoice(
         idInvoice: number,
         requestOptions?: Invoice.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.PayabliApiResponse4> {
+    ): core.HttpResponsePromise<Payabli.InvoiceResponseWithoutData> {
         return core.HttpResponsePromise.fromPromise(this.__deleteInvoice(idInvoice, requestOptions));
     }
 
     private async __deleteInvoice(
         idInvoice: number,
         requestOptions?: Invoice.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.PayabliApiResponse4>> {
+    ): Promise<core.WithRawResponse<Payabli.InvoiceResponseWithoutData>> {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -313,8 +310,7 @@ export class Invoice {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.59",
-                "User-Agent": "@payabli/sdk-node/0.0.59",
+                "X-Fern-SDK-Version": "0.0.99",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -327,7 +323,7 @@ export class Invoice {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return { data: _response.body as Payabli.PayabliApiResponse4, rawResponse: _response.rawResponse };
+            return { data: _response.body as Payabli.InvoiceResponseWithoutData, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -406,7 +402,7 @@ export class Invoice {
         idInvoice: number,
         request: Payabli.EditInvoiceRequest,
         requestOptions?: Invoice.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.PayabliApiResponse4> {
+    ): core.HttpResponsePromise<Payabli.InvoiceResponseWithoutData> {
         return core.HttpResponsePromise.fromPromise(this.__editInvoice(idInvoice, request, requestOptions));
     }
 
@@ -414,7 +410,7 @@ export class Invoice {
         idInvoice: number,
         request: Payabli.EditInvoiceRequest,
         requestOptions?: Invoice.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.PayabliApiResponse4>> {
+    ): Promise<core.WithRawResponse<Payabli.InvoiceResponseWithoutData>> {
         const { forceCustomerCreation, body: _body } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (forceCustomerCreation != null) {
@@ -432,8 +428,7 @@ export class Invoice {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.59",
-                "User-Agent": "@payabli/sdk-node/0.0.59",
+                "X-Fern-SDK-Version": "0.0.99",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -448,7 +443,7 @@ export class Invoice {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return { data: _response.body as Payabli.PayabliApiResponse4, rawResponse: _response.rawResponse };
+            return { data: _response.body as Payabli.InvoiceResponseWithoutData, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -492,19 +487,38 @@ export class Invoice {
 
     /**
      * Retrieves a file attached to an invoice.
-     * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.UnauthorizedError}
+     *
+     * @param {string} filename - The filename in Payabli. Filename is `zipName` in the response to a request to `/api/Invoice/{idInvoice}`. Here, the filename is `0_Bill.pdf``.
+     *                            ```
+     *                              "DocumentsRef": {
+     *                                "zipfile": "inva_269.zip",
+     *                                "filelist": [
+     *                                  {
+     *                                    "originalName": "Bill.pdf",
+     *                                    "zipName": "0_Bill.pdf",
+     *                                    "descriptor": null
+     *                                  }
+     *                                ]
+     *                              }
+     *                              ```
+     * @param {number} idInvoice - Invoice ID
+     * @param {Payabli.GetAttachedFileFromInvoiceRequest} request
+     * @param {Invoice.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @throws {@link Payabli.BadRequestError}
      * @throws {@link Payabli.UnauthorizedError}
      * @throws {@link Payabli.InternalServerError}
      * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.invoice.getAttachedFileFromInvoice("filename", 1)
      */
     public getAttachedFileFromInvoice(
         filename: string,
         idInvoice: number,
         request: Payabli.GetAttachedFileFromInvoiceRequest = {},
         requestOptions?: Invoice.RequestOptions,
-    ): core.HttpResponsePromise<stream.Readable> {
+    ): core.HttpResponsePromise<Payabli.FileContent> {
         return core.HttpResponsePromise.fromPromise(
             this.__getAttachedFileFromInvoice(filename, idInvoice, request, requestOptions),
         );
@@ -515,14 +529,14 @@ export class Invoice {
         idInvoice: number,
         request: Payabli.GetAttachedFileFromInvoiceRequest = {},
         requestOptions?: Invoice.RequestOptions,
-    ): Promise<core.WithRawResponse<stream.Readable>> {
+    ): Promise<core.WithRawResponse<Payabli.FileContent>> {
         const { returnObject } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (returnObject != null) {
             _queryParams["returnObject"] = returnObject.toString();
         }
 
-        const _response = await core.fetcher<stream.Readable>({
+        const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
@@ -533,8 +547,7 @@ export class Invoice {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.59",
-                "User-Agent": "@payabli/sdk-node/0.0.59",
+                "X-Fern-SDK-Version": "0.0.99",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -543,21 +556,16 @@ export class Invoice {
             contentType: "application/json",
             queryParameters: _queryParams,
             requestType: "json",
-            responseType: "streaming",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return { data: _response.body, rawResponse: _response.rawResponse };
+            return { data: _response.body as Payabli.FileContent, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
@@ -614,14 +622,14 @@ export class Invoice {
     public getInvoice(
         idInvoice: number,
         requestOptions?: Invoice.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.BillQueryRecord> {
+    ): core.HttpResponsePromise<Payabli.GetInvoiceRecord> {
         return core.HttpResponsePromise.fromPromise(this.__getInvoice(idInvoice, requestOptions));
     }
 
     private async __getInvoice(
         idInvoice: number,
         requestOptions?: Invoice.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.BillQueryRecord>> {
+    ): Promise<core.WithRawResponse<Payabli.GetInvoiceRecord>> {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -633,8 +641,7 @@ export class Invoice {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.59",
-                "User-Agent": "@payabli/sdk-node/0.0.59",
+                "X-Fern-SDK-Version": "0.0.99",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -647,7 +654,7 @@ export class Invoice {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return { data: _response.body as Payabli.BillQueryRecord, rawResponse: _response.rawResponse };
+            return { data: _response.body as Payabli.GetInvoiceRecord, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -697,8 +704,6 @@ export class Invoice {
      *
      * @throws {@link Payabli.BadRequestError}
      * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.UnauthorizedError}
      * @throws {@link Payabli.InternalServerError}
      * @throws {@link Payabli.ServiceUnavailableError}
      *
@@ -708,14 +713,14 @@ export class Invoice {
     public getInvoiceNumber(
         entry: string,
         requestOptions?: Invoice.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.PayabliApiResponse5> {
+    ): core.HttpResponsePromise<Payabli.InvoiceNumberResponse> {
         return core.HttpResponsePromise.fromPromise(this.__getInvoiceNumber(entry, requestOptions));
     }
 
     private async __getInvoiceNumber(
         entry: string,
         requestOptions?: Invoice.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.PayabliApiResponse5>> {
+    ): Promise<core.WithRawResponse<Payabli.InvoiceNumberResponse>> {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -727,8 +732,7 @@ export class Invoice {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.59",
-                "User-Agent": "@payabli/sdk-node/0.0.59",
+                "X-Fern-SDK-Version": "0.0.99",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -741,15 +745,11 @@ export class Invoice {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return { data: _response.body as Payabli.PayabliApiResponse5, rawResponse: _response.rawResponse };
+            return { data: _response.body as Payabli.InvoiceNumberResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
@@ -848,8 +848,7 @@ export class Invoice {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.59",
-                "User-Agent": "@payabli/sdk-node/0.0.59",
+                "X-Fern-SDK-Version": "0.0.99",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -966,8 +965,7 @@ export class Invoice {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.59",
-                "User-Agent": "@payabli/sdk-node/0.0.59",
+                "X-Fern-SDK-Version": "0.0.99",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1075,8 +1073,7 @@ export class Invoice {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.59",
-                "User-Agent": "@payabli/sdk-node/0.0.59",
+                "X-Fern-SDK-Version": "0.0.99",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

@@ -27,5 +27,5 @@ export interface EditInvoiceRequest {
      * When `true`, the request creates a new customer record, regardless of whether customer identifiers match an existing customer.
      */
     forceCustomerCreation?: boolean;
-    body: Payabli.InvoiceData;
+    body: Payabli.InvoiceDataRequest;
 }

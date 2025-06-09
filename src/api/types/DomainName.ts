@@ -3,6 +3,6 @@
  */
 
 /**
- * The domain. For example: `subdomain.domain.com` or `domain.com`
+ * The domain. For example: `subdomain.domain.com` or `domain.com`. Must be  public. Can't be `localhost`, hidden by a VPN, or protected by a password.
  */
 export type DomainName = string;

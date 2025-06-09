@@ -25,7 +25,7 @@ export interface BillOutData {
     /** Bill mode: value `0` for one-time bills, `1` for scheduled bills. */
     mode?: number;
     /** Net Amount owed in bill. Required when adding a bill. */
-    netAmount?: Payabli.NetAmountstring | undefined;
+    netAmount?: Payabli.NetAmountstring;
     status?: Payabli.Billstatus;
     terms?: Payabli.Terms | undefined;
     /** The vendor associated with the bill. Although you can create a vendor in a create bill request, Payabli recommends creating a vendor separately and passing a valid `vendorNumber` here. At minimum, the `vendorNumber` is required. */

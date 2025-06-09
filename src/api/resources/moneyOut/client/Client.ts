@@ -123,8 +123,7 @@ export class MoneyOut {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.59",
-                "User-Agent": "@payabli/sdk-node/0.0.59",
+                "X-Fern-SDK-Version": "0.0.99",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 idempotencyKey: idempotencyKey != null ? idempotencyKey : undefined,
@@ -218,8 +217,7 @@ export class MoneyOut {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.59",
-                "User-Agent": "@payabli/sdk-node/0.0.59",
+                "X-Fern-SDK-Version": "0.0.99",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -311,8 +309,7 @@ export class MoneyOut {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.59",
-                "User-Agent": "@payabli/sdk-node/0.0.59",
+                "X-Fern-SDK-Version": "0.0.99",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -408,8 +405,7 @@ export class MoneyOut {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.59",
-                "User-Agent": "@payabli/sdk-node/0.0.59",
+                "X-Fern-SDK-Version": "0.0.99",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 idempotencyKey: idempotencyKey != null ? idempotencyKey : undefined,
@@ -506,8 +502,7 @@ export class MoneyOut {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.59",
-                "User-Agent": "@payabli/sdk-node/0.0.59",
+                "X-Fern-SDK-Version": "0.0.99",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 idempotencyKey: idempotencyKey != null ? idempotencyKey : undefined,
@@ -584,14 +579,14 @@ export class MoneyOut {
     public payoutDetails(
         transId: string,
         requestOptions?: MoneyOut.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.TransactionOutQueryRecord> {
+    ): core.HttpResponsePromise<Payabli.BillDetailResponse> {
         return core.HttpResponsePromise.fromPromise(this.__payoutDetails(transId, requestOptions));
     }
 
     private async __payoutDetails(
         transId: string,
         requestOptions?: MoneyOut.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.TransactionOutQueryRecord>> {
+    ): Promise<core.WithRawResponse<Payabli.BillDetailResponse>> {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -603,8 +598,7 @@ export class MoneyOut {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.59",
-                "User-Agent": "@payabli/sdk-node/0.0.59",
+                "X-Fern-SDK-Version": "0.0.99",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -617,7 +611,7 @@ export class MoneyOut {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return { data: _response.body as Payabli.TransactionOutQueryRecord, rawResponse: _response.rawResponse };
+            return { data: _response.body as Payabli.BillDetailResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -699,8 +693,7 @@ export class MoneyOut {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.59",
-                "User-Agent": "@payabli/sdk-node/0.0.59",
+                "X-Fern-SDK-Version": "0.0.99",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -802,8 +795,7 @@ export class MoneyOut {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.59",
-                "User-Agent": "@payabli/sdk-node/0.0.59",
+                "X-Fern-SDK-Version": "0.0.99",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

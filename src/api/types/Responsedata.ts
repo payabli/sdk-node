@@ -5,4 +5,4 @@
 /**
  * The object containing the response data.
  */
-export type Responsedata = Record<string, unknown> | undefined;
+export type Responsedata = Record<string, unknown>;

@@ -9,5 +9,5 @@ export interface PayabliApiResponseUserMfa {
     isSuccess?: Payabli.IsSuccess;
     remaining?: number;
     responseData?: Payabli.Responsedatanonobject;
-    responseText?: Payabli.ResponseText | undefined;
+    responseText?: Payabli.ResponseText;
 }

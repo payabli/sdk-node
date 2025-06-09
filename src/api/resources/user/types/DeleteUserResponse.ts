@@ -5,5 +5,5 @@
 import * as Payabli from "../../../index";
 
 export interface DeleteUserResponse {
-    responseText?: Payabli.ResponseText | undefined;
+    responseText?: Payabli.ResponseText;
 }

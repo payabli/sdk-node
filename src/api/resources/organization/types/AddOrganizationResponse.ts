@@ -8,5 +8,5 @@ export interface AddOrganizationResponse {
     isSuccess?: Payabli.IsSuccess;
     /** Returns the organization ID. */
     responseData?: Payabli.Responsedatanonobject;
-    responseText?: Payabli.ResponseText | undefined;
+    responseText?: Payabli.ResponseText;
 }

@@ -30,7 +30,7 @@ export interface QueryPayoutTransactionRecordsItem {
     LastUpdated?: Payabli.LastModified | undefined;
     /** Net amount paid. */
     NetAmount?: Payabli.Netamountnullable | undefined;
-    ParentOrgName?: Payabli.OrgParentName | undefined;
+    ParentOrgName?: Payabli.OrgParentName;
     PaymentData?: Payabli.QueryPayoutTransactionRecordsItemPaymentData;
     PaymentId?: Payabli.Paymentid | undefined;
     /** The payment method for the transaction. */

@@ -10,7 +10,7 @@ export interface BoardingQueryLinks {
     entryAttributes?: Payabli.EntryAttributes | undefined;
     id?: Payabli.BoardingLinkId;
     lastUpdated?: Payabli.LastModified | undefined;
-    orgParentName?: Payabli.OrgParentName | undefined;
+    orgParentName?: Payabli.OrgParentName;
     referenceName?: Payabli.ReferenceName | undefined;
     referenceTemplateId?: Payabli.ReferenceTemplateId | undefined;
     templateCode?: Payabli.TemplateCode | undefined;

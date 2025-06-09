@@ -4,4 +4,10 @@
 
 import * as Payabli from "../../../index";
 
-export type AddNotificationRequest = Payabli.NotificationStandardRequest | Payabli.NotificationReportRequest;
+export type AddNotificationRequest =
+    /**
+     * Create a standard webhook, email, or SMS notification. */
+    | Payabli.NotificationStandardRequest
+    /**
+     * Create an auto-generated report. */
+    | Payabli.NotificationReportRequest;

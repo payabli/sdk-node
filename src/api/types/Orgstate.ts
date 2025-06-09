@@ -5,4 +5,4 @@
 /**
  * The organization's state.
  */
-export type Orgstate = string | undefined;
+export type Orgstate = string;

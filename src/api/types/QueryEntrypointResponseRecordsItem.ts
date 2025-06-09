@@ -46,7 +46,7 @@ export interface QueryEntrypointResponseRecordsItem {
     MState?: Payabli.Mstate | undefined;
     MZip?: Payabli.Mzip | undefined;
     OrgId?: Payabli.Orgid | undefined;
-    OrgParentName?: Payabli.OrgParentName | undefined;
+    OrgParentName?: Payabli.OrgParentName;
     OwnerData?: Payabli.Ownership | undefined;
     OwnType?: Payabli.OwnType;
     PaypointStatus?: Payabli.Paypointstatus;

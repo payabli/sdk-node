@@ -25,7 +25,7 @@ export interface TransactionOutQueryRecord {
     /** Timestamp when payment record was updated, in UTC. */
     LastUpdated?: Payabli.LastModified | undefined;
     NetAmount?: Payabli.Netamountnullable | undefined;
-    parentOrgName?: Payabli.OrgParentName | undefined;
+    parentOrgName?: Payabli.OrgParentName;
     PaymentData?: Payabli.QueryPaymentData;
     /** Unique identifier for group or batch containing the transaction. */
     PaymentGroup?: string;

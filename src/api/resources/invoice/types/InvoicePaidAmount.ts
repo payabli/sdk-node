@@ -5,4 +5,4 @@
 /**
  * Amount partially paid to the invoice.
  */
-export type InvoicePaidAmount = number | undefined;
+export type InvoicePaidAmount = number;

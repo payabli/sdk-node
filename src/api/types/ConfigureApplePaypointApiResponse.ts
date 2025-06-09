@@ -6,10 +6,10 @@ import * as Payabli from "../index";
 
 export interface ConfigureApplePaypointApiResponse {
     isSuccess?: Payabli.IsSuccess;
-    pageIdentifier?: Payabli.PageIdentifier | undefined;
-    responseCode?: Payabli.Responsecode | undefined;
+    pageIdentifier?: Payabli.PageIdentifier;
+    responseCode?: Payabli.Responsecode;
     responseData?: Payabli.ApplePayPaypointRegistrationData;
-    responseText?: Payabli.ResponseText | undefined;
+    responseText?: Payabli.ResponseText;
     /** Field not in use on this endpoint */
     roomId?: number;
 }

@@ -40,7 +40,7 @@ export interface QueryBatchesResponseRecordsItem {
     /** The payment method used. */
     Method?: string;
     /** The entrypoint's parent org. */
-    ParentOrgName?: Payabli.OrgParentName | undefined;
+    ParentOrgName?: Payabli.OrgParentName;
     /** Paypoint DBA name. */
     PaypointDba?: Payabli.Dbaname | undefined;
     PaypointId?: Payabli.PaypointId | undefined;

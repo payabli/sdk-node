@@ -10,7 +10,7 @@ export interface TemplateQueryRecord {
     createdAt?: Payabli.CreatedAt;
     idTemplate?: number;
     isRoot?: Payabli.IsRoot | undefined;
-    orgParentName?: Payabli.OrgParentName | undefined;
+    orgParentName?: Payabli.OrgParentName;
     recipientEmailNotification?: Payabli.RecipientEmailNotification;
     resumable?: Payabli.Resumable;
     templateCode?: Payabli.TemplateCode | undefined;

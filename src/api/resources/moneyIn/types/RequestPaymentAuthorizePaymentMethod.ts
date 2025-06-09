@@ -8,6 +8,12 @@ import * as Payabli from "../../../index";
  * Object describing payment method to use for transaction.
  */
 export type RequestPaymentAuthorizePaymentMethod =
+    /**
+     * Object describing a credit card payment method */
     | Payabli.PayMethodCredit
+    /**
+     * Object describing a stored method payment method */
     | Payabli.PayMethodStoredMethod
+    /**
+     * Object describing a cloud payment method */
     | Payabli.PayMethodCloud;

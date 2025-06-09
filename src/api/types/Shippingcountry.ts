@@ -5,4 +5,4 @@
 /**
  * Shipping address country.
  */
-export type Shippingcountry = string | undefined;
+export type Shippingcountry = string;

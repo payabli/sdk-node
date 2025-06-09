@@ -11,5 +11,5 @@ export interface CloudQueryApiResponse {
     isSuccess?: Payabli.IsSuccess;
     /** List of devices and history of registration. */
     responseList?: Payabli.PoiDevice[];
-    responseText?: Payabli.ResponseText | undefined;
+    responseText?: Payabli.ResponseText;
 }

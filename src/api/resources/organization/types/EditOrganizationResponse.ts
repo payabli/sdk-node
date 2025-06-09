@@ -6,9 +6,9 @@ import * as Payabli from "../../../index";
 
 export interface EditOrganizationResponse {
     isSuccess?: Payabli.IsSuccess;
-    pageIdentifier?: Payabli.PageIdentifier | undefined;
-    responseCode?: Payabli.Responsecode | undefined;
+    pageIdentifier?: Payabli.PageIdentifier;
+    responseCode?: Payabli.Responsecode;
     /** Returns the organization ID. */
     responseData?: Payabli.Responsedatanonobject;
-    responseText?: Payabli.ResponseText | undefined;
+    responseText?: Payabli.ResponseText;
 }

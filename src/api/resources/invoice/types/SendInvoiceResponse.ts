@@ -5,6 +5,6 @@
 import * as Payabli from "../../../index";
 
 export interface SendInvoiceResponse {
-    isSuccess?: Payabli.IsSuccess;
-    responseText?: Payabli.ResponseText | undefined;
+    isSuccess: Payabli.IsSuccess;
+    responseText: Payabli.ResponseText;
 }

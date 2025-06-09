@@ -6,7 +6,7 @@ import * as Payabli from "../../../index";
 
 export interface SubscriptionRequestBody {
     /** Object describing the customer/payor. */
-    customerData?: Payabli.PayorData;
+    customerData?: Payabli.PayorDataRequest;
     entryPoint?: Payabli.Entrypointfield;
     /** Object describing an Invoice linked to the subscription. */
     invoiceData?: Payabli.BillData;

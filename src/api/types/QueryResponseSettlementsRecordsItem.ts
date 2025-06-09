@@ -34,7 +34,7 @@ export interface QueryResponseSettlementsRecordsItem {
     /** The operation performed. */
     Operation?: string;
     OrderId?: Payabli.Orderid | undefined;
-    ParentOrgName?: Payabli.OrgParentName | undefined;
+    ParentOrgName?: Payabli.OrgParentName;
     PaymentData?: Payabli.QueryPaymentData;
     /** The transaction ID for the payment. */
     PaymentTransId?: string;

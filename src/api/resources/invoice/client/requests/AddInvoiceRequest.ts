@@ -40,5 +40,5 @@ import * as Payabli from "../../../../index";
 export interface AddInvoiceRequest {
     forceCustomerCreation?: Payabli.ForceCustomerCreation | undefined;
     idempotencyKey?: Payabli.IdempotencyKey | undefined;
-    body: Payabli.InvoiceData;
+    body: Payabli.InvoiceDataRequest;
 }

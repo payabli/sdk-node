@@ -6,8 +6,8 @@ import * as Payabli from "../index";
 
 export interface ConfigureApplePayOrganizationApiResponse {
     isSuccess?: Payabli.IsSuccess;
-    pageIdentifier?: Payabli.PageIdentifier | undefined;
-    responseCode?: Payabli.Responsecode | undefined;
+    pageIdentifier?: Payabli.PageIdentifier;
+    responseCode?: Payabli.Responsecode;
     responseData?: Payabli.ApplePayOrganizationUpdateData;
-    responseText?: Payabli.ResponseText | undefined;
+    responseText?: Payabli.ResponseText;
 }

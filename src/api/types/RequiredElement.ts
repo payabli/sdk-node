@@ -5,4 +5,4 @@
 /**
  * When `true`, the element is required.
  */
-export type RequiredElement = boolean | undefined;
+export type RequiredElement = boolean;

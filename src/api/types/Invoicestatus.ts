@@ -13,4 +13,4 @@
  *   - 4 paid/complete
  *   - 99 cancelled
  */
-export type Invoicestatus = number | undefined;
+export type Invoicestatus = number;

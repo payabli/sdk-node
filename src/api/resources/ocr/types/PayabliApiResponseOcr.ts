@@ -6,8 +6,8 @@ import * as Payabli from "../../../index";
 
 export interface PayabliApiResponseOcr {
     isSuccess?: Payabli.IsSuccess;
-    responseText?: Payabli.ResponseText | undefined;
-    responseCode?: Payabli.Responsecode | undefined;
+    responseText?: Payabli.ResponseText;
+    responseCode?: Payabli.Responsecode;
     /** Details of the OCR processing result */
     responseData?: Payabli.OcrResponseData;
 }

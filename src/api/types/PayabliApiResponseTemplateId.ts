@@ -6,9 +6,9 @@ import * as Payabli from "../index";
 
 export interface PayabliApiResponseTemplateId {
     isSuccess?: Payabli.IsSuccess;
-    pageIdentifier?: Payabli.PageIdentifier | undefined;
-    responseCode?: Payabli.Responsecode | undefined;
+    pageIdentifier?: Payabli.PageIdentifier;
+    responseCode?: Payabli.Responsecode;
     /** When the operation is successful, contains the template's ID. */
     responseData?: Payabli.Responsedatanonobject;
-    responseText?: Payabli.ResponseText | undefined;
+    responseText?: Payabli.ResponseText;
 }

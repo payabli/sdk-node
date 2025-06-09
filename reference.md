@@ -884,13 +884,19 @@ await client.boarding.addApplication({
         address1: "STE 900",
         city: "Bristol",
         country: "US",
-        dob: "01/01/1990",
+        dob: "01/01/1976",
         email: "test@email.com",
         name: "John Smith",
         phone: "555888111",
         ssn: "123456789",
         state: "TN",
         zip: "55555",
+        pciAttestation: true,
+        signedDocumentReference: "https://example.com/signed-document.pdf",
+        attestationDate: "04/20/2025",
+        signDate: "04/20/2025",
+        additionalData:
+            '{"deviceId":"499585-389fj484-3jcj8hj3","session":"fifji4-fiu443-fn4843","timeWithCompany":"6 Years"}',
     },
     startdate: "01/01/1990",
     taxFillName: "Sunshine LLC",
@@ -2554,7 +2560,15 @@ Update a customer record. Include only the fields you want to change.
 <dd>
 
 ```typescript
-await client.customer.updateCustomer(998, {});
+await client.customer.updateCustomer(998, {
+    firstname: "Irene",
+    lastname: "Canizales",
+    address1: "145 Bishop's Trail",
+    city: "Mountain City",
+    state: "TN",
+    zip: "37612",
+    country: "US",
+});
 ```
 
 </dd>
@@ -5556,7 +5570,7 @@ await client.import.importVendor(fs.createReadStream("/path/to/your/file"), "8cf
 
 ## Invoice
 
-<details><summary><code>client.invoice.<a href="/src/api/resources/invoice/client/Client.ts">addInvoice</a>(entry, { ...params }) -> Payabli.PayabliApiResponse4</code></summary>
+<details><summary><code>client.invoice.<a href="/src/api/resources/invoice/client/Client.ts">addInvoice</a>(entry, { ...params }) -> Payabli.InvoiceResponseWithoutData</code></summary>
 <dl>
 <dd>
 
@@ -5659,7 +5673,7 @@ await client.invoice.addInvoice("8cfec329267", {
 </dl>
 </details>
 
-<details><summary><code>client.invoice.<a href="/src/api/resources/invoice/client/Client.ts">deleteAttachedFromInvoice</a>(filename, idInvoice) -> Payabli.PayabliApiResponse4</code></summary>
+<details><summary><code>client.invoice.<a href="/src/api/resources/invoice/client/Client.ts">deleteAttachedFromInvoice</a>(filename, idInvoice) -> Payabli.InvoiceResponseWithoutData</code></summary>
 <dl>
 <dd>
 
@@ -5742,7 +5756,7 @@ The filename in Payabli. Filename is `zipName` in response to a request to `/api
 </dl>
 </details>
 
-<details><summary><code>client.invoice.<a href="/src/api/resources/invoice/client/Client.ts">deleteInvoice</a>(idInvoice) -> Payabli.PayabliApiResponse4</code></summary>
+<details><summary><code>client.invoice.<a href="/src/api/resources/invoice/client/Client.ts">deleteInvoice</a>(idInvoice) -> Payabli.InvoiceResponseWithoutData</code></summary>
 <dl>
 <dd>
 
@@ -5805,7 +5819,7 @@ await client.invoice.deleteInvoice(23548884);
 </dl>
 </details>
 
-<details><summary><code>client.invoice.<a href="/src/api/resources/invoice/client/Client.ts">editInvoice</a>(idInvoice, { ...params }) -> Payabli.PayabliApiResponse4</code></summary>
+<details><summary><code>client.invoice.<a href="/src/api/resources/invoice/client/Client.ts">editInvoice</a>(idInvoice, { ...params }) -> Payabli.InvoiceResponseWithoutData</code></summary>
 <dl>
 <dd>
 
@@ -5892,7 +5906,101 @@ await client.invoice.editInvoice(332, {
 </dl>
 </details>
 
-<details><summary><code>client.invoice.<a href="/src/api/resources/invoice/client/Client.ts">getInvoice</a>(idInvoice) -> Payabli.BillQueryRecord</code></summary>
+<details><summary><code>client.invoice.<a href="/src/api/resources/invoice/client/Client.ts">getAttachedFileFromInvoice</a>(filename, idInvoice, { ...params }) -> Payabli.FileContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a file attached to an invoice.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.invoice.getAttachedFileFromInvoice("filename", 1);
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**filename:** `string`
+
+The filename in Payabli. Filename is `zipName` in the response to a request to `/api/Invoice/{idInvoice}`. Here, the filename is `0_Bill.pdf``.
+
+```
+  "DocumentsRef": {
+    "zipfile": "inva_269.zip",
+    "filelist": [
+      {
+        "originalName": "Bill.pdf",
+        "zipName": "0_Bill.pdf",
+        "descriptor": null
+      }
+    ]
+  }
+```
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**idInvoice:** `number` — Invoice ID
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.GetAttachedFileFromInvoiceRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Invoice.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.invoice.<a href="/src/api/resources/invoice/client/Client.ts">getInvoice</a>(idInvoice) -> Payabli.GetInvoiceRecord</code></summary>
 <dl>
 <dd>
 
@@ -5955,7 +6063,7 @@ await client.invoice.getInvoice(23548884);
 </dl>
 </details>
 
-<details><summary><code>client.invoice.<a href="/src/api/resources/invoice/client/Client.ts">getInvoiceNumber</a>(entry) -> Payabli.PayabliApiResponse5</code></summary>
+<details><summary><code>client.invoice.<a href="/src/api/resources/invoice/client/Client.ts">getInvoiceNumber</a>(entry) -> Payabli.InvoiceNumberResponse</code></summary>
 <dl>
 <dd>
 
@@ -7831,7 +7939,7 @@ await client.moneyOut.captureOut("129-219");
 </dl>
 </details>
 
-<details><summary><code>client.moneyOut.<a href="/src/api/resources/moneyOut/client/Client.ts">payoutDetails</a>(transId) -> Payabli.TransactionOutQueryRecord</code></summary>
+<details><summary><code>client.moneyOut.<a href="/src/api/resources/moneyOut/client/Client.ts">payoutDetails</a>(transId) -> Payabli.BillDetailResponse</code></summary>
 <dl>
 <dd>
 

@@ -5,7 +5,7 @@
 import * as Payabli from "../index";
 
 export interface QuerySummary {
-    pageIdentifier?: Payabli.PageIdentifier | undefined;
+    pageIdentifier?: Payabli.PageIdentifier;
     pageSize?: Payabli.Pagesize;
     /** Total amount for the records. */
     totalAmount?: number;

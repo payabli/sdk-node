@@ -25,8 +25,8 @@ export interface BillData {
     invoiceEndDate?: Payabli.Datenullable | undefined;
     /** Invoice number. Identifies the invoice under a paypoint. */
     invoiceNumber?: Payabli.Invoicenumber | undefined;
-    invoiceStatus?: Payabli.Invoicestatus | undefined;
-    invoiceType?: Payabli.Invoicetype | undefined;
+    invoiceStatus?: Payabli.Invoicestatus;
+    invoiceType?: Payabli.InvoiceType;
     /** Array of line items included in the invoice. */
     items?: Payabli.BillItem[];
     /** Last name of the recipient of the invoice. */
@@ -35,17 +35,17 @@ export interface BillData {
     notes?: string;
     /** Payment terms for invoice. If no terms are defined, then reponse data for this field defaults to `N30`. */
     paymentTerms?: Payabli.BillDataPaymentTerms;
-    purchaseOrder?: Payabli.PurchaseOrder | undefined;
+    purchaseOrder?: Payabli.PurchaseOrder;
     shippingAddress1?: Payabli.Shippingaddress | undefined;
     shippingAddress2?: Payabli.Shippingaddressadditional | undefined;
-    shippingCity?: Payabli.Shippingcity | undefined;
-    shippingCountry?: Payabli.Shippingcountry | undefined;
+    shippingCity?: Payabli.Shippingcity;
+    shippingCountry?: Payabli.Shippingcountry;
     /** Shipping recipient's contact email address. */
     shippingEmail?: Payabli.Email | undefined;
-    shippingFromZip?: Payabli.ShippingFromZip | undefined;
+    shippingFromZip?: Payabli.ShippingFromZip;
     /** Recipient phone number. */
     shippingPhone?: string;
-    shippingState?: Payabli.Shippingstate | undefined;
+    shippingState?: Payabli.Shippingstate;
     shippingZip?: Payabli.Shippingzip | undefined;
     summaryCommodityCode?: Payabli.SummaryCommodityCode | undefined;
     tax?: Payabli.Tax | undefined;

@@ -5,4 +5,4 @@
 /**
  * Type of invoice. Only `0` for one-time invoices is currently supported.
  */
-export type Invoicetype = number | undefined;
+export type InvoiceType = number;

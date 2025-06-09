@@ -51,10 +51,10 @@ export interface ApplicationQueryRecord {
     mState?: Payabli.Mstate | undefined;
     mZip?: Payabli.Mzip | undefined;
     orgId?: Payabli.Orgid | undefined;
-    orgParentName?: Payabli.OrgParentName | undefined;
+    orgParentName?: Payabli.OrgParentName;
     ownerData?: Payabli.Ownership | undefined;
     ownType?: Payabli.OwnType;
-    pageidentifier?: Payabli.PageIdentifier | undefined;
+    pageidentifier?: Payabli.PageIdentifier;
     recipientEmailNotification?: Payabli.RecipientEmailNotification;
     resumable?: Payabli.Resumable;
     salesCode?: Payabli.SalesCode | undefined;

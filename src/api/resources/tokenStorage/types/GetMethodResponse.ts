@@ -7,5 +7,5 @@ import * as Payabli from "../../../index";
 export interface GetMethodResponse {
     isSuccess?: Payabli.IsSuccess;
     responseData?: Payabli.GetMethodResponseResponseData;
-    responseText?: Payabli.ResponseText | undefined;
+    responseText?: Payabli.ResponseText;
 }

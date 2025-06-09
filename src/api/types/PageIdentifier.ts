@@ -5,4 +5,4 @@
 /**
  * Auxiliary validation used internally by payment pages and components.
  */
-export type PageIdentifier = string | undefined;
+export type PageIdentifier = string;

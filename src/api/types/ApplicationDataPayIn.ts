@@ -4,6 +4,9 @@
 
 import * as Payabli from "../index";
 
+/**
+ * Fields for Pay In boarding applications.
+ */
 export interface ApplicationDataPayIn {
     services: Payabli.ApplicationDataPayInServices;
     annualRevenue?: Payabli.Annualrevenue | undefined;

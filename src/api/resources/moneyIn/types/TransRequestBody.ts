@@ -30,7 +30,7 @@ import * as Payabli from "../../../index";
 export interface TransRequestBody {
     accountId?: Payabli.Accountid | undefined;
     /** Object describing the Customer/Payor. Which fields are required depends on the paypoint's custom identifier settings. */
-    customerData?: Payabli.PayorData;
+    customerData?: Payabli.PayorDataRequest;
     entryPoint?: Payabli.Entrypointfield;
     /** Object describing an Invoice linked to the transaction. */
     invoiceData?: Payabli.BillData;

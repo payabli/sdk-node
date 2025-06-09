@@ -20,10 +20,10 @@ export interface OrganizationQueryRecord {
     orgId?: Payabli.Orgid | undefined;
     orgLogo?: Payabli.FileContent;
     orgName?: Payabli.Orgname;
-    orgParentId?: Payabli.Orgparentid;
-    orgParentName?: Payabli.OrgParentName | undefined;
-    orgState?: Payabli.Orgstate | undefined;
-    orgTimezone?: Payabli.Orgtimezone | undefined;
+    orgParentId?: Payabli.OrgParentId;
+    orgParentName?: Payabli.OrgParentName;
+    orgState?: Payabli.Orgstate;
+    orgTimezone?: Payabli.Orgtimezone;
     orgType?: Payabli.Orgtype;
     orgWebsite?: Payabli.Orgwebsite | undefined;
     orgZip?: Payabli.Orgzip | undefined;

@@ -5,4 +5,4 @@
 /**
  * Purchase order number.
  */
-export type PurchaseOrder = string | undefined;
+export type PurchaseOrder = string;

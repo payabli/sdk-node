@@ -23,8 +23,8 @@ export interface QueryChargebacksResponseRecordsItem {
     /** Net amount after deductions. */
     NetAmount?: number;
     OrderId?: Payabli.Orderid | undefined;
-    pageidentifier?: Payabli.PageIdentifier | undefined;
-    ParentOrgName?: Payabli.OrgParentName | undefined;
+    pageidentifier?: Payabli.PageIdentifier;
+    ParentOrgName?: Payabli.OrgParentName;
     /** Payment data associated with the transaction. */
     PaymentData?: Payabli.QueryPaymentData;
     /** Transaction ID for the payment. */

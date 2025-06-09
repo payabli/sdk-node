@@ -8,6 +8,6 @@ import * as Payabli from "../index";
  * Response body for queries about batches.
  */
 export interface QueryBatchesResponse {
-    Records?: Payabli.QueryBatchesResponseRecordsItem[];
-    Summary?: Payabli.BatchSummary;
+    Records: Payabli.QueryBatchesResponseRecordsItem[];
+    Summary: Payabli.BatchSummary;
 }

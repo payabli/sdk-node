@@ -10,5 +10,5 @@ import * as Payabli from "../index";
 export interface PayabliApiResponsePaymethodDelete {
     isSuccess?: Payabli.IsSuccess;
     responseData?: Payabli.PayabliApiResponsePaymethodDeleteResponseData;
-    responseText?: Payabli.ResponseText | undefined;
+    responseText?: Payabli.ResponseText;
 }

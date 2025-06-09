@@ -26,7 +26,9 @@ export interface BillOutQueryRecord {
     /** Bill mode: value `0` for single/one-time bills, `1` for scheduled bills. */
     mode?: number;
     /** Net amount owed in bill. */
-    netAmount?: Payabli.NetAmountstring | undefined;
+    netAmount?: Payabli.NetAmountstring;
+    /** Bill discount amount. */
+    discount?: string;
     status?: Payabli.Billstatus;
     terms?: Payabli.Terms | undefined;
     /** MoneyOut transaction associated to the bill */

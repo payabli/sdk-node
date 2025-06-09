@@ -8,5 +8,5 @@ export interface PayabliApiResponsePaymentLinks {
     isSuccess?: Payabli.IsSuccess;
     /** If `isSuccess` = true, this contains the payment link identifier. If `isSuccess` = false, this contains the reason of the error. */
     responseData?: string;
-    responseText?: Payabli.ResponseText | undefined;
+    responseText?: Payabli.ResponseText;
 }

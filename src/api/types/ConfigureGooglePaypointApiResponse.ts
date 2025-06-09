@@ -6,10 +6,10 @@ import * as Payabli from "../index";
 
 export interface ConfigureGooglePaypointApiResponse {
     isSuccess: Payabli.IsSuccess;
-    pageIdentifier?: Payabli.PageIdentifier;
-    responseCode?: Payabli.Responsecode;
+    pageIdentifier: Payabli.PageIdentifier;
+    responseCode: Payabli.Responsecode;
     responseData: Payabli.GooglePayPaypointRegistrationData;
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
     /** Field not in use on this endpoint */
     roomId?: number;
 }

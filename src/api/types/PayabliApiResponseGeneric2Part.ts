@@ -6,5 +6,5 @@ import * as Payabli from "../index";
 
 export interface PayabliApiResponseGeneric2Part {
     isSuccess?: Payabli.IsSuccess;
-    responseText?: Payabli.ResponseText | undefined;
+    responseText?: Payabli.ResponseText;
 }

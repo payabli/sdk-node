@@ -7,7 +7,7 @@ import * as Payabli from "../index";
 export interface TemplateAdditionalDataField {
     visible?: Payabli.Visible | undefined;
     readOnly?: Payabli.ReadOnly | undefined;
-    required?: Payabli.RequiredElement | undefined;
+    required?: Payabli.RequiredElement;
     posRow?: Payabli.PosRow | undefined;
     posCol?: Payabli.PosCol | undefined;
     value?: Payabli.ValueTemplates | undefined;

@@ -5,7 +5,7 @@
 import * as Payabli from "../index";
 
 export interface BillQueryResponse {
-    pageidentifier?: Payabli.PageIdentifier | undefined;
+    pageidentifier?: Payabli.PageIdentifier;
     pageSize?: Payabli.Pagesize;
     Records?: Payabli.BillQueryRecord2[];
     total2approval?: number;

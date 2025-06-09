@@ -5,4 +5,4 @@
 /**
  * Net Amount owed in bill. Required when adding a bill.
  */
-export type NetAmountstring = string | undefined;
+export type NetAmountstring = string;

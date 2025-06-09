@@ -6,7 +6,7 @@ import * as Payabli from "../index";
 
 export interface QueryResponseItemsRecordsItem {
     LineItem?: Payabli.LineItem;
-    ParentOrgName?: Payabli.OrgParentName | undefined;
+    ParentOrgName?: Payabli.OrgParentName;
     /** The paypoint's DBA name. */
     PaypointDbaname?: Payabli.Dbaname | undefined;
     /** The paypoint's entry name (entrypoint). */

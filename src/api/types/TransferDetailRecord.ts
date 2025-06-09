@@ -46,7 +46,7 @@ export interface TransferDetailRecord {
     /** Detailed breakdown of billing fees applied to the transaction */
     billingFeesDetails?: Payabli.BillingFeeDetail[];
     /** The name of the parent organization */
-    ParentOrgName?: Payabli.OrgParentName | undefined;
+    ParentOrgName?: Payabli.OrgParentName;
     /** The paypoint's DBA name */
     PaypointDbaname?: Payabli.Dbaname | undefined;
     /** The paypoint's legal name */

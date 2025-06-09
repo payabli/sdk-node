@@ -95,8 +95,7 @@ export class Customer {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.59",
-                "User-Agent": "@payabli/sdk-node/0.0.59",
+                "X-Fern-SDK-Version": "0.0.99",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 idempotencyKey: idempotencyKey != null ? idempotencyKey : undefined,
@@ -193,8 +192,7 @@ export class Customer {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.59",
-                "User-Agent": "@payabli/sdk-node/0.0.59",
+                "X-Fern-SDK-Version": "0.0.99",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -288,8 +286,7 @@ export class Customer {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.59",
-                "User-Agent": "@payabli/sdk-node/0.0.59",
+                "X-Fern-SDK-Version": "0.0.99",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -385,8 +382,7 @@ export class Customer {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.59",
-                "User-Agent": "@payabli/sdk-node/0.0.59",
+                "X-Fern-SDK-Version": "0.0.99",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -482,8 +478,7 @@ export class Customer {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.59",
-                "User-Agent": "@payabli/sdk-node/0.0.59",
+                "X-Fern-SDK-Version": "0.0.99",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -556,7 +551,15 @@ export class Customer {
      * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
-     *     await client.customer.updateCustomer(998, {})
+     *     await client.customer.updateCustomer(998, {
+     *         firstname: "Irene",
+     *         lastname: "Canizales",
+     *         address1: "145 Bishop's Trail",
+     *         city: "Mountain City",
+     *         state: "TN",
+     *         zip: "37612",
+     *         country: "US"
+     *     })
      */
     public updateCustomer(
         customerId: number,
@@ -582,8 +585,7 @@ export class Customer {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@payabli/sdk-node",
-                "X-Fern-SDK-Version": "0.0.59",
-                "User-Agent": "@payabli/sdk-node/0.0.59",
+                "X-Fern-SDK-Version": "0.0.99",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

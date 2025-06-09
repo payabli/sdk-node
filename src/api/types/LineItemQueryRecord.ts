@@ -24,9 +24,9 @@ export interface LineItemQueryRecord {
     itemUnitOfMeasure?: Payabli.ItemUnitofMeasure | undefined;
     /** Timestamp of when the line item was updated, in UTC. */
     lastUpdated?: Payabli.LastModified | undefined;
-    pageidentifier?: Payabli.PageIdentifier | undefined;
+    pageidentifier?: Payabli.PageIdentifier;
     /** The name of the paypoint's parent organization. */
-    ParentOrgName?: Payabli.OrgParentName | undefined;
+    ParentOrgName?: Payabli.OrgParentName;
     /** The paypoint's DBA name. */
     PaypointDbaname?: Payabli.Dbaname | undefined;
     /** The paypoint's entryname (entrypoint) value. */

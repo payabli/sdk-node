@@ -36,7 +36,7 @@ export interface VCardRecord {
     dateModified?: Payabli.LastModified | undefined;
     associatedVendor?: Payabli.AssociatedVendor;
     associatedCustomer?: Payabli.CustomerData;
-    ParentOrgName?: Payabli.OrgParentName | undefined;
+    ParentOrgName?: Payabli.OrgParentName;
     /** The paypoint's DBA name. */
     PaypointDbaname?: Payabli.Dbaname | undefined;
     /** The paypoint's legal name. */

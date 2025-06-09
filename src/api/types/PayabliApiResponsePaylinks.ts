@@ -5,10 +5,10 @@
 import * as Payabli from "../index";
 
 export interface PayabliApiResponsePaylinks {
-    isSuccess?: Payabli.IsSuccess;
-    pageIdentifier?: Payabli.PageIdentifier | undefined;
-    responseCode?: Payabli.Responsecode | undefined;
+    isSuccess: Payabli.IsSuccess;
+    pageIdentifier: Payabli.PageIdentifier | null;
+    responseCode: Payabli.Responsecode;
     /** The paylink ID or error details. */
-    responseData?: Payabli.Responsedata | undefined;
-    responseText?: Payabli.ResponseText | undefined;
+    responseData: Payabli.Responsedata;
+    responseText: Payabli.ResponseText;
 }

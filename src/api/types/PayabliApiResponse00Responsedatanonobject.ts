@@ -5,9 +5,11 @@
 import * as Payabli from "../index";
 
 export interface PayabliApiResponse00Responsedatanonobject {
+    responseCode?: Payabli.Responsecode;
+    pageIdentifier?: Payabli.PageIdentifier;
+    /** Describes the room ID. Only in use on Boarding endpoints, returns `0` when not applicable. */
+    roomId?: number;
     isSuccess?: Payabli.IsSuccess;
-    pageIdentifier?: Payabli.PageIdentifier | undefined;
-    responseCode?: Payabli.Responsecode | undefined;
+    responseText?: Payabli.ResponseText;
     responseData?: Payabli.Responsedatanonobject;
-    responseText?: Payabli.ResponseText | undefined;
 }

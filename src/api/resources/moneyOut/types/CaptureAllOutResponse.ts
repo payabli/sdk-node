@@ -6,9 +6,9 @@ import * as Payabli from "../../../index";
 
 export interface CaptureAllOutResponse {
     isSuccess?: Payabli.IsSuccess;
-    pageIdentifier?: Payabli.PageIdentifier | undefined;
-    responseCode?: Payabli.Responsecode | undefined;
+    pageIdentifier?: Payabli.PageIdentifier;
+    responseCode?: Payabli.Responsecode;
     /** Array of objects describing the transactions. */
     responseData?: Payabli.CaptureAllOutResponseResponseDataItem[];
-    responseText?: Payabli.ResponseText | undefined;
+    responseText?: Payabli.ResponseText;
 }

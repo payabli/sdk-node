@@ -12,5 +12,5 @@ export interface PayabliApiResponseMfaBasic {
     mfaValidationCode?: Payabli.MfaValidationCode;
     /** Data returned by the response, masked for security. */
     responseData?: string;
-    responseText?: Payabli.ResponseText | undefined;
+    responseText?: Payabli.ResponseText;
 }

@@ -5,4 +5,4 @@
 /**
  * The org's timezone, in UTC offset. For example, -5 is Eastern time.
  */
-export type Orgtimezone = number | undefined;
+export type Orgtimezone = number;

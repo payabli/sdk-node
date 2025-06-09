@@ -7,7 +7,7 @@ import * as Payabli from "../index";
 export interface QueryResponseSettlementsSummary {
     /** Funds being held for fraud or risk concerns. */
     heldAmount?: number;
-    pageidentifier?: Payabli.PageIdentifier | undefined;
+    pageidentifier?: Payabli.PageIdentifier;
     /** Number of records per page. */
     pageSize?: number;
     /** Total refunds deducted from the transfer. */

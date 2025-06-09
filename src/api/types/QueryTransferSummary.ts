@@ -40,5 +40,5 @@ export interface QueryTransferSummary {
     /** Number of records per page. */
     pageSize?: Payabli.Pagesize;
     /** Auxiliary validation used internally by payment pages and components. */
-    pageidentifier?: Payabli.PageIdentifier | undefined;
+    pageidentifier?: Payabli.PageIdentifier;
 }

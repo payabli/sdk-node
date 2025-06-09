@@ -5,4 +5,4 @@
 /**
  * The name of the parent organization.
  */
-export type OrgParentName = string | undefined;
+export type OrgParentName = string;

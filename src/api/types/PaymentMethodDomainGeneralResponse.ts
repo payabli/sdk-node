@@ -6,7 +6,7 @@ import * as Payabli from "../index";
 
 export interface PaymentMethodDomainGeneralResponse {
     isSuccess?: Payabli.IsSuccess;
-    pageidentifier?: Payabli.PageIdentifier | undefined;
+    pageidentifier?: Payabli.PageIdentifier;
     responseData?: Payabli.PaymentMethodDomainApiResponse;
     responseText?: string;
 }

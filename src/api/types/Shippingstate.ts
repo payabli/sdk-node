@@ -5,4 +5,4 @@
 /**
  * Shipping state or province.
  */
-export type Shippingstate = string | undefined;
+export type Shippingstate = string;

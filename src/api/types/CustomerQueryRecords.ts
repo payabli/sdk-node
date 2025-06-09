@@ -4,61 +4,234 @@
 
 import * as Payabli from "../index";
 
+/**
+ * @example
+ *     {
+ *         customerId: 4440,
+ *         customerNumber: "3456-7645A",
+ *         customerUsername: "myusername",
+ *         customerStatus: 1,
+ *         Company: "AA LLC",
+ *         Firstname: "John",
+ *         Lastname: "Smith",
+ *         Phone: "1234567890",
+ *         Email: "example@email.com",
+ *         Address: "3245 Main St",
+ *         Address1: "STE 900",
+ *         City: "Miami",
+ *         State: "FL",
+ *         Zip: "77777",
+ *         Country: "US",
+ *         ShippingAddress: "123 Walnut St",
+ *         ShippingAddress1: "STE 900",
+ *         ShippingCity: "Johnson City",
+ *         ShippingState: "TN",
+ *         ShippingZip: "37619",
+ *         ShippingCountry: "US",
+ *         Balance: 1.1,
+ *         TimeZone: -5,
+ *         MFA: false,
+ *         MFAMode: 0,
+ *         snProvider: "facebook",
+ *         snIdentifier: "6677fgttyudd999",
+ *         snData: "",
+ *         LastUpdated: "2021-06-16T05:00:00Z",
+ *         Created: "2021-06-10T05:00:00Z",
+ *         AdditionalFields: {
+ *             "property1": "string",
+ *             "property2": "string"
+ *         },
+ *         IdentifierFields: ["email"],
+ *         Subscriptions: [{
+ *                 CreatedAt: "2022-07-01T15:00:01Z",
+ *                 EndDate: "2025-10-19T00:00:00Z",
+ *                 EntrypageId: 0,
+ *                 ExternalPaypointID: "Paypoint-100",
+ *                 FeeAmount: 3,
+ *                 Frequency: "monthly",
+ *                 IdSub: 396,
+ *                 LastRun: "2025-10-19T00:00:00Z",
+ *                 LastUpdated: "2022-07-01T15:00:01Z",
+ *                 LeftCycles: 15,
+ *                 Method: "card",
+ *                 NetAmount: 3762.87,
+ *                 NextDate: "2025-10-19T00:00:00Z",
+ *                 ParentOrgName: "PropertyManager Pro",
+ *                 PaymentData: {
+ *                     paymentDetails: {
+ *                         totalAmount: 100
+ *                     }
+ *                 },
+ *                 PaypointDbaname: "Sunshine Gutters",
+ *                 PaypointEntryname: "d193cf9a46",
+ *                 PaypointId: 255,
+ *                 PaypointLegalname: "Sunshine Services, LLC",
+ *                 PlanId: 0,
+ *                 Source: "api",
+ *                 StartDate: "2025-10-19T00:00:00Z",
+ *                 SubEvents: [{
+ *                         description: "TransferCreated",
+ *                         eventTime: "2023-07-05T22:31:06Z"
+ *                     }],
+ *                 SubStatus: 1,
+ *                 TotalAmount: 103,
+ *                 TotalCycles: 24,
+ *                 UntilCancelled: true
+ *             }],
+ *         StoredMethods: [{
+ *                 bin: "411111",
+ *                 binData: {
+ *                     binCardBrand: "Visa",
+ *                     binCardCategory: "PLATINUM",
+ *                     binCardIssuer: "Bank of Example",
+ *                     binCardIssuerCountry: "United States",
+ *                     binCardIssuerCountryCodeA2: "US",
+ *                     binCardIssuerCountryNumber: 840,
+ *                     binCardType: "Credit",
+ *                     binMatchedLength: 6
+ *                 },
+ *                 descriptor: "visa",
+ *                 expDate: "1227",
+ *                 holderName: "Chad Mercia",
+ *                 idPmethod: "6edcbb56-9c0e-4003-b3d1-99abf149ba0e",
+ *                 lastUpdated: "2022-07-01T15:00:01Z",
+ *                 maskedAccount: "4XXXXXXXX1111",
+ *                 method: "card"
+ *             }],
+ *         customerSummary: {
+ *             numberofTransactions: 30,
+ *             recentTransactions: [{
+ *                     EntrypageId: 0,
+ *                     FeeAmount: 1,
+ *                     PayorId: 1551,
+ *                     PaypointId: 226,
+ *                     SettlementStatus: 2,
+ *                     TotalAmount: 30.22,
+ *                     TransStatus: 1
+ *                 }],
+ *             totalAmountTransactions: 1500,
+ *             totalNetAmountTransactions: 1500
+ *         },
+ *         PaypointLegalname: "Sunshine Services, LLC",
+ *         PaypointDbaname: "Sunshine Gutters",
+ *         ParentOrgName: "PropertyManager Pro",
+ *         ParentOrgId: 123,
+ *         PaypointEntryname: "d193cf9a46",
+ *         pageidentifier: "null",
+ *         externalPaypointID: "Paypoint-100",
+ *         customerConsent: {
+ *             eCommunication: {
+ *                 status: 1,
+ *                 updatedAt: "2022-07-01T15:00:01Z"
+ *             },
+ *             sms: {
+ *                 status: 1,
+ *                 updatedAt: "2022-07-01T15:00:01Z"
+ *             }
+ *         }
+ *     }
+ *
+ * @example
+ *     {
+ *         customerId: 17264,
+ *         customerNumber: "12356ACB",
+ *         customerUsername: undefined,
+ *         customerStatus: 0,
+ *         Company: undefined,
+ *         Firstname: "Irene",
+ *         Lastname: "Canizales",
+ *         Phone: undefined,
+ *         Email: "irene@canizalesconcrete.com",
+ *         Address: undefined,
+ *         Address1: "123 Bishop's Trail",
+ *         City: "Mountain City",
+ *         State: "TN",
+ *         Zip: "37612",
+ *         Country: "US",
+ *         ShippingAddress: undefined,
+ *         ShippingAddress1: undefined,
+ *         ShippingCity: undefined,
+ *         ShippingState: undefined,
+ *         ShippingZip: undefined,
+ *         ShippingCountry: undefined,
+ *         Balance: 0,
+ *         TimeZone: -5,
+ *         MFA: false,
+ *         MFAMode: 0,
+ *         snProvider: undefined,
+ *         snIdentifier: undefined,
+ *         snData: undefined,
+ *         LastUpdated: "2024-03-13T12:49:56Z",
+ *         Created: "2024-03-13T12:49:56Z",
+ *         AdditionalFields: {
+ *             "key": "value"
+ *         },
+ *         IdentifierFields: ["email"],
+ *         Subscriptions: undefined,
+ *         StoredMethods: undefined,
+ *         customerSummary: {
+ *             numberofTransactions: 30,
+ *             recentTransactions: [{
+ *                     EntrypageId: 0,
+ *                     FeeAmount: 1,
+ *                     PayorId: 1551,
+ *                     PaypointId: 226,
+ *                     SettlementStatus: 2,
+ *                     TotalAmount: 30.22,
+ *                     TransStatus: 1
+ *                 }],
+ *             totalAmountTransactions: 1500,
+ *             totalNetAmountTransactions: 1500
+ *         },
+ *         PaypointLegalname: "Gruzya Adventure Outfitters, LLC",
+ *         PaypointDbaname: "Gruzya Adventure Outfitters",
+ *         ParentOrgName: "The Pilgrim Planner",
+ *         ParentOrgId: 123,
+ *         PaypointEntryname: "41035afaa7",
+ *         pageidentifier: "null",
+ *         externalPaypointID: undefined,
+ *         customerConsent: undefined
+ *     }
+ */
 export interface CustomerQueryRecords {
-    /** List of additional custom fields in format key:value. */
-    AdditionalFields?: Record<string, string | undefined>;
+    customerId?: Payabli.CustomerId | undefined;
+    customerNumber?: Payabli.CustomerNumberNullable | undefined;
+    /** Username for customer. */
+    customerUsername?: string;
+    customerStatus?: Payabli.CustomerStatus | undefined;
+    /** Company name. */
+    Company?: string;
+    /** Customer first name. */
+    Firstname?: string;
+    /** Customer last name. */
+    Lastname?: string;
+    /** Customer phone number. */
+    Phone?: string;
+    /** Customer email address. */
+    Email?: Payabli.Email | undefined;
     /** Customer address. */
     Address?: string;
     /** Additional line for customer address. */
     Address1?: string;
-    /** Customer balance. */
-    Balance?: number;
     /** Customer city. */
     City?: string;
-    /** Company name. */
-    Company?: string;
+    /** Customer state. */
+    State?: string;
+    /** Customer zip code. */
+    Zip?: string;
     /** Customer country. */
     Country?: string;
-    /** Date and time created. */
-    Created?: string;
-    customerConsent?: Payabli.CustomerQueryRecordsCustomerConsent;
-    customerId?: Payabli.CustomerId | undefined;
-    customerNumber?: Payabli.CustomerNumberNullable | undefined;
-    customerStatus?: Payabli.Customerstatus | undefined;
-    customerSummary?: Payabli.CustomerSummaryRecord;
-    /** Username for customer. */
-    customerUsername?: string;
-    /** Customer email address. */
-    Email?: Payabli.Email | undefined;
-    externalPaypointID?: Payabli.ExternalPaypointId | undefined;
-    /** Customer first name. */
-    Firstname?: string;
-    IdentifierFields?: Payabli.Identifierfields | undefined;
-    /** Customer last name. */
-    Lastname?: string;
-    /** Date and time of last update. */
-    LastUpdated?: string;
-    MFA?: Payabli.Mfa | undefined;
-    MFAMode?: Payabli.MfaMode | undefined;
-    pageidentifier?: Payabli.PageIdentifier | undefined;
-    ParentOrgName?: Payabli.OrgParentName | undefined;
-    /** Paypoint DBA name. */
-    PaypointDbaname?: Payabli.Dbaname | undefined;
-    PaypointEntryname?: Payabli.Entrypointfield;
-    /** Paypoint legal name. */
-    PaypointLegalname?: Payabli.Legalname | undefined;
-    /** Customer phone number. */
-    Phone?: string;
     ShippingAddress?: Payabli.Shippingaddress | undefined;
     ShippingAddress1?: Payabli.Shippingaddressadditional | undefined;
-    ShippingCity?: Payabli.Shippingcity | undefined;
-    ShippingCountry?: Payabli.Shippingcountry | undefined;
-    ShippingState?: Payabli.Shippingstate | undefined;
+    ShippingCity?: Payabli.Shippingcity;
+    ShippingState?: Payabli.Shippingstate;
     ShippingZip?: Payabli.Shippingzip | undefined;
-    /** Additional data provided by the social network related to the customer. */
-    snData?: string;
-    /** Identifier or token for customer in linked social network. */
-    snIdentifier?: string;
+    ShippingCountry?: Payabli.Shippingcountry;
+    /** Customer balance. */
+    Balance?: number;
+    TimeZone?: Payabli.Timezone | undefined;
+    MFA?: Payabli.Mfa | undefined;
+    MFAMode?: Payabli.MfaMode | undefined;
     /**
      * Social network linked to customer.
      * Possible values:
@@ -68,13 +241,30 @@ export interface CustomerQueryRecords {
      * - microsoft
      */
     snProvider?: string;
-    /** Customer state. */
-    State?: string;
-    /** List of payment methods associated to the customer. */
-    StoredMethods?: Payabli.MethodQueryRecords[];
+    /** Identifier or token for customer in linked social network. */
+    snIdentifier?: string;
+    /** Additional data provided by the social network related to the customer. */
+    snData?: string;
+    /** Date and time of last update. */
+    LastUpdated?: string;
+    /** Date and time created. */
+    Created?: string;
+    /** List of additional custom fields in format key:value. */
+    AdditionalFields?: Record<string, string | undefined>;
+    IdentifierFields?: Payabli.Identifierfields | undefined;
     /** List of subscriptions associated to the customer. */
     Subscriptions?: Payabli.SubscriptionQueryRecords[];
-    TimeZone?: Payabli.Timezone | undefined;
-    /** Customer zip code. */
-    Zip?: string;
+    /** List of payment methods associated to the customer. */
+    StoredMethods?: Payabli.MethodQueryRecords[];
+    customerSummary?: Payabli.CustomerSummaryRecord;
+    /** Paypoint legal name. */
+    PaypointLegalname?: Payabli.Legalname | undefined;
+    /** Paypoint DBA name. */
+    PaypointDbaname?: Payabli.Dbaname | undefined;
+    ParentOrgName?: Payabli.OrgParentName;
+    ParentOrgId?: Payabli.OrgParentId;
+    PaypointEntryname?: Payabli.Entrypointfield;
+    pageidentifier?: Payabli.PageIdentifier;
+    externalPaypointID?: Payabli.ExternalPaypointId | undefined;
+    customerConsent?: Payabli.CustomerQueryRecordsCustomerConsent;
 }

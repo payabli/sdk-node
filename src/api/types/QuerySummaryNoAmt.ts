@@ -5,7 +5,7 @@
 import * as Payabli from "../index";
 
 export interface QuerySummaryNoAmt {
-    pageIdentifier?: Payabli.PageIdentifier | undefined;
+    pageIdentifier?: Payabli.PageIdentifier;
     pageSize?: Payabli.Pagesize;
     totalPages?: Payabli.Totalrecords;
     totalRecords?: Payabli.Totalrecords;

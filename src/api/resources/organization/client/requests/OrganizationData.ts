@@ -39,9 +39,9 @@ export interface OrganizationData {
     orgId?: Payabli.Orgidstring | undefined;
     orgLogo?: Payabli.FileContent;
     orgName?: Payabli.Orgname;
-    orgParentId?: Payabli.Orgparentid;
-    orgState?: Payabli.Orgstate | undefined;
-    orgTimezone?: Payabli.Orgtimezone | undefined;
+    orgParentId?: Payabli.OrgParentId;
+    orgState?: Payabli.Orgstate;
+    orgTimezone?: Payabli.Orgtimezone;
     orgType?: Payabli.Orgtype;
     orgWebsite?: Payabli.Orgwebsite | undefined;
     orgZip?: Payabli.Orgzip | undefined;

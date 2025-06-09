@@ -33,7 +33,7 @@ export interface TransactionQueryRecords {
     OrderId?: Payabli.Orderid | undefined;
     /** ID of immediate parent organization. */
     OrgId?: Payabli.Orgid | undefined;
-    ParentOrgName?: Payabli.OrgParentName | undefined;
+    ParentOrgName?: Payabli.OrgParentName;
     PaymentData?: Payabli.QueryPaymentData;
     /** Unique Transaction ID. */
     PaymentTransId?: string;

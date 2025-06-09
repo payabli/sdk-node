@@ -5,7 +5,7 @@
 import * as Payabli from "../index";
 
 export interface BatchSummary {
-    pageidentifier?: Payabli.PageIdentifier | undefined;
+    pageidentifier?: Payabli.PageIdentifier;
     /** Number of records on each response page. */
     pageSize?: number;
     /** Total amount for the records. */

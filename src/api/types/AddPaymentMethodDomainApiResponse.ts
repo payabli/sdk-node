@@ -9,7 +9,7 @@ import * as Payabli from "../index";
  */
 export interface AddPaymentMethodDomainApiResponse {
     isSuccess: Payabli.IsSuccess;
-    pageidentifier?: Payabli.PageIdentifier;
+    pageidentifier: Payabli.PageIdentifier;
     responseData: Payabli.PaymentMethodDomainApiResponse;
     responseText: string;
 }

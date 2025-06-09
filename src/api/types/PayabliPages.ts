@@ -12,7 +12,7 @@ export interface PayabliPages {
     lastAccess?: string;
     /** Sections of page */
     pageContent?: Payabli.PageContent;
-    pageIdentifier?: Payabli.PageIdentifier | undefined;
+    pageIdentifier?: Payabli.PageIdentifier;
     /** Settings of page */
     pageSettings?: Payabli.PageSetting;
     /** Flag indicating if page is active to accept payments. `0` for false, `1` for true. */

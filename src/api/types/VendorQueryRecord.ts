@@ -33,7 +33,7 @@ export interface VendorQueryRecord {
     name1?: string;
     /** Secondary name for vendor. */
     name2?: string;
-    parentOrgName?: Payabli.OrgParentName | undefined;
+    parentOrgName?: Payabli.OrgParentName;
     payeeName1?: Payabli.PayeeName | undefined;
     payeeName2?: Payabli.PayeeName | undefined;
     paymentMethod?: Payabli.VendorPaymentMethod;

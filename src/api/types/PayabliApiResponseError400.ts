@@ -7,7 +7,7 @@ import * as Payabli from "../index";
 export interface PayabliApiResponseError400 {
     /** Boolean indicating whether the operation was successful. A `true` value indicates success. A `false` value indicates failure. */
     isSuccess?: boolean;
-    pageidentifier?: Payabli.PageIdentifier | undefined;
+    pageidentifier?: Payabli.PageIdentifier;
     /** A code that indicates the operation's failure reason. See [API Response Codes](https://docs.payabli.com/api-reference/api-responses) for a full reference. */
     responseCode?: number;
     /** Describes the reason for a failed operationa and how to resolve it. */

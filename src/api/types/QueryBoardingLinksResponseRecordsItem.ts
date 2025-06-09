@@ -11,7 +11,7 @@ export interface QueryBoardingLinksResponseRecordsItem {
     /** The record ID. */
     Id?: number;
     LastUpdated?: Payabli.LastModified | undefined;
-    OrgParentName?: Payabli.OrgParentName | undefined;
+    OrgParentName?: Payabli.OrgParentName;
     ReferenceName?: Payabli.ReferenceName | undefined;
     ReferenceTemplateId?: Payabli.ReferenceTemplateId | undefined;
     TemplateCode?: Payabli.TemplateCode | undefined;

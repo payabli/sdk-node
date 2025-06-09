@@ -5,4 +5,4 @@
 /**
  * Response text for operation: 'Success' or 'Declined'.
  */
-export type ResponseText = string | undefined;
+export type ResponseText = string;

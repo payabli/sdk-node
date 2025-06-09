@@ -8,16 +8,22 @@ import * as Payabli from "../index";
  * Object that contains bank account details.
  */
 export interface Bank {
-    accountNumber?: Payabli.AccountNumber | undefined;
-    bankAccountFunction?: Payabli.BankAccountFunction;
-    bankAccountHolderName?: Payabli.BankAccountHolderName;
-    bankAccountHolderType?: Payabli.BankAccountHolderType;
-    bankName?: Payabli.BankName | undefined;
-    /** The bank's ID in Payabli. */
+    /** The Payabli-assigned internal identifier for the bank account. */
     id?: number;
-    nickname?: Payabli.BankNickname;
-    routingAccount?: Payabli.RoutingAccount | undefined;
-    typeAccount?: Payabli.TypeAccount;
     /** A user-defined internal identifier for the bank account. This allows you to easily specify which bank account should be used for payments in cases where multiple accounts are configured. */
     accountId?: string;
+    nickname?: Payabli.BankNickname;
+    bankName?: Payabli.BankName | undefined;
+    routingAccount?: Payabli.RoutingAccount | undefined;
+    accountNumber?: Payabli.AccountNumber | undefined;
+    typeAccount?: Payabli.TypeAccount;
+    bankAccountHolderName?: Payabli.BankAccountHolderName;
+    bankAccountHolderType?: Payabli.BankAccountHolderType;
+    bankAccountFunction?: Payabli.BankAccountFunction;
+    /** Bank account verification status. When `true`, the account has been verified to exist and be in good standing based on vendor checks or previous processing histories. */
+    verified?: boolean;
+    /** Bank account status */
+    status?: number;
+    /** Array of services associated with this bank account */
+    services?: string[];
 }

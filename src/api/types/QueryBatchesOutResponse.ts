@@ -8,6 +8,6 @@ import * as Payabli from "../index";
  * Response body for queries about money out batches.
  */
 export interface QueryBatchesOutResponse {
-    Records?: Payabli.QueryBatchesOutResponseRecordsItem[];
-    Summary?: Payabli.BatchSummary;
+    Records: Payabli.QueryBatchesOutResponseRecordsItem[];
+    Summary: Payabli.BatchSummary;
 }

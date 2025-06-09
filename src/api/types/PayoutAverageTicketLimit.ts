@@ -3,6 +3,6 @@
  */
 
 /**
- * The average amount of each bill you pay through our service. For example, if your business paid 3 bills for a total of $1,500 then your average bill size is $500.
+ * The average amount of each bill you pay through our service. For example, if your business paid 3 bills for a total of \$1,500 then your average bill size is \$500.
  */
 export type PayoutAverageTicketLimit = number;

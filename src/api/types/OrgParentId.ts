@@ -5,4 +5,4 @@
 /**
  * The ID of the org's parent organization.
  */
-export type Orgparentid = number;
+export type OrgParentId = number;

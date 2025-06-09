@@ -6,9 +6,9 @@ import * as Payabli from "../index";
 
 export interface PayabliApiResponseBills {
     isSuccess?: Payabli.IsSuccess;
-    pageidentifier?: Payabli.PageIdentifier | undefined;
-    responseCode?: Payabli.Responsecode | undefined;
+    pageidentifier?: Payabli.PageIdentifier;
+    responseCode?: Payabli.Responsecode;
     /** If `isSuccess` = true, this contains the bill identifier. If `isSuccess` = false, this contains the reason for the error.  */
     responseData?: Payabli.Responsedatanonobject;
-    responseText?: Payabli.ResponseText | undefined;
+    responseText?: Payabli.ResponseText;
 }

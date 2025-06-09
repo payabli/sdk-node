@@ -5,4 +5,4 @@
 /**
  * Sender shipping ZIP code.
  */
-export type ShippingFromZip = string | undefined;
+export type ShippingFromZip = string;

@@ -38,7 +38,7 @@ export interface BillQueryRecord2 {
     Mode?: number;
     /** Net amount of the bill. */
     NetAmount?: number;
-    ParentOrgName?: Payabli.OrgParentName | undefined;
+    ParentOrgName?: Payabli.OrgParentName;
     /** Payment identifier. */
     PaymentId?: string;
     /** Preferred payment method used. */

@@ -5,7 +5,7 @@
 import * as Payabli from "../index";
 
 export interface QueryPayoutTransactionSummary {
-    pageIdentifier?: Payabli.PageIdentifier | undefined;
+    pageIdentifier?: Payabli.PageIdentifier;
     pageSize?: Payabli.Pagesize;
     totalAmount?: number;
     totalAuthorized?: number;

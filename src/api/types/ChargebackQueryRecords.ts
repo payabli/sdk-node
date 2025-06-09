@@ -22,7 +22,7 @@ export interface ChargebackQueryRecords {
     /** Net amount in chargeback or ACH return. */
     netAmount?: Payabli.Netamountnullable | undefined;
     orderId?: Payabli.Orderid | undefined;
-    parentOrgName?: Payabli.OrgParentName | undefined;
+    parentOrgName?: Payabli.OrgParentName;
     paymentData?: Payabli.QueryPaymentData;
     /** ReferenceId of the transaction in Payabli. */
     PaymentId?: string;

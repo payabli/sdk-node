@@ -11,9 +11,9 @@ export interface PayabliApiResponseNotifications {
      * If `isSuccess` = false, `responseData` contains the reason for the error.
      */
     isSuccess?: Payabli.IsSuccess;
-    pageIdentifier?: Payabli.PageIdentifier | undefined;
-    responseCode?: Payabli.Responsecode | undefined;
+    pageIdentifier?: Payabli.PageIdentifier;
+    responseCode?: Payabli.Responsecode;
     /** When the request was successful, this contains the notification ID, or `nID` used to manage the notifcation. */
     responseData?: Payabli.PayabliApiResponseNotificationsResponseData;
-    responseText?: Payabli.ResponseText | undefined;
+    responseText?: Payabli.ResponseText;
 }

@@ -13,7 +13,7 @@ export interface BoardingLinkQueryRecord {
     /** Object containing logo file. */
     logo?: Payabli.FileContent;
     orgId?: Payabli.Orgid | undefined;
-    "pageIdentifier:"?: Payabli.PageIdentifier | undefined;
+    "pageIdentifier:"?: Payabli.PageIdentifier;
     recipientEmailNotification?: Payabli.RecipientEmailNotification;
     referenceName?: Payabli.ReferenceName | undefined;
     referenceTemplateId?: Payabli.ReferenceTemplateId | undefined;

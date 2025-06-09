@@ -6,8 +6,8 @@ import * as Payabli from "../../../index";
 
 export interface DeletePaymentMethodDomainResponse {
     isSuccess: Payabli.IsSuccess;
-    pageIdentifier?: Payabli.PageIdentifier;
+    pageIdentifier: Payabli.PageIdentifier;
     /** The deleted domain's domain ID. */
     responseData: Payabli.Responsedatanonobject;
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
 }

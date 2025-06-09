@@ -5,4 +5,4 @@
 /**
  * Code for the response. Learn more in [API Response Codes](/api-reference/api-responses).
  */
-export type Responsecode = number | undefined;
+export type Responsecode = number;

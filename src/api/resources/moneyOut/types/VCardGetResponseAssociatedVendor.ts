@@ -48,7 +48,7 @@ export interface VCardGetResponseAssociatedVendor {
     Name1?: string;
     /** Additional name information for the vendor. */
     Name2?: string;
-    ParentOrgName?: Payabli.OrgParentName | undefined;
+    ParentOrgName?: Payabli.OrgParentName;
     /** Primary name of the payee. */
     payeeName1?: string;
     /** Secondary name of the payee. */

@@ -5,7 +5,15 @@
 import * as Payabli from "../../../index";
 
 export type AddApplicationRequest =
+    /**
+     * Fields for Pay In processing applications */
     | Payabli.ApplicationDataPayIn
+    /**
+     * Fields for Managed Payout processing applications */
     | Payabli.ApplicationDataManaged
+    /**
+     * Fields for On-Demand Payout processing applications */
     | Payabli.ApplicationDataOdp
+    /**
+     * All fields for boarding applications */
     | Payabli.ApplicationData;

@@ -5,4 +5,4 @@
 /**
  * Shipping city.
  */
-export type Shippingcity = string | undefined;
+export type Shippingcity = string;

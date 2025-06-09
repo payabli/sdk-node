@@ -6,9 +6,9 @@ import * as Payabli from "../index";
 
 export interface PayabliApiResponseVendors {
     isSuccess?: Payabli.IsSuccess;
-    pageIdentifier?: Payabli.PageIdentifier | undefined;
-    responseCode?: Payabli.Responsecode | undefined;
+    pageIdentifier?: Payabli.PageIdentifier;
+    responseCode?: Payabli.Responsecode;
     /** If the request was successful, this field contains the identifier for the vendor. */
     responseData?: number;
-    responseText?: Payabli.ResponseText | undefined;
+    responseText?: Payabli.ResponseText;
 }
