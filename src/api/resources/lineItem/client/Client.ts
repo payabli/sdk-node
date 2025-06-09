@@ -83,7 +83,7 @@ export class LineItem {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "sdk-node",
-                "X-Fern-SDK-Version": "0.0.102",
+                "X-Fern-SDK-Version": "0.0.103",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 idempotencyKey: idempotencyKey != null ? idempotencyKey : undefined,
@@ -176,7 +176,7 @@ export class LineItem {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "sdk-node",
-                "X-Fern-SDK-Version": "0.0.102",
+                "X-Fern-SDK-Version": "0.0.103",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -267,7 +267,7 @@ export class LineItem {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "sdk-node",
-                "X-Fern-SDK-Version": "0.0.102",
+                "X-Fern-SDK-Version": "0.0.103",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -383,7 +383,7 @@ export class LineItem {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "sdk-node",
-                "X-Fern-SDK-Version": "0.0.102",
+                "X-Fern-SDK-Version": "0.0.103",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -481,7 +481,7 @@ export class LineItem {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "sdk-node",
-                "X-Fern-SDK-Version": "0.0.102",
+                "X-Fern-SDK-Version": "0.0.103",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
