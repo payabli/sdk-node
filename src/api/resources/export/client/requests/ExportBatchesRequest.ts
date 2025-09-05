@@ -12,13 +12,9 @@
  */
 export interface ExportBatchesRequest {
     columnsExport?: string;
-    /**
-     * The number of records to skip before starting to collect the result set.
-     */
+    /** The number of records to skip before starting to collect the result set. */
     fromRecord?: number;
-    /**
-     * The number of records to return for the query. The maximum is 30,000 records. When this parameter isn't sent, the API returns up to 25,000 records.
-     */
+    /** The number of records to return for the query. The maximum is 30,000 records. When this parameter isn't sent, the API returns up to 25,000 records. */
     limitRecord?: number;
     /**
      * Collection of field names, conditions, and values used to filter the query
@@ -37,43 +33,43 @@ export interface ExportBatchesRequest {
      *   --url https://api-sandbox.payabli.com/api/Query/transactions/org/236?totalAmount(gt)=1000&limitRecord=20
      * </Info>
      *
-     * See [Filters and Conditions Reference](/developer-guides/reporting-filters-and-conditions-reference) for help.
+     * See [Filters and Conditions Reference](/developers/developer-guides/pay-ops-reporting-engine-overview#filters-and-conditions-reference) for help.
      *
      * List of field names accepted:
-     * - batchDate (gt, ge, lt, le, eq, ne)
-     * - batchNumber (ne, eq)
-     * - connectorName (ne, eq, ct, nct)
-     * - method (in, nin, eq, ne)
-     * - batchAmount (gt, ge, lt, le, eq, ne)
-     * - feeBatchAmount (gt, ge, lt, le, eq, ne)
-     * - netBatchAmount (gt, ge, lt, le, eq, ne)
-     * - releaseAmount (gt, ge, lt, le, eq, ne)
-     * - heldAmount (gt, ge, lt, le, eq, ne)
-     * - status (in, nin, eq, ne)
-     * - paypointLegal (ne, eq, ct, nct)
-     * - paypointDba (ne, eq, ct, nct)
-     * - orgName (ne, eq, ct, nct)
-     * - paypointId (ne, eq)
-     * - externalPaypointID (ct, nct, eq, ne)
-     * - expectedDepositDate (gt, ge, lt, le, eq, ne)
-     * - batchRecords (gt, ge, lt, le, eq, ne)
-     * - transferId (ne, eq)
-     * - transferDate (gt, ge, lt, le, eq, ne)
-     * - grossAmount (gt, ge, lt, le, eq, ne)
-     * - chargeBackAmount (gt, ge, lt, le, eq, ne)
-     * - returnedAmount (gt, ge, lt, le, eq, ne)
-     * - billingFeeAmount (gt, ge, lt, le, eq, ne)
-     * - thirdPartyPaidAmount (gt, ge, lt, le, eq, ne)
-     * - netFundedAmount (gt, ge, lt, le, eq, ne)
-     * - adjustmentAmount (gt, ge, lt, le, eq, ne)
-     * - processor (ne, eq, ct, nct)
-     * - transferStatus (ne, eq, in, nin)
+     * - `batchDate` (gt, ge, lt, le, eq, ne)
+     * - `batchNumber` (ne, eq)
+     * - `connectorName` (ne, eq, ct, nct)
+     * - `method` (in, nin, eq, ne)
+     * - `batchAmount` (gt, ge, lt, le, eq, ne)
+     * - `feeBatchAmount` (gt, ge, lt, le, eq, ne)
+     * - `netBatchAmount` (gt, ge, lt, le, eq, ne)
+     * - `releaseAmount` (gt, ge, lt, le, eq, ne)
+     * - `heldAmount` (gt, ge, lt, le, eq, ne)
+     * - `status` (in, nin, eq, ne)
+     * - `paypointLegal` (ne, eq, ct, nct)
+     * - `paypointDba` (ne, eq, ct, nct)
+     * - `orgName` (ne, eq, ct, nct)
+     * - `paypointId` (ne, eq)
+     * - `externalPaypointID` (ct, nct, eq, ne)
+     * - `expectedDepositDate` (gt, ge, lt, le, eq, ne)
+     * - `batchRecords` (gt, ge, lt, le, eq, ne)
+     * - `transferId` (ne, eq)
+     * - `transferDate` (gt, ge, lt, le, eq, ne)
+     * - `grossAmount` (gt, ge, lt, le, eq, ne)
+     * - `chargeBackAmount` (gt, ge, lt, le, eq, ne)
+     * - `returnedAmount` (gt, ge, lt, le, eq, ne)
+     * - `billingFeeAmount` (gt, ge, lt, le, eq, ne)
+     * - `thirdPartyPaidAmount` (gt, ge, lt, le, eq, ne)
+     * - `netFundedAmount` (gt, ge, lt, le, eq, ne)
+     * - `adjustmentAmount` (gt, ge, lt, le, eq, ne)
+     * - `processor` (ne, eq, ct, nct)
+     * - `transferStatus` (ne, eq, in, nin)
      *
      * List of parameters accepted:
      * - limitRecord: max number of records for query (default="20", "0" or negative value for all)
      * - fromRecord: initial record in query
      *
-     * Example: `batchAmount(gt)=20` return all records with batchAmount greater than 20.00
+     * Example: `batchAmount(gt)=20` returns all records with a `batchAmount` greater than 20.00
      */
     parameters?: Record<string, string | undefined>;
 }

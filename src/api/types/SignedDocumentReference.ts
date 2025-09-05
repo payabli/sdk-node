@@ -5,4 +5,4 @@
 /**
  * Reference to the signed document.
  */
-export type SignedDocumentReference = string | undefined;
+export type SignedDocumentReference = string;

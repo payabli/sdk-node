@@ -7,8 +7,6 @@
  *     {}
  */
 export interface VendorBasicStatsRequest {
-    /**
-     * List of parameters
-     */
+    /** List of parameters */
     parameters?: Record<string, string | undefined>;
 }

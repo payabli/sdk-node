@@ -5,4 +5,4 @@
 /**
  * The paypoint name.
  */
-export type PaypointName = string | undefined;
+export type PaypointName = string;

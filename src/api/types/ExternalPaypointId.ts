@@ -5,4 +5,4 @@
 /**
  * A custom identifier for the paypoint, if applicable. Like `entrypoint` is the Payabli identifier for the merchant, `externalPaypointId` is a custom field you can use to include the merchant's ID from your own systems.
  */
-export type ExternalPaypointId = string | undefined;
+export type ExternalPaypointId = string;

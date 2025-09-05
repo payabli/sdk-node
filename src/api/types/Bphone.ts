@@ -5,4 +5,4 @@
 /**
  * Business phone number.
  */
-export type Bphone = string | undefined;
+export type Bphone = string;

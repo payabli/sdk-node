@@ -5,4 +5,4 @@
 /**
  * The shipping address.
  */
-export type Shippingaddress = string | undefined;
+export type Shippingaddress = string;

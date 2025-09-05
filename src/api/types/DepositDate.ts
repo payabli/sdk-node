@@ -5,4 +5,4 @@
 /**
  * The date the funds were deposited.
  */
-export type DepositDate = string | undefined;
+export type DepositDate = string;

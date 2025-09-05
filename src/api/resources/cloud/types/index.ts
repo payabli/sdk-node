@@ -1,2 +1,2 @@
-export * from "./AddDeviceResponse";
-export * from "./RemoveDeviceResponse";
+export * from "./AddDeviceResponse.js";
+export * from "./RemoveDeviceResponse.js";

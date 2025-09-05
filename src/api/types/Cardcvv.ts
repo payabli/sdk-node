@@ -5,4 +5,4 @@
 /**
  * Card Verification Value (CVV) associated with the card number. We **strongly recommend** that you include this field when using `card` as a method.
  */
-export type Cardcvv = string | undefined;
+export type Cardcvv = string;

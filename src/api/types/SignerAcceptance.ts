@@ -3,6 +3,6 @@
  */
 
 /**
- * The signer's acceptance status.  A true or false indicating an acceptance to the terms of service with the root org or provider.
+ * The signer's acceptance status. A true or false indicating an acceptance to the terms of service with the root org or provider.
  */
 export type SignerAcceptance = boolean | undefined;

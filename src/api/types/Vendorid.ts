@@ -5,4 +5,4 @@
 /**
  * Payabli identifier for vendor record.
  */
-export type Vendorid = number | undefined;
+export type Vendorid = number;

@@ -7,8 +7,6 @@
  *     {}
  */
 export interface GetExternalApplicationRequest {
-    /**
-     * If `true`, sends an email that includes the link to the application to the `mail2` address. Defaults to `false`.
-     */
+    /** If `true`, sends an email that includes the link to the application to the `mail2` address. Defaults to `false`. */
     sendEmail?: boolean;
 }

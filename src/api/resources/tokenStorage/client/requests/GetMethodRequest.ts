@@ -28,8 +28,6 @@ export interface GetMethodRequest {
      * - 2: MM/YY
      */
     cardExpirationFormat?: number;
-    /**
-     * When `true`, the request will include temporary tokens in the search and return details for a matching temporary token. The default behavior searches only for permanent tokens.
-     */
+    /** When `true`, the request will include temporary tokens in the search and return details for a matching temporary token. The default behavior searches only for permanent tokens. */
     includeTemporary?: boolean;
 }

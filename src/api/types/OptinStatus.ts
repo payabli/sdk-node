@@ -3,7 +3,7 @@
  */
 
 /**
- * Customers's consent status.
+ * Customer's consent status.
  * Allowed status:
  *
  *   - 0: Customer hasn't opted in to communications
@@ -12,4 +12,4 @@
  *
  *   - 1: Customer has opted in to communications
  */
-export type OptinStatus = number | undefined;
+export type OptinStatus = number;

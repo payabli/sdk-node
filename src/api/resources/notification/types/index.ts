@@ -1,2 +1,2 @@
-export * from "./AddNotificationRequest";
-export * from "./UpdateNotificationRequest";
+export * from "./AddNotificationRequest.js";
+export * from "./UpdateNotificationRequest.js";

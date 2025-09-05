@@ -5,4 +5,4 @@
 /**
  * A check number, between 1 and 9999, passed as a string. This value can be used for fraud prevention with the positive pay service.
  */
-export type VendorCheckNumber = string | undefined;
+export type VendorCheckNumber = string;

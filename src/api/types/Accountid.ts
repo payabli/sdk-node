@@ -5,4 +5,4 @@
 /**
  * Custom identifier for payment connector.
  */
-export type Accountid = string | undefined;
+export type Accountid = string;

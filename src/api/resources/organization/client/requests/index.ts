@@ -1,2 +1,2 @@
-export { type AddOrganizationRequest } from "./AddOrganizationRequest";
-export { type OrganizationData } from "./OrganizationData";
+export { type AddOrganizationRequest } from "./AddOrganizationRequest.js";
+export { type OrganizationData } from "./OrganizationData.js";

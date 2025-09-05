@@ -5,4 +5,4 @@
 /**
  * Payabli identifier of a tokenized payment method. If this field is used in a request, the `method` field is overridden and the payment is made using the payment token.
  */
-export type Storedmethodid = string | undefined;
+export type Storedmethodid = string;

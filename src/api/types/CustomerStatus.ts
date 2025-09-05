@@ -10,4 +10,4 @@
  * - `1` Active
  * - `85` Locked (typically due to multiple failed login attempts)
  */
-export type CustomerStatus = number | undefined;
+export type CustomerStatus = number;

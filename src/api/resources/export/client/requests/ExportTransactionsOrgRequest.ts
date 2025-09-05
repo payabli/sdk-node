@@ -12,13 +12,9 @@
  */
 export interface ExportTransactionsOrgRequest {
     columnsExport?: string;
-    /**
-     * The number of records to skip before starting to collect the result set.
-     */
+    /** The number of records to skip before starting to collect the result set. */
     fromRecord?: number;
-    /**
-     * The number of records to return for the query. The maximum is 30,000 records. When this parameter isn't sent, the API returns up to 25,000 records.
-     */
+    /** The number of records to return for the query. The maximum is 30,000 records. When this parameter isn't sent, the API returns up to 25,000 records. */
     limitRecord?: number;
     /**
      * Collection of field names, conditions, and values used to filter the query
@@ -37,49 +33,49 @@ export interface ExportTransactionsOrgRequest {
      *   --url https://api-sandbox.payabli.com/api/Query/transactions/org/236?totalAmount(gt)=1000&limitRecord=20
      * </Info>
      *
-     * See [Filters and Conditions Reference](/developer-guides/reporting-filters-and-conditions-reference) for help.
+     * See [Filters and Conditions Reference](/developers/developer-guides/pay-ops-reporting-engine-overview#filters-and-conditions-reference) for help.
      *
      * List of field names accepted:
-     * - transactionDate (gt, ge, lt, le, eq, ne)
-     * - transId  (ne, eq, ct, nct)
-     * - gatewayTransId  (ne, eq, ct, nct)
-     * - orderId  (ne, eq)
-     * - idTrans  (ne, eq)
-     * - orgId  (ne, eq)
-     * - paypointId  (ne, eq)
-     * - paypointLegal  (ne, eq, ct, nct)
-     * - paypointDba  (ne, eq, ct, nct)
-     * - orgName  (ne, eq, ct, nct)
-     * - method   (in, nin, eq, ne)
-     * - totalAmount  (gt, ge, lt, le, eq, ne)
-     * - netAmount    (gt, ge, lt, le, eq, ne)
-     * - feeAmount    (gt, ge, lt, le, eq, ne)
-     * - operation    (in, nin, eq, ne)
-     * - source   (in, nin, eq, ne)
-     * - status   (in, nin, eq, ne)
-     * - settlementStatus (in, nin, eq, ne)
-     * - batchNumber   (nct, ct)
-     * - payaccountLastfour   (nct, ct)
-     * - payaccountType   (ne, eq, in, nin)
-     * - customerFirstname   (ct, nct, eq, ne)
-     * - customerLastname    (ct, nct, eq, ne)
-     * - customerName   (ct, nct)
-     * - customerId  (eq, ne)
-     * - customerNumber  (ct, nct, eq, ne)
-     * - customerCompanyname    (ct, nct, eq, ne)
-     * - customerAddress (ct, nct, eq, ne)
-     * - customerCity    (ct, nct, eq, ne)
-     * - customerZip (ct, nct, eq, ne)
-     * - customerState (ct, nct, eq, ne)
-     * - customerCountry (ct, nct, eq, ne)
-     * - customerPhone (ct, nct, eq, ne)
-     * - customerEmail (ct, nct, eq, ne)
-     * - customerShippingAddress (ct, nct, eq, ne)
-     * - customerShippingCity    (ct, nct, eq, ne)
-     * - customerShippingZip (ct, nct, eq, ne)
-     * - customerShippingState (ct, nct, eq, ne)
-     * - customerShippingCountry (ct, nct, eq, ne)
-     * - additional-xxx  (ne, eq, ct, nct) where xxx is the additional field name
+     * - `transactionDate` (gt, ge, lt, le, eq, ne)
+     * - `transId` (ne, eq, ct, nct)
+     * - `gatewayTransId` (ne, eq, ct, nct)
+     * - `orderId` (ne, eq)
+     * - `idTrans` (ne, eq)
+     * - `orgId` (ne, eq)
+     * - `paypointId` (ne, eq)
+     * - `paypointLegal` (ne, eq, ct, nct)
+     * - `paypointDba` (ne, eq, ct, nct)
+     * - `orgName` (ne, eq, ct, nct)
+     * - `method` (in, nin, eq, ne)
+     * - `totalAmount` (gt, ge, lt, le, eq, ne)
+     * - `netAmount` (gt, ge, lt, le, eq, ne)
+     * - `feeAmount` (gt, ge, lt, le, eq, ne)
+     * - `operation` (in, nin, eq, ne)
+     * - `source` (in, nin, eq, ne)
+     * - `status` (in, nin, eq, ne)
+     * - `settlementStatus` (in, nin, eq, ne)
+     * - `batchNumber` (nct, ct)
+     * - `payaccountLastfour` (nct, ct)
+     * - `payaccountType` (ne, eq, in, nin)
+     * - `customerFirstname` (ct, nct, eq, ne)
+     * - `customerLastname` (ct, nct, eq, ne)
+     * - `customerName` (ct, nct)
+     * - `customerId` (eq, ne)
+     * - `customerNumber` (ct, nct, eq, ne)
+     * - `customerCompanyname` (ct, nct, eq, ne)
+     * - `customerAddress` (ct, nct, eq, ne)
+     * - `customerCity` (ct, nct, eq, ne)
+     * - `customerZip` (ct, nct, eq, ne)
+     * - `customerState` (ct, nct, eq, ne)
+     * - `customerCountry` (ct, nct, eq, ne)
+     * - `customerPhone` (ct, nct, eq, ne)
+     * - `customerEmail` (ct, nct, eq, ne)
+     * - `customerShippingAddress` (ct, nct, eq, ne)
+     * - `customerShippingCity` (ct, nct, eq, ne)
+     * - `customerShippingZip` (ct, nct, eq, ne)
+     * - `customerShippingState` (ct, nct, eq, ne)
+     * - `customerShippingCountry` (ct, nct, eq, ne)
+     * - `additional-xxx` (ne, eq, ct, nct) where xxx is the additional field name
      *
      * List of comparison accepted - enclosed between parentheses:
      * - eq or empty => equal
@@ -97,7 +93,7 @@ export interface ExportTransactionsOrgRequest {
      * - limitRecord : max number of records for query (default="20", "0" or negative value for all)
      * - fromRecord : initial record in query
      *
-     * Example: netAmount(gt)=20  return all records with netAmount greater than 20.00
+     * Example: `netAmount(gt)=20` returns all records with a `netAmount` greater than 20.00
      */
     parameters?: Record<string, string | undefined>;
 }

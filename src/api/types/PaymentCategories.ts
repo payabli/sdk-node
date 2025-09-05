@@ -9,6 +9,6 @@ export interface PaymentCategories {
     description?: string;
     /** Name of item or category. */
     label: string;
-    /** Quatity of item or category */
+    /** Quantity of item or category */
     qty?: number;
 }

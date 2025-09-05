@@ -5,4 +5,4 @@
 /**
  * Refers to the payment page identifier. If provided, then the transaction is linked to the payment page.
  */
-export type Subdomain = string | undefined;
+export type Subdomain = string;

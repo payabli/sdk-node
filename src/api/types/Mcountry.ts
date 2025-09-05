@@ -5,4 +5,4 @@
 /**
  * Business mailing country.
  */
-export type Mcountry = string | undefined;
+export type Mcountry = string;

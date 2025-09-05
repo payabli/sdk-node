@@ -5,4 +5,4 @@
 /**
  * The transaction's operation.
  */
-export type Operation = string | undefined;
+export type Operation = string;

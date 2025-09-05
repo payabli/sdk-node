@@ -11,13 +11,9 @@
  *     }
  */
 export interface ListUsersPaypointRequest {
-    /**
-     * The number of records to skip before starting to collect the result set.
-     */
+    /** The number of records to skip before starting to collect the result set. */
     fromRecord?: number;
-    /**
-     * Max number of records to return for the query. Use `0` or negative value to return all records.
-     */
+    /** Max number of records to return for the query. Use `0` or negative value to return all records. */
     limitRecord?: number;
     /**
      * Collection of field names, conditions, and values used to filter the query.
@@ -34,7 +30,7 @@ export interface ListUsersPaypointRequest {
      *
      *   --url https://api-sandbox.payabli.com/api/Query/transactions/org/236?totalAmount(gt)=1000&limitRecord=20
      * </Info>
-     * See [Filters and Conditions Reference](/developer-guides/reporting-filters-and-conditions-reference) for help.
+     * See [Filters and Conditions Reference](/developers/developer-guides/pay-ops-reporting-engine-overview#filters-and-conditions-reference) for help.
      *
      * **List of field names accepted:**
      *
@@ -42,7 +38,7 @@ export interface ListUsersPaypointRequest {
      * - `name`  (ne, eq, ct, nct)
      * - `email`  (ne, eq, ct, nct)
      * - `status`   (in, nin, eq, ne)
-     * - `role.xxx`  (ne, eq, ct, nct) where xxx is the role field: roleLabel or roleValue
+     * - `role.xxx`  (ne, eq, ct, nct) where xxx is the role field: `roleLabel` or `roleValue`
      *
      * **List of comparison accepted - enclosed between parentheses:**
      *
@@ -64,8 +60,6 @@ export interface ListUsersPaypointRequest {
      * Example: `name(ct)=john`  return all records with name containing 'john'
      */
     parameters?: Record<string, string | undefined>;
-    /**
-     * The field name to use for sorting results. Use `desc(field_name)` to sort descending by `field_name`, and use `asc(field_name)` to sort ascending by `field_name`.
-     */
+    /** The field name to use for sorting results. Use `desc(field_name)` to sort descending by `field_name`, and use `asc(field_name)` to sort ascending by `field_name`. */
     sortBy?: string;
 }

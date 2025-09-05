@@ -5,4 +5,4 @@
 /**
  * The entryname for the org, in string format. If you leave this blank, Payabli uses the DBA name.
  */
-export type Orgentryname = string | undefined;
+export type Orgentryname = string;

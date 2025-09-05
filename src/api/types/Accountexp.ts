@@ -5,4 +5,4 @@
 /**
  * Expiration date of card used in transaction.
  */
-export type Accountexp = string | undefined;
+export type Accountexp = string;

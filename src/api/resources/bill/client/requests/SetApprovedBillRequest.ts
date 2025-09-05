@@ -7,8 +7,6 @@
  *     {}
  */
 export interface SetApprovedBillRequest {
-    /**
-     * Email or username of user modifying approval status.
-     */
+    /** Email or username of user modifying approval status. */
     email?: string;
 }

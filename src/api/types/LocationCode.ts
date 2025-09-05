@@ -3,6 +3,6 @@
  */
 
 /**
- * Additional location code used to identify the vendor.
+ * A location code used to identify the vendor's location.
  */
-export type LocationCode = string | undefined;
+export type LocationCode = string;

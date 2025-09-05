@@ -3,6 +3,6 @@
  */
 
 /**
- * ZIP code for the billing address of cardholder. We **strongly recommend** that you include this field when using `card` as a method.
+ * ZIP or postal code for the billing address of cardholder. We **strongly recommend** that you include this field when using `card` as a method.
  */
-export type Cardzip = string | undefined;
+export type Cardzip = string;

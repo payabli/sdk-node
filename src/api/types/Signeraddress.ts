@@ -3,6 +3,6 @@
  */
 
 /**
- * The signer's address.
+ * The signer's address. This must be the physical address of the signer, not a P.O. box.
  */
-export type Signeraddress = string | undefined;
+export type Signeraddress = string;

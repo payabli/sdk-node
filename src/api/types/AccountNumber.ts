@@ -5,4 +5,4 @@
 /**
  * Account number for bank account. This value is returned masked in responses.
  */
-export type AccountNumber = string | undefined;
+export type AccountNumber = string;

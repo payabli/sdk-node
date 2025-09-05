@@ -5,4 +5,4 @@
 /**
  * Billing address country.
  */
-export type BillingCountryNullable = string | undefined;
+export type BillingCountryNullable = string;

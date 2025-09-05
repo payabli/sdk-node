@@ -5,4 +5,4 @@
 /**
  * Masked card or bank account used in transaction. In the case of Apple Pay, this is a masked DPAN (device primary account number).
  */
-export type Maskedaccount = string | undefined;
+export type Maskedaccount = string;

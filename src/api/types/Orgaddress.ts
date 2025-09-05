@@ -5,4 +5,4 @@
 /**
  * The organization's address.
  */
-export type Orgaddress = string | undefined;
+export type Orgaddress = string;

@@ -5,4 +5,4 @@
 /**
  * Business city
  */
-export type Bcity = string | undefined;
+export type Bcity = string;

@@ -11,13 +11,9 @@
  *     }
  */
 export interface ListNotificationsRequest {
-    /**
-     * The number of records to skip before starting to collect the result set.
-     */
+    /** The number of records to skip before starting to collect the result set. */
     fromRecord?: number;
-    /**
-     * Max number of records to return for the query. Use `0` or negative value to return all records.
-     */
+    /** Max number of records to return for the query. Use `0` or negative value to return all records. */
     limitRecord?: number;
     /**
      * Collection of field names, conditions, and values used to filter the query
@@ -34,14 +30,14 @@ export interface ListNotificationsRequest {
      *
      *   --url https://api-sandbox.payabli.com/api/Query/transactions/org/236?totalAmount(gt)=1000&limitRecord=20
      * </Info>
-     * See [Filters and Conditions Reference](/developer-guides/reporting-filters-and-conditions-reference) for help.
+     * See [Filters and Conditions Reference](/developers/developer-guides/pay-ops-reporting-engine-overview#filters-and-conditions-reference) for help.
      *
      * List of field names accepted:
-     * - frequency  (in, nin,ne, eq)
-     * - method   (in, nin, eq, ne)
-     * - event   (in, nin, eq, ne)
-     * - target   (ct, nct, eq, ne)
-     * - status   (eq, ne)
+     * - `frequency` (in, nin,ne, eq)
+     * - `method` (in, nin, eq, ne)
+     * - `event` (in, nin, eq, ne)
+     * - `target` (ct, nct, eq, ne)
+     * - `status` (eq, ne)
      *
      * List of comparison accepted - enclosed between parentheses:
      * - eq or empty => equal
@@ -62,8 +58,6 @@ export interface ListNotificationsRequest {
      * Example: totalAmount(gt)=20  return all records with totalAmount greater than 20.00
      */
     parameters?: Record<string, string | undefined>;
-    /**
-     * The field name to use for sorting results. Use `desc(field_name)` to sort descending by `field_name`, and use `asc(field_name)` to sort ascending by `field_name`.
-     */
+    /** The field name to use for sorting results. Use `desc(field_name)` to sort descending by `field_name`, and use `asc(field_name)` to sort ascending by `field_name`. */
     sortBy?: string;
 }

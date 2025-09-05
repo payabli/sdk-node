@@ -5,4 +5,4 @@
 /**
  * Numeric percent of volume processed by phone. To pass validation, `binperson`, `binweb`, and `binphone` must total 100 together.
  */
-export type Binphone = number | undefined;
+export type Binphone = number;

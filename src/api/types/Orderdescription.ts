@@ -5,4 +5,4 @@
 /**
  * Text description of the transaction.
  */
-export type Orderdescription = string | undefined;
+export type Orderdescription = string;

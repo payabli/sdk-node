@@ -5,4 +5,4 @@
 /**
  * Field not in use on this endpoint. It always returns `0`.
  */
-export type RoomIdNotInUse = number | undefined;
+export type RoomIdNotInUse = number;

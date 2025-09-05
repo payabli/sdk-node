@@ -5,4 +5,4 @@
 /**
  * A summary of what the business sells in terms of goods or services.
  */
-export type Bsummary = string | undefined;
+export type Bsummary = string;

@@ -5,4 +5,4 @@
 /**
  * The country in ISO-3166-1 alpha 2 format. See https://en.wikipedia.org/wiki/ISO_3166-1 for reference.
  */
-export type CountryNullable = string | undefined;
+export type CountryNullable = string;

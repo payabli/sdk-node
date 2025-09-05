@@ -5,4 +5,4 @@
 /**
  * The internal identifier for Apple Pay-related information.
  */
-export type ApplePayId = string | undefined;
+export type ApplePayId = string;

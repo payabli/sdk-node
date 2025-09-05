@@ -5,4 +5,4 @@
 /**
  * Timezone, in UTC offset. For example, -5 is Eastern time.
  */
-export type Timezone = number | undefined;
+export type Timezone = number;

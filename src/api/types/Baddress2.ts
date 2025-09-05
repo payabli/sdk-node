@@ -3,6 +3,6 @@
  */
 
 /**
- * Business address additional line.
+ * Business address additional line. If used, this must be the physical address of the business, not a P.O. box.
  */
-export type Baddress2 = string | undefined;
+export type Baddress2 = string;

@@ -3,6 +3,6 @@
  */
 
 /**
- * _Optional but recommended_ A unique ID that you can include to prevent duplicating objects or transactions in the case that a request is sent more than once. This key is not generated in Payabli, you must generate it yourself.
+ * _Optional but recommended_ A unique ID that you can include to prevent duplicating objects or transactions in the case that a request is sent more than once. This key isn't generated in Payabli, you must generate it yourself.
  */
-export type IdempotencyKey = string | undefined;
+export type IdempotencyKey = string;

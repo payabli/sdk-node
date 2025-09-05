@@ -5,4 +5,4 @@
 /**
  * The business's mailing address.
  */
-export type Maddress = string | undefined;
+export type Maddress = string;

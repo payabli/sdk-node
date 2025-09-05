@@ -5,4 +5,4 @@
 /**
  * Custom number identifying the vendor. Must be unique in paypoint.
  */
-export type VendorNumber = string | undefined;
+export type VendorNumber = string;

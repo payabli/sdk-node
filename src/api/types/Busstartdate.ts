@@ -3,9 +3,10 @@
  */
 
 /**
- * Business start date.
- * Accepted formats:
- * - YYYY-MM-DD
- * - MM/DD/YYYY
+ * Business start date. Accepted formats:
+ *
+ *   - YYYY-MM-DD
+ *
+ *   - MM/DD/YYYY
  */
-export type Busstartdate = string | undefined;
+export type Busstartdate = string;

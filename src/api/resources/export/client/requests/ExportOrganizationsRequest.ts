@@ -12,13 +12,9 @@
  */
 export interface ExportOrganizationsRequest {
     columnsExport?: string;
-    /**
-     * The number of records to skip before starting to collect the result set.
-     */
+    /** The number of records to skip before starting to collect the result set. */
     fromRecord?: number;
-    /**
-     * The number of records to return for the query. The maximum is 30,000 records. When this parameter isn't sent, the API returns up to 25,000 records.
-     */
+    /** The number of records to return for the query. The maximum is 30,000 records. When this parameter isn't sent, the API returns up to 25,000 records. */
     limitRecord?: number;
     /**
      * Collection of field names, conditions, and values used to filter the query
@@ -37,22 +33,22 @@ export interface ExportOrganizationsRequest {
      *   --url https://api-sandbox.payabli.com/api/Query/transactions/org/236?totalAmount(gt)=1000&limitRecord=20
      * </Info>
      *
-     * See [Filters and Conditions Reference](/developer-guides/reporting-filters-and-conditions-reference) for help.
+     * See [Filters and Conditions Reference](/developers/developer-guides/pay-ops-reporting-engine-overview#filters-and-conditions-reference) for help.
      *
      * List of field names accepted:
-     * - name (ct, nct, eq, ne)
-     * - type  (ne, eq)
-     * - contactName (ct, nct, eq, ne)
-     * - contactTitle (ct, nct, eq, ne)
-     * - contactEmail (ct, nct, eq, ne)
-     * - contactPhone (ct, nct, eq, ne)
-     * - city (ct, nct, eq, ne)
-     * - state (in, nin, eq, ne)
-     * - address (ct, nct, eq, ne)
-     * - country (ct, nct, eq, ne)
-     * - zip (ct, nct, eq, ne)
-     * - hasBilling   any value greater than zero is taken as TRUE otherwise is FALSE
-     * - hasResidual  any value greater than zero is taken as TRUE otherwise is FALSE
+     * - `name` (ct, nct, eq, ne)
+     * - `type` (ne, eq)
+     * - `contactName` (ct, nct, eq, ne)
+     * - `contactTitle` (ct, nct, eq, ne)
+     * - `contactEmail` (ct, nct, eq, ne)
+     * - `contactPhone` (ct, nct, eq, ne)
+     * - `city` (ct, nct, eq, ne)
+     * - `state` (in, nin, eq, ne)
+     * - `address` (ct, nct, eq, ne)
+     * - `country` (ct, nct, eq, ne)
+     * - `zip` (ct, nct, eq, ne)
+     * - `hasBilling` any value greater than zero is taken as TRUE otherwise is FALSE
+     * - `hasResidual` any value greater than zero is taken as TRUE otherwise is FALSE
      *
      * List of comparison accepted - enclosed between parentheses:
      * - eq or empty => equal

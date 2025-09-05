@@ -5,4 +5,4 @@
 /**
  * The business website address. Include only the domain and TLD, do not enter the protocol (http/https). For example: `www.example.com` is acceptable.
  */
-export type Website = string | undefined;
+export type Website = string;

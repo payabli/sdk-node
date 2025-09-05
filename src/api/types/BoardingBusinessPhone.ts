@@ -5,4 +5,4 @@
 /**
  * The business's phone number.
  */
-export type BoardingBusinessPhone = string | undefined;
+export type BoardingBusinessPhone = string;

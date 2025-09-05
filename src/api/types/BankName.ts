@@ -5,4 +5,4 @@
 /**
  * Name of bank for account.
  */
-export type BankName = string | undefined;
+export type BankName = string;

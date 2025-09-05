@@ -3,6 +3,6 @@
  */
 
 /**
- * The notification's Payabli identifier. This is the ID used to manage the notifcation.
+ * The notification's Payabli identifier. This is the ID used to manage the notification.
  */
 export type NotificationId = number;

@@ -5,4 +5,4 @@
 /**
  * Organization ID. Unique identifier assigned to an org by Payabli.
  */
-export type Orgid = number | undefined;
+export type Orgid = number;

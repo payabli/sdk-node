@@ -9,12 +9,8 @@
  *     }
  */
 export interface GetUserRequest {
-    /**
-     * The entrypoint identifier.
-     */
+    /** The entrypoint identifier. */
     entry?: string;
-    /**
-     * Entry level: 0 - partner, 2 - paypoint
-     */
+    /** Entry level: 0 - partner, 2 - paypoint */
     level?: number;
 }

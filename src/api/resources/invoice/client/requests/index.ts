@@ -1,6 +1,6 @@
-export { type AddInvoiceRequest } from "./AddInvoiceRequest";
-export { type EditInvoiceRequest } from "./EditInvoiceRequest";
-export { type GetAttachedFileFromInvoiceRequest } from "./GetAttachedFileFromInvoiceRequest";
-export { type ListInvoicesRequest } from "./ListInvoicesRequest";
-export { type ListInvoicesOrgRequest } from "./ListInvoicesOrgRequest";
-export { type SendInvoiceRequest } from "./SendInvoiceRequest";
+export { type AddInvoiceRequest } from "./AddInvoiceRequest.js";
+export { type EditInvoiceRequest } from "./EditInvoiceRequest.js";
+export { type GetAttachedFileFromInvoiceRequest } from "./GetAttachedFileFromInvoiceRequest.js";
+export { type ListInvoicesRequest } from "./ListInvoicesRequest.js";
+export { type ListInvoicesOrgRequest } from "./ListInvoicesOrgRequest.js";
+export { type SendInvoiceRequest } from "./SendInvoiceRequest.js";

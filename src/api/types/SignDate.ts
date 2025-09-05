@@ -6,4 +6,4 @@
  * Date when the signer signed the document. Accepted formats:
  * YYYY-MM-DD, MM/DD/YYYY
  */
-export type SignDate = string | undefined;
+export type SignDate = string;

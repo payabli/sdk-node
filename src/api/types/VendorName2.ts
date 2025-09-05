@@ -5,4 +5,4 @@
 /**
  * Secondary name for vendor.
  */
-export type VendorName2 = string | undefined;
+export type VendorName2 = string;

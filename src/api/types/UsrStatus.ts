@@ -9,4 +9,4 @@
  *   - Deleted:	-99
  *   - Locked:	85
  */
-export type UsrStatus = number | undefined;
+export type UsrStatus = number;

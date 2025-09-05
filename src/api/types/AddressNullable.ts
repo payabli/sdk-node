@@ -5,4 +5,4 @@
 /**
  * The address.
  */
-export type AddressNullable = string | undefined;
+export type AddressNullable = string;

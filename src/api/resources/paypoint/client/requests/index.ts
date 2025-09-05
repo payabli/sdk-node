@@ -1,1 +1,1 @@
-export { type GetEntryConfigRequest } from "./GetEntryConfigRequest";
+export { type GetEntryConfigRequest } from "./GetEntryConfigRequest.js";

@@ -5,4 +5,4 @@
 /**
  * Invoice total amount.
  */
-export type InvoiceAmount = number | undefined;
+export type InvoiceAmount = number;

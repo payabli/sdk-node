@@ -7,4 +7,4 @@
  *   - `0`: Inactive
  *   - `1`: Active
  */
-export type Statusnotification = number | undefined;
+export type Statusnotification = number;

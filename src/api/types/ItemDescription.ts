@@ -5,4 +5,4 @@
 /**
  * Item or product description. Max length of 250 characters.
  */
-export type ItemDescription = string | undefined;
+export type ItemDescription = string;

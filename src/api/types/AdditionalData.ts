@@ -3,7 +3,7 @@
  */
 
 /**
- * Custom dictionary of key:value pairs. You can use this field to store any data related to the object or for your system. If you are using [custom identifiers](/developer-guides/entities-custom-identifiers), pass those in this object. Example usage:
+ * Custom dictionary of key:value pairs. You can use this field to store any data related to the object or for your system. If you are using [custom identifiers](/developers/developer-guides/entities-customers), pass those in this object. Example usage:
  *
  * ```json
  * {

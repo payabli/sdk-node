@@ -11,4 +11,4 @@
  *
  * See [Understanding CIT and MIT Indicators](/guides/money-in-cit-mit) for more information.
  */
-export type StoredMethodUsageType = string | undefined;
+export type StoredMethodUsageType = string;

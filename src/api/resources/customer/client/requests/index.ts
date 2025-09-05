@@ -1,1 +1,1 @@
-export { type AddCustomerRequest } from "./AddCustomerRequest";
+export { type AddCustomerRequest } from "./AddCustomerRequest.js";

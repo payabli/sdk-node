@@ -1,2 +1,2 @@
-export { type RequestSchedule } from "./RequestSchedule";
-export { type RequestUpdateSchedule } from "./RequestUpdateSchedule";
+export { type RequestSchedule } from "./RequestSchedule.js";
+export { type RequestUpdateSchedule } from "./RequestUpdateSchedule.js";

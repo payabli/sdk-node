@@ -1,4 +1,5 @@
-export * as Payabli from "./api";
-export { PayabliClient } from "./Client";
-export { PayabliEnvironment } from "./environments";
-export { PayabliError, PayabliTimeoutError } from "./errors";
+export * as Payabli from "./api/index.js";
+export { PayabliError, PayabliTimeoutError } from "./errors/index.js";
+export { PayabliClient } from "./Client.js";
+export { PayabliEnvironment } from "./environments.js";
+export * from "./exports.js";

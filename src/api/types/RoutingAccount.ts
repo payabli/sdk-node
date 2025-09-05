@@ -5,4 +5,4 @@
 /**
  * Routing number of bank account.
  */
-export type RoutingAccount = string | undefined;
+export type RoutingAccount = string;

@@ -1,1 +1,1 @@
-export * from "./AddResponseResponse";
+export * from "./AddResponseResponse.js";

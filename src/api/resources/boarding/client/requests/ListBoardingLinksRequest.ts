@@ -11,28 +11,24 @@
  *     }
  */
 export interface ListBoardingLinksRequest {
-    /**
-     * The number of records to skip before starting to collect the result set.
-     */
+    /** The number of records to skip before starting to collect the result set. */
     fromRecord?: number;
-    /**
-     * Max number of records to return for the query. Use `0` or negative value to return all records.
-     */
+    /** Max number of records to return for the query. Use `0` or negative value to return all records. */
     limitRecord?: number;
     /**
      * Collection of field names, conditions, and values used to filter the query
      *
-     * See [Filters and Conditions Reference](/developer-guides/reporting-filters-and-conditions-reference) for help.
+     * See [Filters and Conditions Reference](/developers/developer-guides/pay-ops-reporting-engine-overview#filters-and-conditions-reference) for help.
      *
      * List of field names accepted:
-     * - lastUpdated (gt, ge, lt, le, eq, ne)
-     * - templateName (ct, nct)
-     * - referenceName (ct, nct)
-     * - acceptRegister (eq, ne)
-     * - acceptAuth (eq, ne)
-     * - templateCode (ct, nct)
-     * - templateId (eq, ne)
-     * - orgParentname (ct, nct)
+     * - `lastUpdated` (gt, ge, lt, le, eq, ne)
+     * - `templateName` (ct, nct)
+     * - `referenceName` (ct, nct)
+     * - `acceptRegister` (eq, ne)
+     * - `acceptAuth` (eq, ne)
+     * - `templateCode` (ct, nct)
+     * - `templateId` (eq, ne)
+     * - `orgParentname` (ct, nct)
      *
      * List of comparison accepted - enclosed between parentheses:
      * - eq or empty => equal
@@ -53,8 +49,6 @@ export interface ListBoardingLinksRequest {
      * Example: templateName(ct)=hoa return all records with template title containing "hoa"
      */
     parameters?: Record<string, string | undefined>;
-    /**
-     * The field name to use for sorting results. Use `desc(field_name)` to sort descending by `field_name`, and use `asc(field_name)` to sort ascending by `field_name`.
-     */
+    /** The field name to use for sorting results. Use `desc(field_name)` to sort descending by `field_name`, and use `asc(field_name)` to sort ascending by `field_name`. */
     sortBy?: string;
 }

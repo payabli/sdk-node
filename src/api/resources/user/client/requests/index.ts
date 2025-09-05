@@ -1,5 +1,5 @@
-export { type UserAuthResetRequest } from "./UserAuthResetRequest";
-export { type UserAuthRequest } from "./UserAuthRequest";
-export { type UserAuthPswResetRequest } from "./UserAuthPswResetRequest";
-export { type GetUserRequest } from "./GetUserRequest";
-export { type MfaValidationData } from "./MfaValidationData";
+export { type UserAuthResetRequest } from "./UserAuthResetRequest.js";
+export { type UserAuthRequest } from "./UserAuthRequest.js";
+export { type UserAuthPswResetRequest } from "./UserAuthPswResetRequest.js";
+export { type GetUserRequest } from "./GetUserRequest.js";
+export { type MfaValidationData } from "./MfaValidationData.js";

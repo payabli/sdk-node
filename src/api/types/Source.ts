@@ -5,4 +5,4 @@
 /**
  * Custom identifier to indicate the transaction or request source.
  */
-export type Source = string | undefined;
+export type Source = string;

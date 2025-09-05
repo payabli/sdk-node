@@ -28,12 +28,8 @@ export interface ListPaymentMethodDomainsRequest {
      *   - psp
      */
     entityType?: string;
-    /**
-     * Number of records to skip. Defaults to `0`.
-     */
+    /** Number of records to skip. Defaults to `0`. */
     fromRecord?: number;
-    /**
-     * Max number of records for query response. Defaults to `20`.
-     */
+    /** Max number of records for query response. Defaults to `20`. */
     limitRecord?: number;
 }

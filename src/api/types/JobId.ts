@@ -5,4 +5,4 @@
 /**
  * The cascade process ID.
  */
-export type JobId = string | undefined;
+export type JobId = string;

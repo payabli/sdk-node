@@ -5,4 +5,4 @@
 /**
  * Additional line for the address.
  */
-export type AddressAddtlNullable = string | undefined;
+export type AddressAddtlNullable = string;

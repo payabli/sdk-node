@@ -5,4 +5,4 @@
 /**
  * The business's mail city.
  */
-export type Mcity = string | undefined;
+export type Mcity = string;

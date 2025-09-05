@@ -5,4 +5,4 @@
 /**
  * Custom terms and conditions included in the invoice.
  */
-export type TermsConditions = string | undefined;
+export type TermsConditions = string;

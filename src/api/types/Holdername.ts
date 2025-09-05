@@ -5,4 +5,4 @@
 /**
  * Account holder name for the method.
  */
-export type Holdername = string | undefined;
+export type Holdername = string;

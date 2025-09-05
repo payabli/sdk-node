@@ -10,9 +10,6 @@ export interface PaymentDetailCredit {
     currency?: string;
     /** Service fee to be deducted from the total amount. This amount must be a number, percentages aren't accepted. If you are using a percentage-based fee schedule, you must calculate the value manually. */
     serviceFee?: number;
-    /**
-     * Total amount to be charged.
-     * If a service fee is provided, then this amount should include the service fee.
-     */
+    /** Total amount to be charged. If a service fee is provided, then this amount should include the service fee. */
     totalAmount: number;
 }

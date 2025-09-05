@@ -3,6 +3,6 @@
  */
 
 /**
- * This is the total number of bills the business pays each month. For example, if your business pays an electric bill of \$500, a internet bill of \$150, and various suppliers \$5,000 every motnh then your monthly bill volume would be \$5,650.
+ * This is the total number of bills the business pays each month. For example, if your business pays an electric bill of \$500, a internet bill of \$150, and various suppliers \$5,000 every month then your monthly bill volume would be \$5,650.
  */
 export type BoardingAvgMonthlyBill = string;

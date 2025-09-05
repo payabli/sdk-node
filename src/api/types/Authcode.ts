@@ -5,4 +5,4 @@
 /**
  * Authorization code for the transaction.
  */
-export type Authcode = string | undefined;
+export type Authcode = string;

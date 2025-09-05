@@ -1,4 +1,3 @@
-export * from "./AddPayLinkFromInvoiceRequestAmountFixed";
-export * from "./GetPayLinkFromIdResponse";
-export * from "./GetPayLinkFromIdResponseResponseData";
-export * from "./RefreshPayLinkFromIdRequestAmountFixed";
+export * from "./PaymentPageRequestBody.js";
+export * from "./GetPayLinkFromIdResponse.js";
+export * from "./PayabliApiResponsePaymentLinks.js";

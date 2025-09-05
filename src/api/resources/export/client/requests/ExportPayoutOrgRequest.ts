@@ -12,13 +12,9 @@
  */
 export interface ExportPayoutOrgRequest {
     columnsExport?: string;
-    /**
-     * The number of records to skip before starting to collect the result set.
-     */
+    /** The number of records to skip before starting to collect the result set. */
     fromRecord?: number;
-    /**
-     * The number of records to return for the query. The maximum is 30,000 records. When this parameter isn't sent, the API returns up to 25,000 records.
-     */
+    /** The number of records to return for the query. The maximum is 30,000 records. When this parameter isn't sent, the API returns up to 25,000 records. */
     limitRecord?: number;
     /**
      * Collection of field names, conditions, and values used to filter the query.
@@ -37,21 +33,21 @@ export interface ExportPayoutOrgRequest {
      *   --url https://api-sandbox.payabli.com/api/Query/transactions/org/236?totalAmount(gt)=1000&limitRecord=20
      * </Info>
      *
-     * See [Filters and Conditions Reference](/developer-guides/reporting-filters-and-conditions-reference) for help.
+     * See [Filters and Conditions Reference](/developers/developer-guides/pay-ops-reporting-engine-overview#filters-and-conditions-reference) for help.
      *
      * List of field names accepted:
-     * - status (in, nin, eq, ne)
-     * - transactionDate (gt, ge, lt, le, eq, ne)
-     * - billNumber (ct, nct)
-     * - vendorNumber (ct, nct, eq, ne)
-     * - vendorName (ct, nct, eq, ne)
-     * - paymentMethod (ct, nct, eq, ne)
-     * - paymentId (ct, nct, eq, ne)
-     * - paymentgroup (ct, nct, eq, ne)
-     * - totalAmount (gt, ge, lt, le, eq, ne)
-     * - paypointLegal (ne, eq, ct, nct)
-     * - paypointDba (ne, eq, ct, nct)
-     * - orgName (ne, eq, ct, nct)
+     * - `status` (in, nin, eq, ne)
+     * - `transactionDate` (gt, ge, lt, le, eq, ne)
+     * - `billNumber` (ct, nct)
+     * - `vendorNumber` (ct, nct, eq, ne)
+     * - `vendorName` (ct, nct, eq, ne)
+     * - `paymentMethod` (ct, nct, eq, ne)
+     * - `paymentId` (ct, nct, eq, ne)
+     * - `paymentgroup` (ct, nct, eq, ne)
+     * - `totalAmount` (gt, ge, lt, le, eq, ne)
+     * - `paypointLegal` (ne, eq, ct, nct)
+     * - `paypointDba` (ne, eq, ct, nct)
+     * - `orgName` (ne, eq, ct, nct)
      *
      * List of comparison accepted - enclosed between parentheses:
      * - eq or empty => equal

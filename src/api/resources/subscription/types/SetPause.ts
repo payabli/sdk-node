@@ -3,6 +3,6 @@
  */
 
 /**
- * Flag indicating if subscription is paused. When a subscription is paused, no payments are processed until the subscription is unpaused, and the next payment date is not calculated automatically. If you want to skip a payment instead, set the `totalAmount` to 0 in the `paymentDetails` object.
+ * Flag indicating if subscription is paused. When a subscription is paused, no payments are processed until the subscription is unpaused, and the next payment date isn't calculated automatically. If you want to skip a payment instead, set the `totalAmount` to 0 in the `paymentDetails` object.
  */
 export type SetPause = boolean;

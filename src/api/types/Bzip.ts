@@ -5,4 +5,4 @@
 /**
  * Business ZIP.
  */
-export type Bzip = string | undefined;
+export type Bzip = string;

@@ -7,8 +7,6 @@
  *     {}
  */
 export interface GetAttachedFileFromInvoiceRequest {
-    /**
-     * When `true`, the request returns the file content as a Base64-encoded string.
-     */
+    /** When `true`, the request returns the file content as a Base64-encoded string. */
     returnObject?: boolean;
 }

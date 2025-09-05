@@ -5,4 +5,4 @@
 /**
  * Additional line for the billing address.
  */
-export type BillingAddressAddtlNullable = string | undefined;
+export type BillingAddressAddtlNullable = string;

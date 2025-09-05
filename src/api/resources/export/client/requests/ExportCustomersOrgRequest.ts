@@ -12,13 +12,9 @@
  */
 export interface ExportCustomersOrgRequest {
     columnsExport?: string;
-    /**
-     * The number of records to skip before starting to collect the result set.
-     */
+    /** The number of records to skip before starting to collect the result set. */
     fromRecord?: number;
-    /**
-     * The number of records to return for the query. The maximum is 30,000 records. When this parameter isn't sent, the API returns up to 25,000 records.
-     */
+    /** The number of records to return for the query. The maximum is 30,000 records. When this parameter isn't sent, the API returns up to 25,000 records. */
     limitRecord?: number;
     /**
      * Collection of field names, conditions, and values used to filter the query.
@@ -37,36 +33,36 @@ export interface ExportCustomersOrgRequest {
      *   --url https://api-sandbox.payabli.com/api/Query/transactions/org/236?totalAmount(gt)=1000&limitRecord=20
      * </Info>
      *
-     * See [Filters and Conditions Reference](/developer-guides/reporting-filters-and-conditions-reference) for help.
+     * See [Filters and Conditions Reference](/developers/developer-guides/pay-ops-reporting-engine-overview#filters-and-conditions-reference) for help.
      *
      * **List of field names accepted:**
-     * - createdDate (gt, ge, lt, le, eq, ne)
-     * - customernumber (ne, eq, ct, nct)
-     * - firstname (ne, eq, ct, nct)
-     * - lastname (ne, eq, ct, nct)
-     * - name (ct, nct)
-     * - address (ne, eq, ct, nct)
-     * - city (ne, eq, ct, nct)
-     * - country (ne, eq, ct, nct)
-     * - zip (ne, eq, ct, nct)
-     * - state (ne, eq, ct, nct)
-     * - shippingaddress (ne, eq, ct, nct)
-     * - shippingcity (ne, eq, ct, nct)
-     * - shippingcountry (ne, eq, ct, nct)
-     * - shippingzip (ne, eq, ct, nct)
-     * - shippingstate (ne, eq, ct, nct)
-     * - phone (ne, eq, ct, nct)
-     * - email (ne, eq, ct, nct)
-     * - company (ne, eq, ct, nct)
-     * - username (ne, eq, ct, nct)
-     * - balance (gt, ge, lt, le, eq, ne)
-     * - status (in, nin, eq, ne)
-     * - additional-xxx (ne, eq, ct, nct) where xxx is the additional field name
-     * - orgId (eq) *mandatory when entry=org*
-     * - paypointId (ne, eq)
-     * - paypointLegal (ne, eq, ct, nct)
-     * - paypointDba (ne, eq, ct, nct)
-     * - orgName (ne, eq, ct, nct)
+     * - `createdDate` (gt, ge, lt, le, eq, ne)
+     * - `customernumber` (ne, eq, ct, nct)
+     * - `firstname` (ne, eq, ct, nct)
+     * - `lastname` (ne, eq, ct, nct)
+     * - `name` (ct, nct)
+     * - `address` (ne, eq, ct, nct)
+     * - `city` (ne, eq, ct, nct)
+     * - `country` (ne, eq, ct, nct)
+     * - `zip` (ne, eq, ct, nct)
+     * - `state` (ne, eq, ct, nct)
+     * - `shippingaddress` (ne, eq, ct, nct)
+     * - `shippingcity` (ne, eq, ct, nct)
+     * - `shippingcountry` (ne, eq, ct, nct)
+     * - `shippingzip` (ne, eq, ct, nct)
+     * - `shippingstate` (ne, eq, ct, nct)
+     * - `phone` (ne, eq, ct, nct)
+     * - `email` (ne, eq, ct, nct)
+     * - `company` (ne, eq, ct, nct)
+     * - `username` (ne, eq, ct, nct)
+     * - `balance` (gt, ge, lt, le, eq, ne)
+     * - `status` (in, nin, eq, ne)
+     * - `additional-xxx` (ne, eq, ct, nct) where xxx is the additional field name
+     * - `orgId` (eq) *mandatory when entry=org*
+     * - `paypointId` (ne, eq)
+     * - `paypointLegal` (ne, eq, ct, nct)
+     * - `paypointDba` (ne, eq, ct, nct)
+     * - `orgName` (ne, eq, ct, nct)
      *
      * **List of comparison accepted - enclosed between parentheses:**
      * - eq or empty => equal

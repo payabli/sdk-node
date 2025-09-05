@@ -11,4 +11,4 @@
  *
  *   See [Understanding CIT and MIT Indicators](/guides/money-in-cit-mit) for more information.
  */
-export type Sequence = string | undefined;
+export type Sequence = string;

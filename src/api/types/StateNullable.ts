@@ -5,4 +5,4 @@
 /**
  * The state or province.
  */
-export type StateNullable = string | undefined;
+export type StateNullable = string;

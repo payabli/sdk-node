@@ -5,4 +5,4 @@
 /**
  * When the method is a card, this field displays card brand. When the method is ACH, this field displays the account type for ACH (checking or savings).
  */
-export type Descriptor = string | undefined;
+export type Descriptor = string;

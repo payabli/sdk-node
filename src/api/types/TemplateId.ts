@@ -5,4 +5,4 @@
 /**
  * The associated boarding template's ID in Payabli.
  */
-export type TemplateId = number | undefined;
+export type TemplateId = number;

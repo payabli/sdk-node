@@ -19,9 +19,7 @@ export interface BasicStatsRequest {
      *   - mm/dd/YYYY
      */
     endDate?: string;
-    /**
-     * List of parameters.
-     */
+    /** List of parameters. */
     parameters?: Record<string, string | undefined>;
     /**
      * Used with `custom` mode. The start date for the range.

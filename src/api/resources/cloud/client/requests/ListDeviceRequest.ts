@@ -7,8 +7,6 @@
  *     {}
  */
 export interface ListDeviceRequest {
-    /**
-     * When `true`, the request retrieves an updated list of devices from the processor instead of returning a cached list of devices.
-     */
+    /** When `true`, the request retrieves an updated list of devices from the processor instead of returning a cached list of devices. */
     forceRefresh?: boolean;
 }

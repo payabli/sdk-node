@@ -5,4 +5,4 @@
 /**
  * The signer's state.
  */
-export type SignerState = string | undefined;
+export type SignerState = string;

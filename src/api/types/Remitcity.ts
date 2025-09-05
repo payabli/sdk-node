@@ -5,4 +5,4 @@
 /**
  * Remittance address city. Used for mailing paper checks.
  */
-export type Remitcity = string | undefined;
+export type Remitcity = string;

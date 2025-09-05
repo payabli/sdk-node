@@ -5,4 +5,4 @@
 /**
  * Business license issuing state or province.
  */
-export type Licensestate = string | undefined;
+export type Licensestate = string;

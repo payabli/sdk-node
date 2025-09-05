@@ -3,6 +3,6 @@
  */
 
 /**
- * Bank account holder. This field is **required** for `method` = 'ach' and `method` = 'check'.
+ * Bank account holder. This field is **required** when `method` is `ach` or `check`.
  */
 export type AchHolder = string;

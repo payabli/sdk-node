@@ -6,7 +6,7 @@
  * Information about the point of interaction device (also known as a terminal or cloud device) used to process the transaction.
  */
 export interface PoiDevice {
-    /** The device onnection status. */
+    /** The device connection status. */
     connected?: boolean;
     /** The date the device was unregistered. */
     dateDeRegistered?: string;
@@ -14,7 +14,7 @@ export interface PoiDevice {
     dateRegistered?: string;
     /** The device identifier. */
     deviceId?: string;
-    /** Device license. In most cases, this will be the same as `deviceId`. */
+    /** Device license. This is typically the same as `deviceId`. */
     deviceLicense?: string;
     /** Device description provided during registration. */
     deviceNickName?: string;

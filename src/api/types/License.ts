@@ -5,4 +5,4 @@
 /**
  * Business license ID or state ID number.
  */
-export type License = string | undefined;
+export type License = string;

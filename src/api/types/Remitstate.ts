@@ -5,4 +5,4 @@
 /**
  * Remittance address state. Used for mailing paper checks.
  */
-export type Remitstate = string | undefined;
+export type Remitstate = string;

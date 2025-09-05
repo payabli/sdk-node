@@ -11,4 +11,4 @@
  *
  * For **method**=*web*. the expected value is a valid and complete URL. Webhooks support only standard HTTP ports: 80, 443, 8080, or 4443.
  */
-export type Target = string | undefined;
+export type Target = string;

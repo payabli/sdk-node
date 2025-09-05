@@ -9,12 +9,8 @@
  *     }
  */
 export interface SendPayLinkFromIdRequest {
-    /**
-     * When `true`, attaches a PDF version of invoice to the email.
-     */
+    /** When `true`, attaches a PDF version of invoice to the email. */
     attachfile?: boolean;
-    /**
-     * List of recipient email addresses. When there is more than one, separate them by a semicolon (;).
-     */
+    /** List of recipient email addresses. When there is more than one, separate them by a semicolon (;). */
     mail2?: string;
 }

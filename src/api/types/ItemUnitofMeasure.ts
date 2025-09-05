@@ -5,4 +5,4 @@
 /**
  * Unit of measurement. Max length of 100 characters.
  */
-export type ItemUnitofMeasure = string | undefined;
+export type ItemUnitofMeasure = string;

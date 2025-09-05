@@ -2,7 +2,7 @@
 
 ## Bill
 
-<details><summary><code>client.bill.<a href="/src/api/resources/bill/client/Client.ts">addBill</a>(entry, { ...params }) -> Payabli.PayabliApiResponseBills</code></summary>
+<details><summary><code>client.bill.<a href="/src/api/resources/bill/client/Client.ts">addBill</a>(entry, { ...params }) -> Payabli.BillResponse</code></summary>
 <dl>
 <dd>
 
@@ -33,7 +33,7 @@ Creates a bill in an entrypoint.
 await client.bill.addBill("8cfec329267", {
     body: {
         billNumber: "ABC-123",
-        netAmount: "3762.87",
+        netAmount: 3762.87,
         billDate: "2024-07-01",
         dueDate: "2024-07-01",
         comments: "Deposit for materials",
@@ -113,7 +113,7 @@ await client.bill.addBill("8cfec329267", {
 </dl>
 </details>
 
-<details><summary><code>client.bill.<a href="/src/api/resources/bill/client/Client.ts">deleteAttachedFromBill</a>(filename, idBill, { ...params }) -> Payabli.PayabliApiResponseBills</code></summary>
+<details><summary><code>client.bill.<a href="/src/api/resources/bill/client/Client.ts">deleteAttachedFromBill</a>(filename, idBill, { ...params }) -> Payabli.BillResponse</code></summary>
 <dl>
 <dd>
 
@@ -159,17 +159,22 @@ await client.bill.deleteAttachedFromBill("0_Bill.pdf", 285);
 
 **filename:** `string`
 
-The filename in Payabli. Filename is `zipName` in response to a request to `/api/Invoice/{idInvoice}`. Here, the filename is `0_Bill.pdf``.
-"DocumentsRef": {
-"zipfile": "inva_269.zip",
-"filelist": [
-{
-"originalName": "Bill.pdf",
-"zipName": "0_Bill.pdf",
-"descriptor": null
-}
-]
-}
+The filename in Payabli. Filename is `zipName` in response to a
+request to `/api/Invoice/{idInvoice}`. Here, the filename is
+`0_Bill.pdf`.
+
+```json
+  "DocumentsRef": {
+    "zipfile": "inva_269.zip",
+    "filelist": [
+      {
+        "originalName": "Bill.pdf",
+        "zipName": "0_Bill.pdf",
+        "descriptor": null
+      }
+    ]
+  }
+```
 
 </dd>
 </dl>
@@ -204,7 +209,7 @@ The filename in Payabli. Filename is `zipName` in response to a request to `/api
 </dl>
 </details>
 
-<details><summary><code>client.bill.<a href="/src/api/resources/bill/client/Client.ts">deleteBill</a>(idBill) -> Payabli.PayabliApiResponseBills</code></summary>
+<details><summary><code>client.bill.<a href="/src/api/resources/bill/client/Client.ts">deleteBill</a>(idBill) -> Payabli.BillResponse</code></summary>
 <dl>
 <dd>
 
@@ -295,7 +300,10 @@ Updates a bill by ID.
 <dd>
 
 ```typescript
-await client.bill.editBill(285, {});
+await client.bill.editBill(285, {
+    netAmount: 3762.87,
+    billDate: "2025-07-01",
+});
 ```
 
 </dd>
@@ -320,6 +328,99 @@ await client.bill.editBill(285, {});
 <dd>
 
 **request:** `Payabli.BillOutData`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Bill.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.bill.<a href="/src/api/resources/bill/client/Client.ts">getAttachedFromBill</a>(filename, idBill, { ...params }) -> Payabli.FileContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a file attached to a bill, either as a binary file or as a Base64-encoded string.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.bill.getAttachedFromBill("0_Bill.pdf", 285, {
+    returnObject: true,
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**filename:** `string`
+
+The filename in Payabli. Filename is `zipName` in response to a request to `/api/Invoice/{idInvoice}`. Here, the filename is `0_Bill.pdf``.
+"DocumentsRef": {
+"zipfile": "inva_269.zip",
+"filelist": [
+{
+"originalName": "Bill.pdf",
+"zipName": "0_Bill.pdf",
+"descriptor": null
+}
+]
+}
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**idBill:** `number` — Payabli ID for the bill. Get this ID by querying `/api/Query/bills/` for the entrypoint or the organization.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.GetAttachedFromBillRequest`
 
 </dd>
 </dl>
@@ -413,7 +514,7 @@ await client.bill.getBill(285);
 <dl>
 <dd>
 
-Retrieve a list of bills for an entrypoint. Use filters to limit results.
+Retrieve a list of bills for an entrypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
 </dd>
 </dl>
@@ -488,7 +589,7 @@ await client.bill.listBills("8cfec329267", {
 <dl>
 <dd>
 
-Retrieve a list of bills for an organization. Use filters to limit results.
+Retrieve a list of bills for an organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
 </dd>
 </dl>
@@ -622,7 +723,7 @@ await client.bill.modifyApprovalBill(285, ["string"]);
 </dl>
 </details>
 
-<details><summary><code>client.bill.<a href="/src/api/resources/bill/client/Client.ts">sendToApprovalBill</a>(idBill, { ...params }) -> Payabli.PayabliApiResponseBills</code></summary>
+<details><summary><code>client.bill.<a href="/src/api/resources/bill/client/Client.ts">sendToApprovalBill</a>(idBill, { ...params }) -> Payabli.BillResponse</code></summary>
 <dl>
 <dd>
 
@@ -1186,7 +1287,7 @@ await client.boarding.getByIdLinkApplication(91);
 <dl>
 <dd>
 
-**boardingLinkId:** `number` — The boarding link ID. Can be found at the end of the boarding link reference name. The boarding link reference name. For example `https://boarding.payabli.com/boarding/app/myorgaccountname-00091`. The ID is `91`.
+**boardingLinkId:** `number` — The boarding link ID. You can find this at the end of the boarding link reference name. For example `https://boarding.payabli.com/boarding/app/myorgaccountname-00091`. The ID is `91`.
 
 </dd>
 </dl>
@@ -1249,7 +1350,7 @@ await client.boarding.getByTemplateIdLinkApplication(80);
 <dl>
 <dd>
 
-**templateId:** `number` — The boarding template ID. Can be found at the end of the boarding template URL in PartnerHub. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
+**templateId:** `number` — The boarding template ID. You can find this at the end of the boarding template URL in PartnerHub. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
 
 </dd>
 </dl>
@@ -1280,7 +1381,7 @@ await client.boarding.getByTemplateIdLinkApplication(80);
 <dl>
 <dd>
 
-Retrieves a link and the verification code used to log into an existing boarding application. This endpoint can also be used to send a link and referenceId for an existing boarding application to an email address. The recipient can use the referenceId and email address to access and edit the application.
+Retrieves a link and the verification code used to log into an existing boarding application. You can also use this endpoint to send a link and referenceId for an existing boarding application to an email address. The recipient can use the referenceId and email address to access and edit the application.
 
 </dd>
 </dl>
@@ -1422,7 +1523,7 @@ await client.boarding.getLinkApplication("myorgaccountname-00091");
 <dl>
 <dd>
 
-Returns a list of boarding applications for an organization. Use filters to limit results.
+Returns a list of boarding applications for an organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
 </dd>
 </dl>
@@ -1679,7 +1780,7 @@ await client.chargeBacks.addResponse(1000000, {
 <dl>
 <dd>
 
-**id:** `number` — ID of chargeback or return record
+**id:** `number` — ID of the chargeback or return record.
 
 </dd>
 </dl>
@@ -1750,7 +1851,7 @@ await client.chargeBacks.getChargeback(1000000);
 <dl>
 <dd>
 
-**id:** `number` — ID of the chargeback or return record. This is returned as `chargebackId` in the [RecievedChargeback](/developer-guides/webhook-payloads#receivedChargeback) and [ReceivedAchReturn](/developer-guides/webhook-payloads#receivedachreturn) webhook notifications.
+**id:** `number` — ID of the chargeback or return record. This is returned as `chargebackId` in the [RecievedChargeback](/developers/developer-guides/webhook-payloads#receivedChargeback) and [ReceivedAchReturn](/developers/developer-guides/webhook-payloads#receivedachreturn) webhook notifications.
 
 </dd>
 </dl>
@@ -1839,7 +1940,7 @@ await client.chargeBacks.getChargebackAttachment("fileName", 1000000);
 <dl>
 <dd>
 
-Captures a check for Remote Deposit Capture (RDC) using the provided check images and details. This endpoint handles the OCR extraction of check data including MICR, routing number, account number, and amount. See the [RDC guide](/developer-guides/pay-in-rdc) for more details.
+Captures a check for Remote Deposit Capture (RDC) using the provided check images and details. This endpoint handles the OCR extraction of check data including MICR, routing number, account number, and amount. See the [RDC guide](/developers/developer-guides/pay-in-rdc) for more details.
 
 </dd>
 </dl>
@@ -1909,7 +2010,7 @@ await client.checkCapture.checkProcessing({
 <dl>
 <dd>
 
-Register a cloud device to an entrypoint. See [Devices Quickstart](/developer-guides/devices-quickstart#devices-quickstart) for a complete guide.
+Register a cloud device to an entrypoint. See [Devices Quickstart](/developers/developer-guides/devices-quickstart#devices-quickstart) for a complete guide.
 
 </dd>
 </dl>
@@ -2661,7 +2762,7 @@ await client.export.exportApplications("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportApplicationsRequestFormat` — Format for the export, either XLSX or CSV.
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
 
 </dd>
 </dl>
@@ -2737,7 +2838,7 @@ await client.export.exportBatchDetails("8cfec329267", "csv", {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportBatchDetailsRequestFormat` — Format for the export, either XLSX or CSV.
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
 
 </dd>
 </dl>
@@ -2797,7 +2898,7 @@ await client.export.exportBatchDetailsOrg("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportBatchDetailsOrgRequestFormat` — Format for the export, either XLSX or CSV.
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
 
 </dd>
 </dl>
@@ -2888,7 +2989,7 @@ await client.export.exportBatches("8cfec329267", "csv", {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportBatchesRequestFormat` — Format for the export, either XLSX or CSV.
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
 
 </dd>
 </dl>
@@ -2963,7 +3064,7 @@ await client.export.exportBatchesOrg("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportBatchesOrgRequestFormat` — Format for the export, either XLSX or CSV.
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
 
 </dd>
 </dl>
@@ -3054,7 +3155,7 @@ await client.export.exportBatchesOut("8cfec329267", "csv", {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportBatchesOutRequestFormat` — Format for the export, either XLSX or CSV.
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
 
 </dd>
 </dl>
@@ -3129,7 +3230,7 @@ await client.export.exportBatchesOutOrg("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportBatchesOutOrgRequestFormat` — Format for the export, either XLSX or CSV.
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
 
 </dd>
 </dl>
@@ -3220,7 +3321,7 @@ await client.export.exportBills("8cfec329267", "csv", {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportBillsRequestFormat` — Format for the export, either XLSX or CSV.
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
 
 </dd>
 </dl>
@@ -3295,7 +3396,7 @@ await client.export.exportBillsOrg("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportBillsOrgRequestFormat` — Format for the export, either XLSX or CSV.
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
 
 </dd>
 </dl>
@@ -3386,7 +3487,7 @@ await client.export.exportChargebacks("8cfec329267", "csv", {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportChargebacksRequestFormat` — Format for the export, either XLSX or CSV.
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
 
 </dd>
 </dl>
@@ -3461,7 +3562,7 @@ await client.export.exportChargebacksOrg("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportChargebacksOrgRequestFormat` — Format for the export, either XLSX or CSV.
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
 
 </dd>
 </dl>
@@ -3552,7 +3653,7 @@ await client.export.exportCustomers("8cfec329267", "csv", {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportCustomersRequestFormat` — Format for the export, either XLSX or CSV.
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
 
 </dd>
 </dl>
@@ -3627,7 +3728,7 @@ await client.export.exportCustomersOrg("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportCustomersOrgRequestFormat` — Format for the export, either XLSX or CSV.
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
 
 </dd>
 </dl>
@@ -3718,7 +3819,7 @@ await client.export.exportInvoices("8cfec329267", "csv", {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportInvoicesRequestFormat` — Format for the export, either XLSX or CSV.
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
 
 </dd>
 </dl>
@@ -3793,7 +3894,7 @@ await client.export.exportInvoicesOrg("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportInvoicesOrgRequestFormat` — Format for the export, either XLSX or CSV.
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
 
 </dd>
 </dl>
@@ -3876,7 +3977,7 @@ await client.export.exportOrganizations("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportOrganizationsRequestFormat` — Format for the export, either XLSX or CSV.
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
 
 </dd>
 </dl>
@@ -3967,7 +4068,7 @@ await client.export.exportPayout("8cfec329267", "csv", {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportPayoutRequestFormat` — Format for the export, either XLSX or CSV.
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
 
 </dd>
 </dl>
@@ -4042,7 +4143,7 @@ await client.export.exportPayoutOrg("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportPayoutOrgRequestFormat` — Format for the export, either XLSX or CSV.
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
 
 </dd>
 </dl>
@@ -4125,7 +4226,7 @@ await client.export.exportPaypoints("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportPaypointsRequestFormat` — Format for the export, either XLSX or CSV.
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
 
 </dd>
 </dl>
@@ -4216,7 +4317,7 @@ await client.export.exportSettlements("8cfec329267", "csv", {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportSettlementsRequestFormat` — Format for the export, either XLSX or CSV.
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
 
 </dd>
 </dl>
@@ -4291,7 +4392,7 @@ await client.export.exportSettlementsOrg("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportSettlementsOrgRequestFormat` — Format for the export, either XLSX or CSV.
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
 
 </dd>
 </dl>
@@ -4382,7 +4483,7 @@ await client.export.exportSubscriptions("8cfec329267", "csv", {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportSubscriptionsRequestFormat` — Format for the export, either XLSX or CSV.
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
 
 </dd>
 </dl>
@@ -4457,7 +4558,7 @@ await client.export.exportSubscriptionsOrg("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportSubscriptionsOrgRequestFormat` — Format for the export, either XLSX or CSV.
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
 
 </dd>
 </dl>
@@ -4504,7 +4605,7 @@ await client.export.exportSubscriptionsOrg("csv", 123, {
 <dl>
 <dd>
 
-Export a list of transactions for an entrypoint in a file in XLXS or CSV format. Use filters to limit results. If you don't specificy a date range in the request, the last two months of data are returned.
+Export a list of transactions for an entrypoint in a file in XLXS or CSV format. Use filters to limit results. If you don't specify a date range in the request, the last two months of data are returned.
 
 </dd>
 </dl>
@@ -4548,7 +4649,7 @@ await client.export.exportTransactions("8cfec329267", "csv", {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportTransactionsRequestFormat` — Format for the export, either XLSX or CSV.
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
 
 </dd>
 </dl>
@@ -4587,7 +4688,7 @@ await client.export.exportTransactions("8cfec329267", "csv", {
 <dl>
 <dd>
 
-Export a list of transactions for an org in a file in XLSX or CSV format. Use filters to limit results. If you don't specificy a date range in the request, the last two months of data are returned.
+Export a list of transactions for an org in a file in XLSX or CSV format. Use filters to limit results. If you don't specify a date range in the request, the last two months of data are returned.
 
 </dd>
 </dl>
@@ -4623,7 +4724,7 @@ await client.export.exportTransactionsOrg("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportTransactionsOrgRequestFormat` — Format for the export, either XLSX or CSV.
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
 
 </dd>
 </dl>
@@ -4715,7 +4816,7 @@ await client.export.exportTransferDetails("8cfec329267", "csv", 1000000, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportTransferDetailsRequestFormat` — Format for the export, either XLSX or CSV.
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
 
 </dd>
 </dl>
@@ -4882,7 +4983,7 @@ await client.export.exportVendors("8cfec329267", "csv", {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportVendorsRequestFormat` — Format for the export, either XLSX or CSV.
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
 
 </dd>
 </dl>
@@ -4957,7 +5058,7 @@ await client.export.exportVendorsOrg("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportVendorsOrgRequestFormat` — Format for the export, either XLSX or CSV.
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
 
 </dd>
 </dl>
@@ -4974,132 +5075,6 @@ await client.export.exportVendorsOrg("csv", 123, {
 <dd>
 
 **request:** `Payabli.ExportVendorsOrgRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Export.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.export.<a href="/src/api/resources/export/client/Client.ts">getInvoicePdf</a>(idInvoice) -> Payabli.File_</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Export a single invoice in PDF format.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.export.getInvoicePdf(23548884);
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**idInvoice:** `number` — Invoice ID
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Export.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.export.<a href="/src/api/resources/export/client/Client.ts">getReportFile</a>(id) -> Payabli.File_</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Gets a copy of a generated report by ID.'
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.export.getReportFile(1000000);
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `number` — Report ID
 
 </dd>
 </dl>
@@ -5172,7 +5147,7 @@ await client.hostedPaymentPages.loadPage("8cfec329267", "pay-your-fees-1");
 <dl>
 <dd>
 
-**subdomain:** `string` — Payment page identifier. The subdomain value is the last portion of the payment page URL. For example, in`https://paypages-sandbox.payabli.com/513823dc10/pay-your-fees-1`, the subdomain is `pay-your-fees-1`.
+**subdomain:** `string` — Payment page identifier. The subdomain value is the last part of the payment page URL. For example, in`https://paypages-sandbox.payabli.com/513823dc10/pay-your-fees-1`, the subdomain is `pay-your-fees-1`.
 
 </dd>
 </dl>
@@ -5204,7 +5179,7 @@ await client.hostedPaymentPages.loadPage("8cfec329267", "pay-your-fees-1");
 <dd>
 
 Creates a new payment page for a paypoint.
-Note: this operation doesn't create a new paypoint, just a payment page for an exisiting paypoint. See [How do I create a paypoint?](/knowledge-base/how-do-i-create-a-paypoint) to understand how paypoints are created.
+Note: this operation doesn't create a new paypoint, just a payment page for an existing paypoint. Paypoints are created by the Payabli team when a boarding application is approved.
 
 </dd>
 </dl>
@@ -5318,7 +5293,7 @@ await client.hostedPaymentPages.savePage("8cfec329267", "pay-your-fees-1", {});
 <dl>
 <dd>
 
-**subdomain:** `string` — Payment page identifier. The subdomain value is the last portion of the payment page URL. For example, in`https://paypages-sandbox.payabli.com/513823dc10/pay-your-fees-1`, the subdomain is `pay-your-fees-1`.
+**subdomain:** `string` — Payment page identifier. The subdomain value is the last part of the payment page URL. For example, in`https://paypages-sandbox.payabli.com/513823dc10/pay-your-fees-1`, the subdomain is `pay-your-fees-1`.
 
 </dd>
 </dl>
@@ -5347,7 +5322,7 @@ await client.hostedPaymentPages.savePage("8cfec329267", "pay-your-fees-1", {});
 
 ## Import
 
-<details><summary><code>client.import.<a href="/src/api/resources/import/client/Client.ts">importBills</a>(file, entry) -> Payabli.PayabliApiResponseImport</code></summary>
+<details><summary><code>client.import.<a href="/src/api/resources/import/client/Client.ts">importBills</a>(entry, { ...params }) -> Payabli.PayabliApiResponseImport</code></summary>
 <dl>
 <dd>
 
@@ -5359,7 +5334,7 @@ await client.hostedPaymentPages.savePage("8cfec329267", "pay-your-fees-1", {});
 <dl>
 <dd>
 
-Import a list of bills from a CSV file. See the [Import Guide](/developer-guides/bills-import) for more help and an example file.
+Import a list of bills from a CSV file. See the [Import Guide](/developers/developer-guides/bills-add#import-bills) for more help and an example file.
 
 </dd>
 </dl>
@@ -5375,7 +5350,9 @@ Import a list of bills from a CSV file. See the [Import Guide](/developer-guides
 <dd>
 
 ```typescript
-await client.import.importBills(fs.createReadStream("/path/to/your/file"), "8cfec329267");
+await client.import.importBills("8cfec329267", {
+    file: fs.createReadStream("/path/to/your/file"),
+});
 ```
 
 </dd>
@@ -5391,7 +5368,7 @@ await client.import.importBills(fs.createReadStream("/path/to/your/file"), "8cfe
 <dl>
 <dd>
 
-**file:** `File | fs.ReadStream | Blob`
+**entry:** `string`
 
 </dd>
 </dl>
@@ -5399,7 +5376,7 @@ await client.import.importBills(fs.createReadStream("/path/to/your/file"), "8cfe
 <dl>
 <dd>
 
-**entry:** `string`
+**request:** `Payabli.ImportBillsRequest`
 
 </dd>
 </dl>
@@ -5418,7 +5395,7 @@ await client.import.importBills(fs.createReadStream("/path/to/your/file"), "8cfe
 </dl>
 </details>
 
-<details><summary><code>client.import.<a href="/src/api/resources/import/client/Client.ts">importCustomer</a>(file, entry, { ...params }) -> Payabli.PayabliApiResponseImport</code></summary>
+<details><summary><code>client.import.<a href="/src/api/resources/import/client/Client.ts">importCustomer</a>(entry, { ...params }) -> Payabli.PayabliApiResponseImport</code></summary>
 <dl>
 <dd>
 
@@ -5430,7 +5407,7 @@ await client.import.importBills(fs.createReadStream("/path/to/your/file"), "8cfe
 <dl>
 <dd>
 
-Import a list of customers from a CSV file. See the [Import Guide](/developer-guides/entities-import) for more help and example files.
+Import a list of customers from a CSV file. See the [Import Guide](/developers/developer-guides/entities-customers#import-customers) for more help and example files.
 
 </dd>
 </dl>
@@ -5446,7 +5423,9 @@ Import a list of customers from a CSV file. See the [Import Guide](/developer-gu
 <dd>
 
 ```typescript
-await client.import.importCustomer(fs.createReadStream("/path/to/your/file"), "8cfec329267", {});
+await client.import.importCustomer("8cfec329267", {
+    file: fs.createReadStream("/path/to/your/file"),
+});
 ```
 
 </dd>
@@ -5458,14 +5437,6 @@ await client.import.importCustomer(fs.createReadStream("/path/to/your/file"), "8
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**file:** `File | fs.ReadStream | Blob`
-
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -5497,7 +5468,7 @@ await client.import.importCustomer(fs.createReadStream("/path/to/your/file"), "8
 </dl>
 </details>
 
-<details><summary><code>client.import.<a href="/src/api/resources/import/client/Client.ts">importVendor</a>(file, entry) -> Payabli.PayabliApiResponseImport</code></summary>
+<details><summary><code>client.import.<a href="/src/api/resources/import/client/Client.ts">importVendor</a>(entry, { ...params }) -> Payabli.PayabliApiResponseImport</code></summary>
 <dl>
 <dd>
 
@@ -5509,7 +5480,7 @@ await client.import.importCustomer(fs.createReadStream("/path/to/your/file"), "8
 <dl>
 <dd>
 
-Import a list of vendors from a CSV file. See the [Import Guide](/developer-guides/entities-import) for more help and example files.
+Import a list of vendors from a CSV file. See the [Import Guide](/developers/developer-guides/entities-vendors#import-vendors) for more help and example files.
 
 </dd>
 </dl>
@@ -5525,7 +5496,9 @@ Import a list of vendors from a CSV file. See the [Import Guide](/developer-guid
 <dd>
 
 ```typescript
-await client.import.importVendor(fs.createReadStream("/path/to/your/file"), "8cfec329267");
+await client.import.importVendor("8cfec329267", {
+    file: fs.createReadStream("/path/to/your/file"),
+});
 ```
 
 </dd>
@@ -5541,7 +5514,7 @@ await client.import.importVendor(fs.createReadStream("/path/to/your/file"), "8cf
 <dl>
 <dd>
 
-**file:** `File | fs.ReadStream | Blob`
+**entry:** `Payabli.Entrypointfield`
 
 </dd>
 </dl>
@@ -5549,7 +5522,7 @@ await client.import.importVendor(fs.createReadStream("/path/to/your/file"), "8cf
 <dl>
 <dd>
 
-**entry:** `Payabli.Entrypointfield`
+**request:** `Payabli.ImportVendorRequest`
 
 </dd>
 </dl>
@@ -6138,7 +6111,7 @@ await client.invoice.getInvoiceNumber("8cfec329267");
 <dl>
 <dd>
 
-Returns a list of invoices for an entrypoint. Use filters to limit results.
+Returns a list of invoices for an entrypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
 </dd>
 </dl>
@@ -6213,7 +6186,7 @@ await client.invoice.listInvoices("8cfec329267", {
 <dl>
 <dd>
 
-Returns a list of invoices for an org. Use filters to limit results.
+Returns a list of invoices for an org. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
 </dd>
 </dl>
@@ -6332,6 +6305,69 @@ await client.invoice.sendInvoice(23548884, {
 <dd>
 
 **request:** `Payabli.SendInvoiceRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Invoice.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.invoice.<a href="/src/api/resources/invoice/client/Client.ts">getInvoicePdf</a>(idInvoice) -> Payabli.File_</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Export a single invoice in PDF format.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.invoice.getInvoicePdf(23548884);
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**idInvoice:** `number` — Invoice ID
 
 </dd>
 </dl>
@@ -6797,7 +6833,7 @@ await client.moneyIn.authorize({
 </dl>
 </details>
 
-<details><summary><code>client.moneyIn.<a href="/src/api/resources/moneyIn/client/Client.ts">capture</a>(amount, transId) -> Payabli.PayabliApiResponse0</code></summary>
+<details><summary><code>client.moneyIn.<a href="/src/api/resources/moneyIn/client/Client.ts">capture</a>(amount, transId) -> Payabli.CaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -6809,8 +6845,12 @@ await client.moneyIn.authorize({
 <dl>
 <dd>
 
-Capture an [authorized transaction](/api-reference/moneyin/authorize-a-transaction) to complete the transaction and move funds from the customer to merchant account.
-
+<Warning>
+  This endpoint is deprecated and will be sunset on November 24, 2025. Migrate to [POST `/capture/{transId}`](/api-reference/moneyin/capture-an-authorized-transaction)`.
+</Warning>
+  
+  Capture an [authorized
+transaction](/api-reference/moneyin/authorize-a-transaction) to complete the transaction and move funds from the customer to merchant account.
 </dd>
 </dl>
 </dd>
@@ -6841,7 +6881,7 @@ await client.moneyIn.capture(0, "10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13");
 <dl>
 <dd>
 
-**amount:** `number` — Amount to be captured. The amount cannot be greater the original total amount of the transaction. `0` captures the total amount authorized in the transaction.
+**amount:** `number` — Amount to be captured. The amount can't be greater the original total amount of the transaction. `0` captures the total amount authorized in the transaction. Partial captures aren't supported.
 
 </dd>
 </dl>
@@ -6850,6 +6890,84 @@ await client.moneyIn.capture(0, "10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13");
 <dd>
 
 **transId:** `string` — ReferenceId for the transaction (PaymentId).
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `MoneyIn.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.moneyIn.<a href="/src/api/resources/moneyIn/client/Client.ts">captureAuth</a>(transId, { ...params }) -> Payabli.CaptureResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Capture an [authorized transaction](/api-reference/moneyin/authorize-a-transaction) to complete the transaction and move funds from the customer to merchant account.
+
+You can use this endpoint to capture both full and partial amounts of the original authorized transaction. See [Capture an authorized transaction](/developers/developer-guides/pay-in-auth-and-capture) for more information about this endpoint.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.moneyIn.captureAuth("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", {
+    paymentDetails: {
+        totalAmount: 105,
+        serviceFee: 5,
+    },
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**transId:** `string` — ReferenceId for the transaction (PaymentId).
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.CaptureRequest`
 
 </dd>
 </dl>
@@ -7098,6 +7216,83 @@ await client.moneyIn.getpaid({
 </dl>
 </details>
 
+<details><summary><code>client.moneyIn.<a href="/src/api/resources/moneyIn/client/Client.ts">reverse</a>(amount, transId) -> Payabli.ReverseResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+A reversal either refunds or voids a transaction independent of the transaction's settlement status. Send a reversal request for a transaction, and Payabli automatically determines whether it's a refund or void. You don't need to know whether the transaction is settled or not.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.moneyIn.reverse(0, "10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**amount:** `number`
+
+Amount to reverse from original transaction, minus any service fees charged on the original transaction.
+
+The amount provided can't be greater than the original total amount of the transaction, minus service fees. For example, if a transaction was $90 plus a $10 service fee, you can reverse up to $90.
+
+An amount equal to zero will refunds the total amount authorized minus any service fee.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**transId:** `string` — ReferenceId for the transaction (PaymentId).
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `MoneyIn.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.moneyIn.<a href="/src/api/resources/moneyIn/client/Client.ts">refund</a>(amount, transId) -> Payabli.RefundResponse</code></summary>
 <dl>
 <dd>
@@ -7146,7 +7341,7 @@ await client.moneyIn.refund(0, "10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
 
 Amount to refund from original transaction, minus any service fees charged on the original transaction.
 
-The amount provided cannot be greater than the original total amount of the transaction, minus service fees. For example, if a transaction was $90 plus a $10 service fee, you can refund up to $90.
+The amount provided can't be greater than the original total amount of the transaction, minus service fees. For example, if a transaction was $90 plus a $10 service fee, you can refund up to $90.
 
 An amount equal to zero will refund the total amount authorized minus any service fee.
 
@@ -7203,8 +7398,27 @@ Refunds a settled transaction with split instructions.
 <dd>
 
 ```typescript
-await client.moneyIn.refundWithInstructions("45-as456777hhhhhhhhhh77777777-324", {
-    idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA",
+await client.moneyIn.refundWithInstructions("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", {
+    idempotencyKey: "8A29FC40-CA47-1067-B31D-00DD010662DB",
+    source: "api",
+    orderDescription: "Materials deposit",
+    amount: 100,
+    refundDetails: {
+        splitRefunding: [
+            {
+                originationEntryPoint: "7f1a381696",
+                accountId: "187-342",
+                description: "Refunding undelivered materials",
+                amount: 60,
+            },
+            {
+                originationEntryPoint: "7f1a381696",
+                accountId: "187-343",
+                description: "Refunding deposit for undelivered materials",
+                amount: 40,
+            },
+        ],
+    },
 });
 ```
 
@@ -7230,83 +7444,6 @@ await client.moneyIn.refundWithInstructions("45-as456777hhhhhhhhhh77777777-324",
 <dd>
 
 **request:** `Payabli.RequestRefund`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `MoneyIn.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.moneyIn.<a href="/src/api/resources/moneyIn/client/Client.ts">reverse</a>(amount, transId) -> Payabli.ReverseResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-A reversal either refunds or voids a transaction independent of the transaction's settlement status. Send a reversal request for a transaction, and Payabli automatically determines whether it's a refund or void. You don't need to know whether the transaction is settled or not.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.moneyIn.reverse(0, "10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**amount:** `number`
-
-Amount to reverse from original transaction, minus any service fees charged on the original transaction.
-
-The amount provided cannot be greater than the original total amount of the transaction, minus service fees. For example, if a transaction was $90 plus a $10 service fee, you can reverse up to $90.
-
-An amount equal to zero will refunds the total amount authorized minus any service fee.
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**transId:** `string` — ReferenceId for the transaction (PaymentId).
 
 </dd>
 </dl>
@@ -7388,7 +7525,7 @@ await client.moneyIn.reverseCredit("45-as456777hhhhhhhhhh77777777-324");
 </dl>
 </details>
 
-<details><summary><code>client.moneyIn.<a href="/src/api/resources/moneyIn/client/Client.ts">sendReceipt2Trans</a>(transId, { ...params }) -> Payabli.PayabliApiResponse1</code></summary>
+<details><summary><code>client.moneyIn.<a href="/src/api/resources/moneyIn/client/Client.ts">sendReceipt2Trans</a>(transId, { ...params }) -> Payabli.ReceiptResponse</code></summary>
 <dl>
 <dd>
 
@@ -7461,7 +7598,7 @@ await client.moneyIn.sendReceipt2Trans("45-as456777hhhhhhhhhh77777777-324", {
 </dl>
 </details>
 
-<details><summary><code>client.moneyIn.<a href="/src/api/resources/moneyIn/client/Client.ts">validate</a>({ ...params }) -> Payabli.PayabliApiResponse0</code></summary>
+<details><summary><code>client.moneyIn.<a href="/src/api/resources/moneyIn/client/Client.ts">validate</a>({ ...params }) -> Payabli.ValidateResponse</code></summary>
 <dl>
 <dd>
 
@@ -7491,9 +7628,13 @@ Validates a card number without running a transaction or authorizing a charge.
 ```typescript
 await client.moneyIn.validate({
     idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA",
+    entryPoint: "entry132",
     paymentMethod: {
-        cardnumber: "4111111111111111",
         method: "card",
+        cardnumber: "4360000001000005",
+        cardexp: "12/29",
+        cardzip: "14602-8328",
+        cardHolder: "Dianne Becker-Smith",
     },
 });
 ```
@@ -7530,7 +7671,7 @@ await client.moneyIn.validate({
 </dl>
 </details>
 
-<details><summary><code>client.moneyIn.<a href="/src/api/resources/moneyIn/client/Client.ts">void</a>(transId) -> Payabli.PayabliApiResponse0</code></summary>
+<details><summary><code>client.moneyIn.<a href="/src/api/resources/moneyIn/client/Client.ts">void</a>(transId) -> Payabli.VoidResponse</code></summary>
 <dl>
 <dd>
 
@@ -7595,7 +7736,7 @@ await client.moneyIn.void("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
 
 ## MoneyOut
 
-<details><summary><code>client.moneyOut.<a href="/src/api/resources/moneyOut/client/Client.ts">authorizeOut</a>({ ...params }) -> Payabli.PayabliApiResponse11</code></summary>
+<details><summary><code>client.moneyOut.<a href="/src/api/resources/moneyOut/client/Client.ts">authorizeOut</a>({ ...params }) -> Payabli.AuthCapturePayoutResponse</code></summary>
 <dl>
 <dd>
 
@@ -7628,7 +7769,7 @@ await client.moneyOut.authorizeOut({
         entryPoint: "48acde49",
         invoiceData: [
             {
-                billId: 123,
+                billId: 54323,
             },
         ],
         orderDescription: "Window Painting",
@@ -7658,7 +7799,7 @@ await client.moneyOut.authorizeOut({
 <dl>
 <dd>
 
-**request:** `Payabli.RequestOutAuthorize`
+**request:** `Payabli.MoneyOutTypesRequestOutAuthorize`
 
 </dd>
 </dl>
@@ -7868,7 +8009,7 @@ await client.moneyOut.captureAllOut({
 </dl>
 </details>
 
-<details><summary><code>client.moneyOut.<a href="/src/api/resources/moneyOut/client/Client.ts">captureOut</a>(referenceId, { ...params }) -> Payabli.PayabliApiResponse11</code></summary>
+<details><summary><code>client.moneyOut.<a href="/src/api/resources/moneyOut/client/Client.ts">captureOut</a>(referenceId, { ...params }) -> Payabli.AuthCapturePayoutResponse</code></summary>
 <dl>
 <dd>
 
@@ -8047,6 +8188,71 @@ await client.moneyOut.vCardGet("20230403315245421165");
 <dd>
 
 **cardToken:** `string` — ID for a virtual card.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `MoneyOut.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.moneyOut.<a href="/src/api/resources/moneyOut/client/Client.ts">sendVCardLink</a>({ ...params }) -> Payabli.OperationResult</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sends a virtual card link via email to the vendor associated with the `transId`.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.moneyOut.sendVCardLink({
+    transId: "01K33Z6YQZ6GD5QVKZ856MJBSC",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Payabli.SendVCardLinkRequest`
 
 </dd>
 </dl>
@@ -8406,6 +8612,69 @@ await client.notification.updateNotification("1717", {
 <dd>
 
 **request:** `Payabli.UpdateNotificationRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Notification.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.notification.<a href="/src/api/resources/notification/client/Client.ts">getReportFile</a>(id) -> Payabli.File_</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets a copy of a generated report by ID.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.notification.getReportFile(1000000);
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `number` — Report ID
 
 </dd>
 </dl>
@@ -8882,7 +9151,7 @@ await client.organization.getBasicOrganization("8cfec329267");
 <dl>
 <dd>
 
-Get's an organizations basic details by org ID.
+Gets an organizations basic details by org ID.
 
 </dd>
 </dl>
@@ -9091,113 +9360,115 @@ Generates a payment link for an invoice from the invoice ID.
 ```typescript
 await client.paymentLink.addPayLinkFromInvoice(23548884, {
     mail2: "jo@example.com; ceo@example.com",
-    contactUs: {
-        emailLabel: "Email",
-        enabled: true,
-        header: "Contact Us",
-        order: 0,
-        paymentIcons: true,
-        phoneLabel: "Phone",
-    },
-    invoices: {
-        enabled: true,
-        invoiceLink: {
+    body: {
+        contactUs: {
+            emailLabel: "Email",
             enabled: true,
-            label: "View Invoice",
+            header: "Contact Us",
             order: 0,
+            paymentIcons: true,
+            phoneLabel: "Phone",
         },
-        order: 0,
-        viewInvoiceDetails: {
+        invoices: {
             enabled: true,
-            label: "Invoice Details",
-            order: 0,
-        },
-    },
-    logo: {
-        enabled: true,
-        order: 0,
-    },
-    messageBeforePaying: {
-        enabled: true,
-        label: "Please review your payment details",
-        order: 0,
-    },
-    notes: {
-        enabled: true,
-        header: "Additional Notes",
-        order: 0,
-        placeholder: "Enter any additional notes here",
-        value: "",
-    },
-    page: {
-        description: "Complete your payment securely",
-        enabled: true,
-        header: "Payment Page",
-        order: 0,
-    },
-    paymentButton: {
-        enabled: true,
-        label: "Pay Now",
-        order: 0,
-    },
-    paymentMethods: {
-        allMethodsChecked: true,
-        enabled: true,
-        header: "Payment Methods",
-        methods: {
-            amex: true,
-            applePay: true,
-            discover: true,
-            eCheck: true,
-            mastercard: true,
-            visa: true,
-        },
-        order: 0,
-        settings: {
-            applePay: {
-                buttonStyle: "black",
-                buttonType: "pay",
-                language: "en-US",
-            },
-        },
-    },
-    payor: {
-        enabled: true,
-        fields: [
-            {
-                display: true,
-                fixed: true,
-                identifier: true,
-                label: "Full Name",
-                name: "fullName",
+            invoiceLink: {
+                enabled: true,
+                label: "View Invoice",
                 order: 0,
-                required: true,
-                validation: "^[a-zA-Z ]+$",
-                value: "",
-                width: 0,
             },
-        ],
-        header: "Payor Information",
-        order: 0,
-    },
-    review: {
-        enabled: true,
-        header: "Review Payment",
-        order: 0,
-    },
-    settings: {
-        color: "#000000",
-        customCssUrl: "https://example.com/custom.css",
-        language: "en",
-        pageLogo: {
-            fContent:
-                "PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDEwMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPCEtLSBCYWNrZ3JvdW5kIC0tPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iMTAwMCIgZmlsbD0id2hpdGUiLz4KICAKICA8IS0tIENvbXBhbnkgSGVhZGVyIC0tPgogIDx0ZXh0IHg9IjQwIiB5PSI2MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzJjM2U1MCI+R3J1enlhIEFkdmVudHVyZSBPdXRmaXR0ZXJzPC90ZXh0PgogIDxsaW5lIHgxPSI0MCIgeTE9IjgwIiB4Mj0iNzYwIiB5Mj0iODAiIHN0cm9rZT0iIzJjM2U1MCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgCiAgPCEtLSBDb21wYW55IERldGFpbHMgLS0+CiAgPHRleHQgeD0iNDAiIHk9IjExMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj4xMjMgTW91bnRhaW4gVmlldyBSb2FkPC90ZXh0PgogIDx0ZXh0IHg9IjQwIiB5PSIxMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+VGJpbGlzaSwgR2VvcmdpYSAwMTA1PC90ZXh0PgogIDx0ZXh0IHg9IjQwIiB5PSIxNTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+VGVsOiArOTk1IDMyIDEyMyA0NTY3PC90ZXh0PgogIDx0ZXh0IHg9IjQwIiB5PSIxNzAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+RW1haWw6IGluZm9AZ3J1enlhYWR2ZW50dXJlcy5jb208L3RleHQ+CgogIDwhLS0gSW52b2ljZSBUaXRsZSAtLT4KICA8dGV4dCB4PSI2MDAiIHk9IjExMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzJjM2U1MCI+SU5WT0lDRTwvdGV4dD4KICA8dGV4dCB4PSI2MDAiIHk9IjE0MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj5EYXRlOiAxMi8xMS8yMDI0PC90ZXh0PgogIDx0ZXh0IHg9IjYwMCIgeT0iMTYwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPkludm9pY2UgIzogR1JaLTIwMjQtMTEyMzwvdGV4dD4KCiAgPCEtLSBCaWxsIFRvIFNlY3Rpb24gLS0+CiAgPHRleHQgeD0iNDAiIHk9IjIyMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzJjM2U1MCI+QklMTCBUTzo8L3RleHQ+CiAgPHJlY3QgeD0iNDAiIHk9IjIzNSIgd2lkdGg9IjMwMCIgaGVpZ2h0PSI4MCIgZmlsbD0iI2Y3ZjlmYSIvPgogIDx0ZXh0IHg9IjUwIiB5PSIyNjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+W0N1c3RvbWVyIE5hbWVdPC90ZXh0PgogIDx0ZXh0IHg9IjUwIiB5PSIyODAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+W0FkZHJlc3MgTGluZSAxXTwvdGV4dD4KICA8dGV4dCB4PSI1MCIgeT0iMzAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPltDaXR5LCBDb3VudHJ5XTwvdGV4dD4KCiAgPCEtLSBUYWJsZSBIZWFkZXJzIC0tPgogIDxyZWN0IHg9IjQwIiB5PSIzNDAiIHdpZHRoPSI3MjAiIGhlaWdodD0iMzAiIGZpbGw9IiMyYzNlNTAiLz4KICA8dGV4dCB4PSI1MCIgeT0iMzYwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSJ3aGl0ZSI+RGVzY3JpcHRpb248L3RleHQ+CiAgPHRleHQgeD0iNDUwIiB5PSIzNjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIj5RdWFudGl0eTwvdGV4dD4KICA8dGV4dCB4PSI1NTAiIHk9IjM2MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0id2hpdGUiPlJhdGU8L3RleHQ+CiAgPHRleHQgeD0iNjgwIiB5PSIzNjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIj5BbW91bnQ8L3RleHQ+CgogIDwhLS0gVGFibGUgUm93cyAtLT4KICA8cmVjdCB4PSI0MCIgeT0iMzcwIiB3aWR0aD0iNzIwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjZjdmOWZhIi8+CiAgPHRleHQgeD0iNTAiIHk9IjM5MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj5Nb3VudGFpbiBDbGltYmluZyBFcXVpcG1lbnQgUmVudGFsPC90ZXh0PgogIDx0ZXh0IHg9IjQ1MCIgeT0iMzkwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPjE8L3RleHQ+CiAgPHRleHQgeD0iNTUwIiB5PSIzOTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+JDI1MC4wMDwvdGV4dD4KICA8dGV4dCB4PSI2ODAiIHk9IjM5MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj4kMjUwLjAwPC90ZXh0PgoKICA8cmVjdCB4PSI0MCIgeT0iNDAwIiB3aWR0aD0iNzIwIiBoZWlnaHQ9IjMwIiBmaWxsPSJ3aGl0ZSIvPgogIDx0ZXh0IHg9IjUwIiB5PSI0MjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+R3VpZGVkIFRyZWsgUGFja2FnZSAtIDIgRGF5czwvdGV4dD4KICA8dGV4dCB4PSI0NTAiIHk9IjQyMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj4xPC90ZXh0PgogIDx0ZXh0IHg9IjU1MCIgeT0iNDIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPiQ0MDAuMDA8L3RleHQ+CiAgPHRleHQgeD0iNjgwIiB5PSI0MjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+JDQwMC4wMDwvdGV4dD4KCiAgPHJlY3QgeD0iNDAiIHk9IjQzMCIgd2lkdGg9IjcyMCIgaGVpZ2h0PSIzMCIgZmlsbD0iI2Y3ZjlmYSIvPgogIDx0ZXh0IHg9IjUwIiB5PSI0NTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+U2FmZXR5IEVxdWlwbWVudCBQYWNrYWdlPC90ZXh0PgogIDx0ZXh0IHg9IjQ1MCIgeT0iNDUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPjE8L3RleHQ+CiAgPHRleHQgeD0iNTUwIiB5PSI0NTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+JDE1MC4wMDwvdGV4dD4KICA8dGV4dCB4PSI2ODAiIHk9IjQ1MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj4kMTUwLjAwPC90ZXh0PgoKICA8IS0tIFRvdGFscyAtLT4KICA8bGluZSB4MT0iNDAiIHkxPSI0ODAiIHgyPSI3NjAiIHkyPSI0ODAiIHN0cm9rZT0iIzJjM2U1MCIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNTUwIiB5PSI1MTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMzNDQ5NWUiPlN1YnRvdGFsOjwvdGV4dD4KICA8dGV4dCB4PSI2ODAiIHk9IjUxMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj4kODAwLjAwPC90ZXh0PgogIDx0ZXh0IHg9IjU1MCIgeT0iNTM1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjMzQ0OTVlIj5UYXggKDE4JSk6PC90ZXh0PgogIDx0ZXh0IHg9IjY4MCIgeT0iNTM1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPiQxNDQuMDA8L3RleHQ+CiAgPHRleHQgeD0iNTUwIiB5PSI1NzAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMyYzNlNTAiPlRvdGFsOjwvdGV4dD4KICA8dGV4dCB4PSI2ODAiIHk9IjU3MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzJjM2U1MCI+JDk0NC4wMDwvdGV4dD4KCiAgPCEtLSBQYXltZW50IFRlcm1zIC0tPgogIDx0ZXh0IHg9IjQwIiB5PSI2NDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMyYzNlNTAiPlBheW1lbnQgVGVybXM8L3RleHQ+CiAgPHRleHQgeD0iNDAiIHk9IjY3MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj5QYXltZW50IGlzIGR1ZSB3aXRoaW4gMzAgZGF5czwvdGV4dD4KICA8dGV4dCB4PSI0MCIgeT0iNjkwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPlBsZWFzZSBpbmNsdWRlIGludm9pY2UgbnVtYmVyIG9uIHBheW1lbnQ8L3RleHQ+CgogIDwhLS0gQmFuayBEZXRhaWxzIC0tPgogIDx0ZXh0IHg9IjQwIiB5PSI3MzAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMyYzNlNTAiPkJhbmsgRGV0YWlsczwvdGV4dD4KICA8dGV4dCB4PSI0MCIgeT0iNzYwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPkJhbms6IEJhbmsgb2YgR2VvcmdpYTwvdGV4dD4KICA8dGV4dCB4PSI0MCIgeT0iNzgwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPklCQU46IEdFMTIzNDU2Nzg5MDEyMzQ1Njc4PC90ZXh0PgogIDx0ZXh0IHg9IjQwIiB5PSI4MDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+U1dJRlQ6IEJBR0FHRTIyPC90ZXh0PgoKICA8IS0tIEZvb3RlciAtLT4KICA8bGluZSB4MT0iNDAiIHkxPSI5MDAiIHgyPSI3NjAiIHkyPSI5MDAiIHN0cm9rZT0iIzJjM2U1MCIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNDAiIHk9IjkzMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSIjN2Y4YzhkIj5UaGFuayB5b3UgZm9yIGNob29zaW5nIEdydXp5YSBBZHZlbnR1cmUgT3V0Zml0dGVyczwvdGV4dD4KICA8dGV4dCB4PSI0MCIgeT0iOTUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM3ZjhjOGQiPnd3dy5ncnV6eWFhZHZlbnR1cmVzLmNvbTwvdGV4dD4KPC9zdmc+Cg==",
-            filename: "logo.jpg",
-            ftype: "jpg",
-            furl: "",
+            order: 0,
+            viewInvoiceDetails: {
+                enabled: true,
+                label: "Invoice Details",
+                order: 0,
+            },
         },
-        redirectAfterApprove: true,
-        redirectAfterApproveUrl: "https://example.com/success",
+        logo: {
+            enabled: true,
+            order: 0,
+        },
+        messageBeforePaying: {
+            enabled: true,
+            label: "Please review your payment details",
+            order: 0,
+        },
+        notes: {
+            enabled: true,
+            header: "Additional Notes",
+            order: 0,
+            placeholder: "Enter any additional notes here",
+            value: "",
+        },
+        page: {
+            description: "Complete your payment securely",
+            enabled: true,
+            header: "Payment Page",
+            order: 0,
+        },
+        paymentButton: {
+            enabled: true,
+            label: "Pay Now",
+            order: 0,
+        },
+        paymentMethods: {
+            allMethodsChecked: true,
+            enabled: true,
+            header: "Payment Methods",
+            methods: {
+                amex: true,
+                applePay: true,
+                discover: true,
+                eCheck: true,
+                mastercard: true,
+                visa: true,
+            },
+            order: 0,
+            settings: {
+                applePay: {
+                    buttonStyle: "black",
+                    buttonType: "pay",
+                    language: "en-US",
+                },
+            },
+        },
+        payor: {
+            enabled: true,
+            fields: [
+                {
+                    display: true,
+                    fixed: true,
+                    identifier: true,
+                    label: "Full Name",
+                    name: "fullName",
+                    order: 0,
+                    required: true,
+                    validation: "^[a-zA-Z ]+$",
+                    value: "",
+                    width: 0,
+                },
+            ],
+            header: "Payor Information",
+            order: 0,
+        },
+        review: {
+            enabled: true,
+            header: "Review Payment",
+            order: 0,
+        },
+        settings: {
+            color: "#000000",
+            customCssUrl: "https://example.com/custom.css",
+            language: "en",
+            pageLogo: {
+                fContent:
+                    "PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDEwMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPCEtLSBCYWNrZ3JvdW5kIC0tPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iMTAwMCIgZmlsbD0id2hpdGUiLz4KICAKICA8IS0tIENvbXBhbnkgSGVhZGVyIC0tPgogIDx0ZXh0IHg9IjQwIiB5PSI2MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzJjM2U1MCI+R3J1enlhIEFkdmVudHVyZSBPdXRmaXR0ZXJzPC90ZXh0PgogIDxsaW5lIHgxPSI0MCIgeTE9IjgwIiB4Mj0iNzYwIiB5Mj0iODAiIHN0cm9rZT0iIzJjM2U1MCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgCiAgPCEtLSBDb21wYW55IERldGFpbHMgLS0+CiAgPHRleHQgeD0iNDAiIHk9IjExMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj4xMjMgTW91bnRhaW4gVmlldyBSb2FkPC90ZXh0PgogIDx0ZXh0IHg9IjQwIiB5PSIxMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+VGJpbGlzaSwgR2VvcmdpYSAwMTA1PC90ZXh0PgogIDx0ZXh0IHg9IjQwIiB5PSIxNTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+VGVsOiArOTk1IDMyIDEyMyA0NTY3PC90ZXh0PgogIDx0ZXh0IHg9IjQwIiB5PSIxNzAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+RW1haWw6IGluZm9AZ3J1enlhYWR2ZW50dXJlcy5jb208L3RleHQ+CgogIDwhLS0gSW52b2ljZSBUaXRsZSAtLT4KICA8dGV4dCB4PSI2MDAiIHk9IjExMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzJjM2U1MCI+SU5WT0lDRTwvdGV4dD4KICA8dGV4dCB4PSI2MDAiIHk9IjE0MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj5EYXRlOiAxMi8xMS8yMDI0PC90ZXh0PgogIDx0ZXh0IHg9IjYwMCIgeT0iMTYwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPkludm9pY2UgIzogR1JaLTIwMjQtMTEyMzwvdGV4dD4KCiAgPCEtLSBCaWxsIFRvIFNlY3Rpb24gLS0+CiAgPHRleHQgeD0iNDAiIHk9IjIyMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzJjM2U1MCI+QklMTCBUTzo8L3RleHQ+CiAgPHJlY3QgeD0iNDAiIHk9IjIzNSIgd2lkdGg9IjMwMCIgaGVpZ2h0PSI4MCIgZmlsbD0iI2Y3ZjlmYSIvPgogIDx0ZXh0IHg9IjUwIiB5PSIyNjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+W0N1c3RvbWVyIE5hbWVdPC90ZXh0PgogIDx0ZXh0IHg9IjUwIiB5PSIyODAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+W0FkZHJlc3MgTGluZSAxXTwvdGV4dD4KICA8dGV4dCB4PSI1MCIgeT0iMzAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPltDaXR5LCBDb3VudHJ5XTwvdGV4dD4KCiAgPCEtLSBUYWJsZSBIZWFkZXJzIC0tPgogIDxyZWN0IHg9IjQwIiB5PSIzNDAiIHdpZHRoPSI3MjAiIGhlaWdodD0iMzAiIGZpbGw9IiMyYzNlNTAiLz4KICA8dGV4dCB4PSI1MCIgeT0iMzYwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSJ3aGl0ZSI+RGVzY3JpcHRpb248L3RleHQ+CiAgPHRleHQgeD0iNDUwIiB5PSIzNjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIj5RdWFudGl0eTwvdGV4dD4KICA8dGV4dCB4PSI1NTAiIHk9IjM2MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0id2hpdGUiPlJhdGU8L3RleHQ+CiAgPHRleHQgeD0iNjgwIiB5PSIzNjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIj5BbW91bnQ8L3RleHQ+CgogIDwhLS0gVGFibGUgUm93cyAtLT4KICA8cmVjdCB4PSI0MCIgeT0iMzcwIiB3aWR0aD0iNzIwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjZjdmOWZhIi8+CiAgPHRleHQgeD0iNTAiIHk9IjM5MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj5Nb3VudGFpbiBDbGltYmluZyBFcXVpcG1lbnQgUmVudGFsPC90ZXh0PgogIDx0ZXh0IHg9IjQ1MCIgeT0iMzkwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPjE8L3RleHQ+CiAgPHRleHQgeD0iNTUwIiB5PSIzOTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+JDI1MC4wMDwvdGV4dD4KICA8dGV4dCB4PSI2ODAiIHk9IjM5MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj4kMjUwLjAwPC90ZXh0PgoKICA8cmVjdCB4PSI0MCIgeT0iNDAwIiB3aWR0aD0iNzIwIiBoZWlnaHQ9IjMwIiBmaWxsPSJ3aGl0ZSIvPgogIDx0ZXh0IHg9IjUwIiB5PSI0MjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+R3VpZGVkIFRyZWsgUGFja2FnZSAtIDIgRGF5czwvdGV4dD4KICA8dGV4dCB4PSI0NTAiIHk9IjQyMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj4xPC90ZXh0PgogIDx0ZXh0IHg9IjU1MCIgeT0iNDIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPiQ0MDAuMDA8L3RleHQ+CiAgPHRleHQgeD0iNjgwIiB5PSI0MjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+JDQwMC4wMDwvdGV4dD4KCiAgPHJlY3QgeD0iNDAiIHk9IjQzMCIgd2lkdGg9IjcyMCIgaGVpZ2h0PSIzMCIgZmlsbD0iI2Y3ZjlmYSIvPgogIDx0ZXh0IHg9IjUwIiB5PSI0NTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+U2FmZXR5IEVxdWlwbWVudCBQYWNrYWdlPC90ZXh0PgogIDx0ZXh0IHg9IjQ1MCIgeT0iNDUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPjE8L3RleHQ+CiAgPHRleHQgeD0iNTUwIiB5PSI0NTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+JDE1MC4wMDwvdGV4dD4KICA8dGV4dCB4PSI2ODAiIHk9IjQ1MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj4kMTUwLjAwPC90ZXh0PgoKICA8IS0tIFRvdGFscyAtLT4KICA8bGluZSB4MT0iNDAiIHkxPSI0ODAiIHgyPSI3NjAiIHkyPSI0ODAiIHN0cm9rZT0iIzJjM2U1MCIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNTUwIiB5PSI1MTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMzNDQ5NWUiPlN1YnRvdGFsOjwvdGV4dD4KICA8dGV4dCB4PSI2ODAiIHk9IjUxMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj4kODAwLjAwPC90ZXh0PgogIDx0ZXh0IHg9IjU1MCIgeT0iNTM1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjMzQ0OTVlIj5UYXggKDE4JSk6PC90ZXh0PgogIDx0ZXh0IHg9IjY4MCIgeT0iNTM1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPiQxNDQuMDA8L3RleHQ+CiAgPHRleHQgeD0iNTUwIiB5PSI1NzAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMyYzNlNTAiPlRvdGFsOjwvdGV4dD4KICA8dGV4dCB4PSI2ODAiIHk9IjU3MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzJjM2U1MCI+JDk0NC4wMDwvdGV4dD4KCiAgPCEtLSBQYXltZW50IFRlcm1zIC0tPgogIDx0ZXh0IHg9IjQwIiB5PSI2NDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMyYzNlNTAiPlBheW1lbnQgVGVybXM8L3RleHQ+CiAgPHRleHQgeD0iNDAiIHk9IjY3MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj5QYXltZW50IGlzIGR1ZSB3aXRoaW4gMzAgZGF5czwvdGV4dD4KICA8dGV4dCB4PSI0MCIgeT0iNjkwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPlBsZWFzZSBpbmNsdWRlIGludm9pY2UgbnVtYmVyIG9uIHBheW1lbnQ8L3RleHQ+CgogIDwhLS0gQmFuayBEZXRhaWxzIC0tPgogIDx0ZXh0IHg9IjQwIiB5PSI3MzAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMyYzNlNTAiPkJhbmsgRGV0YWlsczwvdGV4dD4KICA8dGV4dCB4PSI0MCIgeT0iNzYwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPkJhbms6IEJhbmsgb2YgR2VvcmdpYTwvdGV4dD4KICA8dGV4dCB4PSI0MCIgeT0iNzgwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPklCQU46IEdFMTIzNDU2Nzg5MDEyMzQ1Njc4PC90ZXh0PgogIDx0ZXh0IHg9IjQwIiB5PSI4MDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+U1dJRlQ6IEJBR0FHRTIyPC90ZXh0PgoKICA8IS0tIEZvb3RlciAtLT4KICA8bGluZSB4MT0iNDAiIHkxPSI5MDAiIHgyPSI3NjAiIHkyPSI5MDAiIHN0cm9rZT0iIzJjM2U1MCIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNDAiIHk9IjkzMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSIjN2Y4YzhkIj5UaGFuayB5b3UgZm9yIGNob29zaW5nIEdydXp5YSBBZHZlbnR1cmUgT3V0Zml0dGVyczwvdGV4dD4KICA8dGV4dCB4PSI0MCIgeT0iOTUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM3ZjhjOGQiPnd3dy5ncnV6eWFhZHZlbnR1cmVzLmNvbTwvdGV4dD4KPC9zdmc+Cg==",
+                filename: "logo.jpg",
+                ftype: "jpg",
+                furl: "",
+            },
+            redirectAfterApprove: true,
+            redirectAfterApproveUrl: "https://example.com/success",
+        },
     },
 });
 ```
@@ -9223,7 +9494,159 @@ await client.paymentLink.addPayLinkFromInvoice(23548884, {
 <dl>
 <dd>
 
-**request:** `Payabli.PayLinkData`
+**request:** `Payabli.PayLinkDataInvoice`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PaymentLink.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.paymentLink.<a href="/src/api/resources/paymentLink/client/Client.ts">addPayLinkFromBill</a>(billId, { ...params }) -> Payabli.PayabliApiResponsePaymentLinks</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Generates a payment link for a bill from the bill ID.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.paymentLink.addPayLinkFromBill(23548884, {
+    mail2: "jo@example.com; ceo@example.com",
+    body: {
+        contactUs: {
+            emailLabel: "Email",
+            enabled: true,
+            header: "Contact Us",
+            order: 0,
+            paymentIcons: true,
+            phoneLabel: "Phone",
+        },
+        logo: {
+            enabled: true,
+            order: 0,
+        },
+        messageBeforePaying: {
+            enabled: true,
+            label: "Please review your payment details",
+            order: 0,
+        },
+        notes: {
+            enabled: true,
+            header: "Additional Notes",
+            order: 0,
+            placeholder: "Enter any additional notes here",
+            value: "",
+        },
+        page: {
+            description: "Get paid securely",
+            enabled: true,
+            header: "Payment Page",
+            order: 0,
+        },
+        paymentButton: {
+            enabled: true,
+            label: "Pay Now",
+            order: 0,
+        },
+        paymentMethods: {
+            allMethodsChecked: true,
+            enabled: true,
+            header: "Payment Methods",
+            methods: {
+                amex: true,
+                applePay: true,
+                discover: true,
+                eCheck: true,
+                mastercard: true,
+                visa: true,
+            },
+            order: 0,
+        },
+        payor: {
+            enabled: true,
+            fields: [
+                {
+                    display: true,
+                    fixed: true,
+                    identifier: true,
+                    label: "Full Name",
+                    name: "fullName",
+                    order: 0,
+                    required: true,
+                    validation: "^[a-zA-Z ]+$",
+                    value: "",
+                    width: 0,
+                },
+            ],
+            header: "Payor Information",
+            order: 0,
+        },
+        review: {
+            enabled: true,
+            header: "Review Payment",
+            order: 0,
+        },
+        settings: {
+            color: "#000000",
+            language: "en",
+        },
+    },
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**billId:** `number` — The Payabli ID for the bill.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.PayLinkDataBill`
 
 </dd>
 </dl>
@@ -9651,6 +10074,161 @@ await client.paymentLink.updatePayLinkFromId("332-c277b704-1301", {
 <dd>
 
 **request:** `Payabli.PayLinkUpdateData`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PaymentLink.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.paymentLink.<a href="/src/api/resources/paymentLink/client/Client.ts">addPayLinkFromBillLotNumber</a>(lotNumber, { ...params }) -> Payabli.PayabliApiResponsePaymentLinks</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Generates a vendor payment link for a specific bill lot number. This allows you to pay all bills with the same lot number for a vendor with a single payment link.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.paymentLink.addPayLinkFromBillLotNumber("LOT-2024-001", {
+    entryPoint: "billing",
+    vendorNumber: "VENDOR-123",
+    mail2: "customer@example.com; billing@example.com",
+    amountFixed: "true",
+    body: {
+        contactUs: {
+            emailLabel: "Email",
+            enabled: true,
+            header: "Contact Us",
+            order: 0,
+            paymentIcons: true,
+            phoneLabel: "Phone",
+        },
+        logo: {
+            enabled: true,
+            order: 0,
+        },
+        messageBeforePaying: {
+            enabled: true,
+            label: "Please review your payment details",
+            order: 0,
+        },
+        notes: {
+            enabled: true,
+            header: "Additional Notes",
+            order: 0,
+            placeholder: "Enter any additional notes here",
+            value: "",
+        },
+        page: {
+            description: "Get paid securely",
+            enabled: true,
+            header: "Payment Page",
+            order: 0,
+        },
+        paymentButton: {
+            enabled: true,
+            label: "Pay Now",
+            order: 0,
+        },
+        paymentMethods: {
+            allMethodsChecked: true,
+            enabled: true,
+            header: "Payment Methods",
+            methods: {
+                amex: true,
+                applePay: true,
+                discover: true,
+                eCheck: true,
+                mastercard: true,
+                visa: true,
+            },
+            order: 0,
+        },
+        payor: {
+            enabled: true,
+            fields: [
+                {
+                    display: true,
+                    fixed: true,
+                    identifier: true,
+                    label: "Full Name",
+                    name: "fullName",
+                    order: 0,
+                    required: true,
+                    validation: "^[a-zA-Z ]+$",
+                    value: "",
+                    width: 0,
+                },
+            ],
+            header: "Payor Information",
+            order: 0,
+        },
+        review: {
+            enabled: true,
+            header: "Review Payment",
+            order: 0,
+        },
+        settings: {
+            color: "#000000",
+            language: "en",
+        },
+    },
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**lotNumber:** `string` — Lot number of the bills to pay. All bills with this lot number will be included.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.PayLinkDataOut`
 
 </dd>
 </dl>
@@ -10615,9 +11193,7 @@ await client.paypoint.settingsPage("8cfec329267");
 </dl>
 </details>
 
-## Query
-
-<details><summary><code>client.query.<a href="/src/api/resources/query/client/Client.ts">listBatchDetails</a>(entry, { ...params }) -> Payabli.QueryResponseSettlements</code></summary>
+<details><summary><code>client.paypoint.<a href="/src/api/resources/paypoint/client/Client.ts">migrate</a>({ ...params }) -> Payabli.MigratePaypointResponse</code></summary>
 <dl>
 <dd>
 
@@ -10629,7 +11205,85 @@ await client.paypoint.settingsPage("8cfec329267");
 <dl>
 <dd>
 
-Retrieve a list of batches and their details, including settled and unsettled transactions for a paypoint. Use filters to limit results.
+Migrates a paypoint to a new parent organization.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.paypoint.migrate({
+    entryPoint: "473abc123def",
+    newParentOrganizationId: 123,
+    notificationRequest: {
+        notificationUrl: "https://webhook-test.yoursie.com",
+        webHeaderParameters: [
+            {
+                key: "testheader",
+                value: "1234567890",
+            },
+        ],
+    },
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Payabli.PaypointMoveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Paypoint.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Query
+
+<details><summary><code>client.query.<a href="/src/api/resources/query/client/Client.ts">listBatchDetails</a>(entry, { ...params }) -> Payabli.QueryBatchesDetailResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve a list of batches and their details, including settled and
+unsettled transactions for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
 </dd>
 </dl>
@@ -10665,7 +11319,7 @@ await client.query.listBatchDetails("8cfec329267", {
 <dl>
 <dd>
 
-**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+**entry:** `Payabli.Entry`
 
 </dd>
 </dl>
@@ -10704,7 +11358,7 @@ await client.query.listBatchDetails("8cfec329267", {
 <dl>
 <dd>
 
-Retrieve a list of batches and their details, including settled and unsettled transactions for an organization. Use filters to limit results.
+Retrieve a list of batches and their details, including settled and unsettled transactions for an organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
 </dd>
 </dl>
@@ -10779,7 +11433,7 @@ await client.query.listBatchDetailsOrg(123, {
 <dl>
 <dd>
 
-Retrieve a list of batches for a paypoint. Use filters to limit results.
+Retrieve a list of batches for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
 </dd>
 </dl>
@@ -10815,7 +11469,7 @@ await client.query.listBatches("8cfec329267", {
 <dl>
 <dd>
 
-**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+**entry:** `Payabli.Entry`
 
 </dd>
 </dl>
@@ -10854,7 +11508,7 @@ await client.query.listBatches("8cfec329267", {
 <dl>
 <dd>
 
-Retrieve a list of batches for an org. Use filters to limit results.
+Retrieve a list of batches for an org. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
 </dd>
 </dl>
@@ -10929,7 +11583,7 @@ await client.query.listBatchesOrg(123, {
 <dl>
 <dd>
 
-Retrieve a list of MoneyOut batches for a paypoint. Use filters to limit results.
+Retrieve a list of MoneyOut batches for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
 </dd>
 </dl>
@@ -10965,7 +11619,7 @@ await client.query.listBatchesOut("8cfec329267", {
 <dl>
 <dd>
 
-**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+**entry:** `Payabli.Entry`
 
 </dd>
 </dl>
@@ -11004,7 +11658,7 @@ await client.query.listBatchesOut("8cfec329267", {
 <dl>
 <dd>
 
-Retrieve a list of MoneyOut batches for an org. Use filters to limit results.
+Retrieve a list of MoneyOut batches for an org. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
 </dd>
 </dl>
@@ -11079,7 +11733,7 @@ await client.query.listBatchesOutOrg(123, {
 <dl>
 <dd>
 
-Retrieves a list of chargebacks and returned transactions for a paypoint. Use filters to limit results.
+Retrieves a list of chargebacks and returned transactions for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
 </dd>
 </dl>
@@ -11115,7 +11769,7 @@ await client.query.listChargebacks("8cfec329267", {
 <dl>
 <dd>
 
-**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+**entry:** `Payabli.Entry`
 
 </dd>
 </dl>
@@ -11154,7 +11808,7 @@ await client.query.listChargebacks("8cfec329267", {
 <dl>
 <dd>
 
-Retrieve a list of chargebacks and returned transactions for an org. Use filters to limit results.
+Retrieve a list of chargebacks and returned transactions for an org. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
 </dd>
 </dl>
@@ -11229,7 +11883,7 @@ await client.query.listChargebacksOrg(123, {
 <dl>
 <dd>
 
-Retrieves a list of customers for a paypoint. Use filters to limit results.
+Retrieves a list of customers for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
 </dd>
 </dl>
@@ -11265,7 +11919,7 @@ await client.query.listCustomers("8cfec329267", {
 <dl>
 <dd>
 
-**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+**entry:** `Payabli.Entry`
 
 </dd>
 </dl>
@@ -11304,7 +11958,7 @@ await client.query.listCustomers("8cfec329267", {
 <dl>
 <dd>
 
-Retrieves a list of customers for an org. Use filters to limit results.
+Retrieves a list of customers for an org. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
 </dd>
 </dl>
@@ -11415,7 +12069,7 @@ await client.query.listNotificationReports("8cfec329267", {
 <dl>
 <dd>
 
-**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+**entry:** `Payabli.Entry`
 
 </dd>
 </dl>
@@ -11565,7 +12219,7 @@ await client.query.listNotifications("8cfec329267", {
 <dl>
 <dd>
 
-**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+**entry:** `Payabli.Entry`
 
 </dd>
 </dl>
@@ -11679,7 +12333,7 @@ await client.query.listNotificationsOrg(123, {
 <dl>
 <dd>
 
-Retrieves a list of an organization's suborganzations and their full details such as orgId, users, and settings. Use filters to limit results.
+Retrieves a list of an organization's suborganizations and their full details such as orgId, users, and settings. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
 </dd>
 </dl>
@@ -11754,7 +12408,7 @@ await client.query.listOrganizations(123, {
 <dl>
 <dd>
 
-Retrieves a list of money out transactions (payouts) for a paypoint. Use filters to limit results.
+Retrieves a list of money out transactions (payouts) for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
 </dd>
 </dl>
@@ -11790,7 +12444,7 @@ await client.query.listPayout("8cfec329267", {
 <dl>
 <dd>
 
-**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+**entry:** `Payabli.Entry`
 
 </dd>
 </dl>
@@ -11829,7 +12483,7 @@ await client.query.listPayout("8cfec329267", {
 <dl>
 <dd>
 
-Retrieves a list of money out transactions (payouts) for an organization. Use filters to limit results.
+Retrieves a list of money out transactions (payouts) for an organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
 </dd>
 </dl>
@@ -11904,7 +12558,7 @@ await client.query.listPayoutOrg(123, {
 <dl>
 <dd>
 
-Returns a list of paypoints in an organization. Use filters to limit results.
+Returns a list of paypoints in an organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
 </dd>
 </dl>
@@ -11979,7 +12633,7 @@ await client.query.listPaypoints(123, {
 <dl>
 <dd>
 
-Retrieve a list of settled transactions for a paypoint. Use filters to limit results.
+Retrieve a list of settled transactions for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
 </dd>
 </dl>
@@ -12015,7 +12669,7 @@ await client.query.listSettlements("8cfec329267", {
 <dl>
 <dd>
 
-**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+**entry:** `Payabli.Entry`
 
 </dd>
 </dl>
@@ -12054,7 +12708,7 @@ await client.query.listSettlements("8cfec329267", {
 <dl>
 <dd>
 
-Retrieve a list of settled transactions for an organization.
+Retrieve a list of settled transactions for an organization. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
 </dd>
 </dl>
@@ -12129,7 +12783,7 @@ await client.query.listSettlementsOrg(123, {
 <dl>
 <dd>
 
-Returns a list of subscriptions for a single paypoint. Use filters to limit results.
+Returns a list of subscriptions for a single paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
 </dd>
 </dl>
@@ -12204,7 +12858,7 @@ await client.query.listSubscriptions("8cfec329267", {
 <dl>
 <dd>
 
-Returns a list of subscriptions for a single org. Use filters to limit results.
+Returns a list of subscriptions for a single org. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
 </dd>
 </dl>
@@ -12279,7 +12933,7 @@ await client.query.listSubscriptionsOrg(123, {
 <dl>
 <dd>
 
-Retrieve a list of transactions for a paypoint. Use filters to limit results.
+Retrieve a list of transactions for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 By default, this endpoint returns only transactions from the last 60 days. To query transactions outside of this period, include `transactionDate` filters.
 For example, this request parameters filter for transactions between April 01, 2024 and April 09, 2024.
 
@@ -12323,7 +12977,7 @@ await client.query.listTransactions("8cfec329267", {
 <dl>
 <dd>
 
-**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+**entry:** `Payabli.Entry`
 
 </dd>
 </dl>
@@ -12362,11 +13016,15 @@ await client.query.listTransactions("8cfec329267", {
 <dl>
 <dd>
 
-Retrieve a list of transactions for an organization. Use filters to limit results.
+Retrieve a list of transactions for an organization. Use filters to
+limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
+
 By default, this endpoint returns only transactions from the last 60 days. To query transactions outside of this period, include `transactionDate` filters.
+
 For example, this request parameters filter for transactions between April 01, 2024 and April 09, 2024.
 
-```curl --request GET \
+```
+curl --request GET \
   --url https://sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59\
   --header 'requestToken: <api-key>'
 
@@ -12445,7 +13103,7 @@ await client.query.listTransactionsOrg(123, {
 <dl>
 <dd>
 
-Retrieve a list of transfer details records for a paypoint. Use filters to limit results.
+Retrieve a list of transfer details records for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
 </dd>
 </dl>
@@ -12524,7 +13182,7 @@ await client.query.listTransferDetails("47862acd", 123456);
 <dl>
 <dd>
 
-Retrieve a list of transfers for a paypoint. Use filters to limit results.
+Retrieve a list of transfers for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
 </dd>
 </dl>
@@ -12568,6 +13226,73 @@ await client.query.listTransfers("47862acd", {
 <dd>
 
 **request:** `Payabli.ListTransfersRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Query.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.query.<a href="/src/api/resources/query/client/Client.ts">listTransfersOrg</a>({ ...params }) -> Payabli.TransferQueryResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve a list of transfers for an org. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.query.listTransfersOrg({
+    orgId: 123,
+    fromRecord: 0,
+    limitRecord: 20,
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Payabli.ListTransfersRequestOrg`
 
 </dd>
 </dl>
@@ -12748,7 +13473,7 @@ await client.query.listUsersPaypoint("8cfec329267", {
 <dl>
 <dd>
 
-Retrieve a list of vendors for an entrypoint. Use filters to limit results.
+Retrieve a list of vendors for an entrypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
 </dd>
 </dl>
@@ -12823,7 +13548,7 @@ await client.query.listVendors("8cfec329267", {
 <dl>
 <dd>
 
-Retrieve a list of vendors for an organization. Use filters to limit results.
+Retrieve a list of vendors for an organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
 </dd>
 </dl>
@@ -12898,7 +13623,7 @@ await client.query.listVendorsOrg(123, {
 <dl>
 <dd>
 
-Retrieve a list of vcards (virtual credit cards) issued for an entrypoint. Use filters to limit results.
+Retrieve a list of vcards (virtual credit cards) issued for an entrypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
 </dd>
 </dl>
@@ -12934,7 +13659,7 @@ await client.query.listVcards("8cfec329267", {
 <dl>
 <dd>
 
-**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+**entry:** `Payabli.Entry`
 
 </dd>
 </dl>
@@ -12973,7 +13698,7 @@ await client.query.listVcards("8cfec329267", {
 <dl>
 <dd>
 
-Retrieve a list of vcards (virtual credit cards) issued for an organization. Use filters to limit results.
+Retrieve a list of vcards (virtual credit cards) issued for an organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
 </dd>
 </dl>
@@ -13303,7 +14028,7 @@ Retrieves the subscription statistics for a given interval for a paypoint or org
 <dd>
 
 ```typescript
-await client.statistic.subStats(1000000, "interval", 1);
+await client.statistic.subStats(1000000, "30", 1);
 ```
 
 </dd>
@@ -13550,7 +14275,7 @@ await client.subscription.getSubscription(263);
 </dl>
 </details>
 
-<details><summary><code>client.subscription.<a href="/src/api/resources/subscription/client/Client.ts">newSubscription</a>({ ...params }) -> Payabli.PayabliApiResponse2</code></summary>
+<details><summary><code>client.subscription.<a href="/src/api/resources/subscription/client/Client.ts">newSubscription</a>({ ...params }) -> Payabli.AddSubscriptionResponse</code></summary>
 <dl>
 <dd>
 
@@ -13955,7 +14680,7 @@ await client.templates.getlinkTemplate(true, 80);
 <dl>
 <dd>
 
-**ignoreEmpty:** `boolean` — Ignore readOnly and Empty fields Default is `false`. If ignoreEmpty = `false` and any field is empty, then the request returns a failure response. If ignoreEmpty = `true`, the request returns the boarding link name regardless of whether fields are empty.
+**ignoreEmpty:** `boolean` — Ignore read-only and empty fields Default is `false`. If `ignoreEmpty` = `false` and any field is empty, then the request returns a failure response. If `ignoreEmpty` = `true`, the request returns the boarding link name regardless of whether fields are empty.
 
 </dd>
 </dl>
@@ -14057,7 +14782,7 @@ await client.templates.getTemplate(80);
 <dl>
 <dd>
 
-Retrieves a list of boarding templates for an organization. Use filters to limit results. You can't make a request that includes filters from the API console in the documentation. The response will not be filtered. Instead, copy the request, remove `parameters=` and run the request in a different client.
+Retrieves a list of boarding templates for an organization. Use filters to limit results. You can't make a request that includes filters from the API console in the documentation. The response won't be filtered. Instead, copy the request, remove `parameters=` and run the request in a different client.
 
 </dd>
 </dl>
@@ -14678,11 +15403,7 @@ await client.user.authUser("provider");
 <dl>
 <dd>
 
-**provider:** `string`
-
-Auth provider.
-Optional
-By default is null for the built-in provider
+**provider:** `string` — Auth provider. This fields is optional and defaults to null for the built-in provider.
 
 </dd>
 </dl>
@@ -14786,7 +15507,7 @@ await client.user.deleteUser(1000000);
 <dl>
 <dd>
 
-**userId:** `number` — The Payabli-generated userId value.
+**userId:** `number` — The Payabli-generated `userId` value.
 
 </dd>
 </dl>
@@ -14948,7 +15669,7 @@ await client.user.getUser(1000000, {
 <dl>
 <dd>
 
-**userId:** `number` — The Payabli-generated userId value.
+**userId:** `number` — The Payabli-generated `userId` value.
 
 </dd>
 </dl>
@@ -15190,9 +15911,7 @@ await client.vendor.addVendor("8cfec329267", {
         bankAccountHolderType: "Business",
         bankAccountFunction: 0,
     },
-    paymentMethod: {
-        method: "managed",
-    },
+    paymentMethod: "managed",
     vendorStatus: 1,
     remitAddress1: "123 Walnut Street",
     remitAddress2: "Suite 900",
@@ -15322,7 +16041,7 @@ await client.vendor.deleteVendor(1);
 <dl>
 <dd>
 
-Updates a vendor's information. Send only the fields that need to be updated.
+Updates a vendor's information. Send only the fields you need to update.
 
 </dd>
 </dl>

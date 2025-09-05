@@ -5,4 +5,4 @@
 /**
  * Bank account type or card brand.
  */
-export type Accounttype = string | undefined;
+export type Accounttype = string;

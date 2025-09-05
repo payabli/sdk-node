@@ -1,1 +1,1 @@
-export * from "./AddApplicationRequest";
+export * from "./AddApplicationRequest.js";

@@ -3,6 +3,8 @@
  */
 
 /**
- * The entity's ID in Payabli.
+ * The entity's ID in Payabli. If the entity is a paypoint, this is the
+ * paypoint ID. If the entity is an organization, this is the organization
+ * ID.
  */
 export type EntityId = number;

@@ -3,7 +3,7 @@
  */
 
 /**
- * Standard Entry Class (SEC) code is a a three letter code that describes how an ACH payment was authorized. Supported values are:
+ * Standard Entry Class (SEC) code is a three letter code that describes how an ACH payment was authorized. Supported values are:
  *   - PPD (Prearranged Payment and Deposit) - Used for credits or debits where an accountholder authorizes a company to initiate either a single or recurring transaction to their personal bank account. Common examples include direct deposit of payroll, mortgage payments, or utility bills. This is the default value for subscription payments.
  *   - WEB (Internet-Initiated/Mobile Entry) - Used for debit entries when authorization is obtained from an accountholder via the internet or a wireless network. Common examples are online bill payments, ecommerce purchases, and mobile app payments where the consumer enters their banking information online.
  *   - TEL (Telephone-Initiated Entry) - Used for one-time debit entries where authorization is obtained from a consumer via telephone. Common examples are phone-based purchases or bill payments where the consumer provides their banking information over the phone.

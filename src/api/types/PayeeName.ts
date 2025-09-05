@@ -5,4 +5,4 @@
 /**
  * Alternative name used to receive paper check.
  */
-export type PayeeName = string | undefined;
+export type PayeeName = string;

@@ -5,4 +5,4 @@
 /**
  * Business Merchant Category Code (MCC). [This resource](https://github.com/greggles/mcc-codes/blob/main/mcc_codes.csv) lists MCC codes.
  */
-export type Mcc = string | undefined;
+export type Mcc = string;

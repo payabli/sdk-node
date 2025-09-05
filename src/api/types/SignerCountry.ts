@@ -3,6 +3,6 @@
  */
 
 /**
- * The signer's country in ISO-3166-1 alpha 2 format. \r\nCheck out https://en.wikipedia.org/wiki/ISO_3166-1 for reference.
+ * The signer's country in ISO-3166-1 alpha 2 format. See this reference for more: https://en.wikipedia.org/wiki/ISO_3166-1.
  */
-export type SignerCountry = string | undefined;
+export type SignerCountry = string;

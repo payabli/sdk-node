@@ -12,13 +12,9 @@
  */
 export interface ExportApplicationsRequest {
     columnsExport?: string;
-    /**
-     * The number of records to skip before starting to collect the result set.
-     */
+    /** The number of records to skip before starting to collect the result set. */
     fromRecord?: number;
-    /**
-     * The number of records to return for the query. The maximum is 30,000 records. When this parameter isn't sent, the API returns up to 25,000 records.
-     */
+    /** The number of records to return for the query. The maximum is 30,000 records. When this parameter isn't sent, the API returns up to 25,000 records. */
     limitRecord?: number;
     /**
      * Collection of field names, conditions, and values used to filter the query
@@ -37,24 +33,24 @@ export interface ExportApplicationsRequest {
      *   --url https://api-sandbox.payabli.com/api/Query/transactions/org/236?totalAmount(gt)=1000&limitRecord=20
      * </Info>
      *
-     * See [Filters and Conditions Reference](/developer-guides/reporting-filters-and-conditions-reference) for help.
+     * See [Filters and Conditions Reference](/developers/developer-guides/pay-ops-reporting-engine-overview#filters-and-conditions-reference) for help.
      *
      * List of field names accepted:
-     * - createdAt (gt, ge, lt, le, eq, ne)
-     * - startDate (gt, ge, lt, le, eq, ne)
-     * - dbaname  (ct, nct)
-     * - legalname  (ct, nct)
-     * - ein  (ct, nct)
-     * - address  (ct, nct)
-     * - city  (ct, nct)
-     * - state  (ct, nct)
-     * - phone  (ct, nct)
-     * - mcc  (ct, nct)
-     * - owntype  (ct, nct)
-     * - ownerName  (ct, nct)
-     * - contactName  (ct, nct)
-     * - status  (eq, ne)
-     * - orgParentname  (ct, nct)
+     * - `createdAt` (gt, ge, lt, le, eq, ne)
+     * - `startDate` (gt, ge, lt, le, eq, ne)
+     * - `dbaname`  (ct, nct)
+     * - `legalname`  (ct, nct)
+     * - `ein`  (ct, nct)
+     * - `address`  (ct, nct)
+     * - `city`  (ct, nct)
+     * - `state`  (ct, nct)
+     * - `phone`  (ct, nct)
+     * - `mcc`  (ct, nct)
+     * - `owntype`  (ct, nct)
+     * - `ownerName`  (ct, nct)
+     * - `contactName`  (ct, nct)
+     * - `status`  (eq, ne)
+     * - `orgParentname`  (ct, nct)
      *
      * List of comparison accepted - enclosed between parentheses:
      * - eq or empty => equal
@@ -69,10 +65,10 @@ export interface ExportApplicationsRequest {
      * - nin => not inside array
      *
      * List of parameters accepted:
-     * - limitRecord : max number of records for query (default="20", "0" or negative value for all)
-     * - fromRecord : initial record in query
+     * - `limitRecord` : max number of records for query (default="20", "0" or negative value for all)
+     * - `fromRecord` : initial record in query
      *
-     * Example: dbaname(ct)=hoa  return all records with dbname containing "hoa"
+     * Example: `dbaname(ct)=hoa` returns all records with a `dbaname` containing "hoa"
      */
     parameters?: Record<string, string | undefined>;
 }

@@ -5,4 +5,4 @@
 /**
  * Billing state. Must be 2-letter state code for address in US.
  */
-export type BillingStateNullable = string | undefined;
+export type BillingStateNullable = string;

@@ -5,4 +5,4 @@
 /**
  * Business name in tax document. This is only relevant if a government entity has given you an alternative name to file tax documents with.
  */
-export type Taxfillname = string | undefined;
+export type Taxfillname = string;

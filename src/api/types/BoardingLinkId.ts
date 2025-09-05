@@ -3,6 +3,6 @@
  */
 
 /**
- * The boarding link ID. Can be found at the end of the boarding link reference name.  The boarding link reference name. For example `https://boarding.payabli.com/boarding/app/myorgaccountname-00091`. The ID is `91`.
+ * The boarding link ID. This is found at the end of the boarding link reference name. For example: `https://boarding.payabli.com/boarding/app/myorgaccountname-00091`. The ID is `91`.
  */
 export type BoardingLinkId = number;

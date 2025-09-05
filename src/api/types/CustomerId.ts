@@ -5,4 +5,4 @@
 /**
  * The Payabli-generated unique ID for the customer.
  */
-export type CustomerId = number | undefined;
+export type CustomerId = number;

@@ -7,8 +7,6 @@
  *     {}
  */
 export interface CustomerBasicStatsRequest {
-    /**
-     * List of parameters.
-     */
+    /** List of parameters. */
     parameters?: Record<string, string | undefined>;
 }

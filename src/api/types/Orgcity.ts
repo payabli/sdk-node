@@ -5,4 +5,4 @@
 /**
  * The organization's city.
  */
-export type Orgcity = string | undefined;
+export type Orgcity = string;

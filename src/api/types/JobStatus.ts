@@ -3,9 +3,9 @@
  */
 
 /**
- * The cascade process status. Available valudes:
- *   - in_progress
- *   - completed
- *   - failed
+ * The cascade process status. Available values:
+ *   - `in_progress`
+ *   - `completed`
+ *   - `failed`
  */
-export type JobStatus = string | undefined;
+export type JobStatus = string;

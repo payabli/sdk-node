@@ -5,4 +5,4 @@
 /**
  * The signer's zip code.
  */
-export type SignerZip = string | undefined;
+export type SignerZip = string;

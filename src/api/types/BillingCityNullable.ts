@@ -5,4 +5,4 @@
 /**
  * Billing city.
  */
-export type BillingCityNullable = string | undefined;
+export type BillingCityNullable = string;

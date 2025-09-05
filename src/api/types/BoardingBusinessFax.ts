@@ -5,4 +5,4 @@
 /**
  * The business's fax number.
  */
-export type BoardingBusinessFax = string | undefined;
+export type BoardingBusinessFax = string;

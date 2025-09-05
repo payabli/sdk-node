@@ -5,4 +5,4 @@
 /**
  * Remittance address. Used for mailing paper checks.
  */
-export type Remitaddress1 = string | undefined;
+export type Remitaddress1 = string;

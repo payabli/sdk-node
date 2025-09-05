@@ -5,4 +5,4 @@
 /**
  * Order of element or section in container.
  */
-export type Order = number | undefined;
+export type Order = number;

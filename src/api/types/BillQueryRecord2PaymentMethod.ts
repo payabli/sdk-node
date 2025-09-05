@@ -5,10 +5,11 @@
 /**
  * Preferred payment method used.
  */
-export type BillQueryRecord2PaymentMethod = "vcard" | "ach" | "check" | "card";
+export type BillQueryRecord2PaymentMethod = "vcard" | "ach" | "check" | "card" | "managed";
 export const BillQueryRecord2PaymentMethod = {
     Vcard: "vcard",
     Ach: "ach",
     Check: "check",
     Card: "card",
+    Managed: "managed",
 } as const;

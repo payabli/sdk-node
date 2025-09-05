@@ -5,4 +5,4 @@
 /**
  * Commodity code.
  */
-export type SummaryCommodityCode = string | undefined;
+export type SummaryCommodityCode = string;

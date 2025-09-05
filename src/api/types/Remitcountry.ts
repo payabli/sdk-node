@@ -5,4 +5,4 @@
 /**
  * Remittance address country. Used for mailing paper checks.
  */
-export type Remitcountry = string | undefined;
+export type Remitcountry = string;

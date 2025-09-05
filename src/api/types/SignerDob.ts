@@ -5,4 +5,4 @@
 /**
  * The signer's date of birth.
  */
-export type SignerDob = string | undefined;
+export type SignerDob = string;

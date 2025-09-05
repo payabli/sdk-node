@@ -3,6 +3,6 @@
  */
 
 /**
- * Status of transaction. See [the docs](/references/money-in-statuses#money-in-transaction-status) for a full reference.
+ * Status of transaction. See [the docs](/developers/references/money-in-statuses#money-in-transaction-status) for a full reference.
  */
 export type TransStatus = number;

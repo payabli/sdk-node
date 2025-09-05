@@ -5,4 +5,4 @@
 /**
  * The organization's country.
  */
-export type Orgcountry = string | undefined;
+export type Orgcountry = string;

@@ -5,4 +5,4 @@
 /**
  * Business mailing ZIP.
  */
-export type Mzip = string | undefined;
+export type Mzip = string;

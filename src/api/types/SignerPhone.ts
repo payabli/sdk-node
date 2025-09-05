@@ -5,4 +5,4 @@
 /**
  * The signer's phone number.
  */
-export type SignerPhone = string | undefined;
+export type SignerPhone = string;

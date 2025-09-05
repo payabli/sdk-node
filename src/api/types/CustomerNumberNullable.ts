@@ -5,4 +5,4 @@
 /**
  * User-provided unique identifier for the customer. This is typically the customer ID from your own system.
  */
-export type CustomerNumberNullable = string | undefined;
+export type CustomerNumberNullable = string;

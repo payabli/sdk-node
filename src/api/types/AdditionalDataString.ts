@@ -15,4 +15,4 @@
  * }
  * ```
  */
-export type AdditionalDataString = string | undefined;
+export type AdditionalDataString = string;

@@ -5,4 +5,4 @@
 /**
  * The signer's city.
  */
-export type SignerCity = string | undefined;
+export type SignerCity = string;

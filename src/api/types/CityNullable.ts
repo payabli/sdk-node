@@ -5,4 +5,4 @@
 /**
  * The city.
  */
-export type CityNullable = string | undefined;
+export type CityNullable = string;

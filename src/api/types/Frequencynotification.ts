@@ -5,18 +5,18 @@
 /**
  * Frequency for notification.
  * For notifications using the *email* ,*sms*, or *web* `method`, the allowed values are:
- *   - untilcancelled
- *   - one-time
+ *   - `untilcancelled`
+ *   - `one-time`
  *
  * For notifications using the *report-email* or *report-web* `method`, the allowed values are:
- *    - one-time
- *    - daily
- *    - weekly
- *    - biweekly
- *    - monthly
- *    - quarterly
- *    - semiannually
- *    - annually
+ *   - `one-time`
+ *   - `daily`
+ *   - `weekly`
+ *   - `biweekly`
+ *   - `monthly`
+ *   - `quarterly`
+ *   - `semiannually`
+ *   - `annually`
  */
 export type Frequencynotification =
     | "one-time"

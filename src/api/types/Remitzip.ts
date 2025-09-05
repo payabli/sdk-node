@@ -5,4 +5,4 @@
 /**
  * Remittance address ZIP code. Used for mailing paper checks.
  */
-export type Remitzip = string | undefined;
+export type Remitzip = string;

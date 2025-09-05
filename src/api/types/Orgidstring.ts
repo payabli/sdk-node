@@ -5,4 +5,4 @@
 /**
  * An alternate ID for the organization, in string format. This can be your internal identifier for an org, and is typically a name, like "My Suborganization".
  */
-export type Orgidstring = string | undefined;
+export type Orgidstring = string;

@@ -1,3 +1,3 @@
-export { type ImportBillsRequest } from "./ImportBillsRequest";
-export { type ImportCustomerRequest } from "./ImportCustomerRequest";
-export { type ImportVendorRequest } from "./ImportVendorRequest";
+export { type ImportBillsRequest } from "./ImportBillsRequest.js";
+export { type ImportCustomerRequest } from "./ImportCustomerRequest.js";
+export { type ImportVendorRequest } from "./ImportVendorRequest.js";

@@ -5,4 +5,4 @@
 /**
  * The organization's website.
  */
-export type Orgwebsite = string | undefined;
+export type Orgwebsite = string;

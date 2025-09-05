@@ -3,6 +3,6 @@
  */
 
 /**
- * The application's status in the merchant boarding process. See [Boarding Status Reference](/references/boarding-statuses) for more.
+ * The application's status in the merchant boarding process. See [Boarding Status Reference](/developers/references/boarding-statuses) for more.
  */
 export type BoardingStatus = number;

@@ -5,4 +5,4 @@
 /**
  * The template name.
  */
-export type TemplateName = string | undefined;
+export type TemplateName = string;

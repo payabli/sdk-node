@@ -5,4 +5,4 @@
 /**
  * The element's column position.
  */
-export type PosCol = number | undefined;
+export type PosCol = number;

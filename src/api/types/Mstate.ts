@@ -5,4 +5,4 @@
 /**
  * The business's mailing address state.
  */
-export type Mstate = string | undefined;
+export type Mstate = string;

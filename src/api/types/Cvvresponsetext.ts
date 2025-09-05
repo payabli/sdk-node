@@ -5,4 +5,4 @@
 /**
  * Text code describing the result for CVV validation (applies only for card transactions).
  */
-export type Cvvresponsetext = string | undefined;
+export type Cvvresponsetext = string;

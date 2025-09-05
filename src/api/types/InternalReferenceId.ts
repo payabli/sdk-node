@@ -5,4 +5,4 @@
 /**
  * Internal identifier for global vendor account.
  */
-export type InternalReferenceId = number | undefined;
+export type InternalReferenceId = number;

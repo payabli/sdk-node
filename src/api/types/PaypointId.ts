@@ -5,4 +5,4 @@
 /**
  * The paypoint's ID. Note that this is different than the entryname.
  */
-export type PaypointId = number | undefined;
+export type PaypointId = number;

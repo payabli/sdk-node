@@ -5,4 +5,4 @@
 /**
  * Business state.
  */
-export type Bstate = string | undefined;
+export type Bstate = string;

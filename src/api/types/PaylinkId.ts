@@ -3,6 +3,6 @@
  */
 
 /**
- * Identifier of paymentlink associated to the invoice.
+ * Identifier of payment link associated to the invoice or bill.
  */
-export type PaylinkId = string | undefined;
+export type PaylinkId = string;

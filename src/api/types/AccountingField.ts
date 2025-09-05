@@ -5,4 +5,4 @@
 /**
  * Optional custom field.
  */
-export type AccountingField = string | undefined;
+export type AccountingField = string;

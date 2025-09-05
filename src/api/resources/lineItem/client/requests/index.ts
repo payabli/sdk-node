@@ -1,2 +1,2 @@
-export { type AddItemRequest } from "./AddItemRequest";
-export { type ListLineItemsRequest } from "./ListLineItemsRequest";
+export { type AddItemRequest } from "./AddItemRequest.js";
+export { type ListLineItemsRequest } from "./ListLineItemsRequest.js";

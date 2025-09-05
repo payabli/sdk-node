@@ -1,2 +1,2 @@
-export { type DeviceEntry } from "./DeviceEntry";
-export { type ListDeviceRequest } from "./ListDeviceRequest";
+export { type DeviceEntry } from "./DeviceEntry.js";
+export { type ListDeviceRequest } from "./ListDeviceRequest.js";

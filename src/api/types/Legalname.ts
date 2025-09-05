@@ -5,4 +5,4 @@
 /**
  * Business legal name.
  */
-export type Legalname = string | undefined;
+export type Legalname = string;

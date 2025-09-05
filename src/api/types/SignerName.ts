@@ -5,4 +5,4 @@
 /**
  * The signer's name.
  */
-export type SignerName = string | undefined;
+export type SignerName = string;

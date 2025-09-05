@@ -3,6 +3,6 @@
  */
 
 /**
- * Settlement status for transaction. See [the docs](/references/money-in-statuses#payment-funding-status) for a full reference.
+ * Settlement status for transaction. See [the docs](/developers/references/money-in-statuses#payment-funding-status) for a full reference.
  */
 export type SettlementStatus = number;

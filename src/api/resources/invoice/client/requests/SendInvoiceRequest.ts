@@ -10,12 +10,8 @@
  *     }
  */
 export interface SendInvoiceRequest {
-    /**
-     * When `true`, attaches a PDF version of invoice to the email.
-     */
+    /** When `true`, attaches a PDF version of invoice to the email. */
     attachfile?: boolean;
-    /**
-     * Email address where the invoice will be sent to. If this parameter isn't included, Payabli uses the email address on file for the customer owner of the invoice.
-     */
+    /** Email address where the invoice will be sent to. If this parameter isn't included, Payabli uses the email address on file for the customer owner of the invoice. */
     mail2?: string;
 }

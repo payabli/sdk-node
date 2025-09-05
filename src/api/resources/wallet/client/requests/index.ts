@@ -1,4 +1,4 @@
-export { type ConfigureOrganizationRequestApplePay } from "./ConfigureOrganizationRequestApplePay";
-export { type ConfigurePaypointRequestApplePay } from "./ConfigurePaypointRequestApplePay";
-export { type ConfigureOrganizationRequestGooglePay } from "./ConfigureOrganizationRequestGooglePay";
-export { type ConfigurePaypointRequestGooglePay } from "./ConfigurePaypointRequestGooglePay";
+export { type ConfigureOrganizationRequestApplePay } from "./ConfigureOrganizationRequestApplePay.js";
+export { type ConfigurePaypointRequestApplePay } from "./ConfigurePaypointRequestApplePay.js";
+export { type ConfigureOrganizationRequestGooglePay } from "./ConfigureOrganizationRequestGooglePay.js";
+export { type ConfigurePaypointRequestGooglePay } from "./ConfigurePaypointRequestGooglePay.js";

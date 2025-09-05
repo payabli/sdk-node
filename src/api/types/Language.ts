@@ -7,4 +7,4 @@
  *   - `en`
  *   - `es`
  */
-export type Language = string | undefined;
+export type Language = string;

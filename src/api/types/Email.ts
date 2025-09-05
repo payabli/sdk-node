@@ -5,4 +5,4 @@
 /**
  * Email address.
  */
-export type Email = string | undefined;
+export type Email = string;

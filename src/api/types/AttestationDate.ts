@@ -5,4 +5,4 @@
 /**
  * Date the attestation was provided for PCI Compliance (`pciAttestation`), in MM/DD/YYYY format.
  */
-export type AttestationDate = string | undefined;
+export type AttestationDate = string;

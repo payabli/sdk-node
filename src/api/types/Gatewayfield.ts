@@ -5,4 +5,4 @@
 /**
  * Gateway used to process the transaction.
  */
-export type Gatewayfield = string | undefined;
+export type Gatewayfield = string;

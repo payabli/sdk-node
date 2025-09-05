@@ -5,4 +5,4 @@
 /**
  * Remittance address additional line. Used for mailing paper checks.
  */
-export type Remitaddress2 = string | undefined;
+export type Remitaddress2 = string;

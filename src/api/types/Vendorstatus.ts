@@ -10,4 +10,4 @@
  *
  *   - 1 Active
  */
-export type Vendorstatus = number | undefined;
+export type Vendorstatus = number;

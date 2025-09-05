@@ -5,4 +5,4 @@
 /**
  * ID for the paypoint or organization that owns the notification.
  */
-export type Ownerid = string | undefined;
+export type Ownerid = string;

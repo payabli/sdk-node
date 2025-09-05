@@ -5,4 +5,4 @@
 /**
  * Any comment or description.
  */
-export type Comments = string | undefined;
+export type Comments = string;

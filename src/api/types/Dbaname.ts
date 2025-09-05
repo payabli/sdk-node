@@ -5,4 +5,4 @@
 /**
  * The alternate or common name that this business is doing business under usually referred to as a DBA name.
  */
-export type Dbaname = string | undefined;
+export type Dbaname = string;

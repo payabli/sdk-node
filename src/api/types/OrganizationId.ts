@@ -3,6 +3,6 @@
  */
 
 /**
- * Organzation ID for the target organization.
+ * Organization ID for the target organization.
  */
 export type OrganizationId = number;

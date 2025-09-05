@@ -5,4 +5,4 @@
 /**
  * The signer's SSN.
  */
-export type SignerSsn = string | undefined;
+export type SignerSsn = string;

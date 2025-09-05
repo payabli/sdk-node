@@ -5,4 +5,4 @@
 /**
  * Item or product commodity code. Max length of 250 characters.
  */
-export type ItemCommodityCode = string | undefined;
+export type ItemCommodityCode = string;

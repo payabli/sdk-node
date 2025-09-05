@@ -5,4 +5,4 @@
 /**
  * ZIP code for card used in transaction.
  */
-export type Accountzip = string | undefined;
+export type Accountzip = string;

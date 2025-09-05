@@ -1,2 +1,2 @@
-export * from "./CheckCaptureRequest";
-export * from "./CheckCaptureResponse";
+export * from "./CheckCaptureRequest.js";
+export * from "./CheckCaptureResponse.js";

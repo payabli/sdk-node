@@ -5,4 +5,4 @@
 /**
  * The organization's ZIP code.
  */
-export type Orgzip = string | undefined;
+export type Orgzip = string;

@@ -1,1 +1,1 @@
-export * from "./DeleteItemResponse";
+export * from "./DeleteItemResponse.js";

@@ -5,4 +5,4 @@
 /**
  * Identifier of registered cloud device used in the transaction.
  */
-export type Device = string | undefined;
+export type Device = string;

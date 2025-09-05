@@ -3,11 +3,55 @@
  */
 
 /**
- * Object containing information related to the card. This object is `null` unless the payment method is card. If the payment method is Apple Pay, the binData will be related to the DPAN (device primary account number), not the card connected to Apple Pay.
+ * Object containing information related to the card. This object is `null`
+ * unless the payment method is card. If the payment method is Apple Pay, the
+ * binData will be related to the DPAN (device primary account number), not
+ * the card connected to Apple Pay.
+ *
+ * @example
+ *     {
+ *         binMatchedLength: "6",
+ *         binCardBrand: "Visa",
+ *         binCardType: "Credit",
+ *         binCardCategory: "PLATINUM",
+ *         binCardIssuer: "Bank of Example",
+ *         binCardIssuerCountry: "United States",
+ *         binCardIssuerCountryCodeA2: "US",
+ *         binCardIssuerCountryNumber: "840",
+ *         binCardIsRegulated: "false",
+ *         binCardUseCategory: "Consumer",
+ *         binCardIssuerCountryCodeA3: "USA"
+ *     }
+ *
+ * @example
+ *     {
+ *         binMatchedLength: "6",
+ *         binCardBrand: "VISA",
+ *         binCardType: "DEBIT",
+ *         binCardCategory: "CLASSIC",
+ *         binCardIssuer: "CONOTOXIA SP. Z O.O",
+ *         binCardIssuerCountry: "POLAND",
+ *         binCardIssuerCountryCodeA2: "PL",
+ *         binCardIssuerCountryNumber: "616",
+ *         binCardIsRegulated: "true",
+ *         binCardUseCategory: "Consumer",
+ *         binCardIssuerCountryCodeA3: "POL"
+ *     }
  */
 export interface BinData {
-    /** The card brand. For example, Visa, Mastercard, American Express, Discover. */
+    /**
+     * The number of characters from the beginning of the card number that
+     * were matched against a Bank Identification Number (BIN) or the Card
+     * Range table.
+     */
+    binMatchedLength?: string;
+    /**
+     * The card brand. For example, Visa, Mastercard, American Express,
+     * Discover.
+     */
     binCardBrand?: string;
+    /** The type of card: Credit or Debit. */
+    binCardType?: string;
     /** The category of the card, which indicates the card product. For example: Standard, Gold, Platinum, etc. The binCardCategory for prepaid cards is marked `PREPAID`. */
     binCardCategory?: string;
     /** The name of the financial institution that issued the card. */
@@ -17,9 +61,15 @@ export interface BinData {
     /** The issuing financial institution's two-character ISO country code. See [this resource](https://www.iso.org/obp/ui/#search) for a list of codes. */
     binCardIssuerCountryCodeA2?: string;
     /** The issuing financial institution's ISO standard numeric country code. See [this resource](https://www.iso.org/obp/ui/#search) for a list of codes. */
-    binCardIssuerCountryNumber?: number;
-    /** The type of card: Credit or Debit. */
-    binCardType?: string;
-    /** The number of characters from the beginning of the card number that were matched against a Bank Identification Number (BIN) or the Card Range table. */
-    binMatchedLength?: number;
+    binCardIssuerCountryNumber?: string;
+    /** Indicates whether the card is regulated. */
+    binCardIsRegulated?: string;
+    /** The use category classification for the card. */
+    binCardUseCategory?: string;
+    /**
+     * The issuing financial institution's three-character ISO country code.
+     * See [this resource](https://www.iso.org/obp/ui/#search) for a list of
+     * codes.
+     */
+    binCardIssuerCountryCodeA3?: string;
 }
