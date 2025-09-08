@@ -353,6 +353,7 @@ export * from "./PaymentCategories.js";
 export * from "./PaymentDetail.js";
 export * from "./PaymentDetailCredit.js";
 export * from "./Paymentid.js";
+export * from "./PaymentIdString.js";
 export * from "./PaymentMethod.js";
 export * from "./PayMethodBodyAllFields.js";
 export * from "./PayMethodCredit.js";

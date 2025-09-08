@@ -5,71 +5,70 @@
 import * as Payabli from "../index.js";
 
 export interface BillQueryRecord2 {
-    AccountingField1?: Payabli.AccountingField;
-    AccountingField2?: Payabli.AccountingField;
+    AccountingField1: Payabli.AccountingField | null;
+    AccountingField2: Payabli.AccountingField | null;
     /** Additional data associated with the bill. */
-    AdditionalData?: Record<string, string>;
+    AdditionalData: Record<string, string> | null;
     /** Batch number associated with the bill. */
-    BatchNumber?: string;
-    billApprovals?: Payabli.BillQueryRecord2BillApprovalsItem[];
+    BatchNumber: string | null;
+    billApprovals: Payabli.BillQueryRecord2BillApprovalsItem[] | null;
     /** Bill creation date in one of the accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
-    BillDate?: Payabli.Datenullable | undefined;
+    BillDate: (Payabli.Datenullable | undefined) | null;
     /** Events associated with the bill. */
-    billEvents?: Payabli.GeneralEvents[];
+    billEvents: Payabli.GeneralEvents[] | null;
     /** Array of items included in the bill. */
-    BillItems?: Payabli.BillItem[];
+    BillItems: Payabli.BillItem[] | null;
     /** Bill number. */
-    BillNumber?: string;
+    BillNumber: string | null;
     /** Additional comments on the bill. */
-    Comments?: string;
+    Comments: string | null;
     /** Timestamp of when bill was created, in UTC. */
-    CreatedAt?: Payabli.CreatedAt;
+    CreatedAt: Payabli.CreatedAt | null;
     /** Discount amount applied to the bill. */
-    Discount?: number;
+    Discount: number | null;
     /** Reference to documents associated with the bill. */
-    DocumentsRef?: string;
+    DocumentsRef: string | null;
     /** Bill due date in one of the accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
-    DueDate?: Payabli.Datenullable | undefined;
+    DueDate: (Payabli.Datenullable | undefined) | null;
     /** End date for the bill. */
-    EndDate?: Payabli.Datenullable | undefined;
+    EndDate: (Payabli.Datenullable | undefined) | null;
     /** Entity identifier associated with the bill. */
-    EntityID?: string;
-    externalPaypointID?: Payabli.ExternalPaypointId;
+    EntityID: string | null;
+    externalPaypointID: Payabli.ExternalPaypointId | null;
     /** Frequency for scheduled bills. Applied only in `Mode` = 1. */
-    Frequency?: Payabli.Frequency;
+    Frequency: Payabli.Frequency | null;
     /** Identifier of the bill. */
-    IdBill?: number;
+    IdBill: number | null;
     /** Timestamp of when bill was last updated, in UTC. */
-    LastUpdated?: Payabli.DatetimeNullable | undefined;
+    LastUpdated: (Payabli.DatetimeNullable | undefined) | null;
     /** Lot number associated with the bill. */
-    LotNumber?: string;
+    LotNumber: string | null;
     /** Bill mode: value `0` for single/one-time bills, `1` for scheduled bills. */
-    Mode?: number;
+    Mode: number | null;
     /** Net amount of the bill. */
-    NetAmount?: number;
+    NetAmount: number | null;
     /** Parent organization identifier. */
-    ParentOrgId?: number;
-    ParentOrgName?: Payabli.OrgParentName;
-    /** Payment identifier. */
-    PaymentId?: string;
+    ParentOrgId: number | null;
+    ParentOrgName: Payabli.OrgParentName | null;
+    PaymentId: Payabli.PaymentIdString | null;
     /** Preferred payment method used. */
-    PaymentMethod?: Payabli.BillQueryRecord2PaymentMethod;
+    PaymentMethod: Payabli.BillQueryRecord2PaymentMethod | null;
     /** Paylink identifier associated with the bill. */
-    paylinkId?: string;
+    paylinkId: string | null;
     /** The paypoint's DBA name. */
-    PaypointDbaname?: Payabli.Dbaname;
+    PaypointDbaname: Payabli.Dbaname | null;
     /** Entry name of the paypoint. */
-    PaypointEntryname?: string;
+    PaypointEntryname: string | null;
     /** The paypoint's legal name. */
-    PaypointLegalname?: Payabli.Legalname;
+    PaypointLegalname: Payabli.Legalname | null;
     /** Source of the bill. */
-    Source?: string;
-    Status?: Payabli.Billstatus;
+    Source: string | null;
+    Status: Payabli.Billstatus | null;
     /** The payment terms for invoice. If no terms were defined initially, then response data for this field will default to `N30`. */
-    Terms?: Payabli.Terms;
+    Terms: Payabli.Terms | null;
     /** Total amount of the bill including taxes and fees. */
-    TotalAmount?: number;
+    TotalAmount: number | null;
     /** MoneyOut transaction associated to the bill. */
-    Transaction?: Payabli.TransactionOutQueryRecord;
-    Vendor?: Payabli.VendorOutData;
+    Transaction: Payabli.TransactionOutQueryRecord | null;
+    Vendor: Payabli.VendorOutData | null;
 }

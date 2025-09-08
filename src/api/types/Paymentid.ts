@@ -5,4 +5,4 @@
 /**
  * Unique transaction ID.
  */
-export type Paymentid = string | undefined;
+export type Paymentid = number;

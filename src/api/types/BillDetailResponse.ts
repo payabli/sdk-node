@@ -30,7 +30,7 @@ export interface BillDetailResponse {
     PaymentData?: Payabli.QueryPaymentData;
     /** Unique identifier for group or batch containing the transaction. */
     PaymentGroup?: string;
-    PaymentId?: Payabli.Paymentid | undefined;
+    PaymentId?: Payabli.PaymentIdString;
     /** Method of payment applied to the transaction. */
     PaymentMethod?: string;
     /** Status of payout transaction. */

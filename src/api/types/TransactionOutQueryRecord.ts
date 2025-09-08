@@ -36,7 +36,7 @@ export interface TransactionOutQueryRecord {
     CheckNumber?: string;
     /** Object referencing to paper check image. */
     CheckData?: Payabli.FileContent;
-    PaymentId?: Payabli.Paymentid | undefined;
+    PaymentId?: Payabli.PaymentIdString;
     PaymentData?: Payabli.QueryPaymentData;
     /** Events associated to this transaction. */
     Bills?: Payabli.BillPayOutData[];

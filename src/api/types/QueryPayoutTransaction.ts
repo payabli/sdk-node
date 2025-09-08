@@ -28,7 +28,7 @@ import * as Payabli from "../index.js";
  *                         totalAmount: 100
  *                     }
  *                 },
- *                 PaymentId: "2345667-ddd-fff",
+ *                 PaymentId: "12345678910",
  *                 PaymentMethod: "ach",
  *                 PaymentStatus: "Processed",
  *                 PaypointDbaname: "Sunshine Gutters",
@@ -115,7 +115,7 @@ export namespace QueryPayoutTransaction {
             ParentOrgName?: Payabli.OrgParentName;
             ParentOrgId?: Payabli.OrgParentId;
             PaymentData?: Item.PaymentData;
-            PaymentId?: Payabli.Paymentid | undefined;
+            PaymentId?: Payabli.PaymentIdString;
             /** The payment method for the transaction. */
             PaymentMethod?: string;
             /** Status of payout transaction. See [Payout Transaction Statuses](guides/money-out-statuses#payout-transaction-statuses) for a full reference. */
