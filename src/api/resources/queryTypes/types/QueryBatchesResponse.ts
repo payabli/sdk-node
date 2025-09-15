@@ -51,9 +51,9 @@ import * as Payabli from "../../../index.js";
  *                 BatchType: 0,
  *                 Method: "combined",
  *                 ExpectedDepositDate: "2025-08-26T00:00:00Z",
- *                 DepositDate: undefined,
+ *                 DepositDate: null,
  *                 TransferDate: "2025-08-26T00:00:00Z",
- *                 Transfer: undefined
+ *                 Transfer: null
  *             }, {
  *                 IdBatch: 1043,
  *                 BatchNumber: "BT-2023041817-187",
@@ -82,9 +82,9 @@ import * as Payabli from "../../../index.js";
  *                 BatchType: 0,
  *                 Method: "card",
  *                 ExpectedDepositDate: "2023-04-19T00:00:00Z",
- *                 DepositDate: undefined,
+ *                 DepositDate: null,
  *                 TransferDate: "2025-09-02T00:00:00Z",
- *                 Transfer: undefined
+ *                 Transfer: null
  *             }, {
  *                 IdBatch: 1012,
  *                 BatchNumber: "BT-2023041421-187",
@@ -125,7 +125,7 @@ import * as Payabli from "../../../index.js";
  *                 BatchType: 0,
  *                 Method: "card",
  *                 ExpectedDepositDate: "2023-04-15T00:00:00Z",
- *                 DepositDate: undefined,
+ *                 DepositDate: null,
  *                 TransferDate: "2025-09-02T00:00:00Z",
  *                 Transfer: {
  *                     TransferId: 5998,
@@ -200,13 +200,13 @@ export namespace QueryBatchesResponse {
             /** The batch type. */
             BatchType: number | null;
             /** The payment method used. */
-            Method?: string;
-            ExpectedDepositDate?: Payabli.ExpectedDepositDate;
-            DepositDate?: Payabli.DepositDate;
+            Method: string | null;
+            ExpectedDepositDate: Payabli.ExpectedDepositDate | null;
+            DepositDate: Payabli.DepositDate | null;
             /** The batch transfer date. */
-            TransferDate?: string;
+            TransferDate: string | null;
             /** Transfer details for the batch. */
-            Transfer?: Payabli.QueryBatchesTransfer;
+            Transfer: Payabli.QueryBatchesTransfer | null;
         }
     }
 }

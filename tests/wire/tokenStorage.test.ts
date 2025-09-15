@@ -260,7 +260,7 @@ describe("TokenStorage", () => {
         });
     });
 
-    test("AddMethod (1a76f441)", async () => {
+    test("AddMethod (cbc81de9)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -303,7 +303,7 @@ describe("TokenStorage", () => {
         );
     });
 
-    test("AddMethod (3868a641)", async () => {
+    test("AddMethod (b560d5c9)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -346,7 +346,7 @@ describe("TokenStorage", () => {
         );
     });
 
-    test("AddMethod (541d5dcd)", async () => {
+    test("AddMethod (428b8d75)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -389,7 +389,7 @@ describe("TokenStorage", () => {
         );
     });
 
-    test("AddMethod (1a6987e4)", async () => {
+    test("AddMethod (adcd830f)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -774,7 +774,7 @@ describe("TokenStorage", () => {
         );
     });
 
-    test("GetMethod (71c2e0ff)", async () => {
+    test("GetMethod (281bf0e)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -893,7 +893,7 @@ describe("TokenStorage", () => {
         );
     });
 
-    test("RemoveMethod (71c2e0ff)", async () => {
+    test("RemoveMethod (281bf0e)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1041,7 +1041,7 @@ describe("TokenStorage", () => {
         });
     });
 
-    test("UpdateMethod (558c730c)", async () => {
+    test("UpdateMethod (a5027ae8)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1084,7 +1084,7 @@ describe("TokenStorage", () => {
         );
     });
 
-    test("UpdateMethod (101f8914)", async () => {
+    test("UpdateMethod (dcd21850)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1127,7 +1127,7 @@ describe("TokenStorage", () => {
         );
     });
 
-    test("UpdateMethod (682e908)", async () => {
+    test("UpdateMethod (289e2364)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1170,7 +1170,7 @@ describe("TokenStorage", () => {
         );
     });
 
-    test("UpdateMethod (9e1a9ecf)", async () => {
+    test("UpdateMethod (c5abdbda)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {

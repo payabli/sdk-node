@@ -6,9 +6,9 @@ import * as Payabli from "../../../index.js";
 
 export interface QueryTransferDetailResponse {
     /** List of transfer detail records */
-    Records?: QueryTransferDetailResponse.Records.Item[];
+    Records: QueryTransferDetailResponse.Records.Item[];
     /** Summary of the transfer details query */
-    Summary?: Payabli.QueryTransferSummary;
+    Summary: Payabli.QueryTransferSummary;
 }
 
 export namespace QueryTransferDetailResponse {
@@ -17,114 +17,114 @@ export namespace QueryTransferDetailResponse {
     export namespace Records {
         export interface Item {
             /** Unique identifier for the transfer detail record */
-            transferDetailId?: number;
+            transferDetailId: number | null;
             /** The ID of the transfer this detail belongs to */
-            transferId?: number;
+            transferId: number | null;
             /** The transaction ID in Payabli's system */
-            transactionId?: string;
+            transactionId: string | null;
             /** External transaction reference number */
-            transactionNumber?: string;
+            transactionNumber: string | null;
             /** The transaction type (credit or debit) */
-            type?: string;
+            type: string | null;
             /** A field used to categorize the transaction details. Values include: auth, decline, refund, adj, cb, split */
-            category?: string;
+            category: string | null;
             /** The gross amount of the transaction */
-            grossAmount?: number;
+            grossAmount: number | null;
             /** Chargeback amount deducted from transaction */
-            chargeBackAmount?: number;
+            chargeBackAmount: number | null;
             /** ACH return amount deducted from transaction */
-            returnedAmount?: number;
+            returnedAmount: number | null;
             /** Refund amount deducted from transaction */
-            refundAmount?: number;
+            refundAmount: number | null;
             /** Amount being held for fraud or risk concerns */
-            holdAmount?: number;
+            holdAmount: number | null;
             /** Previously held funds that have been released after a risk review */
-            releasedAmount?: number;
+            releasedAmount: number | null;
             /** Charges applied for transactions and services */
-            billingFeesAmount?: number;
+            billingFeesAmount: number | null;
             /** Payments captured in the batch cycle that are deposited separately. For example,  checks or cash payments recorded in the batch but not deposited via Payabli,  or card brands making a direct transfer in certain situations. */
-            thirdPartyPaidAmount?: number;
+            thirdPartyPaidAmount: number | null;
             /** Corrections applied to Billing & Fees charges */
-            adjustmentsAmount?: number;
+            adjustmentsAmount: number | null;
             /** The net amount after all deductions */
-            netTransferAmount?: number;
+            netTransferAmount: number | null;
             /** Total amount directed to split funding destinations */
-            splitFundingAmount?: number;
-            billingFeesDetails?: Payabli.BillingFeeDetail[];
-            ParentOrgName?: Payabli.OrgParentName;
-            PaypointDbaname?: Payabli.Dbaname;
-            PaypointLegalname?: Payabli.Legalname;
+            splitFundingAmount: number | null;
+            billingFeesDetails: Payabli.BillingFeeDetail[] | null;
+            ParentOrgName: Payabli.OrgParentName | null;
+            PaypointDbaname: Payabli.Dbaname | null;
+            PaypointLegalname: Payabli.Legalname | null;
             /** The paypoint's entryname */
-            PaypointEntryname?: string;
+            PaypointEntryname: string | null;
             /** The transaction ID for the payment */
-            PaymentTransId?: string;
+            PaymentTransId: string | null;
             /** The payment connector used to process the transaction */
-            ConnectorName?: string;
-            ExternalProcessorInformation?: Payabli.ExternalProcessorInformation;
+            ConnectorName: string | null;
+            ExternalProcessorInformation: Payabli.ExternalProcessorInformation | null;
             /** Internal identifier used for processing */
-            GatewayTransId?: string;
-            OrderId?: Payabli.OrderId;
+            GatewayTransId: string | null;
+            OrderId: Payabli.OrderId | null;
             /** Payment method used: card, ach, or wallet */
-            Method?: string;
-            BatchNumber?: Payabli.BatchNumber;
+            Method: string | null;
+            BatchNumber: Payabli.BatchNumber | null;
             /** The amount of the batch */
-            BatchAmount?: number;
+            BatchAmount: number | null;
             /** Unique ID for customer linked to the transaction */
-            PayorId?: Payabli.PayorId;
-            PaymentData?: Payabli.QueryPaymentData;
+            PayorId: Payabli.PayorId | null;
+            PaymentData: Payabli.QueryPaymentData | null;
             /**
              * Status of transaction. See [the
              * docs](/developers/references/money-in-statuses#money-in-transaction-status) for a
              * full reference.
              */
-            TransStatus?: number;
-            PaypointId?: Payabli.PaypointId;
+            TransStatus: number | null;
+            PaypointId: Payabli.PaypointId | null;
             /** Transaction total amount (including service fee or sub-charge) */
-            TotalAmount?: number;
+            TotalAmount: number | null;
             /** Net amount paid */
-            NetAmount?: Payabli.Netamountnullable | undefined;
-            FeeAmount?: Payabli.FeeAmount;
+            NetAmount: (Payabli.Netamountnullable | undefined) | null;
+            FeeAmount: Payabli.FeeAmount | null;
             /** Settlement status for transaction. See [the docs](/developers/references/money-in-statuses#payment-funding-status) for a full reference. */
-            SettlementStatus?: number;
-            Operation?: Payabli.Operation;
-            ResponseData?: Payabli.QueryResponseData;
-            Source?: Payabli.Source;
+            SettlementStatus: number | null;
+            Operation: Payabli.Operation | null;
+            ResponseData: Payabli.QueryResponseData | null;
+            Source: Payabli.Source | null;
             /** Reference to the subscription or schedule that originated the transaction */
-            ScheduleReference?: number;
-            OrgId?: Payabli.Orgid;
-            RefundId?: Payabli.RefundId;
-            ReturnedId?: Payabli.ReturnedId;
-            ChargebackId?: Payabli.ChargebackId;
-            RetrievalId?: Payabli.RetrievalId;
+            ScheduleReference: number | null;
+            OrgId: Payabli.Orgid | null;
+            RefundId: Payabli.RefundId | null;
+            ReturnedId: Payabli.ReturnedId | null;
+            ChargebackId: Payabli.ChargebackId | null;
+            RetrievalId: Payabli.RetrievalId | null;
             /** Additional transaction data */
-            TransAdditionalData?: unknown;
+            TransAdditionalData: unknown | null;
             /** Associated invoice data */
-            invoiceData?: Payabli.BillData;
-            EntrypageId?: Payabli.EntrypageId;
-            externalPaypointID?: Payabli.ExternalPaypointId;
+            invoiceData: Payabli.BillData | null;
+            EntrypageId: Payabli.EntrypageId | null;
+            externalPaypointID: Payabli.ExternalPaypointId | null;
             /** Indicates whether the ACH account has been validated */
-            IsValidatedACH?: boolean;
+            IsValidatedACH: boolean | null;
             /** Transaction date and time, in UTC */
-            TransactionTime?: Payabli.DatetimeNullable | undefined;
-            Customer?: Payabli.QueryTransactionPayorData;
-            splitFundingInstructions?: Payabli.SplitFunding | undefined;
-            CfeeTransactions?: Payabli.QueryCFeeTransaction[];
-            TransactionEvents?: Payabli.QueryTransactionEvents[];
-            PendingFeeAmount?: Payabli.PendingFeeAmount | undefined;
-            RiskFlagged?: Payabli.RiskFlagged | undefined;
-            RiskFlaggedOn?: Payabli.RiskFlaggedOn | undefined;
-            RiskStatus?: Payabli.RiskStatus;
-            RiskReason?: Payabli.RiskReason;
-            RiskAction?: Payabli.RiskAction;
-            RiskActionCode?: Payabli.RiskActionCode | undefined;
-            DeviceId?: Payabli.DeviceId | undefined;
-            AchSecCode?: Payabli.AchSecCode;
-            AchHolderType?: Payabli.AchHolderType;
-            IpAddress?: Payabli.IpAddress;
+            TransactionTime: (Payabli.DatetimeNullable | undefined) | null;
+            Customer: Payabli.QueryTransactionPayorData | null;
+            splitFundingInstructions: (Payabli.SplitFunding | undefined) | null;
+            CfeeTransactions: Payabli.QueryCFeeTransaction[] | null;
+            TransactionEvents: Payabli.QueryTransactionEvents[] | null;
+            PendingFeeAmount: (Payabli.PendingFeeAmount | undefined) | null;
+            RiskFlagged: (Payabli.RiskFlagged | undefined) | null;
+            RiskFlaggedOn: (Payabli.RiskFlaggedOn | undefined) | null;
+            RiskStatus: Payabli.RiskStatus | null;
+            RiskReason: Payabli.RiskReason | null;
+            RiskAction: Payabli.RiskAction | null;
+            RiskActionCode: (Payabli.RiskActionCode | undefined) | null;
+            DeviceId: (Payabli.DeviceId | undefined) | null;
+            AchSecCode: Payabli.AchSecCode | null;
+            AchHolderType: Payabli.AchHolderType | null;
+            IpAddress: Payabli.IpAddress | null;
             /** Indicates if this was a same-day ACH transaction. */
-            IsSameDayACH?: boolean;
+            IsSameDayACH: boolean | null;
             /** Type of wallet used for the transaction (if applicable) */
-            WalletType?: string;
+            WalletType: string | null;
         }
     }
 }

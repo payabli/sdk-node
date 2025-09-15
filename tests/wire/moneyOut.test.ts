@@ -255,7 +255,14 @@ describe("MoneyOut", () => {
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             entryPoint: "47ced57b",
-            paymentMethod: { method: "ach" },
+            paymentMethod: {
+                method: "ach",
+                achHolder: "John Doe",
+                achRouting: "011401533",
+                achAccount: "123456789",
+                achAccountType: "checking",
+                achHolderType: "business",
+            },
             paymentDetails: { totalAmount: 978.32 },
             vendorData: {
                 vendorNumber: "Vendor3800638299609471",
@@ -278,13 +285,6 @@ describe("MoneyOut", () => {
                         contactPhone: "996-325-5420 x31028",
                     },
                 ],
-                billingData: {
-                    bankName: "Chase",
-                    routingAccount: "011401533",
-                    accountNumber: "1237658922",
-                    typeAccount: "Savings",
-                    bankAccountHolderName: "Payabli",
-                },
                 vendorStatus: 1,
                 remitAddress1: "727 Terrell Streets",
                 remitAddress2: "Apt. 773",
@@ -334,6 +334,11 @@ describe("MoneyOut", () => {
                 entryPoint: "47ced57b",
                 paymentMethod: {
                     method: "ach",
+                    achHolder: "John Doe",
+                    achRouting: "011401533",
+                    achAccount: "123456789",
+                    achAccountType: "checking",
+                    achHolderType: "business",
                 },
                 paymentDetails: {
                     totalAmount: 978.32,
@@ -359,13 +364,6 @@ describe("MoneyOut", () => {
                             contactPhone: "996-325-5420 x31028",
                         },
                     ],
-                    billingData: {
-                        bankName: "Chase",
-                        routingAccount: "011401533",
-                        accountNumber: "1237658922",
-                        typeAccount: "Savings",
-                        bankAccountHolderName: "Payabli",
-                    },
                     vendorStatus: 1,
                     remitAddress1: "727 Terrell Streets",
                     remitAddress2: "Apt. 773",
@@ -404,7 +402,7 @@ describe("MoneyOut", () => {
         });
     });
 
-    test("AuthorizeOut (c04bda47)", async () => {
+    test("AuthorizeOut (c491a23d)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -412,7 +410,18 @@ describe("MoneyOut", () => {
             source: undefined,
             orderId: undefined,
             orderDescription: undefined,
-            paymentMethod: { method: "method", storedMethodId: undefined },
+            paymentMethod: {
+                method: "method",
+                achHolder: undefined,
+                achRouting: undefined,
+                achAccount: undefined,
+                achAccountType: undefined,
+                achCode: undefined,
+                achHolderType: undefined,
+                storedMethodId: undefined,
+                initiator: undefined,
+                storedMethodUsageType: undefined,
+            },
             paymentDetails: {
                 checkNumber: undefined,
                 currency: undefined,
@@ -508,7 +517,15 @@ describe("MoneyOut", () => {
                     orderDescription: undefined,
                     paymentMethod: {
                         method: "method",
+                        achHolder: undefined,
+                        achRouting: undefined,
+                        achAccount: undefined,
+                        achAccountType: undefined,
+                        achCode: undefined,
+                        achHolderType: undefined,
                         storedMethodId: undefined,
+                        initiator: undefined,
+                        storedMethodUsageType: undefined,
                     },
                     paymentDetails: {
                         checkNumber: undefined,
@@ -594,7 +611,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("AuthorizeOut (e6cd7057)", async () => {
+    test("AuthorizeOut (658e63ad)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -602,7 +619,18 @@ describe("MoneyOut", () => {
             source: undefined,
             orderId: undefined,
             orderDescription: undefined,
-            paymentMethod: { method: "method", storedMethodId: undefined },
+            paymentMethod: {
+                method: "method",
+                achHolder: undefined,
+                achRouting: undefined,
+                achAccount: undefined,
+                achAccountType: undefined,
+                achCode: undefined,
+                achHolderType: undefined,
+                storedMethodId: undefined,
+                initiator: undefined,
+                storedMethodUsageType: undefined,
+            },
             paymentDetails: {
                 checkNumber: undefined,
                 currency: undefined,
@@ -698,7 +726,15 @@ describe("MoneyOut", () => {
                     orderDescription: undefined,
                     paymentMethod: {
                         method: "method",
+                        achHolder: undefined,
+                        achRouting: undefined,
+                        achAccount: undefined,
+                        achAccountType: undefined,
+                        achCode: undefined,
+                        achHolderType: undefined,
                         storedMethodId: undefined,
+                        initiator: undefined,
+                        storedMethodUsageType: undefined,
                     },
                     paymentDetails: {
                         checkNumber: undefined,
@@ -784,7 +820,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("AuthorizeOut (6b772053)", async () => {
+    test("AuthorizeOut (fcdb4f99)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -792,7 +828,18 @@ describe("MoneyOut", () => {
             source: undefined,
             orderId: undefined,
             orderDescription: undefined,
-            paymentMethod: { method: "method", storedMethodId: undefined },
+            paymentMethod: {
+                method: "method",
+                achHolder: undefined,
+                achRouting: undefined,
+                achAccount: undefined,
+                achAccountType: undefined,
+                achCode: undefined,
+                achHolderType: undefined,
+                storedMethodId: undefined,
+                initiator: undefined,
+                storedMethodUsageType: undefined,
+            },
             paymentDetails: {
                 checkNumber: undefined,
                 currency: undefined,
@@ -888,7 +935,15 @@ describe("MoneyOut", () => {
                     orderDescription: undefined,
                     paymentMethod: {
                         method: "method",
+                        achHolder: undefined,
+                        achRouting: undefined,
+                        achAccount: undefined,
+                        achAccountType: undefined,
+                        achCode: undefined,
+                        achHolderType: undefined,
                         storedMethodId: undefined,
+                        initiator: undefined,
+                        storedMethodUsageType: undefined,
                     },
                     paymentDetails: {
                         checkNumber: undefined,
@@ -974,7 +1029,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("AuthorizeOut (884159f6)", async () => {
+    test("AuthorizeOut (7a30fd13)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -982,7 +1037,18 @@ describe("MoneyOut", () => {
             source: undefined,
             orderId: undefined,
             orderDescription: undefined,
-            paymentMethod: { method: "method", storedMethodId: undefined },
+            paymentMethod: {
+                method: "method",
+                achHolder: undefined,
+                achRouting: undefined,
+                achAccount: undefined,
+                achAccountType: undefined,
+                achCode: undefined,
+                achHolderType: undefined,
+                storedMethodId: undefined,
+                initiator: undefined,
+                storedMethodUsageType: undefined,
+            },
             paymentDetails: {
                 checkNumber: undefined,
                 currency: undefined,
@@ -1078,7 +1144,15 @@ describe("MoneyOut", () => {
                     orderDescription: undefined,
                     paymentMethod: {
                         method: "method",
+                        achHolder: undefined,
+                        achRouting: undefined,
+                        achAccount: undefined,
+                        achAccountType: undefined,
+                        achCode: undefined,
+                        achHolderType: undefined,
                         storedMethodId: undefined,
+                        initiator: undefined,
+                        storedMethodUsageType: undefined,
                     },
                     paymentDetails: {
                         checkNumber: undefined,
@@ -1212,7 +1286,7 @@ describe("MoneyOut", () => {
         });
     });
 
-    test("CancelAllOut (38ec6b84)", async () => {
+    test("CancelAllOut (9234b3ea)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
@@ -1235,7 +1309,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("CancelAllOut (14c20eac)", async () => {
+    test("CancelAllOut (8cf1e142)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
@@ -1258,7 +1332,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("CancelAllOut (408a0c60)", async () => {
+    test("CancelAllOut (b3c36676)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
@@ -1281,7 +1355,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("CancelAllOut (f74ad1f7)", async () => {
+    test("CancelAllOut (de1e8a10)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
@@ -1417,7 +1491,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("CancelOut (612c8bb3)", async () => {
+    test("CancelOut (6c34ecf2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1489,7 +1563,7 @@ describe("MoneyOut", () => {
         });
     });
 
-    test("CaptureAllOut (38ec6b84)", async () => {
+    test("CaptureAllOut (9234b3ea)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
@@ -1514,7 +1588,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("CaptureAllOut (14c20eac)", async () => {
+    test("CaptureAllOut (8cf1e142)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
@@ -1539,7 +1613,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("CaptureAllOut (408a0c60)", async () => {
+    test("CaptureAllOut (b3c36676)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
@@ -1564,7 +1638,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("CaptureAllOut (f74ad1f7)", async () => {
+    test("CaptureAllOut (de1e8a10)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
@@ -1706,7 +1780,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("CaptureOut (612c8bb3)", async () => {
+    test("CaptureOut (6c34ecf2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2631,7 +2705,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("PayoutDetails (34903630)", async () => {
+    test("PayoutDetails (48553763)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2960,7 +3034,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("VCardGet (a8830070)", async () => {
+    test("VCardGet (a9969ca3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3007,7 +3081,7 @@ describe("MoneyOut", () => {
         });
     });
 
-    test("SendVCardLink (187869be)", async () => {
+    test("SendVCardLink (1e8658c0)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { transId: "transId" };
@@ -3032,7 +3106,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("SendVCardLink (67f78ec6)", async () => {
+    test("SendVCardLink (f1adf828)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { transId: "transId" };
@@ -3057,7 +3131,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("SendVCardLink (cbdec2ca)", async () => {
+    test("SendVCardLink (d43d803c)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { transId: "transId" };
@@ -3082,7 +3156,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("SendVCardLink (70f0f885)", async () => {
+    test("SendVCardLink (72583f02)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { transId: "transId" };
@@ -3195,7 +3269,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("GetCheckImage (b05192c)", async () => {
+    test("GetCheckImage (b41137f)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 

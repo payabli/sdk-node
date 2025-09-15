@@ -1062,7 +1062,7 @@ describe("Boarding", () => {
         });
     });
 
-    test("AddApplication (b2bc52c9)", async () => {
+    test("AddApplication (82231016)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1285,7 +1285,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("AddApplication (c464c0a9)", async () => {
+    test("AddApplication (1250be)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1508,7 +1508,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("AddApplication (2fba7755)", async () => {
+    test("AddApplication (a50302a2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1731,7 +1731,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("AddApplication (edb3153c)", async () => {
+    test("AddApplication (d969186c)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -2026,7 +2026,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("DeleteApplication (294a9676)", async () => {
+    test("DeleteApplication (f86ea6e9)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3019,7 +3019,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("GetApplication (294a9676)", async () => {
+    test("GetApplication (f86ea6e9)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3352,7 +3352,7 @@ describe("Boarding", () => {
         });
     });
 
-    test("GetApplicationByAuth (58b9d639)", async () => {
+    test("GetApplicationByAuth (99afdcaf)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: undefined, referenceId: undefined };
@@ -3378,7 +3378,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("GetApplicationByAuth (f910dcd9)", async () => {
+    test("GetApplicationByAuth (c17ae8bf)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: undefined, referenceId: undefined };
@@ -3404,7 +3404,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("GetApplicationByAuth (caf40d05)", async () => {
+    test("GetApplicationByAuth (bb651b9b)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: undefined, referenceId: undefined };
@@ -3430,7 +3430,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("GetApplicationByAuth (7c4a7dac)", async () => {
+    test("GetApplicationByAuth (761b3dc1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: undefined, referenceId: undefined };
@@ -3583,7 +3583,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("GetByIdLinkApplication (c7f0cc3f)", async () => {
+    test("GetByIdLinkApplication (c7f2424e)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3732,7 +3732,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("GetByTemplateIdLinkApplication (ee2b5a31)", async () => {
+    test("GetByTemplateIdLinkApplication (da2f7650)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3855,7 +3855,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("getExternalApplication (4d3611ea)", async () => {
+    test("getExternalApplication (e2cb1dfd)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4004,7 +4004,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("GetLinkApplication (af99a8b2)", async () => {
+    test("GetLinkApplication (ba60305)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4248,7 +4248,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("ListApplications (7ef83997)", async () => {
+    test("ListApplications (d335cac6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4399,7 +4399,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("ListBoardingLinks (7ef83997)", async () => {
+    test("ListBoardingLinks (d335cac6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4446,7 +4446,7 @@ describe("Boarding", () => {
         });
     });
 
-    test("UpdateApplication (b194d9e8)", async () => {
+    test("UpdateApplication (bdf59af3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -4581,7 +4581,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("UpdateApplication (273a3750)", async () => {
+    test("UpdateApplication (58d3b343)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -4716,7 +4716,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("UpdateApplication (9c48e264)", async () => {
+    test("UpdateApplication (9dc70e0f)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -4851,7 +4851,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("UpdateApplication (654e8b5b)", async () => {
+    test("UpdateApplication (f9d3d1f5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {

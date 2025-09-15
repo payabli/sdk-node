@@ -36,7 +36,7 @@ describe("Cloud", () => {
         });
     });
 
-    test("addDevice (df8b3144)", async () => {
+    test("addDevice (f441a932)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { description: undefined, registrationCode: undefined };
@@ -62,7 +62,7 @@ describe("Cloud", () => {
         );
     });
 
-    test("addDevice (df3c726c)", async () => {
+    test("addDevice (7b1ed08a)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { description: undefined, registrationCode: undefined };
@@ -88,7 +88,7 @@ describe("Cloud", () => {
         );
     });
 
-    test("addDevice (b4ecef20)", async () => {
+    test("addDevice (403c7e5e)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { description: undefined, registrationCode: undefined };
@@ -114,7 +114,7 @@ describe("Cloud", () => {
         );
     });
 
-    test("addDevice (f0f7ce37)", async () => {
+    test("addDevice (87223c48)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { description: undefined, registrationCode: undefined };
@@ -255,7 +255,7 @@ describe("Cloud", () => {
         );
     });
 
-    test("HistoryDevice (7c918b75)", async () => {
+    test("HistoryDevice (df8d9c34)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -374,7 +374,7 @@ describe("Cloud", () => {
         );
     });
 
-    test("ListDevice (21955bb7)", async () => {
+    test("ListDevice (15f0f426)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -483,7 +483,7 @@ describe("Cloud", () => {
         );
     });
 
-    test("RemoveDevice (7c918b75)", async () => {
+    test("RemoveDevice (df8d9c34)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 

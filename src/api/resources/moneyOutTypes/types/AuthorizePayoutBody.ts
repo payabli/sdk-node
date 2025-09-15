@@ -9,17 +9,10 @@ export interface AuthorizePayoutBody {
     source?: Payabli.Source;
     orderId?: Payabli.OrderId;
     orderDescription?: Payabli.Orderdescription;
-    paymentMethod: Payabli.VendorPaymentMethod;
+    paymentMethod: Payabli.AuthorizePaymentMethod;
     /** Object containing payment details. */
     paymentDetails: AuthorizePayoutBody.PaymentDetails;
-    /**
-     * Object containing vendor data.
-     * <Note>
-     *   When creating a new vendor in a payout authorization, the system first checks `billingData` for the vendor's billing information.
-     *   If `billingData` is empty, it falls back to the `paymentMethod` object information.
-     *   For existing vendors, `paymentMethod` is ignored unless a `storedMethodId` is provided.
-     * </Note>
-     */
+    /** Object containing vendor data. */
     vendorData: AuthorizePayoutBody.VendorData;
     /** Array of bills associated to the transaction */
     invoiceData: AuthorizePayoutBody.InvoiceData.Item[];
@@ -82,7 +75,7 @@ export namespace AuthorizePayoutBody {
 
     export namespace VendorData {
         /**
-         * Object containing vendor's bank information.
+         * Object containing vendor's bank information. This object is deprecated for this endpoint. Use the `paymentMethod` object in payout authorize requests instead.
          */
         export interface BillingData {
             bankName?: Payabli.BankName;

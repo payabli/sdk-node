@@ -47,8 +47,7 @@ import * as Payabli from "../../../../index.js";
  *     }
  */
 export interface AddOrganizationRequest {
-    /** A unique ID you can include to prevent duplicating objects or transactions if a request is sent more than once. This key isn't generated in Payabli, you must generate it yourself. */
-    idempotencyKey?: string;
+    idempotencyKey?: Payabli.IdempotencyKey;
     services?: Payabli.ServiceCost[];
     billingInfo?: Payabli.Instrument;
     contacts?: Payabli.ContactsField | undefined;

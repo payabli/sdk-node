@@ -99,7 +99,7 @@ describe("Statistic", () => {
         );
     });
 
-    test("BasicStats (29c77c82)", async () => {
+    test("BasicStats (8464adb5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -212,7 +212,7 @@ describe("Statistic", () => {
         );
     });
 
-    test("CustomerBasicStats (158b1a10)", async () => {
+    test("CustomerBasicStats (c8fed603)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -325,7 +325,7 @@ describe("Statistic", () => {
         );
     });
 
-    test("SubStats (3a4639a5)", async () => {
+    test("SubStats (bd9b0184)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -472,7 +472,7 @@ describe("Statistic", () => {
         );
     });
 
-    test("VendorBasicStats (301ecca0)", async () => {
+    test("VendorBasicStats (702c93b3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 

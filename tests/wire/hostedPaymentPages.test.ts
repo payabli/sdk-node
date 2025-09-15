@@ -366,7 +366,7 @@ describe("HostedPaymentPages", () => {
         );
     });
 
-    test("loadPage (adc2e804)", async () => {
+    test("loadPage (d64b997)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -424,7 +424,7 @@ describe("HostedPaymentPages", () => {
         });
     });
 
-    test("newPage (b9f65a87)", async () => {
+    test("newPage (ee986fbe)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -473,7 +473,7 @@ describe("HostedPaymentPages", () => {
         );
     });
 
-    test("newPage (530ed97)", async () => {
+    test("newPage (2b2514c6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -522,7 +522,7 @@ describe("HostedPaymentPages", () => {
         );
     });
 
-    test("newPage (851f0993)", async () => {
+    test("newPage (bb1488ca)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -571,7 +571,7 @@ describe("HostedPaymentPages", () => {
         );
     });
 
-    test("newPage (6e1fd8b6)", async () => {
+    test("newPage (27b2f4a4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -645,7 +645,7 @@ describe("HostedPaymentPages", () => {
         });
     });
 
-    test("savePage (d5206faa)", async () => {
+    test("savePage (40f90e05)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -692,7 +692,7 @@ describe("HostedPaymentPages", () => {
         );
     });
 
-    test("savePage (b1f27d02)", async () => {
+    test("savePage (aa7d8bb5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -739,7 +739,7 @@ describe("HostedPaymentPages", () => {
         );
     });
 
-    test("savePage (eeddaa36)", async () => {
+    test("savePage (c58d4c41)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -786,7 +786,7 @@ describe("HostedPaymentPages", () => {
         );
     });
 
-    test("savePage (69da3e31)", async () => {
+    test("savePage (e86e2e2b)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {

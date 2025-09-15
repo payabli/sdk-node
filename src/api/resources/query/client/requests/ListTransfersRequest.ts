@@ -50,6 +50,9 @@ export interface ListTransfersRequest {
      *   - `bankAccountNumber` (ct, nct, ne, eq)
      *   - `bankRoutingNumber` (ct, nct, ne, eq)
      *   - `batchCurrency` (in, nin, ne, eq)
+     *   - `parentOrgName` (ct, nct, ne, eq)
+     *   - `parentOrgId` (ct, nct, ne, eq)
+     *   - `externalPaypointID` (ct, nct)
      */
     parameters?: Record<string, string | undefined>;
     /** The field name to use for sorting results. Use `desc(field_name)` to sort descending by `field_name`, and use `asc(field_name)` to sort ascending by `field_name`. */

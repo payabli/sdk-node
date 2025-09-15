@@ -179,7 +179,7 @@ describe("Customer", () => {
         });
     });
 
-    test("AddCustomer (4190cb10)", async () => {
+    test("AddCustomer (c424a70e)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -258,7 +258,7 @@ describe("Customer", () => {
         );
     });
 
-    test("AddCustomer (886fc638)", async () => {
+    test("AddCustomer (e8874c96)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -337,7 +337,7 @@ describe("Customer", () => {
         );
     });
 
-    test("AddCustomer (220f2dcc)", async () => {
+    test("AddCustomer (79c262da)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -416,7 +416,7 @@ describe("Customer", () => {
         );
     });
 
-    test("AddCustomer (26443e33)", async () => {
+    test("AddCustomer (55491654)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -570,7 +570,7 @@ describe("Customer", () => {
         );
     });
 
-    test("DeleteCustomer (805d71c7)", async () => {
+    test("DeleteCustomer (ff0b856)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -897,7 +897,7 @@ describe("Customer", () => {
         );
     });
 
-    test("GetCustomer (805d71c7)", async () => {
+    test("GetCustomer (ff0b856)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1012,7 +1012,7 @@ describe("Customer", () => {
         );
     });
 
-    test("LinkCustomerTransaction (a38432a5)", async () => {
+    test("LinkCustomerTransaction (c5745484)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1131,7 +1131,7 @@ describe("Customer", () => {
         );
     });
 
-    test("RequestConsent (805d71c7)", async () => {
+    test("RequestConsent (ff0b856)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1194,7 +1194,7 @@ describe("Customer", () => {
         });
     });
 
-    test("UpdateCustomer (cfed4e5b)", async () => {
+    test("UpdateCustomer (c0bb58b9)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1271,7 +1271,7 @@ describe("Customer", () => {
         );
     });
 
-    test("UpdateCustomer (eb54370b)", async () => {
+    test("UpdateCustomer (8937ff59)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1348,7 +1348,7 @@ describe("Customer", () => {
         );
     });
 
-    test("UpdateCustomer (84914af7)", async () => {
+    test("UpdateCustomer (2d2e9f85)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1425,7 +1425,7 @@ describe("Customer", () => {
         );
     });
 
-    test("UpdateCustomer (f923dc9a)", async () => {
+    test("UpdateCustomer (72bb9b7f)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {

@@ -6,7 +6,7 @@ import * as Payabli from "../../../index.js";
 
 export interface QueryTransferResponse {
     /** Summary information about the transfers. */
-    Summary?: Payabli.QueryTransferSummary;
+    Summary: Payabli.QueryTransferSummary;
     /** List of transfer transaction records. */
-    Records?: Payabli.TransactionQueryRecords[];
+    Records: Payabli.TransactionQueryRecords[];
 }

@@ -14,10 +14,14 @@ import * as Payabli from "../index.js";
  *         batchRecords: 1,
  *         transferIdentifier: "bbcbfed7-e535-45fe-8d62-000000",
  *         batchId: 111430,
- *         paypointEntryName: "example_entry",
- *         paypointLegalName: "Example Company LLC",
- *         paypointDbaName: "Example Company",
+ *         paypointEntryName: "47ae3de37",
+ *         paypointLegalName: "Gruzya Outdoor Outfitters LLC",
+ *         paypointDbaName: "Gruzya Outdoor Outfitters",
  *         paypointLogo: "https://example.com/logo.png",
+ *         parentOrgName: "Pilgrim Planner",
+ *         parentOrgId: 12345,
+ *         parentOrgLogo: "https://example.com/parent-logo.png",
+ *         externalPaypointId: "ext-12345",
  *         bankAccount: {
  *             accountNumber: "****1234",
  *             routingNumber: "123456789"
@@ -25,15 +29,15 @@ import * as Payabli from "../index.js";
  *         transferDate: "2024-11-17T08:20:07.288+00:00",
  *         processor: "gp",
  *         transferStatus: 2,
- *         grossAmount: 0,
- *         chargeBackAmount: 0,
+ *         grossAmount: 1029,
+ *         chargeBackAmount: 25,
  *         returnedAmount: 0,
  *         holdAmount: 0,
  *         releasedAmount: 0,
  *         billingFeesAmount: 0,
  *         thirdPartyPaidAmount: 0,
  *         adjustmentsAmount: 0,
- *         netTransferAmount: 2,
+ *         netTransferAmount: 1004,
  *         eventsData: [{
  *                 description: "Transfer Created",
  *                 eventTime: "2024-11-16T08:15:33.4364067Z",
@@ -64,6 +68,14 @@ export interface Transfer {
     paypointDbaName?: Payabli.Dbaname;
     /** The paypoint logo URL. */
     paypointLogo?: string;
+    /** The parent organization name. */
+    parentOrgName?: string;
+    /** The parent organization ID. */
+    parentOrgId?: number;
+    /** The parent organization logo URL. */
+    parentOrgLogo?: string;
+    /** The external paypoint ID. */
+    externalPaypointId?: string;
     /** Bank account information for the transfer. */
     bankAccount?: Payabli.TransferBankAccount;
     /** Date when the transfer occurred. */

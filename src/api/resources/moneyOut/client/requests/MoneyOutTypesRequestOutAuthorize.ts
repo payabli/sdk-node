@@ -77,7 +77,12 @@ import * as Payabli from "../../../../index.js";
  *         body: {
  *             entryPoint: "47ced57b",
  *             paymentMethod: {
- *                 method: "ach"
+ *                 method: "ach",
+ *                 achHolder: "John Doe",
+ *                 achRouting: "011401533",
+ *                 achAccount: "123456789",
+ *                 achAccountType: "checking",
+ *                 achHolderType: "business"
  *             },
  *             paymentDetails: {
  *                 totalAmount: 978.32
@@ -101,13 +106,6 @@ import * as Payabli from "../../../../index.js";
  *                         contactEmail: "Mandy65@heritagepro.com",
  *                         contactPhone: "996-325-5420 x31028"
  *                     }],
- *                 billingData: {
- *                     bankName: "Chase",
- *                     routingAccount: "011401533",
- *                     accountNumber: "1237658922",
- *                     typeAccount: "Savings",
- *                     bankAccountHolderName: "Payabli"
- *                 },
  *                 vendorStatus: 1,
  *                 remitAddress1: "727 Terrell Streets",
  *                 remitAddress2: "Apt. 773",

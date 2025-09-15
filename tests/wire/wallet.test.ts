@@ -62,7 +62,7 @@ describe("Wallet", () => {
         });
     });
 
-    test("ConfigureApplePayOrganization (b6b09d6b)", async () => {
+    test("ConfigureApplePayOrganization (6101119d)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { cascade: undefined, isEnabled: undefined, orgId: undefined };
@@ -89,7 +89,7 @@ describe("Wallet", () => {
         );
     });
 
-    test("ConfigureApplePayOrganization (89e9a7db)", async () => {
+    test("ConfigureApplePayOrganization (20a8bc0d)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { cascade: undefined, isEnabled: undefined, orgId: undefined };
@@ -116,7 +116,7 @@ describe("Wallet", () => {
         );
     });
 
-    test("ConfigureApplePayOrganization (de170387)", async () => {
+    test("ConfigureApplePayOrganization (4560a2f9)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { cascade: undefined, isEnabled: undefined, orgId: undefined };
@@ -143,7 +143,7 @@ describe("Wallet", () => {
         );
     });
 
-    test("ConfigureApplePayOrganization (448de3aa)", async () => {
+    test("ConfigureApplePayOrganization (5e5d1b33)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { cascade: undefined, isEnabled: undefined, orgId: undefined };
@@ -239,7 +239,7 @@ describe("Wallet", () => {
         });
     });
 
-    test("ConfigureApplePayPaypoint (26278ba4)", async () => {
+    test("ConfigureApplePayPaypoint (b5c73d8a)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entry: undefined, isEnabled: undefined };
@@ -265,7 +265,7 @@ describe("Wallet", () => {
         );
     });
 
-    test("ConfigureApplePayPaypoint (8a6f8cc)", async () => {
+    test("ConfigureApplePayPaypoint (611fc1e2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entry: undefined, isEnabled: undefined };
@@ -291,7 +291,7 @@ describe("Wallet", () => {
         );
     });
 
-    test("ConfigureApplePayPaypoint (c13a4280)", async () => {
+    test("ConfigureApplePayPaypoint (4d0e1f96)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entry: undefined, isEnabled: undefined };
@@ -317,7 +317,7 @@ describe("Wallet", () => {
         );
     });
 
-    test("ConfigureApplePayPaypoint (17b5ae17)", async () => {
+    test("ConfigureApplePayPaypoint (46bb46f0)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entry: undefined, isEnabled: undefined };
@@ -400,7 +400,7 @@ describe("Wallet", () => {
         });
     });
 
-    test("ConfigureGooglePayOrganization (b6b09d6b)", async () => {
+    test("ConfigureGooglePayOrganization (6101119d)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { cascade: undefined, isEnabled: undefined, orgId: undefined };
@@ -427,7 +427,7 @@ describe("Wallet", () => {
         );
     });
 
-    test("ConfigureGooglePayOrganization (89e9a7db)", async () => {
+    test("ConfigureGooglePayOrganization (20a8bc0d)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { cascade: undefined, isEnabled: undefined, orgId: undefined };
@@ -454,7 +454,7 @@ describe("Wallet", () => {
         );
     });
 
-    test("ConfigureGooglePayOrganization (de170387)", async () => {
+    test("ConfigureGooglePayOrganization (4560a2f9)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { cascade: undefined, isEnabled: undefined, orgId: undefined };
@@ -481,7 +481,7 @@ describe("Wallet", () => {
         );
     });
 
-    test("ConfigureGooglePayOrganization (448de3aa)", async () => {
+    test("ConfigureGooglePayOrganization (5e5d1b33)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { cascade: undefined, isEnabled: undefined, orgId: undefined };
@@ -558,7 +558,7 @@ describe("Wallet", () => {
         });
     });
 
-    test("ConfigureGooglePayPaypoint (26278ba4)", async () => {
+    test("ConfigureGooglePayPaypoint (b5c73d8a)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entry: undefined, isEnabled: undefined };
@@ -584,7 +584,7 @@ describe("Wallet", () => {
         );
     });
 
-    test("ConfigureGooglePayPaypoint (8a6f8cc)", async () => {
+    test("ConfigureGooglePayPaypoint (611fc1e2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entry: undefined, isEnabled: undefined };
@@ -610,7 +610,7 @@ describe("Wallet", () => {
         );
     });
 
-    test("ConfigureGooglePayPaypoint (c13a4280)", async () => {
+    test("ConfigureGooglePayPaypoint (4d0e1f96)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entry: undefined, isEnabled: undefined };
@@ -636,7 +636,7 @@ describe("Wallet", () => {
         );
     });
 
-    test("ConfigureGooglePayPaypoint (17b5ae17)", async () => {
+    test("ConfigureGooglePayPaypoint (46bb46f0)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entry: undefined, isEnabled: undefined };

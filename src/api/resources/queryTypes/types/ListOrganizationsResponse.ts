@@ -5,6 +5,6 @@
 import * as Payabli from "../../../index.js";
 
 export interface ListOrganizationsResponse {
-    Records?: Payabli.OrganizationQueryRecord[];
-    Summary?: Payabli.QuerySummary;
+    Records: Payabli.OrganizationQueryRecord[];
+    Summary: Payabli.QuerySummary;
 }

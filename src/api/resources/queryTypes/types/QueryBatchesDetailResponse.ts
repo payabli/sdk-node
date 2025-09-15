@@ -19,7 +19,7 @@ export namespace QueryBatchesDetailResponse {
         export interface Item {
             Id: number;
             Method: string;
-            WalletType?: string;
+            WalletType: string | null;
             SettledAmount: number;
             Type: string;
             BatchNumber: Payabli.BatchNumber;
@@ -34,10 +34,10 @@ export namespace QueryBatchesDetailResponse {
             NetAmount?: Payabli.Netamountnullable;
             Operation: Payabli.Operation;
             Category: Payabli.Category;
-            Source?: Payabli.Source;
+            Source: Payabli.Source | null;
             Status: number;
             TransactionTime: Payabli.TransactionTime;
-            Customer?: Payabli.QueryTransactionPayorData;
+            Customer: Payabli.QueryTransactionPayorData | null;
             SettlementDate: string;
             PaymentSettlementStatus: number;
             BatchStatus: number;
@@ -46,12 +46,12 @@ export namespace QueryBatchesDetailResponse {
             MaskedAccount: Payabli.Maskedaccount;
             CreatedAt: Payabli.CreatedAt;
             PaypointLegalname: Payabli.Legalname;
-            ResponseData?: Payabli.QueryResponseData;
+            ResponseData: Payabli.QueryResponseData | null;
             PaypointDbaname: Payabli.Dbaname;
             ParentOrgName: Payabli.OrgParentName;
             ParentOrgId: number;
             PaypointEntryname: Payabli.Entrypointfield;
-            DeviceId?: Payabli.Device;
+            DeviceId: Payabli.Device | null;
             RetrievalId: Payabli.RetrievalId;
             ChargebackId: Payabli.ChargebackId;
             AchHolderType: Payabli.AchHolderType;
@@ -68,7 +68,7 @@ export namespace QueryBatchesDetailResponse {
             splitFundingInstructions?: Payabli.SplitFunding;
             TotalAmount: number;
             CfeeTransactions: Payabli.QueryCFeeTransaction[];
-            invoiceData?: Payabli.BillData;
+            invoiceData: Payabli.BillData | null;
             TransactionEvents: Payabli.QueryTransactionEvents[];
             externalPaypointID: Payabli.ExternalPaypointId;
             isHold: number;
@@ -85,6 +85,6 @@ export namespace QueryBatchesDetailResponse {
         totalNetAmount: number;
         totalPages: Payabli.Totalpages;
         pageSize: Payabli.Pagesize;
-        pageidentifier?: Payabli.PageIdentifier;
+        pageidentifier: Payabli.PageIdentifier | null;
     }
 }

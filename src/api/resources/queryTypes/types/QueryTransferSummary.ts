@@ -6,39 +6,44 @@ import * as Payabli from "../../../index.js";
 
 export interface QueryTransferSummary {
     /** ACH returns deducted from the batch. */
-    achReturns?: number;
+    achReturns: number | null;
     /** Corrections applied to Billing & Fees charges. */
-    adjustments?: number;
+    adjustments: number | null;
     /** Charges applied for transactions and services. */
-    billingFees?: number;
+    billingFees: number | null;
     /** Chargebacks deducted from batch. */
-    chargebacks?: number;
+    chargebacks: number | null;
     /** The gross batch amount before deductions. */
-    grossTransferAmount?: number;
+    grossTransferAmount: number | null;
     /** Previously held funds that have been released after a risk review. */
-    releaseAmount?: number;
+    releaseAmount: number | null;
     /** Payments captured in the batch cycle that are deposited separately. For example,  checks or cash payments recorded in the batch but not deposited via Payabli,  or card brands making a direct transfer in certain situations. */
-    thirdPartyPaid?: number;
+    thirdPartyPaid: number | null;
     /** The gross batch amount minus service fees. */
-    totalNetAmountTransfer?: number;
+    totalNetAmountTransfer: number | null;
     /** Service fees are any pass-through fees charged to the customer at the time of payment.  These aren't transferred to the merchant when the batch is transferred and funded. */
-    serviceFees?: number;
+    serviceFees: number | null;
+    /**
+     * The net batch amount is the gross batch amount minus any returns, refunds,
+     * billing and fees items, chargebacks, adjustments, and third party payments.
+     */
+    netBatchAmount: number | null;
     /** The transfer amount is the net batch amount plus or minus any returns, refunds,  billing and fees items, chargebacks, adjustments, and third party payments.  This is the amount from the batch that is transferred to the merchant bank account. */
-    transferAmount?: number;
+    transferAmount: number | null;
     /** Refunds deducted from batch. */
-    refunds?: number;
+    refunds: number | null;
     /** Funds being held for fraud or risk concerns. */
-    heldAmount?: number;
+    heldAmount: number | null;
     /** Number of records in the response. */
-    totalRecords?: Payabli.Totalrecords;
+    totalRecords: Payabli.Totalrecords | null;
     /** The total sum of the transfers in the response. */
-    totalAmount?: number;
+    totalAmount: number | null;
     /** The total sum of the transfers in the response. */
-    totalNetAmount?: number;
+    totalNetAmount: number | null;
     /** Number of pages in the response. */
-    totalPages?: Payabli.Totalpages;
+    totalPages: Payabli.Totalpages | null;
     /** Number of records per page. */
-    pageSize?: Payabli.Pagesize;
+    pageSize: Payabli.Pagesize | null;
     /** Auxiliary validation used internally by payment pages and components. */
-    pageidentifier?: Payabli.PageIdentifier;
+    pageidentifier: Payabli.PageIdentifier | null;
 }

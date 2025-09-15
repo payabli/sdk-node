@@ -213,7 +213,7 @@ describe("PaymentLink", () => {
         });
     });
 
-    test("AddPayLinkFromInvoice (264aebe3)", async () => {
+    test("AddPayLinkFromInvoice (bda1507e)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -262,7 +262,7 @@ describe("PaymentLink", () => {
         );
     });
 
-    test("AddPayLinkFromInvoice (b80cbaf3)", async () => {
+    test("AddPayLinkFromInvoice (19bdc786)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -311,7 +311,7 @@ describe("PaymentLink", () => {
         );
     });
 
-    test("AddPayLinkFromInvoice (c52e093f)", async () => {
+    test("AddPayLinkFromInvoice (3821ae8a)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -360,7 +360,7 @@ describe("PaymentLink", () => {
         );
     });
 
-    test("AddPayLinkFromInvoice (fe316372)", async () => {
+    test("AddPayLinkFromInvoice (26607de4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -566,7 +566,7 @@ describe("PaymentLink", () => {
         });
     });
 
-    test("AddPayLinkFromBill (53986355)", async () => {
+    test("AddPayLinkFromBill (1b8182f4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -615,7 +615,7 @@ describe("PaymentLink", () => {
         );
     });
 
-    test("AddPayLinkFromBill (5f657a45)", async () => {
+    test("AddPayLinkFromBill (524bce1c)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -664,7 +664,7 @@ describe("PaymentLink", () => {
         );
     });
 
-    test("AddPayLinkFromBill (36e52711)", async () => {
+    test("AddPayLinkFromBill (1c451410)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -713,7 +713,7 @@ describe("PaymentLink", () => {
         );
     });
 
-    test("AddPayLinkFromBill (2afd3548)", async () => {
+    test("AddPayLinkFromBill (a3222f36)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -855,7 +855,7 @@ describe("PaymentLink", () => {
         );
     });
 
-    test("deletePayLinkFromId (f32b220c)", async () => {
+    test("deletePayLinkFromId (ac772f1f)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1110,7 +1110,7 @@ describe("PaymentLink", () => {
         );
     });
 
-    test("getPayLinkFromId (66f83448)", async () => {
+    test("getPayLinkFromId (425c361b)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1196,7 +1196,7 @@ describe("PaymentLink", () => {
         });
     });
 
-    test("pushPayLinkFromId (4f6d1f85)", async () => {
+    test("pushPayLinkFromId (701c522c)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { channel: "email" };
@@ -1223,7 +1223,7 @@ describe("PaymentLink", () => {
         );
     });
 
-    test("pushPayLinkFromId (7f58fd35)", async () => {
+    test("pushPayLinkFromId (b33c1234)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { channel: "email" };
@@ -1250,7 +1250,7 @@ describe("PaymentLink", () => {
         );
     });
 
-    test("pushPayLinkFromId (2a00cdc1)", async () => {
+    test("pushPayLinkFromId (1517dca8)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { channel: "email" };
@@ -1277,7 +1277,7 @@ describe("PaymentLink", () => {
         );
     });
 
-    test("pushPayLinkFromId (6ff10eb8)", async () => {
+    test("pushPayLinkFromId (d2f50b9e)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { channel: "email" };
@@ -1397,7 +1397,7 @@ describe("PaymentLink", () => {
         );
     });
 
-    test("refreshPayLinkFromId (f32b220c)", async () => {
+    test("refreshPayLinkFromId (ac772f1f)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1514,7 +1514,7 @@ describe("PaymentLink", () => {
         );
     });
 
-    test("sendPayLinkFromId (f32b220c)", async () => {
+    test("sendPayLinkFromId (ac772f1f)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1582,7 +1582,7 @@ describe("PaymentLink", () => {
         });
     });
 
-    test("updatePayLinkFromId (8f31ba37)", async () => {
+    test("updatePayLinkFromId (77dc8869)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1625,7 +1625,7 @@ describe("PaymentLink", () => {
         );
     });
 
-    test("updatePayLinkFromId (a56a6087)", async () => {
+    test("updatePayLinkFromId (a024e049)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1668,7 +1668,7 @@ describe("PaymentLink", () => {
         );
     });
 
-    test("updatePayLinkFromId (2da27403)", async () => {
+    test("updatePayLinkFromId (996207f5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1711,7 +1711,7 @@ describe("PaymentLink", () => {
         );
     });
 
-    test("updatePayLinkFromId (b803ca26)", async () => {
+    test("updatePayLinkFromId (1d63118f)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1914,7 +1914,7 @@ describe("PaymentLink", () => {
         });
     });
 
-    test("AddPayLinkFromBillLotNumber (410ad353)", async () => {
+    test("AddPayLinkFromBillLotNumber (bc5c2b4e)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1965,7 +1965,7 @@ describe("PaymentLink", () => {
         );
     });
 
-    test("AddPayLinkFromBillLotNumber (a8b0ba3)", async () => {
+    test("AddPayLinkFromBillLotNumber (d9f8e9d6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -2016,7 +2016,7 @@ describe("PaymentLink", () => {
         );
     });
 
-    test("AddPayLinkFromBillLotNumber (a27c006f)", async () => {
+    test("AddPayLinkFromBillLotNumber (f419381a)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -2067,7 +2067,7 @@ describe("PaymentLink", () => {
         );
     });
 
-    test("AddPayLinkFromBillLotNumber (5ecb0ca2)", async () => {
+    test("AddPayLinkFromBillLotNumber (626c9914)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {

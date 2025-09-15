@@ -120,7 +120,7 @@ describe("Vendor", () => {
         });
     });
 
-    test("AddVendor (aadfb317)", async () => {
+    test("AddVendor (1bbaf695)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -209,7 +209,7 @@ describe("Vendor", () => {
         );
     });
 
-    test("AddVendor (34f871e7)", async () => {
+    test("AddVendor (efc60b85)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -298,7 +298,7 @@ describe("Vendor", () => {
         );
     });
 
-    test("AddVendor (b3fcb163)", async () => {
+    test("AddVendor (bf5e651)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -387,7 +387,7 @@ describe("Vendor", () => {
         );
     });
 
-    test("AddVendor (91fc4d06)", async () => {
+    test("AddVendor (76dbbdb)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -542,7 +542,7 @@ describe("Vendor", () => {
         );
     });
 
-    test("DeleteVendor (15c21d5d)", async () => {
+    test("DeleteVendor (a6282adc)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -585,7 +585,7 @@ describe("Vendor", () => {
         });
     });
 
-    test("EditVendor (efb0871d)", async () => {
+    test("EditVendor (6cd8eec7)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -674,7 +674,7 @@ describe("Vendor", () => {
         );
     });
 
-    test("EditVendor (3960918d)", async () => {
+    test("EditVendor (a488a4d7)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -763,7 +763,7 @@ describe("Vendor", () => {
         );
     });
 
-    test("EditVendor (bf5a0879)", async () => {
+    test("EditVendor (7b2e84d3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -852,7 +852,7 @@ describe("Vendor", () => {
         );
     });
 
-    test("EditVendor (698257a0)", async () => {
+    test("EditVendor (abb405e9)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1166,7 +1166,7 @@ describe("Vendor", () => {
         );
     });
 
-    test("GetVendor (15c21d5d)", async () => {
+    test("GetVendor (a6282adc)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 

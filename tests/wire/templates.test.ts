@@ -30,7 +30,7 @@ describe("Templates", () => {
         });
     });
 
-    test("AddTemplate (1f48976e)", async () => {
+    test("AddTemplate (f7b7828c)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -67,7 +67,7 @@ describe("Templates", () => {
         );
     });
 
-    test("AddTemplate (130252f6)", async () => {
+    test("AddTemplate (9d6d7894)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -104,7 +104,7 @@ describe("Templates", () => {
         );
     });
 
-    test("AddTemplate (bfa4b3a)", async () => {
+    test("AddTemplate (ff062888)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -141,7 +141,7 @@ describe("Templates", () => {
         );
     });
 
-    test("AddTemplate (c6db90b5)", async () => {
+    test("AddTemplate (7e4ddabe)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -244,7 +244,7 @@ describe("Templates", () => {
         );
     });
 
-    test("DeleteTemplate (ee2b5a31)", async () => {
+    test("DeleteTemplate (da2f7650)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -348,7 +348,7 @@ describe("Templates", () => {
         );
     });
 
-    test("getlinkTemplate (43f2daf0)", async () => {
+    test("getlinkTemplate (a45f9023)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -541,7 +541,7 @@ describe("Templates", () => {
         );
     });
 
-    test("getTemplate (ee2b5a31)", async () => {
+    test("getTemplate (da2f7650)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -682,7 +682,7 @@ describe("Templates", () => {
         );
     });
 
-    test("ListTemplates (7ef83997)", async () => {
+    test("ListTemplates (d335cac6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -723,7 +723,7 @@ describe("Templates", () => {
         });
     });
 
-    test("UpdateTemplate (c6fa30d4)", async () => {
+    test("UpdateTemplate (e6668dae)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -760,7 +760,7 @@ describe("Templates", () => {
         );
     });
 
-    test("UpdateTemplate (a377e6fc)", async () => {
+    test("UpdateTemplate (7c678936)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -797,7 +797,7 @@ describe("Templates", () => {
         );
     });
 
-    test("UpdateTemplate (4f6ba7f0)", async () => {
+    test("UpdateTemplate (bea5f47a)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -834,7 +834,7 @@ describe("Templates", () => {
         );
     });
 
-    test("UpdateTemplate (861e08c7)", async () => {
+    test("UpdateTemplate (6829e834)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {

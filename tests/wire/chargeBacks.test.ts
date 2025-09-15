@@ -32,7 +32,7 @@ describe("ChargeBacks", () => {
         });
     });
 
-    test("AddResponse (33319e38)", async () => {
+    test("AddResponse (d2a49e2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -65,7 +65,7 @@ describe("ChargeBacks", () => {
         );
     });
 
-    test("AddResponse (4122aae0)", async () => {
+    test("AddResponse (1ca30efa)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -98,7 +98,7 @@ describe("ChargeBacks", () => {
         );
     });
 
-    test("AddResponse (2eeffa74)", async () => {
+    test("AddResponse (a9a01f4e)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -131,7 +131,7 @@ describe("ChargeBacks", () => {
         );
     });
 
-    test("AddResponse (d57f056b)", async () => {
+    test("AddResponse (d577dc58)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -724,7 +724,7 @@ describe("ChargeBacks", () => {
         );
     });
 
-    test("GetChargeback (29c5d19)", async () => {
+    test("GetChargeback (b90fe738)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 

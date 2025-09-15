@@ -10,7 +10,7 @@ export class CaptureError extends errors.PayabliError {
     constructor(body: Payabli.PayabliApiResponseError400, rawResponse?: core.RawResponse) {
         super({
             message: "CaptureError",
-            statusCode: 423,
+            statusCode: 400,
             body: body,
             rawResponse: rawResponse,
         });

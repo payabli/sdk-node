@@ -97,7 +97,7 @@ describe("Invoice", () => {
         });
     });
 
-    test("AddInvoice (d536adeb)", async () => {
+    test("AddInvoice (fc05d6ce)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { customerData: undefined, invoiceData: undefined, scheduledOptions: undefined };
@@ -126,7 +126,7 @@ describe("Invoice", () => {
         );
     });
 
-    test("AddInvoice (3bd4d85b)", async () => {
+    test("AddInvoice (23a47556)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { customerData: undefined, invoiceData: undefined, scheduledOptions: undefined };
@@ -155,7 +155,7 @@ describe("Invoice", () => {
         );
     });
 
-    test("AddInvoice (1858e407)", async () => {
+    test("AddInvoice (b710939a)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { customerData: undefined, invoiceData: undefined, scheduledOptions: undefined };
@@ -184,7 +184,7 @@ describe("Invoice", () => {
         );
     });
 
-    test("AddInvoice (c7ce512a)", async () => {
+    test("AddInvoice (5bc69094)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { customerData: undefined, invoiceData: undefined, scheduledOptions: undefined };
@@ -312,7 +312,7 @@ describe("Invoice", () => {
         );
     });
 
-    test("deleteAttachedFromInvoice (8ab8e2bc)", async () => {
+    test("deleteAttachedFromInvoice (7197caaf)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -415,7 +415,7 @@ describe("Invoice", () => {
         );
     });
 
-    test("DeleteInvoice (b9019dbc)", async () => {
+    test("DeleteInvoice (f6c8b3af)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -495,7 +495,7 @@ describe("Invoice", () => {
         });
     });
 
-    test("EditInvoice (4b0e92f8)", async () => {
+    test("EditInvoice (9dd945f7)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { customerData: undefined, invoiceData: undefined, scheduledOptions: undefined };
@@ -524,7 +524,7 @@ describe("Invoice", () => {
         );
     });
 
-    test("EditInvoice (14a1caa0)", async () => {
+    test("EditInvoice (e49cc847)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { customerData: undefined, invoiceData: undefined, scheduledOptions: undefined };
@@ -553,7 +553,7 @@ describe("Invoice", () => {
         );
     });
 
-    test("EditInvoice (b5971034)", async () => {
+    test("EditInvoice (6697d6c3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { customerData: undefined, invoiceData: undefined, scheduledOptions: undefined };
@@ -582,7 +582,7 @@ describe("Invoice", () => {
         );
     });
 
-    test("EditInvoice (862fe0ab)", async () => {
+    test("EditInvoice (310d1eb9)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { customerData: undefined, invoiceData: undefined, scheduledOptions: undefined };
@@ -613,7 +613,7 @@ describe("Invoice", () => {
         );
     });
 
-    test("GetAttachedFileFromInvoice (f0ee6c89)", async () => {
+    test("GetAttachedFileFromInvoice (a006a918)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -701,7 +701,7 @@ describe("Invoice", () => {
         );
     });
 
-    test("GetAttachedFileFromInvoice (8ab8e2bc)", async () => {
+    test("GetAttachedFileFromInvoice (7197caaf)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -978,7 +978,7 @@ describe("Invoice", () => {
         );
     });
 
-    test("GetInvoice (b9019dbc)", async () => {
+    test("GetInvoice (f6c8b3af)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1083,7 +1083,7 @@ describe("Invoice", () => {
         );
     });
 
-    test("GetInvoiceNumber (21955bb7)", async () => {
+    test("GetInvoiceNumber (15f0f426)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1353,7 +1353,7 @@ describe("Invoice", () => {
         );
     });
 
-    test("ListInvoices (21955bb7)", async () => {
+    test("ListInvoices (15f0f426)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1607,7 +1607,7 @@ describe("Invoice", () => {
         );
     });
 
-    test("ListInvoicesOrg (7ef83997)", async () => {
+    test("ListInvoicesOrg (d335cac6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1702,7 +1702,7 @@ describe("Invoice", () => {
         );
     });
 
-    test("SendInvoice (b9019dbc)", async () => {
+    test("SendInvoice (f6c8b3af)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1805,7 +1805,7 @@ describe("Invoice", () => {
         );
     });
 
-    test("GetInvoicePDF (b9019dbc)", async () => {
+    test("GetInvoicePDF (f6c8b3af)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 

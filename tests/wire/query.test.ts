@@ -16,7 +16,7 @@ describe("Query", () => {
                 {
                     Id: 25048,
                     Method: "ach",
-                    WalletType: undefined,
+                    WalletType: null,
                     SettledAmount: 0.5,
                     Type: "credit",
                     BatchNumber: "batch-100-20-2024",
@@ -99,7 +99,7 @@ describe("Query", () => {
                     splitFundingInstructions: [],
                     TotalAmount: 2,
                     CfeeTransactions: [],
-                    invoiceData: undefined,
+                    invoiceData: null,
                     TransactionEvents: [
                         { EventTime: "2024-11-19T15:57:40Z", TransEvent: "Created" },
                         {
@@ -161,7 +161,7 @@ describe("Query", () => {
                 totalNetAmount: 61645.74,
                 totalPages: 21872,
                 pageSize: 0,
-                pageidentifier: undefined,
+                pageidentifier: null,
             },
         };
         server
@@ -182,7 +182,7 @@ describe("Query", () => {
                 {
                     Id: 25048,
                     Method: "ach",
-                    WalletType: undefined,
+                    WalletType: null,
                     SettledAmount: 0.5,
                     Type: "credit",
                     BatchNumber: "batch-100-20-2024",
@@ -270,7 +270,7 @@ describe("Query", () => {
                     splitFundingInstructions: [],
                     TotalAmount: 2,
                     CfeeTransactions: [],
-                    invoiceData: undefined,
+                    invoiceData: null,
                     TransactionEvents: [
                         {
                             EventTime: "2024-11-19T15:57:40Z",
@@ -346,7 +346,7 @@ describe("Query", () => {
                 totalNetAmount: 61645.74,
                 totalPages: 21872,
                 pageSize: 0,
-                pageidentifier: undefined,
+                pageidentifier: null,
             },
         });
     });
@@ -417,7 +417,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListBatchDetails (57f3d058)", async () => {
+    test("ListBatchDetails (c3c4478b)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -801,7 +801,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListBatchDetailsOrg (7ef83997)", async () => {
+    test("ListBatchDetailsOrg (d335cac6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -875,9 +875,9 @@ describe("Query", () => {
                     BatchType: 0,
                     Method: "combined",
                     ExpectedDepositDate: "2025-08-26T00:00:00Z",
-                    DepositDate: undefined,
+                    DepositDate: null,
                     TransferDate: "2025-08-26T00:00:00Z",
-                    Transfer: undefined,
+                    Transfer: null,
                 },
                 {
                     IdBatch: 1043,
@@ -907,9 +907,9 @@ describe("Query", () => {
                     BatchType: 0,
                     Method: "card",
                     ExpectedDepositDate: "2023-04-19T00:00:00Z",
-                    DepositDate: undefined,
+                    DepositDate: null,
                     TransferDate: "2025-09-02T00:00:00Z",
-                    Transfer: undefined,
+                    Transfer: null,
                 },
                 {
                     IdBatch: 1012,
@@ -954,7 +954,7 @@ describe("Query", () => {
                     BatchType: 0,
                     Method: "card",
                     ExpectedDepositDate: "2023-04-15T00:00:00Z",
-                    DepositDate: undefined,
+                    DepositDate: null,
                     TransferDate: "2025-09-02T00:00:00Z",
                     Transfer: {
                         TransferId: 5998,
@@ -1034,9 +1034,9 @@ describe("Query", () => {
                     BatchType: 0,
                     Method: "combined",
                     ExpectedDepositDate: "2025-08-26T00:00:00Z",
-                    DepositDate: undefined,
+                    DepositDate: null,
                     TransferDate: "2025-08-26T00:00:00Z",
-                    Transfer: undefined,
+                    Transfer: null,
                 },
                 {
                     IdBatch: 1043,
@@ -1066,9 +1066,9 @@ describe("Query", () => {
                     BatchType: 0,
                     Method: "card",
                     ExpectedDepositDate: "2023-04-19T00:00:00Z",
-                    DepositDate: undefined,
+                    DepositDate: null,
                     TransferDate: "2025-09-02T00:00:00Z",
-                    Transfer: undefined,
+                    Transfer: null,
                 },
                 {
                     IdBatch: 1012,
@@ -1113,7 +1113,7 @@ describe("Query", () => {
                     BatchType: 0,
                     Method: "card",
                     ExpectedDepositDate: "2023-04-15T00:00:00Z",
-                    DepositDate: undefined,
+                    DepositDate: null,
                     TransferDate: "2025-09-02T00:00:00Z",
                     Transfer: {
                         TransferId: 5998,
@@ -1202,7 +1202,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListBatches (57f3d058)", async () => {
+    test("ListBatches (c3c4478b)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1276,9 +1276,9 @@ describe("Query", () => {
                     BatchType: 0,
                     Method: "combined",
                     ExpectedDepositDate: "2025-08-26T00:00:00Z",
-                    DepositDate: undefined,
+                    DepositDate: null,
                     TransferDate: "2025-08-26T00:00:00Z",
-                    Transfer: undefined,
+                    Transfer: null,
                 },
                 {
                     IdBatch: 1043,
@@ -1308,9 +1308,9 @@ describe("Query", () => {
                     BatchType: 0,
                     Method: "card",
                     ExpectedDepositDate: "2023-04-19T00:00:00Z",
-                    DepositDate: undefined,
+                    DepositDate: null,
                     TransferDate: "2025-09-02T00:00:00Z",
-                    Transfer: undefined,
+                    Transfer: null,
                 },
                 {
                     IdBatch: 1012,
@@ -1355,7 +1355,7 @@ describe("Query", () => {
                     BatchType: 0,
                     Method: "card",
                     ExpectedDepositDate: "2023-04-15T00:00:00Z",
-                    DepositDate: undefined,
+                    DepositDate: null,
                     TransferDate: "2025-09-02T00:00:00Z",
                     Transfer: {
                         TransferId: 5998,
@@ -1435,9 +1435,9 @@ describe("Query", () => {
                     BatchType: 0,
                     Method: "combined",
                     ExpectedDepositDate: "2025-08-26T00:00:00Z",
-                    DepositDate: undefined,
+                    DepositDate: null,
                     TransferDate: "2025-08-26T00:00:00Z",
-                    Transfer: undefined,
+                    Transfer: null,
                 },
                 {
                     IdBatch: 1043,
@@ -1467,9 +1467,9 @@ describe("Query", () => {
                     BatchType: 0,
                     Method: "card",
                     ExpectedDepositDate: "2023-04-19T00:00:00Z",
-                    DepositDate: undefined,
+                    DepositDate: null,
                     TransferDate: "2025-09-02T00:00:00Z",
-                    Transfer: undefined,
+                    Transfer: null,
                 },
                 {
                     IdBatch: 1012,
@@ -1514,7 +1514,7 @@ describe("Query", () => {
                     BatchType: 0,
                     Method: "card",
                     ExpectedDepositDate: "2023-04-15T00:00:00Z",
-                    DepositDate: undefined,
+                    DepositDate: null,
                     TransferDate: "2025-09-02T00:00:00Z",
                     Transfer: {
                         TransferId: 5998,
@@ -1603,7 +1603,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListBatchesOrg (7ef83997)", async () => {
+    test("ListBatchesOrg (d335cac6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1822,7 +1822,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListBatchesOut (57f3d058)", async () => {
+    test("ListBatchesOut (c3c4478b)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2041,7 +2041,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListBatchesOutOrg (7ef83997)", async () => {
+    test("ListBatchesOutOrg (d335cac6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2443,7 +2443,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListChargebacks (57f3d058)", async () => {
+    test("ListChargebacks (c3c4478b)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2652,7 +2652,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListChargebacksOrg (7ef83997)", async () => {
+    test("ListChargebacksOrg (d335cac6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2863,7 +2863,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListCustomers (57f3d058)", async () => {
+    test("ListCustomers (c3c4478b)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3074,7 +3074,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListCustomersOrg (7ef83997)", async () => {
+    test("ListCustomersOrg (d335cac6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3219,7 +3219,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListNotificationReports (57f3d058)", async () => {
+    test("ListNotificationReports (c3c4478b)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3364,7 +3364,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListNotificationReportsOrg (7ef83997)", async () => {
+    test("ListNotificationReportsOrg (d335cac6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3551,7 +3551,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListNotifications (57f3d058)", async () => {
+    test("ListNotifications (c3c4478b)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3738,7 +3738,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListNotificationsOrg (7ef83997)", async () => {
+    test("ListNotificationsOrg (d335cac6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3928,7 +3928,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListOrganizations (7ef83997)", async () => {
+    test("ListOrganizations (d335cac6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4161,7 +4161,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListPayout (57f3d058)", async () => {
+    test("ListPayout (c3c4478b)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4394,7 +4394,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListPayoutOrg (7ef83997)", async () => {
+    test("ListPayoutOrg (d335cac6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4629,7 +4629,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListPaypoints (7ef83997)", async () => {
+    test("ListPaypoints (d335cac6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -5007,7 +5007,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListSettlements (57f3d058)", async () => {
+    test("ListSettlements (c3c4478b)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -5391,7 +5391,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListSettlementsOrg (7ef83997)", async () => {
+    test("ListSettlementsOrg (d335cac6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -5748,7 +5748,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListSubscriptions (57f3d058)", async () => {
+    test("ListSubscriptions (c3c4478b)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -6105,7 +6105,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListSubscriptionsOrg (7ef83997)", async () => {
+    test("ListSubscriptionsOrg (d335cac6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -6544,7 +6544,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListTransactions (57f3d058)", async () => {
+    test("ListTransactions (c3c4478b)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -6773,7 +6773,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListTransactionsOrg (7ef83997)", async () => {
+    test("ListTransactionsOrg (d335cac6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -6818,6 +6818,7 @@ describe("Query", () => {
                 totalRecords: 1,
                 totalAmount: 1000,
                 totalNetAmount: 935,
+                netBatchAmount: 935,
                 totalPages: 1,
                 pageSize: 20,
                 pageidentifier: "XYZ123ABC456",
@@ -6913,33 +6914,33 @@ describe("Query", () => {
                         CustomerNumber: "0010",
                         customerId: 7890,
                     },
-                    transactionNumber: undefined,
+                    transactionNumber: null,
                     billingFeesDetails: [],
-                    ExternalProcessorInformation: undefined,
+                    ExternalProcessorInformation: null,
                     PaypointId: 1357,
-                    ChargebackId: undefined,
-                    RetrievalId: undefined,
-                    TransAdditionalData: undefined,
-                    invoiceData: undefined,
-                    EntrypageId: undefined,
-                    externalPaypointID: undefined,
+                    ChargebackId: null,
+                    RetrievalId: null,
+                    TransAdditionalData: null,
+                    invoiceData: null,
+                    EntrypageId: null,
+                    externalPaypointID: null,
                     IsValidatedACH: true,
                     splitFundingInstructions: [],
                     CfeeTransactions: [],
                     TransactionEvents: [],
                     PendingFeeAmount: 0,
                     RiskFlagged: false,
-                    RiskFlaggedOn: undefined,
+                    RiskFlaggedOn: null,
                     RiskStatus: "approved",
-                    RiskReason: undefined,
-                    RiskAction: undefined,
-                    RiskActionCode: undefined,
-                    DeviceId: undefined,
+                    RiskReason: null,
+                    RiskAction: null,
+                    RiskActionCode: null,
+                    DeviceId: null,
                     AchSecCode: "PPD",
                     AchHolderType: "personal",
                     IpAddress: "192.100.1.100",
                     IsSameDayACH: false,
-                    WalletType: undefined,
+                    WalletType: null,
                 },
             ],
         };
@@ -6969,6 +6970,7 @@ describe("Query", () => {
                 totalRecords: 1,
                 totalAmount: 1000,
                 totalNetAmount: 935,
+                netBatchAmount: 935,
                 totalPages: 1,
                 pageSize: 20,
                 pageidentifier: "XYZ123ABC456",
@@ -7064,33 +7066,33 @@ describe("Query", () => {
                         CustomerNumber: "0010",
                         customerId: 7890,
                     },
-                    transactionNumber: undefined,
+                    transactionNumber: null,
                     billingFeesDetails: [],
-                    ExternalProcessorInformation: undefined,
+                    ExternalProcessorInformation: null,
                     PaypointId: 1357,
-                    ChargebackId: undefined,
-                    RetrievalId: undefined,
-                    TransAdditionalData: undefined,
-                    invoiceData: undefined,
-                    EntrypageId: undefined,
-                    externalPaypointID: undefined,
+                    ChargebackId: null,
+                    RetrievalId: null,
+                    TransAdditionalData: null,
+                    invoiceData: null,
+                    EntrypageId: null,
+                    externalPaypointID: null,
                     IsValidatedACH: true,
                     splitFundingInstructions: [],
                     CfeeTransactions: [],
                     TransactionEvents: [],
                     PendingFeeAmount: 0,
                     RiskFlagged: false,
-                    RiskFlaggedOn: undefined,
+                    RiskFlaggedOn: null,
                     RiskStatus: "approved",
-                    RiskReason: undefined,
-                    RiskAction: undefined,
-                    RiskActionCode: undefined,
-                    DeviceId: undefined,
+                    RiskReason: null,
+                    RiskAction: null,
+                    RiskActionCode: null,
+                    DeviceId: null,
                     AchSecCode: "PPD",
                     AchHolderType: "personal",
                     IpAddress: "192.100.1.100",
                     IsSameDayACH: false,
-                    WalletType: undefined,
+                    WalletType: null,
                 },
             ],
         });
@@ -7162,7 +7164,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListTransferDetails (c0cb8594)", async () => {
+    test("ListTransferDetails (a0acdc47)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -7200,23 +7202,27 @@ describe("Query", () => {
                     batchRecords: 1,
                     transferIdentifier: "bbcbfed7-e535-45fe-8d62-000000",
                     batchId: 111430,
-                    paypointEntryName: "example_entry",
-                    paypointLegalName: "Example Company LLC",
-                    paypointDbaName: "Example Company",
+                    paypointEntryName: "47ae3de37",
+                    paypointLegalName: "Gruzya Outdoor Outfitters LLC",
+                    paypointDbaName: "Gruzya Outdoor Outfitters",
                     paypointLogo: "https://example.com/logo.png",
+                    parentOrgName: "Pilgrim Planner",
+                    parentOrgId: 12345,
+                    parentOrgLogo: "https://example.com/parent-logo.png",
+                    externalPaypointId: "ext-12345",
                     bankAccount: { accountNumber: "****1234", routingNumber: "123456789" },
                     transferDate: "2024-11-17T08:20:07.288+00:00",
                     processor: "gp",
                     transferStatus: 2,
-                    grossAmount: 0,
-                    chargeBackAmount: 0,
+                    grossAmount: 1029,
+                    chargeBackAmount: 25,
                     returnedAmount: 0,
                     holdAmount: 0,
                     releasedAmount: 0,
                     billingFeesAmount: 0,
                     thirdPartyPaidAmount: 0,
                     adjustmentsAmount: 0,
-                    netTransferAmount: 2,
+                    netTransferAmount: 1004,
                     eventsData: [
                         {
                             description: "Transfer Created",
@@ -7253,10 +7259,14 @@ describe("Query", () => {
                     batchRecords: 1,
                     transferIdentifier: "bbcbfed7-e535-45fe-8d62-000000",
                     batchId: 111430,
-                    paypointEntryName: "example_entry",
-                    paypointLegalName: "Example Company LLC",
-                    paypointDbaName: "Example Company",
+                    paypointEntryName: "47ae3de37",
+                    paypointLegalName: "Gruzya Outdoor Outfitters LLC",
+                    paypointDbaName: "Gruzya Outdoor Outfitters",
                     paypointLogo: "https://example.com/logo.png",
+                    parentOrgName: "Pilgrim Planner",
+                    parentOrgId: 12345,
+                    parentOrgLogo: "https://example.com/parent-logo.png",
+                    externalPaypointId: "ext-12345",
                     bankAccount: {
                         accountNumber: "****1234",
                         routingNumber: "123456789",
@@ -7264,15 +7274,15 @@ describe("Query", () => {
                     transferDate: "2024-11-17T08:20:07.288+00:00",
                     processor: "gp",
                     transferStatus: 2,
-                    grossAmount: 0,
-                    chargeBackAmount: 0,
+                    grossAmount: 1029,
+                    chargeBackAmount: 25,
                     returnedAmount: 0,
                     holdAmount: 0,
                     releasedAmount: 0,
                     billingFeesAmount: 0,
                     thirdPartyPaidAmount: 0,
                     adjustmentsAmount: 0,
-                    netTransferAmount: 2,
+                    netTransferAmount: 1004,
                     eventsData: [
                         {
                             description: "Transfer Created",
@@ -7359,7 +7369,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListTransfers (57f3d058)", async () => {
+    test("ListTransfers (c3c4478b)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -7397,23 +7407,27 @@ describe("Query", () => {
                     batchRecords: 1,
                     transferIdentifier: "bbcbfed7-e535-45fe-8d62-000000",
                     batchId: 111430,
-                    paypointEntryName: "example_entry",
-                    paypointLegalName: "Example Company LLC",
-                    paypointDbaName: "Example Company",
+                    paypointEntryName: "47ae3de37",
+                    paypointLegalName: "Gruzya Outdoor Outfitters LLC",
+                    paypointDbaName: "Gruzya Outdoor Outfitters",
                     paypointLogo: "https://example.com/logo.png",
+                    parentOrgName: "Pilgrim Planner",
+                    parentOrgId: 12345,
+                    parentOrgLogo: "https://example.com/parent-logo.png",
+                    externalPaypointId: "ext-12345",
                     bankAccount: { accountNumber: "****1234", routingNumber: "123456789" },
                     transferDate: "2024-11-17T08:20:07.288+00:00",
                     processor: "gp",
                     transferStatus: 2,
-                    grossAmount: 0,
-                    chargeBackAmount: 0,
+                    grossAmount: 1029,
+                    chargeBackAmount: 25,
                     returnedAmount: 0,
                     holdAmount: 0,
                     releasedAmount: 0,
                     billingFeesAmount: 0,
                     thirdPartyPaidAmount: 0,
                     adjustmentsAmount: 0,
-                    netTransferAmount: 2,
+                    netTransferAmount: 1004,
                     eventsData: [
                         {
                             description: "Transfer Created",
@@ -7451,10 +7465,14 @@ describe("Query", () => {
                     batchRecords: 1,
                     transferIdentifier: "bbcbfed7-e535-45fe-8d62-000000",
                     batchId: 111430,
-                    paypointEntryName: "example_entry",
-                    paypointLegalName: "Example Company LLC",
-                    paypointDbaName: "Example Company",
+                    paypointEntryName: "47ae3de37",
+                    paypointLegalName: "Gruzya Outdoor Outfitters LLC",
+                    paypointDbaName: "Gruzya Outdoor Outfitters",
                     paypointLogo: "https://example.com/logo.png",
+                    parentOrgName: "Pilgrim Planner",
+                    parentOrgId: 12345,
+                    parentOrgLogo: "https://example.com/parent-logo.png",
+                    externalPaypointId: "ext-12345",
                     bankAccount: {
                         accountNumber: "****1234",
                         routingNumber: "123456789",
@@ -7462,15 +7480,15 @@ describe("Query", () => {
                     transferDate: "2024-11-17T08:20:07.288+00:00",
                     processor: "gp",
                     transferStatus: 2,
-                    grossAmount: 0,
-                    chargeBackAmount: 0,
+                    grossAmount: 1029,
+                    chargeBackAmount: 25,
                     returnedAmount: 0,
                     holdAmount: 0,
                     releasedAmount: 0,
                     billingFeesAmount: 0,
                     thirdPartyPaidAmount: 0,
                     adjustmentsAmount: 0,
-                    netTransferAmount: 2,
+                    netTransferAmount: 1004,
                     eventsData: [
                         {
                             description: "Transfer Created",
@@ -7563,7 +7581,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListTransfersOrg (7f01a9d1)", async () => {
+    test("ListTransfersOrg (210ebcb0)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -7726,7 +7744,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListUsersOrg (7ef83997)", async () => {
+    test("ListUsersOrg (d335cac6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -7899,7 +7917,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListUsersPaypoint (21955bb7)", async () => {
+    test("ListUsersPaypoint (15f0f426)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -8198,7 +8216,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListVendors (21955bb7)", async () => {
+    test("ListVendors (15f0f426)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -8497,7 +8515,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListVendorsOrg (7ef83997)", async () => {
+    test("ListVendorsOrg (d335cac6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -8705,7 +8723,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListVcards (57f3d058)", async () => {
+    test("ListVcards (c3c4478b)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -8913,7 +8931,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListVcardsOrg (7ef83997)", async () => {
+    test("ListVcardsOrg (d335cac6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 

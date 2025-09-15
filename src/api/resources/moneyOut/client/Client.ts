@@ -15,7 +15,7 @@ export declare namespace MoneyOut {
         baseUrl?: core.Supplier<string>;
         apiKey?: core.Supplier<string | undefined>;
         /** Additional headers to include in requests. */
-        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
+        headers?: Record<string, string | core.Supplier<string | null | undefined> | null | undefined>;
     }
 
     export interface RequestOptions {
@@ -28,7 +28,7 @@ export declare namespace MoneyOut {
         /** Additional query string parameters to include in the request. */
         queryParams?: Record<string, unknown>;
         /** Additional headers to include in the request. */
-        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
+        headers?: Record<string, string | core.Supplier<string | null | undefined> | null | undefined>;
     }
 }
 
@@ -122,7 +122,12 @@ export class MoneyOut {
      *         body: {
      *             entryPoint: "47ced57b",
      *             paymentMethod: {
-     *                 method: "ach"
+     *                 method: "ach",
+     *                 achHolder: "John Doe",
+     *                 achRouting: "011401533",
+     *                 achAccount: "123456789",
+     *                 achAccountType: "checking",
+     *                 achHolderType: "business"
      *             },
      *             paymentDetails: {
      *                 totalAmount: 978.32
@@ -146,13 +151,6 @@ export class MoneyOut {
      *                         contactEmail: "Mandy65@heritagepro.com",
      *                         contactPhone: "996-325-5420 x31028"
      *                     }],
-     *                 billingData: {
-     *                     bankName: "Chase",
-     *                     routingAccount: "011401533",
-     *                     accountNumber: "1237658922",
-     *                     typeAccount: "Savings",
-     *                     bankAccountHolderName: "Payabli"
-     *                 },
      *                 vendorStatus: 1,
      *                 remitAddress1: "727 Terrell Streets",
      *                 remitAddress2: "Apt. 773",

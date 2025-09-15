@@ -192,7 +192,7 @@ describe("Paypoint", () => {
         );
     });
 
-    test("getBasicEntry (21955bb7)", async () => {
+    test("getBasicEntry (15f0f426)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -401,7 +401,7 @@ describe("Paypoint", () => {
         );
     });
 
-    test("getBasicEntryById (e09a7b4c)", async () => {
+    test("getBasicEntryById (9b51fb5f)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -592,7 +592,7 @@ describe("Paypoint", () => {
         );
     });
 
-    test("getEntryConfig (21955bb7)", async () => {
+    test("getEntryConfig (15f0f426)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -969,7 +969,7 @@ describe("Paypoint", () => {
         );
     });
 
-    test("getPage (adc2e804)", async () => {
+    test("getPage (d64b997)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1079,7 +1079,7 @@ describe("Paypoint", () => {
         );
     });
 
-    test("removePage (adc2e804)", async () => {
+    test("removePage (d64b997)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1133,7 +1133,7 @@ describe("Paypoint", () => {
         });
     });
 
-    test("saveLogo (927a6cf7)", async () => {
+    test("saveLogo (1666d939)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { fContent: undefined, filename: undefined, ftype: undefined, furl: undefined };
@@ -1161,7 +1161,7 @@ describe("Paypoint", () => {
         );
     });
 
-    test("saveLogo (b455af47)", async () => {
+    test("saveLogo (e849fd9)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { fContent: undefined, filename: undefined, ftype: undefined, furl: undefined };
@@ -1189,7 +1189,7 @@ describe("Paypoint", () => {
         );
     });
 
-    test("saveLogo (73e65dc3)", async () => {
+    test("saveLogo (e4bf005)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { fContent: undefined, filename: undefined, ftype: undefined, furl: undefined };
@@ -1217,7 +1217,7 @@ describe("Paypoint", () => {
         );
     });
 
-    test("saveLogo (e889b466)", async () => {
+    test("saveLogo (c801afff)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { fContent: undefined, filename: undefined, ftype: undefined, furl: undefined };
@@ -1561,7 +1561,7 @@ describe("Paypoint", () => {
         );
     });
 
-    test("settingsPage (21955bb7)", async () => {
+    test("settingsPage (15f0f426)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1626,7 +1626,7 @@ describe("Paypoint", () => {
         });
     });
 
-    test("migrate (6a777453)", async () => {
+    test("migrate (37e3ab54)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entryPoint: "entryPoint", newParentOrganizationId: 1, notificationRequest: undefined };
@@ -1653,7 +1653,7 @@ describe("Paypoint", () => {
         );
     });
 
-    test("migrate (f3e1eca3)", async () => {
+    test("migrate (6a75017c)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entryPoint: "entryPoint", newParentOrganizationId: 1, notificationRequest: undefined };
@@ -1680,7 +1680,7 @@ describe("Paypoint", () => {
         );
     });
 
-    test("migrate (a130416f)", async () => {
+    test("migrate (27713270)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entryPoint: "entryPoint", newParentOrganizationId: 1, notificationRequest: undefined };
@@ -1707,7 +1707,7 @@ describe("Paypoint", () => {
         );
     });
 
-    test("migrate (de2967a2)", async () => {
+    test("migrate (cfe6b3d6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entryPoint: "entryPoint", newParentOrganizationId: 1, notificationRequest: undefined };

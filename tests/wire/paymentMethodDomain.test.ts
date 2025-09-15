@@ -127,7 +127,7 @@ describe("PaymentMethodDomain", () => {
         });
     });
 
-    test("AddPaymentMethodDomain (89353fec)", async () => {
+    test("AddPaymentMethodDomain (4109a17e)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -162,7 +162,7 @@ describe("PaymentMethodDomain", () => {
         );
     });
 
-    test("AddPaymentMethodDomain (1acc9af4)", async () => {
+    test("AddPaymentMethodDomain (3b5c5886)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -197,7 +197,7 @@ describe("PaymentMethodDomain", () => {
         );
     });
 
-    test("AddPaymentMethodDomain (36a2ec68)", async () => {
+    test("AddPaymentMethodDomain (292f9f8a)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -232,7 +232,7 @@ describe("PaymentMethodDomain", () => {
         );
     });
 
-    test("AddPaymentMethodDomain (261c08af)", async () => {
+    test("AddPaymentMethodDomain (69c276e4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -412,7 +412,7 @@ describe("PaymentMethodDomain", () => {
         );
     });
 
-    test("CascadePaymentMethodDomain (5d934ce8)", async () => {
+    test("CascadePaymentMethodDomain (da6a4fb)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -531,7 +531,7 @@ describe("PaymentMethodDomain", () => {
         );
     });
 
-    test("DeletePaymentMethodDomain (5d934ce8)", async () => {
+    test("DeletePaymentMethodDomain (da6a4fb)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -686,7 +686,7 @@ describe("PaymentMethodDomain", () => {
         );
     });
 
-    test("GetPaymentMethodDomain (5d934ce8)", async () => {
+    test("GetPaymentMethodDomain (da6a4fb)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -997,7 +997,7 @@ describe("PaymentMethodDomain", () => {
         );
     });
 
-    test("ListPaymentMethodDomains (6844e07a)", async () => {
+    test("ListPaymentMethodDomains (e5d1eb2d)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1107,7 +1107,7 @@ describe("PaymentMethodDomain", () => {
         });
     });
 
-    test("UpdatePaymentMethodDomain (ba2c0a90)", async () => {
+    test("UpdatePaymentMethodDomain (c31cf7e2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { applePay: undefined, googlePay: undefined };
@@ -1133,7 +1133,7 @@ describe("PaymentMethodDomain", () => {
         );
     });
 
-    test("UpdatePaymentMethodDomain (9099e5b8)", async () => {
+    test("UpdatePaymentMethodDomain (659d3cfa)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { applePay: undefined, googlePay: undefined };
@@ -1159,7 +1159,7 @@ describe("PaymentMethodDomain", () => {
         );
     });
 
-    test("UpdatePaymentMethodDomain (6fb09d4c)", async () => {
+    test("UpdatePaymentMethodDomain (e0498d4e)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { applePay: undefined, googlePay: undefined };
@@ -1185,7 +1185,7 @@ describe("PaymentMethodDomain", () => {
         );
     });
 
-    test("UpdatePaymentMethodDomain (311540b3)", async () => {
+    test("UpdatePaymentMethodDomain (b20bba58)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { applePay: undefined, googlePay: undefined };
@@ -1469,7 +1469,7 @@ describe("PaymentMethodDomain", () => {
         );
     });
 
-    test("VerifyPaymentMethodDomain (5d934ce8)", async () => {
+    test("VerifyPaymentMethodDomain (da6a4fb)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 

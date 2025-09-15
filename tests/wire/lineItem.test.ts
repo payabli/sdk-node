@@ -49,7 +49,7 @@ describe("LineItem", () => {
         });
     });
 
-    test("AddItem (1a9823b2)", async () => {
+    test("AddItem (924224a3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -94,7 +94,7 @@ describe("LineItem", () => {
         );
     });
 
-    test("AddItem (acc8eb0a)", async () => {
+    test("AddItem (b62706b3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -139,7 +139,7 @@ describe("LineItem", () => {
         );
     });
 
-    test("AddItem (f8cf08de)", async () => {
+    test("AddItem (e2da6fff)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -184,7 +184,7 @@ describe("LineItem", () => {
         );
     });
 
-    test("AddItem (93627949)", async () => {
+    test("AddItem (f2337b05)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -293,7 +293,7 @@ describe("LineItem", () => {
         );
     });
 
-    test("DeleteItem (412b4cfa)", async () => {
+    test("DeleteItem (7a3664ad)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -406,7 +406,7 @@ describe("LineItem", () => {
         );
     });
 
-    test("GetItem (412b4cfa)", async () => {
+    test("GetItem (7a3664ad)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -551,7 +551,7 @@ describe("LineItem", () => {
         );
     });
 
-    test("ListLineItems (21955bb7)", async () => {
+    test("ListLineItems (15f0f426)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -600,7 +600,7 @@ describe("LineItem", () => {
         });
     });
 
-    test("UpdateItem (90737105)", async () => {
+    test("UpdateItem (9fbf723e)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -643,7 +643,7 @@ describe("LineItem", () => {
         );
     });
 
-    test("UpdateItem (2fd6aeb5)", async () => {
+    test("UpdateItem (d8d1b746)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -686,7 +686,7 @@ describe("LineItem", () => {
         );
     });
 
-    test("UpdateItem (f32e8f41)", async () => {
+    test("UpdateItem (ce649b4a)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -729,7 +729,7 @@ describe("LineItem", () => {
         );
     });
 
-    test("UpdateItem (9e1db738)", async () => {
+    test("UpdateItem (9e7adb24)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {

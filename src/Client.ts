@@ -40,7 +40,7 @@ export declare namespace PayabliClient {
         baseUrl?: core.Supplier<string>;
         apiKey?: core.Supplier<string | undefined>;
         /** Additional headers to include in requests. */
-        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
+        headers?: Record<string, string | core.Supplier<string | null | undefined> | null | undefined>;
     }
 
     export interface RequestOptions {
@@ -53,7 +53,7 @@ export declare namespace PayabliClient {
         /** Additional query string parameters to include in the request. */
         queryParams?: Record<string, unknown>;
         /** Additional headers to include in the request. */
-        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
+        headers?: Record<string, string | core.Supplier<string | null | undefined> | null | undefined>;
     }
 }
 
@@ -94,8 +94,8 @@ export class PayabliClient {
                 {
                     "X-Fern-Language": "JavaScript",
                     "X-Fern-SDK-Name": "@payabli/sdk-node",
-                    "X-Fern-SDK-Version": "0.0.109",
-                    "User-Agent": "@payabli/sdk-node/0.0.109",
+                    "X-Fern-SDK-Version": "0.0.110",
+                    "User-Agent": "@payabli/sdk-node/0.0.110",
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                 },

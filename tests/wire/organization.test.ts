@@ -109,7 +109,7 @@ describe("Organization", () => {
         });
     });
 
-    test("AddOrganization (a13b55be)", async () => {
+    test("AddOrganization (da830640)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -172,7 +172,7 @@ describe("Organization", () => {
         );
     });
 
-    test("AddOrganization (14d7ac6)", async () => {
+    test("AddOrganization (a97105a8)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -235,7 +235,7 @@ describe("Organization", () => {
         );
     });
 
-    test("AddOrganization (f1392eca)", async () => {
+    test("AddOrganization (376f1dbc)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -298,7 +298,7 @@ describe("Organization", () => {
         );
     });
 
-    test("AddOrganization (7c945c85)", async () => {
+    test("AddOrganization (f9378882)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -432,7 +432,7 @@ describe("Organization", () => {
         );
     });
 
-    test("DeleteOrganization (7ef83997)", async () => {
+    test("DeleteOrganization (d335cac6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -513,7 +513,7 @@ describe("Organization", () => {
         });
     });
 
-    test("EditOrganization (b1e4c161)", async () => {
+    test("EditOrganization (5a4a118b)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -576,7 +576,7 @@ describe("Organization", () => {
         );
     });
 
-    test("EditOrganization (ee358761)", async () => {
+    test("EditOrganization (7926c7fb)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -639,7 +639,7 @@ describe("Organization", () => {
         );
     });
 
-    test("EditOrganization (1534d1ed)", async () => {
+    test("EditOrganization (257c3ea7)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -702,7 +702,7 @@ describe("Organization", () => {
         );
     });
 
-    test("EditOrganization (ca7c8f84)", async () => {
+    test("EditOrganization (9628b89d)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1023,7 +1023,7 @@ describe("Organization", () => {
         );
     });
 
-    test("GetBasicOrganization (21955bb7)", async () => {
+    test("GetBasicOrganization (15f0f426)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1303,7 +1303,7 @@ describe("Organization", () => {
         );
     });
 
-    test("GetBasicOrganizationById (7ef83997)", async () => {
+    test("GetBasicOrganizationById (d335cac6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1583,7 +1583,7 @@ describe("Organization", () => {
         );
     });
 
-    test("GetOrganization (7ef83997)", async () => {
+    test("GetOrganization (d335cac6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1740,7 +1740,7 @@ describe("Organization", () => {
         );
     });
 
-    test("GetSettingsOrganization (7ef83997)", async () => {
+    test("GetSettingsOrganization (d335cac6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
