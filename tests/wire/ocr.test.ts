@@ -7,7 +7,7 @@ import { PayabliClient } from "../../src/Client";
 import * as Payabli from "../../src/api/index";
 
 describe("Ocr", () => {
-    test("OcrDocumentForm (aa83d7e8)", async () => {
+    test("OcrDocumentForm (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { ftype: undefined, filename: undefined, furl: undefined, fContent: undefined };
@@ -292,7 +292,7 @@ describe("Ocr", () => {
         });
     });
 
-    test("OcrDocumentForm (3e74eb92)", async () => {
+    test("OcrDocumentForm (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { ftype: undefined, filename: undefined, furl: undefined, fContent: undefined };
@@ -320,7 +320,7 @@ describe("Ocr", () => {
         );
     });
 
-    test("OcrDocumentForm (9a2f5d6a)", async () => {
+    test("OcrDocumentForm (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { ftype: undefined, filename: undefined, furl: undefined, fContent: undefined };
@@ -348,7 +348,7 @@ describe("Ocr", () => {
         );
     });
 
-    test("OcrDocumentForm (9f8266be)", async () => {
+    test("OcrDocumentForm (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { ftype: undefined, filename: undefined, furl: undefined, fContent: undefined };
@@ -376,11 +376,11 @@ describe("Ocr", () => {
         );
     });
 
-    test("OcrDocumentForm (5c629fe8)", async () => {
+    test("OcrDocumentForm (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { ftype: undefined, filename: undefined, furl: undefined, fContent: undefined };
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .post("/Import/ocrDocumentForm/typeResult")
@@ -401,12 +401,12 @@ describe("Ocr", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("OcrDocumentJson (aa83d7e8)", async () => {
+    test("OcrDocumentJson (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { ftype: undefined, filename: undefined, furl: undefined, fContent: undefined };
@@ -691,7 +691,7 @@ describe("Ocr", () => {
         });
     });
 
-    test("OcrDocumentJson (3e74eb92)", async () => {
+    test("OcrDocumentJson (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { ftype: undefined, filename: undefined, furl: undefined, fContent: undefined };
@@ -719,7 +719,7 @@ describe("Ocr", () => {
         );
     });
 
-    test("OcrDocumentJson (9a2f5d6a)", async () => {
+    test("OcrDocumentJson (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { ftype: undefined, filename: undefined, furl: undefined, fContent: undefined };
@@ -747,7 +747,7 @@ describe("Ocr", () => {
         );
     });
 
-    test("OcrDocumentJson (9f8266be)", async () => {
+    test("OcrDocumentJson (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { ftype: undefined, filename: undefined, furl: undefined, fContent: undefined };
@@ -775,11 +775,11 @@ describe("Ocr", () => {
         );
     });
 
-    test("OcrDocumentJson (5c629fe8)", async () => {
+    test("OcrDocumentJson (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { ftype: undefined, filename: undefined, furl: undefined, fContent: undefined };
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .post("/Import/ocrDocumentJson/typeResult")
@@ -800,7 +800,7 @@ describe("Ocr", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });

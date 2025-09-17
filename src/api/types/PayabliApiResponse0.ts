@@ -11,7 +11,7 @@ export interface PayabliApiResponse0 {
     isSuccess?: Payabli.IsSuccess;
     pageIdentifier?: Payabli.PageIdentifier;
     responseData?: PayabliApiResponse0.ResponseData;
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
 }
 
 export namespace PayabliApiResponse0 {

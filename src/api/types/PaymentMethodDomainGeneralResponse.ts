@@ -8,5 +8,5 @@ export interface PaymentMethodDomainGeneralResponse {
     isSuccess?: Payabli.IsSuccess;
     pageidentifier?: Payabli.PageIdentifier;
     responseData?: Payabli.PaymentMethodDomainApiResponse;
-    responseText?: string;
+    responseText: string;
 }

@@ -10,5 +10,5 @@ export interface PayabliApiResponseTemplateId {
     responseCode?: Payabli.Responsecode;
     /** When the operation is successful, contains the template's ID. */
     responseData?: Payabli.Responsedatanonobject;
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
 }

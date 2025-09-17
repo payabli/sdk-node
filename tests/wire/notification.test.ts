@@ -7,7 +7,7 @@ import { PayabliClient } from "../../src/Client";
 import * as Payabli from "../../src/api/index";
 
 describe("Notification", () => {
-    test("AddNotification (Webhook)", async () => {
+    test("AddNotification (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -48,7 +48,7 @@ describe("Notification", () => {
         });
     });
 
-    test("AddNotification (ReportExample)", async () => {
+    test("AddNotification (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -99,7 +99,7 @@ describe("Notification", () => {
         });
     });
 
-    test("AddNotification (40d2bb71)", async () => {
+    test("AddNotification (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -138,7 +138,7 @@ describe("Notification", () => {
         );
     });
 
-    test("AddNotification (4eaa6bb1)", async () => {
+    test("AddNotification (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -177,7 +177,7 @@ describe("Notification", () => {
         );
     });
 
-    test("AddNotification (113f383d)", async () => {
+    test("AddNotification (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -216,7 +216,7 @@ describe("Notification", () => {
         );
     });
 
-    test("AddNotification (2fa08307)", async () => {
+    test("AddNotification (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -228,7 +228,7 @@ describe("Notification", () => {
             status: undefined,
             target: "target",
         };
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .post("/Notification")
@@ -252,12 +252,12 @@ describe("Notification", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("DeleteNotification (Delete)", async () => {
+    test("DeleteNotification (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -279,7 +279,7 @@ describe("Notification", () => {
         });
     });
 
-    test("DeleteNotification (4d82d175)", async () => {
+    test("DeleteNotification (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -301,7 +301,7 @@ describe("Notification", () => {
         );
     });
 
-    test("DeleteNotification (b6ea2465)", async () => {
+    test("DeleteNotification (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -323,7 +323,7 @@ describe("Notification", () => {
         );
     });
 
-    test("DeleteNotification (3e60b531)", async () => {
+    test("DeleteNotification (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -345,11 +345,11 @@ describe("Notification", () => {
         );
     });
 
-    test("DeleteNotification (177a57b)", async () => {
+    test("DeleteNotification (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .delete("/Notification/nId")
@@ -364,12 +364,12 @@ describe("Notification", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("GetNotification (Get)", async () => {
+    test("GetNotification (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -407,7 +407,7 @@ describe("Notification", () => {
         });
     });
 
-    test("GetNotification (4d82d175)", async () => {
+    test("GetNotification (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -423,7 +423,7 @@ describe("Notification", () => {
         );
     });
 
-    test("GetNotification (b6ea2465)", async () => {
+    test("GetNotification (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -439,7 +439,7 @@ describe("Notification", () => {
         );
     });
 
-    test("GetNotification (3e60b531)", async () => {
+    test("GetNotification (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -455,11 +455,11 @@ describe("Notification", () => {
         );
     });
 
-    test("GetNotification (177a57b)", async () => {
+    test("GetNotification (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server.mockEndpoint().get("/Notification/nId").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -468,12 +468,12 @@ describe("Notification", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("UpdateNotification (Update)", async () => {
+    test("UpdateNotification (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -514,7 +514,7 @@ describe("Notification", () => {
         });
     });
 
-    test("UpdateNotification (3bfb0855)", async () => {
+    test("UpdateNotification (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -553,7 +553,7 @@ describe("Notification", () => {
         );
     });
 
-    test("UpdateNotification (1f3b5f45)", async () => {
+    test("UpdateNotification (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -592,7 +592,7 @@ describe("Notification", () => {
         );
     });
 
-    test("UpdateNotification (1e5dec11)", async () => {
+    test("UpdateNotification (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -631,7 +631,7 @@ describe("Notification", () => {
         );
     });
 
-    test("UpdateNotification (66c54e1b)", async () => {
+    test("UpdateNotification (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -643,7 +643,7 @@ describe("Notification", () => {
             status: undefined,
             target: "target",
         };
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .put("/Notification/nId")
@@ -667,12 +667,12 @@ describe("Notification", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("GetReportFile (c2d47a48)", async () => {
+    test("GetReportFile (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -691,7 +691,7 @@ describe("Notification", () => {
         });
     });
 
-    test("GetReportFile (738cdf82)", async () => {
+    test("GetReportFile (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -713,7 +713,7 @@ describe("Notification", () => {
         );
     });
 
-    test("GetReportFile (85b4ce1a)", async () => {
+    test("GetReportFile (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -735,7 +735,7 @@ describe("Notification", () => {
         );
     });
 
-    test("GetReportFile (236f2dee)", async () => {
+    test("GetReportFile (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -757,11 +757,11 @@ describe("Notification", () => {
         );
     });
 
-    test("GetReportFile (b90fe738)", async () => {
+    test("GetReportFile (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Export/notificationReport/1000000")
@@ -776,7 +776,7 @@ describe("Notification", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });

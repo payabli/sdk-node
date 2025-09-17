@@ -5,5 +5,5 @@
 import * as Payabli from "../../../index.js";
 
 export interface DeleteUserResponse {
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
 }

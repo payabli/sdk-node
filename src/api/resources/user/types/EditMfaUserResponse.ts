@@ -6,5 +6,5 @@ import * as Payabli from "../../../index.js";
 
 export interface EditMfaUserResponse {
     isSuccess?: Payabli.IsSuccess;
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
 }

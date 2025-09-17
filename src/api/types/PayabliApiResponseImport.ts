@@ -10,7 +10,7 @@ export interface PayabliApiResponseImport {
     responseCode?: Payabli.Responsecode;
     /** The response data containing the result of the import operation. */
     responseData?: PayabliApiResponseImport.ResponseData;
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
 }
 
 export namespace PayabliApiResponseImport {

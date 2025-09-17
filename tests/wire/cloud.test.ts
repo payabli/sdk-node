@@ -7,7 +7,7 @@ import { PayabliClient } from "../../src/Client";
 import * as Payabli from "../../src/api/index";
 
 describe("Cloud", () => {
-    test("addDevice (Register)", async () => {
+    test("addDevice (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { registrationCode: "YS7DS5", description: "Front Desk POS" };
@@ -36,7 +36,7 @@ describe("Cloud", () => {
         });
     });
 
-    test("addDevice (f441a932)", async () => {
+    test("addDevice (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { description: undefined, registrationCode: undefined };
@@ -62,7 +62,7 @@ describe("Cloud", () => {
         );
     });
 
-    test("addDevice (7b1ed08a)", async () => {
+    test("addDevice (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { description: undefined, registrationCode: undefined };
@@ -88,7 +88,7 @@ describe("Cloud", () => {
         );
     });
 
-    test("addDevice (403c7e5e)", async () => {
+    test("addDevice (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { description: undefined, registrationCode: undefined };
@@ -114,11 +114,11 @@ describe("Cloud", () => {
         );
     });
 
-    test("addDevice (87223c48)", async () => {
+    test("addDevice (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { description: undefined, registrationCode: undefined };
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .post("/Cloud/register/entry")
@@ -137,12 +137,12 @@ describe("Cloud", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("HistoryDevice (Example response for GET requests for devices.)", async () => {
+    test("HistoryDevice (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -189,7 +189,7 @@ describe("Cloud", () => {
         });
     });
 
-    test("HistoryDevice (faf21ae)", async () => {
+    test("HistoryDevice (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -211,7 +211,7 @@ describe("Cloud", () => {
         );
     });
 
-    test("HistoryDevice (6efd1d36)", async () => {
+    test("HistoryDevice (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -233,7 +233,7 @@ describe("Cloud", () => {
         );
     });
 
-    test("HistoryDevice (f507087a)", async () => {
+    test("HistoryDevice (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -255,11 +255,11 @@ describe("Cloud", () => {
         );
     });
 
-    test("HistoryDevice (df8d9c34)", async () => {
+    test("HistoryDevice (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Cloud/history/entry/deviceId")
@@ -274,12 +274,12 @@ describe("Cloud", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListDevice (ListDevices)", async () => {
+    test("ListDevice (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -326,7 +326,7 @@ describe("Cloud", () => {
         });
     });
 
-    test("ListDevice (344ea1c4)", async () => {
+    test("ListDevice (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -342,7 +342,7 @@ describe("Cloud", () => {
         );
     });
 
-    test("ListDevice (a17d02ec)", async () => {
+    test("ListDevice (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -358,7 +358,7 @@ describe("Cloud", () => {
         );
     });
 
-    test("ListDevice (93e82fa0)", async () => {
+    test("ListDevice (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -374,11 +374,11 @@ describe("Cloud", () => {
         );
     });
 
-    test("ListDevice (15f0f426)", async () => {
+    test("ListDevice (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server.mockEndpoint().get("/Cloud/list/entry").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -387,12 +387,12 @@ describe("Cloud", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("RemoveDevice (Unregister)", async () => {
+    test("RemoveDevice (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -417,7 +417,7 @@ describe("Cloud", () => {
         });
     });
 
-    test("RemoveDevice (faf21ae)", async () => {
+    test("RemoveDevice (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -439,7 +439,7 @@ describe("Cloud", () => {
         );
     });
 
-    test("RemoveDevice (6efd1d36)", async () => {
+    test("RemoveDevice (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -461,7 +461,7 @@ describe("Cloud", () => {
         );
     });
 
-    test("RemoveDevice (f507087a)", async () => {
+    test("RemoveDevice (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -483,11 +483,11 @@ describe("Cloud", () => {
         );
     });
 
-    test("RemoveDevice (df8d9c34)", async () => {
+    test("RemoveDevice (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .delete("/Cloud/register/entry/deviceId")
@@ -502,7 +502,7 @@ describe("Cloud", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });

@@ -20,8 +20,9 @@ import * as Payabli from "../index.js";
  *         paypointLogo: "https://example.com/logo.png",
  *         parentOrgName: "Pilgrim Planner",
  *         parentOrgId: 12345,
+ *         parentOrgEntryName: "43aebc000",
  *         parentOrgLogo: "https://example.com/parent-logo.png",
- *         externalPaypointId: "ext-12345",
+ *         externalPaypointID: "ext-12345",
  *         bankAccount: {
  *             accountNumber: "****1234",
  *             routingNumber: "123456789"
@@ -54,30 +55,32 @@ export interface Transfer {
     paypointId: Payabli.PaypointId;
     batchNumber: Payabli.BatchNumber;
     /** The currency of the batch, either USD or CAD. */
-    batchCurrency?: string;
+    batchCurrency: string | null;
     /** Number of records in the batch. */
-    batchRecords?: number;
+    batchRecords: number | null;
     transferIdentifier: Payabli.TransferIdentifier;
     /** The ID of the batch the transfer belongs to. */
     batchId: number;
-    /** The paypoint entry name. */
-    paypointEntryName?: string;
+    /** The paypoint entryname. */
+    paypointEntryName: string | null;
     /** The paypoint legal name. */
-    paypointLegalName?: Payabli.Legalname;
+    paypointLegalName: Payabli.Legalname | null;
     /** The paypoint DBA name. */
-    paypointDbaName?: Payabli.Dbaname;
+    paypointDbaName: Payabli.Dbaname | null;
     /** The paypoint logo URL. */
-    paypointLogo?: string;
+    paypointLogo: string | null;
     /** The parent organization name. */
-    parentOrgName?: string;
+    parentOrgName: string | null;
     /** The parent organization ID. */
-    parentOrgId?: number;
+    parentOrgId: number | null;
+    /** The parent organization entryname. */
+    parentOrgEntryName: string | null;
     /** The parent organization logo URL. */
-    parentOrgLogo?: string;
+    parentOrgLogo: string | null;
     /** The external paypoint ID. */
-    externalPaypointId?: string;
+    externalPaypointID: string | null;
     /** Bank account information for the transfer. */
-    bankAccount?: Payabli.TransferBankAccount;
+    bankAccount: Payabli.TransferBankAccount | null;
     /** Date when the transfer occurred. */
     transferDate: string;
     /** The payment processor used for the transfer. */
@@ -103,7 +106,7 @@ export interface Transfer {
     /** The net transfer amount after all deductions and additions. */
     netTransferAmount: number;
     /** List of events associated with the transfer. */
-    eventsData?: Payabli.GeneralEvents[];
+    eventsData: Payabli.GeneralEvents[] | null;
     /** List of messages related to the transfer. */
-    messages?: Payabli.TransferMessage[];
+    messages: Payabli.TransferMessage[] | null;
 }

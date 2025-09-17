@@ -7,5 +7,5 @@ import * as Payabli from "../index.js";
 export interface PayabliApiResponseCustomerQuery {
     isSuccess?: Payabli.IsSuccess;
     responseData?: Payabli.CustomerQueryRecords;
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
 }

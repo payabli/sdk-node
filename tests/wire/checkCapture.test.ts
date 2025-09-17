@@ -7,7 +7,7 @@ import { PayabliClient } from "../../src/Client";
 import * as Payabli from "../../src/api/index";
 
 describe("CheckCapture", () => {
-    test("CheckProcessing (Capture)", async () => {
+    test("CheckProcessing (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -81,7 +81,7 @@ describe("CheckCapture", () => {
         });
     });
 
-    test("CheckProcessing (587dbc36)", async () => {
+    test("CheckProcessing (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -114,7 +114,7 @@ describe("CheckCapture", () => {
         );
     });
 
-    test("CheckProcessing (19af585e)", async () => {
+    test("CheckProcessing (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -147,7 +147,7 @@ describe("CheckCapture", () => {
         );
     });
 
-    test("CheckProcessing (7ca3442)", async () => {
+    test("CheckProcessing (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -180,7 +180,7 @@ describe("CheckCapture", () => {
         );
     });
 
-    test("CheckProcessing (4738744c)", async () => {
+    test("CheckProcessing (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -189,7 +189,7 @@ describe("CheckCapture", () => {
             rearImage: "rearImage",
             checkAmount: 1,
         };
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .post("/CheckCapture/CheckProcessing")
@@ -210,7 +210,7 @@ describe("CheckCapture", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });

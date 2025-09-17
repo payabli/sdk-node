@@ -5,7 +5,7 @@
 import * as Payabli from "../../../index.js";
 
 export interface MigratePaypointResponse {
-    isSuccess?: Payabli.IsSuccess;
+    isSuccess: Payabli.IsSuccess;
     responseCode?: Payabli.Responsecode;
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
 }

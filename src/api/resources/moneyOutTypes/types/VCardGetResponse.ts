@@ -56,6 +56,8 @@ export interface VCardGetResponse {
     /** Entry name for the Paypoint, if applicable. */
     PaypointEntryname?: string;
     externalPaypointID?: Payabli.ExternalPaypointId;
+    /** The unique identifier for the paypoint. */
+    paypointId?: number;
 }
 
 export namespace VCardGetResponse {

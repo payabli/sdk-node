@@ -7,7 +7,7 @@ import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 
 describe("Templates", () => {
-    test("AddTemplate (General success response example for template operations.)", async () => {
+    test("AddTemplate (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
@@ -30,7 +30,7 @@ describe("Templates", () => {
         });
     });
 
-    test("AddTemplate (f7b7828c)", async () => {
+    test("AddTemplate (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -67,7 +67,7 @@ describe("Templates", () => {
         );
     });
 
-    test("AddTemplate (9d6d7894)", async () => {
+    test("AddTemplate (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -104,7 +104,7 @@ describe("Templates", () => {
         );
     });
 
-    test("AddTemplate (ff062888)", async () => {
+    test("AddTemplate (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -141,7 +141,7 @@ describe("Templates", () => {
         );
     });
 
-    test("AddTemplate (7e4ddabe)", async () => {
+    test("AddTemplate (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -152,7 +152,7 @@ describe("Templates", () => {
             templateDescription: undefined,
             templateName: undefined,
         };
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .post("/Templates/1")
@@ -175,12 +175,12 @@ describe("Templates", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("DeleteTemplate (General success response example for template operations.)", async () => {
+    test("DeleteTemplate (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -196,7 +196,7 @@ describe("Templates", () => {
         });
     });
 
-    test("DeleteTemplate (6cd303aa)", async () => {
+    test("DeleteTemplate (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -212,7 +212,7 @@ describe("Templates", () => {
         );
     });
 
-    test("DeleteTemplate (81721102)", async () => {
+    test("DeleteTemplate (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -228,7 +228,7 @@ describe("Templates", () => {
         );
     });
 
-    test("DeleteTemplate (d3e8be36)", async () => {
+    test("DeleteTemplate (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -244,11 +244,11 @@ describe("Templates", () => {
         );
     });
 
-    test("DeleteTemplate (da2f7650)", async () => {
+    test("DeleteTemplate (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server.mockEndpoint().delete("/Templates/1.1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -257,12 +257,12 @@ describe("Templates", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("getlinkTemplate (1f61c97d)", async () => {
+    test("getlinkTemplate (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -282,7 +282,7 @@ describe("Templates", () => {
         });
     });
 
-    test("getlinkTemplate (edcf44ed)", async () => {
+    test("getlinkTemplate (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -304,7 +304,7 @@ describe("Templates", () => {
         );
     });
 
-    test("getlinkTemplate (f84e22dd)", async () => {
+    test("getlinkTemplate (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -326,7 +326,7 @@ describe("Templates", () => {
         );
     });
 
-    test("getlinkTemplate (e89252c9)", async () => {
+    test("getlinkTemplate (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -348,11 +348,11 @@ describe("Templates", () => {
         );
     });
 
-    test("getlinkTemplate (a45f9023)", async () => {
+    test("getlinkTemplate (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Templates/getlink/1.1/true")
@@ -367,12 +367,12 @@ describe("Templates", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("getTemplate (7c4b4626)", async () => {
+    test("getTemplate (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -493,7 +493,7 @@ describe("Templates", () => {
         });
     });
 
-    test("getTemplate (6cd303aa)", async () => {
+    test("getTemplate (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -509,7 +509,7 @@ describe("Templates", () => {
         );
     });
 
-    test("getTemplate (81721102)", async () => {
+    test("getTemplate (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -525,7 +525,7 @@ describe("Templates", () => {
         );
     });
 
-    test("getTemplate (d3e8be36)", async () => {
+    test("getTemplate (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -541,11 +541,11 @@ describe("Templates", () => {
         );
     });
 
-    test("getTemplate (da2f7650)", async () => {
+    test("getTemplate (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server.mockEndpoint().get("/Templates/get/1.1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -554,12 +554,12 @@ describe("Templates", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListTemplates (45b50dfb)", async () => {
+    test("ListTemplates (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -634,7 +634,7 @@ describe("Templates", () => {
         });
     });
 
-    test("ListTemplates (fdb69624)", async () => {
+    test("ListTemplates (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -650,7 +650,7 @@ describe("Templates", () => {
         );
     });
 
-    test("ListTemplates (22cda34c)", async () => {
+    test("ListTemplates (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -666,7 +666,7 @@ describe("Templates", () => {
         );
     });
 
-    test("ListTemplates (100f5d00)", async () => {
+    test("ListTemplates (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -682,11 +682,11 @@ describe("Templates", () => {
         );
     });
 
-    test("ListTemplates (d335cac6)", async () => {
+    test("ListTemplates (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server.mockEndpoint().get("/Query/templates/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -695,12 +695,12 @@ describe("Templates", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("UpdateTemplate (General success response example for template operations.)", async () => {
+    test("UpdateTemplate (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
@@ -723,7 +723,7 @@ describe("Templates", () => {
         });
     });
 
-    test("UpdateTemplate (e6668dae)", async () => {
+    test("UpdateTemplate (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -760,7 +760,7 @@ describe("Templates", () => {
         );
     });
 
-    test("UpdateTemplate (7c678936)", async () => {
+    test("UpdateTemplate (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -797,7 +797,7 @@ describe("Templates", () => {
         );
     });
 
-    test("UpdateTemplate (bea5f47a)", async () => {
+    test("UpdateTemplate (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -834,7 +834,7 @@ describe("Templates", () => {
         );
     });
 
-    test("UpdateTemplate (6829e834)", async () => {
+    test("UpdateTemplate (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -845,7 +845,7 @@ describe("Templates", () => {
             templateDescription: undefined,
             templateName: undefined,
         };
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .put("/Templates/1.1")
@@ -868,7 +868,7 @@ describe("Templates", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });

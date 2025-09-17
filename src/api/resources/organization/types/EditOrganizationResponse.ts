@@ -7,8 +7,8 @@ import * as Payabli from "../../../index.js";
 export interface EditOrganizationResponse {
     isSuccess?: Payabli.IsSuccess;
     pageIdentifier?: Payabli.PageIdentifier;
-    responseCode?: Payabli.Responsecode;
+    responseCode: Payabli.Responsecode;
     /** Returns the organization ID. */
     responseData?: Payabli.Responsedatanonobject;
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
 }

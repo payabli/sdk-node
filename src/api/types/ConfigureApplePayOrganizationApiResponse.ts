@@ -9,5 +9,5 @@ export interface ConfigureApplePayOrganizationApiResponse {
     pageIdentifier?: Payabli.PageIdentifier;
     responseCode?: Payabli.Responsecode;
     responseData?: Payabli.ApplePayOrganizationUpdateData;
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
 }

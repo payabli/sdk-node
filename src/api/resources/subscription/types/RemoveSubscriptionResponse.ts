@@ -15,5 +15,5 @@ export interface RemoveSubscriptionResponse {
      * If `isSuccess` = false, this contains the reason for the failure.
      */
     responseData?: string;
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
 }

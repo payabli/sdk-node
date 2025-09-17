@@ -3,6 +3,6 @@
  */
 
 export interface TransferMessageProperties {
-    originalTransferStatus?: string;
-    currentTransferStatus?: string;
+    originalTransferStatus: string | null;
+    currentTransferStatus: string | null;
 }

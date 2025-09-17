@@ -17,7 +17,7 @@ import * as Payabli from "../../../index.js";
  */
 export interface AddSubscriptionResponse {
     customerId?: Payabli.CustomerId;
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
     isSuccess?: Payabli.IsSuccess;
     /** The identifier of the newly created subscription. */
     responseData: number;

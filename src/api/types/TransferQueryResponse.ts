@@ -21,8 +21,9 @@ import * as Payabli from "../index.js";
  *                 paypointLogo: "https://example.com/logo.png",
  *                 parentOrgName: "Pilgrim Planner",
  *                 parentOrgId: 12345,
+ *                 parentOrgEntryName: "43aebc000",
  *                 parentOrgLogo: "https://example.com/parent-logo.png",
- *                 externalPaypointId: "ext-12345",
+ *                 externalPaypointID: "ext-12345",
  *                 bankAccount: {
  *                     accountNumber: "****1234",
  *                     routingNumber: "123456789"

@@ -10,16 +10,16 @@ export interface AddMethodResponse extends Payabli.PayabliApiResponseGeneric2Par
 
 export namespace AddMethodResponse {
     export interface ResponseData {
+        /** Stored method identifier in Payabli platform. This ID is used to manage the stored method. */
+        referenceId?: Payabli.MethodReferenceId;
+        resultCode?: Payabli.ResultCode;
+        resultText?: Payabli.Resulttext;
         /**
          * Internal unique ID of customer owner of the stored method.
          *
          * Returns `0` if the method wasn't assigned to an existing customer or no customer was created."
          */
-        CustomerId?: Payabli.CustomerId;
+        customerId?: Payabli.CustomerId;
         methodReferenceId?: Payabli.MethodReferenceId;
-        /** Stored method identifier in Payabli platform. This ID is used to manage the stored method. */
-        ReferenceId?: Payabli.MethodReferenceId;
-        ResultCode?: Payabli.ResultCode;
-        ResultText?: Payabli.Resulttext;
     }
 }

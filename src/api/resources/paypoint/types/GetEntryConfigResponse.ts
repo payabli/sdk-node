@@ -5,9 +5,9 @@
 import * as Payabli from "../../../index.js";
 
 export interface GetEntryConfigResponse {
-    isSuccess?: Payabli.IsSuccess;
+    isSuccess: Payabli.IsSuccess;
     pageIdentifier?: Payabli.PageIdentifier;
     responseCode?: Payabli.Responsecode;
     responseData?: Payabli.PaypointEntryConfig;
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
 }

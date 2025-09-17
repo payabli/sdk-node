@@ -7,7 +7,7 @@ import * as Payabli from "../../../index.js";
 export interface GetMethodResponse {
     isSuccess?: Payabli.IsSuccess;
     responseData?: GetMethodResponse.ResponseData;
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
 }
 
 export namespace GetMethodResponse {

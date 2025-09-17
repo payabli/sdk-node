@@ -5,12 +5,12 @@
 import * as Payabli from "../index.js";
 
 export interface TransferMessage {
-    Id?: number;
-    RoomId?: number;
-    UserId?: number;
-    UserName?: string;
-    Content?: string;
-    CreatedAt?: string;
-    MessageType?: number;
-    MessageProperties?: Payabli.TransferMessageProperties;
+    Id: number | null;
+    RoomId: number | null;
+    UserId: number | null;
+    UserName: string | null;
+    Content: string | null;
+    CreatedAt: string | null;
+    MessageType: number | null;
+    MessageProperties: Payabli.TransferMessageProperties | null;
 }

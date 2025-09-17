@@ -7,7 +7,7 @@ import { PayabliClient } from "../../src/Client";
 import * as Payabli from "../../src/api/index";
 
 describe("Statistic", () => {
-    test("BasicStats (BasicStatsExample)", async () => {
+    test("BasicStats (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -33,7 +33,7 @@ describe("Statistic", () => {
         ]);
     });
 
-    test("BasicStats (dec53333)", async () => {
+    test("BasicStats (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -55,7 +55,7 @@ describe("Statistic", () => {
         );
     });
 
-    test("BasicStats (a6cd2883)", async () => {
+    test("BasicStats (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -77,7 +77,7 @@ describe("Statistic", () => {
         );
     });
 
-    test("BasicStats (ed07014f)", async () => {
+    test("BasicStats (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -99,11 +99,11 @@ describe("Statistic", () => {
         );
     });
 
-    test("BasicStats (8464adb5)", async () => {
+    test("BasicStats (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Statistic/basic/mode/freq/1/1000000")
@@ -118,12 +118,12 @@ describe("Statistic", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("CustomerBasicStats (CustomerBasicStatsExample)", async () => {
+    test("CustomerBasicStats (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -146,7 +146,7 @@ describe("Statistic", () => {
         ]);
     });
 
-    test("CustomerBasicStats (6f11a58d)", async () => {
+    test("CustomerBasicStats (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -168,7 +168,7 @@ describe("Statistic", () => {
         );
     });
 
-    test("CustomerBasicStats (b4a9f07d)", async () => {
+    test("CustomerBasicStats (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -190,7 +190,7 @@ describe("Statistic", () => {
         );
     });
 
-    test("CustomerBasicStats (fa03769)", async () => {
+    test("CustomerBasicStats (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -212,11 +212,11 @@ describe("Statistic", () => {
         );
     });
 
-    test("CustomerBasicStats (c8fed603)", async () => {
+    test("CustomerBasicStats (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Statistic/customerbasic/mode/freq/1")
@@ -231,12 +231,12 @@ describe("Statistic", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("SubStats (SubStatsExample)", async () => {
+    test("SubStats (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -259,7 +259,7 @@ describe("Statistic", () => {
         ]);
     });
 
-    test("SubStats (4b7423de)", async () => {
+    test("SubStats (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -281,7 +281,7 @@ describe("Statistic", () => {
         );
     });
 
-    test("SubStats (493611e6)", async () => {
+    test("SubStats (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -303,7 +303,7 @@ describe("Statistic", () => {
         );
     });
 
-    test("SubStats (fce42cea)", async () => {
+    test("SubStats (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -325,11 +325,11 @@ describe("Statistic", () => {
         );
     });
 
-    test("SubStats (bd9b0184)", async () => {
+    test("SubStats (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Statistic/subscriptions/interval/1/1000000")
@@ -344,12 +344,12 @@ describe("Statistic", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("VendorBasicStats (VendorBasicStatsExample)", async () => {
+    test("VendorBasicStats (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -406,7 +406,7 @@ describe("Statistic", () => {
         ]);
     });
 
-    test("VendorBasicStats (d1f3561d)", async () => {
+    test("VendorBasicStats (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -428,7 +428,7 @@ describe("Statistic", () => {
         );
     });
 
-    test("VendorBasicStats (2e75208d)", async () => {
+    test("VendorBasicStats (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -450,7 +450,7 @@ describe("Statistic", () => {
         );
     });
 
-    test("VendorBasicStats (b04b3779)", async () => {
+    test("VendorBasicStats (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -472,11 +472,11 @@ describe("Statistic", () => {
         );
     });
 
-    test("VendorBasicStats (702c93b3)", async () => {
+    test("VendorBasicStats (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Statistic/vendorbasic/mode/freq/1")
@@ -491,7 +491,7 @@ describe("Statistic", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });

@@ -7,7 +7,7 @@ import { PayabliClient } from "../../src/Client";
 import * as Payabli from "../../src/api/index";
 
 describe("Boarding", () => {
-    test("AddApplication (PayIn)", async () => {
+    test("AddApplication (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -229,7 +229,7 @@ describe("Boarding", () => {
         });
     });
 
-    test("AddApplication (ManagedPayout)", async () => {
+    test("AddApplication (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -478,7 +478,7 @@ describe("Boarding", () => {
         });
     });
 
-    test("AddApplication (OnDemandPayout)", async () => {
+    test("AddApplication (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -770,12 +770,20 @@ describe("Boarding", () => {
         });
     });
 
-    test("AddApplication (AllFields)", async () => {
+    test("AddApplication (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             services: {
-                ach: { acceptCCD: true, acceptPPD: true, acceptWeb: true },
+                ach: {
+                    acceptAmex: false,
+                    acceptDiscover: true,
+                    acceptMastercard: true,
+                    acceptVisa: true,
+                    acceptCCD: true,
+                    acceptPPD: true,
+                    acceptWeb: true,
+                },
                 card: { acceptAmex: true, acceptDiscover: true, acceptMastercard: true, acceptVisa: true },
                 odp: { allowAch: false, allowChecks: false, allowVCard: false },
             },
@@ -1062,7 +1070,7 @@ describe("Boarding", () => {
         });
     });
 
-    test("AddApplication (82231016)", async () => {
+    test("AddApplication (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1285,7 +1293,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("AddApplication (1250be)", async () => {
+    test("AddApplication (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1508,7 +1516,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("AddApplication (a50302a2)", async () => {
+    test("AddApplication (7)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1731,7 +1739,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("AddApplication (d969186c)", async () => {
+    test("AddApplication (8)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1833,7 +1841,7 @@ describe("Boarding", () => {
             RepName: undefined,
             RepOffice: undefined,
         };
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .post("/Boarding/app")
@@ -1951,12 +1959,12 @@ describe("Boarding", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("DeleteApplication (General success response example for some boarding operations.)", async () => {
+    test("DeleteApplication (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1978,7 +1986,7 @@ describe("Boarding", () => {
         });
     });
 
-    test("DeleteApplication (6dc1a7c7)", async () => {
+    test("DeleteApplication (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1994,7 +2002,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("DeleteApplication (d0919dd7)", async () => {
+    test("DeleteApplication (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2010,7 +2018,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("DeleteApplication (735ddd3)", async () => {
+    test("DeleteApplication (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2026,11 +2034,11 @@ describe("Boarding", () => {
         );
     });
 
-    test("DeleteApplication (f86ea6e9)", async () => {
+    test("DeleteApplication (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server.mockEndpoint().delete("/Boarding/app/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2039,12 +2047,12 @@ describe("Boarding", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("GetApplication (General success response example for boarding app get.)", async () => {
+    test("GetApplication (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2971,7 +2979,7 @@ describe("Boarding", () => {
         });
     });
 
-    test("GetApplication (6dc1a7c7)", async () => {
+    test("GetApplication (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2987,7 +2995,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("GetApplication (d0919dd7)", async () => {
+    test("GetApplication (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3003,7 +3011,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("GetApplication (735ddd3)", async () => {
+    test("GetApplication (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3019,11 +3027,11 @@ describe("Boarding", () => {
         );
     });
 
-    test("GetApplication (f86ea6e9)", async () => {
+    test("GetApplication (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server.mockEndpoint().get("/Boarding/read/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -3032,12 +3040,12 @@ describe("Boarding", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("GetApplicationByAuth (Example)", async () => {
+    test("GetApplicationByAuth (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: "admin@email.com", referenceId: "n6UCd1f1ygG7" };
@@ -3352,7 +3360,7 @@ describe("Boarding", () => {
         });
     });
 
-    test("GetApplicationByAuth (99afdcaf)", async () => {
+    test("GetApplicationByAuth (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: undefined, referenceId: undefined };
@@ -3378,7 +3386,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("GetApplicationByAuth (c17ae8bf)", async () => {
+    test("GetApplicationByAuth (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: undefined, referenceId: undefined };
@@ -3404,7 +3412,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("GetApplicationByAuth (bb651b9b)", async () => {
+    test("GetApplicationByAuth (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: undefined, referenceId: undefined };
@@ -3430,11 +3438,11 @@ describe("Boarding", () => {
         );
     });
 
-    test("GetApplicationByAuth (761b3dc1)", async () => {
+    test("GetApplicationByAuth (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: undefined, referenceId: undefined };
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .post("/Boarding/read/xId")
@@ -3453,12 +3461,12 @@ describe("Boarding", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("GetByIdLinkApplication (c0832a82)", async () => {
+    test("GetByIdLinkApplication (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3517,7 +3525,7 @@ describe("Boarding", () => {
         });
     });
 
-    test("GetByIdLinkApplication (cb25223c)", async () => {
+    test("GetByIdLinkApplication (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3539,7 +3547,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("GetByIdLinkApplication (e5ed95c4)", async () => {
+    test("GetByIdLinkApplication (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3561,7 +3569,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("GetByIdLinkApplication (d54f0e38)", async () => {
+    test("GetByIdLinkApplication (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3583,11 +3591,11 @@ describe("Boarding", () => {
         );
     });
 
-    test("GetByIdLinkApplication (c7f2424e)", async () => {
+    test("GetByIdLinkApplication (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Boarding/linkbyId/1")
@@ -3602,12 +3610,12 @@ describe("Boarding", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("GetByTemplateIdLinkApplication (56d93c82)", async () => {
+    test("GetByTemplateIdLinkApplication (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3666,7 +3674,7 @@ describe("Boarding", () => {
         });
     });
 
-    test("GetByTemplateIdLinkApplication (6cd303aa)", async () => {
+    test("GetByTemplateIdLinkApplication (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3688,7 +3696,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("GetByTemplateIdLinkApplication (81721102)", async () => {
+    test("GetByTemplateIdLinkApplication (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3710,7 +3718,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("GetByTemplateIdLinkApplication (d3e8be36)", async () => {
+    test("GetByTemplateIdLinkApplication (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3732,11 +3740,11 @@ describe("Boarding", () => {
         );
     });
 
-    test("GetByTemplateIdLinkApplication (da2f7650)", async () => {
+    test("GetByTemplateIdLinkApplication (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Boarding/linkbyTemplate/1.1")
@@ -3751,12 +3759,12 @@ describe("Boarding", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("getExternalApplication (Example Response)", async () => {
+    test("getExternalApplication (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3789,7 +3797,7 @@ describe("Boarding", () => {
         });
     });
 
-    test("getExternalApplication (2e21392b)", async () => {
+    test("getExternalApplication (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3811,7 +3819,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("getExternalApplication (381d079b)", async () => {
+    test("getExternalApplication (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3833,7 +3841,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("getExternalApplication (7f05ca47)", async () => {
+    test("getExternalApplication (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3855,11 +3863,11 @@ describe("Boarding", () => {
         );
     });
 
-    test("getExternalApplication (e2cb1dfd)", async () => {
+    test("getExternalApplication (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .put("/Boarding/applink/1/mail2")
@@ -3874,12 +3882,12 @@ describe("Boarding", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("GetLinkApplication (e0f2d6a7)", async () => {
+    test("GetLinkApplication (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3938,7 +3946,7 @@ describe("Boarding", () => {
         });
     });
 
-    test("GetLinkApplication (3e696ca3)", async () => {
+    test("GetLinkApplication (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3960,7 +3968,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("GetLinkApplication (f6b04eb3)", async () => {
+    test("GetLinkApplication (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3982,7 +3990,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("GetLinkApplication (d966b7ff)", async () => {
+    test("GetLinkApplication (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4004,11 +4012,11 @@ describe("Boarding", () => {
         );
     });
 
-    test("GetLinkApplication (ba60305)", async () => {
+    test("GetLinkApplication (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Boarding/link/boardingLinkReference")
@@ -4023,12 +4031,12 @@ describe("Boarding", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListApplications (23e7e7f1)", async () => {
+    test("ListApplications (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4200,7 +4208,7 @@ describe("Boarding", () => {
         });
     });
 
-    test("ListApplications (fdb69624)", async () => {
+    test("ListApplications (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4216,7 +4224,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("ListApplications (22cda34c)", async () => {
+    test("ListApplications (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4232,7 +4240,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("ListApplications (100f5d00)", async () => {
+    test("ListApplications (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4248,11 +4256,11 @@ describe("Boarding", () => {
         );
     });
 
-    test("ListApplications (d335cac6)", async () => {
+    test("ListApplications (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server.mockEndpoint().get("/Query/boarding/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -4261,12 +4269,12 @@ describe("Boarding", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListBoardingLinks (3549aa5e)", async () => {
+    test("ListBoardingLinks (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4333,7 +4341,7 @@ describe("Boarding", () => {
         });
     });
 
-    test("ListBoardingLinks (fdb69624)", async () => {
+    test("ListBoardingLinks (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4355,7 +4363,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("ListBoardingLinks (22cda34c)", async () => {
+    test("ListBoardingLinks (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4377,7 +4385,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("ListBoardingLinks (100f5d00)", async () => {
+    test("ListBoardingLinks (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4399,11 +4407,11 @@ describe("Boarding", () => {
         );
     });
 
-    test("ListBoardingLinks (d335cac6)", async () => {
+    test("ListBoardingLinks (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/boardinglinks/1")
@@ -4418,12 +4426,12 @@ describe("Boarding", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("UpdateApplication (General success response example for some boarding operations.)", async () => {
+    test("UpdateApplication (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
@@ -4446,7 +4454,7 @@ describe("Boarding", () => {
         });
     });
 
-    test("UpdateApplication (bdf59af3)", async () => {
+    test("UpdateApplication (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -4581,7 +4589,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("UpdateApplication (58d3b343)", async () => {
+    test("UpdateApplication (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -4716,7 +4724,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("UpdateApplication (9dc70e0f)", async () => {
+    test("UpdateApplication (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -4851,7 +4859,7 @@ describe("Boarding", () => {
         );
     });
 
-    test("UpdateApplication (f9d3d1f5)", async () => {
+    test("UpdateApplication (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -4911,7 +4919,7 @@ describe("Boarding", () => {
             RepName: undefined,
             RepOffice: undefined,
         };
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .put("/Boarding/app/1")
@@ -4983,7 +4991,7 @@ describe("Boarding", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });

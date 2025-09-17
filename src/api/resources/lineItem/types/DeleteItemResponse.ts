@@ -5,6 +5,6 @@
 import * as Payabli from "../../../index.js";
 
 export interface DeleteItemResponse {
-    isSuccess?: Payabli.IsSuccess;
-    responseText?: Payabli.ResponseText;
+    isSuccess: Payabli.IsSuccess;
+    responseText: Payabli.ResponseText;
 }

@@ -9,5 +9,5 @@ export interface PayabliApiResponse00 {
     pageIdentifier?: Payabli.PageIdentifier;
     responseCode?: Payabli.Responsecode;
     responseData?: Payabli.Responsedata;
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
 }

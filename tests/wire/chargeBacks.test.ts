@@ -7,7 +7,7 @@ import { PayabliClient } from "../../src/Client";
 import * as Payabli from "../../src/api/index";
 
 describe("ChargeBacks", () => {
-    test("AddResponse (General success response example for chargebacks.)", async () => {
+    test("AddResponse (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
@@ -32,7 +32,7 @@ describe("ChargeBacks", () => {
         });
     });
 
-    test("AddResponse (d2a49e2)", async () => {
+    test("AddResponse (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -65,7 +65,7 @@ describe("ChargeBacks", () => {
         );
     });
 
-    test("AddResponse (1ca30efa)", async () => {
+    test("AddResponse (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -98,7 +98,7 @@ describe("ChargeBacks", () => {
         );
     });
 
-    test("AddResponse (a9a01f4e)", async () => {
+    test("AddResponse (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -131,7 +131,7 @@ describe("ChargeBacks", () => {
         );
     });
 
-    test("AddResponse (d577dc58)", async () => {
+    test("AddResponse (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -140,7 +140,7 @@ describe("ChargeBacks", () => {
             contactName: undefined,
             notes: undefined,
         };
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .post("/ChargeBacks/response/1000000")
@@ -161,22 +161,35 @@ describe("ChargeBacks", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("GetChargeback (267ff551)", async () => {
+    test("GetChargeback (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            accountType: "visa",
-            caseNumber: "TZ45678",
-            chargebackDate: "2022-06-25T00:00:00Z",
-            createdAt: "2022-07-01T15:00:01Z",
-            customer: {
-                AdditionalData: "AdditionalData",
+            Id: 201,
+            ChargebackDate: "2022-06-25T00:00:00Z",
+            CaseNumber: "TZ45678",
+            ReasonCode: "reasonCode",
+            Reason: "Buyer dispute",
+            ReferenceNumber: "referenceNumber",
+            LastFour: "6789",
+            AccountType: "visa",
+            Status: 1,
+            Method: "card",
+            CreatedAt: "2022-07-01T15:00:01Z",
+            ReplyBy: "2022-07-15T23:59:59Z",
+            PaymentTransId: "226-fe55ec0348e34702bd91b4be198ce7ec",
+            ScheduleReference: 0,
+            OrderId: "O-5140",
+            NetAmount: 3762.87,
+            TransactionTime: "2024-01-15T09:30:00Z",
+            Customer: {
+                AdditionalData: undefined,
                 BillingAddress1: "1111 West 1st Street",
                 BillingAddress2: "Suite 200",
                 BillingCity: "Miami",
@@ -190,7 +203,7 @@ describe("ChargeBacks", () => {
                 CustomerNumber: "3456-7645A",
                 customerStatus: 1,
                 FirstName: "John",
-                Identifiers: ['\\"firstname\\"', '\\"lastname\\"', '\\"email\\"', '\\"customId\\"'],
+                Identifiers: ["firstname", "lastname", "email", "customId"],
                 LastName: "Doe",
                 ShippingAddress1: "123 Walnut St",
                 ShippingAddress2: "STE 900",
@@ -199,13 +212,7 @@ describe("ChargeBacks", () => {
                 ShippingState: "TN",
                 ShippingZip: "37619",
             },
-            id: 201,
-            lastFour: "6789",
-            method: "card",
-            netAmount: 3762.87,
-            orderId: "O-5140",
-            parentOrgName: "PropertyManager Pro",
-            paymentData: {
+            PaymentData: {
                 AccountExp: "11/29",
                 accountId: "accountId",
                 AccountType: "visa",
@@ -241,14 +248,12 @@ describe("ChargeBacks", () => {
                 StoredId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
                 StoredMethodUsageType: "subscription",
             },
-            PaymentId: "34-ggghtt5678xxxxxxx-654",
-            paypointDbaname: "Sunshine Gutters",
-            paypointEntryname: "d193cf9a46",
-            paypointLegalname: "Sunshine Services, LLC",
-            reason: "Buyer dispute",
-            reasonCode: "reasonCode",
-            referenceNumber: "referenceNumber",
-            responses: [
+            PaypointLegalname: "Sunshine Services, LLC",
+            PaypointDbaname: "Sunshine Gutters",
+            ParentOrgName: "PropertyManager Pro",
+            ParentOrgId: 123,
+            PaypointEntryname: "d193cf9a46",
+            Responses: [
                 {
                     contactEmail: "example@email.com",
                     contactName: "John Doe",
@@ -257,8 +262,7 @@ describe("ChargeBacks", () => {
                     notes: "any note here",
                 },
             ],
-            status: 1,
-            transaction: {
+            Transaction: {
                 AchHolderType: "personal",
                 AchSecCode: "AchSecCode",
                 BatchAmount: 30.22,
@@ -280,7 +284,7 @@ describe("ChargeBacks", () => {
                     CustomerNumber: "3456-7645A",
                     customerStatus: 1,
                     FirstName: "John",
-                    Identifiers: ['\\"firstname\\"', '\\"lastname\\"', '\\"email\\"', '\\"customId\\"'],
+                    Identifiers: ["firstname", "lastname", "email", "customId"],
                     LastName: "Doe",
                     ShippingAddress1: "123 Walnut St",
                     ShippingAddress2: "STE 900",
@@ -396,7 +400,23 @@ describe("ChargeBacks", () => {
                 TransAdditionalData: { key: "value" },
                 TransStatus: 1,
             },
-            transactionTime: "2024-01-15T09:30:00Z",
+            externalPaypointID: undefined,
+            pageidentifier: undefined,
+            messages: [
+                {
+                    Id: 1,
+                    RoomId: 100,
+                    UserId: 555,
+                    UserName: "John Admin",
+                    Content: "Chargeback initiated by customer",
+                    CreatedAt: "2022-06-25T10:30:00Z",
+                    MessageType: 1,
+                    MessageProperties: { status: "initial" },
+                },
+            ],
+            ServiceGroup: " ",
+            DisputeType: "chargeback",
+            ProcessorName: "Global Payments",
         };
         server
             .mockEndpoint()
@@ -408,12 +428,25 @@ describe("ChargeBacks", () => {
 
         const response = await client.chargeBacks.getChargeback(1000000);
         expect(response).toEqual({
-            accountType: "visa",
-            caseNumber: "TZ45678",
-            chargebackDate: "2022-06-25T00:00:00Z",
-            createdAt: "2022-07-01T15:00:01Z",
-            customer: {
-                AdditionalData: "AdditionalData",
+            Id: 201,
+            ChargebackDate: "2022-06-25T00:00:00Z",
+            CaseNumber: "TZ45678",
+            ReasonCode: "reasonCode",
+            Reason: "Buyer dispute",
+            ReferenceNumber: "referenceNumber",
+            LastFour: "6789",
+            AccountType: "visa",
+            Status: 1,
+            Method: "card",
+            CreatedAt: "2022-07-01T15:00:01Z",
+            ReplyBy: "2022-07-15T23:59:59Z",
+            PaymentTransId: "226-fe55ec0348e34702bd91b4be198ce7ec",
+            ScheduleReference: 0,
+            OrderId: "O-5140",
+            NetAmount: 3762.87,
+            TransactionTime: "2024-01-15T09:30:00Z",
+            Customer: {
+                AdditionalData: undefined,
                 BillingAddress1: "1111 West 1st Street",
                 BillingAddress2: "Suite 200",
                 BillingCity: "Miami",
@@ -427,7 +460,7 @@ describe("ChargeBacks", () => {
                 CustomerNumber: "3456-7645A",
                 customerStatus: 1,
                 FirstName: "John",
-                Identifiers: ['\\"firstname\\"', '\\"lastname\\"', '\\"email\\"', '\\"customId\\"'],
+                Identifiers: ["firstname", "lastname", "email", "customId"],
                 LastName: "Doe",
                 ShippingAddress1: "123 Walnut St",
                 ShippingAddress2: "STE 900",
@@ -436,13 +469,7 @@ describe("ChargeBacks", () => {
                 ShippingState: "TN",
                 ShippingZip: "37619",
             },
-            id: 201,
-            lastFour: "6789",
-            method: "card",
-            netAmount: 3762.87,
-            orderId: "O-5140",
-            parentOrgName: "PropertyManager Pro",
-            paymentData: {
+            PaymentData: {
                 AccountExp: "11/29",
                 accountId: "accountId",
                 AccountType: "visa",
@@ -485,14 +512,12 @@ describe("ChargeBacks", () => {
                 StoredId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
                 StoredMethodUsageType: "subscription",
             },
-            PaymentId: "34-ggghtt5678xxxxxxx-654",
-            paypointDbaname: "Sunshine Gutters",
-            paypointEntryname: "d193cf9a46",
-            paypointLegalname: "Sunshine Services, LLC",
-            reason: "Buyer dispute",
-            reasonCode: "reasonCode",
-            referenceNumber: "referenceNumber",
-            responses: [
+            PaypointLegalname: "Sunshine Services, LLC",
+            PaypointDbaname: "Sunshine Gutters",
+            ParentOrgName: "PropertyManager Pro",
+            ParentOrgId: 123,
+            PaypointEntryname: "d193cf9a46",
+            Responses: [
                 {
                     contactEmail: "example@email.com",
                     contactName: "John Doe",
@@ -501,8 +526,7 @@ describe("ChargeBacks", () => {
                     notes: "any note here",
                 },
             ],
-            status: 1,
-            transaction: {
+            Transaction: {
                 AchHolderType: "personal",
                 AchSecCode: "AchSecCode",
                 BatchAmount: 30.22,
@@ -528,7 +552,7 @@ describe("ChargeBacks", () => {
                     CustomerNumber: "3456-7645A",
                     customerStatus: 1,
                     FirstName: "John",
-                    Identifiers: ['\\"firstname\\"', '\\"lastname\\"', '\\"email\\"', '\\"customId\\"'],
+                    Identifiers: ["firstname", "lastname", "email", "customId"],
                     LastName: "Doe",
                     ShippingAddress1: "123 Walnut St",
                     ShippingAddress2: "STE 900",
@@ -654,11 +678,29 @@ describe("ChargeBacks", () => {
                 },
                 TransStatus: 1,
             },
-            transactionTime: "2024-01-15T09:30:00Z",
+            externalPaypointID: undefined,
+            pageidentifier: undefined,
+            messages: [
+                {
+                    Id: 1,
+                    RoomId: 100,
+                    UserId: 555,
+                    UserName: "John Admin",
+                    Content: "Chargeback initiated by customer",
+                    CreatedAt: "2022-06-25T10:30:00Z",
+                    MessageType: 1,
+                    MessageProperties: {
+                        status: "initial",
+                    },
+                },
+            ],
+            ServiceGroup: " ",
+            DisputeType: "chargeback",
+            ProcessorName: "Global Payments",
         });
     });
 
-    test("GetChargeback (738cdf82)", async () => {
+    test("GetChargeback (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -680,7 +722,7 @@ describe("ChargeBacks", () => {
         );
     });
 
-    test("GetChargeback (85b4ce1a)", async () => {
+    test("GetChargeback (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -702,7 +744,7 @@ describe("ChargeBacks", () => {
         );
     });
 
-    test("GetChargeback (236f2dee)", async () => {
+    test("GetChargeback (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -724,11 +766,11 @@ describe("ChargeBacks", () => {
         );
     });
 
-    test("GetChargeback (b90fe738)", async () => {
+    test("GetChargeback (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/ChargeBacks/read/1000000")
@@ -743,7 +785,7 @@ describe("ChargeBacks", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });

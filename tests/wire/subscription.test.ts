@@ -7,7 +7,7 @@ import { PayabliClient } from "../../src/Client";
 import * as Payabli from "../../src/api/index";
 
 describe("Subscription", () => {
-    test("GetSubscription (GetSubscription)", async () => {
+    test("GetSubscription (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -291,7 +291,7 @@ describe("Subscription", () => {
         });
     });
 
-    test("GetSubscription (f8000160)", async () => {
+    test("GetSubscription (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -307,7 +307,7 @@ describe("Subscription", () => {
         );
     });
 
-    test("GetSubscription (15615248)", async () => {
+    test("GetSubscription (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -323,7 +323,7 @@ describe("Subscription", () => {
         );
     });
 
-    test("GetSubscription (709f9bdc)", async () => {
+    test("GetSubscription (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -339,11 +339,11 @@ describe("Subscription", () => {
         );
     });
 
-    test("GetSubscription (56c310e2)", async () => {
+    test("GetSubscription (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server.mockEndpoint().get("/Subscription/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -352,12 +352,12 @@ describe("Subscription", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("NewSubscription (CardSubscription)", async () => {
+    test("NewSubscription (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -420,7 +420,7 @@ describe("Subscription", () => {
         });
     });
 
-    test("NewSubscription (ACHSubscription)", async () => {
+    test("NewSubscription (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -483,7 +483,7 @@ describe("Subscription", () => {
         });
     });
 
-    test("NewSubscription (StoredMethodSubscription)", async () => {
+    test("NewSubscription (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -538,7 +538,7 @@ describe("Subscription", () => {
         });
     });
 
-    test("NewSubscription (64a66439)", async () => {
+    test("NewSubscription (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -583,7 +583,7 @@ describe("Subscription", () => {
         );
     });
 
-    test("NewSubscription (9a3cead9)", async () => {
+    test("NewSubscription (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -628,7 +628,7 @@ describe("Subscription", () => {
         );
     });
 
-    test("NewSubscription (91635b05)", async () => {
+    test("NewSubscription (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -673,7 +673,7 @@ describe("Subscription", () => {
         );
     });
 
-    test("NewSubscription (d26df2ff)", async () => {
+    test("NewSubscription (7)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -687,7 +687,7 @@ describe("Subscription", () => {
             source: undefined,
             subdomain: undefined,
         };
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .post("/Subscription/add")
@@ -715,12 +715,12 @@ describe("Subscription", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("RemoveSubscription (DeleteSubscription)", async () => {
+    test("RemoveSubscription (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -741,7 +741,7 @@ describe("Subscription", () => {
         });
     });
 
-    test("RemoveSubscription (f8000160)", async () => {
+    test("RemoveSubscription (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -757,7 +757,7 @@ describe("Subscription", () => {
         );
     });
 
-    test("RemoveSubscription (15615248)", async () => {
+    test("RemoveSubscription (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -773,7 +773,7 @@ describe("Subscription", () => {
         );
     });
 
-    test("RemoveSubscription (709f9bdc)", async () => {
+    test("RemoveSubscription (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -789,11 +789,11 @@ describe("Subscription", () => {
         );
     });
 
-    test("RemoveSubscription (56c310e2)", async () => {
+    test("RemoveSubscription (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server.mockEndpoint().delete("/Subscription/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -802,12 +802,12 @@ describe("Subscription", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("UpdateSubscription (PauseSubscription)", async () => {
+    test("UpdateSubscription (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { setPause: true };
@@ -837,7 +837,7 @@ describe("Subscription", () => {
         });
     });
 
-    test("UpdateSubscription (UnpauseSubscription)", async () => {
+    test("UpdateSubscription (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { setPause: false };
@@ -867,7 +867,7 @@ describe("Subscription", () => {
         });
     });
 
-    test("UpdateSubscription (UpdateSubscription)", async () => {
+    test("UpdateSubscription (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -909,7 +909,7 @@ describe("Subscription", () => {
         });
     });
 
-    test("UpdateSubscription (4385928a)", async () => {
+    test("UpdateSubscription (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { paymentDetails: undefined, scheduleDetails: undefined, setPause: undefined };
@@ -936,7 +936,7 @@ describe("Subscription", () => {
         );
     });
 
-    test("UpdateSubscription (3c9d56e2)", async () => {
+    test("UpdateSubscription (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { paymentDetails: undefined, scheduleDetails: undefined, setPause: undefined };
@@ -963,7 +963,7 @@ describe("Subscription", () => {
         );
     });
 
-    test("UpdateSubscription (ae409496)", async () => {
+    test("UpdateSubscription (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { paymentDetails: undefined, scheduleDetails: undefined, setPause: undefined };
@@ -990,11 +990,11 @@ describe("Subscription", () => {
         );
     });
 
-    test("UpdateSubscription (6a57e3f0)", async () => {
+    test("UpdateSubscription (7)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { paymentDetails: undefined, scheduleDetails: undefined, setPause: undefined };
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .put("/Subscription/1")
@@ -1014,7 +1014,7 @@ describe("Subscription", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });

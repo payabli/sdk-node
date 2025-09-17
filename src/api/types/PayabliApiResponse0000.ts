@@ -9,7 +9,7 @@ import * as Payabli from "../index.js";
  */
 export interface PayabliApiResponse0000 {
     isSuccess?: Payabli.IsSuccess;
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
     pageIdentifier?: Payabli.PageIdentifier;
     responseCode?: Payabli.Responsecode;
     responseData?: PayabliApiResponse0000.ResponseData;

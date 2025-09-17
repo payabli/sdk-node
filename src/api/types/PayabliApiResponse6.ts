@@ -12,5 +12,5 @@ export interface PayabliApiResponse6 {
     pageIdentifier?: Payabli.PageIdentifier;
     /** If `isSuccess` = true, this contains the line item identifier. If `isSuccess` = false, this contains the reason of the error. */
     responseData?: Payabli.Responsedatanonobject;
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
 }

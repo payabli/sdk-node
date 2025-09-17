@@ -4,6 +4,47 @@
 
 import * as Payabli from "../index.js";
 
+/**
+ * @example
+ *     {
+ *         vcardSent: true,
+ *         cardToken: "vcrd_5Ty8NrBzXjKuqHm9DwElfP",
+ *         cardNumber: "44XX XXXX XXXX 1234",
+ *         cvc: "XXX",
+ *         expirationDate: "2025-12",
+ *         status: "Active",
+ *         amount: 500,
+ *         currentBalance: 375.25,
+ *         expenseLimit: 100,
+ *         expenseLimitPeriod: "monthly",
+ *         maxNumberOfUses: 10,
+ *         currentNumberOfUses: 3,
+ *         exactAmount: false,
+ *         mcc: "5812",
+ *         tcc: "T01",
+ *         misc1: "Invoice #12345",
+ *         misc2: "Project: Office Supplies",
+ *         dateCreated: "2023-01-15T09:30:00Z",
+ *         dateModified: "2023-02-20T14:15:22Z",
+ *         associatedVendor: {
+ *             VendorNumber: "V-12345",
+ *             Name1: "Office Supply Co.",
+ *             EIN: "XXXXX6789",
+ *             Email: "billing@officesupply.example.com",
+ *             VendorId: 1542
+ *         },
+ *         associatedCustomer: {
+ *             firstname: "Acme",
+ *             lastname: "Corporation"
+ *         },
+ *         PaypointDbaname: "Global Factory LLC",
+ *         PaypointLegalname: "Global Factory LLC",
+ *         PaypointEntryname: "4872acb376a",
+ *         externalPaypointID: "pay-10",
+ *         ParentOrgName: "SupplyPro",
+ *         paypointId: 236
+ *     }
+ */
 export interface VCardRecord {
     /** When `true`, the vCard has been sent. */
     vcardSent?: boolean;
@@ -44,4 +85,6 @@ export interface VCardRecord {
     /** The paypoint's entry name (entrypoint). */
     PaypointEntryname?: Payabli.Entrypointfield;
     externalPaypointID?: Payabli.ExternalPaypointId;
+    /** The paypoint's unique identifier. */
+    paypointId?: number;
 }

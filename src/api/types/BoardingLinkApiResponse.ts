@@ -13,5 +13,5 @@ export interface BoardingLinkApiResponse {
      * List of empty fields separated by comma (if responseText = Fail)
      */
     responseData?: string;
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
 }

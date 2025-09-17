@@ -9,7 +9,7 @@ export interface BillResponse {
     pageIdentifier?: Payabli.PageIdentifier;
     roomId?: Payabli.RoomIdNotInUse;
     isSuccess?: Payabli.IsSuccess;
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
     /** If `isSuccess` = true, this contains the bill identifier. If `isSuccess` = false, this contains the reason for the error.  */
     responseData?: Payabli.Responsedatanonobject;
 }

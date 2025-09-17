@@ -10,5 +10,5 @@ export interface PayabliApiResponseVendors {
     responseCode?: Payabli.Responsecode;
     /** If the request was successful, this field contains the identifier for the vendor. */
     responseData?: number;
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
 }

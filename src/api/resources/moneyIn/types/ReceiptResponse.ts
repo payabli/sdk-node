@@ -10,5 +10,5 @@ import * as Payabli from "../../../index.js";
 export interface ReceiptResponse {
     isSuccess?: Payabli.IsSuccess;
     pageIdentifier?: Payabli.PageIdentifier;
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
 }

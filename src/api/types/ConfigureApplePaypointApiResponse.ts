@@ -9,7 +9,7 @@ export interface ConfigureApplePaypointApiResponse {
     pageIdentifier?: Payabli.PageIdentifier;
     responseCode?: Payabli.Responsecode;
     responseData?: Payabli.ApplePayPaypointRegistrationData;
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
     /** Field not in use on this endpoint */
     roomId?: number;
 }

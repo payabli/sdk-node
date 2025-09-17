@@ -15,7 +15,7 @@ export interface PayabliApiResponseNotifications {
     responseCode?: Payabli.Responsecode;
     /** When the request was successful, this contains the notification ID, or `nID` used to manage the notification. */
     responseData?: PayabliApiResponseNotifications.ResponseData;
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
 }
 
 export namespace PayabliApiResponseNotifications {

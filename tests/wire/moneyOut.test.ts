@@ -7,7 +7,7 @@ import { PayabliClient } from "../../src/Client";
 import * as Payabli from "../../src/api/index";
 
 describe("MoneyOut", () => {
-    test("AuthorizeOut (AuthorizePayout)", async () => {
+    test("AuthorizeOut (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -83,7 +83,7 @@ describe("MoneyOut", () => {
         });
     });
 
-    test("AuthorizeOut (WithImage)", async () => {
+    test("AuthorizeOut (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -171,7 +171,7 @@ describe("MoneyOut", () => {
         });
     });
 
-    test("AuthorizeOut (StoredACH)", async () => {
+    test("AuthorizeOut (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -250,7 +250,7 @@ describe("MoneyOut", () => {
         });
     });
 
-    test("AuthorizeOut (AddVendor)", async () => {
+    test("AuthorizeOut (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -402,7 +402,7 @@ describe("MoneyOut", () => {
         });
     });
 
-    test("AuthorizeOut (c491a23d)", async () => {
+    test("AuthorizeOut (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -611,7 +611,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("AuthorizeOut (658e63ad)", async () => {
+    test("AuthorizeOut (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -820,7 +820,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("AuthorizeOut (fcdb4f99)", async () => {
+    test("AuthorizeOut (7)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1029,7 +1029,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("AuthorizeOut (7a30fd13)", async () => {
+    test("AuthorizeOut (8)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1125,7 +1125,7 @@ describe("MoneyOut", () => {
             subdomain: undefined,
             subscriptionId: undefined,
         };
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .post("/MoneyOut/authorize")
@@ -1235,12 +1235,12 @@ describe("MoneyOut", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("CancelAllOut (CancelAll)", async () => {
+    test("CancelAllOut (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["2-29", "2-28", "2-27"];
@@ -1286,7 +1286,7 @@ describe("MoneyOut", () => {
         });
     });
 
-    test("CancelAllOut (9234b3ea)", async () => {
+    test("CancelAllOut (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
@@ -1309,7 +1309,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("CancelAllOut (8cf1e142)", async () => {
+    test("CancelAllOut (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
@@ -1332,7 +1332,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("CancelAllOut (b3c36676)", async () => {
+    test("CancelAllOut (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
@@ -1355,11 +1355,11 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("CancelAllOut (de1e8a10)", async () => {
+    test("CancelAllOut (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .post("/MoneyOut/cancelAll")
@@ -1375,12 +1375,12 @@ describe("MoneyOut", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("CancelOut (CancelPayout)", async () => {
+    test("CancelOut (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1425,7 +1425,7 @@ describe("MoneyOut", () => {
         });
     });
 
-    test("CancelOut (b9587b90)", async () => {
+    test("CancelOut (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1447,7 +1447,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("CancelOut (174496b8)", async () => {
+    test("CancelOut (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1469,7 +1469,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("CancelOut (f376ae4c)", async () => {
+    test("CancelOut (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1491,11 +1491,11 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("CancelOut (6c34ecf2)", async () => {
+    test("CancelOut (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/MoneyOut/cancel/referenceId")
@@ -1510,12 +1510,12 @@ describe("MoneyOut", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("CaptureAllOut (CaptureAll)", async () => {
+    test("CaptureAllOut (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["2-29", "2-28", "2-27"];
@@ -1563,7 +1563,7 @@ describe("MoneyOut", () => {
         });
     });
 
-    test("CaptureAllOut (9234b3ea)", async () => {
+    test("CaptureAllOut (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
@@ -1588,7 +1588,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("CaptureAllOut (8cf1e142)", async () => {
+    test("CaptureAllOut (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
@@ -1613,7 +1613,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("CaptureAllOut (b3c36676)", async () => {
+    test("CaptureAllOut (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
@@ -1638,11 +1638,11 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("CaptureAllOut (de1e8a10)", async () => {
+    test("CaptureAllOut (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .post("/MoneyOut/captureAll")
@@ -1660,12 +1660,12 @@ describe("MoneyOut", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("CaptureOut (CapturePayout)", async () => {
+    test("CaptureOut (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1714,7 +1714,7 @@ describe("MoneyOut", () => {
         });
     });
 
-    test("CaptureOut (b9587b90)", async () => {
+    test("CaptureOut (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1736,7 +1736,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("CaptureOut (174496b8)", async () => {
+    test("CaptureOut (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1758,7 +1758,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("CaptureOut (f376ae4c)", async () => {
+    test("CaptureOut (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1780,11 +1780,11 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("CaptureOut (6c34ecf2)", async () => {
+    test("CaptureOut (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/MoneyOut/capture/referenceId")
@@ -1799,12 +1799,12 @@ describe("MoneyOut", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("PayoutDetails (AuthorizedTransaction)", async () => {
+    test("PayoutDetails (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2117,7 +2117,7 @@ describe("MoneyOut", () => {
         });
     });
 
-    test("PayoutDetails (AuthorizeAndCapturedTransaction)", async () => {
+    test("PayoutDetails (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2639,7 +2639,7 @@ describe("MoneyOut", () => {
         });
     });
 
-    test("PayoutDetails (ed7692ad)", async () => {
+    test("PayoutDetails (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2661,7 +2661,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("PayoutDetails (979d589d)", async () => {
+    test("PayoutDetails (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2683,7 +2683,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("PayoutDetails (ca0cd689)", async () => {
+    test("PayoutDetails (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2705,11 +2705,11 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("PayoutDetails (48553763)", async () => {
+    test("PayoutDetails (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/MoneyOut/details/transId")
@@ -2724,12 +2724,12 @@ describe("MoneyOut", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("VCardGet (GetVCard)", async () => {
+    test("VCardGet (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2844,6 +2844,7 @@ describe("MoneyOut", () => {
             PaypointLegalname: "Athlete Factory LLC",
             PaypointEntryname: "47acde49",
             externalPaypointID: undefined,
+            paypointId: 12345,
         };
         server
             .mockEndpoint()
@@ -2965,10 +2966,11 @@ describe("MoneyOut", () => {
             PaypointLegalname: "Athlete Factory LLC",
             PaypointEntryname: "47acde49",
             externalPaypointID: undefined,
+            paypointId: 12345,
         });
     });
 
-    test("VCardGet (768afd6d)", async () => {
+    test("VCardGet (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2990,7 +2992,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("VCardGet (9928fb5d)", async () => {
+    test("VCardGet (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3012,7 +3014,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("VCardGet (1b8adb49)", async () => {
+    test("VCardGet (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3034,11 +3036,11 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("VCardGet (a9969ca3)", async () => {
+    test("VCardGet (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/MoneyOut/vcard/cardToken")
@@ -3053,12 +3055,12 @@ describe("MoneyOut", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("SendVCardLink (SendVCardLink)", async () => {
+    test("SendVCardLink (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { transId: "01K33Z6YQZ6GD5QVKZ856MJBSC" };
@@ -3081,7 +3083,7 @@ describe("MoneyOut", () => {
         });
     });
 
-    test("SendVCardLink (1e8658c0)", async () => {
+    test("SendVCardLink (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { transId: "transId" };
@@ -3106,7 +3108,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("SendVCardLink (f1adf828)", async () => {
+    test("SendVCardLink (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { transId: "transId" };
@@ -3131,7 +3133,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("SendVCardLink (d43d803c)", async () => {
+    test("SendVCardLink (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { transId: "transId" };
@@ -3156,11 +3158,11 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("SendVCardLink (72583f02)", async () => {
+    test("SendVCardLink (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { transId: "transId" };
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .post("/vcard/send-card-link")
@@ -3178,12 +3180,12 @@ describe("MoneyOut", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("GetCheckImage (GetCheckImage)", async () => {
+    test("GetCheckImage (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3203,7 +3205,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("GetCheckImage (fdcc10b9)", async () => {
+    test("GetCheckImage (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3225,7 +3227,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("GetCheckImage (efe6b759)", async () => {
+    test("GetCheckImage (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3247,7 +3249,7 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("GetCheckImage (8ada5785)", async () => {
+    test("GetCheckImage (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3269,11 +3271,11 @@ describe("MoneyOut", () => {
         );
     });
 
-    test("GetCheckImage (b41137f)", async () => {
+    test("GetCheckImage (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/MoneyOut/checkimage/assetName")
@@ -3288,7 +3290,7 @@ describe("MoneyOut", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });

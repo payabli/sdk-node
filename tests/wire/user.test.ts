@@ -7,7 +7,7 @@ import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 
 describe("User", () => {
-    test("AddUser (6c58c3a3)", async () => {
+    test("AddUser (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
@@ -28,7 +28,7 @@ describe("User", () => {
         });
     });
 
-    test("AddUser (f199777)", async () => {
+    test("AddUser (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -75,7 +75,7 @@ describe("User", () => {
         );
     });
 
-    test("AddUser (47d479c7)", async () => {
+    test("AddUser (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -122,7 +122,7 @@ describe("User", () => {
         );
     });
 
-    test("AddUser (323f9843)", async () => {
+    test("AddUser (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -169,7 +169,7 @@ describe("User", () => {
         );
     });
 
-    test("AddUser (7355ac39)", async () => {
+    test("AddUser (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -185,7 +185,7 @@ describe("User", () => {
             timeZone: undefined,
             usrStatus: undefined,
         };
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .post("/User")
@@ -213,12 +213,12 @@ describe("User", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("AuthRefreshUser (dcfb2e43)", async () => {
+    test("AuthRefreshUser (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -241,7 +241,7 @@ describe("User", () => {
         });
     });
 
-    test("AuthRefreshUser (c60dd33b)", async () => {
+    test("AuthRefreshUser (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -257,7 +257,7 @@ describe("User", () => {
         );
     });
 
-    test("AuthRefreshUser (1e230aeb)", async () => {
+    test("AuthRefreshUser (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -273,7 +273,7 @@ describe("User", () => {
         );
     });
 
-    test("AuthRefreshUser (b3843b57)", async () => {
+    test("AuthRefreshUser (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -289,11 +289,11 @@ describe("User", () => {
         );
     });
 
-    test("AuthRefreshUser (e5d1eb2d)", async () => {
+    test("AuthRefreshUser (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server.mockEndpoint().post("/User/authrefresh").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -302,12 +302,12 @@ describe("User", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("AuthResetUser (6c58c3a3)", async () => {
+    test("AuthResetUser (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
@@ -328,7 +328,7 @@ describe("User", () => {
         });
     });
 
-    test("AuthResetUser (b66e8adb)", async () => {
+    test("AuthResetUser (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: undefined, entry: undefined, entryType: undefined };
@@ -355,7 +355,7 @@ describe("User", () => {
         );
     });
 
-    test("AuthResetUser (945d938b)", async () => {
+    test("AuthResetUser (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: undefined, entry: undefined, entryType: undefined };
@@ -382,7 +382,7 @@ describe("User", () => {
         );
     });
 
-    test("AuthResetUser (2f4dd777)", async () => {
+    test("AuthResetUser (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: undefined, entry: undefined, entryType: undefined };
@@ -409,11 +409,11 @@ describe("User", () => {
         );
     });
 
-    test("AuthResetUser (b8055a0d)", async () => {
+    test("AuthResetUser (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: undefined, entry: undefined, entryType: undefined };
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .post("/User/authreset")
@@ -433,12 +433,12 @@ describe("User", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("AuthUser (3dfe2b9)", async () => {
+    test("AuthUser (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
@@ -470,7 +470,7 @@ describe("User", () => {
         });
     });
 
-    test("AuthUser (fcc58bbb)", async () => {
+    test("AuthUser (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -507,7 +507,7 @@ describe("User", () => {
         );
     });
 
-    test("AuthUser (e3f9e36b)", async () => {
+    test("AuthUser (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -544,7 +544,7 @@ describe("User", () => {
         );
     });
 
-    test("AuthUser (45f8c3d7)", async () => {
+    test("AuthUser (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -581,7 +581,7 @@ describe("User", () => {
         );
     });
 
-    test("AuthUser (5464f7ad)", async () => {
+    test("AuthUser (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -592,7 +592,7 @@ describe("User", () => {
             userId: undefined,
             userTokenId: undefined,
         };
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .post("/User/auth/provider")
@@ -615,12 +615,12 @@ describe("User", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ChangePswUser (6c58c3a3)", async () => {
+    test("ChangePswUser (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
@@ -641,7 +641,7 @@ describe("User", () => {
         });
     });
 
-    test("ChangePswUser (422ccbfb)", async () => {
+    test("ChangePswUser (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { psw: undefined };
@@ -666,7 +666,7 @@ describe("User", () => {
         );
     });
 
-    test("ChangePswUser (5a7ad7ab)", async () => {
+    test("ChangePswUser (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { psw: undefined };
@@ -691,7 +691,7 @@ describe("User", () => {
         );
     });
 
-    test("ChangePswUser (d3eff717)", async () => {
+    test("ChangePswUser (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { psw: undefined };
@@ -716,11 +716,11 @@ describe("User", () => {
         );
     });
 
-    test("ChangePswUser (12b3546d)", async () => {
+    test("ChangePswUser (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { psw: undefined };
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .put("/User/authpsw")
@@ -738,12 +738,12 @@ describe("User", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("DeleteUser (268ba30)", async () => {
+    test("DeleteUser (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -756,7 +756,7 @@ describe("User", () => {
         });
     });
 
-    test("DeleteUser (c707a31f)", async () => {
+    test("DeleteUser (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -772,7 +772,7 @@ describe("User", () => {
         );
     });
 
-    test("DeleteUser (1ccf4baf)", async () => {
+    test("DeleteUser (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -788,7 +788,7 @@ describe("User", () => {
         );
     });
 
-    test("DeleteUser (953a448b)", async () => {
+    test("DeleteUser (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -804,11 +804,11 @@ describe("User", () => {
         );
     });
 
-    test("DeleteUser (13ec7891)", async () => {
+    test("DeleteUser (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server.mockEndpoint().delete("/User/1000000").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -817,12 +817,12 @@ describe("User", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("EditMfaUser (983795de)", async () => {
+    test("EditMfaUser (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
@@ -843,7 +843,7 @@ describe("User", () => {
         });
     });
 
-    test("EditMfaUser (f397f1b3)", async () => {
+    test("EditMfaUser (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { mfa: undefined, mfaMode: undefined };
@@ -869,7 +869,7 @@ describe("User", () => {
         );
     });
 
-    test("EditMfaUser (ac8c8703)", async () => {
+    test("EditMfaUser (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { mfa: undefined, mfaMode: undefined };
@@ -895,7 +895,7 @@ describe("User", () => {
         );
     });
 
-    test("EditMfaUser (e48c4fcf)", async () => {
+    test("EditMfaUser (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { mfa: undefined, mfaMode: undefined };
@@ -921,11 +921,11 @@ describe("User", () => {
         );
     });
 
-    test("EditMfaUser (4bf9b035)", async () => {
+    test("EditMfaUser (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { mfa: undefined, mfaMode: undefined };
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .put("/User/mfa/1000000")
@@ -944,12 +944,12 @@ describe("User", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("EditUser (983795de)", async () => {
+    test("EditUser (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
@@ -970,7 +970,7 @@ describe("User", () => {
         });
     });
 
-    test("EditUser (b3905663)", async () => {
+    test("EditUser (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1017,7 +1017,7 @@ describe("User", () => {
         );
     });
 
-    test("EditUser (b241c573)", async () => {
+    test("EditUser (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1064,7 +1064,7 @@ describe("User", () => {
         );
     });
 
-    test("EditUser (ced583bf)", async () => {
+    test("EditUser (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1111,7 +1111,7 @@ describe("User", () => {
         );
     });
 
-    test("EditUser (eba49e45)", async () => {
+    test("EditUser (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1127,7 +1127,7 @@ describe("User", () => {
             timeZone: undefined,
             usrStatus: undefined,
         };
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .put("/User/1000000")
@@ -1155,12 +1155,12 @@ describe("User", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("GetUser (8ad88319)", async () => {
+    test("GetUser (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1220,7 +1220,7 @@ describe("User", () => {
         });
     });
 
-    test("GetUser (c707a31f)", async () => {
+    test("GetUser (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1236,7 +1236,7 @@ describe("User", () => {
         );
     });
 
-    test("GetUser (1ccf4baf)", async () => {
+    test("GetUser (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1252,7 +1252,7 @@ describe("User", () => {
         );
     });
 
-    test("GetUser (953a448b)", async () => {
+    test("GetUser (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1268,11 +1268,11 @@ describe("User", () => {
         );
     });
 
-    test("GetUser (13ec7891)", async () => {
+    test("GetUser (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server.mockEndpoint().get("/User/1000000").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1281,12 +1281,12 @@ describe("User", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("LogoutUser (43cc8154)", async () => {
+    test("LogoutUser (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1300,7 +1300,7 @@ describe("User", () => {
         });
     });
 
-    test("LogoutUser (c60dd33b)", async () => {
+    test("LogoutUser (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1316,7 +1316,7 @@ describe("User", () => {
         );
     });
 
-    test("LogoutUser (1e230aeb)", async () => {
+    test("LogoutUser (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1332,7 +1332,7 @@ describe("User", () => {
         );
     });
 
-    test("LogoutUser (b3843b57)", async () => {
+    test("LogoutUser (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1348,11 +1348,11 @@ describe("User", () => {
         );
     });
 
-    test("LogoutUser (e5d1eb2d)", async () => {
+    test("LogoutUser (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server.mockEndpoint().get("/User/authlogout").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1361,12 +1361,12 @@ describe("User", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ResendMFACode (704dc1d7)", async () => {
+    test("ResendMFACode (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1397,7 +1397,7 @@ describe("User", () => {
         });
     });
 
-    test("ResendMFACode (c4b5161c)", async () => {
+    test("ResendMFACode (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1419,7 +1419,7 @@ describe("User", () => {
         );
     });
 
-    test("ResendMFACode (41233f24)", async () => {
+    test("ResendMFACode (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1441,7 +1441,7 @@ describe("User", () => {
         );
     });
 
-    test("ResendMFACode (eb8d9c18)", async () => {
+    test("ResendMFACode (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1463,11 +1463,11 @@ describe("User", () => {
         );
     });
 
-    test("ResendMFACode (c9e81fee)", async () => {
+    test("ResendMFACode (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .post("/User/resendmfa/usrname/Entry/1")
@@ -1482,12 +1482,12 @@ describe("User", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ValidateMfaUser (e0c11ae)", async () => {
+    test("ValidateMfaUser (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
@@ -1517,7 +1517,7 @@ describe("User", () => {
         });
     });
 
-    test("ValidateMfaUser (e4222fb4)", async () => {
+    test("ValidateMfaUser (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { mfaCode: undefined, mfaValidationCode: undefined };
@@ -1543,7 +1543,7 @@ describe("User", () => {
         );
     });
 
-    test("ValidateMfaUser (e39be4dc)", async () => {
+    test("ValidateMfaUser (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { mfaCode: undefined, mfaValidationCode: undefined };
@@ -1569,7 +1569,7 @@ describe("User", () => {
         );
     });
 
-    test("ValidateMfaUser (f76f1ed0)", async () => {
+    test("ValidateMfaUser (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { mfaCode: undefined, mfaValidationCode: undefined };
@@ -1595,11 +1595,11 @@ describe("User", () => {
         );
     });
 
-    test("ValidateMfaUser (c18e1776)", async () => {
+    test("ValidateMfaUser (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { mfaCode: undefined, mfaValidationCode: undefined };
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .post("/User/mfa")
@@ -1618,7 +1618,7 @@ describe("User", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });

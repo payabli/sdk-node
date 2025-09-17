@@ -7,7 +7,7 @@ import { PayabliClient } from "../../src/Client";
 import * as Payabli from "../../src/api/index";
 
 describe("Query", () => {
-    test("ListBatchDetails (ListBatchExampleRecord)", async () => {
+    test("ListBatchDetails (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -351,7 +351,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListBatchDetails (3f5e8525)", async () => {
+    test("ListBatchDetails (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -373,7 +373,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListBatchDetails (fc4c8ed5)", async () => {
+    test("ListBatchDetails (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -395,7 +395,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListBatchDetails (8d0e1ae1)", async () => {
+    test("ListBatchDetails (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -417,11 +417,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListBatchDetails (c3c4478b)", async () => {
+    test("ListBatchDetails (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/batchDetails/entry")
@@ -436,12 +436,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListBatchDetailsOrg (Example query response)", async () => {
+    test("ListBatchDetailsOrg (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -735,7 +735,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListBatchDetailsOrg (fdb69624)", async () => {
+    test("ListBatchDetailsOrg (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -757,7 +757,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListBatchDetailsOrg (22cda34c)", async () => {
+    test("ListBatchDetailsOrg (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -779,7 +779,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListBatchDetailsOrg (100f5d00)", async () => {
+    test("ListBatchDetailsOrg (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -801,11 +801,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListBatchDetailsOrg (d335cac6)", async () => {
+    test("ListBatchDetailsOrg (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/batchDetails/org/1")
@@ -820,12 +820,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListBatches (GetBatches)", async () => {
+    test("ListBatches (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1136,7 +1136,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListBatches (3f5e8525)", async () => {
+    test("ListBatches (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1158,7 +1158,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListBatches (fc4c8ed5)", async () => {
+    test("ListBatches (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1180,7 +1180,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListBatches (8d0e1ae1)", async () => {
+    test("ListBatches (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1202,11 +1202,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListBatches (c3c4478b)", async () => {
+    test("ListBatches (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/batches/entry")
@@ -1221,12 +1221,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListBatchesOrg (Example Response)", async () => {
+    test("ListBatchesOrg (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1537,7 +1537,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListBatchesOrg (fdb69624)", async () => {
+    test("ListBatchesOrg (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1559,7 +1559,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListBatchesOrg (22cda34c)", async () => {
+    test("ListBatchesOrg (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1581,7 +1581,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListBatchesOrg (100f5d00)", async () => {
+    test("ListBatchesOrg (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1603,11 +1603,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListBatchesOrg (d335cac6)", async () => {
+    test("ListBatchesOrg (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/batches/org/1")
@@ -1622,12 +1622,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListBatchesOut (23288f2a)", async () => {
+    test("ListBatchesOut (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1756,7 +1756,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListBatchesOut (3f5e8525)", async () => {
+    test("ListBatchesOut (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1778,7 +1778,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListBatchesOut (fc4c8ed5)", async () => {
+    test("ListBatchesOut (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1800,7 +1800,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListBatchesOut (8d0e1ae1)", async () => {
+    test("ListBatchesOut (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1822,11 +1822,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListBatchesOut (c3c4478b)", async () => {
+    test("ListBatchesOut (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/batchesOut/entry")
@@ -1841,12 +1841,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListBatchesOutOrg (c280be23)", async () => {
+    test("ListBatchesOutOrg (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1975,7 +1975,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListBatchesOutOrg (fdb69624)", async () => {
+    test("ListBatchesOutOrg (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -1997,7 +1997,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListBatchesOutOrg (22cda34c)", async () => {
+    test("ListBatchesOutOrg (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2019,7 +2019,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListBatchesOutOrg (100f5d00)", async () => {
+    test("ListBatchesOutOrg (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2041,11 +2041,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListBatchesOutOrg (d335cac6)", async () => {
+    test("ListBatchesOutOrg (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/batchesOut/org/1")
@@ -2060,12 +2060,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListChargebacks (Example1)", async () => {
+    test("ListChargebacks (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2377,7 +2377,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListChargebacks (3f5e8525)", async () => {
+    test("ListChargebacks (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2399,7 +2399,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListChargebacks (fc4c8ed5)", async () => {
+    test("ListChargebacks (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2421,7 +2421,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListChargebacks (8d0e1ae1)", async () => {
+    test("ListChargebacks (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2443,11 +2443,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListChargebacks (c3c4478b)", async () => {
+    test("ListChargebacks (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/chargebacks/entry")
@@ -2462,12 +2462,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListChargebacksOrg (cc94b2b9)", async () => {
+    test("ListChargebacksOrg (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2586,7 +2586,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListChargebacksOrg (fdb69624)", async () => {
+    test("ListChargebacksOrg (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2608,7 +2608,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListChargebacksOrg (22cda34c)", async () => {
+    test("ListChargebacksOrg (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2630,7 +2630,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListChargebacksOrg (100f5d00)", async () => {
+    test("ListChargebacksOrg (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2652,11 +2652,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListChargebacksOrg (d335cac6)", async () => {
+    test("ListChargebacksOrg (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/chargebacks/org/1")
@@ -2671,12 +2671,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListCustomers (example1)", async () => {
+    test("ListCustomers (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2797,7 +2797,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListCustomers (3f5e8525)", async () => {
+    test("ListCustomers (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2819,7 +2819,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListCustomers (fc4c8ed5)", async () => {
+    test("ListCustomers (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2841,7 +2841,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListCustomers (8d0e1ae1)", async () => {
+    test("ListCustomers (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -2863,11 +2863,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListCustomers (c3c4478b)", async () => {
+    test("ListCustomers (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/customers/entry")
@@ -2882,12 +2882,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListCustomersOrg (example1)", async () => {
+    test("ListCustomersOrg (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3008,7 +3008,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListCustomersOrg (fdb69624)", async () => {
+    test("ListCustomersOrg (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3030,7 +3030,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListCustomersOrg (22cda34c)", async () => {
+    test("ListCustomersOrg (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3052,7 +3052,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListCustomersOrg (100f5d00)", async () => {
+    test("ListCustomersOrg (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3074,11 +3074,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListCustomersOrg (d335cac6)", async () => {
+    test("ListCustomersOrg (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/customers/org/1")
@@ -3093,12 +3093,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListNotificationReports (Example Response)", async () => {
+    test("ListNotificationReports (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3153,7 +3153,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListNotificationReports (3f5e8525)", async () => {
+    test("ListNotificationReports (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3175,7 +3175,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListNotificationReports (fc4c8ed5)", async () => {
+    test("ListNotificationReports (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3197,7 +3197,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListNotificationReports (8d0e1ae1)", async () => {
+    test("ListNotificationReports (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3219,11 +3219,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListNotificationReports (c3c4478b)", async () => {
+    test("ListNotificationReports (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/notificationReports/entry")
@@ -3238,12 +3238,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListNotificationReportsOrg (Example Response)", async () => {
+    test("ListNotificationReportsOrg (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3298,7 +3298,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListNotificationReportsOrg (fdb69624)", async () => {
+    test("ListNotificationReportsOrg (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3320,7 +3320,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListNotificationReportsOrg (22cda34c)", async () => {
+    test("ListNotificationReportsOrg (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3342,7 +3342,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListNotificationReportsOrg (100f5d00)", async () => {
+    test("ListNotificationReportsOrg (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3364,11 +3364,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListNotificationReportsOrg (d335cac6)", async () => {
+    test("ListNotificationReportsOrg (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/notificationReports/org/1")
@@ -3383,12 +3383,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListNotifications (QueryResponseExample)", async () => {
+    test("ListNotifications (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3485,7 +3485,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListNotifications (3f5e8525)", async () => {
+    test("ListNotifications (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3507,7 +3507,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListNotifications (fc4c8ed5)", async () => {
+    test("ListNotifications (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3529,7 +3529,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListNotifications (8d0e1ae1)", async () => {
+    test("ListNotifications (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3551,11 +3551,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListNotifications (c3c4478b)", async () => {
+    test("ListNotifications (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/notifications/entry")
@@ -3570,12 +3570,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListNotificationsOrg (QueryResponseExample)", async () => {
+    test("ListNotificationsOrg (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3672,7 +3672,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListNotificationsOrg (fdb69624)", async () => {
+    test("ListNotificationsOrg (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3694,7 +3694,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListNotificationsOrg (22cda34c)", async () => {
+    test("ListNotificationsOrg (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3716,7 +3716,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListNotificationsOrg (100f5d00)", async () => {
+    test("ListNotificationsOrg (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3738,11 +3738,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListNotificationsOrg (d335cac6)", async () => {
+    test("ListNotificationsOrg (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/notifications/org/1")
@@ -3757,12 +3757,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListOrganizations (b2010cb4)", async () => {
+    test("ListOrganizations (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3862,7 +3862,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListOrganizations (fdb69624)", async () => {
+    test("ListOrganizations (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3884,7 +3884,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListOrganizations (22cda34c)", async () => {
+    test("ListOrganizations (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3906,7 +3906,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListOrganizations (100f5d00)", async () => {
+    test("ListOrganizations (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -3928,11 +3928,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListOrganizations (d335cac6)", async () => {
+    test("ListOrganizations (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/organizations/1")
@@ -3947,12 +3947,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListPayout (b658de51)", async () => {
+    test("ListPayout (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4095,7 +4095,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListPayout (3f5e8525)", async () => {
+    test("ListPayout (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4117,7 +4117,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListPayout (fc4c8ed5)", async () => {
+    test("ListPayout (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4139,7 +4139,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListPayout (8d0e1ae1)", async () => {
+    test("ListPayout (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4161,11 +4161,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListPayout (c3c4478b)", async () => {
+    test("ListPayout (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/payouts/entry")
@@ -4180,12 +4180,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListPayoutOrg (ListPayoutOrgExample)", async () => {
+    test("ListPayoutOrg (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4328,7 +4328,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListPayoutOrg (fdb69624)", async () => {
+    test("ListPayoutOrg (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4350,7 +4350,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListPayoutOrg (22cda34c)", async () => {
+    test("ListPayoutOrg (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4372,7 +4372,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListPayoutOrg (100f5d00)", async () => {
+    test("ListPayoutOrg (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4394,11 +4394,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListPayoutOrg (d335cac6)", async () => {
+    test("ListPayoutOrg (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/payouts/org/1")
@@ -4413,12 +4413,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListPaypoints (bb2fe6e3)", async () => {
+    test("ListPaypoints (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4581,7 +4581,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListPaypoints (fdb69624)", async () => {
+    test("ListPaypoints (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4597,7 +4597,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListPaypoints (22cda34c)", async () => {
+    test("ListPaypoints (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4613,7 +4613,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListPaypoints (100f5d00)", async () => {
+    test("ListPaypoints (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4629,11 +4629,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListPaypoints (d335cac6)", async () => {
+    test("ListPaypoints (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server.mockEndpoint().get("/Query/paypoints/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -4642,12 +4642,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListSettlements (Example query response)", async () => {
+    test("ListSettlements (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4941,7 +4941,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListSettlements (3f5e8525)", async () => {
+    test("ListSettlements (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4963,7 +4963,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListSettlements (fc4c8ed5)", async () => {
+    test("ListSettlements (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -4985,7 +4985,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListSettlements (8d0e1ae1)", async () => {
+    test("ListSettlements (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -5007,11 +5007,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListSettlements (c3c4478b)", async () => {
+    test("ListSettlements (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/settlements/entry")
@@ -5026,12 +5026,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListSettlementsOrg (Example query response)", async () => {
+    test("ListSettlementsOrg (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -5325,7 +5325,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListSettlementsOrg (fdb69624)", async () => {
+    test("ListSettlementsOrg (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -5347,7 +5347,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListSettlementsOrg (22cda34c)", async () => {
+    test("ListSettlementsOrg (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -5369,7 +5369,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListSettlementsOrg (100f5d00)", async () => {
+    test("ListSettlementsOrg (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -5391,11 +5391,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListSettlementsOrg (d335cac6)", async () => {
+    test("ListSettlementsOrg (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/settlements/org/1")
@@ -5410,12 +5410,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListSubscriptions (Example)", async () => {
+    test("ListSubscriptions (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -5682,7 +5682,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListSubscriptions (3f5e8525)", async () => {
+    test("ListSubscriptions (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -5704,7 +5704,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListSubscriptions (fc4c8ed5)", async () => {
+    test("ListSubscriptions (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -5726,7 +5726,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListSubscriptions (8d0e1ae1)", async () => {
+    test("ListSubscriptions (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -5748,11 +5748,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListSubscriptions (c3c4478b)", async () => {
+    test("ListSubscriptions (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/subscriptions/entry")
@@ -5767,12 +5767,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListSubscriptionsOrg (Example)", async () => {
+    test("ListSubscriptionsOrg (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -6039,7 +6039,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListSubscriptionsOrg (fdb69624)", async () => {
+    test("ListSubscriptionsOrg (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -6061,7 +6061,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListSubscriptionsOrg (22cda34c)", async () => {
+    test("ListSubscriptionsOrg (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -6083,7 +6083,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListSubscriptionsOrg (100f5d00)", async () => {
+    test("ListSubscriptionsOrg (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -6105,11 +6105,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListSubscriptionsOrg (d335cac6)", async () => {
+    test("ListSubscriptionsOrg (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/subscriptions/org/1")
@@ -6124,12 +6124,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListTransactions (Example)", async () => {
+    test("ListTransactions (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -6478,7 +6478,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListTransactions (3f5e8525)", async () => {
+    test("ListTransactions (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -6500,7 +6500,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListTransactions (fc4c8ed5)", async () => {
+    test("ListTransactions (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -6522,7 +6522,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListTransactions (8d0e1ae1)", async () => {
+    test("ListTransactions (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -6544,11 +6544,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListTransactions (c3c4478b)", async () => {
+    test("ListTransactions (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/transactions/entry")
@@ -6563,12 +6563,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListTransactionsOrg (67e1e0ec)", async () => {
+    test("ListTransactionsOrg (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -6707,7 +6707,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListTransactionsOrg (fdb69624)", async () => {
+    test("ListTransactionsOrg (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -6729,7 +6729,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListTransactionsOrg (22cda34c)", async () => {
+    test("ListTransactionsOrg (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -6751,7 +6751,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListTransactionsOrg (100f5d00)", async () => {
+    test("ListTransactionsOrg (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -6773,11 +6773,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListTransactionsOrg (d335cac6)", async () => {
+    test("ListTransactionsOrg (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/transactions/org/1")
@@ -6792,12 +6792,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListTransferDetails (ListTransferDetailsPaypoint)", async () => {
+    test("ListTransferDetails (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -7098,7 +7098,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListTransferDetails (a0626c31)", async () => {
+    test("ListTransferDetails (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -7120,7 +7120,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListTransferDetails (47ce5a71)", async () => {
+    test("ListTransferDetails (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -7142,7 +7142,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListTransferDetails (27274afd)", async () => {
+    test("ListTransferDetails (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -7164,11 +7164,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListTransferDetails (a0acdc47)", async () => {
+    test("ListTransferDetails (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/transferDetails/entry/1")
@@ -7183,12 +7183,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListTransfers (ListTransfer)", async () => {
+    test("ListTransfers (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -7208,8 +7208,9 @@ describe("Query", () => {
                     paypointLogo: "https://example.com/logo.png",
                     parentOrgName: "Pilgrim Planner",
                     parentOrgId: 12345,
+                    parentOrgEntryName: "43aebc000",
                     parentOrgLogo: "https://example.com/parent-logo.png",
-                    externalPaypointId: "ext-12345",
+                    externalPaypointID: "ext-12345",
                     bankAccount: { accountNumber: "****1234", routingNumber: "123456789" },
                     transferDate: "2024-11-17T08:20:07.288+00:00",
                     processor: "gp",
@@ -7265,8 +7266,9 @@ describe("Query", () => {
                     paypointLogo: "https://example.com/logo.png",
                     parentOrgName: "Pilgrim Planner",
                     parentOrgId: 12345,
+                    parentOrgEntryName: "43aebc000",
                     parentOrgLogo: "https://example.com/parent-logo.png",
-                    externalPaypointId: "ext-12345",
+                    externalPaypointID: "ext-12345",
                     bankAccount: {
                         accountNumber: "****1234",
                         routingNumber: "123456789",
@@ -7303,7 +7305,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListTransfers (3f5e8525)", async () => {
+    test("ListTransfers (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -7325,7 +7327,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListTransfers (fc4c8ed5)", async () => {
+    test("ListTransfers (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -7347,7 +7349,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListTransfers (8d0e1ae1)", async () => {
+    test("ListTransfers (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -7369,11 +7371,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListTransfers (c3c4478b)", async () => {
+    test("ListTransfers (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/transfers/entry")
@@ -7388,12 +7390,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListTransfersOrg (ListTransferOrg)", async () => {
+    test("ListTransfersOrg (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -7413,8 +7415,9 @@ describe("Query", () => {
                     paypointLogo: "https://example.com/logo.png",
                     parentOrgName: "Pilgrim Planner",
                     parentOrgId: 12345,
+                    parentOrgEntryName: "43aebc000",
                     parentOrgLogo: "https://example.com/parent-logo.png",
-                    externalPaypointId: "ext-12345",
+                    externalPaypointID: "ext-12345",
                     bankAccount: { accountNumber: "****1234", routingNumber: "123456789" },
                     transferDate: "2024-11-17T08:20:07.288+00:00",
                     processor: "gp",
@@ -7471,8 +7474,9 @@ describe("Query", () => {
                     paypointLogo: "https://example.com/logo.png",
                     parentOrgName: "Pilgrim Planner",
                     parentOrgId: 12345,
+                    parentOrgEntryName: "43aebc000",
                     parentOrgLogo: "https://example.com/parent-logo.png",
-                    externalPaypointId: "ext-12345",
+                    externalPaypointID: "ext-12345",
                     bankAccount: {
                         accountNumber: "****1234",
                         routingNumber: "123456789",
@@ -7509,7 +7513,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListTransfersOrg (a8608ca)", async () => {
+    test("ListTransfersOrg (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -7533,7 +7537,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListTransfersOrg (2531b222)", async () => {
+    test("ListTransfersOrg (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -7557,7 +7561,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListTransfersOrg (5391c0d6)", async () => {
+    test("ListTransfersOrg (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -7581,11 +7585,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListTransfersOrg (210ebcb0)", async () => {
+    test("ListTransfersOrg (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/transfers/org/1000000")
@@ -7602,12 +7606,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListUsersOrg (21145065)", async () => {
+    test("ListUsersOrg (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -7696,7 +7700,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListUsersOrg (fdb69624)", async () => {
+    test("ListUsersOrg (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -7712,7 +7716,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListUsersOrg (22cda34c)", async () => {
+    test("ListUsersOrg (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -7728,7 +7732,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListUsersOrg (100f5d00)", async () => {
+    test("ListUsersOrg (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -7744,11 +7748,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListUsersOrg (d335cac6)", async () => {
+    test("ListUsersOrg (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server.mockEndpoint().get("/Query/users/org/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -7757,12 +7761,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListUsersPaypoint (13dd9d96)", async () => {
+    test("ListUsersPaypoint (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -7851,7 +7855,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListUsersPaypoint (344ea1c4)", async () => {
+    test("ListUsersPaypoint (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -7873,7 +7877,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListUsersPaypoint (a17d02ec)", async () => {
+    test("ListUsersPaypoint (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -7895,7 +7899,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListUsersPaypoint (93e82fa0)", async () => {
+    test("ListUsersPaypoint (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -7917,11 +7921,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListUsersPaypoint (15f0f426)", async () => {
+    test("ListUsersPaypoint (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/users/point/entry")
@@ -7936,12 +7940,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListVendors (An example response for vendor queries)", async () => {
+    test("ListVendors (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -8150,7 +8154,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListVendors (344ea1c4)", async () => {
+    test("ListVendors (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -8172,7 +8176,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListVendors (a17d02ec)", async () => {
+    test("ListVendors (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -8194,7 +8198,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListVendors (93e82fa0)", async () => {
+    test("ListVendors (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -8216,11 +8220,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListVendors (15f0f426)", async () => {
+    test("ListVendors (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/vendors/entry")
@@ -8235,12 +8239,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListVendorsOrg (An example response for vendor queries)", async () => {
+    test("ListVendorsOrg (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -8449,7 +8453,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListVendorsOrg (fdb69624)", async () => {
+    test("ListVendorsOrg (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -8471,7 +8475,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListVendorsOrg (22cda34c)", async () => {
+    test("ListVendorsOrg (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -8493,7 +8497,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListVendorsOrg (100f5d00)", async () => {
+    test("ListVendorsOrg (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -8515,11 +8519,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListVendorsOrg (d335cac6)", async () => {
+    test("ListVendorsOrg (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/vendors/org/1")
@@ -8534,12 +8538,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListVcards (ListVcardsPaypoint)", async () => {
+    test("ListVcards (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -8578,6 +8582,7 @@ describe("Query", () => {
                     PaypointEntryname: "4872acb376a",
                     externalPaypointID: "pay-10",
                     ParentOrgName: "SupplyPro",
+                    paypointId: 236,
                 },
             ],
             Summary: {
@@ -8642,6 +8647,7 @@ describe("Query", () => {
                     PaypointEntryname: "4872acb376a",
                     externalPaypointID: "pay-10",
                     ParentOrgName: "SupplyPro",
+                    paypointId: 236,
                 },
             ],
             Summary: {
@@ -8657,7 +8663,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListVcards (3f5e8525)", async () => {
+    test("ListVcards (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -8679,7 +8685,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListVcards (fc4c8ed5)", async () => {
+    test("ListVcards (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -8701,7 +8707,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListVcards (8d0e1ae1)", async () => {
+    test("ListVcards (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -8723,11 +8729,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListVcards (c3c4478b)", async () => {
+    test("ListVcards (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/vcards/entry")
@@ -8742,12 +8748,12 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("ListVcardsOrg (ListVCardsOrg)", async () => {
+    test("ListVcardsOrg (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -8786,6 +8792,7 @@ describe("Query", () => {
                     PaypointEntryname: "4872acb376a",
                     externalPaypointID: "pay-10",
                     ParentOrgName: "SupplyPro",
+                    paypointId: 236,
                 },
             ],
             Summary: {
@@ -8850,6 +8857,7 @@ describe("Query", () => {
                     PaypointEntryname: "4872acb376a",
                     externalPaypointID: "pay-10",
                     ParentOrgName: "SupplyPro",
+                    paypointId: 236,
                 },
             ],
             Summary: {
@@ -8865,7 +8873,7 @@ describe("Query", () => {
         });
     });
 
-    test("ListVcardsOrg (fdb69624)", async () => {
+    test("ListVcardsOrg (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -8887,7 +8895,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListVcardsOrg (22cda34c)", async () => {
+    test("ListVcardsOrg (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -8909,7 +8917,7 @@ describe("Query", () => {
         );
     });
 
-    test("ListVcardsOrg (100f5d00)", async () => {
+    test("ListVcardsOrg (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -8931,11 +8939,11 @@ describe("Query", () => {
         );
     });
 
-    test("ListVcardsOrg (d335cac6)", async () => {
+    test("ListVcardsOrg (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/Query/vcards/org/1")
@@ -8950,7 +8958,7 @@ describe("Query", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });

@@ -10,6 +10,6 @@ export interface PayabliApiResponse00Responsedatanonobject {
     /** Describes the room ID. Only in use on Boarding endpoints, returns `0` when not applicable. */
     roomId?: number;
     isSuccess?: Payabli.IsSuccess;
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
     responseData?: Payabli.Responsedatanonobject;
 }

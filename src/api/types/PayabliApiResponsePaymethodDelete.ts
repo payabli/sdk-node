@@ -10,7 +10,7 @@ import * as Payabli from "../index.js";
 export interface PayabliApiResponsePaymethodDelete {
     isSuccess?: Payabli.IsSuccess;
     responseData?: PayabliApiResponsePaymethodDelete.ResponseData;
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
 }
 
 export namespace PayabliApiResponsePaymethodDelete {

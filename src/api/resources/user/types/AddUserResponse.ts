@@ -8,5 +8,5 @@ export interface AddUserResponse {
     isSuccess?: Payabli.IsSuccess;
     /** The response data. */
     responseData?: string;
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
 }

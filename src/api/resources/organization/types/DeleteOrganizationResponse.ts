@@ -8,5 +8,5 @@ export interface DeleteOrganizationResponse {
     isSuccess?: Payabli.IsSuccess;
     /** Returns the organization ID. */
     responseData?: Payabli.Responsedatanonobject;
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
 }

@@ -10,7 +10,7 @@ export interface CaptureAllOutResponse {
     responseCode?: Payabli.Responsecode;
     /** Array of objects describing the transactions. */
     responseData?: CaptureAllOutResponse.ResponseData.Item[];
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
 }
 
 export namespace CaptureAllOutResponse {

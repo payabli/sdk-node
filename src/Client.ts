@@ -19,6 +19,7 @@ import { LineItem } from "./api/resources/lineItem/client/Client.js";
 import { MoneyIn } from "./api/resources/moneyIn/client/Client.js";
 import { MoneyOut } from "./api/resources/moneyOut/client/Client.js";
 import { Notification } from "./api/resources/notification/client/Client.js";
+import { Notificationlogs } from "./api/resources/notificationlogs/client/Client.js";
 import { Ocr } from "./api/resources/ocr/client/Client.js";
 import { Organization } from "./api/resources/organization/client/Client.js";
 import { PaymentLink } from "./api/resources/paymentLink/client/Client.js";
@@ -73,6 +74,7 @@ export class PayabliClient {
     protected _moneyIn: MoneyIn | undefined;
     protected _moneyOut: MoneyOut | undefined;
     protected _notification: Notification | undefined;
+    protected _notificationlogs: Notificationlogs | undefined;
     protected _ocr: Ocr | undefined;
     protected _organization: Organization | undefined;
     protected _paymentLink: PaymentLink | undefined;
@@ -94,8 +96,8 @@ export class PayabliClient {
                 {
                     "X-Fern-Language": "JavaScript",
                     "X-Fern-SDK-Name": "@payabli/sdk-node",
-                    "X-Fern-SDK-Version": "0.0.110",
-                    "User-Agent": "@payabli/sdk-node/0.0.110",
+                    "X-Fern-SDK-Version": "0.0.111",
+                    "User-Agent": "@payabli/sdk-node/0.0.111",
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                 },
@@ -158,6 +160,10 @@ export class PayabliClient {
 
     public get notification(): Notification {
         return (this._notification ??= new Notification(this._options));
+    }
+
+    public get notificationlogs(): Notificationlogs {
+        return (this._notificationlogs ??= new Notificationlogs(this._options));
     }
 
     public get ocr(): Ocr {

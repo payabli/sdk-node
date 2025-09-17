@@ -12,6 +12,6 @@ export interface GetBillResponse {
     pageIdentifier?: Payabli.PageIdentifier;
     roomId?: Payabli.RoomIdNotInUse;
     isSuccess?: Payabli.IsSuccess;
-    responseText?: Payabli.ResponseText;
+    responseText: Payabli.ResponseText;
     responseData?: Payabli.BillResponseData;
 }

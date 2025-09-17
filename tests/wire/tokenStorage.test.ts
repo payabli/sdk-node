@@ -7,7 +7,7 @@ import { PayabliClient } from "../../src/Client";
 import * as Payabli from "../../src/api/index";
 
 describe("TokenStorage", () => {
-    test("AddMethod (TokenizeCard)", async () => {
+    test("AddMethod (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -26,11 +26,11 @@ describe("TokenStorage", () => {
         const rawResponseBody = {
             isSuccess: true,
             responseData: {
-                CustomerId: 4400,
+                customerId: 4400,
                 methodReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                ReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                ResultCode: 1,
-                ResultText: "Approved",
+                referenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+                resultCode: 1,
+                resultText: "Approved",
             },
             responseText: "Success",
         };
@@ -63,17 +63,17 @@ describe("TokenStorage", () => {
         expect(response).toEqual({
             isSuccess: true,
             responseData: {
-                CustomerId: 4400,
+                customerId: 4400,
                 methodReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                ReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                ResultCode: 1,
-                ResultText: "Approved",
+                referenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+                resultCode: 1,
+                resultText: "Approved",
             },
             responseText: "Success",
         });
     });
 
-    test("AddMethod (TokenizeCardAnonymous)", async () => {
+    test("AddMethod (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -91,11 +91,11 @@ describe("TokenStorage", () => {
         const rawResponseBody = {
             isSuccess: true,
             responseData: {
-                CustomerId: undefined,
+                customerId: undefined,
                 methodReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                ReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                ResultCode: 1,
-                ResultText: "Approved",
+                referenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+                resultCode: 1,
+                resultText: "Approved",
             },
             responseText: "Success",
         };
@@ -126,17 +126,17 @@ describe("TokenStorage", () => {
         expect(response).toEqual({
             isSuccess: true,
             responseData: {
-                CustomerId: undefined,
+                customerId: undefined,
                 methodReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                ReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                ResultCode: 1,
-                ResultText: "Approved",
+                referenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+                resultCode: 1,
+                resultText: "Approved",
             },
             responseText: "Success",
         });
     });
 
-    test("AddMethod (TemptoPermanent)", async () => {
+    test("AddMethod (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -149,11 +149,11 @@ describe("TokenStorage", () => {
         const rawResponseBody = {
             isSuccess: true,
             responseData: {
-                CustomerId: 4440,
+                customerId: 4440,
                 methodReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                ReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                ResultCode: 1,
-                ResultText: "Approved",
+                referenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+                resultCode: 1,
+                resultText: "Approved",
             },
             responseText: "Success",
         };
@@ -183,17 +183,17 @@ describe("TokenStorage", () => {
         expect(response).toEqual({
             isSuccess: true,
             responseData: {
-                CustomerId: 4440,
+                customerId: 4440,
                 methodReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                ReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                ResultCode: 1,
-                ResultText: "Approved",
+                referenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+                resultCode: 1,
+                resultText: "Approved",
             },
             responseText: "Success",
         });
     });
 
-    test("AddMethod (TokenizeACH)", async () => {
+    test("AddMethod (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -212,11 +212,11 @@ describe("TokenStorage", () => {
         const rawResponseBody = {
             isSuccess: true,
             responseData: {
-                CustomerId: 4440,
+                customerId: 4440,
                 methodReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                ReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                ResultCode: 1,
-                ResultText: "Approved",
+                referenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+                resultCode: 1,
+                resultText: "Approved",
             },
             responseText: "Success",
         };
@@ -250,17 +250,17 @@ describe("TokenStorage", () => {
         expect(response).toEqual({
             isSuccess: true,
             responseData: {
-                CustomerId: 4440,
+                customerId: 4440,
                 methodReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                ReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                ResultCode: 1,
-                ResultText: "Approved",
+                referenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+                resultCode: 1,
+                resultText: "Approved",
             },
             responseText: "Success",
         });
     });
 
-    test("AddMethod (cbc81de9)", async () => {
+    test("AddMethod (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -303,7 +303,7 @@ describe("TokenStorage", () => {
         );
     });
 
-    test("AddMethod (b560d5c9)", async () => {
+    test("AddMethod (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -346,7 +346,7 @@ describe("TokenStorage", () => {
         );
     });
 
-    test("AddMethod (428b8d75)", async () => {
+    test("AddMethod (7)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -389,7 +389,7 @@ describe("TokenStorage", () => {
         );
     });
 
-    test("AddMethod (adcd830f)", async () => {
+    test("AddMethod (8)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -402,7 +402,7 @@ describe("TokenStorage", () => {
             source: undefined,
             subdomain: undefined,
         };
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .post("/TokenStorage/add")
@@ -429,12 +429,12 @@ describe("TokenStorage", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("GetMethod (Example tokenstorage GET with card payment method)", async () => {
+    test("GetMethod (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -582,7 +582,7 @@ describe("TokenStorage", () => {
         });
     });
 
-    test("GetMethod (Example tokenstorage GET with ACH payment method)", async () => {
+    test("GetMethod (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -708,7 +708,7 @@ describe("TokenStorage", () => {
         });
     });
 
-    test("GetMethod (7cbcf97c)", async () => {
+    test("GetMethod (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -730,7 +730,7 @@ describe("TokenStorage", () => {
         );
     });
 
-    test("GetMethod (4b244504)", async () => {
+    test("GetMethod (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -752,7 +752,7 @@ describe("TokenStorage", () => {
         );
     });
 
-    test("GetMethod (54bae878)", async () => {
+    test("GetMethod (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -774,11 +774,11 @@ describe("TokenStorage", () => {
         );
     });
 
-    test("GetMethod (281bf0e)", async () => {
+    test("GetMethod (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .get("/TokenStorage/methodId")
@@ -793,12 +793,12 @@ describe("TokenStorage", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("RemoveMethod (Example1)", async () => {
+    test("RemoveMethod (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -827,7 +827,7 @@ describe("TokenStorage", () => {
         });
     });
 
-    test("RemoveMethod (7cbcf97c)", async () => {
+    test("RemoveMethod (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -849,7 +849,7 @@ describe("TokenStorage", () => {
         );
     });
 
-    test("RemoveMethod (4b244504)", async () => {
+    test("RemoveMethod (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -871,7 +871,7 @@ describe("TokenStorage", () => {
         );
     });
 
-    test("RemoveMethod (54bae878)", async () => {
+    test("RemoveMethod (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -893,11 +893,11 @@ describe("TokenStorage", () => {
         );
     });
 
-    test("RemoveMethod (281bf0e)", async () => {
+    test("RemoveMethod (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .delete("/TokenStorage/methodId")
@@ -912,12 +912,12 @@ describe("TokenStorage", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
 
-    test("UpdateMethod (UpdateCardMethod)", async () => {
+    test("UpdateMethod (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -979,7 +979,7 @@ describe("TokenStorage", () => {
         });
     });
 
-    test("UpdateMethod (UpdateACHMethod)", async () => {
+    test("UpdateMethod (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1041,7 +1041,7 @@ describe("TokenStorage", () => {
         });
     });
 
-    test("UpdateMethod (a5027ae8)", async () => {
+    test("UpdateMethod (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1084,7 +1084,7 @@ describe("TokenStorage", () => {
         );
     });
 
-    test("UpdateMethod (dcd21850)", async () => {
+    test("UpdateMethod (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1127,7 +1127,7 @@ describe("TokenStorage", () => {
         );
     });
 
-    test("UpdateMethod (289e2364)", async () => {
+    test("UpdateMethod (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1170,7 +1170,7 @@ describe("TokenStorage", () => {
         );
     });
 
-    test("UpdateMethod (c5abdbda)", async () => {
+    test("UpdateMethod (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1183,7 +1183,7 @@ describe("TokenStorage", () => {
             source: undefined,
             subdomain: undefined,
         };
-        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: undefined };
+        const rawResponseBody = { isSuccess: undefined, responseData: undefined, responseText: "responseText" };
         server
             .mockEndpoint()
             .put("/TokenStorage/methodId")
@@ -1210,7 +1210,7 @@ describe("TokenStorage", () => {
             new Payabli.ServiceUnavailableError({
                 isSuccess: undefined,
                 responseData: undefined,
-                responseText: undefined,
+                responseText: "responseText",
             }),
         );
     });
