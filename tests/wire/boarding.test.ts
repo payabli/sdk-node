@@ -775,15 +775,7 @@ describe("Boarding", () => {
         const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             services: {
-                ach: {
-                    acceptAmex: false,
-                    acceptDiscover: true,
-                    acceptMastercard: true,
-                    acceptVisa: true,
-                    acceptCCD: true,
-                    acceptPPD: true,
-                    acceptWeb: true,
-                },
+                ach: { acceptCCD: true, acceptPPD: true, acceptWeb: true },
                 card: { acceptAmex: true, acceptDiscover: true, acceptMastercard: true, acceptVisa: true },
                 odp: { allowAch: false, allowChecks: false, allowVCard: false },
             },
