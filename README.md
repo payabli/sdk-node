@@ -7,7 +7,7 @@ The Payabli TypeScript library provides convenient access to the Payabli APIs fr
 
 ## Documentation
 
-API reference documentation is available [here](https://docs.payabli.com/).
+API reference documentation is available [here](https://docs.payabli.com).
 
 ## Installation
 
