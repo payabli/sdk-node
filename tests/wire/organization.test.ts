@@ -4,10 +4,10 @@ import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
-describe("Organization", () => {
+describe("OrganizationClient", () => {
     test("AddOrganization (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             billingInfo: {
                 achAccount: "123123123",
@@ -109,7 +109,7 @@ describe("Organization", () => {
 
     test("AddOrganization (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { orgName: "orgName", orgType: 1, replyToEmail: "replyToEmail" };
         const rawResponseBody = { key: "value" };
         server
@@ -132,7 +132,7 @@ describe("Organization", () => {
 
     test("AddOrganization (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { orgName: "orgName", orgType: 1, replyToEmail: "replyToEmail" };
         const rawResponseBody = { key: "value" };
         server
@@ -155,7 +155,7 @@ describe("Organization", () => {
 
     test("AddOrganization (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { orgName: "orgName", orgType: 1, replyToEmail: "replyToEmail" };
         const rawResponseBody = { key: "value" };
         server
@@ -178,7 +178,7 @@ describe("Organization", () => {
 
     test("AddOrganization (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { orgName: "orgName", orgType: 1, replyToEmail: "replyToEmail" };
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -201,7 +201,7 @@ describe("Organization", () => {
 
     test("DeleteOrganization (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { isSuccess: true, responseData: 245, responseText: "Success" };
         server
@@ -222,7 +222,7 @@ describe("Organization", () => {
 
     test("DeleteOrganization (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server.mockEndpoint().delete("/Organization/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
@@ -234,7 +234,7 @@ describe("Organization", () => {
 
     test("DeleteOrganization (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server.mockEndpoint().delete("/Organization/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
@@ -246,7 +246,7 @@ describe("Organization", () => {
 
     test("DeleteOrganization (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server.mockEndpoint().delete("/Organization/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
@@ -258,7 +258,7 @@ describe("Organization", () => {
 
     test("DeleteOrganization (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server.mockEndpoint().delete("/Organization/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
@@ -270,7 +270,7 @@ describe("Organization", () => {
 
     test("EditOrganization (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             contacts: [
                 {
@@ -333,7 +333,7 @@ describe("Organization", () => {
 
     test("EditOrganization (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
         server
@@ -352,7 +352,7 @@ describe("Organization", () => {
 
     test("EditOrganization (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
         server
@@ -371,7 +371,7 @@ describe("Organization", () => {
 
     test("EditOrganization (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
         server
@@ -390,7 +390,7 @@ describe("Organization", () => {
 
     test("EditOrganization (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -409,7 +409,7 @@ describe("Organization", () => {
 
     test("GetBasicOrganization (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             services: [
@@ -599,7 +599,7 @@ describe("Organization", () => {
 
     test("GetBasicOrganization (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -617,7 +617,7 @@ describe("Organization", () => {
 
     test("GetBasicOrganization (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -635,7 +635,7 @@ describe("Organization", () => {
 
     test("GetBasicOrganization (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -653,7 +653,7 @@ describe("Organization", () => {
 
     test("GetBasicOrganization (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -671,7 +671,7 @@ describe("Organization", () => {
 
     test("GetBasicOrganizationById (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             services: [
@@ -861,7 +861,7 @@ describe("Organization", () => {
 
     test("GetBasicOrganizationById (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -879,7 +879,7 @@ describe("Organization", () => {
 
     test("GetBasicOrganizationById (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -897,7 +897,7 @@ describe("Organization", () => {
 
     test("GetBasicOrganizationById (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -915,7 +915,7 @@ describe("Organization", () => {
 
     test("GetBasicOrganizationById (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -933,7 +933,7 @@ describe("Organization", () => {
 
     test("GetOrganization (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             services: [
@@ -1123,7 +1123,7 @@ describe("Organization", () => {
 
     test("GetOrganization (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1141,7 +1141,7 @@ describe("Organization", () => {
 
     test("GetOrganization (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1159,7 +1159,7 @@ describe("Organization", () => {
 
     test("GetOrganization (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1177,7 +1177,7 @@ describe("Organization", () => {
 
     test("GetOrganization (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -1195,7 +1195,7 @@ describe("Organization", () => {
 
     test("GetSettingsOrganization (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             customFields: [{ key: "key", readOnly: false, value: "value" }],
@@ -1262,7 +1262,7 @@ describe("Organization", () => {
 
     test("GetSettingsOrganization (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1280,7 +1280,7 @@ describe("Organization", () => {
 
     test("GetSettingsOrganization (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1298,7 +1298,7 @@ describe("Organization", () => {
 
     test("GetSettingsOrganization (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1316,7 +1316,7 @@ describe("Organization", () => {
 
     test("GetSettingsOrganization (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server

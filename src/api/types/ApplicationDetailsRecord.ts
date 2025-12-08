@@ -39,8 +39,8 @@ export interface ApplicationDetailsRecord {
     legalName?: Payabli.Legalname;
     license?: Payabli.License;
     licenseState?: Payabli.Licensestate;
-    /** Object containing logo file. */
-    logo?: Payabli.FileContent;
+    /** A URL pointing to a logo file. */
+    logo?: string;
     mAddress1?: Payabli.Maddress;
     mAddress2?: Payabli.Maddress1;
     mccid?: string;

@@ -4,10 +4,10 @@ import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
-describe("Export", () => {
+describe("ExportClient", () => {
     test("ExportApplications (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -30,7 +30,7 @@ describe("Export", () => {
 
     test("ExportApplications (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -48,7 +48,7 @@ describe("Export", () => {
 
     test("ExportApplications (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -66,7 +66,7 @@ describe("Export", () => {
 
     test("ExportApplications (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -84,7 +84,7 @@ describe("Export", () => {
 
     test("ExportApplications (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -102,7 +102,7 @@ describe("Export", () => {
 
     test("ExportBatchDetails (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -113,7 +113,7 @@ describe("Export", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.export.exportBatchDetails("8cfec329267", "csv", {
+        const response = await client.export.exportBatchDetails("csv", "8cfec329267", {
             columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
             fromRecord: 251,
             limitRecord: 1000,
@@ -125,7 +125,7 @@ describe("Export", () => {
 
     test("ExportBatchDetails (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -137,13 +137,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportBatchDetails("entry", "csv");
+            return await client.export.exportBatchDetails("csv", "entry");
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
     test("ExportBatchDetails (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -155,13 +155,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportBatchDetails("entry", "csv");
+            return await client.export.exportBatchDetails("csv", "entry");
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
     test("ExportBatchDetails (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -173,13 +173,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportBatchDetails("entry", "csv");
+            return await client.export.exportBatchDetails("csv", "entry");
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
     test("ExportBatchDetails (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -191,13 +191,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportBatchDetails("entry", "csv");
+            return await client.export.exportBatchDetails("csv", "entry");
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
     test("ExportBatchDetailsOrg (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -220,7 +220,7 @@ describe("Export", () => {
 
     test("ExportBatchDetailsOrg (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -238,7 +238,7 @@ describe("Export", () => {
 
     test("ExportBatchDetailsOrg (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -256,7 +256,7 @@ describe("Export", () => {
 
     test("ExportBatchDetailsOrg (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -274,7 +274,7 @@ describe("Export", () => {
 
     test("ExportBatchDetailsOrg (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -292,7 +292,7 @@ describe("Export", () => {
 
     test("ExportBatches (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -303,7 +303,7 @@ describe("Export", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.export.exportBatches("8cfec329267", "csv", {
+        const response = await client.export.exportBatches("csv", "8cfec329267", {
             columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
             fromRecord: 251,
             limitRecord: 1000,
@@ -315,7 +315,7 @@ describe("Export", () => {
 
     test("ExportBatches (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -327,13 +327,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportBatches("entry", "csv");
+            return await client.export.exportBatches("csv", "entry");
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
     test("ExportBatches (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -345,13 +345,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportBatches("entry", "csv");
+            return await client.export.exportBatches("csv", "entry");
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
     test("ExportBatches (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -363,13 +363,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportBatches("entry", "csv");
+            return await client.export.exportBatches("csv", "entry");
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
     test("ExportBatches (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -381,13 +381,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportBatches("entry", "csv");
+            return await client.export.exportBatches("csv", "entry");
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
     test("ExportBatchesOrg (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -410,7 +410,7 @@ describe("Export", () => {
 
     test("ExportBatchesOrg (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -428,7 +428,7 @@ describe("Export", () => {
 
     test("ExportBatchesOrg (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -446,7 +446,7 @@ describe("Export", () => {
 
     test("ExportBatchesOrg (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -464,7 +464,7 @@ describe("Export", () => {
 
     test("ExportBatchesOrg (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -482,7 +482,7 @@ describe("Export", () => {
 
     test("ExportBatchesOut (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -493,7 +493,7 @@ describe("Export", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.export.exportBatchesOut("8cfec329267", "csv", {
+        const response = await client.export.exportBatchesOut("csv", "8cfec329267", {
             columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
             fromRecord: 251,
             limitRecord: 1000,
@@ -505,7 +505,7 @@ describe("Export", () => {
 
     test("ExportBatchesOut (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -517,13 +517,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportBatchesOut("entry", "csv");
+            return await client.export.exportBatchesOut("csv", "entry");
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
     test("ExportBatchesOut (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -535,13 +535,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportBatchesOut("entry", "csv");
+            return await client.export.exportBatchesOut("csv", "entry");
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
     test("ExportBatchesOut (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -553,13 +553,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportBatchesOut("entry", "csv");
+            return await client.export.exportBatchesOut("csv", "entry");
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
     test("ExportBatchesOut (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -571,13 +571,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportBatchesOut("entry", "csv");
+            return await client.export.exportBatchesOut("csv", "entry");
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
     test("ExportBatchesOutOrg (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -600,7 +600,7 @@ describe("Export", () => {
 
     test("ExportBatchesOutOrg (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -618,7 +618,7 @@ describe("Export", () => {
 
     test("ExportBatchesOutOrg (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -636,7 +636,7 @@ describe("Export", () => {
 
     test("ExportBatchesOutOrg (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -654,7 +654,7 @@ describe("Export", () => {
 
     test("ExportBatchesOutOrg (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -672,7 +672,7 @@ describe("Export", () => {
 
     test("ExportBills (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -683,7 +683,7 @@ describe("Export", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.export.exportBills("8cfec329267", "csv", {
+        const response = await client.export.exportBills("csv", "8cfec329267", {
             columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
             fromRecord: 251,
             limitRecord: 1000,
@@ -695,7 +695,7 @@ describe("Export", () => {
 
     test("ExportBills (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -707,13 +707,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportBills("entry", "csv");
+            return await client.export.exportBills("csv", "entry");
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
     test("ExportBills (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -725,13 +725,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportBills("entry", "csv");
+            return await client.export.exportBills("csv", "entry");
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
     test("ExportBills (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -743,13 +743,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportBills("entry", "csv");
+            return await client.export.exportBills("csv", "entry");
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
     test("ExportBills (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -761,13 +761,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportBills("entry", "csv");
+            return await client.export.exportBills("csv", "entry");
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
     test("ExportBillsOrg (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -790,7 +790,7 @@ describe("Export", () => {
 
     test("ExportBillsOrg (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -808,7 +808,7 @@ describe("Export", () => {
 
     test("ExportBillsOrg (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -826,7 +826,7 @@ describe("Export", () => {
 
     test("ExportBillsOrg (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -844,7 +844,7 @@ describe("Export", () => {
 
     test("ExportBillsOrg (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -862,7 +862,7 @@ describe("Export", () => {
 
     test("ExportChargebacks (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -873,7 +873,7 @@ describe("Export", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.export.exportChargebacks("8cfec329267", "csv", {
+        const response = await client.export.exportChargebacks("csv", "8cfec329267", {
             columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
             fromRecord: 251,
             limitRecord: 1000,
@@ -885,7 +885,7 @@ describe("Export", () => {
 
     test("ExportChargebacks (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -897,13 +897,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportChargebacks("entry", "csv");
+            return await client.export.exportChargebacks("csv", "entry");
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
     test("ExportChargebacks (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -915,13 +915,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportChargebacks("entry", "csv");
+            return await client.export.exportChargebacks("csv", "entry");
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
     test("ExportChargebacks (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -933,13 +933,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportChargebacks("entry", "csv");
+            return await client.export.exportChargebacks("csv", "entry");
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
     test("ExportChargebacks (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -951,13 +951,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportChargebacks("entry", "csv");
+            return await client.export.exportChargebacks("csv", "entry");
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
     test("ExportChargebacksOrg (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -980,7 +980,7 @@ describe("Export", () => {
 
     test("ExportChargebacksOrg (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -998,7 +998,7 @@ describe("Export", () => {
 
     test("ExportChargebacksOrg (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1016,7 +1016,7 @@ describe("Export", () => {
 
     test("ExportChargebacksOrg (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1034,7 +1034,7 @@ describe("Export", () => {
 
     test("ExportChargebacksOrg (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -1052,7 +1052,7 @@ describe("Export", () => {
 
     test("ExportCustomers (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1063,7 +1063,7 @@ describe("Export", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.export.exportCustomers("8cfec329267", "csv", {
+        const response = await client.export.exportCustomers("csv", "8cfec329267", {
             columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
             fromRecord: 251,
             limitRecord: 1000,
@@ -1075,7 +1075,7 @@ describe("Export", () => {
 
     test("ExportCustomers (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1087,13 +1087,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportCustomers("entry", "csv");
+            return await client.export.exportCustomers("csv", "entry");
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
     test("ExportCustomers (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1105,13 +1105,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportCustomers("entry", "csv");
+            return await client.export.exportCustomers("csv", "entry");
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
     test("ExportCustomers (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1123,13 +1123,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportCustomers("entry", "csv");
+            return await client.export.exportCustomers("csv", "entry");
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
     test("ExportCustomers (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -1141,13 +1141,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportCustomers("entry", "csv");
+            return await client.export.exportCustomers("csv", "entry");
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
     test("ExportCustomersOrg (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1170,7 +1170,7 @@ describe("Export", () => {
 
     test("ExportCustomersOrg (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1188,7 +1188,7 @@ describe("Export", () => {
 
     test("ExportCustomersOrg (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1206,7 +1206,7 @@ describe("Export", () => {
 
     test("ExportCustomersOrg (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1224,7 +1224,7 @@ describe("Export", () => {
 
     test("ExportCustomersOrg (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -1242,7 +1242,7 @@ describe("Export", () => {
 
     test("ExportInvoices (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1253,7 +1253,7 @@ describe("Export", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.export.exportInvoices("8cfec329267", "csv", {
+        const response = await client.export.exportInvoices("csv", "8cfec329267", {
             columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
             fromRecord: 251,
             limitRecord: 1000,
@@ -1265,7 +1265,7 @@ describe("Export", () => {
 
     test("ExportInvoices (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1277,13 +1277,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportInvoices("entry", "csv");
+            return await client.export.exportInvoices("csv", "entry");
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
     test("ExportInvoices (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1295,13 +1295,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportInvoices("entry", "csv");
+            return await client.export.exportInvoices("csv", "entry");
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
     test("ExportInvoices (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1313,13 +1313,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportInvoices("entry", "csv");
+            return await client.export.exportInvoices("csv", "entry");
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
     test("ExportInvoices (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -1331,13 +1331,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportInvoices("entry", "csv");
+            return await client.export.exportInvoices("csv", "entry");
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
     test("ExportInvoicesOrg (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1360,7 +1360,7 @@ describe("Export", () => {
 
     test("ExportInvoicesOrg (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1378,7 +1378,7 @@ describe("Export", () => {
 
     test("ExportInvoicesOrg (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1396,7 +1396,7 @@ describe("Export", () => {
 
     test("ExportInvoicesOrg (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1414,7 +1414,7 @@ describe("Export", () => {
 
     test("ExportInvoicesOrg (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -1432,7 +1432,7 @@ describe("Export", () => {
 
     test("ExportOrganizations (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1455,7 +1455,7 @@ describe("Export", () => {
 
     test("ExportOrganizations (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1473,7 +1473,7 @@ describe("Export", () => {
 
     test("ExportOrganizations (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1491,7 +1491,7 @@ describe("Export", () => {
 
     test("ExportOrganizations (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1509,7 +1509,7 @@ describe("Export", () => {
 
     test("ExportOrganizations (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -1527,7 +1527,7 @@ describe("Export", () => {
 
     test("ExportPayout (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1538,7 +1538,7 @@ describe("Export", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.export.exportPayout("8cfec329267", "csv", {
+        const response = await client.export.exportPayout("csv", "8cfec329267", {
             columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
             fromRecord: 251,
             limitRecord: 1000,
@@ -1550,7 +1550,7 @@ describe("Export", () => {
 
     test("ExportPayout (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1562,13 +1562,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportPayout("entry", "csv");
+            return await client.export.exportPayout("csv", "entry");
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
     test("ExportPayout (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1580,13 +1580,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportPayout("entry", "csv");
+            return await client.export.exportPayout("csv", "entry");
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
     test("ExportPayout (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1598,13 +1598,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportPayout("entry", "csv");
+            return await client.export.exportPayout("csv", "entry");
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
     test("ExportPayout (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -1616,13 +1616,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportPayout("entry", "csv");
+            return await client.export.exportPayout("csv", "entry");
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
     test("ExportPayoutOrg (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1645,7 +1645,7 @@ describe("Export", () => {
 
     test("ExportPayoutOrg (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1663,7 +1663,7 @@ describe("Export", () => {
 
     test("ExportPayoutOrg (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1681,7 +1681,7 @@ describe("Export", () => {
 
     test("ExportPayoutOrg (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1699,7 +1699,7 @@ describe("Export", () => {
 
     test("ExportPayoutOrg (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -1717,7 +1717,7 @@ describe("Export", () => {
 
     test("ExportPaypoints (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1740,7 +1740,7 @@ describe("Export", () => {
 
     test("ExportPaypoints (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1758,7 +1758,7 @@ describe("Export", () => {
 
     test("ExportPaypoints (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1776,7 +1776,7 @@ describe("Export", () => {
 
     test("ExportPaypoints (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1794,7 +1794,7 @@ describe("Export", () => {
 
     test("ExportPaypoints (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -1812,7 +1812,7 @@ describe("Export", () => {
 
     test("ExportSettlements (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1823,7 +1823,7 @@ describe("Export", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.export.exportSettlements("8cfec329267", "csv", {
+        const response = await client.export.exportSettlements("csv", "8cfec329267", {
             columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
             fromRecord: 251,
             limitRecord: 1000,
@@ -1835,7 +1835,7 @@ describe("Export", () => {
 
     test("ExportSettlements (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1847,13 +1847,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportSettlements("entry", "csv");
+            return await client.export.exportSettlements("csv", "entry");
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
     test("ExportSettlements (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1865,13 +1865,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportSettlements("entry", "csv");
+            return await client.export.exportSettlements("csv", "entry");
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
     test("ExportSettlements (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1883,13 +1883,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportSettlements("entry", "csv");
+            return await client.export.exportSettlements("csv", "entry");
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
     test("ExportSettlements (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -1901,13 +1901,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportSettlements("entry", "csv");
+            return await client.export.exportSettlements("csv", "entry");
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
     test("ExportSettlementsOrg (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1930,7 +1930,7 @@ describe("Export", () => {
 
     test("ExportSettlementsOrg (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1948,7 +1948,7 @@ describe("Export", () => {
 
     test("ExportSettlementsOrg (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1966,7 +1966,7 @@ describe("Export", () => {
 
     test("ExportSettlementsOrg (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1984,7 +1984,7 @@ describe("Export", () => {
 
     test("ExportSettlementsOrg (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -2002,7 +2002,7 @@ describe("Export", () => {
 
     test("ExportSubscriptions (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2013,7 +2013,7 @@ describe("Export", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.export.exportSubscriptions("8cfec329267", "csv", {
+        const response = await client.export.exportSubscriptions("csv", "8cfec329267", {
             columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
             fromRecord: 251,
             limitRecord: 1000,
@@ -2025,7 +2025,7 @@ describe("Export", () => {
 
     test("ExportSubscriptions (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2037,13 +2037,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportSubscriptions("entry", "csv");
+            return await client.export.exportSubscriptions("csv", "entry");
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
     test("ExportSubscriptions (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2055,13 +2055,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportSubscriptions("entry", "csv");
+            return await client.export.exportSubscriptions("csv", "entry");
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
     test("ExportSubscriptions (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2073,13 +2073,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportSubscriptions("entry", "csv");
+            return await client.export.exportSubscriptions("csv", "entry");
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
     test("ExportSubscriptions (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -2091,13 +2091,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportSubscriptions("entry", "csv");
+            return await client.export.exportSubscriptions("csv", "entry");
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
     test("ExportSubscriptionsOrg (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2120,7 +2120,7 @@ describe("Export", () => {
 
     test("ExportSubscriptionsOrg (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2138,7 +2138,7 @@ describe("Export", () => {
 
     test("ExportSubscriptionsOrg (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2156,7 +2156,7 @@ describe("Export", () => {
 
     test("ExportSubscriptionsOrg (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2174,7 +2174,7 @@ describe("Export", () => {
 
     test("ExportSubscriptionsOrg (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -2192,7 +2192,7 @@ describe("Export", () => {
 
     test("ExportTransactions (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2203,7 +2203,7 @@ describe("Export", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.export.exportTransactions("8cfec329267", "csv", {
+        const response = await client.export.exportTransactions("csv", "8cfec329267", {
             columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
             fromRecord: 251,
             limitRecord: 1000,
@@ -2215,7 +2215,7 @@ describe("Export", () => {
 
     test("ExportTransactions (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2227,13 +2227,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportTransactions("entry", "csv");
+            return await client.export.exportTransactions("csv", "entry");
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
     test("ExportTransactions (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2245,13 +2245,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportTransactions("entry", "csv");
+            return await client.export.exportTransactions("csv", "entry");
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
     test("ExportTransactions (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2263,13 +2263,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportTransactions("entry", "csv");
+            return await client.export.exportTransactions("csv", "entry");
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
     test("ExportTransactions (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -2281,13 +2281,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportTransactions("entry", "csv");
+            return await client.export.exportTransactions("csv", "entry");
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
     test("ExportTransactionsOrg (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2310,7 +2310,7 @@ describe("Export", () => {
 
     test("ExportTransactionsOrg (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2328,7 +2328,7 @@ describe("Export", () => {
 
     test("ExportTransactionsOrg (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2346,7 +2346,7 @@ describe("Export", () => {
 
     test("ExportTransactionsOrg (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2364,7 +2364,7 @@ describe("Export", () => {
 
     test("ExportTransactionsOrg (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -2382,7 +2382,7 @@ describe("Export", () => {
 
     test("ExportTransferDetails (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2393,7 +2393,7 @@ describe("Export", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.export.exportTransferDetails("8cfec329267", "csv", 1000000, {
+        const response = await client.export.exportTransferDetails("csv", "8cfec329267", 1000000, {
             columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
             fromRecord: 251,
             limitRecord: 1000,
@@ -2406,7 +2406,7 @@ describe("Export", () => {
 
     test("ExportTransferDetails (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2418,13 +2418,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportTransferDetails("entry", "csv", 1000000);
+            return await client.export.exportTransferDetails("csv", "entry", 1000000);
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
     test("ExportTransferDetails (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2436,13 +2436,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportTransferDetails("entry", "csv", 1000000);
+            return await client.export.exportTransferDetails("csv", "entry", 1000000);
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
     test("ExportTransferDetails (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2454,13 +2454,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportTransferDetails("entry", "csv", 1000000);
+            return await client.export.exportTransferDetails("csv", "entry", 1000000);
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
     test("ExportTransferDetails (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -2472,13 +2472,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportTransferDetails("entry", "csv", 1000000);
+            return await client.export.exportTransferDetails("csv", "entry", 1000000);
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
     test("ExportTransfers (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2502,7 +2502,7 @@ describe("Export", () => {
 
     test("ExportTransfers (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2520,7 +2520,7 @@ describe("Export", () => {
 
     test("ExportTransfers (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2538,7 +2538,7 @@ describe("Export", () => {
 
     test("ExportTransfers (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2556,7 +2556,7 @@ describe("Export", () => {
 
     test("ExportTransfers (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -2574,7 +2574,7 @@ describe("Export", () => {
 
     test("ExportVendors (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2585,7 +2585,7 @@ describe("Export", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.export.exportVendors("8cfec329267", "csv", {
+        const response = await client.export.exportVendors("csv", "8cfec329267", {
             columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
             fromRecord: 251,
             limitRecord: 1000,
@@ -2597,7 +2597,7 @@ describe("Export", () => {
 
     test("ExportVendors (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2609,13 +2609,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportVendors("entry", "csv");
+            return await client.export.exportVendors("csv", "entry");
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
     test("ExportVendors (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2627,13 +2627,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportVendors("entry", "csv");
+            return await client.export.exportVendors("csv", "entry");
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
     test("ExportVendors (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2645,13 +2645,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportVendors("entry", "csv");
+            return await client.export.exportVendors("csv", "entry");
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
     test("ExportVendors (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -2663,13 +2663,13 @@ describe("Export", () => {
             .build();
 
         await expect(async () => {
-            return await client.export.exportVendors("entry", "csv");
+            return await client.export.exportVendors("csv", "entry");
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
     test("ExportVendorsOrg (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2692,7 +2692,7 @@ describe("Export", () => {
 
     test("ExportVendorsOrg (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2710,7 +2710,7 @@ describe("Export", () => {
 
     test("ExportVendorsOrg (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2728,7 +2728,7 @@ describe("Export", () => {
 
     test("ExportVendorsOrg (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2746,7 +2746,7 @@ describe("Export", () => {
 
     test("ExportVendorsOrg (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server

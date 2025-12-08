@@ -4,10 +4,10 @@ import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
-describe("Boarding", () => {
+describe("BoardingClient", () => {
     test("AddApplication (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             services: {
                 ach: {},
@@ -229,7 +229,7 @@ describe("Boarding", () => {
 
     test("AddApplication (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             annualRevenue: 750000,
             baddress: "789 Industrial Parkway",
@@ -478,7 +478,7 @@ describe("Boarding", () => {
 
     test("AddApplication (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             services: {
                 ach: { acceptCCD: true, acceptPPD: true, acceptWeb: true },
@@ -770,7 +770,7 @@ describe("Boarding", () => {
 
     test("AddApplication (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             services: {
                 ach: { acceptCCD: true, acceptPPD: true, acceptWeb: true },
@@ -1062,7 +1062,7 @@ describe("Boarding", () => {
 
     test("AddApplication (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             services: { ach: {}, card: {} },
             bankData: {},
@@ -1104,7 +1104,7 @@ describe("Boarding", () => {
 
     test("AddApplication (6)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             services: { ach: {}, card: {} },
             bankData: {},
@@ -1146,7 +1146,7 @@ describe("Boarding", () => {
 
     test("AddApplication (7)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             services: { ach: {}, card: {} },
             bankData: {},
@@ -1188,7 +1188,7 @@ describe("Boarding", () => {
 
     test("AddApplication (8)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             services: { ach: {}, card: {} },
             bankData: {},
@@ -1230,7 +1230,7 @@ describe("Boarding", () => {
 
     test("DeleteApplication (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 3625, responseText: "Success" };
         server
@@ -1252,7 +1252,7 @@ describe("Boarding", () => {
 
     test("DeleteApplication (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server.mockEndpoint().delete("/Boarding/app/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
@@ -1264,7 +1264,7 @@ describe("Boarding", () => {
 
     test("DeleteApplication (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server.mockEndpoint().delete("/Boarding/app/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
@@ -1276,7 +1276,7 @@ describe("Boarding", () => {
 
     test("DeleteApplication (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server.mockEndpoint().delete("/Boarding/app/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
@@ -1288,7 +1288,7 @@ describe("Boarding", () => {
 
     test("DeleteApplication (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server.mockEndpoint().delete("/Boarding/app/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
@@ -1300,7 +1300,7 @@ describe("Boarding", () => {
 
     test("GetApplication (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             annualRevenue: 1000,
@@ -1477,12 +1477,7 @@ describe("Boarding", () => {
             legalName: "Sunshine Services, LLC",
             license: "2222222FFG",
             licenseState: "CA",
-            logo: {
-                fContent: "TXkgdGVzdCBmaWxlHJ==...",
-                filename: "my-doc.pdf",
-                ftype: "pdf",
-                furl: "https://mysite.com/my-doc.pdf",
-            },
+            logo: "https://mysite.com/my-logo.png",
             mAddress1: "123 Walnut Street",
             mAddress2: "STE 900",
             mccid: "<string>",
@@ -2091,12 +2086,7 @@ describe("Boarding", () => {
             legalName: "Sunshine Services, LLC",
             license: "2222222FFG",
             licenseState: "CA",
-            logo: {
-                fContent: "TXkgdGVzdCBmaWxlHJ==...",
-                filename: "my-doc.pdf",
-                ftype: "pdf",
-                furl: "https://mysite.com/my-doc.pdf",
-            },
+            logo: "https://mysite.com/my-logo.png",
             mAddress1: "123 Walnut Street",
             mAddress2: "STE 900",
             mccid: "<string>",
@@ -2223,7 +2213,7 @@ describe("Boarding", () => {
 
     test("GetApplication (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server.mockEndpoint().get("/Boarding/read/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
@@ -2235,7 +2225,7 @@ describe("Boarding", () => {
 
     test("GetApplication (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server.mockEndpoint().get("/Boarding/read/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
@@ -2247,7 +2237,7 @@ describe("Boarding", () => {
 
     test("GetApplication (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server.mockEndpoint().get("/Boarding/read/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
@@ -2259,7 +2249,7 @@ describe("Boarding", () => {
 
     test("GetApplication (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server.mockEndpoint().get("/Boarding/read/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
@@ -2271,7 +2261,7 @@ describe("Boarding", () => {
 
     test("GetApplicationByAuth (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: "admin@email.com", referenceId: "n6UCd1f1ygG7" };
         const rawResponseBody = {
             annualRevenue: 1000,
@@ -2586,7 +2576,7 @@ describe("Boarding", () => {
 
     test("GetApplicationByAuth (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
         server
@@ -2605,7 +2595,7 @@ describe("Boarding", () => {
 
     test("GetApplicationByAuth (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
         server
@@ -2624,7 +2614,7 @@ describe("Boarding", () => {
 
     test("GetApplicationByAuth (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
         server
@@ -2643,7 +2633,7 @@ describe("Boarding", () => {
 
     test("GetApplicationByAuth (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -2662,7 +2652,7 @@ describe("Boarding", () => {
 
     test("GetByIdLinkApplication (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             acceptOauth: false,
@@ -2721,7 +2711,7 @@ describe("Boarding", () => {
 
     test("GetByIdLinkApplication (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2739,7 +2729,7 @@ describe("Boarding", () => {
 
     test("GetByIdLinkApplication (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2757,7 +2747,7 @@ describe("Boarding", () => {
 
     test("GetByIdLinkApplication (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2775,7 +2765,7 @@ describe("Boarding", () => {
 
     test("GetByIdLinkApplication (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -2793,7 +2783,7 @@ describe("Boarding", () => {
 
     test("GetByTemplateIdLinkApplication (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             acceptOauth: false,
@@ -2852,7 +2842,7 @@ describe("Boarding", () => {
 
     test("GetByTemplateIdLinkApplication (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2870,7 +2860,7 @@ describe("Boarding", () => {
 
     test("GetByTemplateIdLinkApplication (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2888,7 +2878,7 @@ describe("Boarding", () => {
 
     test("GetByTemplateIdLinkApplication (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2906,7 +2896,7 @@ describe("Boarding", () => {
 
     test("GetByTemplateIdLinkApplication (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -2924,7 +2914,7 @@ describe("Boarding", () => {
 
     test("getExternalApplication (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             isSuccess: true,
@@ -2957,7 +2947,7 @@ describe("Boarding", () => {
 
     test("getExternalApplication (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2975,7 +2965,7 @@ describe("Boarding", () => {
 
     test("getExternalApplication (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2993,7 +2983,7 @@ describe("Boarding", () => {
 
     test("getExternalApplication (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -3011,7 +3001,7 @@ describe("Boarding", () => {
 
     test("getExternalApplication (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -3029,7 +3019,7 @@ describe("Boarding", () => {
 
     test("GetLinkApplication (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             acceptOauth: false,
@@ -3088,7 +3078,7 @@ describe("Boarding", () => {
 
     test("GetLinkApplication (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -3106,7 +3096,7 @@ describe("Boarding", () => {
 
     test("GetLinkApplication (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -3124,7 +3114,7 @@ describe("Boarding", () => {
 
     test("GetLinkApplication (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -3142,7 +3132,7 @@ describe("Boarding", () => {
 
     test("GetLinkApplication (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -3160,7 +3150,7 @@ describe("Boarding", () => {
 
     test("ListApplications (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             Records: [
@@ -3332,7 +3322,7 @@ describe("Boarding", () => {
 
     test("ListApplications (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server.mockEndpoint().get("/Query/boarding/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
@@ -3344,7 +3334,7 @@ describe("Boarding", () => {
 
     test("ListApplications (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server.mockEndpoint().get("/Query/boarding/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
@@ -3356,7 +3346,7 @@ describe("Boarding", () => {
 
     test("ListApplications (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server.mockEndpoint().get("/Query/boarding/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
@@ -3368,7 +3358,7 @@ describe("Boarding", () => {
 
     test("ListApplications (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server.mockEndpoint().get("/Query/boarding/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
@@ -3380,7 +3370,7 @@ describe("Boarding", () => {
 
     test("ListBoardingLinks (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             Records: [
@@ -3447,7 +3437,7 @@ describe("Boarding", () => {
 
     test("ListBoardingLinks (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -3465,7 +3455,7 @@ describe("Boarding", () => {
 
     test("ListBoardingLinks (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -3483,7 +3473,7 @@ describe("Boarding", () => {
 
     test("ListBoardingLinks (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -3501,7 +3491,7 @@ describe("Boarding", () => {
 
     test("ListBoardingLinks (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -3519,7 +3509,7 @@ describe("Boarding", () => {
 
     test("UpdateApplication (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 3625, responseText: "Success" };
         server
@@ -3542,7 +3532,7 @@ describe("Boarding", () => {
 
     test("UpdateApplication (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
         server
@@ -3561,7 +3551,7 @@ describe("Boarding", () => {
 
     test("UpdateApplication (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
         server
@@ -3580,7 +3570,7 @@ describe("Boarding", () => {
 
     test("UpdateApplication (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
         server
@@ -3599,7 +3589,7 @@ describe("Boarding", () => {
 
     test("UpdateApplication (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
         server

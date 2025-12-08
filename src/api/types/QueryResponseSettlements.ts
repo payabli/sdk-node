@@ -60,7 +60,7 @@ export namespace QueryResponseSettlements {
             ScheduleReference?: number;
             /** The transaction amount. */
             SettledAmount?: number;
-            /**  */
+            /** The date and time when the transaction was settled. This field is null when the transaction's `SettlementStatus` is -1, -5, or -6 (Exception, Held, or Released). */
             SettlementDate?: string;
             Source?: Payabli.Source;
             Status?: Payabli.SettlementStatus;

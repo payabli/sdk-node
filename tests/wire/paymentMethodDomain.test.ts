@@ -4,10 +4,10 @@ import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
-describe("PaymentMethodDomain", () => {
+describe("PaymentMethodDomainClient", () => {
     test("AddPaymentMethodDomain (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             domainName: "checkout.example.com",
             entityId: 109,
@@ -119,7 +119,7 @@ describe("PaymentMethodDomain", () => {
 
     test("AddPaymentMethodDomain (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
         server
@@ -138,7 +138,7 @@ describe("PaymentMethodDomain", () => {
 
     test("AddPaymentMethodDomain (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
         server
@@ -157,7 +157,7 @@ describe("PaymentMethodDomain", () => {
 
     test("AddPaymentMethodDomain (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
         server
@@ -176,7 +176,7 @@ describe("PaymentMethodDomain", () => {
 
     test("AddPaymentMethodDomain (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -195,7 +195,7 @@ describe("PaymentMethodDomain", () => {
 
     test("CascadePaymentMethodDomain (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             isSuccess: true,
@@ -268,7 +268,7 @@ describe("PaymentMethodDomain", () => {
 
     test("CascadePaymentMethodDomain (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -286,7 +286,7 @@ describe("PaymentMethodDomain", () => {
 
     test("CascadePaymentMethodDomain (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -304,7 +304,7 @@ describe("PaymentMethodDomain", () => {
 
     test("CascadePaymentMethodDomain (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -322,7 +322,7 @@ describe("PaymentMethodDomain", () => {
 
     test("CascadePaymentMethodDomain (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -340,7 +340,7 @@ describe("PaymentMethodDomain", () => {
 
     test("DeletePaymentMethodDomain (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             isSuccess: true,
@@ -369,7 +369,7 @@ describe("PaymentMethodDomain", () => {
 
     test("DeletePaymentMethodDomain (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -387,7 +387,7 @@ describe("PaymentMethodDomain", () => {
 
     test("DeletePaymentMethodDomain (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -405,7 +405,7 @@ describe("PaymentMethodDomain", () => {
 
     test("DeletePaymentMethodDomain (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -423,7 +423,7 @@ describe("PaymentMethodDomain", () => {
 
     test("DeletePaymentMethodDomain (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -441,7 +441,7 @@ describe("PaymentMethodDomain", () => {
 
     test("GetPaymentMethodDomain (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             id: "pmd_b8237fa45c964d8a9ef27160cd42b8c5",
@@ -504,7 +504,7 @@ describe("PaymentMethodDomain", () => {
 
     test("GetPaymentMethodDomain (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -522,7 +522,7 @@ describe("PaymentMethodDomain", () => {
 
     test("GetPaymentMethodDomain (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -540,7 +540,7 @@ describe("PaymentMethodDomain", () => {
 
     test("GetPaymentMethodDomain (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -558,7 +558,7 @@ describe("PaymentMethodDomain", () => {
 
     test("GetPaymentMethodDomain (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -576,7 +576,7 @@ describe("PaymentMethodDomain", () => {
 
     test("ListPaymentMethodDomains (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             records: [
@@ -704,7 +704,7 @@ describe("PaymentMethodDomain", () => {
 
     test("ListPaymentMethodDomains (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             records: [
@@ -797,7 +797,7 @@ describe("PaymentMethodDomain", () => {
 
     test("ListPaymentMethodDomains (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -815,7 +815,7 @@ describe("PaymentMethodDomain", () => {
 
     test("ListPaymentMethodDomains (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -833,7 +833,7 @@ describe("PaymentMethodDomain", () => {
 
     test("ListPaymentMethodDomains (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -851,7 +851,7 @@ describe("PaymentMethodDomain", () => {
 
     test("ListPaymentMethodDomains (6)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -869,7 +869,7 @@ describe("PaymentMethodDomain", () => {
 
     test("UpdatePaymentMethodDomain (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { applePay: { isEnabled: false }, googlePay: { isEnabled: false } };
         const rawResponseBody = {
             isSuccess: true,
@@ -951,7 +951,7 @@ describe("PaymentMethodDomain", () => {
 
     test("UpdatePaymentMethodDomain (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
         server
@@ -970,7 +970,7 @@ describe("PaymentMethodDomain", () => {
 
     test("UpdatePaymentMethodDomain (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
         server
@@ -989,7 +989,7 @@ describe("PaymentMethodDomain", () => {
 
     test("UpdatePaymentMethodDomain (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
         server
@@ -1008,7 +1008,7 @@ describe("PaymentMethodDomain", () => {
 
     test("UpdatePaymentMethodDomain (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -1027,7 +1027,7 @@ describe("PaymentMethodDomain", () => {
 
     test("VerifyPaymentMethodDomain (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             isSuccess: true,
@@ -1100,10 +1100,10 @@ describe("PaymentMethodDomain", () => {
 
     test("VerifyPaymentMethodDomain (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            isSuccess: true,
+            isSuccess: false,
             pageidentifier: "null",
             responseData: {
                 id: "pmd_b8237fa45c964d8a9ef27160cd42b8c5",
@@ -1139,7 +1139,7 @@ describe("PaymentMethodDomain", () => {
                 createdAt: "2025-03-15T10:24:36.207Z",
                 updatedAt: "2025-04-25T15:45:21.517Z",
             },
-            responseText: "Success",
+            responseText: "Failed",
         };
         server
             .mockEndpoint()
@@ -1153,7 +1153,7 @@ describe("PaymentMethodDomain", () => {
             "pmd_b8237fa45c964d8a9ef27160cd42b8c5",
         );
         expect(response).toEqual({
-            isSuccess: true,
+            isSuccess: false,
             pageidentifier: "null",
             responseData: {
                 id: "pmd_b8237fa45c964d8a9ef27160cd42b8c5",
@@ -1195,13 +1195,13 @@ describe("PaymentMethodDomain", () => {
                 createdAt: "2025-03-15T10:24:36.207Z",
                 updatedAt: "2025-04-25T15:45:21.517Z",
             },
-            responseText: "Success",
+            responseText: "Failed",
         });
     });
 
     test("VerifyPaymentMethodDomain (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1219,7 +1219,7 @@ describe("PaymentMethodDomain", () => {
 
     test("VerifyPaymentMethodDomain (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1237,7 +1237,7 @@ describe("PaymentMethodDomain", () => {
 
     test("VerifyPaymentMethodDomain (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1255,7 +1255,7 @@ describe("PaymentMethodDomain", () => {
 
     test("VerifyPaymentMethodDomain (6)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server

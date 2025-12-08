@@ -3,8 +3,8 @@
 /**
  * @example
  *     {
- *         endDate: "2023-05-23",
- *         startDate: "2023-03-23"
+ *         endDate: "2025-11-01",
+ *         startDate: "2025-11-30"
  *     }
  */
 export interface BasicStatsRequest {

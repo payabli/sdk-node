@@ -4,10 +4,10 @@ import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
-describe("CheckCapture", () => {
+describe("CheckCaptureClient", () => {
     test("CheckProcessing (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             entryPoint: "47abcfea12",
             frontImage: "/9j/4AAQSkZJRgABAQEASABIAAD...",
@@ -79,7 +79,7 @@ describe("CheckCapture", () => {
 
     test("CheckProcessing (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             entryPoint: "entryPoint",
             frontImage: "frontImage",
@@ -108,7 +108,7 @@ describe("CheckCapture", () => {
 
     test("CheckProcessing (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             entryPoint: "entryPoint",
             frontImage: "frontImage",
@@ -137,7 +137,7 @@ describe("CheckCapture", () => {
 
     test("CheckProcessing (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             entryPoint: "entryPoint",
             frontImage: "frontImage",
@@ -166,7 +166,7 @@ describe("CheckCapture", () => {
 
     test("CheckProcessing (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             entryPoint: "entryPoint",
             frontImage: "frontImage",

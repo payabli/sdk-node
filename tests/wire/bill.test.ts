@@ -4,10 +4,10 @@ import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
-describe("Bill", () => {
+describe("BillClient", () => {
     test("AddBill (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             billNumber: "ABC-123",
             netAmount: 3762.87,
@@ -107,7 +107,7 @@ describe("Bill", () => {
 
     test("AddBill (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
         server
@@ -128,7 +128,7 @@ describe("Bill", () => {
 
     test("AddBill (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
         server
@@ -149,7 +149,7 @@ describe("Bill", () => {
 
     test("AddBill (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
         server
@@ -170,7 +170,7 @@ describe("Bill", () => {
 
     test("AddBill (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -191,7 +191,7 @@ describe("Bill", () => {
 
     test("deleteAttachedFromBill (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             responseCode: 1,
@@ -208,7 +208,7 @@ describe("Bill", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.bill.deleteAttachedFromBill("0_Bill.pdf", 285);
+        const response = await client.bill.deleteAttachedFromBill(285, "0_Bill.pdf");
         expect(response).toEqual({
             responseCode: 1,
             roomId: 0,
@@ -220,7 +220,7 @@ describe("Bill", () => {
 
     test("deleteAttachedFromBill (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -232,13 +232,13 @@ describe("Bill", () => {
             .build();
 
         await expect(async () => {
-            return await client.bill.deleteAttachedFromBill("filename", 1);
+            return await client.bill.deleteAttachedFromBill(1, "filename");
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
     test("deleteAttachedFromBill (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -250,13 +250,13 @@ describe("Bill", () => {
             .build();
 
         await expect(async () => {
-            return await client.bill.deleteAttachedFromBill("filename", 1);
+            return await client.bill.deleteAttachedFromBill(1, "filename");
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
     test("deleteAttachedFromBill (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -268,13 +268,13 @@ describe("Bill", () => {
             .build();
 
         await expect(async () => {
-            return await client.bill.deleteAttachedFromBill("filename", 1);
+            return await client.bill.deleteAttachedFromBill(1, "filename");
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
     test("deleteAttachedFromBill (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -286,13 +286,13 @@ describe("Bill", () => {
             .build();
 
         await expect(async () => {
-            return await client.bill.deleteAttachedFromBill("filename", 1);
+            return await client.bill.deleteAttachedFromBill(1, "filename");
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
     test("DeleteBill (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             responseCode: 1,
@@ -315,7 +315,7 @@ describe("Bill", () => {
 
     test("DeleteBill (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server.mockEndpoint().delete("/Bill/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
@@ -327,7 +327,7 @@ describe("Bill", () => {
 
     test("DeleteBill (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server.mockEndpoint().delete("/Bill/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
@@ -339,7 +339,7 @@ describe("Bill", () => {
 
     test("DeleteBill (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server.mockEndpoint().delete("/Bill/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
@@ -351,7 +351,7 @@ describe("Bill", () => {
 
     test("DeleteBill (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server.mockEndpoint().delete("/Bill/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
@@ -363,7 +363,7 @@ describe("Bill", () => {
 
     test("EditBill (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { netAmount: 3762.87, billDate: "2025-07-01" };
         const rawResponseBody = {
             responseCode: 1,
@@ -396,7 +396,7 @@ describe("Bill", () => {
 
     test("EditBill (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
         server
@@ -415,7 +415,7 @@ describe("Bill", () => {
 
     test("EditBill (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
         server
@@ -434,7 +434,7 @@ describe("Bill", () => {
 
     test("EditBill (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
         server
@@ -453,7 +453,7 @@ describe("Bill", () => {
 
     test("EditBill (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -472,7 +472,7 @@ describe("Bill", () => {
 
     test("getAttachedFromBill (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             fContent: "TXkgdGVzdCBmaWxlHJ==...",
@@ -488,7 +488,7 @@ describe("Bill", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.bill.getAttachedFromBill("0_Bill.pdf", 285, {
+        const response = await client.bill.getAttachedFromBill(285, "0_Bill.pdf", {
             returnObject: true,
         });
         expect(response).toEqual({
@@ -501,7 +501,7 @@ describe("Bill", () => {
 
     test("getAttachedFromBill (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -513,13 +513,13 @@ describe("Bill", () => {
             .build();
 
         await expect(async () => {
-            return await client.bill.getAttachedFromBill("filename", 1);
+            return await client.bill.getAttachedFromBill(1, "filename");
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
     test("getAttachedFromBill (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -531,13 +531,13 @@ describe("Bill", () => {
             .build();
 
         await expect(async () => {
-            return await client.bill.getAttachedFromBill("filename", 1);
+            return await client.bill.getAttachedFromBill(1, "filename");
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
     test("getAttachedFromBill (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -549,13 +549,13 @@ describe("Bill", () => {
             .build();
 
         await expect(async () => {
-            return await client.bill.getAttachedFromBill("filename", 1);
+            return await client.bill.getAttachedFromBill(1, "filename");
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
     test("getAttachedFromBill (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -567,13 +567,13 @@ describe("Bill", () => {
             .build();
 
         await expect(async () => {
-            return await client.bill.getAttachedFromBill("filename", 1);
+            return await client.bill.getAttachedFromBill(1, "filename");
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
     test("GetBill (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             responseCode: 1,
@@ -870,7 +870,7 @@ describe("Bill", () => {
 
     test("GetBill (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server.mockEndpoint().get("/Bill/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
@@ -882,7 +882,7 @@ describe("Bill", () => {
 
     test("GetBill (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server.mockEndpoint().get("/Bill/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
@@ -894,7 +894,7 @@ describe("Bill", () => {
 
     test("GetBill (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server.mockEndpoint().get("/Bill/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
@@ -906,7 +906,7 @@ describe("Bill", () => {
 
     test("GetBill (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server.mockEndpoint().get("/Bill/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
@@ -918,7 +918,7 @@ describe("Bill", () => {
 
     test("ListBills (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             Summary: {
@@ -1185,7 +1185,7 @@ describe("Bill", () => {
 
     test("ListBills (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server.mockEndpoint().get("/Query/bills/entry").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
@@ -1197,7 +1197,7 @@ describe("Bill", () => {
 
     test("ListBills (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server.mockEndpoint().get("/Query/bills/entry").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
@@ -1209,7 +1209,7 @@ describe("Bill", () => {
 
     test("ListBills (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server.mockEndpoint().get("/Query/bills/entry").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
@@ -1221,7 +1221,7 @@ describe("Bill", () => {
 
     test("ListBills (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server.mockEndpoint().get("/Query/bills/entry").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
@@ -1233,7 +1233,7 @@ describe("Bill", () => {
 
     test("ListBillsOrg (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             Summary: {
@@ -1500,7 +1500,7 @@ describe("Bill", () => {
 
     test("ListBillsOrg (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server.mockEndpoint().get("/Query/bills/org/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
@@ -1512,7 +1512,7 @@ describe("Bill", () => {
 
     test("ListBillsOrg (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server.mockEndpoint().get("/Query/bills/org/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
@@ -1524,7 +1524,7 @@ describe("Bill", () => {
 
     test("ListBillsOrg (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server.mockEndpoint().get("/Query/bills/org/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
@@ -1536,7 +1536,7 @@ describe("Bill", () => {
 
     test("ListBillsOrg (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server.mockEndpoint().get("/Query/bills/org/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
@@ -1548,7 +1548,7 @@ describe("Bill", () => {
 
     test("ModifyApprovalBill (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string"];
         const rawResponseBody = { isSuccess: true, responseData: 6101, responseText: "Success" };
         server
@@ -1570,7 +1570,7 @@ describe("Bill", () => {
 
     test("ModifyApprovalBill (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
         const rawResponseBody = { key: "value" };
         server
@@ -1589,7 +1589,7 @@ describe("Bill", () => {
 
     test("ModifyApprovalBill (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
         const rawResponseBody = { key: "value" };
         server
@@ -1608,7 +1608,7 @@ describe("Bill", () => {
 
     test("ModifyApprovalBill (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
         const rawResponseBody = { key: "value" };
         server
@@ -1627,7 +1627,7 @@ describe("Bill", () => {
 
     test("ModifyApprovalBill (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -1646,7 +1646,7 @@ describe("Bill", () => {
 
     test("SendToApprovalBill (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string"];
         const rawResponseBody = {
             responseCode: 1,
@@ -1680,7 +1680,7 @@ describe("Bill", () => {
 
     test("SendToApprovalBill (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
         const rawResponseBody = { key: "value" };
         server
@@ -1701,7 +1701,7 @@ describe("Bill", () => {
 
     test("SendToApprovalBill (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
         const rawResponseBody = { key: "value" };
         server
@@ -1722,7 +1722,7 @@ describe("Bill", () => {
 
     test("SendToApprovalBill (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
         const rawResponseBody = { key: "value" };
         server
@@ -1743,7 +1743,7 @@ describe("Bill", () => {
 
     test("SendToApprovalBill (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -1764,7 +1764,7 @@ describe("Bill", () => {
 
     test("SetApprovedBill (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { isSuccess: true, responseData: 6101, responseText: "Success" };
         server
@@ -1775,7 +1775,7 @@ describe("Bill", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.bill.setApprovedBill("true", 285);
+        const response = await client.bill.setApprovedBill(285, "true");
         expect(response).toEqual({
             isSuccess: true,
             responseData: 6101,
@@ -1785,7 +1785,7 @@ describe("Bill", () => {
 
     test("SetApprovedBill (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1797,13 +1797,13 @@ describe("Bill", () => {
             .build();
 
         await expect(async () => {
-            return await client.bill.setApprovedBill("approved", 1);
+            return await client.bill.setApprovedBill(1, "approved");
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
     test("SetApprovedBill (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1815,13 +1815,13 @@ describe("Bill", () => {
             .build();
 
         await expect(async () => {
-            return await client.bill.setApprovedBill("approved", 1);
+            return await client.bill.setApprovedBill(1, "approved");
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
     test("SetApprovedBill (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1833,13 +1833,13 @@ describe("Bill", () => {
             .build();
 
         await expect(async () => {
-            return await client.bill.setApprovedBill("approved", 1);
+            return await client.bill.setApprovedBill(1, "approved");
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
     test("SetApprovedBill (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -1851,7 +1851,7 @@ describe("Bill", () => {
             .build();
 
         await expect(async () => {
-            return await client.bill.setApprovedBill("approved", 1);
+            return await client.bill.setApprovedBill(1, "approved");
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 });

@@ -4,10 +4,10 @@ import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
-describe("Notificationlogs", () => {
+describe("NotificationlogsClient", () => {
     test("searchNotificationLogs (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             startDate: "2024-01-01T00:00:00Z",
             endDate: "2024-01-31T23:59:59Z",
@@ -70,7 +70,7 @@ describe("Notificationlogs", () => {
 
     test("searchNotificationLogs (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { startDate: "2024-01-15T09:30:00Z", endDate: "2024-01-15T09:30:00Z" };
         const rawResponseBody = { key: "value" };
         server
@@ -94,7 +94,7 @@ describe("Notificationlogs", () => {
 
     test("searchNotificationLogs (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { startDate: "2024-01-15T09:30:00Z", endDate: "2024-01-15T09:30:00Z" };
         const rawResponseBody = { key: "value" };
         server
@@ -118,7 +118,7 @@ describe("Notificationlogs", () => {
 
     test("searchNotificationLogs (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { startDate: "2024-01-15T09:30:00Z", endDate: "2024-01-15T09:30:00Z" };
         const rawResponseBody = { key: "value" };
         server
@@ -142,7 +142,7 @@ describe("Notificationlogs", () => {
 
     test("searchNotificationLogs (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { startDate: "2024-01-15T09:30:00Z", endDate: "2024-01-15T09:30:00Z" };
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -166,7 +166,7 @@ describe("Notificationlogs", () => {
 
     test("getNotificationLog (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             id: "550e8400-e29b-41d4-a716-446655440000",
@@ -239,7 +239,7 @@ describe("Notificationlogs", () => {
 
     test("getNotificationLog (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -257,7 +257,7 @@ describe("Notificationlogs", () => {
 
     test("getNotificationLog (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -275,7 +275,7 @@ describe("Notificationlogs", () => {
 
     test("getNotificationLog (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -293,7 +293,7 @@ describe("Notificationlogs", () => {
 
     test("getNotificationLog (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -311,7 +311,7 @@ describe("Notificationlogs", () => {
 
     test("retryNotificationLog (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             id: "550e8400-e29b-41d4-a716-446655440000",
@@ -370,7 +370,7 @@ describe("Notificationlogs", () => {
 
     test("retryNotificationLog (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -388,7 +388,7 @@ describe("Notificationlogs", () => {
 
     test("retryNotificationLog (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -406,7 +406,7 @@ describe("Notificationlogs", () => {
 
     test("retryNotificationLog (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -424,7 +424,7 @@ describe("Notificationlogs", () => {
 
     test("retryNotificationLog (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -442,7 +442,7 @@ describe("Notificationlogs", () => {
 
     test("bulkRetryNotificationLogs (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = [
             "550e8400-e29b-41d4-a716-446655440000",
             "550e8400-e29b-41d4-a716-446655440001",
@@ -467,7 +467,7 @@ describe("Notificationlogs", () => {
 
     test("bulkRetryNotificationLogs (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32", "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"];
         const rawResponseBody = { key: "value" };
         server
@@ -489,7 +489,7 @@ describe("Notificationlogs", () => {
 
     test("bulkRetryNotificationLogs (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32", "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"];
         const rawResponseBody = { key: "value" };
         server
@@ -511,7 +511,7 @@ describe("Notificationlogs", () => {
 
     test("bulkRetryNotificationLogs (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32", "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"];
         const rawResponseBody = { key: "value" };
         server
@@ -533,7 +533,7 @@ describe("Notificationlogs", () => {
 
     test("bulkRetryNotificationLogs (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32", "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"];
         const rawResponseBody = { responseText: "responseText" };
         server

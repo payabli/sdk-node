@@ -4,10 +4,10 @@ import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
-describe("MoneyIn", () => {
+describe("MoneyInClient", () => {
     test("Authorize (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             customerData: { customerId: 4440 },
             entryPoint: "f743aed24a",
@@ -84,7 +84,7 @@ describe("MoneyIn", () => {
 
     test("Authorize (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             paymentDetails: { totalAmount: 1.1 },
             paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
@@ -117,7 +117,7 @@ describe("MoneyIn", () => {
 
     test("Authorize (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             paymentDetails: { totalAmount: 1.1 },
             paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
@@ -150,7 +150,7 @@ describe("MoneyIn", () => {
 
     test("Authorize (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             paymentDetails: { totalAmount: 1.1 },
             paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
@@ -183,7 +183,7 @@ describe("MoneyIn", () => {
 
     test("Authorize (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             paymentDetails: { totalAmount: 1.1 },
             paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
@@ -216,7 +216,7 @@ describe("MoneyIn", () => {
 
     test("Capture (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             responseCode: 1,
@@ -243,7 +243,7 @@ describe("MoneyIn", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.moneyIn.capture(0, "10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13");
+        const response = await client.moneyIn.capture("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", 0);
         expect(response).toEqual({
             responseCode: 1,
             pageIdentifier: null,
@@ -265,7 +265,7 @@ describe("MoneyIn", () => {
 
     test("Capture (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -277,13 +277,13 @@ describe("MoneyIn", () => {
             .build();
 
         await expect(async () => {
-            return await client.moneyIn.capture(1.1, "transId");
+            return await client.moneyIn.capture("transId", 1.1);
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
     test("Capture (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -295,13 +295,13 @@ describe("MoneyIn", () => {
             .build();
 
         await expect(async () => {
-            return await client.moneyIn.capture(1.1, "transId");
+            return await client.moneyIn.capture("transId", 1.1);
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
     test("Capture (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -313,13 +313,13 @@ describe("MoneyIn", () => {
             .build();
 
         await expect(async () => {
-            return await client.moneyIn.capture(1.1, "transId");
+            return await client.moneyIn.capture("transId", 1.1);
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
     test("Capture (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -331,13 +331,13 @@ describe("MoneyIn", () => {
             .build();
 
         await expect(async () => {
-            return await client.moneyIn.capture(1.1, "transId");
+            return await client.moneyIn.capture("transId", 1.1);
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
     test("CaptureAuth (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { paymentDetails: { totalAmount: 105, serviceFee: 5 } };
         const rawResponseBody = {
             responseCode: 1,
@@ -392,7 +392,7 @@ describe("MoneyIn", () => {
 
     test("CaptureAuth (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { paymentDetails: { totalAmount: 89, serviceFee: 4 } };
         const rawResponseBody = {
             responseCode: 1,
@@ -447,7 +447,7 @@ describe("MoneyIn", () => {
 
     test("CaptureAuth (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { paymentDetails: { totalAmount: 100 } };
         const rawResponseBody = {
             responseCode: 1,
@@ -501,7 +501,7 @@ describe("MoneyIn", () => {
 
     test("CaptureAuth (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { paymentDetails: { totalAmount: 1.1 } };
         const rawResponseBody = { key: "value" };
         server
@@ -524,7 +524,7 @@ describe("MoneyIn", () => {
 
     test("CaptureAuth (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { paymentDetails: { totalAmount: 1.1 } };
         const rawResponseBody = { key: "value" };
         server
@@ -547,7 +547,7 @@ describe("MoneyIn", () => {
 
     test("CaptureAuth (6)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { paymentDetails: { totalAmount: 1.1 } };
         const rawResponseBody = { key: "value" };
         server
@@ -570,7 +570,7 @@ describe("MoneyIn", () => {
 
     test("CaptureAuth (7)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { paymentDetails: { totalAmount: 1.1 } };
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -593,7 +593,7 @@ describe("MoneyIn", () => {
 
     test("Credit (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             customerData: { billingAddress1: "5127 Linkwood ave", customerNumber: "100" },
             entrypoint: "my-entrypoint",
@@ -663,7 +663,7 @@ describe("MoneyIn", () => {
 
     test("Credit (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             customerData: {
                 billingAddress1: "125 Main Street",
@@ -746,7 +746,7 @@ describe("MoneyIn", () => {
 
     test("Credit (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             customerData: {},
             paymentDetails: { totalAmount: 1.1 },
@@ -777,7 +777,7 @@ describe("MoneyIn", () => {
 
     test("Credit (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             customerData: {},
             paymentDetails: { totalAmount: 1.1 },
@@ -808,7 +808,7 @@ describe("MoneyIn", () => {
 
     test("Credit (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             customerData: {},
             paymentDetails: { totalAmount: 1.1 },
@@ -839,7 +839,7 @@ describe("MoneyIn", () => {
 
     test("Credit (6)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             customerData: {},
             paymentDetails: { totalAmount: 1.1 },
@@ -870,7 +870,7 @@ describe("MoneyIn", () => {
 
     test("Details (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             BatchAmount: 10050.75,
@@ -1282,7 +1282,7 @@ describe("MoneyIn", () => {
 
     test("Details (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1300,7 +1300,7 @@ describe("MoneyIn", () => {
 
     test("Details (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1318,7 +1318,7 @@ describe("MoneyIn", () => {
 
     test("Details (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -1336,7 +1336,7 @@ describe("MoneyIn", () => {
 
     test("Details (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -1354,7 +1354,7 @@ describe("MoneyIn", () => {
 
     test("getpaid (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             customerData: { customerId: 4440 },
             entryPoint: "f743aed24a",
@@ -1433,7 +1433,7 @@ describe("MoneyIn", () => {
 
     test("getpaid (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             customerData: { customerId: 4440 },
             entryPoint: "f743aed24a",
@@ -1506,7 +1506,7 @@ describe("MoneyIn", () => {
 
     test("getpaid (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             customerData: { customerId: 4440 },
             entryPoint: "f743aed24a",
@@ -1571,7 +1571,7 @@ describe("MoneyIn", () => {
 
     test("getpaid (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             customerData: { customerId: 4440 },
             entryPoint: "f743aed24a",
@@ -1648,7 +1648,7 @@ describe("MoneyIn", () => {
 
     test("getpaid (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             customerData: {
                 billingAddress1: "123 Walnut Street",
@@ -1755,7 +1755,7 @@ describe("MoneyIn", () => {
 
     test("getpaid (6)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             customerData: { customerId: 4440 },
             entryPoint: "f743aed24a",
@@ -1833,7 +1833,7 @@ describe("MoneyIn", () => {
 
     test("getpaid (7)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             customerData: { customerId: 4440 },
             entryPoint: "f743aed24a",
@@ -1908,7 +1908,7 @@ describe("MoneyIn", () => {
 
     test("getpaid (8)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             paymentDetails: { totalAmount: 1.1 },
             paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
@@ -1941,7 +1941,7 @@ describe("MoneyIn", () => {
 
     test("getpaid (9)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             paymentDetails: { totalAmount: 1.1 },
             paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
@@ -1974,7 +1974,7 @@ describe("MoneyIn", () => {
 
     test("getpaid (10)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             paymentDetails: { totalAmount: 1.1 },
             paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
@@ -2007,7 +2007,7 @@ describe("MoneyIn", () => {
 
     test("getpaid (11)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             paymentDetails: { totalAmount: 1.1 },
             paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
@@ -2040,7 +2040,7 @@ describe("MoneyIn", () => {
 
     test("Reverse (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             responseCode: 1,
@@ -2065,7 +2065,7 @@ describe("MoneyIn", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.moneyIn.reverse(0, "10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
+        const response = await client.moneyIn.reverse("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0);
         expect(response).toEqual({
             responseCode: 1,
             roomId: 0,
@@ -2085,7 +2085,7 @@ describe("MoneyIn", () => {
 
     test("Reverse (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             responseCode: 1,
@@ -2110,7 +2110,7 @@ describe("MoneyIn", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.moneyIn.reverse(53.76, "10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
+        const response = await client.moneyIn.reverse("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 53.76);
         expect(response).toEqual({
             responseCode: 1,
             roomId: 0,
@@ -2130,7 +2130,7 @@ describe("MoneyIn", () => {
 
     test("Reverse (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2142,13 +2142,13 @@ describe("MoneyIn", () => {
             .build();
 
         await expect(async () => {
-            return await client.moneyIn.reverse(1.1, "transId");
+            return await client.moneyIn.reverse("transId", 1.1);
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
     test("Reverse (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2160,13 +2160,13 @@ describe("MoneyIn", () => {
             .build();
 
         await expect(async () => {
-            return await client.moneyIn.reverse(1.1, "transId");
+            return await client.moneyIn.reverse("transId", 1.1);
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
     test("Reverse (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2178,13 +2178,13 @@ describe("MoneyIn", () => {
             .build();
 
         await expect(async () => {
-            return await client.moneyIn.reverse(1.1, "transId");
+            return await client.moneyIn.reverse("transId", 1.1);
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
     test("Reverse (6)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -2196,13 +2196,13 @@ describe("MoneyIn", () => {
             .build();
 
         await expect(async () => {
-            return await client.moneyIn.reverse(1.1, "transId");
+            return await client.moneyIn.reverse("transId", 1.1);
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
     test("Refund (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             responseText: "Success",
@@ -2226,7 +2226,7 @@ describe("MoneyIn", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.moneyIn.refund(0, "10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
+        const response = await client.moneyIn.refund("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0);
         expect(response).toEqual({
             responseText: "Success",
             isSuccess: true,
@@ -2245,7 +2245,7 @@ describe("MoneyIn", () => {
 
     test("Refund (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             responseText: "Success",
@@ -2268,7 +2268,7 @@ describe("MoneyIn", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.moneyIn.refund(100.99, "10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
+        const response = await client.moneyIn.refund("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 100.99);
         expect(response).toEqual({
             responseText: "Success",
             isSuccess: true,
@@ -2286,7 +2286,7 @@ describe("MoneyIn", () => {
 
     test("Refund (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2298,13 +2298,13 @@ describe("MoneyIn", () => {
             .build();
 
         await expect(async () => {
-            return await client.moneyIn.refund(1.1, "transId");
+            return await client.moneyIn.refund("transId", 1.1);
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
     test("Refund (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2316,13 +2316,13 @@ describe("MoneyIn", () => {
             .build();
 
         await expect(async () => {
-            return await client.moneyIn.refund(1.1, "transId");
+            return await client.moneyIn.refund("transId", 1.1);
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
     test("Refund (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2334,13 +2334,13 @@ describe("MoneyIn", () => {
             .build();
 
         await expect(async () => {
-            return await client.moneyIn.refund(1.1, "transId");
+            return await client.moneyIn.refund("transId", 1.1);
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
     test("Refund (6)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -2352,13 +2352,13 @@ describe("MoneyIn", () => {
             .build();
 
         await expect(async () => {
-            return await client.moneyIn.refund(1.1, "transId");
+            return await client.moneyIn.refund("transId", 1.1);
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
     test("RefundWithInstructions (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             source: "api",
             orderDescription: "Materials deposit",
@@ -2442,7 +2442,7 @@ describe("MoneyIn", () => {
 
     test("RefundWithInstructions (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             source: "api",
             orderDescription: "Materials deposit",
@@ -2526,7 +2526,7 @@ describe("MoneyIn", () => {
 
     test("RefundWithInstructions (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
         server
@@ -2545,7 +2545,7 @@ describe("MoneyIn", () => {
 
     test("RefundWithInstructions (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
         server
@@ -2564,7 +2564,7 @@ describe("MoneyIn", () => {
 
     test("RefundWithInstructions (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
         server
@@ -2583,7 +2583,7 @@ describe("MoneyIn", () => {
 
     test("RefundWithInstructions (6)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -2602,7 +2602,7 @@ describe("MoneyIn", () => {
 
     test("ReverseCredit (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             isSuccess: true,
@@ -2643,7 +2643,7 @@ describe("MoneyIn", () => {
 
     test("ReverseCredit (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2661,7 +2661,7 @@ describe("MoneyIn", () => {
 
     test("ReverseCredit (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2679,7 +2679,7 @@ describe("MoneyIn", () => {
 
     test("ReverseCredit (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2697,7 +2697,7 @@ describe("MoneyIn", () => {
 
     test("ReverseCredit (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -2715,7 +2715,7 @@ describe("MoneyIn", () => {
 
     test("SendReceipt2Trans (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { isSuccess: true, pageIdentifier: "null", responseText: "Success" };
         server
@@ -2738,7 +2738,7 @@ describe("MoneyIn", () => {
 
     test("SendReceipt2Trans (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2756,7 +2756,7 @@ describe("MoneyIn", () => {
 
     test("SendReceipt2Trans (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2774,7 +2774,7 @@ describe("MoneyIn", () => {
 
     test("SendReceipt2Trans (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -2792,7 +2792,7 @@ describe("MoneyIn", () => {
 
     test("SendReceipt2Trans (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server
@@ -2810,7 +2810,7 @@ describe("MoneyIn", () => {
 
     test("Validate (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             entryPoint: "entry132",
             paymentMethod: {
@@ -2872,7 +2872,7 @@ describe("MoneyIn", () => {
 
     test("Validate (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             entryPoint: "entryPoint",
             paymentMethod: {
@@ -2909,7 +2909,7 @@ describe("MoneyIn", () => {
 
     test("Validate (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             entryPoint: "entryPoint",
             paymentMethod: {
@@ -2946,7 +2946,7 @@ describe("MoneyIn", () => {
 
     test("Validate (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             entryPoint: "entryPoint",
             paymentMethod: {
@@ -2983,7 +2983,7 @@ describe("MoneyIn", () => {
 
     test("Validate (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             entryPoint: "entryPoint",
             paymentMethod: {
@@ -3020,7 +3020,7 @@ describe("MoneyIn", () => {
 
     test("Void (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             responseCode: 1,
@@ -3059,7 +3059,7 @@ describe("MoneyIn", () => {
 
     test("Void (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -3077,7 +3077,7 @@ describe("MoneyIn", () => {
 
     test("Void (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -3095,7 +3095,7 @@ describe("MoneyIn", () => {
 
     test("Void (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
         server
@@ -3113,7 +3113,7 @@ describe("MoneyIn", () => {
 
     test("Void (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ apiKey: "test", environment: server.baseUrl });
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
         server

@@ -144,6 +144,7 @@ export namespace NotificationStandardRequest {
             ApprovedApplication: "ApprovedApplication",
             FailedBoardingApplication: "FailedBoardingApplication",
             SubmittedApplication: "SubmittedApplication",
+            UnderWritingApplication: "UnderWritingApplication",
             ActivatedMerchant: "ActivatedMerchant",
             ReceivedChargeBack: "ReceivedChargeBack",
             ChargebackUpdated: "ChargebackUpdated",

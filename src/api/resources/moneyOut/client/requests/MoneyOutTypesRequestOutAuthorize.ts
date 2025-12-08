@@ -12,7 +12,8 @@ import type * as Payabli from "../../../../index.js";
  *                 }],
  *             orderDescription: "Window Painting",
  *             paymentDetails: {
- *                 totalAmount: 47
+ *                 totalAmount: 47,
+ *                 unbundled: false
  *             },
  *             paymentMethod: {
  *                 method: "managed"

@@ -1,7 +1,6 @@
 # Payabli TypeScript Library
 
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Fpayabli%2Fsdk-node)
-[![npm shield](https://img.shields.io/npm/v/@payabli/sdk-node)](https://www.npmjs.com/package/@payabli/sdk-node)
 
 The Payabli TypeScript library provides convenient access to the Payabli APIs from TypeScript.
 
@@ -24,7 +23,7 @@ A full reference for this library is available [here](https://github.com/payabli
 Instantiate and use the client with the following:
 
 ```typescript
-import { PayabliClient } from "@payabli/sdk-node";
+import { PayabliClient } from "./src/Client";
 
 const client = new PayabliClient({ apiKey: "YOUR_API_KEY" });
 await client.moneyIn.getpaid({
@@ -57,7 +56,7 @@ The SDK exports all request and response types as TypeScript interfaces. Simply 
 following namespace:
 
 ```typescript
-import { Payabli } from "@payabli/sdk-node";
+import { Payabli } from "Payabli";
 
 const request: Payabli.AddBillRequest = {
     ...
@@ -70,7 +69,7 @@ When the API returns a non-success status code (4xx or 5xx response), a subclass
 will be thrown.
 
 ```typescript
-import { PayabliError } from "@payabli/sdk-node";
+import { PayabliError } from "Payabli";
 
 try {
     await client.moneyIn.getpaid(...);
@@ -90,7 +89,7 @@ You can upload files using the client:
 
 ```typescript
 import { createReadStream } from "fs";
-import { PayabliClient } from "@payabli/sdk-node";
+import { PayabliClient } from "./src/Client";
 import * as fs from "fs";
 
 const client = new PayabliClient({ apiKey: "YOUR_API_KEY" });
@@ -213,7 +212,7 @@ console.log(rawResponse.headers['X-My-Header']);
 The SDK supports logging. You can configure the logger by passing in a `logging` object to the client options.
 
 ```typescript
-import { PayabliClient, logging } from "@payabli/sdk-node";
+import { PayabliClient, logging } from "Payabli";
 
 const client = new PayabliClient({
     ...
@@ -291,7 +290,7 @@ The SDK provides a way for you to customize the underlying HTTP client / Fetch f
 unsupported environment, this provides a way for you to break glass and ensure the SDK works.
 
 ```typescript
-import { PayabliClient } from "@payabli/sdk-node";
+import { PayabliClient } from "Payabli";
 
 const client = new PayabliClient({
     ...

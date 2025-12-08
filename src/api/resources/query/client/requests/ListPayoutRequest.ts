@@ -72,6 +72,7 @@ export interface ListPayoutRequest {
      *   - `lotNumber` (ct, nct)
      *   - `customerVendorAccount` (ct, nct, eq, ne)
      *   - `batchId` (eq, ne)
+     *   - `AchTraceNumber` (eq, ne)
      *   - `payoutProgram`(eq, ne) the options are `managed` or `odp`. For example, `payoutProgram(eq)=managed` returns all records with a `payoutProgram` equal to `managed`.
      *
      *   List of comparison accepted - enclosed between parentheses:
