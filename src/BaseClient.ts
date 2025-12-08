@@ -48,7 +48,7 @@ export function normalizeClientOptions<T extends BaseClientOptions>(options: T):
     const headers = mergeHeaders(
         {
             "X-Fern-Language": "JavaScript",
-            "User-Agent": "@payabli/sdk-node/0.0.118",
+            "User-Agent": "@payabli/sdk-node/0.0.119",
             "X-Fern-Runtime": core.RUNTIME.type,
             "X-Fern-Runtime-Version": core.RUNTIME.version,
         },

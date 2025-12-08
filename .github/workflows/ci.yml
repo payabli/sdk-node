@@ -69,4 +69,10 @@ jobs:
           publish() {  # use latest npm to ensure OIDC support
             npx -y npm@latest publish "$@"
           }
-          publish --access public
+          if [[ ${GITHUB_REF} == *alpha* ]]; then
+            publish --access public --tag alpha
+          elif [[ ${GITHUB_REF} == *beta* ]]; then
+            publish --access public --tag beta
+          else
+            publish --access public
+          fi
