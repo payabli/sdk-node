@@ -1,4 +1,4 @@
-import { encodeAsFormParameter } from "../../../src/core/form-data-utils/encodeAsFormParameter";
+import { encodeAsFormParameter } from "../../../src/core/form-data-utils/encodeAsFormParameter.js";
 
 describe("encodeAsFormParameter", () => {
     describe("Basic functionality", () => {

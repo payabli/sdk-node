@@ -1,9 +1,0 @@
-{
-    "cliVersion": "3.4.3",
-    "generatorName": "fernapi/fern-typescript-node-sdk",
-    "generatorVersion": "3.35.8",
-    "generatorConfig": {
-        "namespaceExport": "Payabli",
-        "noSerdeLayer": true
-    }
-}

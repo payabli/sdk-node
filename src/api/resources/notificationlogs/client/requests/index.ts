@@ -1,1 +1,1 @@
-export type { SearchNotificationLogsRequest } from "./SearchNotificationLogsRequest.js";
+export { type SearchNotificationLogsRequest } from "./SearchNotificationLogsRequest.js";

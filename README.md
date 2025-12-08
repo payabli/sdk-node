@@ -1,8 +1,27 @@
 # Payabli TypeScript Library
 
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Fpayabli%2Fsdk-node)
+[![npm shield](https://img.shields.io/npm/v/@payabli/sdk-node)](https://www.npmjs.com/package/@payabli/sdk-node)
 
 The Payabli TypeScript library provides convenient access to the Payabli APIs from TypeScript.
+
+## Table of Contents
+
+- [Documentation](#documentation)
+- [Installation](#installation)
+- [Reference](#reference)
+- [Usage](#usage)
+- [Request and Response Types](#request-and-response-types)
+- [Exception Handling](#exception-handling)
+- [File Uploads](#file-uploads)
+- [Advanced](#advanced)
+    - [Additional Headers](#additional-headers)
+    - [Retries](#retries)
+    - [Timeouts](#timeouts)
+    - [Aborting Requests](#aborting-requests)
+    - [Access Raw Response Data](#access-raw-response-data)
+    - [Runtime Compatibility](#runtime-compatibility)
+- [Contributing](#contributing)
 
 ## Documentation
 
@@ -23,19 +42,19 @@ A full reference for this library is available [here](https://github.com/payabli
 Instantiate and use the client with the following:
 
 ```typescript
-import { PayabliClient } from "./src/Client";
+import { PayabliClient } from "@payabli/sdk-node";
 
 const client = new PayabliClient({ apiKey: "YOUR_API_KEY" });
 await client.moneyIn.getpaid({
     body: {
         customerData: {
-            customerId: 4440
+            customerId: 4440,
         },
         entryPoint: "f743aed24a",
         ipaddress: "255.255.255.255",
         paymentDetails: {
             serviceFee: 0,
-            totalAmount: 100
+            totalAmount: 100,
         },
         paymentMethod: {
             cardcvv: "999",
@@ -44,19 +63,19 @@ await client.moneyIn.getpaid({
             cardnumber: "4111111111111111",
             cardzip: "12345",
             initiator: "payor",
-            method: "card"
-        }
-    }
+            method: "card",
+        },
+    },
 });
 ```
 
-## Request And Response Types
+## Request and Response Types
 
 The SDK exports all request and response types as TypeScript interfaces. Simply import them with the
 following namespace:
 
 ```typescript
-import { Payabli } from "Payabli";
+import { Payabli } from "@payabli/sdk-node";
 
 const request: Payabli.AddBillRequest = {
     ...
@@ -69,7 +88,7 @@ When the API returns a non-success status code (4xx or 5xx response), a subclass
 will be thrown.
 
 ```typescript
-import { PayabliError } from "Payabli";
+import { PayabliError } from "@payabli/sdk-node";
 
 try {
     await client.moneyIn.getpaid(...);
@@ -94,38 +113,41 @@ import * as fs from "fs";
 
 const client = new PayabliClient({ apiKey: "YOUR_API_KEY" });
 await client.import.importBills("8cfec329267", {
-    file: fs.createReadStream("/path/to/your/file")
+    file: fs.createReadStream("/path/to/your/file"),
 });
 ```
+
 The client accepts a variety of types for file upload parameters:
-* Stream types: `fs.ReadStream`, `stream.Readable`, and `ReadableStream`
-* Buffered types: `Buffer`, `Blob`, `File`, `ArrayBuffer`, `ArrayBufferView`, and `Uint8Array`
+
+- Stream types: `fs.ReadStream`, `stream.Readable`, and `ReadableStream`
+- Buffered types: `Buffer`, `Blob`, `File`, `ArrayBuffer`, `ArrayBufferView`, and `Uint8Array`
 
 ### Metadata
 
 You can configure metadata when uploading a file:
+
 ```typescript
 const file: Uploadable.WithMetadata = {
     data: createReadStream("path/to/file"),
-    filename: "my-file",       // optional
+    filename: "my-file", // optional
     contentType: "audio/mpeg", // optional
-    contentLength: 1949,       // optional
+    contentLength: 1949, // optional
 };
 ```
 
 Alternatively, you can upload a file directly from a file path:
+
 ```typescript
-const file : Uploadable.FromPath = {
+const file: Uploadable.FromPath = {
     path: "path/to/file",
-    filename: "my-file",        // optional
-    contentType: "audio/mpeg",  // optional
-    contentLength: 1949,        // optional
+    filename: "my-file", // optional
+    contentType: "audio/mpeg", // optional
+    contentLength: 1949, // optional
 };
 ```
 
 The metadata is used to set the `Content-Length`, `Content-Type`, and `Content-Disposition` headers. If not provided, the client will attempt to determine them automatically.
 For example, `fs.ReadStream` has a `path` property which the SDK uses to retrieve the file size from the filesystem without loading it into memory.
-
 
 ## Advanced
 
@@ -137,18 +159,6 @@ If you would like to send additional headers as part of the request, use the `he
 const response = await client.moneyIn.getpaid(..., {
     headers: {
         'X-Custom-Header': 'custom value'
-    }
-});
-```
-
-### Additional Query String Parameters
-
-If you would like to send additional query string parameters as part of the request, use the `queryParams` request option.
-
-```typescript
-const response = await client.moneyIn.getpaid(..., {
-    queryParams: {
-        'customQueryParamKey': 'custom query param value'
     }
 });
 ```
@@ -207,75 +217,10 @@ console.log(data);
 console.log(rawResponse.headers['X-My-Header']);
 ```
 
-### Logging
-
-The SDK supports logging. You can configure the logger by passing in a `logging` object to the client options.
-
-```typescript
-import { PayabliClient, logging } from "Payabli";
-
-const client = new PayabliClient({
-    ...
-    logging: {
-        level: logging.LogLevel.Debug, // defaults to logging.LogLevel.Info
-        logger: new logging.ConsoleLogger(), // defaults to ConsoleLogger
-        silent: false, // defaults to true, set to false to enable logging
-    }
-});
-```
-The `logging` object can have the following properties:
-- `level`: The log level to use. Defaults to `logging.LogLevel.Info`.
-- `logger`: The logger to use. Defaults to a `logging.ConsoleLogger`.
-- `silent`: Whether to silence the logger. Defaults to `true`.
-
-The `level` property can be one of the following values:
-- `logging.LogLevel.Debug`
-- `logging.LogLevel.Info`
-- `logging.LogLevel.Warn`
-- `logging.LogLevel.Error`
-
-To provide a custom logger, you can pass in an object that implements the `logging.ILogger` interface.
-
-<details>
-<summary>Custom logger examples</summary>
-
-Here's an example using the popular `winston` logging library.
-```ts
-import winston from 'winston';
-
-const winstonLogger = winston.createLogger({...});
-
-const logger: logging.ILogger = {
-    debug: (msg, ...args) => winstonLogger.debug(msg, ...args),
-    info: (msg, ...args) => winstonLogger.info(msg, ...args),
-    warn: (msg, ...args) => winstonLogger.warn(msg, ...args),
-    error: (msg, ...args) => winstonLogger.error(msg, ...args),
-};
-```
-
-Here's an example using the popular `pino` logging library.
-
-```ts
-import pino from 'pino';
-
-const pinoLogger = pino({...});
-
-const logger: logging.ILogger = {
-  debug: (msg, ...args) => pinoLogger.debug(args, msg),
-  info: (msg, ...args) => pinoLogger.info(args, msg),
-  warn: (msg, ...args) => pinoLogger.warn(args, msg),
-  error: (msg, ...args) => pinoLogger.error(args, msg),
-};
-```
-</details>
-
-
 ### Runtime Compatibility
 
-
-The SDK works in the following runtimes:
-
-
+The SDK defaults to `node-fetch` but will use the global fetch client if present. The SDK works in the following
+runtimes:
 
 - Node.js 18+
 - Vercel
@@ -290,7 +235,7 @@ The SDK provides a way for you to customize the underlying HTTP client / Fetch f
 unsupported environment, this provides a way for you to break glass and ensure the SDK works.
 
 ```typescript
-import { PayabliClient } from "Payabli";
+import { PayabliClient } from "@payabli/sdk-node";
 
 const client = new PayabliClient({
     ...
