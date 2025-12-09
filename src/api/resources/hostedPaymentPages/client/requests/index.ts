@@ -1,1 +1,1 @@
-export { type NewPageRequest } from "./NewPageRequest.js";
+export type { NewPageRequest } from "./NewPageRequest.js";
