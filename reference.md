@@ -1,7 +1,5 @@
 # Reference
-
 ## Bill
-
 <details><summary><code>client.bill.<a href="/src/api/resources/bill/client/Client.ts">addBill</a>(entry, { ...params }) -> Payabli.BillResponse</code></summary>
 <dl>
 <dd>
@@ -15,7 +13,6 @@
 <dd>
 
 Creates a bill in an entrypoint.
-
 </dd>
 </dl>
 </dd>
@@ -37,8 +34,7 @@ await client.bill.addBill("8cfec329267", {
         billDate: "2024-07-01",
         dueDate: "2024-07-01",
         comments: "Deposit for materials",
-        billItems: [
-            {
+        billItems: [{
                 itemProductCode: "M-DEPOSIT",
                 itemProductName: "Materials deposit",
                 itemDescription: "Deposit for materials",
@@ -50,29 +46,26 @@ await client.bill.addBill("8cfec329267", {
                 itemCategories: ["deposits"],
                 itemTotalAmount: 123,
                 itemTaxAmount: 7,
-                itemTaxRate: 0.075,
-            },
-        ],
+                itemTaxRate: 0.075
+            }],
         mode: 0,
         accountingField1: "MyInternalId",
         vendor: {
-            vendorNumber: "1234-A",
+            vendorNumber: "1234-A"
         },
         endDate: "2024-07-01",
         frequency: "monthly",
         terms: "NET30",
         status: -99,
-        attachments: [
-            {
+        attachments: [{
                 ftype: "pdf",
                 filename: "my-doc.pdf",
-                furl: "https://mysite.com/my-doc.pdf",
-            },
-        ],
-    },
+                furl: "https://mysite.com/my-doc.pdf"
+            }]
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -87,27 +80,28 @@ await client.bill.addBill("8cfec329267", {
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.AddBillRequest`
-
+**request:** `Payabli.AddBillRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Bill.RequestOptions`
+**requestOptions:** `BillClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -126,7 +120,6 @@ await client.bill.addBill("8cfec329267", {
 <dd>
 
 Delete a file attached to a bill.
-
 </dd>
 </dl>
 </dd>
@@ -142,8 +135,8 @@ Delete a file attached to a bill.
 
 ```typescript
 await client.bill.deleteAttachedFromBill(285, "0_Bill.pdf");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -158,18 +151,18 @@ await client.bill.deleteAttachedFromBill(285, "0_Bill.pdf");
 <dd>
 
 **idBill:** `number` — Payabli ID for the bill. Get this ID by querying `/api/Query/bills/` for the entrypoint or the organization.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**filename:** `string`
+**filename:** `string` 
 
 The filename in Payabli. Filename is `zipName` in response to a
 request to `/api/Invoice/{idInvoice}`. Here, the filename is
-`0_Bill.pdf`.
+`0_Bill.pdf`. 
 
 ```json
   "DocumentsRef": {
@@ -182,28 +175,29 @@ request to `/api/Invoice/{idInvoice}`. Here, the filename is
       }
     ]
   }
-```
-
+  ```
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.DeleteAttachedFromBillRequest`
-
+**request:** `Payabli.DeleteAttachedFromBillRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Bill.RequestOptions`
+**requestOptions:** `BillClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -222,7 +216,6 @@ request to `/api/Invoice/{idInvoice}`. Here, the filename is
 <dd>
 
 Deletes a bill by ID.
-
 </dd>
 </dl>
 </dd>
@@ -238,8 +231,8 @@ Deletes a bill by ID.
 
 ```typescript
 await client.bill.deleteBill(285);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -254,19 +247,20 @@ await client.bill.deleteBill(285);
 <dd>
 
 **idBill:** `number` — Payabli ID for the bill. Get this ID by querying `/api/Query/bills/` for the entrypoint or the organization.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Bill.RequestOptions`
+**requestOptions:** `BillClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -285,7 +279,6 @@ await client.bill.deleteBill(285);
 <dd>
 
 Updates a bill by ID.
-
 </dd>
 </dl>
 </dd>
@@ -302,10 +295,10 @@ Updates a bill by ID.
 ```typescript
 await client.bill.editBill(285, {
     netAmount: 3762.87,
-    billDate: "2025-07-01",
+    billDate: "2025-07-01"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -320,27 +313,28 @@ await client.bill.editBill(285, {
 <dd>
 
 **idBill:** `number` — Payabli ID for the bill. Get this ID by querying `/api/Query/bills/` for the entrypoint or the organization.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.BillOutData`
-
+**request:** `Payabli.BillOutData` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Bill.RequestOptions`
+**requestOptions:** `BillClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -359,7 +353,6 @@ await client.bill.editBill(285, {
 <dd>
 
 Retrieves a file attached to a bill, either as a binary file or as a Base64-encoded string.
-
 </dd>
 </dl>
 </dd>
@@ -375,10 +368,10 @@ Retrieves a file attached to a bill, either as a binary file or as a Base64-enco
 
 ```typescript
 await client.bill.getAttachedFromBill(285, "0_Bill.pdf", {
-    returnObject: true,
+    returnObject: true
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -393,47 +386,48 @@ await client.bill.getAttachedFromBill(285, "0_Bill.pdf", {
 <dd>
 
 **idBill:** `number` — Payabli ID for the bill. Get this ID by querying `/api/Query/bills/` for the entrypoint or the organization.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**filename:** `string`
+**filename:** `string` 
 
-The filename in Payabli. Filename is `zipName` in response to a request to `/api/Invoice/{idInvoice}`. Here, the filename is `0_Bill.pdf``.
+The filename in Payabli. Filename is `zipName` in response to a request to `/api/Invoice/{idInvoice}`. Here, the filename is `0_Bill.pdf``. 
 "DocumentsRef": {
-"zipfile": "inva_269.zip",
-"filelist": [
-{
-"originalName": "Bill.pdf",
-"zipName": "0_Bill.pdf",
-"descriptor": null
+  "zipfile": "inva_269.zip",
+  "filelist": [
+    {
+      "originalName": "Bill.pdf",
+      "zipName": "0_Bill.pdf",
+      "descriptor": null
+    }
+  ]
 }
-]
-}
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.GetAttachedFromBillRequest`
-
+**request:** `Payabli.GetAttachedFromBillRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Bill.RequestOptions`
+**requestOptions:** `BillClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -452,7 +446,6 @@ The filename in Payabli. Filename is `zipName` in response to a request to `/api
 <dd>
 
 Retrieves a bill by ID from an entrypoint.
-
 </dd>
 </dl>
 </dd>
@@ -468,8 +461,8 @@ Retrieves a bill by ID from an entrypoint.
 
 ```typescript
 await client.bill.getBill(285);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -484,19 +477,20 @@ await client.bill.getBill(285);
 <dd>
 
 **idBill:** `number` — Payabli ID for the bill. Get this ID by querying `/api/Query/bills/` for the entrypoint or the organization.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Bill.RequestOptions`
+**requestOptions:** `BillClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -515,7 +509,6 @@ await client.bill.getBill(285);
 <dd>
 
 Retrieve a list of bills for an entrypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
 </dd>
 </dl>
 </dd>
@@ -533,10 +526,10 @@ Retrieve a list of bills for an entrypoint. Use filters to limit results. Includ
 await client.bill.listBills("8cfec329267", {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -551,27 +544,28 @@ await client.bill.listBills("8cfec329267", {
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListBillsRequest`
-
+**request:** `Payabli.ListBillsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Bill.RequestOptions`
+**requestOptions:** `BillClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -590,7 +584,6 @@ await client.bill.listBills("8cfec329267", {
 <dd>
 
 Retrieve a list of bills for an organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
 </dd>
 </dl>
 </dd>
@@ -608,10 +601,10 @@ Retrieve a list of bills for an organization. Use filters to limit results. Incl
 await client.bill.listBillsOrg(123, {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -626,27 +619,28 @@ await client.bill.listBillsOrg(123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListBillsOrgRequest`
-
+**request:** `Payabli.ListBillsOrgRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Bill.RequestOptions`
+**requestOptions:** `BillClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -665,7 +659,6 @@ await client.bill.listBillsOrg(123, {
 <dd>
 
 Modify the list of users the bill is sent to for approval.
-
 </dd>
 </dl>
 </dd>
@@ -681,8 +674,8 @@ Modify the list of users the bill is sent to for approval.
 
 ```typescript
 await client.bill.modifyApprovalBill(285, ["string"]);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -697,27 +690,28 @@ await client.bill.modifyApprovalBill(285, ["string"]);
 <dd>
 
 **idBill:** `number` — Payabli ID for the bill. Get this ID by querying `/api/Query/bills/` for the entrypoint or the organization.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `string[]`
-
+**request:** `string[]` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Bill.RequestOptions`
+**requestOptions:** `BillClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -736,7 +730,6 @@ await client.bill.modifyApprovalBill(285, ["string"]);
 <dd>
 
 Send a bill to a user or list of users to approve.
-
 </dd>
 </dl>
 </dd>
@@ -753,10 +746,10 @@ Send a bill to a user or list of users to approve.
 ```typescript
 await client.bill.sendToApprovalBill(285, {
     idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA",
-    body: ["string"],
+    body: ["string"]
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -771,27 +764,28 @@ await client.bill.sendToApprovalBill(285, {
 <dd>
 
 **idBill:** `number` — Payabli ID for the bill. Get this ID by querying `/api/Query/bills/` for the entrypoint or the organization.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.SendToApprovalBillRequest`
-
+**request:** `Payabli.SendToApprovalBillRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Bill.RequestOptions`
+**requestOptions:** `BillClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -810,7 +804,6 @@ await client.bill.sendToApprovalBill(285, {
 <dd>
 
 Approve or disapprove a bill by ID.
-
 </dd>
 </dl>
 </dd>
@@ -826,8 +819,8 @@ Approve or disapprove a bill by ID.
 
 ```typescript
 await client.bill.setApprovedBill(285, "true");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -842,7 +835,7 @@ await client.bill.setApprovedBill(285, "true");
 <dd>
 
 **idBill:** `number` — Payabli ID for the bill. Get this ID by querying `/api/Query/bills/` for the entrypoint or the organization.
-
+    
 </dd>
 </dl>
 
@@ -850,34 +843,34 @@ await client.bill.setApprovedBill(285, "true");
 <dd>
 
 **approved:** `string` — String representing the approved status. Accepted values: 'true' or 'false'.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.SetApprovedBillRequest`
-
+**request:** `Payabli.SetApprovedBillRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Bill.RequestOptions`
+**requestOptions:** `BillClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Boarding
-
 <details><summary><code>client.boarding.<a href="/src/api/resources/boarding/client/Client.ts">addApplication</a>({ ...params }) -> Payabli.PayabliApiResponse00Responsedatanonobject</code></summary>
 <dl>
 <dd>
@@ -891,7 +884,6 @@ await client.bill.setApprovedBill(285, "true");
 <dd>
 
 Creates a boarding application in an organization. This endpoint requires an application API token.
-
 </dd>
 </dl>
 </dd>
@@ -913,8 +905,8 @@ await client.boarding.addApplication({
             acceptAmex: true,
             acceptDiscover: true,
             acceptMastercard: true,
-            acceptVisa: true,
-        },
+            acceptVisa: true
+        }
     },
     annualRevenue: 1000,
     averageBillSize: "500",
@@ -932,14 +924,12 @@ await client.boarding.addApplication({
     bsummary: "Brick and mortar store that sells office supplies",
     btype: "Limited Liability Company",
     bzip: "33000",
-    contacts: [
-        {
+    contacts: [{
             contactEmail: "herman@hermanscoatings.com",
             contactName: "Herman Martinez",
             contactPhone: "3055550000",
-            contactTitle: "Owner",
-        },
-    ],
+            contactTitle: "Owner"
+        }],
     creditLimit: "creditLimit",
     dbaName: "Sunshine Gutters",
     ein: "123456789",
@@ -956,8 +946,7 @@ await client.boarding.addApplication({
     mstate: "TN",
     mzip: "37615",
     orgId: 123,
-    ownership: [
-        {
+    ownership: [{
             oaddress: "33 North St",
             ocity: "Any City",
             ocountry: "US",
@@ -972,9 +961,8 @@ await client.boarding.addApplication({
             ownerphone2: "555888111",
             ownerssn: "123456789",
             ownertitle: "CEO",
-            ozip: "55555",
-        },
-    ],
+            ozip: "55555"
+        }],
     phonenumber: "1234567890",
     processingRegion: "US",
     recipientEmail: "josephray@example.com",
@@ -996,8 +984,7 @@ await client.boarding.addApplication({
         signedDocumentReference: "https://example.com/signed-document.pdf",
         attestationDate: "04/20/2025",
         signDate: "04/20/2025",
-        additionalData:
-            '{"deviceId":"499585-389fj484-3jcj8hj3","session":"fifji4-fiu443-fn4843","timeWithCompany":"6 Years"}',
+        additionalData: "{\"deviceId\":\"499585-389fj484-3jcj8hj3\",\"session\":\"fifji4-fiu443-fn4843\",\"timeWithCompany\":\"6 Years\"}"
     },
     startdate: "01/01/1990",
     taxFillName: "Sunshine LLC",
@@ -1007,10 +994,10 @@ await client.boarding.addApplication({
     whenCharged: "When Service Provided",
     whenDelivered: "Over 30 Days",
     whenProvided: "30 Days or Less",
-    whenRefunded: "30 Days or Less",
+    whenRefunded: "30 Days or Less"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1024,20 +1011,21 @@ await client.boarding.addApplication({
 <dl>
 <dd>
 
-**request:** `Payabli.AddApplicationRequest`
-
+**request:** `Payabli.AddApplicationRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Boarding.RequestOptions`
+**requestOptions:** `BoardingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1056,7 +1044,6 @@ await client.boarding.addApplication({
 <dd>
 
 Deletes a boarding application by ID.
-
 </dd>
 </dl>
 </dd>
@@ -1072,8 +1059,8 @@ Deletes a boarding application by ID.
 
 ```typescript
 await client.boarding.deleteApplication(352);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1087,20 +1074,21 @@ await client.boarding.deleteApplication(352);
 <dl>
 <dd>
 
-**appId:** `number` — Boarding application ID.
-
+**appId:** `number` — Boarding application ID. 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Boarding.RequestOptions`
+**requestOptions:** `BoardingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1118,8 +1106,7 @@ await client.boarding.deleteApplication(352);
 <dl>
 <dd>
 
-Retrieves the details for a boarding application by ID.
-
+Retrieves the details for a boarding application by ID. 
 </dd>
 </dl>
 </dd>
@@ -1135,8 +1122,8 @@ Retrieves the details for a boarding application by ID.
 
 ```typescript
 await client.boarding.getApplication(352);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1151,19 +1138,20 @@ await client.boarding.getApplication(352);
 <dd>
 
 **appId:** `number` — Boarding application ID.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Boarding.RequestOptions`
+**requestOptions:** `BoardingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1181,8 +1169,7 @@ await client.boarding.getApplication(352);
 <dl>
 <dd>
 
-Gets a boarding application by authentication information. This endpoint requires an `application` API token.
-
+Gets a boarding application by authentication information. This endpoint requires an `application` API token. 
 </dd>
 </dl>
 </dd>
@@ -1199,10 +1186,10 @@ Gets a boarding application by authentication information. This endpoint require
 ```typescript
 await client.boarding.getApplicationByAuth("17E", {
     email: "admin@email.com",
-    referenceId: "n6UCd1f1ygG7",
+    referenceId: "n6UCd1f1ygG7"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1216,28 +1203,29 @@ await client.boarding.getApplicationByAuth("17E", {
 <dl>
 <dd>
 
-**xId:** `string` — The application ID in Hex format. Find this at the end of the boarding link URL returned in a call to api/Boarding/applink/{appId}/{mail2}. For example in: `https://boarding-sandbox.payabli.com/boarding/externalapp/load/17E`, the xId is `17E`.
-
+**xId:** `string` — The application ID in Hex format. Find this at the end of the boarding link URL returned in a call to api/Boarding/applink/{appId}/{mail2}. For example in:  `https://boarding-sandbox.payabli.com/boarding/externalapp/load/17E`, the xId is `17E`. 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.RequestAppByAuth`
-
+**request:** `Payabli.RequestAppByAuth` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Boarding.RequestOptions`
+**requestOptions:** `BoardingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1255,8 +1243,7 @@ await client.boarding.getApplicationByAuth("17E", {
 <dl>
 <dd>
 
-Retrieves details for a boarding link, by ID.
-
+Retrieves details for a boarding link, by ID. 
 </dd>
 </dl>
 </dd>
@@ -1272,8 +1259,8 @@ Retrieves details for a boarding link, by ID.
 
 ```typescript
 await client.boarding.getByIdLinkApplication(91);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1288,19 +1275,20 @@ await client.boarding.getByIdLinkApplication(91);
 <dd>
 
 **boardingLinkId:** `number` — The boarding link ID. You can find this at the end of the boarding link reference name. For example `https://boarding.payabli.com/boarding/app/myorgaccountname-00091`. The ID is `91`.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Boarding.RequestOptions`
+**requestOptions:** `BoardingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1319,7 +1307,6 @@ await client.boarding.getByIdLinkApplication(91);
 <dd>
 
 Get details for a boarding link using the boarding template ID. This endpoint requires an application API token.
-
 </dd>
 </dl>
 </dd>
@@ -1335,8 +1322,8 @@ Get details for a boarding link using the boarding template ID. This endpoint re
 
 ```typescript
 await client.boarding.getByTemplateIdLinkApplication(80);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1351,19 +1338,20 @@ await client.boarding.getByTemplateIdLinkApplication(80);
 <dd>
 
 **templateId:** `number` — The boarding template ID. You can find this at the end of the boarding template URL in PartnerHub. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Boarding.RequestOptions`
+**requestOptions:** `BoardingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1382,7 +1370,6 @@ await client.boarding.getByTemplateIdLinkApplication(80);
 <dd>
 
 Retrieves a link and the verification code used to log into an existing boarding application. You can also use this endpoint to send a link and referenceId for an existing boarding application to an email address. The recipient can use the referenceId and email address to access and edit the application.
-
 </dd>
 </dl>
 </dd>
@@ -1398,8 +1385,8 @@ Retrieves a link and the verification code used to log into an existing boarding
 
 ```typescript
 await client.boarding.getExternalApplication(352, "mail2");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1413,8 +1400,8 @@ await client.boarding.getExternalApplication(352, "mail2");
 <dl>
 <dd>
 
-**appId:** `number` — Boarding application ID.
-
+**appId:** `number` — Boarding application ID. 
+    
 </dd>
 </dl>
 
@@ -1422,27 +1409,28 @@ await client.boarding.getExternalApplication(352, "mail2");
 <dd>
 
 **mail2:** `string` — Email address used to access the application. If `sendEmail` parameter is true, a link to the application is sent to this email address.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.GetExternalApplicationRequest`
-
+**request:** `Payabli.GetExternalApplicationRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Boarding.RequestOptions`
+**requestOptions:** `BoardingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1461,7 +1449,6 @@ await client.boarding.getExternalApplication(352, "mail2");
 <dd>
 
 Retrieves the details for a boarding link, by reference name. This endpoint requires an application API token.
-
 </dd>
 </dl>
 </dd>
@@ -1477,8 +1464,8 @@ Retrieves the details for a boarding link, by reference name. This endpoint requ
 
 ```typescript
 await client.boarding.getLinkApplication("myorgaccountname-00091");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1493,19 +1480,20 @@ await client.boarding.getLinkApplication("myorgaccountname-00091");
 <dd>
 
 **boardingLinkReference:** `string` — The boarding link reference name. You can find this at the end of the boarding link URL. For example `https://boarding.payabli.com/boarding/app/myorgaccountname-00091`
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Boarding.RequestOptions`
+**requestOptions:** `BoardingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1524,7 +1512,6 @@ await client.boarding.getLinkApplication("myorgaccountname-00091");
 <dd>
 
 Returns a list of boarding applications for an organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
 </dd>
 </dl>
 </dd>
@@ -1542,10 +1529,10 @@ Returns a list of boarding applications for an organization. Use filters to limi
 await client.boarding.listApplications(123, {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1560,27 +1547,28 @@ await client.boarding.listApplications(123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListApplicationsRequest`
-
+**request:** `Payabli.ListApplicationsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Boarding.RequestOptions`
+**requestOptions:** `BoardingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1599,7 +1587,6 @@ await client.boarding.listApplications(123, {
 <dd>
 
 Return a list of boarding links for an organization. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -1617,10 +1604,10 @@ Return a list of boarding links for an organization. Use filters to limit result
 await client.boarding.listBoardingLinks(123, {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1635,27 +1622,28 @@ await client.boarding.listBoardingLinks(123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListBoardingLinksRequest`
-
+**request:** `Payabli.ListBoardingLinksRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Boarding.RequestOptions`
+**requestOptions:** `BoardingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1674,7 +1662,6 @@ await client.boarding.listBoardingLinks(123, {
 <dd>
 
 Updates a boarding application by ID. This endpoint requires an application API token.
-
 </dd>
 </dl>
 </dd>
@@ -1690,8 +1677,8 @@ Updates a boarding application by ID. This endpoint requires an application API 
 
 ```typescript
 await client.boarding.updateApplication(352, {});
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1705,36 +1692,36 @@ await client.boarding.updateApplication(352, {});
 <dl>
 <dd>
 
-**appId:** `number` — Boarding application ID.
-
+**appId:** `number` — Boarding application ID. 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ApplicationData`
-
+**request:** `Payabli.ApplicationData` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Boarding.RequestOptions`
+**requestOptions:** `BoardingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## ChargeBacks
-
-<details><summary><code>client.chargeBacks.<a href="/src/api/resources/chargeBacks/client/Client.ts">addResponse</a>(id, { ...params }) -> Payabli.AddResponseResponse</code></summary>
+<details><summary><code>client.chargeBacks.<a href="/src/api/resources/chargeBacks/client/Client.ts">addResponse</a>(Id, { ...params }) -> Payabli.AddResponseResponse</code></summary>
 <dl>
 <dd>
 
@@ -1747,7 +1734,6 @@ await client.boarding.updateApplication(352, {});
 <dd>
 
 Add a response to a chargeback or ACH return.
-
 </dd>
 </dl>
 </dd>
@@ -1763,10 +1749,10 @@ Add a response to a chargeback or ACH return.
 
 ```typescript
 await client.chargeBacks.addResponse(1000000, {
-    idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA",
+    idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1780,34 +1766,35 @@ await client.chargeBacks.addResponse(1000000, {
 <dl>
 <dd>
 
-**id:** `number` — ID of the chargeback or return record.
-
+**Id:** `number` — ID of the chargeback or return record.
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ResponseChargeBack`
-
+**request:** `Payabli.ResponseChargeBack` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `ChargeBacks.RequestOptions`
+**requestOptions:** `ChargeBacksClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.chargeBacks.<a href="/src/api/resources/chargeBacks/client/Client.ts">getChargeback</a>(id) -> Payabli.ChargebackQueryRecords</code></summary>
+<details><summary><code>client.chargeBacks.<a href="/src/api/resources/chargeBacks/client/Client.ts">getChargeback</a>(Id) -> Payabli.ChargebackQueryRecords</code></summary>
 <dl>
 <dd>
 
@@ -1820,7 +1807,6 @@ await client.chargeBacks.addResponse(1000000, {
 <dd>
 
 Retrieves a chargeback record and its details.
-
 </dd>
 </dl>
 </dd>
@@ -1836,8 +1822,8 @@ Retrieves a chargeback record and its details.
 
 ```typescript
 await client.chargeBacks.getChargeback(1000000);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1851,26 +1837,27 @@ await client.chargeBacks.getChargeback(1000000);
 <dl>
 <dd>
 
-**id:** `number` — ID of the chargeback or return record. This is returned as `chargebackId` in the [RecievedChargeback](/developers/developer-guides/webhook-payloads#receivedChargeback) and [ReceivedAchReturn](/developers/developer-guides/webhook-payloads#receivedachreturn) webhook notifications.
-
+**Id:** `number` — ID of the chargeback or return record. This is returned as `chargebackId` in the [RecievedChargeback](/developers/developer-guides/webhook-payloads#receivedChargeback) and [ReceivedAchReturn](/developers/developer-guides/webhook-payloads#receivedachreturn) webhook notifications.
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `ChargeBacks.RequestOptions`
+**requestOptions:** `ChargeBacksClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.chargeBacks.<a href="/src/api/resources/chargeBacks/client/Client.ts">getChargebackAttachment</a>(id, fileName) -> string</code></summary>
+<details><summary><code>client.chargeBacks.<a href="/src/api/resources/chargeBacks/client/Client.ts">getChargebackAttachment</a>(Id, fileName) -> string</code></summary>
 <dl>
 <dd>
 
@@ -1883,7 +1870,6 @@ await client.chargeBacks.getChargeback(1000000);
 <dd>
 
 Retrieves a chargeback attachment file by its file name.
-
 </dd>
 </dl>
 </dd>
@@ -1899,8 +1885,8 @@ Retrieves a chargeback attachment file by its file name.
 
 ```typescript
 await client.chargeBacks.getChargebackAttachment(1000000, "fileName");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1914,8 +1900,8 @@ await client.chargeBacks.getChargebackAttachment(1000000, "fileName");
 <dl>
 <dd>
 
-**id:** `number` — The ID of chargeback or return record.
-
+**Id:** `number` — The ID of chargeback or return record.
+    
 </dd>
 </dl>
 
@@ -1923,26 +1909,26 @@ await client.chargeBacks.getChargebackAttachment(1000000, "fileName");
 <dd>
 
 **fileName:** `string` — The chargeback attachment's file name.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `ChargeBacks.RequestOptions`
+**requestOptions:** `ChargeBacksClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## CheckCapture
-
 <details><summary><code>client.checkCapture.<a href="/src/api/resources/checkCapture/client/Client.ts">checkProcessing</a>({ ...params }) -> Payabli.CheckCaptureResponse</code></summary>
 <dl>
 <dd>
@@ -1956,7 +1942,6 @@ await client.chargeBacks.getChargebackAttachment(1000000, "fileName");
 <dd>
 
 Captures a check for Remote Deposit Capture (RDC) using the provided check images and details. This endpoint handles the OCR extraction of check data including MICR, routing number, account number, and amount. See the [RDC guide](/developers/developer-guides/pay-in-rdc) for more details.
-
 </dd>
 </dl>
 </dd>
@@ -1975,10 +1960,10 @@ await client.checkCapture.checkProcessing({
     entryPoint: "47abcfea12",
     frontImage: "/9j/4AAQSkZJRgABAQEASABIAAD...",
     rearImage: "/9j/4AAQSkZJRgABAQEASABIAAD...",
-    checkAmount: 12550,
+    checkAmount: 12550
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1992,27 +1977,27 @@ await client.checkCapture.checkProcessing({
 <dl>
 <dd>
 
-**request:** `Payabli.CheckCaptureRequestBody`
-
+**request:** `Payabli.CheckCaptureRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `CheckCapture.RequestOptions`
+**requestOptions:** `CheckCaptureClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Cloud
-
 <details><summary><code>client.cloud.<a href="/src/api/resources/cloud/client/Client.ts">addDevice</a>(entry, { ...params }) -> Payabli.AddDeviceResponse</code></summary>
 <dl>
 <dd>
@@ -2026,7 +2011,6 @@ await client.checkCapture.checkProcessing({
 <dd>
 
 Register a cloud device to an entrypoint. See [Devices Quickstart](/developers/developer-guides/devices-quickstart#devices-quickstart) for a complete guide.
-
 </dd>
 </dl>
 </dd>
@@ -2043,10 +2027,10 @@ Register a cloud device to an entrypoint. See [Devices Quickstart](/developers/d
 ```typescript
 await client.cloud.addDevice("8cfec329267", {
     registrationCode: "YS7DS5",
-    description: "Front Desk POS",
+    description: "Front Desk POS"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2061,27 +2045,28 @@ await client.cloud.addDevice("8cfec329267", {
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.DeviceEntry`
-
+**request:** `Payabli.DeviceEntry` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Cloud.RequestOptions`
+**requestOptions:** `CloudClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2099,8 +2084,7 @@ await client.cloud.addDevice("8cfec329267", {
 <dl>
 <dd>
 
-Retrieve the registration history for a device.
-
+Retrieve the registration history for a device. 
 </dd>
 </dl>
 </dd>
@@ -2116,8 +2100,8 @@ Retrieve the registration history for a device.
 
 ```typescript
 await client.cloud.historyDevice("8cfec329267", "WXGDWB");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2132,27 +2116,28 @@ await client.cloud.historyDevice("8cfec329267", "WXGDWB");
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**deviceId:** `string` — ID of the cloud device.
-
+**deviceId:** `string` — ID of the cloud device. 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Cloud.RequestOptions`
+**requestOptions:** `CloudClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2171,7 +2156,6 @@ await client.cloud.historyDevice("8cfec329267", "WXGDWB");
 <dd>
 
 Get a list of cloud devices registered to an entrypoint.
-
 </dd>
 </dl>
 </dd>
@@ -2187,8 +2171,8 @@ Get a list of cloud devices registered to an entrypoint.
 
 ```typescript
 await client.cloud.listDevice("8cfec329267");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2203,27 +2187,28 @@ await client.cloud.listDevice("8cfec329267");
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListDeviceRequest`
-
+**request:** `Payabli.ListDeviceRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Cloud.RequestOptions`
+**requestOptions:** `CloudClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2242,7 +2227,6 @@ await client.cloud.listDevice("8cfec329267");
 <dd>
 
 Remove a cloud device from an entrypoint.
-
 </dd>
 </dl>
 </dd>
@@ -2258,8 +2242,8 @@ Remove a cloud device from an entrypoint.
 
 ```typescript
 await client.cloud.removeDevice("8cfec329267", "6c361c7d-674c-44cc-b790-382b75d1xxx");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2274,34 +2258,34 @@ await client.cloud.removeDevice("8cfec329267", "6c361c7d-674c-44cc-b790-382b75d1
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**deviceId:** `string` — ID of the cloud device.
-
+**deviceId:** `string` — ID of the cloud device. 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Cloud.RequestOptions`
+**requestOptions:** `CloudClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Customer
-
 <details><summary><code>client.customer.<a href="/src/api/resources/customer/client/Client.ts">addCustomer</a>(entry, { ...params }) -> Payabli.PayabliApiResponseCustomerQuery</code></summary>
 <dl>
 <dd>
@@ -2314,9 +2298,8 @@ await client.cloud.removeDevice("8cfec329267", "6c361c7d-674c-44cc-b790-382b75d1
 <dl>
 <dd>
 
-Creates a customer in an entrypoint. An identifier is required to create customer records. Change your identifier settings in Settings > Custom Fields in PartnerHub.
+Creates a customer in an entrypoint. An identifier is required to create customer records. Change your identifier settings in Settings > Custom Fields in PartnerHub. 
 If you don't include an identifier, the record is rejected.
-
 </dd>
 </dl>
 </dd>
@@ -2343,11 +2326,11 @@ await client.customer.addCustomer("8cfec329267", {
         country: "US",
         email: "irene@canizalesconcrete.com",
         identifierFields: ["email"],
-        timeZone: -5,
-    },
+        timeZone: -5
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2361,28 +2344,29 @@ await client.customer.addCustomer("8cfec329267", {
 <dl>
 <dd>
 
-**entry:** `Payabli.Entrypointfield`
-
+**entry:** `Payabli.Entrypointfield` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.AddCustomerRequest`
-
+**request:** `Payabli.AddCustomerRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Customer.RequestOptions`
+**requestOptions:** `CustomerClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2401,7 +2385,6 @@ await client.customer.addCustomer("8cfec329267", {
 <dd>
 
 Delete a customer record.
-
 </dd>
 </dl>
 </dd>
@@ -2417,8 +2400,8 @@ Delete a customer record.
 
 ```typescript
 await client.customer.deleteCustomer(998);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2432,20 +2415,21 @@ await client.customer.deleteCustomer(998);
 <dl>
 <dd>
 
-**customerId:** `number` — Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub.
-
+**customerId:** `number` — Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub. 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Customer.RequestOptions`
+**requestOptions:** `CustomerClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2464,7 +2448,6 @@ await client.customer.deleteCustomer(998);
 <dd>
 
 Retrieves a customer's record and details.
-
 </dd>
 </dl>
 </dd>
@@ -2480,8 +2463,8 @@ Retrieves a customer's record and details.
 
 ```typescript
 await client.customer.getCustomer(998);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2495,20 +2478,21 @@ await client.customer.getCustomer(998);
 <dl>
 <dd>
 
-**customerId:** `number` — Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub.
-
+**customerId:** `number` — Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub. 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Customer.RequestOptions`
+**requestOptions:** `CustomerClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2527,7 +2511,6 @@ await client.customer.getCustomer(998);
 <dd>
 
 Links a customer to a transaction by ID.
-
 </dd>
 </dl>
 </dd>
@@ -2543,8 +2526,8 @@ Links a customer to a transaction by ID.
 
 ```typescript
 await client.customer.linkCustomerTransaction(998, "45-as456777hhhhhhhhhh77777777-324");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2558,8 +2541,8 @@ await client.customer.linkCustomerTransaction(998, "45-as456777hhhhhhhhhh7777777
 <dl>
 <dd>
 
-**customerId:** `number` — Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub.
-
+**customerId:** `number` — Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub. 
+    
 </dd>
 </dl>
 
@@ -2567,19 +2550,20 @@ await client.customer.linkCustomerTransaction(998, "45-as456777hhhhhhhhhh7777777
 <dd>
 
 **transId:** `string` — ReferenceId for the transaction (PaymentId).
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Customer.RequestOptions`
+**requestOptions:** `CustomerClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2598,7 +2582,6 @@ await client.customer.linkCustomerTransaction(998, "45-as456777hhhhhhhhhh7777777
 <dd>
 
 Sends the consent opt-in email to the customer email address in the customer record.
-
 </dd>
 </dl>
 </dd>
@@ -2614,8 +2597,8 @@ Sends the consent opt-in email to the customer email address in the customer rec
 
 ```typescript
 await client.customer.requestConsent(998);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2629,20 +2612,21 @@ await client.customer.requestConsent(998);
 <dl>
 <dd>
 
-**customerId:** `number` — Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub.
-
+**customerId:** `number` — Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub. 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Customer.RequestOptions`
+**requestOptions:** `CustomerClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2661,7 +2645,6 @@ await client.customer.requestConsent(998);
 <dd>
 
 Update a customer record. Include only the fields you want to change.
-
 </dd>
 </dl>
 </dd>
@@ -2683,10 +2666,10 @@ await client.customer.updateCustomer(998, {
     city: "Mountain City",
     state: "TN",
     zip: "37612",
-    country: "US",
+    country: "US"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2700,35 +2683,35 @@ await client.customer.updateCustomer(998, {
 <dl>
 <dd>
 
-**customerId:** `number` — Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub.
-
+**customerId:** `number` — Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub. 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.CustomerData`
-
+**request:** `Payabli.CustomerData` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Customer.RequestOptions`
+**requestOptions:** `CustomerClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Export
-
 <details><summary><code>client.export.<a href="/src/api/resources/export/client/Client.ts">exportApplications</a>(format, orgId, { ...params }) -> Payabli.File_</code></summary>
 <dl>
 <dd>
@@ -2742,7 +2725,6 @@ await client.customer.updateCustomer(998, {
 <dd>
 
 Export a list of boarding applications for an organization. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -2760,10 +2742,10 @@ Export a list of boarding applications for an organization. Use filters to limit
 await client.export.exportApplications("csv", 123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
-    limitRecord: 1000,
+    limitRecord: 1000
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2777,8 +2759,8 @@ await client.export.exportApplications("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
-
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV. 
+    
 </dd>
 </dl>
 
@@ -2786,27 +2768,28 @@ await client.export.exportApplications("csv", 123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ExportApplicationsRequest`
-
+**request:** `Payabli.ExportApplicationsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Export.RequestOptions`
+**requestOptions:** `ExportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2825,7 +2808,6 @@ await client.export.exportApplications("csv", 123, {
 <dd>
 
 This endpoint is deprecated. Export batch details for a paypoint. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -2843,10 +2825,10 @@ This endpoint is deprecated. Export batch details for a paypoint. Use filters to
 await client.export.exportBatchDetails("csv", "8cfec329267", {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
-    limitRecord: 1000,
+    limitRecord: 1000
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2860,8 +2842,8 @@ await client.export.exportBatchDetails("csv", "8cfec329267", {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
-
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV. 
+    
 </dd>
 </dl>
 
@@ -2869,27 +2851,28 @@ await client.export.exportBatchDetails("csv", "8cfec329267", {
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ExportBatchDetailsRequest`
-
+**request:** `Payabli.ExportBatchDetailsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Export.RequestOptions`
+**requestOptions:** `ExportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2908,7 +2891,6 @@ await client.export.exportBatchDetails("csv", "8cfec329267", {
 <dd>
 
 This endpoint is deprecated. Export batch details for an organization. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -2926,10 +2908,10 @@ This endpoint is deprecated. Export batch details for an organization. Use filte
 await client.export.exportBatchDetailsOrg("csv", 123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
-    limitRecord: 1000,
+    limitRecord: 1000
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2943,8 +2925,8 @@ await client.export.exportBatchDetailsOrg("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
-
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV. 
+    
 </dd>
 </dl>
 
@@ -2952,27 +2934,28 @@ await client.export.exportBatchDetailsOrg("csv", 123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ExportBatchDetailsOrgRequest`
-
+**request:** `Payabli.ExportBatchDetailsOrgRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Export.RequestOptions`
+**requestOptions:** `ExportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2991,7 +2974,6 @@ await client.export.exportBatchDetailsOrg("csv", 123, {
 <dd>
 
 Export a list of batches for an entrypoint. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -3009,10 +2991,10 @@ Export a list of batches for an entrypoint. Use filters to limit results.
 await client.export.exportBatches("csv", "8cfec329267", {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
-    limitRecord: 1000,
+    limitRecord: 1000
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3026,8 +3008,8 @@ await client.export.exportBatches("csv", "8cfec329267", {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
-
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV. 
+    
 </dd>
 </dl>
 
@@ -3035,27 +3017,28 @@ await client.export.exportBatches("csv", "8cfec329267", {
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ExportBatchesRequest`
-
+**request:** `Payabli.ExportBatchesRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Export.RequestOptions`
+**requestOptions:** `ExportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3074,7 +3057,6 @@ await client.export.exportBatches("csv", "8cfec329267", {
 <dd>
 
 Export a list of batches for an organization. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -3092,10 +3074,10 @@ Export a list of batches for an organization. Use filters to limit results.
 await client.export.exportBatchesOrg("csv", 123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
-    limitRecord: 1000,
+    limitRecord: 1000
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3109,8 +3091,8 @@ await client.export.exportBatchesOrg("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
-
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV. 
+    
 </dd>
 </dl>
 
@@ -3118,27 +3100,28 @@ await client.export.exportBatchesOrg("csv", 123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ExportBatchesOrgRequest`
-
+**request:** `Payabli.ExportBatchesOrgRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Export.RequestOptions`
+**requestOptions:** `ExportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3157,7 +3140,6 @@ await client.export.exportBatchesOrg("csv", 123, {
 <dd>
 
 Export a list of money out batches for a paypoint. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -3175,10 +3157,10 @@ Export a list of money out batches for a paypoint. Use filters to limit results.
 await client.export.exportBatchesOut("csv", "8cfec329267", {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
-    limitRecord: 1000,
+    limitRecord: 1000
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3192,8 +3174,8 @@ await client.export.exportBatchesOut("csv", "8cfec329267", {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
-
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV. 
+    
 </dd>
 </dl>
 
@@ -3201,27 +3183,28 @@ await client.export.exportBatchesOut("csv", "8cfec329267", {
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ExportBatchesOutRequest`
-
+**request:** `Payabli.ExportBatchesOutRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Export.RequestOptions`
+**requestOptions:** `ExportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3240,7 +3223,6 @@ await client.export.exportBatchesOut("csv", "8cfec329267", {
 <dd>
 
 Export a list of money out batches for an organization. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -3258,10 +3240,10 @@ Export a list of money out batches for an organization. Use filters to limit res
 await client.export.exportBatchesOutOrg("csv", 123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
-    limitRecord: 1000,
+    limitRecord: 1000
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3275,8 +3257,8 @@ await client.export.exportBatchesOutOrg("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
-
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV. 
+    
 </dd>
 </dl>
 
@@ -3284,27 +3266,28 @@ await client.export.exportBatchesOutOrg("csv", 123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ExportBatchesOutOrgRequest`
-
+**request:** `Payabli.ExportBatchesOutOrgRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Export.RequestOptions`
+**requestOptions:** `ExportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3323,7 +3306,6 @@ await client.export.exportBatchesOutOrg("csv", 123, {
 <dd>
 
 Export a list of bills for an entrypoint. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -3341,10 +3323,10 @@ Export a list of bills for an entrypoint. Use filters to limit results.
 await client.export.exportBills("csv", "8cfec329267", {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
-    limitRecord: 1000,
+    limitRecord: 1000
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3358,8 +3340,8 @@ await client.export.exportBills("csv", "8cfec329267", {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
-
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV. 
+    
 </dd>
 </dl>
 
@@ -3367,27 +3349,28 @@ await client.export.exportBills("csv", "8cfec329267", {
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ExportBillsRequest`
-
+**request:** `Payabli.ExportBillsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Export.RequestOptions`
+**requestOptions:** `ExportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3406,7 +3389,6 @@ await client.export.exportBills("csv", "8cfec329267", {
 <dd>
 
 Export a list of bills for an organization. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -3424,10 +3406,10 @@ Export a list of bills for an organization. Use filters to limit results.
 await client.export.exportBillsOrg("csv", 123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
-    limitRecord: 1000,
+    limitRecord: 1000
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3441,8 +3423,8 @@ await client.export.exportBillsOrg("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
-
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV. 
+    
 </dd>
 </dl>
 
@@ -3450,27 +3432,28 @@ await client.export.exportBillsOrg("csv", 123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ExportBillsOrgRequest`
-
+**request:** `Payabli.ExportBillsOrgRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Export.RequestOptions`
+**requestOptions:** `ExportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3489,7 +3472,6 @@ await client.export.exportBillsOrg("csv", 123, {
 <dd>
 
 Export a list of chargebacks and ACH returns for an entrypoint. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -3507,10 +3489,10 @@ Export a list of chargebacks and ACH returns for an entrypoint. Use filters to l
 await client.export.exportChargebacks("csv", "8cfec329267", {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
-    limitRecord: 1000,
+    limitRecord: 1000
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3524,8 +3506,8 @@ await client.export.exportChargebacks("csv", "8cfec329267", {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
-
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV. 
+    
 </dd>
 </dl>
 
@@ -3533,27 +3515,28 @@ await client.export.exportChargebacks("csv", "8cfec329267", {
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ExportChargebacksRequest`
-
+**request:** `Payabli.ExportChargebacksRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Export.RequestOptions`
+**requestOptions:** `ExportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3572,7 +3555,6 @@ await client.export.exportChargebacks("csv", "8cfec329267", {
 <dd>
 
 Export a list of chargebacks and ACH returns for an organization. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -3590,10 +3572,10 @@ Export a list of chargebacks and ACH returns for an organization. Use filters to
 await client.export.exportChargebacksOrg("csv", 123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
-    limitRecord: 1000,
+    limitRecord: 1000
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3607,8 +3589,8 @@ await client.export.exportChargebacksOrg("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
-
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV. 
+    
 </dd>
 </dl>
 
@@ -3616,27 +3598,28 @@ await client.export.exportChargebacksOrg("csv", 123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ExportChargebacksOrgRequest`
-
+**request:** `Payabli.ExportChargebacksOrgRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Export.RequestOptions`
+**requestOptions:** `ExportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3655,7 +3638,6 @@ await client.export.exportChargebacksOrg("csv", 123, {
 <dd>
 
 Export a list of customers for an entrypoint. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -3673,10 +3655,10 @@ Export a list of customers for an entrypoint. Use filters to limit results.
 await client.export.exportCustomers("csv", "8cfec329267", {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
-    limitRecord: 1000,
+    limitRecord: 1000
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3690,8 +3672,8 @@ await client.export.exportCustomers("csv", "8cfec329267", {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
-
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV. 
+    
 </dd>
 </dl>
 
@@ -3699,27 +3681,28 @@ await client.export.exportCustomers("csv", "8cfec329267", {
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ExportCustomersRequest`
-
+**request:** `Payabli.ExportCustomersRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Export.RequestOptions`
+**requestOptions:** `ExportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3738,7 +3721,6 @@ await client.export.exportCustomers("csv", "8cfec329267", {
 <dd>
 
 Exports a list of customers for an organization. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -3756,10 +3738,10 @@ Exports a list of customers for an organization. Use filters to limit results.
 await client.export.exportCustomersOrg("csv", 123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
-    limitRecord: 1000,
+    limitRecord: 1000
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3773,8 +3755,8 @@ await client.export.exportCustomersOrg("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
-
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV. 
+    
 </dd>
 </dl>
 
@@ -3782,27 +3764,28 @@ await client.export.exportCustomersOrg("csv", 123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ExportCustomersOrgRequest`
-
+**request:** `Payabli.ExportCustomersOrgRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Export.RequestOptions`
+**requestOptions:** `ExportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3821,7 +3804,6 @@ await client.export.exportCustomersOrg("csv", 123, {
 <dd>
 
 Export list of invoices for an entrypoint. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -3839,10 +3821,10 @@ Export list of invoices for an entrypoint. Use filters to limit results.
 await client.export.exportInvoices("csv", "8cfec329267", {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
-    limitRecord: 1000,
+    limitRecord: 1000
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3856,8 +3838,8 @@ await client.export.exportInvoices("csv", "8cfec329267", {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
-
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV. 
+    
 </dd>
 </dl>
 
@@ -3865,27 +3847,28 @@ await client.export.exportInvoices("csv", "8cfec329267", {
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ExportInvoicesRequest`
-
+**request:** `Payabli.ExportInvoicesRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Export.RequestOptions`
+**requestOptions:** `ExportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3904,7 +3887,6 @@ await client.export.exportInvoices("csv", "8cfec329267", {
 <dd>
 
 Export a list of invoices for an organization. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -3922,10 +3904,10 @@ Export a list of invoices for an organization. Use filters to limit results.
 await client.export.exportInvoicesOrg("csv", 123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
-    limitRecord: 1000,
+    limitRecord: 1000
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3939,8 +3921,8 @@ await client.export.exportInvoicesOrg("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
-
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV. 
+    
 </dd>
 </dl>
 
@@ -3948,27 +3930,28 @@ await client.export.exportInvoicesOrg("csv", 123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ExportInvoicesOrgRequest`
-
+**request:** `Payabli.ExportInvoicesOrgRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Export.RequestOptions`
+**requestOptions:** `ExportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3987,7 +3970,6 @@ await client.export.exportInvoicesOrg("csv", 123, {
 <dd>
 
 Export a list of child organizations (suborganizations) for a parent organization.
-
 </dd>
 </dl>
 </dd>
@@ -4005,10 +3987,10 @@ Export a list of child organizations (suborganizations) for a parent organizatio
 await client.export.exportOrganizations("csv", 123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
-    limitRecord: 1000,
+    limitRecord: 1000
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4022,8 +4004,8 @@ await client.export.exportOrganizations("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
-
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV. 
+    
 </dd>
 </dl>
 
@@ -4031,27 +4013,28 @@ await client.export.exportOrganizations("csv", 123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ExportOrganizationsRequest`
-
+**request:** `Payabli.ExportOrganizationsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Export.RequestOptions`
+**requestOptions:** `ExportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4070,7 +4053,6 @@ await client.export.exportOrganizations("csv", 123, {
 <dd>
 
 Export a list of payouts and their statuses for an entrypoint. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -4088,10 +4070,10 @@ Export a list of payouts and their statuses for an entrypoint. Use filters to li
 await client.export.exportPayout("csv", "8cfec329267", {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
-    limitRecord: 1000,
+    limitRecord: 1000
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4105,8 +4087,8 @@ await client.export.exportPayout("csv", "8cfec329267", {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
-
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV. 
+    
 </dd>
 </dl>
 
@@ -4114,27 +4096,28 @@ await client.export.exportPayout("csv", "8cfec329267", {
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ExportPayoutRequest`
-
+**request:** `Payabli.ExportPayoutRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Export.RequestOptions`
+**requestOptions:** `ExportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4153,7 +4136,6 @@ await client.export.exportPayout("csv", "8cfec329267", {
 <dd>
 
 Export a list of payouts and their details for an organization. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -4171,10 +4153,10 @@ Export a list of payouts and their details for an organization. Use filters to l
 await client.export.exportPayoutOrg("csv", 123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
-    limitRecord: 1000,
+    limitRecord: 1000
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4188,8 +4170,8 @@ await client.export.exportPayoutOrg("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
-
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV. 
+    
 </dd>
 </dl>
 
@@ -4197,27 +4179,28 @@ await client.export.exportPayoutOrg("csv", 123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ExportPayoutOrgRequest`
-
+**request:** `Payabli.ExportPayoutOrgRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Export.RequestOptions`
+**requestOptions:** `ExportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4236,7 +4219,6 @@ await client.export.exportPayoutOrg("csv", 123, {
 <dd>
 
 Export a list of paypoints in an organization. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -4254,10 +4236,10 @@ Export a list of paypoints in an organization. Use filters to limit results.
 await client.export.exportPaypoints("csv", 123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
-    limitRecord: 1000,
+    limitRecord: 1000
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4271,8 +4253,8 @@ await client.export.exportPaypoints("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
-
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV. 
+    
 </dd>
 </dl>
 
@@ -4280,27 +4262,28 @@ await client.export.exportPaypoints("csv", 123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ExportPaypointsRequest`
-
+**request:** `Payabli.ExportPaypointsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Export.RequestOptions`
+**requestOptions:** `ExportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4319,7 +4302,6 @@ await client.export.exportPaypoints("csv", 123, {
 <dd>
 
 Export a list of settled transactions for an entrypoint. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -4337,10 +4319,10 @@ Export a list of settled transactions for an entrypoint. Use filters to limit re
 await client.export.exportSettlements("csv", "8cfec329267", {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
-    limitRecord: 1000,
+    limitRecord: 1000
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4354,8 +4336,8 @@ await client.export.exportSettlements("csv", "8cfec329267", {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
-
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV. 
+    
 </dd>
 </dl>
 
@@ -4363,27 +4345,28 @@ await client.export.exportSettlements("csv", "8cfec329267", {
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ExportSettlementsRequest`
-
+**request:** `Payabli.ExportSettlementsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Export.RequestOptions`
+**requestOptions:** `ExportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4402,7 +4385,6 @@ await client.export.exportSettlements("csv", "8cfec329267", {
 <dd>
 
 Export a list of settled transactions for an organization. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -4420,10 +4402,10 @@ Export a list of settled transactions for an organization. Use filters to limit 
 await client.export.exportSettlementsOrg("csv", 123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
-    limitRecord: 1000,
+    limitRecord: 1000
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4437,8 +4419,8 @@ await client.export.exportSettlementsOrg("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
-
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV. 
+    
 </dd>
 </dl>
 
@@ -4446,27 +4428,28 @@ await client.export.exportSettlementsOrg("csv", 123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ExportSettlementsOrgRequest`
-
+**request:** `Payabli.ExportSettlementsOrgRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Export.RequestOptions`
+**requestOptions:** `ExportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4485,7 +4468,6 @@ await client.export.exportSettlementsOrg("csv", 123, {
 <dd>
 
 Export a list of subscriptions for an entrypoint. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -4503,10 +4485,10 @@ Export a list of subscriptions for an entrypoint. Use filters to limit results.
 await client.export.exportSubscriptions("csv", "8cfec329267", {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
-    limitRecord: 1000,
+    limitRecord: 1000
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4520,8 +4502,8 @@ await client.export.exportSubscriptions("csv", "8cfec329267", {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
-
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV. 
+    
 </dd>
 </dl>
 
@@ -4529,27 +4511,28 @@ await client.export.exportSubscriptions("csv", "8cfec329267", {
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ExportSubscriptionsRequest`
-
+**request:** `Payabli.ExportSubscriptionsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Export.RequestOptions`
+**requestOptions:** `ExportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4568,7 +4551,6 @@ await client.export.exportSubscriptions("csv", "8cfec329267", {
 <dd>
 
 Export a list of subscriptions for an organization. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -4586,10 +4568,10 @@ Export a list of subscriptions for an organization. Use filters to limit results
 await client.export.exportSubscriptionsOrg("csv", 123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
-    limitRecord: 1000,
+    limitRecord: 1000
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4603,8 +4585,8 @@ await client.export.exportSubscriptionsOrg("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
-
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV. 
+    
 </dd>
 </dl>
 
@@ -4612,27 +4594,28 @@ await client.export.exportSubscriptionsOrg("csv", 123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ExportSubscriptionsOrgRequest`
-
+**request:** `Payabli.ExportSubscriptionsOrgRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Export.RequestOptions`
+**requestOptions:** `ExportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4651,7 +4634,6 @@ await client.export.exportSubscriptionsOrg("csv", 123, {
 <dd>
 
 Export a list of transactions for an entrypoint in a file in XLXS or CSV format. Use filters to limit results. If you don't specify a date range in the request, the last two months of data are returned.
-
 </dd>
 </dl>
 </dd>
@@ -4669,10 +4651,10 @@ Export a list of transactions for an entrypoint in a file in XLXS or CSV format.
 await client.export.exportTransactions("csv", "8cfec329267", {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
-    limitRecord: 1000,
+    limitRecord: 1000
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4686,8 +4668,8 @@ await client.export.exportTransactions("csv", "8cfec329267", {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
-
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV. 
+    
 </dd>
 </dl>
 
@@ -4695,27 +4677,28 @@ await client.export.exportTransactions("csv", "8cfec329267", {
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ExportTransactionsRequest`
-
+**request:** `Payabli.ExportTransactionsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Export.RequestOptions`
+**requestOptions:** `ExportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4734,7 +4717,6 @@ await client.export.exportTransactions("csv", "8cfec329267", {
 <dd>
 
 Export a list of transactions for an org in a file in XLSX or CSV format. Use filters to limit results. If you don't specify a date range in the request, the last two months of data are returned.
-
 </dd>
 </dl>
 </dd>
@@ -4752,10 +4734,10 @@ Export a list of transactions for an org in a file in XLSX or CSV format. Use fi
 await client.export.exportTransactionsOrg("csv", 123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
-    limitRecord: 1000,
+    limitRecord: 1000
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4769,8 +4751,8 @@ await client.export.exportTransactionsOrg("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
-
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV. 
+    
 </dd>
 </dl>
 
@@ -4778,27 +4760,28 @@ await client.export.exportTransactionsOrg("csv", 123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ExportTransactionsOrgRequest`
-
+**request:** `Payabli.ExportTransactionsOrgRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Export.RequestOptions`
+**requestOptions:** `ExportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4817,7 +4800,6 @@ await client.export.exportTransactionsOrg("csv", 123, {
 <dd>
 
 Export a list of transfer details for an entrypoint. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -4836,10 +4818,10 @@ await client.export.exportTransferDetails("csv", "8cfec329267", 1000000, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
     limitRecord: 1000,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4853,8 +4835,8 @@ await client.export.exportTransferDetails("csv", "8cfec329267", 1000000, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
-
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV. 
+    
 </dd>
 </dl>
 
@@ -4862,7 +4844,7 @@ await client.export.exportTransferDetails("csv", "8cfec329267", 1000000, {
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
@@ -4870,27 +4852,28 @@ await client.export.exportTransferDetails("csv", "8cfec329267", 1000000, {
 <dd>
 
 **transferId:** `number` — Transfer identifier.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ExportTransferDetailsRequest`
-
+**request:** `Payabli.ExportTransferDetailsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Export.RequestOptions`
+**requestOptions:** `ExportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4909,7 +4892,6 @@ await client.export.exportTransferDetails("csv", "8cfec329267", 1000000, {
 <dd>
 
 Get a list of transfers for an entrypoint. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -4928,10 +4910,10 @@ await client.export.exportTransfers("8cfec329267", {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
     limitRecord: 1000,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4946,27 +4928,28 @@ await client.export.exportTransfers("8cfec329267", {
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ExportTransfersRequest`
-
+**request:** `Payabli.ExportTransfersRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Export.RequestOptions`
+**requestOptions:** `ExportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4985,7 +4968,6 @@ await client.export.exportTransfers("8cfec329267", {
 <dd>
 
 Export a list of vendors for an entrypoint. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -5003,10 +4985,10 @@ Export a list of vendors for an entrypoint. Use filters to limit results.
 await client.export.exportVendors("csv", "8cfec329267", {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
-    limitRecord: 1000,
+    limitRecord: 1000
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5020,8 +5002,8 @@ await client.export.exportVendors("csv", "8cfec329267", {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
-
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV. 
+    
 </dd>
 </dl>
 
@@ -5029,27 +5011,28 @@ await client.export.exportVendors("csv", "8cfec329267", {
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ExportVendorsRequest`
-
+**request:** `Payabli.ExportVendorsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Export.RequestOptions`
+**requestOptions:** `ExportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5068,7 +5051,6 @@ await client.export.exportVendors("csv", "8cfec329267", {
 <dd>
 
 Export a list of vendors for an organization. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -5086,10 +5068,10 @@ Export a list of vendors for an organization. Use filters to limit results.
 await client.export.exportVendorsOrg("csv", 123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
-    limitRecord: 1000,
+    limitRecord: 1000
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5103,8 +5085,8 @@ await client.export.exportVendorsOrg("csv", 123, {
 <dl>
 <dd>
 
-**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV.
-
+**format:** `Payabli.ExportFormat1` — Format for the export, either XLSX or CSV. 
+    
 </dd>
 </dl>
 
@@ -5112,34 +5094,34 @@ await client.export.exportVendorsOrg("csv", 123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ExportVendorsOrgRequest`
-
+**request:** `Payabli.ExportVendorsOrgRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Export.RequestOptions`
+**requestOptions:** `ExportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## HostedPaymentPages
-
 <details><summary><code>client.hostedPaymentPages.<a href="/src/api/resources/hostedPaymentPages/client/Client.ts">loadPage</a>(entry, subdomain) -> Payabli.PayabliPages</code></summary>
 <dl>
 <dd>
@@ -5153,7 +5135,6 @@ await client.export.exportVendorsOrg("csv", 123, {
 <dd>
 
 Loads all of a payment page's details including `pageIdentifier` and `validationCode`. This endpoint requires an `application` API token.
-
 </dd>
 </dl>
 </dd>
@@ -5169,8 +5150,8 @@ Loads all of a payment page's details including `pageIdentifier` and `validation
 
 ```typescript
 await client.hostedPaymentPages.loadPage("8cfec329267", "pay-your-fees-1");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5185,7 +5166,7 @@ await client.hostedPaymentPages.loadPage("8cfec329267", "pay-your-fees-1");
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
@@ -5193,19 +5174,20 @@ await client.hostedPaymentPages.loadPage("8cfec329267", "pay-your-fees-1");
 <dd>
 
 **subdomain:** `string` — Payment page identifier. The subdomain value is the last part of the payment page URL. For example, in`https://paypages-sandbox.payabli.com/513823dc10/pay-your-fees-1`, the subdomain is `pay-your-fees-1`.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `HostedPaymentPages.RequestOptions`
+**requestOptions:** `HostedPaymentPagesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5223,9 +5205,9 @@ await client.hostedPaymentPages.loadPage("8cfec329267", "pay-your-fees-1");
 <dl>
 <dd>
 
-Creates a new payment page for a paypoint.
-Note: this operation doesn't create a new paypoint, just a payment page for an existing paypoint. Paypoints are created by the Payabli team when a boarding application is approved.
 
+Creates a new payment page for a paypoint. 
+Note: this operation doesn't create a new paypoint, just a payment page for an existing paypoint. Paypoints are created by the Payabli team when a boarding application is approved.
 </dd>
 </dl>
 </dd>
@@ -5242,10 +5224,10 @@ Note: this operation doesn't create a new paypoint, just a payment page for an e
 ```typescript
 await client.hostedPaymentPages.newPage("8cfec329267", {
     idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA",
-    body: {},
+    body: {}
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5260,27 +5242,28 @@ await client.hostedPaymentPages.newPage("8cfec329267", {
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.NewPageRequest`
-
+**request:** `Payabli.NewPageRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `HostedPaymentPages.RequestOptions`
+**requestOptions:** `HostedPaymentPagesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5299,7 +5282,6 @@ await client.hostedPaymentPages.newPage("8cfec329267", {
 <dd>
 
 Updates a payment page in a paypoint.
-
 </dd>
 </dl>
 </dd>
@@ -5315,8 +5297,8 @@ Updates a payment page in a paypoint.
 
 ```typescript
 await client.hostedPaymentPages.savePage("8cfec329267", "pay-your-fees-1", {});
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5331,7 +5313,7 @@ await client.hostedPaymentPages.savePage("8cfec329267", "pay-your-fees-1", {});
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
@@ -5339,34 +5321,34 @@ await client.hostedPaymentPages.savePage("8cfec329267", "pay-your-fees-1", {});
 <dd>
 
 **subdomain:** `string` — Payment page identifier. The subdomain value is the last part of the payment page URL. For example, in`https://paypages-sandbox.payabli.com/513823dc10/pay-your-fees-1`, the subdomain is `pay-your-fees-1`.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.PayabliPages`
-
+**request:** `Payabli.PayabliPages` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `HostedPaymentPages.RequestOptions`
+**requestOptions:** `HostedPaymentPagesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Import
-
 <details><summary><code>client.import.<a href="/src/api/resources/import/client/Client.ts">importBills</a>(entry, { ...params }) -> Payabli.PayabliApiResponseImport</code></summary>
 <dl>
 <dd>
@@ -5380,7 +5362,6 @@ await client.hostedPaymentPages.savePage("8cfec329267", "pay-your-fees-1", {});
 <dd>
 
 Import a list of bills from a CSV file. See the [Import Guide](/developers/developer-guides/bills-add#import-bills) for more help and an example file.
-
 </dd>
 </dl>
 </dd>
@@ -5396,10 +5377,10 @@ Import a list of bills from a CSV file. See the [Import Guide](/developers/devel
 
 ```typescript
 await client.import.importBills("8cfec329267", {
-    file: fs.createReadStream("/path/to/your/file"),
+    file: fs.createReadStream("/path/to/your/file")
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5413,28 +5394,29 @@ await client.import.importBills("8cfec329267", {
 <dl>
 <dd>
 
-**entry:** `string`
-
+**entry:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ImportBillsRequest`
-
+**request:** `Payabli.ImportBillsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Import.RequestOptions`
+**requestOptions:** `ImportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5453,7 +5435,6 @@ await client.import.importBills("8cfec329267", {
 <dd>
 
 Import a list of customers from a CSV file. See the [Import Guide](/developers/developer-guides/entities-customers#import-customers) for more help and example files.
-
 </dd>
 </dl>
 </dd>
@@ -5469,10 +5450,10 @@ Import a list of customers from a CSV file. See the [Import Guide](/developers/d
 
 ```typescript
 await client.import.importCustomer("8cfec329267", {
-    file: fs.createReadStream("/path/to/your/file"),
+    file: fs.createReadStream("/path/to/your/file")
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5486,28 +5467,29 @@ await client.import.importCustomer("8cfec329267", {
 <dl>
 <dd>
 
-**entry:** `Payabli.Entrypointfield`
-
+**entry:** `Payabli.Entrypointfield` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ImportCustomerRequest`
-
+**request:** `Payabli.ImportCustomerRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Import.RequestOptions`
+**requestOptions:** `ImportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5526,7 +5508,6 @@ await client.import.importCustomer("8cfec329267", {
 <dd>
 
 Import a list of vendors from a CSV file. See the [Import Guide](/developers/developer-guides/entities-vendors#import-vendors) for more help and example files.
-
 </dd>
 </dl>
 </dd>
@@ -5542,10 +5523,10 @@ Import a list of vendors from a CSV file. See the [Import Guide](/developers/dev
 
 ```typescript
 await client.import.importVendor("8cfec329267", {
-    file: fs.createReadStream("/path/to/your/file"),
+    file: fs.createReadStream("/path/to/your/file")
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5559,35 +5540,35 @@ await client.import.importVendor("8cfec329267", {
 <dl>
 <dd>
 
-**entry:** `Payabli.Entrypointfield`
-
+**entry:** `Payabli.Entrypointfield` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ImportVendorRequest`
-
+**request:** `Payabli.ImportVendorRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Import.RequestOptions`
+**requestOptions:** `ImportClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Invoice
-
 <details><summary><code>client.invoice.<a href="/src/api/resources/invoice/client/Client.ts">addInvoice</a>(entry, { ...params }) -> Payabli.InvoiceResponseWithoutData</code></summary>
 <dl>
 <dd>
@@ -5601,7 +5582,6 @@ await client.import.importVendor("8cfec329267", {
 <dd>
 
 Creates an invoice in an entrypoint.
-
 </dd>
 </dl>
 </dd>
@@ -5621,36 +5601,33 @@ await client.invoice.addInvoice("8cfec329267", {
         customerData: {
             firstName: "Tamara",
             lastName: "Bagratoni",
-            customerNumber: "3",
+            customerNumber: "3"
         },
         invoiceData: {
-            items: [
-                {
+            items: [{
                     itemProductName: "Adventure Consult",
                     itemDescription: "Consultation for Georgian tours",
                     itemCost: 100,
                     itemQty: 1,
-                    itemMode: 1,
-                },
-                {
+                    itemMode: 1
+                }, {
                     itemProductName: "Deposit ",
                     itemDescription: "Deposit for trip planning",
                     itemCost: 882.37,
-                    itemQty: 1,
-                },
-            ],
+                    itemQty: 1
+                }],
             invoiceDate: "2025-10-19",
             invoiceType: 0,
             invoiceStatus: 1,
             frequency: "one-time",
             invoiceAmount: 982.37,
             discount: 10,
-            invoiceNumber: "INV-3",
-        },
-    },
+            invoiceNumber: "INV-3"
+        }
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5665,27 +5642,28 @@ await client.invoice.addInvoice("8cfec329267", {
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.AddInvoiceRequest`
-
+**request:** `Payabli.AddInvoiceRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Invoice.RequestOptions`
+**requestOptions:** `InvoiceClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5704,7 +5682,6 @@ await client.invoice.addInvoice("8cfec329267", {
 <dd>
 
 Deletes an invoice that's attached to a file.
-
 </dd>
 </dl>
 </dd>
@@ -5720,8 +5697,8 @@ Deletes an invoice that's attached to a file.
 
 ```typescript
 await client.invoice.deleteAttachedFromInvoice(23548884, "0_Bill.pdf");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5736,39 +5713,40 @@ await client.invoice.deleteAttachedFromInvoice(23548884, "0_Bill.pdf");
 <dd>
 
 **idInvoice:** `number` — Invoice ID
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**filename:** `string`
+**filename:** `string` 
 
-The filename in Payabli. Filename is `zipName` in response to a request to `/api/Invoice/{idInvoice}`. Here, the filename is `0_Bill.pdf``.
+The filename in Payabli. Filename is `zipName` in response to a request to `/api/Invoice/{idInvoice}`. Here, the filename is `0_Bill.pdf``. 
 "DocumentsRef": {
-"zipfile": "inva_269.zip",
-"filelist": [
-{
-"originalName": "Bill.pdf",
-"zipName": "0_Bill.pdf",
-"descriptor": null
+  "zipfile": "inva_269.zip",
+  "filelist": [
+    {
+      "originalName": "Bill.pdf",
+      "zipName": "0_Bill.pdf",
+      "descriptor": null
+    }
+  ]
 }
-]
-}
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Invoice.RequestOptions`
+**requestOptions:** `InvoiceClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5787,7 +5765,6 @@ The filename in Payabli. Filename is `zipName` in response to a request to `/api
 <dd>
 
 Deletes a single invoice from an entrypoint.
-
 </dd>
 </dl>
 </dd>
@@ -5803,8 +5780,8 @@ Deletes a single invoice from an entrypoint.
 
 ```typescript
 await client.invoice.deleteInvoice(23548884);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5819,19 +5796,20 @@ await client.invoice.deleteInvoice(23548884);
 <dd>
 
 **idInvoice:** `number` — Invoice ID
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Invoice.RequestOptions`
+**requestOptions:** `InvoiceClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5850,7 +5828,6 @@ await client.invoice.deleteInvoice(23548884);
 <dd>
 
 Updates details for a single invoice in an entrypoint.
-
 </dd>
 </dl>
 </dd>
@@ -5868,22 +5845,20 @@ Updates details for a single invoice in an entrypoint.
 await client.invoice.editInvoice(332, {
     body: {
         invoiceData: {
-            items: [
-                {
+            items: [{
                     itemProductName: "Deposit",
                     itemDescription: "Deposit for trip planning",
                     itemCost: 882.37,
-                    itemQty: 1,
-                },
-            ],
+                    itemQty: 1
+                }],
             invoiceDate: "2025-10-19",
             invoiceAmount: 982.37,
-            invoiceNumber: "INV-6",
-        },
-    },
+            invoiceNumber: "INV-6"
+        }
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5898,27 +5873,28 @@ await client.invoice.editInvoice(332, {
 <dd>
 
 **idInvoice:** `number` — Invoice ID
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.EditInvoiceRequest`
-
+**request:** `Payabli.EditInvoiceRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Invoice.RequestOptions`
+**requestOptions:** `InvoiceClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5937,7 +5913,6 @@ await client.invoice.editInvoice(332, {
 <dd>
 
 Retrieves a file attached to an invoice.
-
 </dd>
 </dl>
 </dd>
@@ -5953,8 +5928,8 @@ Retrieves a file attached to an invoice.
 
 ```typescript
 await client.invoice.getAttachedFileFromInvoice(1, "filename");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5969,17 +5944,16 @@ await client.invoice.getAttachedFileFromInvoice(1, "filename");
 <dd>
 
 **idInvoice:** `number` — Invoice ID
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**filename:** `string`
+**filename:** `string` 
 
-The filename in Payabli. Filename is `zipName` in the response to a request to `/api/Invoice/{idInvoice}`. Here, the filename is `0_Bill.pdf``.
-
+The filename in Payabli. Filename is `zipName` in the response to a request to `/api/Invoice/{idInvoice}`. Here, the filename is `0_Bill.pdf``. 
 ```
   "DocumentsRef": {
     "zipfile": "inva_269.zip",
@@ -5991,28 +5965,29 @@ The filename in Payabli. Filename is `zipName` in the response to a request to `
       }
     ]
   }
-```
-
+  ```
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.GetAttachedFileFromInvoiceRequest`
-
+**request:** `Payabli.GetAttachedFileFromInvoiceRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Invoice.RequestOptions`
+**requestOptions:** `InvoiceClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -6031,7 +6006,6 @@ The filename in Payabli. Filename is `zipName` in the response to a request to `
 <dd>
 
 Retrieves a single invoice by ID.
-
 </dd>
 </dl>
 </dd>
@@ -6047,8 +6021,8 @@ Retrieves a single invoice by ID.
 
 ```typescript
 await client.invoice.getInvoice(23548884);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6063,19 +6037,20 @@ await client.invoice.getInvoice(23548884);
 <dd>
 
 **idInvoice:** `number` — Invoice ID
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Invoice.RequestOptions`
+**requestOptions:** `InvoiceClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -6094,7 +6069,6 @@ await client.invoice.getInvoice(23548884);
 <dd>
 
 Retrieves the next available invoice number for a paypoint.
-
 </dd>
 </dl>
 </dd>
@@ -6110,8 +6084,8 @@ Retrieves the next available invoice number for a paypoint.
 
 ```typescript
 await client.invoice.getInvoiceNumber("8cfec329267");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6126,19 +6100,20 @@ await client.invoice.getInvoiceNumber("8cfec329267");
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Invoice.RequestOptions`
+**requestOptions:** `InvoiceClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -6157,7 +6132,6 @@ await client.invoice.getInvoiceNumber("8cfec329267");
 <dd>
 
 Returns a list of invoices for an entrypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
 </dd>
 </dl>
 </dd>
@@ -6175,10 +6149,10 @@ Returns a list of invoices for an entrypoint. Use filters to limit results. Incl
 await client.invoice.listInvoices("8cfec329267", {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6193,27 +6167,28 @@ await client.invoice.listInvoices("8cfec329267", {
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListInvoicesRequest`
-
+**request:** `Payabli.ListInvoicesRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Invoice.RequestOptions`
+**requestOptions:** `InvoiceClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -6232,7 +6207,6 @@ await client.invoice.listInvoices("8cfec329267", {
 <dd>
 
 Returns a list of invoices for an org. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
 </dd>
 </dl>
 </dd>
@@ -6250,10 +6224,10 @@ Returns a list of invoices for an org. Use filters to limit results. Include the
 await client.invoice.listInvoicesOrg(123, {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6268,27 +6242,28 @@ await client.invoice.listInvoicesOrg(123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListInvoicesOrgRequest`
-
+**request:** `Payabli.ListInvoicesOrgRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Invoice.RequestOptions`
+**requestOptions:** `InvoiceClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -6307,7 +6282,6 @@ await client.invoice.listInvoicesOrg(123, {
 <dd>
 
 Sends an invoice from an entrypoint via email.
-
 </dd>
 </dl>
 </dd>
@@ -6324,10 +6298,10 @@ Sends an invoice from an entrypoint via email.
 ```typescript
 await client.invoice.sendInvoice(23548884, {
     attachfile: true,
-    mail2: "tamara@example.com",
+    mail2: "tamara@example.com"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6342,27 +6316,28 @@ await client.invoice.sendInvoice(23548884, {
 <dd>
 
 **idInvoice:** `number` — Invoice ID
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.SendInvoiceRequest`
-
+**request:** `Payabli.SendInvoiceRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Invoice.RequestOptions`
+**requestOptions:** `InvoiceClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -6381,7 +6356,6 @@ await client.invoice.sendInvoice(23548884, {
 <dd>
 
 Export a single invoice in PDF format.
-
 </dd>
 </dl>
 </dd>
@@ -6397,8 +6371,8 @@ Export a single invoice in PDF format.
 
 ```typescript
 await client.invoice.getInvoicePdf(23548884);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6413,26 +6387,26 @@ await client.invoice.getInvoicePdf(23548884);
 <dd>
 
 **idInvoice:** `number` — Invoice ID
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Invoice.RequestOptions`
+**requestOptions:** `InvoiceClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## LineItem
-
 <details><summary><code>client.lineItem.<a href="/src/api/resources/lineItem/client/Client.ts">addItem</a>(entry, { ...params }) -> Payabli.PayabliApiResponse6</code></summary>
 <dl>
 <dd>
@@ -6446,7 +6420,6 @@ await client.invoice.getInvoicePdf(23548884);
 <dd>
 
 Adds products and services to an entrypoint's catalog. These are used as line items for invoicing and transactions. In the response, "responseData" displays the item's code.
-
 </dd>
 </dl>
 </dd>
@@ -6470,11 +6443,11 @@ await client.lineItem.addItem("47cae3d74", {
         itemUnitOfMeasure: "SqFt",
         itemCost: 12.45,
         itemQty: 1,
-        itemMode: 0,
-    },
+        itemMode: 0
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6489,27 +6462,28 @@ await client.lineItem.addItem("47cae3d74", {
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.AddItemRequest`
-
+**request:** `Payabli.AddItemRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `LineItem.RequestOptions`
+**requestOptions:** `LineItemClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -6528,7 +6502,6 @@ await client.lineItem.addItem("47cae3d74", {
 <dd>
 
 Deletes an item.
-
 </dd>
 </dl>
 </dd>
@@ -6544,8 +6517,8 @@ Deletes an item.
 
 ```typescript
 await client.lineItem.deleteItem(700);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6560,19 +6533,20 @@ await client.lineItem.deleteItem(700);
 <dd>
 
 **lineItemId:** `number` — ID for the line item (also known as a product, service, or item).
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `LineItem.RequestOptions`
+**requestOptions:** `LineItemClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -6590,8 +6564,7 @@ await client.lineItem.deleteItem(700);
 <dl>
 <dd>
 
-Gets an item by ID.
-
+Gets an item by ID. 
 </dd>
 </dl>
 </dd>
@@ -6607,8 +6580,8 @@ Gets an item by ID.
 
 ```typescript
 await client.lineItem.getItem(700);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6623,19 +6596,20 @@ await client.lineItem.getItem(700);
 <dd>
 
 **lineItemId:** `number` — ID for the line item (also known as a product, service, or item).
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `LineItem.RequestOptions`
+**requestOptions:** `LineItemClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -6654,7 +6628,6 @@ await client.lineItem.getItem(700);
 <dd>
 
 Retrieves a list of line items and their details from an entrypoint. Line items are also known as items, products, and services. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -6672,10 +6645,10 @@ Retrieves a list of line items and their details from an entrypoint. Line items 
 await client.lineItem.listLineItems("8cfec329267", {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6690,27 +6663,28 @@ await client.lineItem.listLineItems("8cfec329267", {
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListLineItemsRequest`
-
+**request:** `Payabli.ListLineItemsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `LineItem.RequestOptions`
+**requestOptions:** `LineItemClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -6729,7 +6703,6 @@ await client.lineItem.listLineItems("8cfec329267", {
 <dd>
 
 Updates an item.
-
 </dd>
 </dl>
 </dd>
@@ -6746,10 +6719,10 @@ Updates an item.
 ```typescript
 await client.lineItem.updateItem(700, {
     itemCost: 12.45,
-    itemQty: 1,
+    itemQty: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6764,34 +6737,34 @@ await client.lineItem.updateItem(700, {
 <dd>
 
 **lineItemId:** `number` — ID for the line item (also known as a product, service, or item).
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.LineItem`
-
+**request:** `Payabli.LineItem` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `LineItem.RequestOptions`
+**requestOptions:** `LineItemClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## MoneyIn
-
 <details><summary><code>client.moneyIn.<a href="/src/api/resources/moneyIn/client/Client.ts">authorize</a>({ ...params }) -> Payabli.AuthResponse</code></summary>
 <dl>
 <dd>
@@ -6807,7 +6780,6 @@ await client.lineItem.updateItem(700, {
 Authorize a card transaction. This returns an authorization code and reserves funds for the merchant. Authorized transactions aren't flagged for settlement until [captured](/api-reference/moneyin/capture-an-authorized-transaction).
 
 **Note**: Only card transactions can be authorized. This endpoint can't be used for ACH transactions.
-
 </dd>
 </dl>
 </dd>
@@ -6825,13 +6797,13 @@ Authorize a card transaction. This returns an authorization code and reserves fu
 await client.moneyIn.authorize({
     body: {
         customerData: {
-            customerId: 4440,
+            customerId: 4440
         },
         entryPoint: "f743aed24a",
         ipaddress: "255.255.255.255",
         paymentDetails: {
             serviceFee: 0,
-            totalAmount: 100,
+            totalAmount: 100
         },
         paymentMethod: {
             cardcvv: "999",
@@ -6840,12 +6812,12 @@ await client.moneyIn.authorize({
             cardnumber: "4111111111111111",
             cardzip: "12345",
             initiator: "payor",
-            method: "card",
-        },
-    },
+            method: "card"
+        }
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6859,20 +6831,21 @@ await client.moneyIn.authorize({
 <dl>
 <dd>
 
-**request:** `Payabli.RequestPaymentAuthorize`
-
+**request:** `Payabli.RequestPaymentAuthorize` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `MoneyIn.RequestOptions`
+**requestOptions:** `MoneyInClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -6911,8 +6884,8 @@ transaction](/api-reference/moneyin/authorize-a-transaction) to complete the tra
 
 ```typescript
 await client.moneyIn.capture("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", 0);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6927,7 +6900,7 @@ await client.moneyIn.capture("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", 0);
 <dd>
 
 **transId:** `string` — ReferenceId for the transaction (PaymentId).
-
+    
 </dd>
 </dl>
 
@@ -6935,19 +6908,20 @@ await client.moneyIn.capture("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", 0);
 <dd>
 
 **amount:** `number` — Amount to be captured. The amount can't be greater the original total amount of the transaction. `0` captures the total amount authorized in the transaction. Partial captures aren't supported.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `MoneyIn.RequestOptions`
+**requestOptions:** `MoneyInClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -6965,10 +6939,9 @@ await client.moneyIn.capture("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", 0);
 <dl>
 <dd>
 
-Capture an [authorized transaction](/api-reference/moneyin/authorize-a-transaction) to complete the transaction and move funds from the customer to merchant account.
+Capture an [authorized transaction](/api-reference/moneyin/authorize-a-transaction) to complete the transaction and move funds from the customer to merchant account. 
 
 You can use this endpoint to capture both full and partial amounts of the original authorized transaction. See [Capture an authorized transaction](/developers/developer-guides/pay-in-auth-and-capture) for more information about this endpoint.
-
 </dd>
 </dl>
 </dd>
@@ -6986,11 +6959,11 @@ You can use this endpoint to capture both full and partial amounts of the origin
 await client.moneyIn.captureAuth("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", {
     paymentDetails: {
         totalAmount: 105,
-        serviceFee: 5,
-    },
+        serviceFee: 5
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -7005,27 +6978,28 @@ await client.moneyIn.captureAuth("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", {
 <dd>
 
 **transId:** `string` — ReferenceId for the transaction (PaymentId).
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.CaptureRequest`
-
+**request:** `Payabli.CaptureRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `MoneyIn.RequestOptions`
+**requestOptions:** `MoneyInClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -7045,8 +7019,7 @@ await client.moneyIn.captureAuth("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", {
 
 Make a temporary microdeposit in a customer account to verify the customer's ownership and access to the target account. Reverse the microdeposit with `reverseCredit`.
 
-This feature must be enabled by Payabli on a per-merchant basis. Contact support for help.
-
+This feature must be enabled by Payabli on a per-merchant basis. Contact support for help. 
 </dd>
 </dl>
 </dd>
@@ -7065,23 +7038,23 @@ await client.moneyIn.credit({
     idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA",
     customerData: {
         billingAddress1: "5127 Linkwood ave",
-        customerNumber: "100",
+        customerNumber: "100"
     },
     entrypoint: "my-entrypoint",
     paymentDetails: {
         serviceFee: 0,
-        totalAmount: 1,
+        totalAmount: 1
     },
     paymentMethod: {
         achAccount: "88354454",
         achAccountType: "Checking",
         achHolder: "John Smith",
         achRouting: "021000021",
-        method: "ach",
-    },
+        method: "ach"
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -7095,20 +7068,21 @@ await client.moneyIn.credit({
 <dl>
 <dd>
 
-**request:** `Payabli.RequestCredit`
-
+**request:** `Payabli.RequestCredit` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `MoneyIn.RequestOptions`
+**requestOptions:** `MoneyInClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -7127,7 +7101,6 @@ await client.moneyIn.credit({
 <dd>
 
 Retrieve a processed transaction's details.
-
 </dd>
 </dl>
 </dd>
@@ -7143,8 +7116,8 @@ Retrieve a processed transaction's details.
 
 ```typescript
 await client.moneyIn.details("45-as456777hhhhhhhhhh77777777-324");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -7159,19 +7132,20 @@ await client.moneyIn.details("45-as456777hhhhhhhhhh77777777-324");
 <dd>
 
 **transId:** `string` — ReferenceId for the transaction (PaymentId).
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `MoneyIn.RequestOptions`
+**requestOptions:** `MoneyInClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -7190,7 +7164,6 @@ await client.moneyIn.details("45-as456777hhhhhhhhhh77777777-324");
 <dd>
 
 Make a single transaction. This method authorizes and captures a payment in one step.
-
 </dd>
 </dl>
 </dd>
@@ -7208,13 +7181,13 @@ Make a single transaction. This method authorizes and captures a payment in one 
 await client.moneyIn.getpaid({
     body: {
         customerData: {
-            customerId: 4440,
+            customerId: 4440
         },
         entryPoint: "f743aed24a",
         ipaddress: "255.255.255.255",
         paymentDetails: {
             serviceFee: 0,
-            totalAmount: 100,
+            totalAmount: 100
         },
         paymentMethod: {
             cardcvv: "999",
@@ -7223,12 +7196,12 @@ await client.moneyIn.getpaid({
             cardnumber: "4111111111111111",
             cardzip: "12345",
             initiator: "payor",
-            method: "card",
-        },
-    },
+            method: "card"
+        }
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -7242,20 +7215,21 @@ await client.moneyIn.getpaid({
 <dl>
 <dd>
 
-**request:** `Payabli.RequestPayment`
-
+**request:** `Payabli.RequestPayment` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `MoneyIn.RequestOptions`
+**requestOptions:** `MoneyInClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -7274,7 +7248,6 @@ await client.moneyIn.getpaid({
 <dd>
 
 A reversal either refunds or voids a transaction independent of the transaction's settlement status. Send a reversal request for a transaction, and Payabli automatically determines whether it's a refund or void. You don't need to know whether the transaction is settled or not.
-
 </dd>
 </dl>
 </dd>
@@ -7290,8 +7263,8 @@ A reversal either refunds or voids a transaction independent of the transaction'
 
 ```typescript
 await client.moneyIn.reverse("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -7306,33 +7279,35 @@ await client.moneyIn.reverse("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0);
 <dd>
 
 **transId:** `string` — ReferenceId for the transaction (PaymentId).
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**amount:** `number`
+**amount:** `number` 
+
 
 Amount to reverse from original transaction, minus any service fees charged on the original transaction.
 
-The amount provided can't be greater than the original total amount of the transaction, minus service fees. For example, if a transaction was $90 plus a $10 service fee, you can reverse up to $90.
+The amount provided can't be greater than the original total amount of the transaction, minus service fees. For example, if a transaction was $90 plus a $10 service fee, you can reverse up to $90. 
 
 An amount equal to zero will refunds the total amount authorized minus any service fee.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `MoneyIn.RequestOptions`
+**requestOptions:** `MoneyInClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -7351,7 +7326,6 @@ An amount equal to zero will refunds the total amount authorized minus any servi
 <dd>
 
 Refund a transaction that has settled and send money back to the account holder. If a transaction hasn't been settled, void it instead.
-
 </dd>
 </dl>
 </dd>
@@ -7367,8 +7341,8 @@ Refund a transaction that has settled and send money back to the account holder.
 
 ```typescript
 await client.moneyIn.refund("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -7383,33 +7357,35 @@ await client.moneyIn.refund("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0);
 <dd>
 
 **transId:** `string` — ReferenceId for the transaction (PaymentId).
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**amount:** `number`
+**amount:** `number` 
 
-Amount to refund from original transaction, minus any service fees charged on the original transaction.
+
+Amount to refund from original transaction, minus any service fees charged on the original transaction. 
 
 The amount provided can't be greater than the original total amount of the transaction, minus service fees. For example, if a transaction was \$90 plus a \$10 service fee, you can refund up to \$90.
 
 An amount equal to zero will refund the total amount authorized minus any service fee.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `MoneyIn.RequestOptions`
+**requestOptions:** `MoneyInClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -7428,7 +7404,6 @@ An amount equal to zero will refund the total amount authorized minus any servic
 <dd>
 
 Refunds a settled transaction with split instructions.
-
 </dd>
 </dl>
 </dd>
@@ -7449,24 +7424,21 @@ await client.moneyIn.refundWithInstructions("10-3ffa27df-b171-44e0-b251-e95fbfc7
     orderDescription: "Materials deposit",
     amount: 100,
     refundDetails: {
-        splitRefunding: [
-            {
+        splitRefunding: [{
                 originationEntryPoint: "7f1a381696",
                 accountId: "187-342",
                 description: "Refunding undelivered materials",
-                amount: 60,
-            },
-            {
+                amount: 60
+            }, {
                 originationEntryPoint: "7f1a381696",
                 accountId: "187-343",
                 description: "Refunding deposit for undelivered materials",
-                amount: 40,
-            },
-        ],
-    },
+                amount: 40
+            }]
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -7481,27 +7453,28 @@ await client.moneyIn.refundWithInstructions("10-3ffa27df-b171-44e0-b251-e95fbfc7
 <dd>
 
 **transId:** `string` — ReferenceId for the transaction (PaymentId).
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.RequestRefund`
-
+**request:** `Payabli.RequestRefund` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `MoneyIn.RequestOptions`
+**requestOptions:** `MoneyInClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -7520,7 +7493,6 @@ await client.moneyIn.refundWithInstructions("10-3ffa27df-b171-44e0-b251-e95fbfc7
 <dd>
 
 Reverse microdeposits that are used to verify customer account ownership and access. The `transId` value is returned in the success response for the original credit transaction made with `api/MoneyIn/makecredit`.
-
 </dd>
 </dl>
 </dd>
@@ -7536,8 +7508,8 @@ Reverse microdeposits that are used to verify customer account ownership and acc
 
 ```typescript
 await client.moneyIn.reverseCredit("45-as456777hhhhhhhhhh77777777-324");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -7552,19 +7524,20 @@ await client.moneyIn.reverseCredit("45-as456777hhhhhhhhhh77777777-324");
 <dd>
 
 **transId:** `string` — ReferenceId for the transaction (PaymentId).
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `MoneyIn.RequestOptions`
+**requestOptions:** `MoneyInClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -7583,7 +7556,6 @@ await client.moneyIn.reverseCredit("45-as456777hhhhhhhhhh77777777-324");
 <dd>
 
 Send a payment receipt for a transaction.
-
 </dd>
 </dl>
 </dd>
@@ -7599,10 +7571,10 @@ Send a payment receipt for a transaction.
 
 ```typescript
 await client.moneyIn.sendReceipt2Trans("45-as456777hhhhhhhhhh77777777-324", {
-    email: "example@email.com",
+    email: "example@email.com"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -7617,27 +7589,28 @@ await client.moneyIn.sendReceipt2Trans("45-as456777hhhhhhhhhh77777777-324", {
 <dd>
 
 **transId:** `string` — ReferenceId for the transaction (PaymentId).
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.SendReceipt2TransRequest`
-
+**request:** `Payabli.SendReceipt2TransRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `MoneyIn.RequestOptions`
+**requestOptions:** `MoneyInClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -7656,7 +7629,6 @@ await client.moneyIn.sendReceipt2Trans("45-as456777hhhhhhhhhh77777777-324", {
 <dd>
 
 Validates a card number without running a transaction or authorizing a charge.
-
 </dd>
 </dl>
 </dd>
@@ -7679,11 +7651,11 @@ await client.moneyIn.validate({
         cardnumber: "4360000001000005",
         cardexp: "12/29",
         cardzip: "14602-8328",
-        cardHolder: "Dianne Becker-Smith",
-    },
+        cardHolder: "Dianne Becker-Smith"
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -7697,20 +7669,21 @@ await client.moneyIn.validate({
 <dl>
 <dd>
 
-**request:** `Payabli.RequestPaymentValidate`
-
+**request:** `Payabli.RequestPaymentValidate` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `MoneyIn.RequestOptions`
+**requestOptions:** `MoneyInClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -7729,7 +7702,6 @@ await client.moneyIn.validate({
 <dd>
 
 Cancel a transaction that hasn't been settled yet. Voiding non-captured authorizations prevents future captures. If a transaction has been settled, refund it instead.
-
 </dd>
 </dl>
 </dd>
@@ -7745,8 +7717,8 @@ Cancel a transaction that hasn't been settled yet. Voiding non-captured authoriz
 
 ```typescript
 await client.moneyIn.void("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -7761,26 +7733,26 @@ await client.moneyIn.void("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
 <dd>
 
 **transId:** `string` — ReferenceId for the transaction (PaymentId).
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `MoneyIn.RequestOptions`
+**requestOptions:** `MoneyInClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## MoneyOut
-
 <details><summary><code>client.moneyOut.<a href="/src/api/resources/moneyOut/client/Client.ts">authorizeOut</a>({ ...params }) -> Payabli.AuthCapturePayoutResponse</code></summary>
 <dl>
 <dd>
@@ -7793,8 +7765,7 @@ await client.moneyIn.void("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
 <dl>
 <dd>
 
-Authorizes transaction for payout. Authorized transactions aren't flagged for settlement until captured. Use `referenceId` returned in the response to capture the transaction.
-
+Authorizes transaction for payout. Authorized transactions aren't flagged for settlement until captured. Use `referenceId` returned in the response to capture the transaction. 
 </dd>
 </dl>
 </dd>
@@ -7812,26 +7783,24 @@ Authorizes transaction for payout. Authorized transactions aren't flagged for se
 await client.moneyOut.authorizeOut({
     body: {
         entryPoint: "48acde49",
-        invoiceData: [
-            {
-                billId: 54323,
-            },
-        ],
+        invoiceData: [{
+                billId: 54323
+            }],
         orderDescription: "Window Painting",
         paymentDetails: {
             totalAmount: 47,
-            unbundled: false,
+            unbundled: false
         },
         paymentMethod: {
-            method: "managed",
+            method: "managed"
         },
         vendorData: {
-            vendorNumber: "7895433",
-        },
-    },
+            vendorNumber: "7895433"
+        }
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -7845,20 +7814,21 @@ await client.moneyOut.authorizeOut({
 <dl>
 <dd>
 
-**request:** `Payabli.MoneyOutTypesRequestOutAuthorize`
-
+**request:** `Payabli.MoneyOutTypesRequestOutAuthorize` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `MoneyOut.RequestOptions`
+**requestOptions:** `MoneyOutClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -7877,7 +7847,6 @@ await client.moneyOut.authorizeOut({
 <dd>
 
 Cancels an array of payout transactions.
-
 </dd>
 </dl>
 </dd>
@@ -7893,8 +7862,8 @@ Cancels an array of payout transactions.
 
 ```typescript
 await client.moneyOut.cancelAllOut(["2-29", "2-28", "2-27"]);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -7908,20 +7877,21 @@ await client.moneyOut.cancelAllOut(["2-29", "2-28", "2-27"]);
 <dl>
 <dd>
 
-**request:** `string[]`
-
+**request:** `string[]` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `MoneyOut.RequestOptions`
+**requestOptions:** `MoneyOutClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -7940,7 +7910,6 @@ await client.moneyOut.cancelAllOut(["2-29", "2-28", "2-27"]);
 <dd>
 
 Cancel a payout transaction by ID.
-
 </dd>
 </dl>
 </dd>
@@ -7956,8 +7925,8 @@ Cancel a payout transaction by ID.
 
 ```typescript
 await client.moneyOut.cancelOutGet("129-219");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -7971,20 +7940,21 @@ await client.moneyOut.cancelOutGet("129-219");
 <dl>
 <dd>
 
-**referenceId:** `string` — The ID for the payout transaction.
-
+**referenceId:** `string` — The ID for the payout transaction. 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `MoneyOut.RequestOptions`
+**requestOptions:** `MoneyOutClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -8003,7 +7973,6 @@ await client.moneyOut.cancelOutGet("129-219");
 <dd>
 
 Cancel a payout transaction by ID.
-
 </dd>
 </dl>
 </dd>
@@ -8019,8 +7988,8 @@ Cancel a payout transaction by ID.
 
 ```typescript
 await client.moneyOut.cancelOutDelete("129-219");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8034,20 +8003,21 @@ await client.moneyOut.cancelOutDelete("129-219");
 <dl>
 <dd>
 
-**referenceId:** `string` — The ID for the payout transaction.
-
+**referenceId:** `string` — The ID for the payout transaction. 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `MoneyOut.RequestOptions`
+**requestOptions:** `MoneyOutClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -8066,7 +8036,6 @@ await client.moneyOut.cancelOutDelete("129-219");
 <dd>
 
 Captures an array of authorized payout transactions for settlement. The maximum number of transactions that can be captured in a single request is 500.
-
 </dd>
 </dl>
 </dd>
@@ -8082,10 +8051,10 @@ Captures an array of authorized payout transactions for settlement. The maximum 
 
 ```typescript
 await client.moneyOut.captureAllOut({
-    body: ["2-29", "2-28", "2-27"],
+    body: ["2-29", "2-28", "2-27"]
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8099,20 +8068,21 @@ await client.moneyOut.captureAllOut({
 <dl>
 <dd>
 
-**request:** `Payabli.CaptureAllOutRequest`
-
+**request:** `Payabli.CaptureAllOutRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `MoneyOut.RequestOptions`
+**requestOptions:** `MoneyOutClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -8131,7 +8101,6 @@ await client.moneyOut.captureAllOut({
 <dd>
 
 Captures a single authorized payout transaction by ID.
-
 </dd>
 </dl>
 </dd>
@@ -8147,8 +8116,8 @@ Captures a single authorized payout transaction by ID.
 
 ```typescript
 await client.moneyOut.captureOut("129-219");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8162,28 +8131,29 @@ await client.moneyOut.captureOut("129-219");
 <dl>
 <dd>
 
-**referenceId:** `string` — The ID for the payout transaction.
-
+**referenceId:** `string` — The ID for the payout transaction. 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.CaptureOutRequest`
-
+**request:** `Payabli.CaptureOutRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `MoneyOut.RequestOptions`
+**requestOptions:** `MoneyOutClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -8202,7 +8172,6 @@ await client.moneyOut.captureOut("129-219");
 <dd>
 
 Returns details for a processed money out transaction.
-
 </dd>
 </dl>
 </dd>
@@ -8218,8 +8187,8 @@ Returns details for a processed money out transaction.
 
 ```typescript
 await client.moneyOut.payoutDetails("45-as456777hhhhhhhhhh77777777-324");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8234,19 +8203,20 @@ await client.moneyOut.payoutDetails("45-as456777hhhhhhhhhh77777777-324");
 <dd>
 
 **transId:** `string` — ReferenceId for the transaction (PaymentId).
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `MoneyOut.RequestOptions`
+**requestOptions:** `MoneyOutClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -8265,7 +8235,6 @@ await client.moneyOut.payoutDetails("45-as456777hhhhhhhhhh77777777-324");
 <dd>
 
 Retrieves vCard details for a single card in an entrypoint.
-
 </dd>
 </dl>
 </dd>
@@ -8281,8 +8250,8 @@ Retrieves vCard details for a single card in an entrypoint.
 
 ```typescript
 await client.moneyOut.vCardGet("20230403315245421165");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8297,19 +8266,20 @@ await client.moneyOut.vCardGet("20230403315245421165");
 <dd>
 
 **cardToken:** `string` — ID for a virtual card.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `MoneyOut.RequestOptions`
+**requestOptions:** `MoneyOutClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -8328,7 +8298,6 @@ await client.moneyOut.vCardGet("20230403315245421165");
 <dd>
 
 Sends a virtual card link via email to the vendor associated with the `transId`.
-
 </dd>
 </dl>
 </dd>
@@ -8344,10 +8313,10 @@ Sends a virtual card link via email to the vendor associated with the `transId`.
 
 ```typescript
 await client.moneyOut.sendVCardLink({
-    transId: "01K33Z6YQZ6GD5QVKZ856MJBSC",
+    transId: "01K33Z6YQZ6GD5QVKZ856MJBSC"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8361,20 +8330,21 @@ await client.moneyOut.sendVCardLink({
 <dl>
 <dd>
 
-**request:** `Payabli.SendVCardLinkRequest`
-
+**request:** `Payabli.SendVCardLinkRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `MoneyOut.RequestOptions`
+**requestOptions:** `MoneyOutClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -8392,10 +8362,9 @@ await client.moneyOut.sendVCardLink({
 <dl>
 <dd>
 
-Retrieve the image of a check associated with a processed transaction.
-The check image is returned in the response body as a base64-encoded string.
+Retrieve the image of a check associated with a processed transaction. 
+The check image is returned in the response body as a base64-encoded string. 
 The check image is only available for payouts that have been processed.
-
 </dd>
 </dl>
 </dd>
@@ -8411,8 +8380,8 @@ The check image is only available for payouts that have been processed.
 
 ```typescript
 await client.moneyOut.getCheckImage("check133832686289732320_01JKBNZ5P32JPTZY8XXXX000000.pdf");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8426,11 +8395,10 @@ await client.moneyOut.getCheckImage("check133832686289732320_01JKBNZ5P32JPTZY8XX
 <dl>
 <dd>
 
-**assetName:** `string`
+**assetName:** `string` 
 
-Name of the check asset to retrieve. This is returned as `filename` in the `CheckData` object
+Name of the check asset to retrieve. This is returned as `filename` in the `CheckData` object 
 in the response when you make a GET request to `/MoneyOut/details/{transId}`.
-
 ```
     "CheckData": {
       "ftype": "PDF",
@@ -8439,26 +8407,26 @@ in the response when you make a GET request to `/MoneyOut/details/{transId}`.
       "fContent": ""
   }
 ```
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `MoneyOut.RequestOptions`
+**requestOptions:** `MoneyOutClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Notification
-
 <details><summary><code>client.notification.<a href="/src/api/resources/notification/client/Client.ts">addNotification</a>({ ...params }) -> Payabli.PayabliApiResponseNotifications</code></summary>
 <dl>
 <dd>
@@ -8471,8 +8439,7 @@ in the response when you make a GET request to `/MoneyOut/details/{transId}`.
 <dl>
 <dd>
 
-Create a new notification or autogenerated report.
-
+Create a new notification or autogenerated report. 
 </dd>
 </dl>
 </dd>
@@ -8489,17 +8456,17 @@ Create a new notification or autogenerated report.
 ```typescript
 await client.notification.addNotification({
     content: {
-        eventType: "CreatedApplication",
+        eventType: "CreatedApplication"
     },
     frequency: "untilcancelled",
     method: "web",
     ownerId: "236",
     ownerType: 0,
     status: 1,
-    target: "https://webhook.site/2871b8f8-edc7-441a-b376-98d8c8e33275",
+    target: "https://webhook.site/2871b8f8-edc7-441a-b376-98d8c8e33275"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8513,20 +8480,21 @@ await client.notification.addNotification({
 <dl>
 <dd>
 
-**request:** `Payabli.AddNotificationRequest`
-
+**request:** `Payabli.AddNotificationRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Notification.RequestOptions`
+**requestOptions:** `NotificationClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -8545,7 +8513,6 @@ await client.notification.addNotification({
 <dd>
 
 Deletes a single notification or autogenerated report.
-
 </dd>
 </dl>
 </dd>
@@ -8561,8 +8528,8 @@ Deletes a single notification or autogenerated report.
 
 ```typescript
 await client.notification.deleteNotification("1717");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8576,20 +8543,21 @@ await client.notification.deleteNotification("1717");
 <dl>
 <dd>
 
-**nId:** `string` — Notification ID.
-
+**nId:** `string` — Notification ID. 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Notification.RequestOptions`
+**requestOptions:** `NotificationClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -8608,7 +8576,6 @@ await client.notification.deleteNotification("1717");
 <dd>
 
 Retrieves a single notification or autogenerated report's details.
-
 </dd>
 </dl>
 </dd>
@@ -8624,8 +8591,8 @@ Retrieves a single notification or autogenerated report's details.
 
 ```typescript
 await client.notification.getNotification("1717");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8639,20 +8606,21 @@ await client.notification.getNotification("1717");
 <dl>
 <dd>
 
-**nId:** `string` — Notification ID.
-
+**nId:** `string` — Notification ID. 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Notification.RequestOptions`
+**requestOptions:** `NotificationClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -8670,8 +8638,7 @@ await client.notification.getNotification("1717");
 <dl>
 <dd>
 
-Update a notification or autogenerated report.
-
+Update a notification or autogenerated report. 
 </dd>
 </dl>
 </dd>
@@ -8688,17 +8655,17 @@ Update a notification or autogenerated report.
 ```typescript
 await client.notification.updateNotification("1717", {
     content: {
-        eventType: "ApprovedPayment",
+        eventType: "ApprovedPayment"
     },
     frequency: "untilcancelled",
     method: "email",
     ownerId: "136",
     ownerType: 0,
     status: 1,
-    target: "newemail@email.com",
+    target: "newemail@email.com"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8712,34 +8679,35 @@ await client.notification.updateNotification("1717", {
 <dl>
 <dd>
 
-**nId:** `string` — Notification ID.
-
+**nId:** `string` — Notification ID. 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.UpdateNotificationRequest`
-
+**request:** `Payabli.UpdateNotificationRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Notification.RequestOptions`
+**requestOptions:** `NotificationClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.notification.<a href="/src/api/resources/notification/client/Client.ts">getReportFile</a>(id) -> Payabli.File_</code></summary>
+<details><summary><code>client.notification.<a href="/src/api/resources/notification/client/Client.ts">getReportFile</a>(Id) -> Payabli.File_</code></summary>
 <dl>
 <dd>
 
@@ -8752,7 +8720,6 @@ await client.notification.updateNotification("1717", {
 <dd>
 
 Gets a copy of a generated report by ID.
-
 </dd>
 </dl>
 </dd>
@@ -8768,8 +8735,8 @@ Gets a copy of a generated report by ID.
 
 ```typescript
 await client.notification.getReportFile(1000000);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8783,27 +8750,27 @@ await client.notification.getReportFile(1000000);
 <dl>
 <dd>
 
-**id:** `number` — Report ID
-
+**Id:** `number` — Report ID
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Notification.RequestOptions`
+**requestOptions:** `NotificationClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Notificationlogs
-
 <details><summary><code>client.notificationlogs.<a href="/src/api/resources/notificationlogs/client/Client.ts">searchNotificationLogs</a>({ ...params }) -> Payabli.NotificationLog[]</code></summary>
 <dl>
 <dd>
@@ -8817,12 +8784,10 @@ await client.notification.getReportFile(1000000);
 <dd>
 
 Search notification logs with filtering and pagination.
-
-- Start date and end date cannot be more than 30 days apart
-- Either `orgId` or `paypointId` must be provided
+  - Start date and end date cannot be more than 30 days apart
+  - Either `orgId` or `paypointId` must be provided
 
 This endpoint requires the `notifications_create` OR `notifications_read` permission.
-
 </dd>
 </dl>
 </dd>
@@ -8844,11 +8809,11 @@ await client.notificationlogs.searchNotificationLogs({
         endDate: "2024-01-31T23:59:59Z",
         orgId: 12345,
         notificationEvent: "ActivatedMerchant",
-        succeeded: true,
-    },
+        succeeded: true
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8862,20 +8827,21 @@ await client.notificationlogs.searchNotificationLogs({
 <dl>
 <dd>
 
-**request:** `Payabli.SearchNotificationLogsRequest`
-
+**request:** `Payabli.SearchNotificationLogsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Notificationlogs.RequestOptions`
+**requestOptions:** `NotificationlogsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -8895,7 +8861,6 @@ await client.notificationlogs.searchNotificationLogs({
 
 Get detailed information for a specific notification log entry.
 This endpoint requires the `notifications_create` OR `notifications_read` permission.
-
 </dd>
 </dl>
 </dd>
@@ -8911,8 +8876,8 @@ This endpoint requires the `notifications_create` OR `notifications_read` permis
 
 ```typescript
 await client.notificationlogs.getNotificationLog("550e8400-e29b-41d4-a716-446655440000");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8927,19 +8892,20 @@ await client.notificationlogs.getNotificationLog("550e8400-e29b-41d4-a716-446655
 <dd>
 
 **uuid:** `string` — The notification log entry.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Notificationlogs.RequestOptions`
+**requestOptions:** `NotificationlogsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -8960,7 +8926,6 @@ await client.notificationlogs.getNotificationLog("550e8400-e29b-41d4-a716-446655
 Retry sending a specific notification.
 
 **Permissions:** notifications_create
-
 </dd>
 </dl>
 </dd>
@@ -8976,8 +8941,8 @@ Retry sending a specific notification.
 
 ```typescript
 await client.notificationlogs.retryNotificationLog("550e8400-e29b-41d4-a716-446655440000");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8992,19 +8957,20 @@ await client.notificationlogs.retryNotificationLog("550e8400-e29b-41d4-a716-4466
 <dd>
 
 **uuid:** `string` — Unique id
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Notificationlogs.RequestOptions`
+**requestOptions:** `NotificationlogsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -9026,7 +8992,6 @@ Retry sending multiple notifications (maximum 50 IDs).
 This is an async process, so use the search endpoint again to check the notification status.
 
 This endpoint requires the `notifications_create` permission.
-
 </dd>
 </dl>
 </dd>
@@ -9041,13 +9006,9 @@ This endpoint requires the `notifications_create` permission.
 <dd>
 
 ```typescript
-await client.notificationlogs.bulkRetryNotificationLogs([
-    "550e8400-e29b-41d4-a716-446655440000",
-    "550e8400-e29b-41d4-a716-446655440001",
-    "550e8400-e29b-41d4-a716-446655440002",
-]);
-```
+await client.notificationlogs.bulkRetryNotificationLogs(["550e8400-e29b-41d4-a716-446655440000", "550e8400-e29b-41d4-a716-446655440001", "550e8400-e29b-41d4-a716-446655440002"]);
 
+```
 </dd>
 </dl>
 </dd>
@@ -9061,27 +9022,27 @@ await client.notificationlogs.bulkRetryNotificationLogs([
 <dl>
 <dd>
 
-**request:** `Payabli.BulkRetryRequest`
-
+**request:** `Payabli.BulkRetryRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Notificationlogs.RequestOptions`
+**requestOptions:** `NotificationlogsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Ocr
-
 <details><summary><code>client.ocr.<a href="/src/api/resources/ocr/client/Client.ts">ocrDocumentForm</a>(typeResult, { ...params }) -> Payabli.PayabliApiResponseOcr</code></summary>
 <dl>
 <dd>
@@ -9095,7 +9056,6 @@ await client.notificationlogs.bulkRetryNotificationLogs([
 <dd>
 
 Use this endpoint to upload an image file for OCR processing. The accepted file formats include PDF, JPG, JPEG, PNG, and GIF. Specify the desired type of result (either 'bill' or 'invoice') in the path parameter `typeResult`. The response will contain the OCR processing results, including extracted data such as bill number, vendor information, bill items, and more.
-
 </dd>
 </dl>
 </dd>
@@ -9110,14 +9070,9 @@ Use this endpoint to upload an image file for OCR processing. The accepted file 
 <dd>
 
 ```typescript
-await client.ocr.ocrDocumentForm("typeResult", {
-    ftype: undefined,
-    filename: undefined,
-    furl: undefined,
-    fContent: undefined,
-});
-```
+await client.ocr.ocrDocumentForm("typeResult", {});
 
+```
 </dd>
 </dl>
 </dd>
@@ -9131,28 +9086,29 @@ await client.ocr.ocrDocumentForm("typeResult", {
 <dl>
 <dd>
 
-**typeResult:** `Payabli.TypeResult`
-
+**typeResult:** `Payabli.TypeResult` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.FileContentImageOnly`
-
+**request:** `Payabli.FileContentImageOnly` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Ocr.RequestOptions`
+**requestOptions:** `OcrClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -9171,7 +9127,6 @@ await client.ocr.ocrDocumentForm("typeResult", {
 <dd>
 
 Use this endpoint to submit a Base64-encoded image file for OCR processing. The accepted file formats include PDF, JPG, JPEG, PNG, and GIF. Specify the desired type of result (either 'bill' or 'invoice') in the path parameter `typeResult`. The response will contain the OCR processing results, including extracted data such as bill number, vendor information, bill items, and more.
-
 </dd>
 </dl>
 </dd>
@@ -9186,14 +9141,9 @@ Use this endpoint to submit a Base64-encoded image file for OCR processing. The 
 <dd>
 
 ```typescript
-await client.ocr.ocrDocumentJson("typeResult", {
-    ftype: undefined,
-    filename: undefined,
-    furl: undefined,
-    fContent: undefined,
-});
-```
+await client.ocr.ocrDocumentJson("typeResult", {});
 
+```
 </dd>
 </dl>
 </dd>
@@ -9207,35 +9157,35 @@ await client.ocr.ocrDocumentJson("typeResult", {
 <dl>
 <dd>
 
-**typeResult:** `Payabli.TypeResult`
-
+**typeResult:** `Payabli.TypeResult` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.FileContentImageOnly`
-
+**request:** `Payabli.FileContentImageOnly` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Ocr.RequestOptions`
+**requestOptions:** `OcrClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Organization
-
 <details><summary><code>client.organization.<a href="/src/api/resources/organization/client/Client.ts">addOrganization</a>({ ...params }) -> Payabli.AddOrganizationResponse</code></summary>
 <dl>
 <dd>
@@ -9249,7 +9199,6 @@ await client.ocr.ocrDocumentJson("typeResult", {
 <dd>
 
 Creates an organization under a parent organization. This is also referred to as a suborganization.
-
 </dd>
 </dl>
 </dd>
@@ -9273,16 +9222,14 @@ await client.organization.addOrganization({
         billingCity: "Johnson City",
         billingCountry: "US",
         billingState: "TN",
-        billingZip: "37615",
+        billingZip: "37615"
     },
-    contacts: [
-        {
+    contacts: [{
             contactEmail: "herman@hermanscoatings.com",
             contactName: "Herman Martinez",
             contactPhone: "3055550000",
-            contactTitle: "Owner",
-        },
-    ],
+            contactTitle: "Owner"
+        }],
     hasBilling: true,
     hasResidual: true,
     orgAddress: "123 Walnut Street",
@@ -9294,7 +9241,7 @@ await client.organization.addOrganization({
         fContent: "TXkgdGVzdCBmaWxlHJ==...",
         filename: "my-doc.pdf",
         ftype: "pdf",
-        furl: "https://mysite.com/my-doc.pdf",
+        furl: "https://mysite.com/my-doc.pdf"
     },
     orgName: "Pilgrim Planner",
     orgParentId: 236,
@@ -9303,10 +9250,10 @@ await client.organization.addOrganization({
     orgType: 0,
     orgWebsite: "www.pilgrimageplanner.com",
     orgZip: "37615",
-    replyToEmail: "email@example.com",
+    replyToEmail: "email@example.com"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -9320,20 +9267,21 @@ await client.organization.addOrganization({
 <dl>
 <dd>
 
-**request:** `Payabli.AddOrganizationRequest`
-
+**request:** `Payabli.AddOrganizationRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Organization.RequestOptions`
+**requestOptions:** `OrganizationClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -9351,8 +9299,7 @@ await client.organization.addOrganization({
 <dl>
 <dd>
 
-Delete an organization by ID.
-
+Delete an organization by ID. 
 </dd>
 </dl>
 </dd>
@@ -9368,8 +9315,8 @@ Delete an organization by ID.
 
 ```typescript
 await client.organization.deleteOrganization(123);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -9384,19 +9331,20 @@ await client.organization.deleteOrganization(123);
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Organization.RequestOptions`
+**requestOptions:** `OrganizationClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -9415,7 +9363,6 @@ await client.organization.deleteOrganization(123);
 <dd>
 
 Updates an organization's details by ID.
-
 </dd>
 </dl>
 </dd>
@@ -9431,14 +9378,12 @@ Updates an organization's details by ID.
 
 ```typescript
 await client.organization.editOrganization(123, {
-    contacts: [
-        {
+    contacts: [{
             contactEmail: "herman@hermanscoatings.com",
             contactName: "Herman Martinez",
             contactPhone: "3055550000",
-            contactTitle: "Owner",
-        },
-    ],
+            contactTitle: "Owner"
+        }],
     orgAddress: "123 Walnut Street",
     orgCity: "Johnson City",
     orgCountry: "US",
@@ -9449,10 +9394,10 @@ await client.organization.editOrganization(123, {
     orgTimezone: -5,
     orgType: 0,
     orgWebsite: "www.pilgrimageplanner.com",
-    orgZip: "37615",
+    orgZip: "37615"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -9467,27 +9412,28 @@ await client.organization.editOrganization(123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.OrganizationData`
-
+**request:** `Payabli.OrganizationData` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Organization.RequestOptions`
+**requestOptions:** `OrganizationClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -9506,7 +9452,6 @@ await client.organization.editOrganization(123, {
 <dd>
 
 Gets an organization's basic information by entry name (entrypoint identifier).
-
 </dd>
 </dl>
 </dd>
@@ -9522,8 +9467,8 @@ Gets an organization's basic information by entry name (entrypoint identifier).
 
 ```typescript
 await client.organization.getBasicOrganization("8cfec329267");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -9538,19 +9483,20 @@ await client.organization.getBasicOrganization("8cfec329267");
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Organization.RequestOptions`
+**requestOptions:** `OrganizationClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -9569,7 +9515,6 @@ await client.organization.getBasicOrganization("8cfec329267");
 <dd>
 
 Gets an organizations basic details by org ID.
-
 </dd>
 </dl>
 </dd>
@@ -9585,8 +9530,8 @@ Gets an organizations basic details by org ID.
 
 ```typescript
 await client.organization.getBasicOrganizationById(123);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -9601,19 +9546,20 @@ await client.organization.getBasicOrganizationById(123);
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Organization.RequestOptions`
+**requestOptions:** `OrganizationClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -9631,8 +9577,7 @@ await client.organization.getBasicOrganizationById(123);
 <dl>
 <dd>
 
-Retrieves details for an organization by ID.
-
+Retrieves details for an organization by ID. 
 </dd>
 </dl>
 </dd>
@@ -9648,8 +9593,8 @@ Retrieves details for an organization by ID.
 
 ```typescript
 await client.organization.getOrganization(123);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -9664,19 +9609,20 @@ await client.organization.getOrganization(123);
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Organization.RequestOptions`
+**requestOptions:** `OrganizationClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -9695,7 +9641,6 @@ await client.organization.getOrganization(123);
 <dd>
 
 Retrieves an organization's settings.
-
 </dd>
 </dl>
 </dd>
@@ -9711,8 +9656,8 @@ Retrieves an organization's settings.
 
 ```typescript
 await client.organization.getSettingsOrganization(123);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -9727,26 +9672,26 @@ await client.organization.getSettingsOrganization(123);
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Organization.RequestOptions`
+**requestOptions:** `OrganizationClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## PaymentLink
-
 <details><summary><code>client.paymentLink.<a href="/src/api/resources/paymentLink/client/Client.ts">addPayLinkFromInvoice</a>(idInvoice, { ...params }) -> Payabli.PayabliApiResponsePaymentLinks</code></summary>
 <dl>
 <dd>
@@ -9759,8 +9704,7 @@ await client.organization.getSettingsOrganization(123);
 <dl>
 <dd>
 
-Generates a payment link for an invoice from the invoice ID.
-
+Generates a payment link for an invoice from the invoice ID. 
 </dd>
 </dl>
 </dd>
@@ -9784,48 +9728,48 @@ await client.paymentLink.addPayLinkFromInvoice(23548884, {
             header: "Contact Us",
             order: 0,
             paymentIcons: true,
-            phoneLabel: "Phone",
+            phoneLabel: "Phone"
         },
         invoices: {
             enabled: true,
             invoiceLink: {
                 enabled: true,
                 label: "View Invoice",
-                order: 0,
+                order: 0
             },
             order: 0,
             viewInvoiceDetails: {
                 enabled: true,
                 label: "Invoice Details",
-                order: 0,
-            },
+                order: 0
+            }
         },
         logo: {
             enabled: true,
-            order: 0,
+            order: 0
         },
         messageBeforePaying: {
             enabled: true,
             label: "Please review your payment details",
-            order: 0,
+            order: 0
         },
         notes: {
             enabled: true,
             header: "Additional Notes",
             order: 0,
             placeholder: "Enter any additional notes here",
-            value: "",
+            value: ""
         },
         page: {
             description: "Complete your payment securely",
             enabled: true,
             header: "Payment Page",
-            order: 0,
+            order: 0
         },
         paymentButton: {
             enabled: true,
             label: "Pay Now",
-            order: 0,
+            order: 0
         },
         paymentMethods: {
             allMethodsChecked: true,
@@ -9837,21 +9781,20 @@ await client.paymentLink.addPayLinkFromInvoice(23548884, {
                 discover: true,
                 eCheck: true,
                 mastercard: true,
-                visa: true,
+                visa: true
             },
             order: 0,
             settings: {
                 applePay: {
                     buttonStyle: "black",
                     buttonType: "pay",
-                    language: "en-US",
-                },
-            },
+                    language: "en-US"
+                }
+            }
         },
         payor: {
             enabled: true,
-            fields: [
-                {
+            fields: [{
                     display: true,
                     fixed: true,
                     identifier: true,
@@ -9861,35 +9804,33 @@ await client.paymentLink.addPayLinkFromInvoice(23548884, {
                     required: true,
                     validation: "^[a-zA-Z ]+$",
                     value: "",
-                    width: 0,
-                },
-            ],
+                    width: 0
+                }],
             header: "Payor Information",
-            order: 0,
+            order: 0
         },
         review: {
             enabled: true,
             header: "Review Payment",
-            order: 0,
+            order: 0
         },
         settings: {
             color: "#000000",
             customCssUrl: "https://example.com/custom.css",
             language: "en",
             pageLogo: {
-                fContent:
-                    "PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDEwMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPCEtLSBCYWNrZ3JvdW5kIC0tPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iMTAwMCIgZmlsbD0id2hpdGUiLz4KICAKICA8IS0tIENvbXBhbnkgSGVhZGVyIC0tPgogIDx0ZXh0IHg9IjQwIiB5PSI2MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzJjM2U1MCI+R3J1enlhIEFkdmVudHVyZSBPdXRmaXR0ZXJzPC90ZXh0PgogIDxsaW5lIHgxPSI0MCIgeTE9IjgwIiB4Mj0iNzYwIiB5Mj0iODAiIHN0cm9rZT0iIzJjM2U1MCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgCiAgPCEtLSBDb21wYW55IERldGFpbHMgLS0+CiAgPHRleHQgeD0iNDAiIHk9IjExMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj4xMjMgTW91bnRhaW4gVmlldyBSb2FkPC90ZXh0PgogIDx0ZXh0IHg9IjQwIiB5PSIxMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+VGJpbGlzaSwgR2VvcmdpYSAwMTA1PC90ZXh0PgogIDx0ZXh0IHg9IjQwIiB5PSIxNTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+VGVsOiArOTk1IDMyIDEyMyA0NTY3PC90ZXh0PgogIDx0ZXh0IHg9IjQwIiB5PSIxNzAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+RW1haWw6IGluZm9AZ3J1enlhYWR2ZW50dXJlcy5jb208L3RleHQ+CgogIDwhLS0gSW52b2ljZSBUaXRsZSAtLT4KICA8dGV4dCB4PSI2MDAiIHk9IjExMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzJjM2U1MCI+SU5WT0lDRTwvdGV4dD4KICA8dGV4dCB4PSI2MDAiIHk9IjE0MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj5EYXRlOiAxMi8xMS8yMDI0PC90ZXh0PgogIDx0ZXh0IHg9IjYwMCIgeT0iMTYwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPkludm9pY2UgIzogR1JaLTIwMjQtMTEyMzwvdGV4dD4KCiAgPCEtLSBCaWxsIFRvIFNlY3Rpb24gLS0+CiAgPHRleHQgeD0iNDAiIHk9IjIyMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzJjM2U1MCI+QklMTCBUTzo8L3RleHQ+CiAgPHJlY3QgeD0iNDAiIHk9IjIzNSIgd2lkdGg9IjMwMCIgaGVpZ2h0PSI4MCIgZmlsbD0iI2Y3ZjlmYSIvPgogIDx0ZXh0IHg9IjUwIiB5PSIyNjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+W0N1c3RvbWVyIE5hbWVdPC90ZXh0PgogIDx0ZXh0IHg9IjUwIiB5PSIyODAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+W0FkZHJlc3MgTGluZSAxXTwvdGV4dD4KICA8dGV4dCB4PSI1MCIgeT0iMzAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPltDaXR5LCBDb3VudHJ5XTwvdGV4dD4KCiAgPCEtLSBUYWJsZSBIZWFkZXJzIC0tPgogIDxyZWN0IHg9IjQwIiB5PSIzNDAiIHdpZHRoPSI3MjAiIGhlaWdodD0iMzAiIGZpbGw9IiMyYzNlNTAiLz4KICA8dGV4dCB4PSI1MCIgeT0iMzYwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSJ3aGl0ZSI+RGVzY3JpcHRpb248L3RleHQ+CiAgPHRleHQgeD0iNDUwIiB5PSIzNjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIj5RdWFudGl0eTwvdGV4dD4KICA8dGV4dCB4PSI1NTAiIHk9IjM2MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0id2hpdGUiPlJhdGU8L3RleHQ+CiAgPHRleHQgeD0iNjgwIiB5PSIzNjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIj5BbW91bnQ8L3RleHQ+CgogIDwhLS0gVGFibGUgUm93cyAtLT4KICA8cmVjdCB4PSI0MCIgeT0iMzcwIiB3aWR0aD0iNzIwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjZjdmOWZhIi8+CiAgPHRleHQgeD0iNTAiIHk9IjM5MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj5Nb3VudGFpbiBDbGltYmluZyBFcXVpcG1lbnQgUmVudGFsPC90ZXh0PgogIDx0ZXh0IHg9IjQ1MCIgeT0iMzkwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPjE8L3RleHQ+CiAgPHRleHQgeD0iNTUwIiB5PSIzOTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+JDI1MC4wMDwvdGV4dD4KICA8dGV4dCB4PSI2ODAiIHk9IjM5MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj4kMjUwLjAwPC90ZXh0PgoKICA8cmVjdCB4PSI0MCIgeT0iNDAwIiB3aWR0aD0iNzIwIiBoZWlnaHQ9IjMwIiBmaWxsPSJ3aGl0ZSIvPgogIDx0ZXh0IHg9IjUwIiB5PSI0MjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+R3VpZGVkIFRyZWsgUGFja2FnZSAtIDIgRGF5czwvdGV4dD4KICA8dGV4dCB4PSI0NTAiIHk9IjQyMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj4xPC90ZXh0PgogIDx0ZXh0IHg9IjU1MCIgeT0iNDIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPiQ0MDAuMDA8L3RleHQ+CiAgPHRleHQgeD0iNjgwIiB5PSI0MjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+JDQwMC4wMDwvdGV4dD4KCiAgPHJlY3QgeD0iNDAiIHk9IjQzMCIgd2lkdGg9IjcyMCIgaGVpZ2h0PSIzMCIgZmlsbD0iI2Y3ZjlmYSIvPgogIDx0ZXh0IHg9IjUwIiB5PSI0NTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+U2FmZXR5IEVxdWlwbWVudCBQYWNrYWdlPC90ZXh0PgogIDx0ZXh0IHg9IjQ1MCIgeT0iNDUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPjE8L3RleHQ+CiAgPHRleHQgeD0iNTUwIiB5PSI0NTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+JDE1MC4wMDwvdGV4dD4KICA8dGV4dCB4PSI2ODAiIHk9IjQ1MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj4kMTUwLjAwPC90ZXh0PgoKICA8IS0tIFRvdGFscyAtLT4KICA8bGluZSB4MT0iNDAiIHkxPSI0ODAiIHgyPSI3NjAiIHkyPSI0ODAiIHN0cm9rZT0iIzJjM2U1MCIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNTUwIiB5PSI1MTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMzNDQ5NWUiPlN1YnRvdGFsOjwvdGV4dD4KICA8dGV4dCB4PSI2ODAiIHk9IjUxMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj4kODAwLjAwPC90ZXh0PgogIDx0ZXh0IHg9IjU1MCIgeT0iNTM1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjMzQ0OTVlIj5UYXggKDE4JSk6PC90ZXh0PgogIDx0ZXh0IHg9IjY4MCIgeT0iNTM1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPiQxNDQuMDA8L3RleHQ+CiAgPHRleHQgeD0iNTUwIiB5PSI1NzAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMyYzNlNTAiPlRvdGFsOjwvdGV4dD4KICA8dGV4dCB4PSI2ODAiIHk9IjU3MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzJjM2U1MCI+JDk0NC4wMDwvdGV4dD4KCiAgPCEtLSBQYXltZW50IFRlcm1zIC0tPgogIDx0ZXh0IHg9IjQwIiB5PSI2NDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMyYzNlNTAiPlBheW1lbnQgVGVybXM8L3RleHQ+CiAgPHRleHQgeD0iNDAiIHk9IjY3MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj5QYXltZW50IGlzIGR1ZSB3aXRoaW4gMzAgZGF5czwvdGV4dD4KICA8dGV4dCB4PSI0MCIgeT0iNjkwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPlBsZWFzZSBpbmNsdWRlIGludm9pY2UgbnVtYmVyIG9uIHBheW1lbnQ8L3RleHQ+CgogIDwhLS0gQmFuayBEZXRhaWxzIC0tPgogIDx0ZXh0IHg9IjQwIiB5PSI3MzAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMyYzNlNTAiPkJhbmsgRGV0YWlsczwvdGV4dD4KICA8dGV4dCB4PSI0MCIgeT0iNzYwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPkJhbms6IEJhbmsgb2YgR2VvcmdpYTwvdGV4dD4KICA8dGV4dCB4PSI0MCIgeT0iNzgwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPklCQU46IEdFMTIzNDU2Nzg5MDEyMzQ1Njc4PC90ZXh0PgogIDx0ZXh0IHg9IjQwIiB5PSI4MDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+U1dJRlQ6IEJBR0FHRTIyPC90ZXh0PgoKICA8IS0tIEZvb3RlciAtLT4KICA8bGluZSB4MT0iNDAiIHkxPSI5MDAiIHgyPSI3NjAiIHkyPSI5MDAiIHN0cm9rZT0iIzJjM2U1MCIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNDAiIHk9IjkzMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSIjN2Y4YzhkIj5UaGFuayB5b3UgZm9yIGNob29zaW5nIEdydXp5YSBBZHZlbnR1cmUgT3V0Zml0dGVyczwvdGV4dD4KICA8dGV4dCB4PSI0MCIgeT0iOTUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM3ZjhjOGQiPnd3dy5ncnV6eWFhZHZlbnR1cmVzLmNvbTwvdGV4dD4KPC9zdmc+Cg==",
+                fContent: "PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDEwMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPCEtLSBCYWNrZ3JvdW5kIC0tPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iMTAwMCIgZmlsbD0id2hpdGUiLz4KICAKICA8IS0tIENvbXBhbnkgSGVhZGVyIC0tPgogIDx0ZXh0IHg9IjQwIiB5PSI2MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzJjM2U1MCI+R3J1enlhIEFkdmVudHVyZSBPdXRmaXR0ZXJzPC90ZXh0PgogIDxsaW5lIHgxPSI0MCIgeTE9IjgwIiB4Mj0iNzYwIiB5Mj0iODAiIHN0cm9rZT0iIzJjM2U1MCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgCiAgPCEtLSBDb21wYW55IERldGFpbHMgLS0+CiAgPHRleHQgeD0iNDAiIHk9IjExMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj4xMjMgTW91bnRhaW4gVmlldyBSb2FkPC90ZXh0PgogIDx0ZXh0IHg9IjQwIiB5PSIxMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+VGJpbGlzaSwgR2VvcmdpYSAwMTA1PC90ZXh0PgogIDx0ZXh0IHg9IjQwIiB5PSIxNTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+VGVsOiArOTk1IDMyIDEyMyA0NTY3PC90ZXh0PgogIDx0ZXh0IHg9IjQwIiB5PSIxNzAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+RW1haWw6IGluZm9AZ3J1enlhYWR2ZW50dXJlcy5jb208L3RleHQ+CgogIDwhLS0gSW52b2ljZSBUaXRsZSAtLT4KICA8dGV4dCB4PSI2MDAiIHk9IjExMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzJjM2U1MCI+SU5WT0lDRTwvdGV4dD4KICA8dGV4dCB4PSI2MDAiIHk9IjE0MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj5EYXRlOiAxMi8xMS8yMDI0PC90ZXh0PgogIDx0ZXh0IHg9IjYwMCIgeT0iMTYwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPkludm9pY2UgIzogR1JaLTIwMjQtMTEyMzwvdGV4dD4KCiAgPCEtLSBCaWxsIFRvIFNlY3Rpb24gLS0+CiAgPHRleHQgeD0iNDAiIHk9IjIyMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzJjM2U1MCI+QklMTCBUTzo8L3RleHQ+CiAgPHJlY3QgeD0iNDAiIHk9IjIzNSIgd2lkdGg9IjMwMCIgaGVpZ2h0PSI4MCIgZmlsbD0iI2Y3ZjlmYSIvPgogIDx0ZXh0IHg9IjUwIiB5PSIyNjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+W0N1c3RvbWVyIE5hbWVdPC90ZXh0PgogIDx0ZXh0IHg9IjUwIiB5PSIyODAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+W0FkZHJlc3MgTGluZSAxXTwvdGV4dD4KICA8dGV4dCB4PSI1MCIgeT0iMzAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPltDaXR5LCBDb3VudHJ5XTwvdGV4dD4KCiAgPCEtLSBUYWJsZSBIZWFkZXJzIC0tPgogIDxyZWN0IHg9IjQwIiB5PSIzNDAiIHdpZHRoPSI3MjAiIGhlaWdodD0iMzAiIGZpbGw9IiMyYzNlNTAiLz4KICA8dGV4dCB4PSI1MCIgeT0iMzYwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSJ3aGl0ZSI+RGVzY3JpcHRpb248L3RleHQ+CiAgPHRleHQgeD0iNDUwIiB5PSIzNjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIj5RdWFudGl0eTwvdGV4dD4KICA8dGV4dCB4PSI1NTAiIHk9IjM2MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0id2hpdGUiPlJhdGU8L3RleHQ+CiAgPHRleHQgeD0iNjgwIiB5PSIzNjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIj5BbW91bnQ8L3RleHQ+CgogIDwhLS0gVGFibGUgUm93cyAtLT4KICA8cmVjdCB4PSI0MCIgeT0iMzcwIiB3aWR0aD0iNzIwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjZjdmOWZhIi8+CiAgPHRleHQgeD0iNTAiIHk9IjM5MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj5Nb3VudGFpbiBDbGltYmluZyBFcXVpcG1lbnQgUmVudGFsPC90ZXh0PgogIDx0ZXh0IHg9IjQ1MCIgeT0iMzkwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPjE8L3RleHQ+CiAgPHRleHQgeD0iNTUwIiB5PSIzOTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+JDI1MC4wMDwvdGV4dD4KICA8dGV4dCB4PSI2ODAiIHk9IjM5MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj4kMjUwLjAwPC90ZXh0PgoKICA8cmVjdCB4PSI0MCIgeT0iNDAwIiB3aWR0aD0iNzIwIiBoZWlnaHQ9IjMwIiBmaWxsPSJ3aGl0ZSIvPgogIDx0ZXh0IHg9IjUwIiB5PSI0MjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+R3VpZGVkIFRyZWsgUGFja2FnZSAtIDIgRGF5czwvdGV4dD4KICA8dGV4dCB4PSI0NTAiIHk9IjQyMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj4xPC90ZXh0PgogIDx0ZXh0IHg9IjU1MCIgeT0iNDIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPiQ0MDAuMDA8L3RleHQ+CiAgPHRleHQgeD0iNjgwIiB5PSI0MjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+JDQwMC4wMDwvdGV4dD4KCiAgPHJlY3QgeD0iNDAiIHk9IjQzMCIgd2lkdGg9IjcyMCIgaGVpZ2h0PSIzMCIgZmlsbD0iI2Y3ZjlmYSIvPgogIDx0ZXh0IHg9IjUwIiB5PSI0NTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+U2FmZXR5IEVxdWlwbWVudCBQYWNrYWdlPC90ZXh0PgogIDx0ZXh0IHg9IjQ1MCIgeT0iNDUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPjE8L3RleHQ+CiAgPHRleHQgeD0iNTUwIiB5PSI0NTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+JDE1MC4wMDwvdGV4dD4KICA8dGV4dCB4PSI2ODAiIHk9IjQ1MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj4kMTUwLjAwPC90ZXh0PgoKICA8IS0tIFRvdGFscyAtLT4KICA8bGluZSB4MT0iNDAiIHkxPSI0ODAiIHgyPSI3NjAiIHkyPSI0ODAiIHN0cm9rZT0iIzJjM2U1MCIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNTUwIiB5PSI1MTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMzNDQ5NWUiPlN1YnRvdGFsOjwvdGV4dD4KICA8dGV4dCB4PSI2ODAiIHk9IjUxMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj4kODAwLjAwPC90ZXh0PgogIDx0ZXh0IHg9IjU1MCIgeT0iNTM1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjMzQ0OTVlIj5UYXggKDE4JSk6PC90ZXh0PgogIDx0ZXh0IHg9IjY4MCIgeT0iNTM1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPiQxNDQuMDA8L3RleHQ+CiAgPHRleHQgeD0iNTUwIiB5PSI1NzAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMyYzNlNTAiPlRvdGFsOjwvdGV4dD4KICA8dGV4dCB4PSI2ODAiIHk9IjU3MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzJjM2U1MCI+JDk0NC4wMDwvdGV4dD4KCiAgPCEtLSBQYXltZW50IFRlcm1zIC0tPgogIDx0ZXh0IHg9IjQwIiB5PSI2NDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMyYzNlNTAiPlBheW1lbnQgVGVybXM8L3RleHQ+CiAgPHRleHQgeD0iNDAiIHk9IjY3MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMzQ0OTVlIj5QYXltZW50IGlzIGR1ZSB3aXRoaW4gMzAgZGF5czwvdGV4dD4KICA8dGV4dCB4PSI0MCIgeT0iNjkwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPlBsZWFzZSBpbmNsdWRlIGludm9pY2UgbnVtYmVyIG9uIHBheW1lbnQ8L3RleHQ+CgogIDwhLS0gQmFuayBEZXRhaWxzIC0tPgogIDx0ZXh0IHg9IjQwIiB5PSI3MzAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMyYzNlNTAiPkJhbmsgRGV0YWlsczwvdGV4dD4KICA8dGV4dCB4PSI0MCIgeT0iNzYwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPkJhbms6IEJhbmsgb2YgR2VvcmdpYTwvdGV4dD4KICA8dGV4dCB4PSI0MCIgeT0iNzgwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzNDQ5NWUiPklCQU46IEdFMTIzNDU2Nzg5MDEyMzQ1Njc4PC90ZXh0PgogIDx0ZXh0IHg9IjQwIiB5PSI4MDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzM0NDk1ZSI+U1dJRlQ6IEJBR0FHRTIyPC90ZXh0PgoKICA8IS0tIEZvb3RlciAtLT4KICA8bGluZSB4MT0iNDAiIHkxPSI5MDAiIHgyPSI3NjAiIHkyPSI5MDAiIHN0cm9rZT0iIzJjM2U1MCIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNDAiIHk9IjkzMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSIjN2Y4YzhkIj5UaGFuayB5b3UgZm9yIGNob29zaW5nIEdydXp5YSBBZHZlbnR1cmUgT3V0Zml0dGVyczwvdGV4dD4KICA8dGV4dCB4PSI0MCIgeT0iOTUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM3ZjhjOGQiPnd3dy5ncnV6eWFhZHZlbnR1cmVzLmNvbTwvdGV4dD4KPC9zdmc+Cg==",
                 filename: "logo.jpg",
                 ftype: "jpg",
-                furl: "",
+                furl: ""
             },
             redirectAfterApprove: true,
-            redirectAfterApproveUrl: "https://example.com/success",
-        },
-    },
+            redirectAfterApproveUrl: "https://example.com/success"
+        }
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -9904,27 +9845,28 @@ await client.paymentLink.addPayLinkFromInvoice(23548884, {
 <dd>
 
 **idInvoice:** `number` — Invoice ID
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.PayLinkDataInvoice`
-
+**request:** `Payabli.PayLinkDataInvoice` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `PaymentLink.RequestOptions`
+**requestOptions:** `PaymentLinkClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -9942,8 +9884,7 @@ await client.paymentLink.addPayLinkFromInvoice(23548884, {
 <dl>
 <dd>
 
-Generates a payment link for a bill from the bill ID.
-
+Generates a payment link for a bill from the bill ID. 
 </dd>
 </dl>
 </dd>
@@ -9967,34 +9908,34 @@ await client.paymentLink.addPayLinkFromBill(23548884, {
             header: "Contact Us",
             order: 0,
             paymentIcons: true,
-            phoneLabel: "Phone",
+            phoneLabel: "Phone"
         },
         logo: {
             enabled: true,
-            order: 0,
+            order: 0
         },
         messageBeforePaying: {
             enabled: true,
             label: "Please review your payment details",
-            order: 0,
+            order: 0
         },
         notes: {
             enabled: true,
             header: "Additional Notes",
             order: 0,
             placeholder: "Enter any additional notes here",
-            value: "",
+            value: ""
         },
         page: {
             description: "Get paid securely",
             enabled: true,
             header: "Payment Page",
-            order: 0,
+            order: 0
         },
         paymentButton: {
             enabled: true,
             label: "Pay Now",
-            order: 0,
+            order: 0
         },
         paymentMethods: {
             allMethodsChecked: true,
@@ -10006,14 +9947,13 @@ await client.paymentLink.addPayLinkFromBill(23548884, {
                 discover: true,
                 eCheck: true,
                 mastercard: true,
-                visa: true,
+                visa: true
             },
-            order: 0,
+            order: 0
         },
         payor: {
             enabled: true,
-            fields: [
-                {
+            fields: [{
                     display: true,
                     fixed: true,
                     identifier: true,
@@ -10023,25 +9963,24 @@ await client.paymentLink.addPayLinkFromBill(23548884, {
                     required: true,
                     validation: "^[a-zA-Z ]+$",
                     value: "",
-                    width: 0,
-                },
-            ],
+                    width: 0
+                }],
             header: "Payor Information",
-            order: 0,
+            order: 0
         },
         review: {
             enabled: true,
             header: "Review Payment",
-            order: 0,
+            order: 0
         },
         settings: {
             color: "#000000",
-            language: "en",
-        },
-    },
+            language: "en"
+        }
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -10056,27 +9995,28 @@ await client.paymentLink.addPayLinkFromBill(23548884, {
 <dd>
 
 **billId:** `number` — The Payabli ID for the bill.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.PayLinkDataBill`
-
+**request:** `Payabli.PayLinkDataBill` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `PaymentLink.RequestOptions`
+**requestOptions:** `PaymentLinkClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -10095,7 +10035,6 @@ await client.paymentLink.addPayLinkFromBill(23548884, {
 <dd>
 
 Deletes a payment link by ID.
-
 </dd>
 </dl>
 </dd>
@@ -10111,8 +10050,8 @@ Deletes a payment link by ID.
 
 ```typescript
 await client.paymentLink.deletePayLinkFromId("payLinkId");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -10127,19 +10066,20 @@ await client.paymentLink.deletePayLinkFromId("payLinkId");
 <dd>
 
 **payLinkId:** `string` — ID for the payment link.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `PaymentLink.RequestOptions`
+**requestOptions:** `PaymentLinkClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -10158,7 +10098,6 @@ await client.paymentLink.deletePayLinkFromId("payLinkId");
 <dd>
 
 Retrieves a payment link by ID.
-
 </dd>
 </dl>
 </dd>
@@ -10174,8 +10113,8 @@ Retrieves a payment link by ID.
 
 ```typescript
 await client.paymentLink.getPayLinkFromId("paylinkId");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -10190,19 +10129,20 @@ await client.paymentLink.getPayLinkFromId("paylinkId");
 <dd>
 
 **paylinkId:** `string` — ID for payment link
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `PaymentLink.RequestOptions`
+**requestOptions:** `PaymentLinkClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -10221,7 +10161,6 @@ await client.paymentLink.getPayLinkFromId("paylinkId");
 <dd>
 
 Send a payment link to the specified email addresses or phone numbers.
-
 </dd>
 </dl>
 </dd>
@@ -10237,10 +10176,10 @@ Send a payment link to the specified email addresses or phone numbers.
 
 ```typescript
 await client.paymentLink.pushPayLinkFromId("payLinkId", {
-    channel: "sms",
+    channel: "sms"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -10255,27 +10194,28 @@ await client.paymentLink.pushPayLinkFromId("payLinkId", {
 <dd>
 
 **payLinkId:** `string` — ID for the payment link.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.PushPayLinkRequest`
-
+**request:** `Payabli.PushPayLinkRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `PaymentLink.RequestOptions`
+**requestOptions:** `PaymentLinkClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -10294,7 +10234,6 @@ await client.paymentLink.pushPayLinkFromId("payLinkId", {
 <dd>
 
 Refresh a payment link's content after an update.
-
 </dd>
 </dl>
 </dd>
@@ -10310,8 +10249,8 @@ Refresh a payment link's content after an update.
 
 ```typescript
 await client.paymentLink.refreshPayLinkFromId("payLinkId");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -10326,27 +10265,28 @@ await client.paymentLink.refreshPayLinkFromId("payLinkId");
 <dd>
 
 **payLinkId:** `string` — ID for the payment link.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.RefreshPayLinkFromIdRequest`
-
+**request:** `Payabli.RefreshPayLinkFromIdRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `PaymentLink.RequestOptions`
+**requestOptions:** `PaymentLinkClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -10364,8 +10304,7 @@ await client.paymentLink.refreshPayLinkFromId("payLinkId");
 <dl>
 <dd>
 
-Sends a payment link to the specified email addresses.
-
+Sends a payment link to the specified email addresses. 
 </dd>
 </dl>
 </dd>
@@ -10381,10 +10320,10 @@ Sends a payment link to the specified email addresses.
 
 ```typescript
 await client.paymentLink.sendPayLinkFromId("payLinkId", {
-    mail2: "jo@example.com; ceo@example.com",
+    mail2: "jo@example.com; ceo@example.com"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -10399,27 +10338,28 @@ await client.paymentLink.sendPayLinkFromId("payLinkId", {
 <dd>
 
 **payLinkId:** `string` — ID for the payment link.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.SendPayLinkFromIdRequest`
-
+**request:** `Payabli.SendPayLinkFromIdRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `PaymentLink.RequestOptions`
+**requestOptions:** `PaymentLinkClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -10438,7 +10378,6 @@ await client.paymentLink.sendPayLinkFromId("payLinkId", {
 <dd>
 
 Updates a payment link's details.
-
 </dd>
 </dl>
 </dd>
@@ -10459,16 +10398,16 @@ await client.paymentLink.updatePayLinkFromId("332-c277b704-1301", {
         header: "Additional Notes",
         order: 0,
         placeholder: "Enter any additional notes here",
-        value: "",
+        value: ""
     },
     paymentButton: {
         enabled: true,
         label: "Pay Now",
-        order: 0,
-    },
+        order: 0
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -10483,27 +10422,28 @@ await client.paymentLink.updatePayLinkFromId("332-c277b704-1301", {
 <dd>
 
 **payLinkId:** `string` — ID for the payment link.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.PayLinkUpdateData`
-
+**request:** `Payabli.PayLinkUpdateData` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `PaymentLink.RequestOptions`
+**requestOptions:** `PaymentLinkClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -10522,7 +10462,6 @@ await client.paymentLink.updatePayLinkFromId("332-c277b704-1301", {
 <dd>
 
 Generates a vendor payment link for a specific bill lot number. This allows you to pay all bills with the same lot number for a vendor with a single payment link.
-
 </dd>
 </dl>
 </dd>
@@ -10549,34 +10488,34 @@ await client.paymentLink.addPayLinkFromBillLotNumber("LOT-2024-001", {
             header: "Contact Us",
             order: 0,
             paymentIcons: true,
-            phoneLabel: "Phone",
+            phoneLabel: "Phone"
         },
         logo: {
             enabled: true,
-            order: 0,
+            order: 0
         },
         messageBeforePaying: {
             enabled: true,
             label: "Please review your payment details",
-            order: 0,
+            order: 0
         },
         notes: {
             enabled: true,
             header: "Additional Notes",
             order: 0,
             placeholder: "Enter any additional notes here",
-            value: "",
+            value: ""
         },
         page: {
             description: "Get paid securely",
             enabled: true,
             header: "Payment Page",
-            order: 0,
+            order: 0
         },
         paymentButton: {
             enabled: true,
             label: "Pay Now",
-            order: 0,
+            order: 0
         },
         paymentMethods: {
             allMethodsChecked: true,
@@ -10588,14 +10527,13 @@ await client.paymentLink.addPayLinkFromBillLotNumber("LOT-2024-001", {
                 discover: true,
                 eCheck: true,
                 mastercard: true,
-                visa: true,
+                visa: true
             },
-            order: 0,
+            order: 0
         },
         payor: {
             enabled: true,
-            fields: [
-                {
+            fields: [{
                     display: true,
                     fixed: true,
                     identifier: true,
@@ -10605,25 +10543,24 @@ await client.paymentLink.addPayLinkFromBillLotNumber("LOT-2024-001", {
                     required: true,
                     validation: "^[a-zA-Z ]+$",
                     value: "",
-                    width: 0,
-                },
-            ],
+                    width: 0
+                }],
             header: "Payor Information",
-            order: 0,
+            order: 0
         },
         review: {
             enabled: true,
             header: "Review Payment",
-            order: 0,
+            order: 0
         },
         settings: {
             color: "#000000",
-            language: "en",
-        },
-    },
+            language: "en"
+        }
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -10638,34 +10575,34 @@ await client.paymentLink.addPayLinkFromBillLotNumber("LOT-2024-001", {
 <dd>
 
 **lotNumber:** `string` — Lot number of the bills to pay. All bills with this lot number will be included.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.PayLinkDataOut`
-
+**request:** `Payabli.PayLinkDataOut` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `PaymentLink.RequestOptions`
+**requestOptions:** `PaymentLinkClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## PaymentMethodDomain
-
 <details><summary><code>client.paymentMethodDomain.<a href="/src/api/resources/paymentMethodDomain/client/Client.ts">addPaymentMethodDomain</a>({ ...params }) -> Payabli.AddPaymentMethodDomainApiResponse</code></summary>
 <dl>
 <dd>
@@ -10679,7 +10616,6 @@ await client.paymentLink.addPayLinkFromBillLotNumber("LOT-2024-001", {
 <dd>
 
 Add a payment method domain to an organization or paypoint.
-
 </dd>
 </dl>
 </dd>
@@ -10699,14 +10635,14 @@ await client.paymentMethodDomain.addPaymentMethodDomain({
     entityId: 109,
     entityType: "paypoint",
     applePay: {
-        isEnabled: true,
+        isEnabled: true
     },
     googlePay: {
-        isEnabled: true,
-    },
+        isEnabled: true
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -10720,20 +10656,21 @@ await client.paymentMethodDomain.addPaymentMethodDomain({
 <dl>
 <dd>
 
-**request:** `Payabli.AddPaymentMethodDomainRequest`
-
+**request:** `Payabli.AddPaymentMethodDomainRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `PaymentMethodDomain.RequestOptions`
+**requestOptions:** `PaymentMethodDomainClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -10752,7 +10689,6 @@ await client.paymentMethodDomain.addPaymentMethodDomain({
 <dd>
 
 Cascades a payment method domain to all child entities. All paypoints and suborganization under this parent will inherit this domain and its settings.
-
 </dd>
 </dl>
 </dd>
@@ -10768,8 +10704,8 @@ Cascades a payment method domain to all child entities. All paypoints and suborg
 
 ```typescript
 await client.paymentMethodDomain.cascadePaymentMethodDomain("pmd_b8237fa45c964d8a9ef27160cd42b8c5");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -10784,19 +10720,20 @@ await client.paymentMethodDomain.cascadePaymentMethodDomain("pmd_b8237fa45c964d8
 <dd>
 
 **domainId:** `string` — The payment method domain's ID in Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `PaymentMethodDomain.RequestOptions`
+**requestOptions:** `PaymentMethodDomainClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -10815,7 +10752,6 @@ await client.paymentMethodDomain.cascadePaymentMethodDomain("pmd_b8237fa45c964d8
 <dd>
 
 Delete a payment method domain. You can't delete an inherited domain, you must delete a domain at the organization level.
-
 </dd>
 </dl>
 </dd>
@@ -10831,8 +10767,8 @@ Delete a payment method domain. You can't delete an inherited domain, you must d
 
 ```typescript
 await client.paymentMethodDomain.deletePaymentMethodDomain("pmd_b8237fa45c964d8a9ef27160cd42b8c5");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -10847,19 +10783,20 @@ await client.paymentMethodDomain.deletePaymentMethodDomain("pmd_b8237fa45c964d8a
 <dd>
 
 **domainId:** `string` — The payment method domain's ID in Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `PaymentMethodDomain.RequestOptions`
+**requestOptions:** `PaymentMethodDomainClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -10878,7 +10815,6 @@ await client.paymentMethodDomain.deletePaymentMethodDomain("pmd_b8237fa45c964d8a
 <dd>
 
 Get the details for a payment method domain.
-
 </dd>
 </dl>
 </dd>
@@ -10894,8 +10830,8 @@ Get the details for a payment method domain.
 
 ```typescript
 await client.paymentMethodDomain.getPaymentMethodDomain("pmd_b8237fa45c964d8a9ef27160cd42b8c5");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -10910,19 +10846,20 @@ await client.paymentMethodDomain.getPaymentMethodDomain("pmd_b8237fa45c964d8a9ef
 <dd>
 
 **domainId:** `string` — The payment method domain's ID in Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `PaymentMethodDomain.RequestOptions`
+**requestOptions:** `PaymentMethodDomainClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -10941,7 +10878,6 @@ await client.paymentMethodDomain.getPaymentMethodDomain("pmd_b8237fa45c964d8a9ef
 <dd>
 
 Get a list of payment method domains that belong to a PSP, organization, or paypoint.
-
 </dd>
 </dl>
 </dd>
@@ -10958,10 +10894,10 @@ Get a list of payment method domains that belong to a PSP, organization, or payp
 ```typescript
 await client.paymentMethodDomain.listPaymentMethodDomains({
     entityId: 1147,
-    entityType: "paypoint",
+    entityType: "paypoint"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -10975,20 +10911,21 @@ await client.paymentMethodDomain.listPaymentMethodDomains({
 <dl>
 <dd>
 
-**request:** `Payabli.ListPaymentMethodDomainsRequest`
-
+**request:** `Payabli.ListPaymentMethodDomainsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `PaymentMethodDomain.RequestOptions`
+**requestOptions:** `PaymentMethodDomainClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -11007,7 +10944,6 @@ await client.paymentMethodDomain.listPaymentMethodDomains({
 <dd>
 
 Update a payment method domain's configuration values.
-
 </dd>
 </dl>
 </dd>
@@ -11024,14 +10960,14 @@ Update a payment method domain's configuration values.
 ```typescript
 await client.paymentMethodDomain.updatePaymentMethodDomain("pmd_b8237fa45c964d8a9ef27160cd42b8c5", {
     applePay: {
-        isEnabled: false,
+        isEnabled: false
     },
     googlePay: {
-        isEnabled: false,
-    },
+        isEnabled: false
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -11046,27 +10982,28 @@ await client.paymentMethodDomain.updatePaymentMethodDomain("pmd_b8237fa45c964d8a
 <dd>
 
 **domainId:** `string` — The payment method domain's ID in Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.UpdatePaymentMethodDomainRequest`
-
+**request:** `Payabli.UpdatePaymentMethodDomainRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `PaymentMethodDomain.RequestOptions`
+**requestOptions:** `PaymentMethodDomainClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -11085,7 +11022,6 @@ await client.paymentMethodDomain.updatePaymentMethodDomain("pmd_b8237fa45c964d8a
 <dd>
 
 Verify a new payment method domain. If verification is successful, Apple Pay is automatically activated for the domain.
-
 </dd>
 </dl>
 </dd>
@@ -11101,8 +11037,8 @@ Verify a new payment method domain. If verification is successful, Apple Pay is 
 
 ```typescript
 await client.paymentMethodDomain.verifyPaymentMethodDomain("pmd_b8237fa45c964d8a9ef27160cd42b8c5");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -11117,26 +11053,26 @@ await client.paymentMethodDomain.verifyPaymentMethodDomain("pmd_b8237fa45c964d8a
 <dd>
 
 **domainId:** `string` — The payment method domain's ID in Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `PaymentMethodDomain.RequestOptions`
+**requestOptions:** `PaymentMethodDomainClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Paypoint
-
 <details><summary><code>client.paypoint.<a href="/src/api/resources/paypoint/client/Client.ts">getBasicEntry</a>(entry) -> Payabli.GetBasicEntryResponse</code></summary>
 <dl>
 <dd>
@@ -11150,7 +11086,6 @@ await client.paymentMethodDomain.verifyPaymentMethodDomain("pmd_b8237fa45c964d8a
 <dd>
 
 Gets the basic details for a paypoint.
-
 </dd>
 </dl>
 </dd>
@@ -11166,8 +11101,8 @@ Gets the basic details for a paypoint.
 
 ```typescript
 await client.paypoint.getBasicEntry("8cfec329267");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -11182,25 +11117,26 @@ await client.paypoint.getBasicEntry("8cfec329267");
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Paypoint.RequestOptions`
+**requestOptions:** `PaypointClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.paypoint.<a href="/src/api/resources/paypoint/client/Client.ts">getBasicEntryById</a>(idPaypoint) -> Payabli.GetBasicEntryByIdResponse</code></summary>
+<details><summary><code>client.paypoint.<a href="/src/api/resources/paypoint/client/Client.ts">getBasicEntryById</a>(IdPaypoint) -> Payabli.GetBasicEntryByIdResponse</code></summary>
 <dl>
 <dd>
 
@@ -11212,8 +11148,7 @@ await client.paypoint.getBasicEntry("8cfec329267");
 <dl>
 <dd>
 
-Retrieves the basic details for a paypoint by ID.
-
+Retrieves the basic details for a paypoint by ID. 
 </dd>
 </dl>
 </dd>
@@ -11229,8 +11164,8 @@ Retrieves the basic details for a paypoint by ID.
 
 ```typescript
 await client.paypoint.getBasicEntryById("198");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -11244,20 +11179,21 @@ await client.paypoint.getBasicEntryById("198");
 <dl>
 <dd>
 
-**idPaypoint:** `string` — Paypoint ID. You can find this value by querying `/api/Query/paypoints/{orgId}`
-
+**IdPaypoint:** `string` — Paypoint ID. You can find this value by querying `/api/Query/paypoints/{orgId}`
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Paypoint.RequestOptions`
+**requestOptions:** `PaypointClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -11276,7 +11212,6 @@ await client.paypoint.getBasicEntryById("198");
 <dd>
 
 Gets the details for a single paypoint.
-
 </dd>
 </dl>
 </dd>
@@ -11292,8 +11227,8 @@ Gets the details for a single paypoint.
 
 ```typescript
 await client.paypoint.getEntryConfig("8cfec329267");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -11308,27 +11243,28 @@ await client.paypoint.getEntryConfig("8cfec329267");
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.GetEntryConfigRequest`
-
+**request:** `Payabli.GetEntryConfigRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Paypoint.RequestOptions`
+**requestOptions:** `PaypointClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -11346,8 +11282,7 @@ await client.paypoint.getEntryConfig("8cfec329267");
 <dl>
 <dd>
 
-Gets the details for single payment page for a paypoint.
-
+Gets the details for single payment page for a paypoint. 
 </dd>
 </dl>
 </dd>
@@ -11363,8 +11298,8 @@ Gets the details for single payment page for a paypoint.
 
 ```typescript
 await client.paypoint.getPage("8cfec329267", "pay-your-fees-1");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -11379,7 +11314,7 @@ await client.paypoint.getPage("8cfec329267", "pay-your-fees-1");
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
@@ -11387,19 +11322,20 @@ await client.paypoint.getPage("8cfec329267", "pay-your-fees-1");
 <dd>
 
 **subdomain:** `string` — Payment page identifier. The subdomain value is the last portion of the payment page URL. For example, in`https://paypages-sandbox.payabli.com/513823dc10/pay-your-fees-1`, the subdomain is `pay-your-fees-1`.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Paypoint.RequestOptions`
+**requestOptions:** `PaypointClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -11418,7 +11354,6 @@ await client.paypoint.getPage("8cfec329267", "pay-your-fees-1");
 <dd>
 
 Deletes a payment page in a paypoint.
-
 </dd>
 </dl>
 </dd>
@@ -11434,8 +11369,8 @@ Deletes a payment page in a paypoint.
 
 ```typescript
 await client.paypoint.removePage("8cfec329267", "pay-your-fees-1");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -11450,7 +11385,7 @@ await client.paypoint.removePage("8cfec329267", "pay-your-fees-1");
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
@@ -11458,19 +11393,20 @@ await client.paypoint.removePage("8cfec329267", "pay-your-fees-1");
 <dd>
 
 **subdomain:** `string` — Payment page identifier. The subdomain value is the last portion of the payment page URL. For example, in`https://paypages-sandbox.payabli.com/513823dc10/pay-your-fees-1`, the subdomain is `pay-your-fees-1`.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Paypoint.RequestOptions`
+**requestOptions:** `PaypointClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -11488,8 +11424,7 @@ await client.paypoint.removePage("8cfec329267", "pay-your-fees-1");
 <dl>
 <dd>
 
-Updates a paypoint logo.
-
+Updates a paypoint logo. 
 </dd>
 </dl>
 </dd>
@@ -11505,8 +11440,8 @@ Updates a paypoint logo.
 
 ```typescript
 await client.paypoint.saveLogo("8cfec329267", {});
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -11521,27 +11456,28 @@ await client.paypoint.saveLogo("8cfec329267", {});
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.FileContent`
-
+**request:** `Payabli.FileContent` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Paypoint.RequestOptions`
+**requestOptions:** `PaypointClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -11560,7 +11496,6 @@ await client.paypoint.saveLogo("8cfec329267", {});
 <dd>
 
 Retrieves an paypoint's basic settings like custom fields, identifiers, and invoicing settings.
-
 </dd>
 </dl>
 </dd>
@@ -11576,8 +11511,8 @@ Retrieves an paypoint's basic settings like custom fields, identifiers, and invo
 
 ```typescript
 await client.paypoint.settingsPage("8cfec329267");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -11592,19 +11527,20 @@ await client.paypoint.settingsPage("8cfec329267");
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Paypoint.RequestOptions`
+**requestOptions:** `PaypointClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -11623,7 +11559,6 @@ await client.paypoint.settingsPage("8cfec329267");
 <dd>
 
 Migrates a paypoint to a new parent organization.
-
 </dd>
 </dl>
 </dd>
@@ -11643,16 +11578,14 @@ await client.paypoint.migrate({
     newParentOrganizationId: 123,
     notificationRequest: {
         notificationUrl: "https://webhook-test.yoursie.com",
-        webHeaderParameters: [
-            {
+        webHeaderParameters: [{
                 key: "testheader",
-                value: "1234567890",
-            },
-        ],
-    },
+                value: "1234567890"
+            }]
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -11666,27 +11599,27 @@ await client.paypoint.migrate({
 <dl>
 <dd>
 
-**request:** `Payabli.PaypointMoveRequest`
-
+**request:** `Payabli.PaypointMoveRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Paypoint.RequestOptions`
+**requestOptions:** `PaypointClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Query
-
 <details><summary><code>client.query.<a href="/src/api/resources/query/client/Client.ts">listBatchDetails</a>(entry, { ...params }) -> Payabli.QueryBatchesDetailResponse</code></summary>
 <dl>
 <dd>
@@ -11700,8 +11633,7 @@ await client.paypoint.migrate({
 <dd>
 
 Retrieve a list of batches and their details, including settled and
-unsettled transactions for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
+unsettled transactions for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response. 
 </dd>
 </dl>
 </dd>
@@ -11719,10 +11651,10 @@ unsettled transactions for a paypoint. Use filters to limit results. Include the
 await client.query.listBatchDetails("8cfec329267", {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -11736,28 +11668,29 @@ await client.query.listBatchDetails("8cfec329267", {
 <dl>
 <dd>
 
-**entry:** `Payabli.Entry`
-
+**entry:** `Payabli.Entry` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListBatchDetailsRequest`
-
+**request:** `Payabli.ListBatchDetailsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -11776,7 +11709,6 @@ await client.query.listBatchDetails("8cfec329267", {
 <dd>
 
 Retrieve a list of batches and their details, including settled and unsettled transactions for an organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
 </dd>
 </dl>
 </dd>
@@ -11794,10 +11726,10 @@ Retrieve a list of batches and their details, including settled and unsettled tr
 await client.query.listBatchDetailsOrg(123, {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -11812,27 +11744,28 @@ await client.query.listBatchDetailsOrg(123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListBatchDetailsOrgRequest`
-
+**request:** `Payabli.ListBatchDetailsOrgRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -11851,7 +11784,6 @@ await client.query.listBatchDetailsOrg(123, {
 <dd>
 
 Retrieve a list of batches for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
 </dd>
 </dl>
 </dd>
@@ -11869,10 +11801,10 @@ Retrieve a list of batches for a paypoint. Use filters to limit results. Include
 await client.query.listBatches("8cfec329267", {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -11886,28 +11818,29 @@ await client.query.listBatches("8cfec329267", {
 <dl>
 <dd>
 
-**entry:** `Payabli.Entry`
-
+**entry:** `Payabli.Entry` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListBatchesRequest`
-
+**request:** `Payabli.ListBatchesRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -11926,7 +11859,6 @@ await client.query.listBatches("8cfec329267", {
 <dd>
 
 Retrieve a list of batches for an org. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
 </dd>
 </dl>
 </dd>
@@ -11944,10 +11876,10 @@ Retrieve a list of batches for an org. Use filters to limit results. Include the
 await client.query.listBatchesOrg(123, {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -11962,27 +11894,28 @@ await client.query.listBatchesOrg(123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListBatchesOrgRequest`
-
+**request:** `Payabli.ListBatchesOrgRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -12001,7 +11934,6 @@ await client.query.listBatchesOrg(123, {
 <dd>
 
 Retrieve a list of MoneyOut batches for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
 </dd>
 </dl>
 </dd>
@@ -12019,10 +11951,10 @@ Retrieve a list of MoneyOut batches for a paypoint. Use filters to limit results
 await client.query.listBatchesOut("8cfec329267", {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -12036,28 +11968,29 @@ await client.query.listBatchesOut("8cfec329267", {
 <dl>
 <dd>
 
-**entry:** `Payabli.Entry`
-
+**entry:** `Payabli.Entry` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListBatchesOutRequest`
-
+**request:** `Payabli.ListBatchesOutRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -12076,7 +12009,6 @@ await client.query.listBatchesOut("8cfec329267", {
 <dd>
 
 Retrieve a list of MoneyOut batches for an org. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
 </dd>
 </dl>
 </dd>
@@ -12094,10 +12026,10 @@ Retrieve a list of MoneyOut batches for an org. Use filters to limit results. In
 await client.query.listBatchesOutOrg(123, {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -12112,27 +12044,28 @@ await client.query.listBatchesOutOrg(123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListBatchesOutOrgRequest`
-
+**request:** `Payabli.ListBatchesOutOrgRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -12151,7 +12084,6 @@ await client.query.listBatchesOutOrg(123, {
 <dd>
 
 Retrieves a list of chargebacks and returned transactions for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
 </dd>
 </dl>
 </dd>
@@ -12169,10 +12101,10 @@ Retrieves a list of chargebacks and returned transactions for a paypoint. Use fi
 await client.query.listChargebacks("8cfec329267", {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -12186,28 +12118,29 @@ await client.query.listChargebacks("8cfec329267", {
 <dl>
 <dd>
 
-**entry:** `Payabli.Entry`
-
+**entry:** `Payabli.Entry` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListChargebacksRequest`
-
+**request:** `Payabli.ListChargebacksRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -12226,7 +12159,6 @@ await client.query.listChargebacks("8cfec329267", {
 <dd>
 
 Retrieve a list of chargebacks and returned transactions for an org. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
 </dd>
 </dl>
 </dd>
@@ -12244,10 +12176,10 @@ Retrieve a list of chargebacks and returned transactions for an org. Use filters
 await client.query.listChargebacksOrg(123, {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -12262,27 +12194,28 @@ await client.query.listChargebacksOrg(123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListChargebacksOrgRequest`
-
+**request:** `Payabli.ListChargebacksOrgRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -12301,7 +12234,6 @@ await client.query.listChargebacksOrg(123, {
 <dd>
 
 Retrieves a list of customers for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
 </dd>
 </dl>
 </dd>
@@ -12319,10 +12251,10 @@ Retrieves a list of customers for a paypoint. Use filters to limit results. Incl
 await client.query.listCustomers("8cfec329267", {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -12336,28 +12268,29 @@ await client.query.listCustomers("8cfec329267", {
 <dl>
 <dd>
 
-**entry:** `Payabli.Entry`
-
+**entry:** `Payabli.Entry` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListCustomersRequest`
-
+**request:** `Payabli.ListCustomersRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -12376,7 +12309,6 @@ await client.query.listCustomers("8cfec329267", {
 <dd>
 
 Retrieves a list of customers for an org. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
 </dd>
 </dl>
 </dd>
@@ -12394,10 +12326,10 @@ Retrieves a list of customers for an org. Use filters to limit results. Include 
 await client.query.listCustomersOrg(123, {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -12412,27 +12344,28 @@ await client.query.listCustomersOrg(123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListCustomersOrgRequest`
-
+**request:** `Payabli.ListCustomersOrgRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -12451,7 +12384,6 @@ await client.query.listCustomersOrg(123, {
 <dd>
 
 Returns a list of all reports generated in the last 60 days for a single entrypoint. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -12469,10 +12401,10 @@ Returns a list of all reports generated in the last 60 days for a single entrypo
 await client.query.listNotificationReports("8cfec329267", {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -12486,28 +12418,29 @@ await client.query.listNotificationReports("8cfec329267", {
 <dl>
 <dd>
 
-**entry:** `Payabli.Entry`
-
+**entry:** `Payabli.Entry` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListNotificationReportsRequest`
-
+**request:** `Payabli.ListNotificationReportsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -12526,7 +12459,6 @@ await client.query.listNotificationReports("8cfec329267", {
 <dd>
 
 Returns a list of all reports generated in the last 60 days for an organization. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -12544,10 +12476,10 @@ Returns a list of all reports generated in the last 60 days for an organization.
 await client.query.listNotificationReportsOrg(123, {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -12562,27 +12494,28 @@ await client.query.listNotificationReportsOrg(123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListNotificationReportsOrgRequest`
-
+**request:** `Payabli.ListNotificationReportsOrgRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -12601,7 +12534,6 @@ await client.query.listNotificationReportsOrg(123, {
 <dd>
 
 Returns a list of notifications for an entrypoint. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -12619,10 +12551,10 @@ Returns a list of notifications for an entrypoint. Use filters to limit results.
 await client.query.listNotifications("8cfec329267", {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -12636,28 +12568,29 @@ await client.query.listNotifications("8cfec329267", {
 <dl>
 <dd>
 
-**entry:** `Payabli.Entry`
-
+**entry:** `Payabli.Entry` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListNotificationsRequest`
-
+**request:** `Payabli.ListNotificationsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -12676,7 +12609,6 @@ await client.query.listNotifications("8cfec329267", {
 <dd>
 
 Return a list of notifications for an organization. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -12694,10 +12626,10 @@ Return a list of notifications for an organization. Use filters to limit results
 await client.query.listNotificationsOrg(123, {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -12712,27 +12644,28 @@ await client.query.listNotificationsOrg(123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListNotificationsOrgRequest`
-
+**request:** `Payabli.ListNotificationsOrgRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -12751,7 +12684,6 @@ await client.query.listNotificationsOrg(123, {
 <dd>
 
 Retrieves a list of an organization's suborganizations and their full details such as orgId, users, and settings. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
 </dd>
 </dl>
 </dd>
@@ -12769,10 +12701,10 @@ Retrieves a list of an organization's suborganizations and their full details su
 await client.query.listOrganizations(123, {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -12787,27 +12719,28 @@ await client.query.listOrganizations(123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListOrganizationsRequest`
-
+**request:** `Payabli.ListOrganizationsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -12826,7 +12759,6 @@ await client.query.listOrganizations(123, {
 <dd>
 
 Retrieves a list of money out transactions (payouts) for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
 </dd>
 </dl>
 </dd>
@@ -12844,10 +12776,10 @@ Retrieves a list of money out transactions (payouts) for a paypoint. Use filters
 await client.query.listPayout("8cfec329267", {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -12861,28 +12793,29 @@ await client.query.listPayout("8cfec329267", {
 <dl>
 <dd>
 
-**entry:** `Payabli.Entry`
-
+**entry:** `Payabli.Entry` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListPayoutRequest`
-
+**request:** `Payabli.ListPayoutRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -12901,7 +12834,6 @@ await client.query.listPayout("8cfec329267", {
 <dd>
 
 Retrieves a list of money out transactions (payouts) for an organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
 </dd>
 </dl>
 </dd>
@@ -12919,10 +12851,10 @@ Retrieves a list of money out transactions (payouts) for an organization. Use fi
 await client.query.listPayoutOrg(123, {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -12937,27 +12869,28 @@ await client.query.listPayoutOrg(123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListPayoutOrgRequest`
-
+**request:** `Payabli.ListPayoutOrgRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -12976,7 +12909,6 @@ await client.query.listPayoutOrg(123, {
 <dd>
 
 Returns a list of paypoints in an organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
 </dd>
 </dl>
 </dd>
@@ -12994,10 +12926,10 @@ Returns a list of paypoints in an organization. Use filters to limit results. In
 await client.query.listPaypoints(123, {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -13012,27 +12944,28 @@ await client.query.listPaypoints(123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListPaypointsRequest`
-
+**request:** `Payabli.ListPaypointsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -13051,7 +12984,6 @@ await client.query.listPaypoints(123, {
 <dd>
 
 Retrieve a list of settled transactions for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
 </dd>
 </dl>
 </dd>
@@ -13069,10 +13001,10 @@ Retrieve a list of settled transactions for a paypoint. Use filters to limit res
 await client.query.listSettlements("8cfec329267", {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -13086,28 +13018,29 @@ await client.query.listSettlements("8cfec329267", {
 <dl>
 <dd>
 
-**entry:** `Payabli.Entry`
-
+**entry:** `Payabli.Entry` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListSettlementsRequest`
-
+**request:** `Payabli.ListSettlementsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -13126,7 +13059,6 @@ await client.query.listSettlements("8cfec329267", {
 <dd>
 
 Retrieve a list of settled transactions for an organization. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
 </dd>
 </dl>
 </dd>
@@ -13144,10 +13076,10 @@ Retrieve a list of settled transactions for an organization. Include the `export
 await client.query.listSettlementsOrg(123, {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -13162,27 +13094,28 @@ await client.query.listSettlementsOrg(123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListSettlementsOrgRequest`
-
+**request:** `Payabli.ListSettlementsOrgRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -13201,7 +13134,6 @@ await client.query.listSettlementsOrg(123, {
 <dd>
 
 Returns a list of subscriptions for a single paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
 </dd>
 </dl>
 </dd>
@@ -13219,10 +13151,10 @@ Returns a list of subscriptions for a single paypoint. Use filters to limit resu
 await client.query.listSubscriptions("8cfec329267", {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -13236,28 +13168,29 @@ await client.query.listSubscriptions("8cfec329267", {
 <dl>
 <dd>
 
-**entry:** `Payabli.Entry`
-
+**entry:** `Payabli.Entry` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListSubscriptionsRequest`
-
+**request:** `Payabli.ListSubscriptionsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -13276,7 +13209,6 @@ await client.query.listSubscriptions("8cfec329267", {
 <dd>
 
 Returns a list of subscriptions for a single org. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
 </dd>
 </dl>
 </dd>
@@ -13294,10 +13226,10 @@ Returns a list of subscriptions for a single org. Use filters to limit results. 
 await client.query.listSubscriptionsOrg(123, {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -13312,27 +13244,28 @@ await client.query.listSubscriptionsOrg(123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListSubscriptionsOrgRequest`
-
+**request:** `Payabli.ListSubscriptionsOrgRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -13352,14 +13285,12 @@ await client.query.listSubscriptionsOrg(123, {
 
 Retrieve a list of transactions for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 By default, this endpoint returns only transactions from the last 60 days. To query transactions outside of this period, include `transactionDate` filters.
-For example, this request parameters filter for transactions between April 01, 2024 and April 09, 2024.
-
-```curl --request GET \
+For example, this request parameters filter for transactions between April 01, 2024 and April 09, 2024. 
+``` curl --request GET \
   --url https://sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59\
   --header 'requestToken: <api-key>'
 
-```
-
+  ```
 </dd>
 </dl>
 </dd>
@@ -13377,10 +13308,10 @@ For example, this request parameters filter for transactions between April 01, 2
 await client.query.listTransactions("8cfec329267", {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -13394,28 +13325,29 @@ await client.query.listTransactions("8cfec329267", {
 <dl>
 <dd>
 
-**entry:** `Payabli.Entry`
-
+**entry:** `Payabli.Entry` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListTransactionsRequest`
-
+**request:** `Payabli.ListTransactionsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -13433,20 +13365,21 @@ await client.query.listTransactions("8cfec329267", {
 <dl>
 <dd>
 
+
 Retrieve a list of transactions for an organization. Use filters to
 limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 
+
 By default, this endpoint returns only transactions from the last 60 days. To query transactions outside of this period, include `transactionDate` filters.
 
-For example, this request parameters filter for transactions between April 01, 2024 and April 09, 2024.
+For example, this request parameters filter for transactions between April 01, 2024 and April 09, 2024. 
 
 ```
 curl --request GET \
   --url https://sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59\
   --header 'requestToken: <api-key>'
 
-```
-
+  ```
 </dd>
 </dl>
 </dd>
@@ -13464,10 +13397,10 @@ curl --request GET \
 await client.query.listTransactionsOrg(123, {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -13482,27 +13415,28 @@ await client.query.listTransactionsOrg(123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListTransactionsOrgRequest`
-
+**request:** `Payabli.ListTransactionsOrgRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -13521,7 +13455,6 @@ await client.query.listTransactionsOrg(123, {
 <dd>
 
 Retrieve a list of transfer details records for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
 </dd>
 </dl>
 </dd>
@@ -13537,8 +13470,8 @@ Retrieve a list of transfer details records for a paypoint. Use filters to limit
 
 ```typescript
 await client.query.listTransferDetails("47862acd", 123456);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -13552,8 +13485,8 @@ await client.query.listTransferDetails("47862acd", 123456);
 <dl>
 <dd>
 
-**entry:** `Payabli.Entry`
-
+**entry:** `Payabli.Entry` 
+    
 </dd>
 </dl>
 
@@ -13561,27 +13494,28 @@ await client.query.listTransferDetails("47862acd", 123456);
 <dd>
 
 **transferId:** `number` — The numeric identifier for the transfer, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListTransfersPaypointRequest`
-
+**request:** `Payabli.ListTransfersPaypointRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -13600,7 +13534,6 @@ await client.query.listTransferDetails("47862acd", 123456);
 <dd>
 
 Retrieve a list of transfers for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
 </dd>
 </dl>
 </dd>
@@ -13617,10 +13550,10 @@ Retrieve a list of transfers for a paypoint. Use filters to limit results. Inclu
 ```typescript
 await client.query.listTransfers("47862acd", {
     fromRecord: 0,
-    limitRecord: 20,
+    limitRecord: 20
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -13634,28 +13567,29 @@ await client.query.listTransfers("47862acd", {
 <dl>
 <dd>
 
-**entry:** `Payabli.Entry`
-
+**entry:** `Payabli.Entry` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListTransfersRequest`
-
+**request:** `Payabli.ListTransfersRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -13674,7 +13608,6 @@ await client.query.listTransfers("47862acd", {
 <dd>
 
 Retrieve a list of transfers for an org. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
 </dd>
 </dl>
 </dd>
@@ -13692,10 +13625,10 @@ Retrieve a list of transfers for an org. Use filters to limit results. Include t
 await client.query.listTransfersOrg({
     orgId: 123,
     fromRecord: 0,
-    limitRecord: 20,
+    limitRecord: 20
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -13709,20 +13642,21 @@ await client.query.listTransfersOrg({
 <dl>
 <dd>
 
-**request:** `Payabli.ListTransfersRequestOrg`
-
+**request:** `Payabli.ListTransfersRequestOrg` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -13741,7 +13675,6 @@ await client.query.listTransfersOrg({
 <dd>
 
 Get list of users for an org. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -13759,10 +13692,10 @@ Get list of users for an org. Use filters to limit results.
 await client.query.listUsersOrg(123, {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -13777,27 +13710,28 @@ await client.query.listUsersOrg(123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListUsersOrgRequest`
-
+**request:** `Payabli.ListUsersOrgRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -13816,7 +13750,6 @@ await client.query.listUsersOrg(123, {
 <dd>
 
 Get list of users for a paypoint. Use filters to limit results.
-
 </dd>
 </dl>
 </dd>
@@ -13834,10 +13767,10 @@ Get list of users for a paypoint. Use filters to limit results.
 await client.query.listUsersPaypoint("8cfec329267", {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -13852,27 +13785,28 @@ await client.query.listUsersPaypoint("8cfec329267", {
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListUsersPaypointRequest`
-
+**request:** `Payabli.ListUsersPaypointRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -13891,7 +13825,6 @@ await client.query.listUsersPaypoint("8cfec329267", {
 <dd>
 
 Retrieve a list of vendors for an entrypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
 </dd>
 </dl>
 </dd>
@@ -13909,10 +13842,10 @@ Retrieve a list of vendors for an entrypoint. Use filters to limit results. Incl
 await client.query.listVendors("8cfec329267", {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -13927,27 +13860,28 @@ await client.query.listVendors("8cfec329267", {
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListVendorsRequest`
-
+**request:** `Payabli.ListVendorsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -13966,7 +13900,6 @@ await client.query.listVendors("8cfec329267", {
 <dd>
 
 Retrieve a list of vendors for an organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
 </dd>
 </dl>
 </dd>
@@ -13984,10 +13917,10 @@ Retrieve a list of vendors for an organization. Use filters to limit results. In
 await client.query.listVendorsOrg(123, {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -14002,27 +13935,28 @@ await client.query.listVendorsOrg(123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListVendorsOrgRequest`
-
+**request:** `Payabli.ListVendorsOrgRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -14041,7 +13975,6 @@ await client.query.listVendorsOrg(123, {
 <dd>
 
 Retrieve a list of vcards (virtual credit cards) issued for an entrypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
 </dd>
 </dl>
 </dd>
@@ -14059,10 +13992,10 @@ Retrieve a list of vcards (virtual credit cards) issued for an entrypoint. Use f
 await client.query.listVcards("8cfec329267", {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -14076,28 +14009,29 @@ await client.query.listVcards("8cfec329267", {
 <dl>
 <dd>
 
-**entry:** `Payabli.Entry`
-
+**entry:** `Payabli.Entry` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListVcardsRequest`
-
+**request:** `Payabli.ListVcardsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -14116,7 +14050,6 @@ await client.query.listVcards("8cfec329267", {
 <dd>
 
 Retrieve a list of vcards (virtual credit cards) issued for an organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-
 </dd>
 </dl>
 </dd>
@@ -14134,10 +14067,10 @@ Retrieve a list of vcards (virtual credit cards) issued for an organization. Use
 await client.query.listVcardsOrg(123, {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -14152,34 +14085,34 @@ await client.query.listVcardsOrg(123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListVcardsOrgRequest`
-
+**request:** `Payabli.ListVcardsOrgRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Query.RequestOptions`
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Statistic
-
 <details><summary><code>client.statistic.<a href="/src/api/resources/statistic/client/Client.ts">basicStats</a>(mode, freq, level, entryId, { ...params }) -> Payabli.StatBasicExtendedQueryRecord[]</code></summary>
 <dl>
 <dd>
@@ -14192,8 +14125,7 @@ await client.query.listVcardsOrg(123, {
 <dl>
 <dd>
 
-Retrieves the basic statistics for an organization or a paypoint, for a given time period, grouped by a particular frequency.
-
+Retrieves the basic statistics for an organization or a paypoint, for a given time period, grouped by a particular frequency. 
 </dd>
 </dl>
 </dd>
@@ -14210,10 +14142,10 @@ Retrieves the basic statistics for an organization or a paypoint, for a given ti
 ```typescript
 await client.statistic.basicStats("ytd", "m", 1, 1000000, {
     endDate: "2025-11-01",
-    startDate: "2025-11-30",
+    startDate: "2025-11-30"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -14227,7 +14159,7 @@ await client.statistic.basicStats("ytd", "m", 1, 1000000, {
 <dl>
 <dd>
 
-**mode:** `string`
+**mode:** `string` 
 
 Mode for the request. Allowed values:
 
@@ -14243,14 +14175,15 @@ Mode for the request. Allowed values:
 - `lastm` - Last Month
 - `lastw` - Last Week
 - `yesterday` - Last Day
-
+  
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**freq:** `string`
+**freq:** `string` 
 
 Frequency to group series. Allowed values:
 
@@ -14260,20 +14193,19 @@ Frequency to group series. Allowed values:
 - `h` - hourly
 
 For example, `w` groups the results by week.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**level:** `number`
+**level:** `number` 
 
-The entry level for the request:
-
-- 0 for Organization
-- 2 for Paypoint
-
+The entry level for the request: 
+  - 0 for Organization
+  - 2 for Paypoint
+    
 </dd>
 </dl>
 
@@ -14281,27 +14213,28 @@ The entry level for the request:
 <dd>
 
 **entryId:** `number` — Identifier in Payabli for the entity.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.BasicStatsRequest`
-
+**request:** `Payabli.BasicStatsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Statistic.RequestOptions`
+**requestOptions:** `StatisticClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -14319,8 +14252,7 @@ The entry level for the request:
 <dl>
 <dd>
 
-Retrieves the basic statistics for a customer for a specific time period, grouped by a selected frequency.
-
+Retrieves the basic statistics for a customer for a specific time period, grouped by a selected frequency. 
 </dd>
 </dl>
 </dd>
@@ -14336,8 +14268,8 @@ Retrieves the basic statistics for a customer for a specific time period, groupe
 
 ```typescript
 await client.statistic.customerBasicStats("ytd", "m", 998);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -14351,7 +14283,7 @@ await client.statistic.customerBasicStats("ytd", "m", 998);
 <dl>
 <dd>
 
-**mode:** `string`
+**mode:** `string` 
 
 Mode for request. Allowed values:
 
@@ -14366,14 +14298,14 @@ Mode for request. Allowed values:
 - `lastm` - Last Month
 - `lastw` - Last Week
 - `yesterday` - Last Day
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**freq:** `string`
+**freq:** `string` 
 
 Frequency to group series. Allowed values:
 
@@ -14383,35 +14315,36 @@ Frequency to group series. Allowed values:
 - `h` - hourly
 
 For example, `w` groups the results by week.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**customerId:** `number` — Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub.
-
+**customerId:** `number` — Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub. 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.CustomerBasicStatsRequest`
-
+**request:** `Payabli.CustomerBasicStatsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Statistic.RequestOptions`
+**requestOptions:** `StatisticClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -14430,7 +14363,6 @@ For example, `w` groups the results by week.
 <dd>
 
 Retrieves the subscription statistics for a given interval for a paypoint or organization.
-
 </dd>
 </dl>
 </dd>
@@ -14446,8 +14378,8 @@ Retrieves the subscription statistics for a given interval for a paypoint or org
 
 ```typescript
 await client.statistic.subStats("30", 1, 1000000);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -14461,7 +14393,7 @@ await client.statistic.subStats("30", 1, 1000000);
 <dl>
 <dd>
 
-**interval:** `string`
+**interval:** `string` 
 
 Interval to get the data. Allowed values:
 
@@ -14470,20 +14402,19 @@ Interval to get the data. Allowed values:
 - `60` - 31-60 days
 - `90` - 61-90 days
 - `plus` - +90 days
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**level:** `number`
+**level:** `number` 
 
-The entry level for the request:
-
-- 0 for Organization
-- 2 for Paypoint
-
+The entry level for the request: 
+  - 0 for Organization
+  - 2 for Paypoint
+    
 </dd>
 </dl>
 
@@ -14491,27 +14422,28 @@ The entry level for the request:
 <dd>
 
 **entryId:** `number` — Identifier in Payabli for the entity.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.SubStatsRequest`
-
+**request:** `Payabli.SubStatsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Statistic.RequestOptions`
+**requestOptions:** `StatisticClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -14529,8 +14461,7 @@ The entry level for the request:
 <dl>
 <dd>
 
-Retrieve the basic statistics about a vendor for a given time period, grouped by frequency.
-
+Retrieve the basic statistics about a vendor for a given time period, grouped by frequency. 
 </dd>
 </dl>
 </dd>
@@ -14546,8 +14477,8 @@ Retrieve the basic statistics about a vendor for a given time period, grouped by
 
 ```typescript
 await client.statistic.vendorBasicStats("ytd", "m", 1);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -14561,7 +14492,7 @@ await client.statistic.vendorBasicStats("ytd", "m", 1);
 <dl>
 <dd>
 
-**mode:** `string`
+**mode:** `string` 
 
 Mode for request. Allowed values:
 
@@ -14576,14 +14507,14 @@ Mode for request. Allowed values:
 - `lastm` - Last Month
 - `lastw` - Last Week
 - `yesterday` - Last Day
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**freq:** `string`
+**freq:** `string` 
 
 Frequency to group series. Allowed values:
 
@@ -14593,7 +14524,7 @@ Frequency to group series. Allowed values:
 - `h` - hourly
 
 For example, `w` groups the results by week.
-
+    
 </dd>
 </dl>
 
@@ -14601,34 +14532,34 @@ For example, `w` groups the results by week.
 <dd>
 
 **idVendor:** `number` — Vendor ID.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.VendorBasicStatsRequest`
-
+**request:** `Payabli.VendorBasicStatsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Statistic.RequestOptions`
+**requestOptions:** `StatisticClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Subscription
-
 <details><summary><code>client.subscription.<a href="/src/api/resources/subscription/client/Client.ts">getSubscription</a>(subId) -> Payabli.SubscriptionQueryRecords</code></summary>
 <dl>
 <dd>
@@ -14642,7 +14573,6 @@ For example, `w` groups the results by week.
 <dd>
 
 Retrieves a single subscription's details.
-
 </dd>
 </dl>
 </dd>
@@ -14658,8 +14588,8 @@ Retrieves a single subscription's details.
 
 ```typescript
 await client.subscription.getSubscription(263);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -14673,20 +14603,21 @@ await client.subscription.getSubscription(263);
 <dl>
 <dd>
 
-**subId:** `number` — The subscription ID.
-
+**subId:** `number` — The subscription ID. 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Subscription.RequestOptions`
+**requestOptions:** `SubscriptionClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -14704,8 +14635,7 @@ await client.subscription.getSubscription(263);
 <dl>
 <dd>
 
-Creates a subscription or scheduled payment to run at a specified time and frequency.
-
+Creates a subscription or scheduled payment to run at a specified time and frequency. 
 </dd>
 </dl>
 </dd>
@@ -14723,12 +14653,12 @@ Creates a subscription or scheduled payment to run at a specified time and frequ
 await client.subscription.newSubscription({
     body: {
         customerData: {
-            customerId: 4440,
+            customerId: 4440
         },
         entryPoint: "f743aed24a",
         paymentDetails: {
             serviceFee: 0,
-            totalAmount: 100,
+            totalAmount: 100
         },
         paymentMethod: {
             cardcvv: "123",
@@ -14737,18 +14667,18 @@ await client.subscription.newSubscription({
             cardnumber: "4111111111111111",
             cardzip: "37615",
             initiator: "payor",
-            method: "card",
+            method: "card"
         },
         scheduleDetails: {
             endDate: "03-20-2025",
             frequency: "weekly",
             planId: 1,
-            startDate: "09-20-2024",
-        },
-    },
+            startDate: "09-20-2024"
+        }
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -14762,20 +14692,21 @@ await client.subscription.newSubscription({
 <dl>
 <dd>
 
-**request:** `Payabli.RequestSchedule`
-
+**request:** `Payabli.RequestSchedule` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Subscription.RequestOptions`
+**requestOptions:** `SubscriptionClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -14794,7 +14725,6 @@ await client.subscription.newSubscription({
 <dd>
 
 Deletes a subscription, autopay, or recurring payment and prevents future charges.
-
 </dd>
 </dl>
 </dd>
@@ -14810,8 +14740,8 @@ Deletes a subscription, autopay, or recurring payment and prevents future charge
 
 ```typescript
 await client.subscription.removeSubscription(396);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -14825,20 +14755,21 @@ await client.subscription.removeSubscription(396);
 <dl>
 <dd>
 
-**subId:** `number` — The subscription ID.
-
+**subId:** `number` — The subscription ID. 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Subscription.RequestOptions`
+**requestOptions:** `SubscriptionClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -14857,7 +14788,6 @@ await client.subscription.removeSubscription(396);
 <dd>
 
 Updates a subscription's details.
-
 </dd>
 </dl>
 </dd>
@@ -14873,10 +14803,10 @@ Updates a subscription's details.
 
 ```typescript
 await client.subscription.updateSubscription(231, {
-    setPause: true,
+    setPause: true
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -14890,35 +14820,35 @@ await client.subscription.updateSubscription(231, {
 <dl>
 <dd>
 
-**subId:** `number` — The subscription ID.
-
+**subId:** `number` — The subscription ID. 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.RequestUpdateSchedule`
-
+**request:** `Payabli.RequestUpdateSchedule` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Subscription.RequestOptions`
+**requestOptions:** `SubscriptionClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Templates
-
 <details><summary><code>client.templates.<a href="/src/api/resources/templates/client/Client.ts">deleteTemplate</a>(templateId) -> Payabli.PayabliApiResponseTemplateId</code></summary>
 <dl>
 <dd>
@@ -14931,8 +14861,7 @@ await client.subscription.updateSubscription(231, {
 <dl>
 <dd>
 
-Deletes a template by ID.
-
+Deletes a template by ID. 
 </dd>
 </dl>
 </dd>
@@ -14948,8 +14877,8 @@ Deletes a template by ID.
 
 ```typescript
 await client.templates.deleteTemplate(80);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -14964,19 +14893,20 @@ await client.templates.deleteTemplate(80);
 <dd>
 
 **templateId:** `number` — The boarding template ID. Can be found at the end of the boarding template URL in PartnerHub. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Templates.RequestOptions`
+**requestOptions:** `TemplatesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -14995,7 +14925,6 @@ await client.templates.deleteTemplate(80);
 <dd>
 
 Generates a boarding link from a boarding template.
-
 </dd>
 </dl>
 </dd>
@@ -15011,8 +14940,8 @@ Generates a boarding link from a boarding template.
 
 ```typescript
 await client.templates.getlinkTemplate(80, true);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -15027,7 +14956,7 @@ await client.templates.getlinkTemplate(80, true);
 <dd>
 
 **templateId:** `number` — The boarding template ID. Can be found at the end of the boarding template URL in PartnerHub. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
-
+    
 </dd>
 </dl>
 
@@ -15035,19 +14964,20 @@ await client.templates.getlinkTemplate(80, true);
 <dd>
 
 **ignoreEmpty:** `boolean` — Ignore read-only and empty fields Default is `false`. If `ignoreEmpty` = `false` and any field is empty, then the request returns a failure response. If `ignoreEmpty` = `true`, the request returns the boarding link name regardless of whether fields are empty.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Templates.RequestOptions`
+**requestOptions:** `TemplatesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -15066,7 +14996,6 @@ await client.templates.getlinkTemplate(80, true);
 <dd>
 
 Retrieves a boarding template's details by ID.
-
 </dd>
 </dl>
 </dd>
@@ -15082,8 +15011,8 @@ Retrieves a boarding template's details by ID.
 
 ```typescript
 await client.templates.getTemplate(80);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -15098,19 +15027,20 @@ await client.templates.getTemplate(80);
 <dd>
 
 **templateId:** `number` — The boarding template ID. Can be found at the end of the boarding template URL in PartnerHub. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Templates.RequestOptions`
+**requestOptions:** `TemplatesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -15129,7 +15059,6 @@ await client.templates.getTemplate(80);
 <dd>
 
 Retrieves a list of boarding templates for an organization. Use filters to limit results. You can't make a request that includes filters from the API console in the documentation. The response won't be filtered. Instead, copy the request, remove `parameters=` and run the request in a different client.
-
 </dd>
 </dl>
 </dd>
@@ -15147,10 +15076,10 @@ Retrieves a list of boarding templates for an organization. Use filters to limit
 await client.templates.listTemplates(123, {
     fromRecord: 251,
     limitRecord: 0,
-    sortBy: "desc(field_name)",
+    sortBy: "desc(field_name)"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -15165,34 +15094,34 @@ await client.templates.listTemplates(123, {
 <dd>
 
 **orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.ListTemplatesRequest`
-
+**request:** `Payabli.ListTemplatesRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Templates.RequestOptions`
+**requestOptions:** `TemplatesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## TokenStorage
-
 <details><summary><code>client.tokenStorage.<a href="/src/api/resources/tokenStorage/client/Client.ts">addMethod</a>({ ...params }) -> Payabli.AddMethodResponse</code></summary>
 <dl>
 <dd>
@@ -15206,7 +15135,6 @@ await client.templates.listTemplates(123, {
 <dd>
 
 Saves a payment method for reuse. This call exchanges sensitive payment information for a token that can be used to process future transactions. The `ReferenceId` value in the response is the `storedMethodId` to use with transactions.
-
 </dd>
 </dl>
 </dd>
@@ -15224,7 +15152,7 @@ Saves a payment method for reuse. This call exchanges sensitive payment informat
 await client.tokenStorage.addMethod({
     body: {
         customerData: {
-            customerId: 4440,
+            customerId: 4440
         },
         entryPoint: "f743aed24a",
         fallbackAuth: true,
@@ -15234,12 +15162,12 @@ await client.tokenStorage.addMethod({
             cardHolder: "John Doe",
             cardnumber: "4111111111111111",
             cardzip: "12345",
-            method: "card",
-        },
-    },
+            method: "card"
+        }
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -15253,20 +15181,21 @@ await client.tokenStorage.addMethod({
 <dl>
 <dd>
 
-**request:** `Payabli.AddMethodRequest`
-
+**request:** `Payabli.AddMethodRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `TokenStorage.RequestOptions`
+**requestOptions:** `TokenStorageClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -15285,7 +15214,6 @@ await client.tokenStorage.addMethod({
 <dd>
 
 Retrieves details for a saved payment method.
-
 </dd>
 </dl>
 </dd>
@@ -15302,10 +15230,10 @@ Retrieves details for a saved payment method.
 ```typescript
 await client.tokenStorage.getMethod("32-8877drt00045632-678", {
     cardExpirationFormat: 1,
-    includeTemporary: false,
+    includeTemporary: false
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -15320,27 +15248,28 @@ await client.tokenStorage.getMethod("32-8877drt00045632-678", {
 <dd>
 
 **methodId:** `string` — The saved payment method ID.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.GetMethodRequest`
-
+**request:** `Payabli.GetMethodRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `TokenStorage.RequestOptions`
+**requestOptions:** `TokenStorageClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -15359,7 +15288,6 @@ await client.tokenStorage.getMethod("32-8877drt00045632-678", {
 <dd>
 
 Deletes a saved payment method.
-
 </dd>
 </dl>
 </dd>
@@ -15375,8 +15303,8 @@ Deletes a saved payment method.
 
 ```typescript
 await client.tokenStorage.removeMethod("32-8877drt00045632-678");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -15391,19 +15319,20 @@ await client.tokenStorage.removeMethod("32-8877drt00045632-678");
 <dd>
 
 **methodId:** `string` — The saved payment method ID.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `TokenStorage.RequestOptions`
+**requestOptions:** `TokenStorageClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -15422,7 +15351,6 @@ await client.tokenStorage.removeMethod("32-8877drt00045632-678");
 <dd>
 
 Updates a saved payment method.
-
 </dd>
 </dl>
 </dd>
@@ -15440,7 +15368,7 @@ Updates a saved payment method.
 await client.tokenStorage.updateMethod("32-8877drt00045632-678", {
     body: {
         customerData: {
-            customerId: 4440,
+            customerId: 4440
         },
         entryPoint: "f743aed24a",
         fallbackAuth: true,
@@ -15450,12 +15378,12 @@ await client.tokenStorage.updateMethod("32-8877drt00045632-678", {
             cardHolder: "John Doe",
             cardnumber: "4111111111111111",
             cardzip: "12345",
-            method: "card",
-        },
-    },
+            method: "card"
+        }
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -15470,34 +15398,34 @@ await client.tokenStorage.updateMethod("32-8877drt00045632-678", {
 <dd>
 
 **methodId:** `string` — The saved payment method ID.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.UpdateMethodRequest`
-
+**request:** `Payabli.UpdateMethodRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `TokenStorage.RequestOptions`
+**requestOptions:** `TokenStorageClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## User
-
 <details><summary><code>client.user.<a href="/src/api/resources/user/client/Client.ts">addUser</a>({ ...params }) -> Payabli.AddUserResponse</code></summary>
 <dl>
 <dd>
@@ -15511,7 +15439,6 @@ await client.tokenStorage.updateMethod("32-8877drt00045632-678", {
 <dd>
 
 Use this endpoint to add a new user to an organization.
-
 </dd>
 </dl>
 </dd>
@@ -15527,8 +15454,8 @@ Use this endpoint to add a new user to an organization.
 
 ```typescript
 await client.user.addUser({});
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -15542,20 +15469,21 @@ await client.user.addUser({});
 <dl>
 <dd>
 
-**request:** `Payabli.UserData`
-
+**request:** `Payabli.UserData` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `User.RequestOptions`
+**requestOptions:** `UserClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -15574,7 +15502,6 @@ await client.user.addUser({});
 <dd>
 
 Use this endpoint to refresh the authentication token for a user within an organization.
-
 </dd>
 </dl>
 </dd>
@@ -15590,8 +15517,8 @@ Use this endpoint to refresh the authentication token for a user within an organ
 
 ```typescript
 await client.user.authRefreshUser();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -15605,12 +15532,13 @@ await client.user.authRefreshUser();
 <dl>
 <dd>
 
-**requestOptions:** `User.RequestOptions`
+**requestOptions:** `UserClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -15629,7 +15557,6 @@ await client.user.authRefreshUser();
 <dd>
 
 Use this endpoint to initiate a password reset for a user within an organization.
-
 </dd>
 </dl>
 </dd>
@@ -15645,8 +15572,8 @@ Use this endpoint to initiate a password reset for a user within an organization
 
 ```typescript
 await client.user.authResetUser();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -15660,20 +15587,21 @@ await client.user.authResetUser();
 <dl>
 <dd>
 
-**request:** `Payabli.UserAuthResetRequest`
-
+**request:** `Payabli.UserAuthResetRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `User.RequestOptions`
+**requestOptions:** `UserClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -15692,7 +15620,6 @@ await client.user.authResetUser();
 <dd>
 
 This endpoint requires an application API token.
-
 </dd>
 </dl>
 </dd>
@@ -15708,8 +15635,8 @@ This endpoint requires an application API token.
 
 ```typescript
 await client.user.authUser("provider");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -15724,27 +15651,28 @@ await client.user.authUser("provider");
 <dd>
 
 **provider:** `string` — Auth provider. This fields is optional and defaults to null for the built-in provider.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.UserAuthRequest`
-
+**request:** `Payabli.UserAuthRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `User.RequestOptions`
+**requestOptions:** `UserClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -15763,7 +15691,6 @@ await client.user.authUser("provider");
 <dd>
 
 Use this endpoint to change the password for a user within an organization.
-
 </dd>
 </dl>
 </dd>
@@ -15779,8 +15706,8 @@ Use this endpoint to change the password for a user within an organization.
 
 ```typescript
 await client.user.changePswUser();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -15794,20 +15721,21 @@ await client.user.changePswUser();
 <dl>
 <dd>
 
-**request:** `Payabli.UserAuthPswResetRequest`
-
+**request:** `Payabli.UserAuthPswResetRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `User.RequestOptions`
+**requestOptions:** `UserClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -15826,7 +15754,6 @@ await client.user.changePswUser();
 <dd>
 
 Use this endpoint to delete a specific user within an organization.
-
 </dd>
 </dl>
 </dd>
@@ -15842,8 +15769,8 @@ Use this endpoint to delete a specific user within an organization.
 
 ```typescript
 await client.user.deleteUser(1000000);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -15858,19 +15785,20 @@ await client.user.deleteUser(1000000);
 <dd>
 
 **userId:** `number` — The Payabli-generated `userId` value.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `User.RequestOptions`
+**requestOptions:** `UserClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -15889,7 +15817,6 @@ await client.user.deleteUser(1000000);
 <dd>
 
 Use this endpoint to enable or disable multi-factor authentication (MFA) for a user within an organization.
-
 </dd>
 </dl>
 </dd>
@@ -15905,8 +15832,8 @@ Use this endpoint to enable or disable multi-factor authentication (MFA) for a u
 
 ```typescript
 await client.user.editMfaUser(1000000, {});
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -15921,27 +15848,28 @@ await client.user.editMfaUser(1000000, {});
 <dd>
 
 **userId:** `number` — User Identifier
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.MfaData`
-
+**request:** `Payabli.MfaData` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `User.RequestOptions`
+**requestOptions:** `UserClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -15960,7 +15888,6 @@ await client.user.editMfaUser(1000000, {});
 <dd>
 
 Use this endpoint to modify the details of a specific user within an organization.
-
 </dd>
 </dl>
 </dd>
@@ -15976,8 +15903,8 @@ Use this endpoint to modify the details of a specific user within an organizatio
 
 ```typescript
 await client.user.editUser(1000000, {});
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -15992,27 +15919,28 @@ await client.user.editUser(1000000, {});
 <dd>
 
 **userId:** `number` — User Identifier
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.UserData`
-
+**request:** `Payabli.UserData` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `User.RequestOptions`
+**requestOptions:** `UserClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -16031,7 +15959,6 @@ await client.user.editUser(1000000, {});
 <dd>
 
 Use this endpoint to retrieve information about a specific user within an organization.
-
 </dd>
 </dl>
 </dd>
@@ -16047,10 +15974,10 @@ Use this endpoint to retrieve information about a specific user within an organi
 
 ```typescript
 await client.user.getUser(1000000, {
-    entry: "478ae1234",
+    entry: "478ae1234"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -16065,27 +15992,28 @@ await client.user.getUser(1000000, {
 <dd>
 
 **userId:** `number` — The Payabli-generated `userId` value.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.GetUserRequest`
-
+**request:** `Payabli.GetUserRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `User.RequestOptions`
+**requestOptions:** `UserClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -16104,7 +16032,6 @@ await client.user.getUser(1000000, {
 <dd>
 
 Use this endpoint to log a user out from the system.
-
 </dd>
 </dl>
 </dd>
@@ -16120,8 +16047,8 @@ Use this endpoint to log a user out from the system.
 
 ```typescript
 await client.user.logoutUser();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -16135,18 +16062,19 @@ await client.user.logoutUser();
 <dl>
 <dd>
 
-**requestOptions:** `User.RequestOptions`
+**requestOptions:** `UserClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.user.<a href="/src/api/resources/user/client/Client.ts">resendMfaCode</a>(usrname, entry, entryType) -> Payabli.PayabliApiResponseMfaBasic</code></summary>
+<details><summary><code>client.user.<a href="/src/api/resources/user/client/Client.ts">resendMfaCode</a>(usrname, Entry, EntryType) -> Payabli.PayabliApiResponseMfaBasic</code></summary>
 <dl>
 <dd>
 
@@ -16159,7 +16087,6 @@ await client.user.logoutUser();
 <dd>
 
 Resends the MFA code to the user via the selected MFA mode (email or SMS).
-
 </dd>
 </dl>
 </dd>
@@ -16175,8 +16102,8 @@ Resends the MFA code to the user via the selected MFA mode (email or SMS).
 
 ```typescript
 await client.user.resendMfaCode("usrname", "Entry", 1);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -16190,36 +16117,37 @@ await client.user.resendMfaCode("usrname", "Entry", 1);
 <dl>
 <dd>
 
-**usrname:** `string` —
-
+**usrname:** `string` —  
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**entry:** `string` —
-
+**Entry:** `string` —  
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**entryType:** `number` —
-
+**EntryType:** `number` —  
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `User.RequestOptions`
+**requestOptions:** `UserClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -16238,7 +16166,6 @@ await client.user.resendMfaCode("usrname", "Entry", 1);
 <dd>
 
 Use this endpoint to validate the multi-factor authentication (MFA) code for a user within an organization.
-
 </dd>
 </dl>
 </dd>
@@ -16254,8 +16181,8 @@ Use this endpoint to validate the multi-factor authentication (MFA) code for a u
 
 ```typescript
 await client.user.validateMfaUser();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -16269,27 +16196,27 @@ await client.user.validateMfaUser();
 <dl>
 <dd>
 
-**request:** `Payabli.MfaValidationData`
-
+**request:** `Payabli.MfaValidationData` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `User.RequestOptions`
+**requestOptions:** `UserClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Vendor
-
 <details><summary><code>client.vendor.<a href="/src/api/resources/vendor/client/Client.ts">addVendor</a>(entry, { ...params }) -> Payabli.PayabliApiResponseVendors</code></summary>
 <dl>
 <dd>
@@ -16303,7 +16230,6 @@ await client.user.validateMfaUser();
 <dd>
 
 Creates a vendor in an entrypoint.
-
 </dd>
 </dl>
 </dd>
@@ -16333,14 +16259,12 @@ await client.vendor.addVendor("8cfec329267", {
     country: "US",
     mcc: "7777",
     locationCode: "MIA123",
-    contacts: [
-        {
+    contacts: [{
             contactName: "Herman Martinez",
             contactEmail: "example@email.com",
             contactTitle: "Owner",
-            contactPhone: "3055550000",
-        },
-    ],
+            contactPhone: "3055550000"
+        }],
     billingData: {
         id: 123,
         bankName: "Country Bank",
@@ -16349,7 +16273,7 @@ await client.vendor.addVendor("8cfec329267", {
         typeAccount: "Checking",
         bankAccountHolderName: "Gruzya Adventure Outfitters LLC",
         bankAccountHolderType: "Business",
-        bankAccountFunction: 0,
+        bankAccountFunction: 0
     },
     paymentMethod: "managed",
     vendorStatus: 1,
@@ -16362,10 +16286,10 @@ await client.vendor.addVendor("8cfec329267", {
     payeeName1: "<string>",
     payeeName2: "<string>",
     customerVendorAccount: "A-37622",
-    internalReferenceId: 123,
+    internalReferenceId: 123
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -16380,27 +16304,28 @@ await client.vendor.addVendor("8cfec329267", {
 <dd>
 
 **entry:** `string` — Entrypoint identifier.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.VendorData`
-
+**request:** `Payabli.VendorData` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Vendor.RequestOptions`
+**requestOptions:** `VendorClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -16418,8 +16343,7 @@ await client.vendor.addVendor("8cfec329267", {
 <dl>
 <dd>
 
-Delete a vendor.
-
+Delete a vendor. 
 </dd>
 </dl>
 </dd>
@@ -16435,8 +16359,8 @@ Delete a vendor.
 
 ```typescript
 await client.vendor.deleteVendor(1);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -16451,19 +16375,20 @@ await client.vendor.deleteVendor(1);
 <dd>
 
 **idVendor:** `number` — Vendor ID.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Vendor.RequestOptions`
+**requestOptions:** `VendorClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -16482,7 +16407,6 @@ await client.vendor.deleteVendor(1);
 <dd>
 
 Updates a vendor's information. Send only the fields you need to update.
-
 </dd>
 </dl>
 </dd>
@@ -16498,10 +16422,10 @@ Updates a vendor's information. Send only the fields you need to update.
 
 ```typescript
 await client.vendor.editVendor(1, {
-    name1: "Theodore's Janitorial",
+    name1: "Theodore's Janitorial"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -16516,27 +16440,28 @@ await client.vendor.editVendor(1, {
 <dd>
 
 **idVendor:** `number` — Vendor ID.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Payabli.VendorData`
-
+**request:** `Payabli.VendorData` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Vendor.RequestOptions`
+**requestOptions:** `VendorClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -16555,7 +16480,6 @@ await client.vendor.editVendor(1, {
 <dd>
 
 Retrieves a vendor's details.
-
 </dd>
 </dl>
 </dd>
@@ -16571,8 +16495,8 @@ Retrieves a vendor's details.
 
 ```typescript
 await client.vendor.getVendor(1);
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -16587,26 +16511,26 @@ await client.vendor.getVendor(1);
 <dd>
 
 **idVendor:** `number` — Vendor ID.
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Vendor.RequestOptions`
+**requestOptions:** `VendorClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## Wallet
-
 <details><summary><code>client.wallet.<a href="/src/api/resources/wallet/client/Client.ts">configureApplePayOrganization</a>({ ...params }) -> Payabli.ConfigureApplePayOrganizationApiResponse</code></summary>
 <dl>
 <dd>
@@ -16620,7 +16544,6 @@ await client.vendor.getVendor(1);
 <dd>
 
 Configure and activate Apple Pay for a Payabli organization
-
 </dd>
 </dl>
 </dd>
@@ -16638,10 +16561,10 @@ Configure and activate Apple Pay for a Payabli organization
 await client.wallet.configureApplePayOrganization({
     cascade: true,
     isEnabled: true,
-    orgId: 901,
+    orgId: 901
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -16655,20 +16578,21 @@ await client.wallet.configureApplePayOrganization({
 <dl>
 <dd>
 
-**request:** `Payabli.ConfigureOrganizationRequestApplePay`
-
+**request:** `Payabli.ConfigureOrganizationRequestApplePay` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Wallet.RequestOptions`
+**requestOptions:** `WalletClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -16687,7 +16611,6 @@ await client.wallet.configureApplePayOrganization({
 <dd>
 
 Configure and activate Apple Pay for a Payabli paypoint
-
 </dd>
 </dl>
 </dd>
@@ -16704,10 +16627,10 @@ Configure and activate Apple Pay for a Payabli paypoint
 ```typescript
 await client.wallet.configureApplePayPaypoint({
     entry: "8cfec329267",
-    isEnabled: true,
+    isEnabled: true
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -16721,20 +16644,21 @@ await client.wallet.configureApplePayPaypoint({
 <dl>
 <dd>
 
-**request:** `Payabli.ConfigurePaypointRequestApplePay`
-
+**request:** `Payabli.ConfigurePaypointRequestApplePay` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Wallet.RequestOptions`
+**requestOptions:** `WalletClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -16753,7 +16677,6 @@ await client.wallet.configureApplePayPaypoint({
 <dd>
 
 Configure and activate Google Pay for a Payabli organization
-
 </dd>
 </dl>
 </dd>
@@ -16771,10 +16694,10 @@ Configure and activate Google Pay for a Payabli organization
 await client.wallet.configureGooglePayOrganization({
     cascade: true,
     isEnabled: true,
-    orgId: 901,
+    orgId: 901
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -16788,20 +16711,21 @@ await client.wallet.configureGooglePayOrganization({
 <dl>
 <dd>
 
-**request:** `Payabli.ConfigureOrganizationRequestGooglePay`
-
+**request:** `Payabli.ConfigureOrganizationRequestGooglePay` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Wallet.RequestOptions`
+**requestOptions:** `WalletClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -16820,7 +16744,6 @@ await client.wallet.configureGooglePayOrganization({
 <dd>
 
 Configure and activate Google Pay for a Payabli paypoint
-
 </dd>
 </dl>
 </dd>
@@ -16837,10 +16760,10 @@ Configure and activate Google Pay for a Payabli paypoint
 ```typescript
 await client.wallet.configureGooglePayPaypoint({
     entry: "8cfec329267",
-    isEnabled: true,
+    isEnabled: true
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -16854,20 +16777,21 @@ await client.wallet.configureGooglePayPaypoint({
 <dl>
 <dd>
 
-**request:** `Payabli.ConfigurePaypointRequestGooglePay`
-
+**request:** `Payabli.ConfigurePaypointRequestGooglePay` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Wallet.RequestOptions`
+**requestOptions:** `WalletClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
