@@ -1,1 +1,1 @@
-export { type ResponseChargeBack } from "./ResponseChargeBack.js";
+export type { ResponseChargeBack } from "./ResponseChargeBack.js";
