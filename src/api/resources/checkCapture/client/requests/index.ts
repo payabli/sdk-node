@@ -1,1 +1,1 @@
-export { type CheckCaptureRequestBody } from "./CheckCaptureRequestBody.js";
+export type { CheckCaptureRequestBody } from "./CheckCaptureRequestBody.js";
