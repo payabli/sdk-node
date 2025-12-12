@@ -1,5 +1,5 @@
 {
-    "name": "@payabli/sdk-node",
+    "name": "test-package",
     "type": "commonjs",
     "main": "./dist/cjs/index.js",
     "module": "./dist/esm/index.mjs",
@@ -59,8 +59,5 @@
     "engines": {
         "node": ">=18.0.0"
     },
-    "sideEffects": false,
-    "version": "0.0.117",
-    "private": false,
-    "repository": "https://github.com/payabli/sdk-node"
+    "sideEffects": false
 }

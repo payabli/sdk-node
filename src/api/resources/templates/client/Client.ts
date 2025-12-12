@@ -11,7 +11,7 @@ import * as errors from "../../../../errors/index.js";
 import * as Payabli from "../../../index.js";
 
 export declare namespace TemplatesClient {
-    export interface Options extends BaseClientOptions {}
+    export type Options = BaseClientOptions;
 
     export interface RequestOptions extends BaseRequestOptions {}
 }
