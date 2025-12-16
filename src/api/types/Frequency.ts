@@ -2,7 +2,7 @@
 
 /** Frequency for operation. */
 export const Frequency = {
-    OneTime: "one-time",
+    OneTime: "onetime",
     Weekly: "weekly",
     Every2Weeks: "every2weeks",
     Every6Months: "every6months",

@@ -5037,7 +5037,7 @@ describe("QueryClient", () => {
                 IdSub: 580,
                 InvoiceData: {
                     AdditionalData: "AdditionalData",
-                    frequency: "one-time",
+                    frequency: "onetime",
                     invoiceAmount: 100,
                     invoiceNumber: "QA-1702561870",
                     invoiceStatus: 1,
@@ -5172,7 +5172,7 @@ describe("QueryClient", () => {
                 IdSub: 580,
                 InvoiceData: {
                     AdditionalData: "AdditionalData",
-                    frequency: "one-time",
+                    frequency: "onetime",
                     invoiceAmount: 100,
                     invoiceNumber: "QA-1702561870",
                     invoiceStatus: 1,
@@ -5376,7 +5376,7 @@ describe("QueryClient", () => {
                 IdSub: 580,
                 InvoiceData: {
                     AdditionalData: "AdditionalData",
-                    frequency: "one-time",
+                    frequency: "onetime",
                     invoiceAmount: 100,
                     invoiceNumber: "QA-1702561870",
                     invoiceStatus: 1,
@@ -5511,7 +5511,7 @@ describe("QueryClient", () => {
                 IdSub: 580,
                 InvoiceData: {
                     AdditionalData: "AdditionalData",
-                    frequency: "one-time",
+                    frequency: "onetime",
                     invoiceAmount: 100,
                     invoiceNumber: "QA-1702561870",
                     invoiceStatus: 1,
@@ -5739,7 +5739,7 @@ describe("QueryClient", () => {
                         dutyAmount: 0,
                         firstName: "string",
                         freightAmount: 10,
-                        frequency: "one-time",
+                        frequency: "onetime",
                         invoiceAmount: 105,
                         invoiceDate: "2026-01-01",
                         invoiceDueDate: "2026-01-15",
@@ -5916,7 +5916,7 @@ describe("QueryClient", () => {
                         dutyAmount: 0,
                         firstName: "string",
                         freightAmount: 10,
-                        frequency: "one-time",
+                        frequency: "onetime",
                         invoiceAmount: 105,
                         invoiceDate: "2026-01-01",
                         invoiceDueDate: "2026-01-15",

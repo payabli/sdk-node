@@ -6,7 +6,7 @@ import type * as Payabli from "../index.js";
  * Customer information.
  */
 export interface PayorDataResponse {
-    AdditionalData: Payabli.AdditionalData | null;
+    AdditionalData: Payabli.AdditionalDataMap | null;
     BillingAddress1: Payabli.BillingAddressNullable | null;
     BillingAddress2: Payabli.BillingAddressAddtlNullable | null;
     BillingCity: Payabli.BillingCityNullable | null;

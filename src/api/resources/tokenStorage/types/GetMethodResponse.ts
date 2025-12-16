@@ -26,7 +26,7 @@ export namespace GetMethodResponse {
         /** The stored payment method's identifier in Payabli */
         idPmethod?: string;
         /** Timestamp for last update of stored method, in UTC */
-        lastUpdated?: Payabli.LastModified | undefined;
+        lastUpdated?: string;
         maskedAccount?: Payabli.Maskedaccount;
         /** The saved method's type: `card` or `ach`. */
         method?: string;

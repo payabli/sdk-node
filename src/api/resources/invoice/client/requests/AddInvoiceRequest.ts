@@ -17,17 +17,19 @@ import type * as Payabli from "../../../../index.js";
  *                         itemDescription: "Consultation for Georgian tours",
  *                         itemCost: 100,
  *                         itemQty: 1,
- *                         itemMode: 1
+ *                         itemMode: 1,
+ *                         itemTotalAmount: 1
  *                     }, {
  *                         itemProductName: "Deposit ",
  *                         itemDescription: "Deposit for trip planning",
  *                         itemCost: 882.37,
- *                         itemQty: 1
+ *                         itemQty: 1,
+ *                         itemTotalAmount: 1
  *                     }],
  *                 invoiceDate: "2025-10-19",
  *                 invoiceType: 0,
  *                 invoiceStatus: 1,
- *                 frequency: "one-time",
+ *                 frequency: "onetime",
  *                 invoiceAmount: 982.37,
  *                 discount: 10,
  *                 invoiceNumber: "INV-3"

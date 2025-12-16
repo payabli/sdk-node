@@ -118,7 +118,7 @@ export class PaymentLinkClient {
      *                         name: "fullName",
      *                         order: 0,
      *                         required: true,
-     *                         validation: "^[a-zA-Z ]+$",
+     *                         validation: "alpha",
      *                         value: "",
      *                         width: 0
      *                     }],
@@ -302,7 +302,7 @@ export class PaymentLinkClient {
      *                         name: "fullName",
      *                         order: 0,
      *                         required: true,
-     *                         validation: "^[a-zA-Z ]+$",
+     *                         validation: "alpha",
      *                         value: "",
      *                         width: 0
      *                     }],
@@ -1024,7 +1024,7 @@ export class PaymentLinkClient {
      *                         name: "fullName",
      *                         order: 0,
      *                         required: true,
-     *                         validation: "^[a-zA-Z ]+$",
+     *                         validation: "alpha",
      *                         value: "",
      *                         width: 0
      *                     }],

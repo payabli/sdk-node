@@ -50,6 +50,47 @@ describe("NotificationClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
+            content: { eventType: "ApprovedPayment" },
+            frequency: "untilcancelled",
+            method: "web",
+            ownerId: "236",
+            ownerType: 0,
+            status: 1,
+            target: "https://cfe9dc390ce2.ngrok-free.app/webhook",
+        };
+        const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 1717, responseText: "Success" };
+        server
+            .mockEndpoint()
+            .post("/Notification")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.notification.addNotification({
+            content: {
+                eventType: "ApprovedPayment",
+            },
+            frequency: "untilcancelled",
+            method: "web",
+            ownerId: "236",
+            ownerType: 0,
+            status: 1,
+            target: "https://cfe9dc390ce2.ngrok-free.app/webhook",
+        });
+        expect(response).toEqual({
+            isSuccess: true,
+            responseCode: 1,
+            responseData: 1717,
+            responseText: "Success",
+        });
+    });
+
+    test("AddNotification (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
             content: {
                 eventType: "Report",
                 fileFormat: "json",
@@ -97,7 +138,7 @@ describe("NotificationClient", () => {
         });
     });
 
-    test("AddNotification (3)", async () => {
+    test("AddNotification (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { frequency: "one-time", method: "email", ownerType: 1, target: "target" };
@@ -121,7 +162,7 @@ describe("NotificationClient", () => {
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
-    test("AddNotification (4)", async () => {
+    test("AddNotification (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { frequency: "one-time", method: "email", ownerType: 1, target: "target" };
@@ -145,7 +186,7 @@ describe("NotificationClient", () => {
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
-    test("AddNotification (5)", async () => {
+    test("AddNotification (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { frequency: "one-time", method: "email", ownerType: 1, target: "target" };
@@ -169,7 +210,7 @@ describe("NotificationClient", () => {
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
-    test("AddNotification (6)", async () => {
+    test("AddNotification (7)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { frequency: "one-time", method: "email", ownerType: 1, target: "target" };

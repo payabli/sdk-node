@@ -49,6 +49,19 @@ export class NotificationClient {
      * @example
      *     await client.notification.addNotification({
      *         content: {
+     *             eventType: "ApprovedPayment"
+     *         },
+     *         frequency: "untilcancelled",
+     *         method: "web",
+     *         ownerId: "236",
+     *         ownerType: 0,
+     *         status: 1,
+     *         target: "https://cfe9dc390ce2.ngrok-free.app/webhook"
+     *     })
+     *
+     * @example
+     *     await client.notification.addNotification({
+     *         content: {
      *             eventType: "Report",
      *             fileFormat: "json",
      *             reportName: "Transaction",

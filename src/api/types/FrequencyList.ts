@@ -12,7 +12,7 @@ export interface FrequencyList {
     /** Enable or disable frequency */
     monthly?: boolean;
     /** Enable or disable frequency */
-    "one-time"?: boolean;
+    onetime?: boolean;
     /** Enable or disable frequency */
     weekly?: boolean;
 }
