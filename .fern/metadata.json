@@ -1,15 +1,9 @@
 {
     "cliVersion": "3.22.1",
     "generatorName": "fernapi/fern-typescript-node-sdk",
-    "generatorVersion": "3.35.8",
+    "generatorVersion": "3.42.0",
     "generatorConfig": {
         "namespaceExport": "Payabli",
-        "noSerdeLayer": true,
-        "packageJson": {
-            "name": "@payabli/sdk-node",
-            "version": "0.0.117",
-            "private": false,
-            "repository": "https://github.com/payabli/sdk-node"
-        }
+        "noSerdeLayer": true
     }
 }

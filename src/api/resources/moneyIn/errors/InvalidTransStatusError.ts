@@ -12,6 +12,11 @@ export class InvalidTransStatusError extends errors.PayabliError {
             body: body,
             rawResponse: rawResponse,
         });
-        Object.setPrototypeOf(this, InvalidTransStatusError.prototype);
+        Object.setPrototypeOf(this, new.target.prototype);
+        if (Error.captureStackTrace) {
+            Error.captureStackTrace(this, this.constructor);
+        }
+
+        this.name = this.constructor.name;
     }
 }
