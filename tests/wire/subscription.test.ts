@@ -12,7 +12,6 @@ describe("SubscriptionClient", () => {
         const rawResponseBody = {
             CreatedAt: "2022-07-01T15:00:01Z",
             Customer: {
-                AdditionalData: "AdditionalData",
                 BillingAddress1: "1111 West 1st Street",
                 BillingAddress2: "Suite 200",
                 BillingCity: "Miami",
@@ -145,7 +144,6 @@ describe("SubscriptionClient", () => {
         expect(response).toEqual({
             CreatedAt: "2022-07-01T15:00:01Z",
             Customer: {
-                AdditionalData: "AdditionalData",
                 BillingAddress1: "1111 West 1st Street",
                 BillingAddress2: "Suite 200",
                 BillingCity: "Miami",
@@ -771,81 +769,5 @@ describe("SubscriptionClient", () => {
             responseData: "396 updated",
             customerId: 4440,
         });
-    });
-
-    test("UpdateSubscription (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .put("/Subscription/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.subscription.updateSubscription(1);
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("UpdateSubscription (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .put("/Subscription/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.subscription.updateSubscription(1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("UpdateSubscription (6)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .put("/Subscription/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.subscription.updateSubscription(1);
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("UpdateSubscription (7)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
-        server
-            .mockEndpoint()
-            .put("/Subscription/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.subscription.updateSubscription(1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 });

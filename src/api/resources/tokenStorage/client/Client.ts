@@ -104,6 +104,29 @@ export class TokenStorageClient {
      *             }
      *         }
      *     })
+     *
+     * @example
+     *     await client.tokenStorage.addMethod({
+     *         achValidation: true,
+     *         body: {
+     *             customerData: {
+     *                 customerId: 4440
+     *             },
+     *             entryPoint: "f743aed24a",
+     *             paymentMethod: {
+     *                 achAccount: "1111111111111",
+     *                 achAccountType: "Checking",
+     *                 achCode: "WEB",
+     *                 achHolder: "John Doe",
+     *                 achHolderType: "personal",
+     *                 achRouting: "123456780",
+     *                 method: "ach"
+     *             },
+     *             vendorData: {
+     *                 vendorId: 7890
+     *             }
+     *         }
+     *     })
      */
     public addMethod(
         request: Payabli.AddMethodRequest,
@@ -210,6 +233,12 @@ export class TokenStorageClient {
      *
      * @example
      *     await client.tokenStorage.getMethod("32-8877drt00045632-678", {
+     *         cardExpirationFormat: 1,
+     *         includeTemporary: false
+     *     })
+     *
+     * @example
+     *     await client.tokenStorage.getMethod("749e236c-59a3-49c7-ab47-73e06f9e94aa-199689", {
      *         cardExpirationFormat: 1,
      *         includeTemporary: false
      *     })
@@ -374,11 +403,6 @@ export class TokenStorageClient {
      * @param {Payabli.UpdateMethodRequest} request
      * @param {TokenStorageClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.InternalServerError}
-     * @throws {@link Payabli.ServiceUnavailableError}
-     *
      * @example
      *     await client.tokenStorage.updateMethod("32-8877drt00045632-678", {
      *         body: {
@@ -413,6 +437,28 @@ export class TokenStorageClient {
      *                 achHolderType: "personal",
      *                 achRouting: "123456780",
      *                 method: "ach"
+     *             }
+     *         }
+     *     })
+     *
+     * @example
+     *     await client.tokenStorage.updateMethod("32-8877drt00045632-678", {
+     *         body: {
+     *             customerData: {
+     *                 customerId: 4440
+     *             },
+     *             entryPoint: "f743aed24a",
+     *             paymentMethod: {
+     *                 achAccount: "1111111111111",
+     *                 achAccountType: "Checking",
+     *                 achCode: "WEB",
+     *                 achHolder: "John Doe",
+     *                 achHolderType: "personal",
+     *                 achRouting: "123456780",
+     *                 method: "ach"
+     *             },
+     *             vendorData: {
+     *                 vendorId: 7890
      *             }
      *         }
      *     })
@@ -469,25 +515,11 @@ export class TokenStorageClient {
         }
 
         if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
-                case 500:
-                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
-                case 503:
-                    throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.PayabliError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
+            throw new errors.PayabliError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/TokenStorage/{methodId}");

@@ -3,4 +3,4 @@
 /**
  * Text code describing the result for CVV validation (applies only for card transactions).
  */
-export type Cvvresponsetext = string;
+export type CvvResponseText = string;

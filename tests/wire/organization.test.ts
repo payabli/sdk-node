@@ -1193,7 +1193,7 @@ describe("OrganizationClient", () => {
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
-    test("GetSettingsOrganization (1)", async () => {
+    test("GetSettingsOrganization", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -1258,77 +1258,5 @@ describe("OrganizationClient", () => {
                 },
             ],
         });
-    });
-
-    test("GetSettingsOrganization (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .get("/Organization/settings/1")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.organization.getSettingsOrganization(1);
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("GetSettingsOrganization (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .get("/Organization/settings/1")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.organization.getSettingsOrganization(1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("GetSettingsOrganization (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .get("/Organization/settings/1")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.organization.getSettingsOrganization(1);
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("GetSettingsOrganization (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { responseText: "responseText" };
-        server
-            .mockEndpoint()
-            .get("/Organization/settings/1")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.organization.getSettingsOrganization(1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 });

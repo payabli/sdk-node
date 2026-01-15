@@ -406,7 +406,7 @@ describe("WalletClient", () => {
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
-    test("ConfigureGooglePayPaypoint (1)", async () => {
+    test("ConfigureGooglePayPaypoint", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entry: "8cfec329267", isEnabled: true };
@@ -450,81 +450,5 @@ describe("WalletClient", () => {
             },
             responseText: "Success",
         });
-    });
-
-    test("ConfigureGooglePayPaypoint (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .post("/Wallet/googlepay/configure-paypoint")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.wallet.configureGooglePayPaypoint();
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("ConfigureGooglePayPaypoint (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .post("/Wallet/googlepay/configure-paypoint")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.wallet.configureGooglePayPaypoint();
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("ConfigureGooglePayPaypoint (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .post("/Wallet/googlepay/configure-paypoint")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.wallet.configureGooglePayPaypoint();
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("ConfigureGooglePayPaypoint (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
-        server
-            .mockEndpoint()
-            .post("/Wallet/googlepay/configure-paypoint")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.wallet.configureGooglePayPaypoint();
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 });

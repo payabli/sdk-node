@@ -7,3 +7,4 @@ export * from "./RequestTokenStoragePaymentMethod.js";
 export * from "./Temporary.js";
 export * from "./TokenizeAch.js";
 export * from "./TokenizeCard.js";
+export * from "./VendorDataRequest.js";

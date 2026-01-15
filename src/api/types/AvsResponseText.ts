@@ -3,4 +3,4 @@
 /**
  * Text code describing the result for address validation (applies only for card transactions).
  */
-export type Avsresponsetext = string;
+export type AvsResponseText = string;

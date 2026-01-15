@@ -74,6 +74,29 @@ import type * as Payabli from "../../../../index.js";
  *             }
  *         }
  *     }
+ *
+ * @example
+ *     {
+ *         achValidation: true,
+ *         body: {
+ *             customerData: {
+ *                 customerId: 4440
+ *             },
+ *             entryPoint: "f743aed24a",
+ *             paymentMethod: {
+ *                 achAccount: "1111111111111",
+ *                 achAccountType: "Checking",
+ *                 achCode: "WEB",
+ *                 achHolder: "John Doe",
+ *                 achHolderType: "personal",
+ *                 achRouting: "123456780",
+ *                 method: "ach"
+ *             },
+ *             vendorData: {
+ *                 vendorId: 7890
+ *             }
+ *         }
+ *     }
  */
 export interface AddMethodRequest {
     achValidation?: Payabli.AchValidation | undefined;

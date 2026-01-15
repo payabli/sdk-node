@@ -209,7 +209,6 @@ describe("ChargeBacksClient", () => {
                 CfeeTransactions: [{ transactionTime: "2024-01-15T09:30:00Z" }],
                 ConnectorName: "gp",
                 Customer: {
-                    AdditionalData: "AdditionalData",
                     BillingAddress1: "1111 West 1st Street",
                     BillingAddress2: "Suite 200",
                     BillingCity: "Miami",
@@ -474,7 +473,6 @@ describe("ChargeBacksClient", () => {
                 ],
                 ConnectorName: "gp",
                 Customer: {
-                    AdditionalData: "AdditionalData",
                     BillingAddress1: "1111 West 1st Street",
                     BillingAddress2: "Suite 200",
                     BillingCity: "Miami",

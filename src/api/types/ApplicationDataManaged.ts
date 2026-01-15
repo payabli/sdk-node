@@ -49,6 +49,7 @@ export interface ApplicationDataManaged {
     RepCode?: Payabli.RepCode;
     RepName?: Payabli.RepName;
     RepOffice?: Payabli.RepOffice;
+    onCreate?: Payabli.OnCreate;
 }
 
 export namespace ApplicationDataManaged {

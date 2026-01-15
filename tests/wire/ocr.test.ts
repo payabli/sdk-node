@@ -331,7 +331,7 @@ describe("OcrClient", () => {
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
-    test("OcrDocumentJson (1)", async () => {
+    test("OcrDocumentJson", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
@@ -579,81 +579,5 @@ describe("OcrClient", () => {
                 },
             },
         });
-    });
-
-    test("OcrDocumentJson (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .post("/Import/ocrDocumentJson/typeResult")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.ocr.ocrDocumentJson("typeResult", {});
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("OcrDocumentJson (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .post("/Import/ocrDocumentJson/typeResult")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.ocr.ocrDocumentJson("typeResult", {});
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("OcrDocumentJson (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .post("/Import/ocrDocumentJson/typeResult")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.ocr.ocrDocumentJson("typeResult", {});
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("OcrDocumentJson (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
-        server
-            .mockEndpoint()
-            .post("/Import/ocrDocumentJson/typeResult")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.ocr.ocrDocumentJson("typeResult", {});
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 });

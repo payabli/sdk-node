@@ -24,8 +24,10 @@ export class MoneyInClient {
 
     /**
      * Authorize a card transaction. This returns an authorization code and reserves funds for the merchant. Authorized transactions aren't flagged for settlement until [captured](/api-reference/moneyin/capture-an-authorized-transaction).
-     *
-     * **Note**: Only card transactions can be authorized. This endpoint can't be used for ACH transactions.
+     * Only card transactions can be authorized. This endpoint can't be used for ACH transactions.
+     * <Tip>
+     *   Consider migrating to the [v2 Authorize endpoint](/developers/api-reference/moneyinV2/authorize-a-transaction) to take advantage of unified response codes and improved response consistency.
+     * </Tip>
      *
      * @param {Payabli.RequestPaymentAuthorize} request
      * @param {MoneyInClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -224,6 +226,10 @@ export class MoneyInClient {
      * Capture an [authorized transaction](/api-reference/moneyin/authorize-a-transaction) to complete the transaction and move funds from the customer to merchant account.
      *
      * You can use this endpoint to capture both full and partial amounts of the original authorized transaction. See [Capture an authorized transaction](/developers/developer-guides/pay-in-auth-and-capture) for more information about this endpoint.
+     *
+     * <Tip>
+     * Consider migrating to the [v2 Capture endpoint](/developers/api-reference/moneyinV2/capture-an-authorized-transaction) to take advantage of unified response codes and improved response consistency.
+     * </Tip>
      *
      * @param {string} transId - ReferenceId for the transaction (PaymentId).
      * @param {Payabli.CaptureRequest} request
@@ -537,6 +543,10 @@ export class MoneyInClient {
 
     /**
      * Make a single transaction. This method authorizes and captures a payment in one step.
+     *
+     *   <Tip>
+     *   Consider migrating to the [v2 Make a transaction endpoint](/developers/api-reference/moneyinV2/make-a-transaction) to take advantage of unified response codes and improved response consistency.
+     *   </Tip>
      *
      * @param {Payabli.RequestPayment} request
      * @param {MoneyInClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -881,6 +891,10 @@ export class MoneyInClient {
 
     /**
      * Refund a transaction that has settled and send money back to the account holder. If a transaction hasn't been settled, void it instead.
+     *
+     *   <Tip>
+     *   Consider migrating to the [v2 Refund endpoint](/developers/api-reference/moneyinV2/refund-a-settled-transaction) to take advantage of unified response codes and improved response consistency.
+     *   </Tip>
      *
      * @param {string} transId - ReferenceId for the transaction (PaymentId).
      * @param {number} amount -
@@ -1364,6 +1378,10 @@ export class MoneyInClient {
     /**
      * Cancel a transaction that hasn't been settled yet. Voiding non-captured authorizations prevents future captures. If a transaction has been settled, refund it instead.
      *
+     *   <Tip>
+     *   Consider migrating to the [v2 Void endpoint](/developers/api-reference/moneyinV2/void-a-transaction) to take advantage of unified response codes and improved response consistency.
+     *   </Tip>
+     *
      * @param {string} transId - ReferenceId for the transaction (PaymentId).
      * @param {MoneyInClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -1435,5 +1453,672 @@ export class MoneyInClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/MoneyIn/void/{transId}");
+    }
+
+    /**
+     * Make a single transaction. This method authorizes and captures a payment in one step. This is the v2 version of the `api/MoneyIn/getpaid` endpoint, and returns the unified response format. See [Pay In unified response codes reference](/developers/references/pay-in-unified-response-codes) for more information.
+     *
+     * @param {Payabli.RequestPaymentV2} request
+     * @param {MoneyInClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestAuthResponseErrorV2}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.DeclinedAuthResponseErrorV2}
+     * @throws {@link Payabli.InternalServerResponseErrorV2}
+     *
+     * @example
+     *     await client.moneyIn.getpaidv2({
+     *         body: {
+     *             customerData: {
+     *                 customerId: 4440
+     *             },
+     *             entryPoint: "f743aed24a",
+     *             ipaddress: "255.255.255.255",
+     *             paymentDetails: {
+     *                 serviceFee: 0,
+     *                 totalAmount: 100
+     *             },
+     *             paymentMethod: {
+     *                 cardcvv: "999",
+     *                 cardexp: "02/27",
+     *                 cardHolder: "John Cassian",
+     *                 cardnumber: "4111111111111111",
+     *                 cardzip: "12345",
+     *                 initiator: "payor",
+     *                 method: "card"
+     *             }
+     *         }
+     *     })
+     *
+     * @example
+     *     await client.moneyIn.getpaidv2({
+     *         body: {
+     *             customerData: {
+     *                 customerId: 4440
+     *             },
+     *             entryPoint: "f743aed24a",
+     *             ipaddress: "255.255.255.255",
+     *             paymentDetails: {
+     *                 serviceFee: 0,
+     *                 totalAmount: 100
+     *             },
+     *             paymentMethod: {
+     *                 initiator: "payor",
+     *                 method: "card",
+     *                 storedMethodId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+     *                 storedMethodUsageType: "unscheduled"
+     *             }
+     *         }
+     *     })
+     *
+     * @example
+     *     await client.moneyIn.getpaidv2({
+     *         body: {
+     *             customerData: {
+     *                 customerId: 4440
+     *             },
+     *             entryPoint: "f743aed24a",
+     *             ipaddress: "255.255.255.255",
+     *             paymentDetails: {
+     *                 serviceFee: 0,
+     *                 totalAmount: 100
+     *             },
+     *             paymentMethod: {
+     *                 achAccount: "123123123",
+     *                 achAccountType: "Checking",
+     *                 achCode: "WEB",
+     *                 achHolder: "John Cassian",
+     *                 achHolderType: "personal",
+     *                 achRouting: "123123123",
+     *                 method: "ach"
+     *             }
+     *         }
+     *     })
+     *
+     * @example
+     *     await client.moneyIn.getpaidv2({
+     *         body: {
+     *             customerData: {
+     *                 customerId: 4440
+     *             },
+     *             entryPoint: "f743aed24a",
+     *             ipaddress: "255.255.255.255",
+     *             paymentDetails: {
+     *                 serviceFee: 0,
+     *                 totalAmount: 100
+     *             },
+     *             paymentMethod: {
+     *                 device: "6c361c7d-674c-44cc-b790-382b75d1xxx",
+     *                 method: "cloud",
+     *                 saveIfSuccess: true
+     *             }
+     *         }
+     *     })
+     */
+    public getpaidv2(
+        request: Payabli.RequestPaymentV2,
+        requestOptions?: MoneyInClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.V2TransactionResponseWrapper> {
+        return core.HttpResponsePromise.fromPromise(this.__getpaidv2(request, requestOptions));
+    }
+
+    private async __getpaidv2(
+        request: Payabli.RequestPaymentV2,
+        requestOptions?: MoneyInClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.V2TransactionResponseWrapper>> {
+        const { achValidation, forceCustomerCreation, idempotencyKey, validationCode, body: _body } = request;
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (achValidation != null) {
+            _queryParams.achValidation = achValidation.toString();
+        }
+
+        if (forceCustomerCreation != null) {
+            _queryParams.forceCustomerCreation = forceCustomerCreation.toString();
+        }
+
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                idempotencyKey: idempotencyKey != null ? idempotencyKey : undefined,
+                validationCode: validationCode != null ? validationCode : undefined,
+            }),
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                "v2/MoneyIn/getpaid",
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            requestType: "json",
+            body: _body,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.V2TransactionResponseWrapper, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestAuthResponseErrorV2(
+                        _response.error.body as Payabli.V2BadRequestError,
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 402:
+                    throw new Payabli.DeclinedAuthResponseErrorV2(
+                        _response.error.body as Payabli.V2DeclinedTransactionResponseWrapper,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerResponseErrorV2(
+                        _response.error.body as Payabli.V2InternalServerError,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/v2/MoneyIn/getpaid");
+    }
+
+    /**
+     * Authorize a card transaction. This returns an authorization code and reserves funds for the merchant. Authorized transactions aren't flagged for settlement until captured. This is the v2 version of the `api/MoneyIn/authorize` endpoint, and returns the unified response format. See [Pay In unified response codes reference](/developers/references/pay-in-unified-response-codes) for more information.
+     *
+     * **Note**: Only card transactions can be authorized. This endpoint can't be used for ACH transactions.
+     *
+     * @param {Payabli.RequestPaymentAuthorizeV2} request
+     * @param {MoneyInClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestAuthResponseErrorV2}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.DeclinedAuthResponseErrorV2}
+     * @throws {@link Payabli.InternalServerResponseErrorV2}
+     *
+     * @example
+     *     await client.moneyIn.authorizev2({
+     *         body: {
+     *             customerData: {
+     *                 customerId: 4440
+     *             },
+     *             entryPoint: "f743aed24a",
+     *             ipaddress: "255.255.255.255",
+     *             paymentDetails: {
+     *                 serviceFee: 0,
+     *                 totalAmount: 100
+     *             },
+     *             paymentMethod: {
+     *                 cardcvv: "999",
+     *                 cardexp: "02/27",
+     *                 cardHolder: "John Cassian",
+     *                 cardnumber: "4111111111111111",
+     *                 cardzip: "12345",
+     *                 initiator: "payor",
+     *                 method: "card"
+     *             }
+     *         }
+     *     })
+     */
+    public authorizev2(
+        request: Payabli.RequestPaymentAuthorizeV2,
+        requestOptions?: MoneyInClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.V2TransactionResponseWrapper> {
+        return core.HttpResponsePromise.fromPromise(this.__authorizev2(request, requestOptions));
+    }
+
+    private async __authorizev2(
+        request: Payabli.RequestPaymentAuthorizeV2,
+        requestOptions?: MoneyInClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.V2TransactionResponseWrapper>> {
+        const { forceCustomerCreation, idempotencyKey, body: _body } = request;
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (forceCustomerCreation != null) {
+            _queryParams.forceCustomerCreation = forceCustomerCreation.toString();
+        }
+
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey != null ? idempotencyKey : undefined }),
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                "v2/MoneyIn/authorize",
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            requestType: "json",
+            body: _body,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.V2TransactionResponseWrapper, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestAuthResponseErrorV2(
+                        _response.error.body as Payabli.V2BadRequestError,
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 402:
+                    throw new Payabli.DeclinedAuthResponseErrorV2(
+                        _response.error.body as Payabli.V2DeclinedTransactionResponseWrapper,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerResponseErrorV2(
+                        _response.error.body as Payabli.V2InternalServerError,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/v2/MoneyIn/authorize");
+    }
+
+    /**
+     * Capture an authorized transaction to complete the transaction and move funds from the customer to merchant account. This is the v2 version of the `api/MoneyIn/capture/{transId}` endpoint, and returns the unified response format. See [Pay In unified response codes reference](/developers/references/pay-in-unified-response-codes) for more information.
+     *
+     * @param {string} transId - ReferenceId for the transaction (PaymentId).
+     * @param {Payabli.CaptureRequest} request
+     * @param {MoneyInClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestCaptureResponseErrorV2}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.DeclinedCaptureResponseErrorV2}
+     * @throws {@link Payabli.InternalServerResponseErrorV2}
+     *
+     * @example
+     *     await client.moneyIn.capturev2("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", {
+     *         paymentDetails: {
+     *             totalAmount: 105,
+     *             serviceFee: 5
+     *         }
+     *     })
+     *
+     * @example
+     *     await client.moneyIn.capturev2("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", {
+     *         paymentDetails: {
+     *             totalAmount: 89,
+     *             serviceFee: 4
+     *         }
+     *     })
+     */
+    public capturev2(
+        transId: string,
+        request: Payabli.CaptureRequest,
+        requestOptions?: MoneyInClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.V2TransactionResponseWrapper> {
+        return core.HttpResponsePromise.fromPromise(this.__capturev2(transId, request, requestOptions));
+    }
+
+    private async __capturev2(
+        transId: string,
+        request: Payabli.CaptureRequest,
+        requestOptions?: MoneyInClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.V2TransactionResponseWrapper>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `v2/MoneyIn/capture/${core.url.encodePathParam(transId)}`,
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
+            requestType: "json",
+            body: request,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.V2TransactionResponseWrapper, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestCaptureResponseErrorV2(
+                        _response.error.body as Payabli.V2BadRequestError,
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 402:
+                    throw new Payabli.DeclinedCaptureResponseErrorV2(
+                        _response.error.body as Payabli.V2DeclinedTransactionResponseWrapper,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerResponseErrorV2(
+                        _response.error.body as Payabli.V2InternalServerError,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/v2/MoneyIn/capture/{transId}",
+        );
+    }
+
+    /**
+     * Give a full refund for a transaction that has settled and send money back to the account holder. To perform a partial refund, see [Partially refund a transaction](developers/api-reference/moneyinV2/partial-refund-a-settled-transaction).
+     *
+     * This is the v2 version of the refund endpoint, and returns the unified response format. See [Pay In unified response codes reference](/developers/references/pay-in-unified-response-codes) for more information.
+     *
+     * @param {string} transId - ReferenceId for the transaction (PaymentId).
+     * @param {MoneyInClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestRefundResponseErrorV2}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.DeclinedRefundResponseErrorV2}
+     * @throws {@link Payabli.InternalServerResponseErrorV2}
+     *
+     * @example
+     *     await client.moneyIn.refundv2("10-3ffa27df-b171-44e0-b251-e95fbfc7a723")
+     */
+    public refundv2(
+        transId: string,
+        requestOptions?: MoneyInClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.V2TransactionResponseWrapper> {
+        return core.HttpResponsePromise.fromPromise(this.__refundv2(transId, requestOptions));
+    }
+
+    private async __refundv2(
+        transId: string,
+        requestOptions?: MoneyInClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.V2TransactionResponseWrapper>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `v2/MoneyIn/refund/${core.url.encodePathParam(transId)}`,
+            ),
+            method: "POST",
+            headers: _headers,
+            queryParameters: requestOptions?.queryParams,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.V2TransactionResponseWrapper, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestRefundResponseErrorV2(
+                        _response.error.body as Payabli.V2BadRequestError,
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 402:
+                    throw new Payabli.DeclinedRefundResponseErrorV2(
+                        _response.error.body as Payabli.V2DeclinedTransactionResponseWrapper,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerResponseErrorV2(
+                        _response.error.body as Payabli.V2InternalServerError,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/v2/MoneyIn/refund/{transId}");
+    }
+
+    /**
+     * Refund a transaction that has settled and send money back to the account holder. If `amount` is omitted or set to 0, performs a full refund. When a non-zero `amount` is provided, this endpoint performs a partial refund.
+     *
+     * This is the v2 version of the refund endpoint, and returns the unified response format. See [Pay In unified response codes reference](/developers/references/pay-in-unified-response-codes) for more information.
+     *
+     * @param {string} transId - ReferenceId for the transaction (PaymentId).
+     * @param {number} amount - Amount to refund from original transaction, minus any service fees charged on the original transaction. If omitted or set to 0, performs a full refund.
+     * @param {MoneyInClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestRefundResponseErrorV2}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.DeclinedRefundResponseErrorV2}
+     * @throws {@link Payabli.InternalServerResponseErrorV2}
+     *
+     * @example
+     *     await client.moneyIn.refundv2Amount("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0)
+     *
+     * @example
+     *     await client.moneyIn.refundv2Amount("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 100.99)
+     */
+    public refundv2Amount(
+        transId: string,
+        amount: number,
+        requestOptions?: MoneyInClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.V2TransactionResponseWrapper> {
+        return core.HttpResponsePromise.fromPromise(this.__refundv2Amount(transId, amount, requestOptions));
+    }
+
+    private async __refundv2Amount(
+        transId: string,
+        amount: number,
+        requestOptions?: MoneyInClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.V2TransactionResponseWrapper>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `v2/MoneyIn/refund/${core.url.encodePathParam(transId)}/${core.url.encodePathParam(amount)}`,
+            ),
+            method: "POST",
+            headers: _headers,
+            queryParameters: requestOptions?.queryParams,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.V2TransactionResponseWrapper, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestRefundResponseErrorV2(
+                        _response.error.body as Payabli.V2BadRequestError,
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 402:
+                    throw new Payabli.DeclinedRefundResponseErrorV2(
+                        _response.error.body as Payabli.V2DeclinedTransactionResponseWrapper,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerResponseErrorV2(
+                        _response.error.body as Payabli.V2InternalServerError,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/v2/MoneyIn/refund/{transId}/{amount}",
+        );
+    }
+
+    /**
+     * Cancel a transaction that hasn't been settled yet. Voiding non-captured authorizations prevents future captures. This is the v2 version of the `api/MoneyIn/void/{transId}` endpoint, and returns the unified response format. See [Pay In unified response codes reference](/developers/references/pay-in-unified-response-codes) for more information.
+     *
+     * @param {string} transId - ReferenceId for the transaction (PaymentId).
+     * @param {MoneyInClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestVoidResponseErrorV2}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.DeclinedVoidResponseErrorV2}
+     * @throws {@link Payabli.InternalServerResponseErrorV2}
+     *
+     * @example
+     *     await client.moneyIn.voidv2("10-3ffa27df-b171-44e0-b251-e95fbfc7a723")
+     */
+    public voidv2(
+        transId: string,
+        requestOptions?: MoneyInClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.V2TransactionResponseWrapper> {
+        return core.HttpResponsePromise.fromPromise(this.__voidv2(transId, requestOptions));
+    }
+
+    private async __voidv2(
+        transId: string,
+        requestOptions?: MoneyInClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.V2TransactionResponseWrapper>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `v2/MoneyIn/void/${core.url.encodePathParam(transId)}`,
+            ),
+            method: "POST",
+            headers: _headers,
+            queryParameters: requestOptions?.queryParams,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.V2TransactionResponseWrapper, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestVoidResponseErrorV2(
+                        _response.error.body as Payabli.V2BadRequestError,
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 402:
+                    throw new Payabli.DeclinedVoidResponseErrorV2(
+                        _response.error.body as Payabli.V2DeclinedTransactionResponseWrapper,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerResponseErrorV2(
+                        _response.error.body as Payabli.V2InternalServerError,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/v2/MoneyIn/void/{transId}");
     }
 }

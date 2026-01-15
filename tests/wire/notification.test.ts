@@ -551,7 +551,7 @@ describe("NotificationClient", () => {
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
-    test("GetReportFile (1)", async () => {
+    test("GetReportFile", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -568,77 +568,5 @@ describe("NotificationClient", () => {
         expect(response).toEqual({
             key: "value",
         });
-    });
-
-    test("GetReportFile (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .get("/Export/notificationReport/1000000")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.notification.getReportFile(1000000);
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("GetReportFile (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .get("/Export/notificationReport/1000000")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.notification.getReportFile(1000000);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("GetReportFile (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .get("/Export/notificationReport/1000000")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.notification.getReportFile(1000000);
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("GetReportFile (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { responseText: "responseText" };
-        server
-            .mockEndpoint()
-            .get("/Export/notificationReport/1000000")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.notification.getReportFile(1000000);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 });

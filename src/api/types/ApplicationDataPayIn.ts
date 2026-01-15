@@ -72,6 +72,7 @@ export interface ApplicationDataPayIn {
     RepCode?: Payabli.RepCode;
     RepName?: Payabli.RepName;
     RepOffice?: Payabli.RepOffice;
+    onCreate?: Payabli.OnCreate;
 }
 
 export namespace ApplicationDataPayIn {

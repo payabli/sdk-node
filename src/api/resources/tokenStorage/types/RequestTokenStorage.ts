@@ -15,6 +15,7 @@ export interface RequestTokenStorage {
     methodDescription?: string;
     /** Information about the payment method for the transaction. */
     paymentMethod?: Payabli.RequestTokenStoragePaymentMethod;
+    vendorData?: Payabli.VendorDataRequest;
     /** Custom identifier to indicate the source for the request */
     source?: Payabli.Source;
     subdomain?: Payabli.Subdomain;

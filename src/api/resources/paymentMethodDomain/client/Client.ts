@@ -577,11 +577,6 @@ export class PaymentMethodDomainClient {
      * @param {string} domainId - The payment method domain's ID in Payabli.
      * @param {PaymentMethodDomainClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.InternalServerError}
-     * @throws {@link Payabli.ServiceUnavailableError}
-     *
      * @example
      *     await client.paymentMethodDomain.verifyPaymentMethodDomain("pmd_b8237fa45c964d8a9ef27160cd42b8c5")
      */
@@ -626,25 +621,11 @@ export class PaymentMethodDomainClient {
         }
 
         if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
-                case 500:
-                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
-                case 503:
-                    throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.PayabliError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
+            throw new errors.PayabliError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
         }
 
         return handleNonStatusCodeError(

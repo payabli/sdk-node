@@ -6,18 +6,22 @@ import type * as Payabli from "../../../index.js";
  * Response data from payment processor
  */
 export interface TransactionDetailResponseData {
+    /** Unified result code for the transaction. See [Pay In unified response codes](/developers/references/pay-in-unified-response-codes) for more information. */
+    resultCode?: string;
+    /** Description of the result code. See [Pay In unified response codes](/developers/references/pay-in-unified-response-codes) for more information. */
+    resultCodeText?: string;
     response: string | null;
     responsetext: Payabli.Resulttext;
     authcode: Payabli.Authcode | null;
     transactionid: string;
     avsresponse: string | null;
-    avsresponse_text: Payabli.Avsresponsetext | null;
+    avsresponse_text: Payabli.AvsResponseText | null;
     cvvresponse: string | null;
-    cvvresponse_text: Payabli.Cvvresponsetext | null;
+    cvvresponse_text: Payabli.CvvResponseText | null;
     orderid: Payabli.OrderId | null;
     type: string | null;
     response_code: string;
     response_code_text: string;
     customer_vault_id: string | null;
-    emv_auth_response_data: string | null;
+    emv_auth_response_data: Payabli.EmvAuthResponseData | null;
 }

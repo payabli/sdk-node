@@ -15,9 +15,9 @@ export interface PayabliApiResponse0 {
 export namespace PayabliApiResponse0 {
     export interface ResponseData {
         AuthCode?: Payabli.Authcode;
-        avsResponseText?: Payabli.Avsresponsetext;
+        avsResponseText?: Payabli.AvsResponseText;
         CustomerId?: Payabli.Customeridtrans;
-        cvvResponseText?: Payabli.Cvvresponsetext;
+        cvvResponseText?: Payabli.CvvResponseText;
         methodReferenceId?: Payabli.MethodReferenceId;
         ReferenceId?: Payabli.Referenceidtrans;
         ResultCode?: Payabli.ResultCode;

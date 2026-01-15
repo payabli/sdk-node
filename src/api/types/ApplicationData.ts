@@ -59,4 +59,5 @@ export interface ApplicationData {
     RepCode?: Payabli.RepCode;
     RepName?: Payabli.RepName;
     RepOffice?: Payabli.RepOffice;
+    onCreate?: Payabli.OnCreate;
 }

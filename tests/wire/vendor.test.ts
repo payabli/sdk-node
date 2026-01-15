@@ -359,7 +359,7 @@ describe("VendorClient", () => {
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
-    test("GetVendor (1)", async () => {
+    test("GetVendor", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -524,53 +524,5 @@ describe("VendorClient", () => {
             externalPaypointID: "Paypoint-100",
             StoredMethods: [],
         });
-    });
-
-    test("GetVendor (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-        server.mockEndpoint().get("/Vendor/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.vendor.getVendor(1);
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("GetVendor (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-        server.mockEndpoint().get("/Vendor/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.vendor.getVendor(1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("GetVendor (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-        server.mockEndpoint().get("/Vendor/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.vendor.getVendor(1);
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("GetVendor (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { responseText: "responseText" };
-        server.mockEndpoint().get("/Vendor/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.vendor.getVendor(1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 });

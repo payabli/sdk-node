@@ -6780,8 +6780,10 @@ await client.lineItem.updateItem(700, {
 <dd>
 
 Authorize a card transaction. This returns an authorization code and reserves funds for the merchant. Authorized transactions aren't flagged for settlement until [captured](/api-reference/moneyin/capture-an-authorized-transaction).
-
-**Note**: Only card transactions can be authorized. This endpoint can't be used for ACH transactions.
+Only card transactions can be authorized. This endpoint can't be used for ACH transactions.
+<Tip>
+  Consider migrating to the [v2 Authorize endpoint](/developers/api-reference/moneyinV2/authorize-a-transaction) to take advantage of unified response codes and improved response consistency.
+</Tip>
 </dd>
 </dl>
 </dd>
@@ -6944,6 +6946,10 @@ await client.moneyIn.capture("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", 0);
 Capture an [authorized transaction](/api-reference/moneyin/authorize-a-transaction) to complete the transaction and move funds from the customer to merchant account. 
 
 You can use this endpoint to capture both full and partial amounts of the original authorized transaction. See [Capture an authorized transaction](/developers/developer-guides/pay-in-auth-and-capture) for more information about this endpoint.
+
+<Tip>
+Consider migrating to the [v2 Capture endpoint](/developers/api-reference/moneyinV2/capture-an-authorized-transaction) to take advantage of unified response codes and improved response consistency.
+</Tip>
 </dd>
 </dl>
 </dd>
@@ -7166,6 +7172,10 @@ await client.moneyIn.details("45-as456777hhhhhhhhhh77777777-324");
 <dd>
 
 Make a single transaction. This method authorizes and captures a payment in one step.
+
+  <Tip>
+  Consider migrating to the [v2 Make a transaction endpoint](/developers/api-reference/moneyinV2/make-a-transaction) to take advantage of unified response codes and improved response consistency.
+  </Tip>
 </dd>
 </dl>
 </dd>
@@ -7328,6 +7338,10 @@ An amount equal to zero will refunds the total amount authorized minus any servi
 <dd>
 
 Refund a transaction that has settled and send money back to the account holder. If a transaction hasn't been settled, void it instead.
+
+  <Tip>
+  Consider migrating to the [v2 Refund endpoint](/developers/api-reference/moneyinV2/refund-a-settled-transaction) to take advantage of unified response codes and improved response consistency.
+  </Tip>
 </dd>
 </dl>
 </dd>
@@ -7704,6 +7718,10 @@ await client.moneyIn.validate({
 <dd>
 
 Cancel a transaction that hasn't been settled yet. Voiding non-captured authorizations prevents future captures. If a transaction has been settled, refund it instead.
+
+  <Tip>
+  Consider migrating to the [v2 Void endpoint](/developers/api-reference/moneyinV2/void-a-transaction) to take advantage of unified response codes and improved response consistency.
+  </Tip>
 </dd>
 </dl>
 </dd>
@@ -7719,6 +7737,453 @@ Cancel a transaction that hasn't been settled yet. Voiding non-captured authoriz
 
 ```typescript
 await client.moneyIn.void("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**transId:** `string` — ReferenceId for the transaction (PaymentId).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `MoneyInClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.moneyIn.<a href="/src/api/resources/moneyIn/client/Client.ts">getpaidv2</a>({ ...params }) -> Payabli.V2TransactionResponseWrapper</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Make a single transaction. This method authorizes and captures a payment in one step. This is the v2 version of the `api/MoneyIn/getpaid` endpoint, and returns the unified response format. See [Pay In unified response codes reference](/developers/references/pay-in-unified-response-codes) for more information.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.moneyIn.getpaidv2({
+    body: {
+        customerData: {
+            customerId: 4440
+        },
+        entryPoint: "f743aed24a",
+        ipaddress: "255.255.255.255",
+        paymentDetails: {
+            serviceFee: 0,
+            totalAmount: 100
+        },
+        paymentMethod: {
+            cardcvv: "999",
+            cardexp: "02/27",
+            cardHolder: "John Cassian",
+            cardnumber: "4111111111111111",
+            cardzip: "12345",
+            initiator: "payor",
+            method: "card"
+        }
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Payabli.RequestPaymentV2` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `MoneyInClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.moneyIn.<a href="/src/api/resources/moneyIn/client/Client.ts">authorizev2</a>({ ...params }) -> Payabli.V2TransactionResponseWrapper</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Authorize a card transaction. This returns an authorization code and reserves funds for the merchant. Authorized transactions aren't flagged for settlement until captured. This is the v2 version of the `api/MoneyIn/authorize` endpoint, and returns the unified response format. See [Pay In unified response codes reference](/developers/references/pay-in-unified-response-codes) for more information.
+
+**Note**: Only card transactions can be authorized. This endpoint can't be used for ACH transactions.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.moneyIn.authorizev2({
+    body: {
+        customerData: {
+            customerId: 4440
+        },
+        entryPoint: "f743aed24a",
+        ipaddress: "255.255.255.255",
+        paymentDetails: {
+            serviceFee: 0,
+            totalAmount: 100
+        },
+        paymentMethod: {
+            cardcvv: "999",
+            cardexp: "02/27",
+            cardHolder: "John Cassian",
+            cardnumber: "4111111111111111",
+            cardzip: "12345",
+            initiator: "payor",
+            method: "card"
+        }
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Payabli.RequestPaymentAuthorizeV2` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `MoneyInClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.moneyIn.<a href="/src/api/resources/moneyIn/client/Client.ts">capturev2</a>(transId, { ...params }) -> Payabli.V2TransactionResponseWrapper</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Capture an authorized transaction to complete the transaction and move funds from the customer to merchant account. This is the v2 version of the `api/MoneyIn/capture/{transId}` endpoint, and returns the unified response format. See [Pay In unified response codes reference](/developers/references/pay-in-unified-response-codes) for more information.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.moneyIn.capturev2("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", {
+    paymentDetails: {
+        totalAmount: 105,
+        serviceFee: 5
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**transId:** `string` — ReferenceId for the transaction (PaymentId).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.CaptureRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `MoneyInClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.moneyIn.<a href="/src/api/resources/moneyIn/client/Client.ts">refundv2</a>(transId) -> Payabli.V2TransactionResponseWrapper</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Give a full refund for a transaction that has settled and send money back to the account holder. To perform a partial refund, see [Partially refund a transaction](developers/api-reference/moneyinV2/partial-refund-a-settled-transaction).
+
+This is the v2 version of the refund endpoint, and returns the unified response format. See [Pay In unified response codes reference](/developers/references/pay-in-unified-response-codes) for more information.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.moneyIn.refundv2("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**transId:** `string` — ReferenceId for the transaction (PaymentId).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `MoneyInClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.moneyIn.<a href="/src/api/resources/moneyIn/client/Client.ts">refundv2Amount</a>(transId, amount) -> Payabli.V2TransactionResponseWrapper</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Refund a transaction that has settled and send money back to the account holder. If `amount` is omitted or set to 0, performs a full refund. When a non-zero `amount` is provided, this endpoint performs a partial refund.
+
+This is the v2 version of the refund endpoint, and returns the unified response format. See [Pay In unified response codes reference](/developers/references/pay-in-unified-response-codes) for more information.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.moneyIn.refundv2Amount("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0);
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**transId:** `string` — ReferenceId for the transaction (PaymentId).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**amount:** `number` — Amount to refund from original transaction, minus any service fees charged on the original transaction. If omitted or set to 0, performs a full refund.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `MoneyInClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.moneyIn.<a href="/src/api/resources/moneyIn/client/Client.ts">voidv2</a>(transId) -> Payabli.V2TransactionResponseWrapper</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Cancel a transaction that hasn't been settled yet. Voiding non-captured authorizations prevents future captures. This is the v2 version of the `api/MoneyIn/void/{transId}` endpoint, and returns the unified response format. See [Pay In unified response codes reference](/developers/references/pay-in-unified-response-codes) for more information.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.moneyIn.voidv2("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
 
 ```
 </dd>

@@ -440,7 +440,7 @@ describe("NotificationlogsClient", () => {
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
-    test("bulkRetryNotificationLogs (1)", async () => {
+    test("bulkRetryNotificationLogs", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = [
@@ -463,93 +463,5 @@ describe("NotificationlogsClient", () => {
             "550e8400-e29b-41d4-a716-446655440002",
         ]);
         expect(response).toEqual(undefined);
-    });
-
-    test("bulkRetryNotificationLogs (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32", "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"];
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .post("/v2/notificationlogs/retry")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.notificationlogs.bulkRetryNotificationLogs([
-                "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-                "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-            ]);
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("bulkRetryNotificationLogs (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32", "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"];
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .post("/v2/notificationlogs/retry")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.notificationlogs.bulkRetryNotificationLogs([
-                "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-                "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-            ]);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("bulkRetryNotificationLogs (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32", "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"];
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .post("/v2/notificationlogs/retry")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.notificationlogs.bulkRetryNotificationLogs([
-                "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-                "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-            ]);
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("bulkRetryNotificationLogs (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32", "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"];
-        const rawResponseBody = { responseText: "responseText" };
-        server
-            .mockEndpoint()
-            .post("/v2/notificationlogs/retry")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.notificationlogs.bulkRetryNotificationLogs([
-                "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-                "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-            ]);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 });

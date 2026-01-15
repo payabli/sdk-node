@@ -16,7 +16,8 @@ export interface BillResponseData {
     BillDate?: Payabli.Datenullable | undefined;
     /** Due Date of bill. Accepted formats: YYYY-MM-DD, MM/DD/YYYY */
     DueDate?: Payabli.Datenullable | undefined;
-    Comments?: Payabli.Comments;
+    /** Comments associated with the bill. For managed payables, the character limit is 200. For on demand payouts, the characters limit is 250. */
+    Comments?: string;
     /** The batch number that the bill belongs to. */
     BatchNumber?: string;
     /** Array of `LineItems` contained in bill. */

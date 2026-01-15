@@ -1330,7 +1330,7 @@ describe("PaymentLinkClient", () => {
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
-    test("AddPayLinkFromBillLotNumber (1)", async () => {
+    test("AddPayLinkFromBillLotNumber", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1486,97 +1486,5 @@ describe("PaymentLinkClient", () => {
             responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
             responseText: "Success",
         });
-    });
-
-    test("AddPayLinkFromBillLotNumber (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .post("/PaymentLink/bill/lotNumber/lotNumber")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.paymentLink.addPayLinkFromBillLotNumber("lotNumber", {
-                entryPoint: "entryPoint",
-                vendorNumber: "vendorNumber",
-                body: {},
-            });
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("AddPayLinkFromBillLotNumber (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .post("/PaymentLink/bill/lotNumber/lotNumber")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.paymentLink.addPayLinkFromBillLotNumber("lotNumber", {
-                entryPoint: "entryPoint",
-                vendorNumber: "vendorNumber",
-                body: {},
-            });
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("AddPayLinkFromBillLotNumber (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .post("/PaymentLink/bill/lotNumber/lotNumber")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.paymentLink.addPayLinkFromBillLotNumber("lotNumber", {
-                entryPoint: "entryPoint",
-                vendorNumber: "vendorNumber",
-                body: {},
-            });
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("AddPayLinkFromBillLotNumber (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
-        server
-            .mockEndpoint()
-            .post("/PaymentLink/bill/lotNumber/lotNumber")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.paymentLink.addPayLinkFromBillLotNumber("lotNumber", {
-                entryPoint: "entryPoint",
-                vendorNumber: "vendorNumber",
-                body: {},
-            });
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 });

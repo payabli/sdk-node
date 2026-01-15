@@ -217,11 +217,6 @@ export class ImportClient {
      * @param {Payabli.ImportVendorRequest} request
      * @param {ImportClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.InternalServerError}
-     * @throws {@link Payabli.ServiceUnavailableError}
-     *
      * @example
      *     import { createReadStream } from "fs";
      *     await client.import.importVendor("8cfec329267", {
@@ -275,25 +270,11 @@ export class ImportClient {
         }
 
         if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
-                case 500:
-                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
-                case 503:
-                    throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.PayabliError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
+            throw new errors.PayabliError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/Import/vendorsForm/{entry}");

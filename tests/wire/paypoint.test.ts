@@ -1437,7 +1437,7 @@ describe("PaypointClient", () => {
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
-    test("migrate (1)", async () => {
+    test("migrate", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1476,93 +1476,5 @@ describe("PaypointClient", () => {
             responseCode: 1,
             responseText: "Success",
         });
-    });
-
-    test("migrate (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { entryPoint: "entryPoint", newParentOrganizationId: 1 };
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .post("/Paypoint/migrate")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.paypoint.migrate({
-                entryPoint: "entryPoint",
-                newParentOrganizationId: 1,
-            });
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("migrate (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { entryPoint: "entryPoint", newParentOrganizationId: 1 };
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .post("/Paypoint/migrate")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.paypoint.migrate({
-                entryPoint: "entryPoint",
-                newParentOrganizationId: 1,
-            });
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("migrate (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { entryPoint: "entryPoint", newParentOrganizationId: 1 };
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .post("/Paypoint/migrate")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.paypoint.migrate({
-                entryPoint: "entryPoint",
-                newParentOrganizationId: 1,
-            });
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("migrate (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { entryPoint: "entryPoint", newParentOrganizationId: 1 };
-        const rawResponseBody = { responseText: "responseText" };
-        server
-            .mockEndpoint()
-            .post("/Paypoint/migrate")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.paypoint.migrate({
-                entryPoint: "entryPoint",
-                newParentOrganizationId: 1,
-            });
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 });

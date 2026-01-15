@@ -6,14 +6,14 @@ import type * as Payabli from "../../../index.js";
  * Response data for GetPaid transactions
  */
 export interface GetPaidResponseData {
+    authCode: Payabli.Authcode | null;
     /** Details of the transaction. Present only if `includeDetails` query parameter is set to `true` in the request. */
     transactionDetails?: Payabli.TransactionDetailRecord;
-    authCode?: Payabli.Authcode;
     referenceId: Payabli.Referenceidtrans;
     resultCode: Payabli.ResultCode;
     resultText: Payabli.Resulttext;
-    avsResponseText: Payabli.Avsresponsetext;
-    cvvResponseText: Payabli.Cvvresponsetext;
+    avsResponseText: Payabli.AvsResponseText;
+    cvvResponseText: Payabli.CvvResponseText;
     customerId: Payabli.Customeridtrans;
     methodReferenceId?: Payabli.MethodReferenceId;
 }

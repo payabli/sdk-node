@@ -259,6 +259,77 @@ describe("TokenStorageClient", () => {
     test("AddMethod (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            customerData: { customerId: 4440 },
+            entryPoint: "f743aed24a",
+            paymentMethod: {
+                achAccount: "1111111111111",
+                achAccountType: "Checking",
+                achCode: "WEB",
+                achHolder: "John Doe",
+                achHolderType: "personal",
+                achRouting: "123456780",
+                method: "ach",
+            },
+            vendorData: { vendorId: 7890 },
+        };
+        const rawResponseBody = {
+            isSuccess: true,
+            responseData: {
+                customerId: 4440,
+                methodReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+                referenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+                resultCode: 1,
+                resultText: "Approved",
+            },
+            responseText: "Success",
+        };
+        server
+            .mockEndpoint()
+            .post("/TokenStorage/add")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.tokenStorage.addMethod({
+            achValidation: true,
+            body: {
+                customerData: {
+                    customerId: 4440,
+                },
+                entryPoint: "f743aed24a",
+                paymentMethod: {
+                    achAccount: "1111111111111",
+                    achAccountType: "Checking",
+                    achCode: "WEB",
+                    achHolder: "John Doe",
+                    achHolderType: "personal",
+                    achRouting: "123456780",
+                    method: "ach",
+                },
+                vendorData: {
+                    vendorId: 7890,
+                },
+            },
+        });
+        expect(response).toEqual({
+            isSuccess: true,
+            responseData: {
+                customerId: 4440,
+                methodReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+                referenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+                resultCode: 1,
+                resultText: "Approved",
+            },
+            responseText: "Success",
+        });
+    });
+
+    test("AddMethod (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
         server
@@ -277,7 +348,7 @@ describe("TokenStorageClient", () => {
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
-    test("AddMethod (6)", async () => {
+    test("AddMethod (7)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
@@ -298,7 +369,7 @@ describe("TokenStorageClient", () => {
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
-    test("AddMethod (7)", async () => {
+    test("AddMethod (8)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
@@ -319,7 +390,7 @@ describe("TokenStorageClient", () => {
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
-    test("AddMethod (8)", async () => {
+    test("AddMethod (9)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
@@ -618,6 +689,156 @@ describe("TokenStorageClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
+        const rawResponseBody = {
+            isSuccess: true,
+            responseData: {
+                aba: "122105278",
+                achHolderType: "business",
+                achSecCode: "PPD",
+                bin: "",
+                customers: [],
+                descriptor: "checking",
+                expDate: "",
+                holderName: "John Doe",
+                idPmethod: "749e236c-59a3-49c7-ab47-73e06f9e94aa-123xxx",
+                isValidatedACH: false,
+                lastUpdated: "2026-01-02T19:11:27.634704",
+                maskedAccount: "0XXXXXX0022",
+                method: "ach",
+                methodType: "Multiple Universal",
+                postalCode: "",
+                vendors: [
+                    {
+                        vendorNumber: "V-3037-2",
+                        name1: "Connie's Concrete",
+                        name2: "",
+                        ein: "XXXXX4789",
+                        phone: "(123) 456-7890",
+                        email: "conniesconcrete@payabli.com",
+                        address1: "Suite 500",
+                        address2: "",
+                        city: "San Francisco",
+                        state: "CA",
+                        zip: "94021",
+                        country: "US",
+                        mcc: "",
+                        locationCode: "WEST",
+                        contacts: [
+                            {
+                                contactName: "John Doe",
+                                contactEmail: "johndoe@payabli.com",
+                                contactTitle: "Finance Manager",
+                                contactPhone: "5555551234",
+                            },
+                        ],
+                        paymentMethod: "ach",
+                        vendorStatus: 1,
+                        vendorId: 7890,
+                        paypointLegalname: "Gruzya Adventure Outfitters LLC",
+                        paypointId: "123",
+                        paypointDbaname: "Gruzya Adventure Outfitters LLC",
+                        paypointEntryname: "47ac12de2",
+                        parentOrgName: "Payabli",
+                        parentOrgId: 3,
+                        createdDate: "2025-09-17T00:13:40.174402",
+                        lastUpdated: "2025-09-18T15:40:55.181681",
+                        remitAddress1: "Suite 500",
+                        remitAddress2: "",
+                        remitCity: "San Francisco",
+                        remitState: "CA",
+                        remitZip: "94021",
+                        remitCountry: "US",
+                        internalReferenceId: 30986,
+                        externalPaypointID: "3037",
+                    },
+                ],
+            },
+            responseText: "Success",
+        };
+        server
+            .mockEndpoint()
+            .get("/TokenStorage/749e236c-59a3-49c7-ab47-73e06f9e94aa-199689")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.tokenStorage.getMethod("749e236c-59a3-49c7-ab47-73e06f9e94aa-199689", {
+            cardExpirationFormat: 1,
+            includeTemporary: false,
+        });
+        expect(response).toEqual({
+            isSuccess: true,
+            responseData: {
+                aba: "122105278",
+                achHolderType: "business",
+                achSecCode: "PPD",
+                bin: "",
+                customers: [],
+                descriptor: "checking",
+                expDate: "",
+                holderName: "John Doe",
+                idPmethod: "749e236c-59a3-49c7-ab47-73e06f9e94aa-123xxx",
+                isValidatedACH: false,
+                lastUpdated: "2026-01-02T19:11:27.634704",
+                maskedAccount: "0XXXXXX0022",
+                method: "ach",
+                methodType: "Multiple Universal",
+                postalCode: "",
+                vendors: [
+                    {
+                        vendorNumber: "V-3037-2",
+                        name1: "Connie's Concrete",
+                        name2: "",
+                        ein: "XXXXX4789",
+                        phone: "(123) 456-7890",
+                        email: "conniesconcrete@payabli.com",
+                        address1: "Suite 500",
+                        address2: "",
+                        city: "San Francisco",
+                        state: "CA",
+                        zip: "94021",
+                        country: "US",
+                        mcc: "",
+                        locationCode: "WEST",
+                        contacts: [
+                            {
+                                contactName: "John Doe",
+                                contactEmail: "johndoe@payabli.com",
+                                contactTitle: "Finance Manager",
+                                contactPhone: "5555551234",
+                            },
+                        ],
+                        paymentMethod: "ach",
+                        vendorStatus: 1,
+                        vendorId: 7890,
+                        paypointLegalname: "Gruzya Adventure Outfitters LLC",
+                        paypointId: "123",
+                        paypointDbaname: "Gruzya Adventure Outfitters LLC",
+                        paypointEntryname: "47ac12de2",
+                        parentOrgName: "Payabli",
+                        parentOrgId: 3,
+                        createdDate: "2025-09-17T00:13:40.174402",
+                        lastUpdated: "2025-09-18T15:40:55.181681",
+                        remitAddress1: "Suite 500",
+                        remitAddress2: "",
+                        remitCity: "San Francisco",
+                        remitState: "CA",
+                        remitZip: "94021",
+                        remitCountry: "US",
+                        internalReferenceId: 30986,
+                        externalPaypointID: "3037",
+                    },
+                ],
+            },
+            responseText: "Success",
+        });
+    });
+
+    test("GetMethod (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
         const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
@@ -632,7 +853,7 @@ describe("TokenStorageClient", () => {
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
-    test("GetMethod (4)", async () => {
+    test("GetMethod (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -650,7 +871,7 @@ describe("TokenStorageClient", () => {
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
-    test("GetMethod (5)", async () => {
+    test("GetMethod (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -668,7 +889,7 @@ describe("TokenStorageClient", () => {
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
-    test("GetMethod (6)", async () => {
+    test("GetMethod (7)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -914,84 +1135,66 @@ describe("TokenStorageClient", () => {
     test("UpdateMethod (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const rawRequestBody = {
+            customerData: { customerId: 4440 },
+            entryPoint: "f743aed24a",
+            paymentMethod: {
+                achAccount: "1111111111111",
+                achAccountType: "Checking",
+                achCode: "WEB",
+                achHolder: "John Doe",
+                achHolderType: "personal",
+                achRouting: "123456780",
+                method: "ach",
+            },
+            vendorData: { vendorId: 7890 },
+        };
+        const rawResponseBody = {
+            isSuccess: true,
+            responseData: {
+                referenceId: "1b502b79-e319-4159-8c29-a9f8d9f105c8-1323",
+                resultCode: 1,
+                resultText: "Updated",
+            },
+            responseText: "Success",
+        };
         server
             .mockEndpoint()
-            .put("/TokenStorage/methodId")
+            .put("/TokenStorage/32-8877drt00045632-678")
             .jsonBody(rawRequestBody)
             .respondWith()
-            .statusCode(400)
+            .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        await expect(async () => {
-            return await client.tokenStorage.updateMethod("methodId", {
-                body: {},
-            });
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("UpdateMethod (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .put("/TokenStorage/methodId")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.tokenStorage.updateMethod("methodId", {
-                body: {},
-            });
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("UpdateMethod (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .put("/TokenStorage/methodId")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.tokenStorage.updateMethod("methodId", {
-                body: {},
-            });
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("UpdateMethod (6)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
-        server
-            .mockEndpoint()
-            .put("/TokenStorage/methodId")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.tokenStorage.updateMethod("methodId", {
-                body: {},
-            });
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        const response = await client.tokenStorage.updateMethod("32-8877drt00045632-678", {
+            body: {
+                customerData: {
+                    customerId: 4440,
+                },
+                entryPoint: "f743aed24a",
+                paymentMethod: {
+                    achAccount: "1111111111111",
+                    achAccountType: "Checking",
+                    achCode: "WEB",
+                    achHolder: "John Doe",
+                    achHolderType: "personal",
+                    achRouting: "123456780",
+                    method: "ach",
+                },
+                vendorData: {
+                    vendorId: 7890,
+                },
+            },
+        });
+        expect(response).toEqual({
+            isSuccess: true,
+            responseData: {
+                referenceId: "1b502b79-e319-4159-8c29-a9f8d9f105c8-1323",
+                resultCode: 1,
+                resultText: "Updated",
+            },
+            responseText: "Success",
+        });
     });
 });

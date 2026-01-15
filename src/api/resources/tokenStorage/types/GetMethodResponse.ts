@@ -17,6 +17,8 @@ export namespace GetMethodResponse {
         /** The bank identification number (BIN) */
         bin?: string;
         binData?: Payabli.BinData;
+        /** Timestamp for when card was last updated */
+        cardUpdatedOn?: string;
         customers?: ResponseData.Customers.Item[];
         descriptor?: Payabli.Descriptor;
         /** Expiration date for card in stored method in format MM/YY */
@@ -25,6 +27,8 @@ export namespace GetMethodResponse {
         holderName?: Payabli.Holdername;
         /** The stored payment method's identifier in Payabli */
         idPmethod?: string;
+        /** Whether the ACH account has been validated */
+        isValidatedACH?: boolean;
         /** Timestamp for last update of stored method, in UTC */
         lastUpdated?: string;
         maskedAccount?: Payabli.Maskedaccount;
@@ -34,6 +38,7 @@ export namespace GetMethodResponse {
         methodType?: string;
         /** The payment method postal code */
         postalCode?: string;
+        vendors?: ResponseData.Vendors.Item[];
     }
 
     export namespace ResponseData {
@@ -79,6 +84,103 @@ export namespace GetMethodResponse {
                 subscriptions?: Payabli.SubscriptionQueryRecords[];
                 /** Customer's timezone */
                 timeZone?: number;
+            }
+        }
+
+        export type Vendors = Vendors.Item[];
+
+        export namespace Vendors {
+            export interface Item {
+                /** Additional data for vendor */
+                additionalData?: Payabli.AdditionalDataMap;
+                /** Vendor's address */
+                address1?: string;
+                /** Additional line for vendor's address */
+                address2?: string;
+                /** Object containing vendor's bank information */
+                billingData?: Payabli.VendorResponseBillingData;
+                /** Vendor's city */
+                city?: string;
+                /** Array of objects describing the vendor's contacts */
+                contacts?: Payabli.Contacts[];
+                /** Vendor's country */
+                country?: string;
+                /** Date when vendor was created */
+                createdDate?: string;
+                /** Custom field 1 for vendor */
+                customField1?: string;
+                /** Custom field 2 for vendor */
+                customField2?: string;
+                /** Account number of paypoint in the vendor's side */
+                customerVendorAccount?: string;
+                /** EIN/Tax ID for vendor. In responses, this field is masked. */
+                ein?: string;
+                /** Vendor's email address */
+                email?: Payabli.Email;
+                /** Vendor enrollment status */
+                enrollmentStatus?: string;
+                /** External paypoint identifier */
+                externalPaypointID?: string;
+                /** Internal reference ID for vendor */
+                internalReferenceId?: Payabli.InternalReferenceId;
+                /** Date when vendor was last updated */
+                lastUpdated?: string;
+                /** Location code for vendor */
+                locationCode?: Payabli.LocationCode;
+                /** Merchant category code */
+                mcc?: Payabli.Mcc;
+                /** Primary name for vendor */
+                name1?: string;
+                /** Secondary name for vendor */
+                name2?: string;
+                /** ID of the parent organization */
+                parentOrgId?: number;
+                /** Name of the parent organization */
+                parentOrgName?: string;
+                /** Primary payee name */
+                payeeName1?: Payabli.PayeeName;
+                /** Secondary payee name */
+                payeeName2?: Payabli.PayeeName;
+                /** Preferred payment method for vendor */
+                paymentMethod?: string;
+                /** DBA name of the paypoint */
+                paypointDbaname?: string;
+                /** Entry name of the paypoint */
+                paypointEntryname?: string;
+                /** Paypoint ID */
+                paypointId?: string;
+                /** Legal name of the paypoint */
+                paypointLegalname?: string;
+                /** Vendor's phone number */
+                phone?: string;
+                /** Remittance address line 1 */
+                remitAddress1?: Payabli.Remitaddress1;
+                /** Remittance address line 2 */
+                remitAddress2?: Payabli.Remitaddress2;
+                /** Remittance city */
+                remitCity?: Payabli.Remitcity;
+                /** Remittance country */
+                remitCountry?: Payabli.Remitcountry;
+                /** Email address for remittance */
+                remitEmail?: string;
+                /** Remittance state */
+                remitState?: Payabli.Remitstate;
+                /** Remittance ZIP code */
+                remitZip?: Payabli.Remitzip;
+                /** Vendor's state */
+                state?: string;
+                /** Array of stored payment methods for vendor */
+                storedMethods?: Payabli.VendorResponseStoredMethod[];
+                /** Vendor bill summary statistics */
+                summary?: Payabli.VendorResponseSummary;
+                /** The unique numeric ID assigned to the vendor in Payabli */
+                vendorId?: Payabli.Vendorid;
+                /** Custom vendor number assigned by the business */
+                vendorNumber?: Payabli.VendorNumber;
+                /** Status code for the vendor */
+                vendorStatus?: Payabli.Vendorstatus;
+                /** Vendor's ZIP code */
+                zip?: string;
             }
         }
     }

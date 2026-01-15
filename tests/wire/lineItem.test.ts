@@ -433,7 +433,7 @@ describe("LineItemClient", () => {
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
-    test("UpdateItem (1)", async () => {
+    test("UpdateItem", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { itemCost: 12.45, itemQty: 1 };
@@ -456,93 +456,5 @@ describe("LineItemClient", () => {
             responseData: 700,
             responseText: "Success",
         });
-    });
-
-    test("UpdateItem (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { itemCost: 1.1, itemQty: 1 };
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .put("/LineItem/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.lineItem.updateItem(1, {
-                itemCost: 1.1,
-                itemQty: 1,
-            });
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("UpdateItem (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { itemCost: 1.1, itemQty: 1 };
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .put("/LineItem/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.lineItem.updateItem(1, {
-                itemCost: 1.1,
-                itemQty: 1,
-            });
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("UpdateItem (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { itemCost: 1.1, itemQty: 1 };
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .put("/LineItem/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.lineItem.updateItem(1, {
-                itemCost: 1.1,
-                itemQty: 1,
-            });
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("UpdateItem (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { itemCost: 1.1, itemQty: 1 };
-        const rawResponseBody = { responseText: "responseText" };
-        server
-            .mockEndpoint()
-            .put("/LineItem/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.lineItem.updateItem(1, {
-                itemCost: 1.1,
-                itemQty: 1,
-            });
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 });

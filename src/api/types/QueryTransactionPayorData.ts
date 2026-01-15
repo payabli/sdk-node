@@ -36,5 +36,5 @@ export interface QueryTransactionPayorData {
     ShippingCountry?: Payabli.Shippingcountry;
     customerId?: Payabli.CustomerId;
     customerStatus?: Payabli.CustomerStatus;
-    AdditionalData?: Payabli.AdditionalDataString;
+    AdditionalData?: Payabli.AdditionalDataMap;
 }

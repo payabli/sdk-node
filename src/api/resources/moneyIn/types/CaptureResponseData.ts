@@ -10,8 +10,8 @@ export interface CaptureResponseData {
     referenceId: Payabli.Referenceidtrans;
     resultCode: Payabli.ResultCode;
     resultText: Payabli.Resulttext;
-    avsResponseText: Payabli.Avsresponsetext | null;
-    cvvResponseText: Payabli.Cvvresponsetext | null;
+    avsResponseText: Payabli.AvsResponseText | null;
+    cvvResponseText: Payabli.CvvResponseText | null;
     customerId: Payabli.Customeridtrans | null;
     methodReferenceId: Payabli.MethodReferenceId | null;
 }

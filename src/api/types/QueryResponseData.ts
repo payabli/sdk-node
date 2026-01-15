@@ -4,19 +4,48 @@ import type * as Payabli from "../index.js";
 
 /**
  * The transaction's response data.
+ *
+ * @example
+ *     {
+ *         authcode: "123456",
+ *         avsresponse: "N",
+ *         avsresponse_text: "No address or ZIP match only",
+ *         cvvresponse: "M",
+ *         cvvresponse_text: "CVV2/CVC2 match",
+ *         orderid: "10-bfcd5a17861d4a8690ca53c00000X",
+ *         response: "Success",
+ *         response_code: "100",
+ *         response_code_text: "Transaction was approved.",
+ *         responsetext: "SUCCESS",
+ *         resultCode: "A0000",
+ *         resultCodeText: "Approved",
+ *         transactionid: "8082800000"
+ *     }
+ *
+ * @example
+ *     {
+ *         authcode: " ",
+ *         avsresponse: " ",
+ *         avsresponse_text: "",
+ *         cvvresponse: " ",
+ *         cvvresponse_text: " ",
+ *         emv_auth_response_data: " ",
+ *         response: "Success",
+ *         response_code: "100",
+ *         response_code_text: "Transaction was approved.",
+ *         responsetext: "CAPTURED",
+ *         resultCode: "A0000",
+ *         resultCodeText: "Approved",
+ *         transactionid: "TRN_xwCAjQorWAYX1nAhAoHZVfN8iYHbI0"
+ *     }
  */
 export interface QueryResponseData {
     authcode?: Payabli.Authcode;
-    /** Text code describing the result for address validation (applies only for card transactions). */
-    avsresponse?: string;
-    /** Text code describing the result for address validation (applies only for card transactions). */
-    avsresponse_text?: string;
-    /** Text code describing the result for CVV validation (applies only for card transactions). */
-    cvvresponse?: string;
-    /** Text code describing the result for CVV validation (applies only for card transactions). */
-    cvvresponse_text?: string;
-    /** EMV authorization response data, applicable for card transactions. */
-    emv_auth_response_data?: string;
+    avsresponse?: Payabli.AvsResponse;
+    avsresponse_text?: Payabli.AvsResponseText;
+    cvvresponse?: Payabli.CvvResponse;
+    cvvresponse_text?: Payabli.CvvResponseText;
+    emv_auth_response_data?: Payabli.EmvAuthResponseData;
     orderid?: Payabli.OrderId;
     /** Response text for operation: 'Success' or 'Declined'. */
     response?: string;
@@ -26,6 +55,8 @@ export interface QueryResponseData {
     response_code_text?: string;
     /** Text describing the result. If resultCode = 1, will return 'Approved' or a general success message. If resultCode = 2 or 3, will contain the cause of the decline. */
     responsetext?: string;
+    resultCode?: Payabli.ResultCodev2;
+    resultCodeText?: Payabli.ResultCodeText;
     /** The transaction identifier in Payabli. */
     transactionid?: string;
     /** Type of transaction or operation. */

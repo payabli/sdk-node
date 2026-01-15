@@ -2667,7 +2667,7 @@ describe("ExportClient", () => {
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
-    test("ExportVendorsOrg (1)", async () => {
+    test("ExportVendorsOrg", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -2688,77 +2688,5 @@ describe("ExportClient", () => {
         expect(response).toEqual({
             key: "value",
         });
-    });
-
-    test("ExportVendorsOrg (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .get("/Export/vendors/csv/org/1")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.export.exportVendorsOrg("csv", 1);
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("ExportVendorsOrg (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .get("/Export/vendors/csv/org/1")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.export.exportVendorsOrg("csv", 1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("ExportVendorsOrg (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .get("/Export/vendors/csv/org/1")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.export.exportVendorsOrg("csv", 1);
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("ExportVendorsOrg (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { responseText: "responseText" };
-        server
-            .mockEndpoint()
-            .get("/Export/vendors/csv/org/1")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.export.exportVendorsOrg("csv", 1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 });
