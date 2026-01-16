@@ -915,7 +915,6 @@ describe("MoneyInClient", () => {
             FeeAmount: 5,
             GatewayTransId: "GT12345678",
             InvoiceData: {
-                AdditionalData: "AdditionalData",
                 company: "Wind in the Willows Neighborhood Association, LLC",
                 discount: 0,
                 dutyAmount: 0,
@@ -1124,7 +1123,6 @@ describe("MoneyInClient", () => {
             FeeAmount: 5,
             GatewayTransId: "GT12345678",
             InvoiceData: {
-                AdditionalData: "AdditionalData",
                 company: "Wind in the Willows Neighborhood Association, LLC",
                 discount: 0,
                 dutyAmount: 0,

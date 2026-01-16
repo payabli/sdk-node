@@ -3,7 +3,7 @@
 import type * as Payabli from "../index.js";
 
 export interface BillData {
-    AdditionalData?: Payabli.AdditionalDataString;
+    AdditionalData?: Payabli.AdditionalDataMap;
     attachments?: Payabli.Attachments | undefined;
     /** Company name of the recipient of the invoice. */
     company?: string;

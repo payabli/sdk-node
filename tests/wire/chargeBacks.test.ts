@@ -237,7 +237,6 @@ describe("ChargeBacksClient", () => {
                 FeeAmount: 1,
                 GatewayTransId: "TRN_xwCAjQorWAYX1nAhAoHZVfN8iYHbI0",
                 InvoiceData: {
-                    AdditionalData: "AdditionalData",
                     attachments: [{}],
                     company: "ACME, INC",
                     discount: 10,
@@ -501,7 +500,6 @@ describe("ChargeBacksClient", () => {
                 FeeAmount: 1,
                 GatewayTransId: "TRN_xwCAjQorWAYX1nAhAoHZVfN8iYHbI0",
                 InvoiceData: {
-                    AdditionalData: "AdditionalData",
                     attachments: [{}],
                     company: "ACME, INC",
                     discount: 10,

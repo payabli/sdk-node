@@ -41,7 +41,6 @@ describe("SubscriptionClient", () => {
             Frequency: "monthly",
             IdSub: 396,
             InvoiceData: {
-                AdditionalData: "AdditionalData",
                 attachments: [{}],
                 company: "ACME, INC",
                 discount: 10,
@@ -173,7 +172,6 @@ describe("SubscriptionClient", () => {
             Frequency: "monthly",
             IdSub: 396,
             InvoiceData: {
-                AdditionalData: "AdditionalData",
                 attachments: [{}],
                 company: "ACME, INC",
                 discount: 10,
