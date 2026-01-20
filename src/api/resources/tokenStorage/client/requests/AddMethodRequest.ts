@@ -79,9 +79,6 @@ import type * as Payabli from "../../../../index.js";
  *     {
  *         achValidation: true,
  *         body: {
- *             customerData: {
- *                 customerId: 4440
- *             },
  *             entryPoint: "f743aed24a",
  *             paymentMethod: {
  *                 achAccount: "1111111111111",

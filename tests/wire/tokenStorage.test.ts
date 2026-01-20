@@ -260,7 +260,6 @@ describe("TokenStorageClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            customerData: { customerId: 4440 },
             entryPoint: "f743aed24a",
             paymentMethod: {
                 achAccount: "1111111111111",
@@ -296,9 +295,6 @@ describe("TokenStorageClient", () => {
         const response = await client.tokenStorage.addMethod({
             achValidation: true,
             body: {
-                customerData: {
-                    customerId: 4440,
-                },
                 entryPoint: "f743aed24a",
                 paymentMethod: {
                     achAccount: "1111111111111",

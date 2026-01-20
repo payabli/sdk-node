@@ -51,7 +51,7 @@ export interface GetInvoiceRecord {
     PaypointDbaname: Payabli.Dbaname;
     PaypointEntryname: Payabli.Entrypointfield;
     ParentOrgName: Payabli.OrgParentName;
-    AdditionalData?: Payabli.AdditionalDataString;
+    AdditionalData?: Payabli.AdditionalDataMap;
     DocumentsRef: Payabli.DocumentsRef;
     externalPaypointID?: Payabli.ExternalPaypointId;
 }

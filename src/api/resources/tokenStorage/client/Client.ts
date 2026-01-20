@@ -109,9 +109,6 @@ export class TokenStorageClient {
      *     await client.tokenStorage.addMethod({
      *         achValidation: true,
      *         body: {
-     *             customerData: {
-     *                 customerId: 4440
-     *             },
      *             entryPoint: "f743aed24a",
      *             paymentMethod: {
      *                 achAccount: "1111111111111",
