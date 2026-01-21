@@ -3,4 +3,4 @@
 /**
  * Minimum ticket amount for transactions within the paypoint. Contact Payabli support to request a change to this value.
  */
-export type MinTicket = number | undefined;
+export type MinTicket = number;

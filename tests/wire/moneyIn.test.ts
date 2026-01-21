@@ -914,7 +914,7 @@ describe("MoneyInClient", () => {
             ExternalProcessorInformation: "[MER_xxxxxxxxxxxxxx]/[NNNNNNNNN]",
             FeeAmount: 5,
             GatewayTransId: "GT12345678",
-            InvoiceData: {
+            invoiceData: {
                 company: "Wind in the Willows Neighborhood Association, LLC",
                 discount: 0,
                 dutyAmount: 0,
@@ -1122,7 +1122,7 @@ describe("MoneyInClient", () => {
             ExternalProcessorInformation: "[MER_xxxxxxxxxxxxxx]/[NNNNNNNNN]",
             FeeAmount: 5,
             GatewayTransId: "GT12345678",
-            InvoiceData: {
+            invoiceData: {
                 company: "Wind in the Willows Neighborhood Association, LLC",
                 discount: 0,
                 dutyAmount: 0,

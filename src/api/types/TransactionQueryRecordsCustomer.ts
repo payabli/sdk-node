@@ -19,7 +19,7 @@ export interface TransactionQueryRecordsCustomer {
     FeeAmount?: Payabli.FeeAmount;
     /** Internal identifier used for processing. */
     GatewayTransId?: string;
-    InvoiceData?: Payabli.BillData;
+    invoiceData?: Payabli.BillData;
     /** Payment method used: card, ach, or wallet. */
     Method?: string;
     /** Net amount paid. */

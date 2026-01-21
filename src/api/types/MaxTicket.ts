@@ -3,4 +3,4 @@
 /**
  * Maximum ticket amount for transactions within the paypoint. Contact Payabli support to request a change to this value.
  */
-export type MaxTicket = number | undefined;
+export type MaxTicket = number;
