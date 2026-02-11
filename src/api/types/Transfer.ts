@@ -23,7 +23,8 @@ import type * as Payabli from "../index.js";
  *         externalPaypointID: "ext-12345",
  *         bankAccount: {
  *             accountNumber: "****1234",
- *             routingNumber: "123456789"
+ *             routingNumber: "123456789",
+ *             bankName: "Riverdale Community Bank"
  *         },
  *         transferDate: "2024-11-17T08:20:07.288+00:00",
  *         processor: "gp",

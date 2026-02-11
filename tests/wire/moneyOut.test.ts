@@ -2430,4 +2430,134 @@ describe("MoneyOutClient", () => {
             return await client.moneyOut.getCheckImage("assetName");
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
+
+    test("UpdateCheckPaymentStatus (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            responseCode: 1,
+            roomId: 0,
+            isSuccess: true,
+            responseText: "Success",
+            responseData: "TRANS123456",
+        };
+        server
+            .mockEndpoint()
+            .patch("/MoneyOut/status/TRANS123456/5")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.moneyOut.updateCheckPaymentStatus("TRANS123456", "5");
+        expect(response).toEqual({
+            responseCode: 1,
+            roomId: 0,
+            isSuccess: true,
+            responseText: "Success",
+            responseData: "TRANS123456",
+        });
+    });
+
+    test("UpdateCheckPaymentStatus (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            responseCode: 1,
+            roomId: 0,
+            isSuccess: true,
+            responseText: "Success",
+            responseData: "TRANS123456",
+        };
+        server
+            .mockEndpoint()
+            .patch("/MoneyOut/status/TRANS123456/0")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.moneyOut.updateCheckPaymentStatus("TRANS123456", "0");
+        expect(response).toEqual({
+            responseCode: 1,
+            roomId: 0,
+            isSuccess: true,
+            responseText: "Success",
+            responseData: "TRANS123456",
+        });
+    });
+
+    test("UpdateCheckPaymentStatus (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .patch("/MoneyOut/status/transId/0")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.moneyOut.updateCheckPaymentStatus("transId", "0");
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("UpdateCheckPaymentStatus (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .patch("/MoneyOut/status/transId/0")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.moneyOut.updateCheckPaymentStatus("transId", "0");
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("UpdateCheckPaymentStatus (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .patch("/MoneyOut/status/transId/0")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.moneyOut.updateCheckPaymentStatus("transId", "0");
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("UpdateCheckPaymentStatus (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { responseText: "responseText" };
+        server
+            .mockEndpoint()
+            .patch("/MoneyOut/status/transId/0")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.moneyOut.updateCheckPaymentStatus("transId", "0");
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
 });

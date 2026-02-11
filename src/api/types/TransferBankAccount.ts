@@ -5,4 +5,5 @@ import type * as Payabli from "../index.js";
 export interface TransferBankAccount {
     accountNumber: Payabli.AccountNumber;
     routingNumber: Payabli.RoutingAccount;
+    bankName: Payabli.BankName;
 }

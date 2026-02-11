@@ -1,3 +1,4 @@
+export * from "./AllowedCheckPaymentStatus.js";
 export * from "./AuthCapturePayoutResponse.js";
 export * from "./AuthorizePaymentMethod.js";
 export * from "./AuthorizePayoutBody.js";

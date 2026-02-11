@@ -25,7 +25,7 @@ export class PaypointClient {
     /**
      * Gets the basic details for a paypoint.
      *
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {PaypointClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Payabli.BadRequestError}
@@ -182,7 +182,7 @@ export class PaypointClient {
     /**
      * Gets the details for a single paypoint.
      *
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {Payabli.GetEntryConfigRequest} request
      * @param {PaypointClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -267,7 +267,7 @@ export class PaypointClient {
     /**
      * Gets the details for single payment page for a paypoint.
      *
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {string} subdomain - Payment page identifier. The subdomain value is the last portion of the payment page URL. For example, in`https://paypages-sandbox.payabli.com/513823dc10/pay-your-fees-1`, the subdomain is `pay-your-fees-1`.
      * @param {PaypointClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -346,7 +346,7 @@ export class PaypointClient {
     /**
      * Deletes a payment page in a paypoint.
      *
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {string} subdomain - Payment page identifier. The subdomain value is the last portion of the payment page URL. For example, in`https://paypages-sandbox.payabli.com/513823dc10/pay-your-fees-1`, the subdomain is `pay-your-fees-1`.
      * @param {PaypointClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -433,7 +433,7 @@ export class PaypointClient {
     /**
      * Updates a paypoint logo.
      *
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {Payabli.FileContent} request
      * @param {PaypointClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -518,7 +518,7 @@ export class PaypointClient {
     /**
      * Retrieves an paypoint's basic settings like custom fields, identifiers, and invoicing settings.
      *
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {PaypointClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Payabli.BadRequestError}

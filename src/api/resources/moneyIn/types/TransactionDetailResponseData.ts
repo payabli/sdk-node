@@ -6,9 +6,9 @@ import type * as Payabli from "../../../index.js";
  * Response data from payment processor
  */
 export interface TransactionDetailResponseData {
-    /** Unified result code for the transaction. See [Pay In unified response codes](/developers/references/pay-in-unified-response-codes) for more information. */
+    /** Unified result code for the transaction. See [Pay In unified response codes](/guides/pay-in-unified-response-codes-reference) for more information. */
     resultCode?: string;
-    /** Description of the result code. See [Pay In unified response codes](/developers/references/pay-in-unified-response-codes) for more information. */
+    /** Description of the result code. See [Pay In unified response codes](/guides/pay-in-unified-response-codes-reference) for more information. */
     resultCodeText?: string;
     response: string | null;
     responsetext: Payabli.Resulttext;

@@ -26,7 +26,7 @@ export class BillClient {
     /**
      * Creates a bill in an entrypoint.
      *
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {Payabli.AddBillRequest} request
      * @param {BillClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -600,7 +600,7 @@ export class BillClient {
     /**
      * Retrieve a list of bills for an entrypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
      *
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {Payabli.ListBillsRequest} request
      * @param {BillClient.RequestOptions} requestOptions - Request-specific configuration.
      *

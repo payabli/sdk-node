@@ -25,7 +25,7 @@ export class CloudClient {
     /**
      * Register a cloud device to an entrypoint. See [Devices Quickstart](/developers/developer-guides/devices-quickstart#devices-quickstart) for a complete guide.
      *
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {Payabli.DeviceEntry} request
      * @param {CloudClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -112,7 +112,7 @@ export class CloudClient {
     /**
      * Retrieve the registration history for a device.
      *
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {string} deviceId - ID of the cloud device.
      * @param {CloudClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -196,7 +196,7 @@ export class CloudClient {
     /**
      * Get a list of cloud devices registered to an entrypoint.
      *
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {Payabli.ListDeviceRequest} request
      * @param {CloudClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -281,7 +281,7 @@ export class CloudClient {
     /**
      * Remove a cloud device from an entrypoint.
      *
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {string} deviceId - ID of the cloud device.
      * @param {CloudClient.RequestOptions} requestOptions - Request-specific configuration.
      *

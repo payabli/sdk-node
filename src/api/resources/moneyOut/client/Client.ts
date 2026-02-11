@@ -967,4 +967,107 @@ export class MoneyOutClient {
             "/MoneyOut/checkimage/{assetName}",
         );
     }
+
+    /**
+     * Updates the status of a processed check payment transaction. This endpoint handles the status transition, updates related bills, creates audit events, and triggers notifications.
+     *
+     * The transaction must meet all of the following criteria:
+     * - **Status**: Must be in Processing or Processed status.
+     * - **Payment method**: Must be a check payment method.
+     *
+     * ### Allowed status values
+     *
+     * | Value | Status | Description |
+     * |-------|--------|-------------|
+     * | `0` | Cancelled/Voided | Cancels the check transaction. Reverts associated bills to their previous state (Approved or Active), creates "Cancelled" events, and sends a `payout_transaction_voidedcancelled` notification if the notification is enabled. |
+     * | `5` | Paid | Marks the check transaction as paid. Updates associated bills to "Paid" status, creates "Paid" events, and sends a `payout_transaction_paid` notification if the notification is enabled. |
+     *
+     * @param {string} transId - The Payabli transaction ID for the check payment.
+     * @param {Payabli.AllowedCheckPaymentStatus} checkPaymentStatus - The new status to apply to the check transaction. To mark a check as `Paid`, send 5. To mark a check as `Cancelled`, send 0.
+     * @param {MoneyOutClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.moneyOut.updateCheckPaymentStatus("TRANS123456", "5")
+     *
+     * @example
+     *     await client.moneyOut.updateCheckPaymentStatus("TRANS123456", "0")
+     */
+    public updateCheckPaymentStatus(
+        transId: string,
+        checkPaymentStatus: Payabli.AllowedCheckPaymentStatus,
+        requestOptions?: MoneyOutClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.PayabliApiResponse00Responsedatanonobject> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__updateCheckPaymentStatus(transId, checkPaymentStatus, requestOptions),
+        );
+    }
+
+    private async __updateCheckPaymentStatus(
+        transId: string,
+        checkPaymentStatus: Payabli.AllowedCheckPaymentStatus,
+        requestOptions?: MoneyOutClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.PayabliApiResponse00Responsedatanonobject>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `MoneyOut/status/${core.url.encodePathParam(transId)}/${core.url.encodePathParam(checkPaymentStatus)}`,
+            ),
+            method: "PATCH",
+            headers: _headers,
+            queryParameters: requestOptions?.queryParams,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as Payabli.PayabliApiResponse00Responsedatanonobject,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "PATCH",
+            "/MoneyOut/status/{transId}/{checkPaymentStatus}",
+        );
+    }
 }

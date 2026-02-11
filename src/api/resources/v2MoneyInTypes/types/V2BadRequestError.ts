@@ -16,7 +16,7 @@ export interface V2BadRequestError {
     detail: string;
     /** Request URL that caused the error. */
     instance: string;
-    /** Payabli's unified response code for validation errors. Starts with 'E'. See [Pay In unified response codes reference](/developers/references/pay-in-unified-response-codes) for more information. */
+    /** Payabli's unified response code for validation errors. Starts with 'E'. See [Pay In unified response codes reference](/guides/pay-in-unified-response-codes-reference) for more information. */
     code: string;
     /** Dictionary of field-specific validation errors. Keys are field paths (e.g., "paymentMethod.cardnumber") and values are arrays of error details. */
     errors: Record<string, Payabli.V2BadRequestErrorDetail[]>;

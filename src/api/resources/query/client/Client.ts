@@ -2903,6 +2903,309 @@ export class QueryClient {
     }
 
     /**
+     * Retrieve a list of outbound transfers for an organization. Use filters to limit results.
+     *
+     * @param {number} orgId - The numeric identifier for organization, assigned by Payabli.
+     * @param {Payabli.ListTransfersOutOrgRequest} request
+     * @param {QueryClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.query.listTransfersOutOrg(77, {
+     *         fromRecord: 0,
+     *         limitRecord: 20
+     *     })
+     */
+    public listTransfersOutOrg(
+        orgId: number,
+        request: Payabli.ListTransfersOutOrgRequest = {},
+        requestOptions?: QueryClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.TransferOutQueryResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__listTransfersOutOrg(orgId, request, requestOptions));
+    }
+
+    private async __listTransfersOutOrg(
+        orgId: number,
+        request: Payabli.ListTransfersOutOrgRequest = {},
+        requestOptions?: QueryClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.TransferOutQueryResponse>> {
+        const { fromRecord, limitRecord, parameters, sortBy } = request;
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (fromRecord != null) {
+            _queryParams.fromRecord = fromRecord.toString();
+        }
+
+        if (limitRecord != null) {
+            _queryParams.limitRecord = limitRecord.toString();
+        }
+
+        if (parameters != null) {
+            _queryParams.parameters = toJson(parameters);
+        }
+
+        if (sortBy != null) {
+            _queryParams.sortBy = sortBy;
+        }
+
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(this._options?.headers, requestOptions?.headers);
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `Query/transfersOut/org/${core.url.encodePathParam(orgId)}`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.TransferOutQueryResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/Query/transfersOut/org/{orgId}",
+        );
+    }
+
+    /**
+     * Retrieve a list of outbound transfers for a paypoint. Use filters to limit results.
+     *
+     * @param {Payabli.Entry} entry
+     * @param {Payabli.ListTransfersOutPaypointRequest} request
+     * @param {QueryClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.query.listTransfersOutPaypoint("47cade237", {
+     *         fromRecord: 0,
+     *         limitRecord: 20
+     *     })
+     */
+    public listTransfersOutPaypoint(
+        entry: Payabli.Entry,
+        request: Payabli.ListTransfersOutPaypointRequest = {},
+        requestOptions?: QueryClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.TransferOutQueryResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__listTransfersOutPaypoint(entry, request, requestOptions));
+    }
+
+    private async __listTransfersOutPaypoint(
+        entry: Payabli.Entry,
+        request: Payabli.ListTransfersOutPaypointRequest = {},
+        requestOptions?: QueryClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.TransferOutQueryResponse>> {
+        const { fromRecord, limitRecord, parameters, sortBy } = request;
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (fromRecord != null) {
+            _queryParams.fromRecord = fromRecord.toString();
+        }
+
+        if (limitRecord != null) {
+            _queryParams.limitRecord = limitRecord.toString();
+        }
+
+        if (parameters != null) {
+            _queryParams.parameters = toJson(parameters);
+        }
+
+        if (sortBy != null) {
+            _queryParams.sortBy = sortBy;
+        }
+
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(this._options?.headers, requestOptions?.headers);
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `Query/transfersOut/${core.url.encodePathParam(entry)}`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.TransferOutQueryResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/Query/transfersOut/{entry}");
+    }
+
+    /**
+     * Retrieve details for a specific outbound transfer. Use filters to limit results.
+     *
+     * @param {Payabli.Entry} entry
+     * @param {number} transferId - The numeric identifier for the transfer, assigned by Payabli.
+     * @param {Payabli.ListTransferDetailsOutRequest} request
+     * @param {QueryClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.query.listTransferDetailsOut("47ace2b25", 4521, {
+     *         fromRecord: 0,
+     *         limitRecord: 20
+     *     })
+     */
+    public listTransferDetailsOut(
+        entry: Payabli.Entry,
+        transferId: number,
+        request: Payabli.ListTransferDetailsOutRequest = {},
+        requestOptions?: QueryClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.TransferOutDetailQueryResponse> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__listTransferDetailsOut(entry, transferId, request, requestOptions),
+        );
+    }
+
+    private async __listTransferDetailsOut(
+        entry: Payabli.Entry,
+        transferId: number,
+        request: Payabli.ListTransferDetailsOutRequest = {},
+        requestOptions?: QueryClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.TransferOutDetailQueryResponse>> {
+        const { fromRecord, limitRecord, parameters, sortBy } = request;
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (fromRecord != null) {
+            _queryParams.fromRecord = fromRecord.toString();
+        }
+
+        if (limitRecord != null) {
+            _queryParams.limitRecord = limitRecord.toString();
+        }
+
+        if (parameters != null) {
+            _queryParams.parameters = toJson(parameters);
+        }
+
+        if (sortBy != null) {
+            _queryParams.sortBy = sortBy;
+        }
+
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(this._options?.headers, requestOptions?.headers);
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `Query/transferDetailsOut/${core.url.encodePathParam(entry)}/${core.url.encodePathParam(transferId)}`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as Payabli.TransferOutDetailQueryResponse,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/Query/transferDetailsOut/{entry}/{transferId}",
+        );
+    }
+
+    /**
      * Get list of users for an org. Use filters to limit results.
      *
      * @param {number} orgId - The numeric identifier for organization, assigned by Payabli.
@@ -3006,7 +3309,7 @@ export class QueryClient {
     /**
      * Get list of users for a paypoint. Use filters to limit results.
      *
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {Payabli.ListUsersPaypointRequest} request
      * @param {QueryClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -3107,7 +3410,7 @@ export class QueryClient {
     /**
      * Retrieve a list of vendors for an entrypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
      *
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {Payabli.ListVendorsRequest} request
      * @param {QueryClient.RequestOptions} requestOptions - Request-specific configuration.
      *

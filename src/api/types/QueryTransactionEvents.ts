@@ -5,7 +5,7 @@ export interface QueryTransactionEvents {
     EventData?: QueryTransactionEvents.EventData;
     /** Date and time of event. */
     EventTime?: string;
-    /** Event descriptor. See [TransEvent Reference](/developers/references/transevents) for more details. */
+    /** Event descriptor. See [TransEvent Reference](/guides/pay-in-transevents-reference) for more details. */
     TransEvent?: string;
 }
 

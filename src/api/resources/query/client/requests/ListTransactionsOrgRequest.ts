@@ -99,7 +99,6 @@ export interface ListTransactionsOrgRequest {
      * - `nct` => not contains
      * - `in` => inside array
      * - `nin` => not inside array
-     *
      */
     parameters?: Record<string, string | undefined>;
     /** The field name to use for sorting results. Use `desc(field_name)` to sort descending by `field_name`, and use `asc(field_name)` to sort ascending by `field_name`. */

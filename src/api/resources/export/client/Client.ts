@@ -136,7 +136,7 @@ export class ExportClient {
      * This endpoint is deprecated. Export batch details for a paypoint. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {Payabli.ExportBatchDetailsRequest} request
      * @param {ExportClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -356,7 +356,7 @@ export class ExportClient {
      * Export a list of batches for an entrypoint. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {Payabli.ExportBatchesRequest} request
      * @param {ExportClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -574,7 +574,7 @@ export class ExportClient {
      * Export a list of money out batches for a paypoint. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {Payabli.ExportBatchesOutRequest} request
      * @param {ExportClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -792,7 +792,7 @@ export class ExportClient {
      * Export a list of bills for an entrypoint. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {Payabli.ExportBillsRequest} request
      * @param {ExportClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -1010,7 +1010,7 @@ export class ExportClient {
      * Export a list of chargebacks and ACH returns for an entrypoint. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {Payabli.ExportChargebacksRequest} request
      * @param {ExportClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -1230,7 +1230,7 @@ export class ExportClient {
      * Export a list of customers for an entrypoint. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {Payabli.ExportCustomersRequest} request
      * @param {ExportClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -1448,7 +1448,7 @@ export class ExportClient {
      * Export list of invoices for an entrypoint. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {Payabli.ExportInvoicesRequest} request
      * @param {ExportClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -1775,7 +1775,7 @@ export class ExportClient {
      * Export a list of payouts and their statuses for an entrypoint. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {Payabli.ExportPayoutRequest} request
      * @param {ExportClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -2102,7 +2102,7 @@ export class ExportClient {
      * Export a list of settled transactions for an entrypoint. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {Payabli.ExportSettlementsRequest} request
      * @param {ExportClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -2322,7 +2322,7 @@ export class ExportClient {
      * Export a list of subscriptions for an entrypoint. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {Payabli.ExportSubscriptionsRequest} request
      * @param {ExportClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -2542,7 +2542,7 @@ export class ExportClient {
      * Export a list of transactions for an entrypoint in a file in XLXS or CSV format. Use filters to limit results. If you don't specify a date range in the request, the last two months of data are returned.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {Payabli.ExportTransactionsRequest} request
      * @param {ExportClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -2762,7 +2762,7 @@ export class ExportClient {
      * Export a list of transfer details for an entrypoint. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {number} transferId - Transfer identifier.
      * @param {Payabli.ExportTransferDetailsRequest} request
      * @param {ExportClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -2880,7 +2880,7 @@ export class ExportClient {
     /**
      * Get a list of transfers for an entrypoint. Use filters to limit results.
      *
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {Payabli.ExportTransfersRequest} request
      * @param {ExportClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -2987,7 +2987,7 @@ export class ExportClient {
      * Export a list of vendors for an entrypoint. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {Payabli.ExportVendorsRequest} request
      * @param {ExportClient.RequestOptions} requestOptions - Request-specific configuration.
      *
