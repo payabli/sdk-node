@@ -3,10 +3,10 @@
 import type * as Payabli from "../index.js";
 
 export interface PayorElement {
-    enabled?: Payabli.Enabled;
+    enabled?: Payabli.Enabled | undefined;
     /** Array of Customer/Payor fields to show in section */
-    fields?: Payabli.PayorFields[];
+    fields?: Payabli.PayorFields[] | undefined;
     /** Custom header text for section */
-    header?: string;
-    order?: Payabli.Order;
+    header?: string | undefined;
+    order?: Payabli.Order | undefined;
 }

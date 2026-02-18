@@ -6,10 +6,10 @@ import type * as Payabli from "../index.js";
  * Details about the cascade process.
  */
 export interface CascadeJobDetails {
-    createdAt?: Payabli.CreatedAt;
+    createdAt?: Payabli.CreatedAt | undefined;
     /** Error message for a failed cascade process. */
-    jobErrorMessage?: string;
-    jobId?: Payabli.JobId;
-    jobStatus?: Payabli.JobStatus;
+    jobErrorMessage?: string | undefined;
+    jobId?: Payabli.JobId | undefined;
+    jobStatus?: Payabli.JobStatus | undefined;
     updatedAt?: Payabli.LastModified | undefined;
 }

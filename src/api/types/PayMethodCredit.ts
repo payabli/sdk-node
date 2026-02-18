@@ -3,12 +3,12 @@
 import type * as Payabli from "../index.js";
 
 export interface PayMethodCredit {
-    cardcvv?: Payabli.Cardcvv;
+    cardcvv?: Payabli.Cardcvv | undefined;
     cardexp: Payabli.Cardexp;
-    cardHolder?: Payabli.Cardholder;
+    cardHolder?: Payabli.Cardholder | undefined;
     cardnumber: Payabli.Cardnumber;
-    cardzip?: Payabli.Cardzip;
-    initiator?: Payabli.Initiator;
+    cardzip?: Payabli.Cardzip | undefined;
+    initiator?: Payabli.Initiator | undefined;
     /** Method to use for the transaction. For transactions with a credit or debit card, or a tokenized card, use `card`. */
     method: "card";
     saveIfSuccess?: Payabli.SaveIfSuccess | undefined;

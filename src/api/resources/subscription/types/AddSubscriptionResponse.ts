@@ -14,9 +14,9 @@ import type * as Payabli from "../../../index.js";
  *     }
  */
 export interface AddSubscriptionResponse {
-    customerId?: Payabli.CustomerId;
+    customerId?: Payabli.CustomerId | undefined;
     responseText: Payabli.ResponseText;
-    isSuccess?: Payabli.IsSuccess;
+    isSuccess?: Payabli.IsSuccess | undefined;
     /** The identifier of the newly created subscription. */
     responseData: number;
 }

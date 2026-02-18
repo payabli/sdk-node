@@ -11,5 +11,5 @@ export interface VendorPaymentMethod {
     /** Payment method type - "managed", "vcard", "check", or "ach" */
     method: string;
     /** ID of the stored ACH payment method. Only applicable when method is "ach". Required when using a previously saved ACH method when the vendor has more than one saved method. See the [Payouts with saved ACH payment methods](/developers/developer-guides/pay-out-manage-payouts) section for more details. */
-    storedMethodId?: string;
+    storedMethodId?: string | undefined;
 }

@@ -3,10 +3,10 @@
 import type * as Payabli from "../../../index.js";
 
 export interface EditOrganizationResponse {
-    isSuccess?: Payabli.IsSuccess;
-    pageIdentifier?: Payabli.PageIdentifier;
+    isSuccess?: Payabli.IsSuccess | undefined;
+    pageIdentifier?: Payabli.PageIdentifier | undefined;
     responseCode: Payabli.Responsecode;
     /** Returns the organization ID. */
-    responseData?: Payabli.Responsedatanonobject;
+    responseData?: Payabli.Responsedatanonobject | undefined;
     responseText: Payabli.ResponseText;
 }

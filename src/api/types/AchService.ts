@@ -3,24 +3,24 @@
 import type * as Payabli from "../index.js";
 
 export interface AchService {
-    achAbsorb?: Payabli.AchAbsorbSection;
-    achAbsorb_highPayRange?: Payabli.TemplateElement;
-    achAbsorb_lowPayRange?: Payabli.TemplateElement;
-    achAcceptance?: Payabli.AchAcceptanceElement;
-    achFees?: Payabli.AchFeeSection;
-    achPass_highPayRange?: Payabli.TemplateElement;
-    achPass_lowPayRange?: Payabli.TemplateElement;
-    achPassThrough?: Payabli.AchPassThroughSection;
+    achAbsorb?: Payabli.AchAbsorbSection | undefined;
+    achAbsorb_highPayRange?: Payabli.TemplateElement | undefined;
+    achAbsorb_lowPayRange?: Payabli.TemplateElement | undefined;
+    achAcceptance?: Payabli.AchAcceptanceElement | undefined;
+    achFees?: Payabli.AchFeeSection | undefined;
+    achPass_highPayRange?: Payabli.TemplateElement | undefined;
+    achPass_lowPayRange?: Payabli.TemplateElement | undefined;
+    achPassThrough?: Payabli.AchPassThroughSection | undefined;
     /** Controls how to present the `batchCutoffTime` field on the application. If this field isn't sent, batch cut off time defaults to 5 ET. */
-    batchCutoffTime?: Payabli.TemplateElement;
-    discountFrequency?: Payabli.TemplateElement;
-    fundingRollup?: Payabli.TemplateElement;
-    gateway?: Payabli.TemplateElement;
-    pdfTemplateId?: Payabli.TemplateElement;
-    pricingPlan?: number;
-    pricingType?: Payabli.TemplateElement;
-    processor?: Payabli.TemplateElement;
-    provider?: Payabli.TemplateElement;
-    tierName?: Payabli.TemplateElement;
+    batchCutoffTime?: Payabli.TemplateElement | undefined;
+    discountFrequency?: Payabli.TemplateElement | undefined;
+    fundingRollup?: Payabli.TemplateElement | undefined;
+    gateway?: Payabli.TemplateElement | undefined;
+    pdfTemplateId?: Payabli.TemplateElement | undefined;
+    pricingPlan?: number | undefined;
+    pricingType?: Payabli.TemplateElement | undefined;
+    processor?: Payabli.TemplateElement | undefined;
+    provider?: Payabli.TemplateElement | undefined;
+    tierName?: Payabli.TemplateElement | undefined;
     visible?: Payabli.Visible | undefined;
 }

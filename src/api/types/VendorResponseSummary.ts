@@ -4,20 +4,20 @@
  * Vendor bill summary statistics
  */
 export interface VendorResponseSummary {
-    ActiveBills?: number;
-    PendingBills?: number;
-    InTransitBills?: number;
-    PaidBills?: number;
-    OverdueBills?: number;
-    ApprovedBills?: number;
-    DisapprovedBills?: number;
-    TotalBills?: number;
-    ActiveBillsAmount?: number;
-    PendingBillsAmount?: number;
-    InTransitBillsAmount?: number;
-    PaidBillsAmount?: number;
-    OverdueBillsAmount?: number;
-    ApprovedBillsAmount?: number;
-    DisapprovedBillsAmount?: number;
-    TotalBillsAmount?: number;
+    ActiveBills?: number | undefined;
+    PendingBills?: number | undefined;
+    InTransitBills?: number | undefined;
+    PaidBills?: number | undefined;
+    OverdueBills?: number | undefined;
+    ApprovedBills?: number | undefined;
+    DisapprovedBills?: number | undefined;
+    TotalBills?: number | undefined;
+    ActiveBillsAmount?: number | undefined;
+    PendingBillsAmount?: number | undefined;
+    InTransitBillsAmount?: number | undefined;
+    PaidBillsAmount?: number | undefined;
+    OverdueBillsAmount?: number | undefined;
+    ApprovedBillsAmount?: number | undefined;
+    DisapprovedBillsAmount?: number | undefined;
+    TotalBillsAmount?: number | undefined;
 }

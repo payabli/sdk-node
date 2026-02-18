@@ -6,10 +6,10 @@ import type * as Payabli from "../../../index.js";
  * A successful response returns a bill object with all its details. If the bill isn't found, the response will contain an error message.
  */
 export interface GetBillResponse {
-    responseCode?: Payabli.Responsecode;
-    pageIdentifier?: Payabli.PageIdentifier;
-    roomId?: Payabli.RoomIdNotInUse;
-    isSuccess?: Payabli.IsSuccess;
+    responseCode?: Payabli.Responsecode | undefined;
+    pageIdentifier?: Payabli.PageIdentifier | undefined;
+    roomId?: Payabli.RoomIdNotInUse | undefined;
+    isSuccess?: Payabli.IsSuccess | undefined;
     responseText: Payabli.ResponseText;
-    responseData?: Payabli.BillResponseData;
+    responseData?: Payabli.BillResponseData | undefined;
 }

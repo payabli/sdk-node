@@ -178,44 +178,44 @@ import type * as Payabli from "../index.js";
  *     }
  */
 export interface CustomerQueryRecords {
-    customerId?: Payabli.CustomerId;
-    customerNumber?: Payabli.CustomerNumberNullable;
+    customerId?: Payabli.CustomerId | undefined;
+    customerNumber?: Payabli.CustomerNumberNullable | undefined;
     /** Username for customer. */
-    customerUsername?: string;
-    customerStatus?: Payabli.CustomerStatus;
+    customerUsername?: string | undefined;
+    customerStatus?: Payabli.CustomerStatus | undefined;
     /** Company name. */
-    Company?: string;
+    Company?: string | undefined;
     /** Customer first name. */
-    Firstname?: string;
+    Firstname?: string | undefined;
     /** Customer last name. */
-    Lastname?: string;
+    Lastname?: string | undefined;
     /** Customer phone number. */
-    Phone?: string;
+    Phone?: string | undefined;
     /** Customer email address. */
-    Email?: Payabli.Email;
+    Email?: Payabli.Email | undefined;
     /** Customer address. */
-    Address?: string;
+    Address?: string | undefined;
     /** Additional line for customer address. */
-    Address1?: string;
+    Address1?: string | undefined;
     /** Customer city. */
-    City?: string;
+    City?: string | undefined;
     /** Customer state. */
-    State?: string;
+    State?: string | undefined;
     /** Customer postal code. */
-    Zip?: string;
+    Zip?: string | undefined;
     /** Customer country. */
-    Country?: string;
-    ShippingAddress?: Payabli.Shippingaddress;
-    ShippingAddress1?: Payabli.Shippingaddressadditional;
-    ShippingCity?: Payabli.Shippingcity;
-    ShippingState?: Payabli.Shippingstate;
-    ShippingZip?: Payabli.Shippingzip;
-    ShippingCountry?: Payabli.Shippingcountry;
+    Country?: string | undefined;
+    ShippingAddress?: Payabli.Shippingaddress | undefined;
+    ShippingAddress1?: Payabli.Shippingaddressadditional | undefined;
+    ShippingCity?: Payabli.Shippingcity | undefined;
+    ShippingState?: Payabli.Shippingstate | undefined;
+    ShippingZip?: Payabli.Shippingzip | undefined;
+    ShippingCountry?: Payabli.Shippingcountry | undefined;
     /** Customer balance. */
-    Balance?: number;
-    TimeZone?: Payabli.Timezone;
+    Balance?: number | undefined;
+    TimeZone?: Payabli.Timezone | undefined;
     MFA?: Payabli.Mfa | undefined;
-    MFAMode?: Payabli.MfaMode;
+    MFAMode?: Payabli.MfaMode | undefined;
     /**
      * Social network linked to customer. Possible values:
      *
@@ -227,41 +227,41 @@ export interface CustomerQueryRecords {
      *
      * - `microsoft`
      */
-    snProvider?: string;
+    snProvider?: string | undefined;
     /** Identifier or token for customer in linked social network. */
-    snIdentifier?: string;
+    snIdentifier?: string | undefined;
     /** Additional data provided by the social network related to the customer. */
-    snData?: string;
+    snData?: string | undefined;
     /** Date and time of last update. */
-    LastUpdated?: string;
+    LastUpdated?: string | undefined;
     /** Date and time created. */
-    Created?: string;
+    Created?: string | undefined;
     /** List of additional custom fields in format key:value. */
-    AdditionalFields?: Record<string, string | undefined>;
-    IdentifierFields?: Payabli.Identifierfields;
+    AdditionalFields?: Record<string, string | undefined> | undefined;
+    IdentifierFields?: Payabli.Identifierfields | undefined;
     /** List of subscriptions associated to the customer. */
-    Subscriptions?: Payabli.SubscriptionQueryRecords[];
+    Subscriptions?: Payabli.SubscriptionQueryRecords[] | undefined;
     /** List of payment methods associated to the customer. */
-    StoredMethods?: Payabli.MethodQueryRecords[];
-    customerSummary?: Payabli.CustomerSummaryRecord;
+    StoredMethods?: Payabli.MethodQueryRecords[] | undefined;
+    customerSummary?: Payabli.CustomerSummaryRecord | undefined;
     /** Paypoint legal name. */
-    PaypointLegalname?: Payabli.Legalname;
+    PaypointLegalname?: Payabli.Legalname | undefined;
     /** Paypoint DBA name. */
-    PaypointDbaname?: Payabli.Dbaname;
-    ParentOrgName?: Payabli.OrgParentName;
-    ParentOrgId?: Payabli.OrgParentId;
-    PaypointEntryname?: Payabli.Entrypointfield;
-    pageidentifier?: Payabli.PageIdentifier;
-    externalPaypointID?: Payabli.ExternalPaypointId;
-    customerConsent?: CustomerQueryRecords.CustomerConsent;
+    PaypointDbaname?: Payabli.Dbaname | undefined;
+    ParentOrgName?: Payabli.OrgParentName | undefined;
+    ParentOrgId?: Payabli.OrgParentId | undefined;
+    PaypointEntryname?: Payabli.Entrypointfield | undefined;
+    pageidentifier?: Payabli.PageIdentifier | undefined;
+    externalPaypointID?: Payabli.ExternalPaypointId | undefined;
+    customerConsent?: CustomerQueryRecords.CustomerConsent | undefined;
 }
 
 export namespace CustomerQueryRecords {
     export interface CustomerConsent {
         /** Describes the customer's email communications consent status. */
-        eCommunication?: CustomerConsent.ECommunication;
+        eCommunication?: CustomerConsent.ECommunication | undefined;
         /** Describes the customer's SMS communications consent status. */
-        sms?: CustomerConsent.Sms;
+        sms?: CustomerConsent.Sms | undefined;
     }
 
     export namespace CustomerConsent {
@@ -269,7 +269,7 @@ export namespace CustomerQueryRecords {
          * Describes the customer's email communications consent status.
          */
         export interface ECommunication {
-            status?: Payabli.OptinStatus;
+            status?: Payabli.OptinStatus | undefined;
             updatedAt?: Payabli.LastModified | undefined;
         }
 
@@ -277,7 +277,7 @@ export namespace CustomerQueryRecords {
          * Describes the customer's SMS communications consent status.
          */
         export interface Sms {
-            status?: Payabli.OptinStatus;
+            status?: Payabli.OptinStatus | undefined;
             updatedAt?: Payabli.LastModified | undefined;
         }
     }

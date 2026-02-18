@@ -3,18 +3,18 @@
 import type * as Payabli from "../index.js";
 
 export interface BillData {
-    AdditionalData?: Payabli.AdditionalDataMap;
+    AdditionalData?: Payabli.AdditionalDataMap | undefined;
     attachments?: Payabli.Attachments | undefined;
     /** Company name of the recipient of the invoice. */
-    company?: string;
+    company?: string | undefined;
     discount?: Payabli.Discount | undefined;
     dutyAmount?: Payabli.DutyAmount | undefined;
     /** First name of the recipient of the invoice. */
-    firstName?: string;
+    firstName?: string | undefined;
     freightAmount?: Payabli.FreightAmount | undefined;
     /** Frequency of scheduled invoice. */
-    frequency?: Payabli.Frequency;
-    invoiceAmount?: Payabli.InvoiceAmount;
+    frequency?: Payabli.Frequency | undefined;
+    invoiceAmount?: Payabli.InvoiceAmount | undefined;
     /** Invoice date in any of the accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
     invoiceDate?: Payabli.Datenullable | undefined;
     /** Invoice due date in one of the accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
@@ -22,31 +22,31 @@ export interface BillData {
     /** Indicate the date to finish a scheduled invoice cycle (`invoiceType`` = 1) in any of the accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
     invoiceEndDate?: Payabli.Datenullable | undefined;
     /** Invoice number. Identifies the invoice under a paypoint. */
-    invoiceNumber?: Payabli.InvoiceNumber;
-    invoiceStatus?: Payabli.Invoicestatus;
-    invoiceType?: Payabli.InvoiceType;
+    invoiceNumber?: Payabli.InvoiceNumber | undefined;
+    invoiceStatus?: Payabli.Invoicestatus | undefined;
+    invoiceType?: Payabli.InvoiceType | undefined;
     /** Array of line items included in the invoice. */
-    items?: Payabli.BillItem[];
+    items?: Payabli.BillItem[] | undefined;
     /** Last name of the recipient of the invoice. */
-    lastName?: string;
+    lastName?: string | undefined;
     /** Notes included in the invoice. */
-    notes?: string;
-    paymentTerms?: BillData.PaymentTerms;
-    purchaseOrder?: Payabli.PurchaseOrder;
-    shippingAddress1?: Payabli.Shippingaddress;
-    shippingAddress2?: Payabli.Shippingaddressadditional;
-    shippingCity?: Payabli.Shippingcity;
-    shippingCountry?: Payabli.Shippingcountry;
+    notes?: string | undefined;
+    paymentTerms?: BillData.PaymentTerms | undefined;
+    purchaseOrder?: Payabli.PurchaseOrder | undefined;
+    shippingAddress1?: Payabli.Shippingaddress | undefined;
+    shippingAddress2?: Payabli.Shippingaddressadditional | undefined;
+    shippingCity?: Payabli.Shippingcity | undefined;
+    shippingCountry?: Payabli.Shippingcountry | undefined;
     /** Shipping recipient's contact email address. */
-    shippingEmail?: Payabli.Email;
-    shippingFromZip?: Payabli.ShippingFromZip;
+    shippingEmail?: Payabli.Email | undefined;
+    shippingFromZip?: Payabli.ShippingFromZip | undefined;
     /** Recipient phone number. */
-    shippingPhone?: string;
-    shippingState?: Payabli.Shippingstate;
-    shippingZip?: Payabli.Shippingzip;
-    summaryCommodityCode?: Payabli.SummaryCommodityCode;
+    shippingPhone?: string | undefined;
+    shippingState?: Payabli.Shippingstate | undefined;
+    shippingZip?: Payabli.Shippingzip | undefined;
+    summaryCommodityCode?: Payabli.SummaryCommodityCode | undefined;
     tax?: Payabli.Tax | undefined;
-    termsConditions?: Payabli.TermsConditions;
+    termsConditions?: Payabli.TermsConditions | undefined;
 }
 
 export namespace BillData {

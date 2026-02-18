@@ -3,14 +3,14 @@
 import type * as Payabli from "../index.js";
 
 export interface ApplePayOrganizationUpdateData {
-    createdAt?: Payabli.CreatedAt;
+    createdAt?: Payabli.CreatedAt | undefined;
     /** Internal ID for the Apple Pay organization update. */
-    id?: Payabli.ApplePayId;
-    jobId?: Payabli.JobId;
-    jobStatus?: Payabli.JobStatus;
-    organizationId?: Payabli.OrganizationId;
+    id?: Payabli.ApplePayId | undefined;
+    jobId?: Payabli.JobId | undefined;
+    jobStatus?: Payabli.JobStatus | undefined;
+    organizationId?: Payabli.OrganizationId | undefined;
     /** The record type, in this context it will always be `ApplePayOrganizationUpdate`. */
     type?: Payabli.ApplePayType | undefined;
     updatedAt?: Payabli.LastModified | undefined;
-    updates?: Payabli.OrganizationUpdates;
+    updates?: Payabli.OrganizationUpdates | undefined;
 }

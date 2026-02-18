@@ -53,9 +53,9 @@ export class ImportClient {
         request: Payabli.ImportBillsRequest,
         requestOptions?: ImportClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.PayabliApiResponseImport>> {
-        const _request = await core.newFormData();
-        await _request.appendFile("file", request.file);
-        const _maybeEncodedRequest = await _request.getRequest();
+        const _body = await core.newFormData();
+        await _body.appendFile("file", request.file);
+        const _maybeEncodedRequest = await _body.getRequest();
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -142,14 +142,12 @@ export class ImportClient {
         request: Payabli.ImportCustomerRequest,
         requestOptions?: ImportClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.PayabliApiResponseImport>> {
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (request.replaceExisting != null) {
-            _queryParams.replaceExisting = request.replaceExisting.toString();
-        }
-
-        const _request = await core.newFormData();
-        await _request.appendFile("file", request.file);
-        const _maybeEncodedRequest = await _request.getRequest();
+        const _queryParams: Record<string, unknown> = {
+            replaceExisting: request.replaceExisting,
+        };
+        const _body = await core.newFormData();
+        await _body.appendFile("file", request.file);
+        const _maybeEncodedRequest = await _body.getRequest();
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -236,9 +234,9 @@ export class ImportClient {
         request: Payabli.ImportVendorRequest,
         requestOptions?: ImportClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.PayabliApiResponseImport>> {
-        const _request = await core.newFormData();
-        await _request.appendFile("file", request.file);
-        const _maybeEncodedRequest = await _request.getRequest();
+        const _body = await core.newFormData();
+        await _body.appendFile("file", request.file);
+        const _maybeEncodedRequest = await _body.getRequest();
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

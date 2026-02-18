@@ -17,13 +17,13 @@ export namespace QueryInvoiceResponse {
             paypointId: Payabli.PaypointId;
             invoiceNumber: Payabli.InvoiceNumber;
             /** Invoice date in any of the accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
-            invoiceDate?: Payabli.Datenullable;
+            invoiceDate?: Payabli.Datenullable | undefined;
             /** Invoice due date in any of the accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
-            invoiceDueDate?: Payabli.Datenullable;
+            invoiceDueDate?: Payabli.Datenullable | undefined;
             /** Invoice sent date in any of the accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
-            invoiceSentDate?: Payabli.Datenullable;
+            invoiceSentDate?: Payabli.Datenullable | undefined;
             /** The end date for a scheduled invoice cycle (`invoiceType` = 1). */
-            invoiceEndDate?: Payabli.Datenullable;
+            invoiceEndDate?: Payabli.Datenullable | undefined;
             /** Timestamp of last payment. */
             lastPaymentDate?: Payabli.DatetimeNullable | undefined;
             createdAt: Payabli.CreatedAt;
@@ -35,12 +35,12 @@ export namespace QueryInvoiceResponse {
             termsConditions: Payabli.TermsConditions | null;
             /** Invoice notes. */
             notes: string | null;
-            tax?: Payabli.Tax;
-            discount?: Payabli.Discount;
+            tax?: Payabli.Tax | undefined;
+            discount?: Payabli.Discount | undefined;
             invoiceAmount: Payabli.InvoiceAmount;
             invoicePaidAmount: Payabli.InvoicePaidAmount;
-            freightAmount?: Payabli.FreightAmount;
-            dutyAmount?: Payabli.DutyAmount;
+            freightAmount?: Payabli.FreightAmount | undefined;
+            dutyAmount?: Payabli.DutyAmount | undefined;
             purchaseOrder: Payabli.PurchaseOrder | null;
             /** First name of the recipient of the invoice. */
             firstName: string;
@@ -64,7 +64,7 @@ export namespace QueryInvoiceResponse {
             items: Payabli.BillItem[];
             Customer: Payabli.PayorDataResponse;
             paylinkId: string;
-            billEvents?: Payabli.BillEvents;
+            billEvents?: Payabli.BillEvents | undefined;
             /** Object with options for scheduled invoices. */
             scheduledOptions: Payabli.BillOptions | null;
             /** Paypoint's legal name. */

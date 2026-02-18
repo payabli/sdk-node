@@ -13,15 +13,15 @@ import type * as Payabli from "../index.js";
  *     }
  */
 export interface BatchSummary {
-    pageidentifier?: Payabli.PageIdentifier;
+    pageidentifier?: Payabli.PageIdentifier | undefined;
     /** Number of records on each response page. */
-    pageSize?: number;
+    pageSize?: number | undefined;
     /** Total amount for the records. */
-    totalAmount?: number;
+    totalAmount?: number | undefined;
     /** Total net amount for the records. */
-    totalNetAmount?: number;
+    totalNetAmount?: number | undefined;
     /** Total number of pages in response. */
-    totalPages?: number;
+    totalPages?: number | undefined;
     /** Total number of records in response. */
-    totalRecords?: number;
+    totalRecords?: number | undefined;
 }

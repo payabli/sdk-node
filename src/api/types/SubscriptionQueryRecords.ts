@@ -4,57 +4,57 @@ import type * as Payabli from "../index.js";
 
 export interface SubscriptionQueryRecords {
     /** Timestamp of when the subscription ws created, in UTC. */
-    CreatedAt?: Payabli.CreatedAt;
-    Customer?: Payabli.QueryTransactionPayorData;
+    CreatedAt?: Payabli.CreatedAt | undefined;
+    Customer?: Payabli.QueryTransactionPayorData | undefined;
     /** The subscription's end date. */
     EndDate?: Payabli.DatetimeNullable | undefined;
-    EntrypageId?: Payabli.EntrypageId;
-    ExternalPaypointID?: Payabli.ExternalPaypointId;
+    EntrypageId?: Payabli.EntrypageId | undefined;
+    ExternalPaypointID?: Payabli.ExternalPaypointId | undefined;
     /** Fee applied to the subscription. */
-    FeeAmount?: number;
+    FeeAmount?: number | undefined;
     /** The subscription's frequency. */
-    Frequency?: string;
+    Frequency?: string | undefined;
     /** The subscription's ID. */
-    IdSub?: number;
-    InvoiceData?: Payabli.BillData;
+    IdSub?: number | undefined;
+    InvoiceData?: Payabli.BillData | undefined;
     /** The last time the subscription was processed. */
     LastRun?: Payabli.DatetimeNullable | undefined;
     /** The last date and time the subscription was updated. */
     LastUpdated?: Payabli.LastModified | undefined;
     /** The number of cycles the subscription has left. */
-    LeftCycles?: number;
+    LeftCycles?: number | undefined;
     /** The subscription's payment method. */
-    Method?: string;
+    Method?: string | undefined;
     /** The subscription amount, minus any fees. */
     NetAmount?: Payabli.Netamountnullable | undefined;
     /** The next date the subscription will be processed. */
     NextDate?: Payabli.DatetimeNullable | undefined;
-    ParentOrgName?: Payabli.OrgParentName;
-    PaymentData?: Payabli.QueryPaymentData;
+    ParentOrgName?: Payabli.OrgParentName | undefined;
+    PaymentData?: Payabli.QueryPaymentData | undefined;
     /** The paypoint's DBA name. */
-    PaypointDbaname?: Payabli.Dbaname;
+    PaypointDbaname?: Payabli.Dbaname | undefined;
     /** The paypoint's entryname. */
-    PaypointEntryname?: Payabli.Entrypointfield;
-    PaypointId?: Payabli.PaypointId;
+    PaypointEntryname?: Payabli.Entrypointfield | undefined;
+    PaypointId?: Payabli.PaypointId | undefined;
     /** The paypoint's legal name. */
-    PaypointLegalname?: Payabli.Legalname;
+    PaypointLegalname?: Payabli.Legalname | undefined;
     /** Payment plan ID. */
-    PlanId?: number;
-    Source?: Payabli.Source;
+    PlanId?: number | undefined;
+    Source?: Payabli.Source | undefined;
     /** The subscription start date. */
     StartDate?: Payabli.DatetimeNullable | undefined;
     /** Events associated with the subscription. */
-    SubEvents?: Payabli.GeneralEvents[];
+    SubEvents?: Payabli.GeneralEvents[] | undefined;
     /**
      * The subscription's status.
      * - 0: Paused
      * - 1: Active
      */
-    SubStatus?: number;
+    SubStatus?: number | undefined;
     /** The subscription amount, including any fees. */
-    TotalAmount?: number;
+    TotalAmount?: number | undefined;
     /** The total number of cycles the subscription is set to run. */
-    TotalCycles?: number;
+    TotalCycles?: number | undefined;
     /** When `true`, the subscription has no explicit end date and will run until canceled. */
-    UntilCancelled?: boolean;
+    UntilCancelled?: boolean | undefined;
 }

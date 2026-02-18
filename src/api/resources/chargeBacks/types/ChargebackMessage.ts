@@ -16,5 +16,5 @@ export interface ChargebackMessage {
     /** Type of message. */
     MessageType: number;
     /** Additional properties of the message. */
-    MessageProperties?: Record<string, string>;
+    MessageProperties?: Record<string, string> | undefined;
 }

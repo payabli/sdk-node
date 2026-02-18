@@ -10,6 +10,6 @@ export interface BoardingLinkApiResponse {
      * Reference name for boarding link (if responseText = Success) or
      * List of empty fields separated by comma (if responseText = Fail)
      */
-    responseData?: string;
+    responseData?: string | undefined;
     responseText: Payabli.ResponseText;
 }

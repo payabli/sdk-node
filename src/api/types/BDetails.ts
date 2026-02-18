@@ -3,15 +3,15 @@
 import type * as Payabli from "../index.js";
 
 export interface BDetails {
-    btype?: Payabli.LinkData;
-    dbaname?: Payabli.LinkData;
-    ein?: Payabli.LinkData;
-    faxnumber?: Payabli.LinkData;
-    legalname?: Payabli.LinkData;
-    license?: Payabli.LinkData;
-    licstate?: Payabli.LinkData;
-    phonenumber?: Payabli.LinkData;
-    startdate?: Payabli.LinkData;
-    taxfillname?: Payabli.LinkData;
-    website?: Payabli.LinkData;
+    btype?: Payabli.LinkData | undefined;
+    dbaname?: Payabli.LinkData | undefined;
+    ein?: Payabli.LinkData | undefined;
+    faxnumber?: Payabli.LinkData | undefined;
+    legalname?: Payabli.LinkData | undefined;
+    license?: Payabli.LinkData | undefined;
+    licstate?: Payabli.LinkData | undefined;
+    phonenumber?: Payabli.LinkData | undefined;
+    startdate?: Payabli.LinkData | undefined;
+    taxfillname?: Payabli.LinkData | undefined;
+    website?: Payabli.LinkData | undefined;
 }

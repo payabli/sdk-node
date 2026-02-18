@@ -3,12 +3,12 @@
 import type * as Payabli from "../index.js";
 
 export interface PayabliApiResponseMfaBasic {
-    isSuccess?: Payabli.IsSuccess;
+    isSuccess?: Payabli.IsSuccess | undefined;
     mfa?: Payabli.Mfa | undefined;
     /** The mode of multi-factor authentication used. */
-    mfaMode?: string;
-    mfaValidationCode?: Payabli.MfaValidationCode;
+    mfaMode?: string | undefined;
+    mfaValidationCode?: Payabli.MfaValidationCode | undefined;
     /** Data returned by the response, masked for security. */
-    responseData?: string;
+    responseData?: string | undefined;
     responseText: Payabli.ResponseText;
 }

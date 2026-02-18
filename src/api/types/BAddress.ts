@@ -3,16 +3,16 @@
 import type * as Payabli from "../index.js";
 
 export interface BAddress {
-    baddress?: Payabli.LinkData;
-    baddress1?: Payabli.LinkData;
-    bcity?: Payabli.LinkData;
-    bcountry?: Payabli.LinkData;
-    bstate?: Payabli.LinkData;
-    bzip?: Payabli.LinkData;
-    maddress?: Payabli.LinkData;
-    maddress1?: Payabli.LinkData;
-    mcity?: Payabli.LinkData;
-    mcountry?: Payabli.LinkData;
-    mstate?: Payabli.LinkData;
-    mzip?: Payabli.LinkData;
+    baddress?: Payabli.LinkData | undefined;
+    baddress1?: Payabli.LinkData | undefined;
+    bcity?: Payabli.LinkData | undefined;
+    bcountry?: Payabli.LinkData | undefined;
+    bstate?: Payabli.LinkData | undefined;
+    bzip?: Payabli.LinkData | undefined;
+    maddress?: Payabli.LinkData | undefined;
+    maddress1?: Payabli.LinkData | undefined;
+    mcity?: Payabli.LinkData | undefined;
+    mcountry?: Payabli.LinkData | undefined;
+    mstate?: Payabli.LinkData | undefined;
+    mzip?: Payabli.LinkData | undefined;
 }

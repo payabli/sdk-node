@@ -3,9 +3,9 @@
 import type * as Payabli from "../index.js";
 
 export interface TemplateElement {
-    posCol?: Payabli.PosCol;
-    posRow?: Payabli.PosRow;
+    posCol?: Payabli.PosCol | undefined;
+    posRow?: Payabli.PosRow | undefined;
     readOnly?: Payabli.ReadOnly | undefined;
-    value?: Payabli.ValueTemplates;
+    value?: Payabli.ValueTemplates | undefined;
     visible?: Payabli.Visible | undefined;
 }

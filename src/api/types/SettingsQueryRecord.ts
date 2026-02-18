@@ -4,12 +4,11 @@ import type * as Payabli from "../index.js";
 
 export interface SettingsQueryRecord {
     /** Any custom fields defined for the org. */
-    customFields?: Payabli.KeyValue[];
-    forInvoices?: Payabli.KeyValue[];
-    forPayOuts?: Payabli.KeyValue[];
+    customFields?: Payabli.KeyValue[] | undefined;
+    forInvoices?: Payabli.KeyValue[] | undefined;
+    forPayOuts?: Payabli.KeyValue[] | undefined;
     /** Information about digital wallet settings for the entity. Available values are `isApplePayEnabled` and `isGooglePayEnabled`. */
-    forWallets?: Payabli.KeyValue[];
-    /** */
-    general?: Payabli.KeyValue[];
-    identifiers?: Payabli.KeyValue[];
+    forWallets?: Payabli.KeyValue[] | undefined;
+    general?: Payabli.KeyValue[] | undefined;
+    identifiers?: Payabli.KeyValue[] | undefined;
 }

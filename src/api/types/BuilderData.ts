@@ -3,10 +3,10 @@
 import type * as Payabli from "../index.js";
 
 export interface BuilderData {
-    services?: Payabli.SSection;
-    attributes?: Payabli.ASection;
-    banking?: Payabli.DSection;
-    business?: Payabli.BSection;
-    owners?: Payabli.OSection;
-    processing?: Payabli.PSection;
+    services?: Payabli.SSection | undefined;
+    attributes?: Payabli.ASection | undefined;
+    banking?: Payabli.DSection | undefined;
+    business?: Payabli.BSection | undefined;
+    owners?: Payabli.OSection | undefined;
+    processing?: Payabli.PSection | undefined;
 }

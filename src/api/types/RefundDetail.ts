@@ -7,7 +7,7 @@ import type * as Payabli from "../index.js";
  */
 export interface RefundDetail {
     /** Array of payment categories/line items describing the amount to be paid. Note: These categories are for information only and aren't validated against the total amount provided. */
-    categories?: Payabli.PaymentCategories[];
+    categories?: Payabli.PaymentCategories[] | undefined;
     /** Array of objects containing split instructions for the refund. */
-    splitRefunding?: Payabli.SplitFundingRefundContent[];
+    splitRefunding?: Payabli.SplitFundingRefundContent[] | undefined;
 }

@@ -2,7 +2,7 @@
 
 export interface Finishtype {
     /** Flag to enable 'calendar' option */
-    calendar?: boolean;
+    calendar?: boolean | undefined;
     /** Flag to enable 'untilCancelled' option */
-    untilCancelled?: boolean;
+    untilCancelled?: boolean | undefined;
 }

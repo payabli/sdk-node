@@ -6,16 +6,16 @@ import type * as Payabli from "../index.js";
  * Response body for payment method deletion.
  */
 export interface PayabliApiResponsePaymethodDelete {
-    isSuccess?: Payabli.IsSuccess;
-    responseData?: PayabliApiResponsePaymethodDelete.ResponseData;
+    isSuccess?: Payabli.IsSuccess | undefined;
+    responseData?: PayabliApiResponsePaymethodDelete.ResponseData | undefined;
     responseText: Payabli.ResponseText;
 }
 
 export namespace PayabliApiResponsePaymethodDelete {
     export interface ResponseData {
         /** The method's reference ID. */
-        referenceId?: Payabli.MethodReferenceId;
-        resultCode?: Payabli.ResultCode;
-        resultText?: Payabli.Resulttext;
+        referenceId?: Payabli.MethodReferenceId | undefined;
+        resultCode?: Payabli.ResultCode | undefined;
+        resultText?: Payabli.Resulttext | undefined;
     }
 }

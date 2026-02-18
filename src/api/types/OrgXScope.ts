@@ -3,7 +3,7 @@
 import type * as Payabli from "../index.js";
 
 export interface OrgXScope {
-    orgEntry?: Payabli.Orgentryname;
-    orgId?: Payabli.Orgid;
-    orgType?: Payabli.Orgtype;
+    orgEntry?: Payabli.Orgentryname | undefined;
+    orgId?: Payabli.Orgid | undefined;
+    orgType?: Payabli.Orgtype | undefined;
 }

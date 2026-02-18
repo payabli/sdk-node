@@ -204,16 +204,14 @@ export class SubscriptionClient {
         requestOptions?: SubscriptionClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.AddSubscriptionResponse>> {
         const { forceCustomerCreation, idempotencyKey, body: _body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (forceCustomerCreation != null) {
-            _queryParams.forceCustomerCreation = forceCustomerCreation.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            forceCustomerCreation,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey != null ? idempotencyKey : undefined }),
+            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({

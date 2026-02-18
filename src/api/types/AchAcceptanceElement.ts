@@ -3,10 +3,10 @@
 import type * as Payabli from "../index.js";
 
 export interface AchAcceptanceElement {
-    types?: Payabli.AchTypes;
-    posCol?: Payabli.PosCol;
-    posRow?: Payabli.PosRow;
+    types?: Payabli.AchTypes | undefined;
+    posCol?: Payabli.PosCol | undefined;
+    posRow?: Payabli.PosRow | undefined;
     readOnly?: Payabli.ReadOnly | undefined;
-    value?: Payabli.ValueTemplates;
+    value?: Payabli.ValueTemplates | undefined;
     visible?: Payabli.Visible | undefined;
 }

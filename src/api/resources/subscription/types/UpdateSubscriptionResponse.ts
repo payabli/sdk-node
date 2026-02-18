@@ -6,13 +6,13 @@ import type * as Payabli from "../../../index.js";
  * Success response
  */
 export interface UpdateSubscriptionResponse {
-    isSuccess?: Payabli.IsSuccess;
+    isSuccess?: Payabli.IsSuccess | undefined;
     /**
      * If `isSuccess` = true, this contains the identifier of the subscription, and sometimes extra information, depending on what was updated.
      *
      * If `isSuccess` = false, this contains the reason for the failure.
      */
-    responseData?: string;
+    responseData?: string | undefined;
     responseText: Payabli.ResponseText;
-    customerId?: Payabli.CustomerId;
+    customerId?: Payabli.CustomerId | undefined;
 }

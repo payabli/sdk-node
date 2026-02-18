@@ -6,19 +6,19 @@ import type * as Payabli from "../index.js";
  * Response object for bill details. Contains basic information about a bill.
  */
 export interface BillDetailsResponse {
-    billId?: Payabli.BillId;
+    billId?: Payabli.BillId | undefined;
     /** Lot number of the bill. */
-    lotNumber?: string;
+    lotNumber?: string | undefined;
     /** Custom number identifying the bill. */
-    invoiceNumber?: Payabli.InvoiceNumber;
+    invoiceNumber?: Payabli.InvoiceNumber | undefined;
     /** Net Amount owed in bill. Required when adding a bill. */
-    netAmount?: Payabli.NetAmountstring;
+    netAmount?: Payabli.NetAmountstring | undefined;
     /** Bill discount amount. */
-    discount?: string;
+    discount?: string | undefined;
     /** Bill due date in format YYYY-MM-DD or MM/DD/YYYY. */
     dueDate?: Payabli.Datenullable | undefined;
     /** Bill date in format YYYY-MM-DD or MM/DD/YYYY. */
     invoiceDate?: Payabli.Datenullable | undefined;
     /** Any comments about bill. **For managed payouts, this field has a limit of 100 characters**. */
-    comments?: Payabli.Comments;
+    comments?: Payabli.Comments | undefined;
 }

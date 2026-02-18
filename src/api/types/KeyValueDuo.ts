@@ -2,7 +2,7 @@
 
 export interface KeyValueDuo {
     /** Key name. */
-    key?: string;
+    key?: string | undefined;
     /** Key value. */
-    value?: string;
+    value?: string | undefined;
 }

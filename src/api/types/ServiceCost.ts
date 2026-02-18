@@ -3,12 +3,12 @@
 import type * as Payabli from "../index.js";
 
 export interface ServiceCost {
-    description?: string;
-    enabled?: Payabli.Enabled;
-    monthlyCost?: number;
-    name?: string;
-    reseller?: boolean;
-    setupCost?: number;
-    txCost?: number;
-    txPercentCost?: number;
+    description?: string | undefined;
+    enabled?: Payabli.Enabled | undefined;
+    monthlyCost?: number | undefined;
+    name?: string | undefined;
+    reseller?: boolean | undefined;
+    setupCost?: number | undefined;
+    txCost?: number | undefined;
+    txPercentCost?: number | undefined;
 }

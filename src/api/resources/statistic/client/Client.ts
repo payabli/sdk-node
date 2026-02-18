@@ -89,19 +89,11 @@ export class StatisticClient {
         requestOptions?: StatisticClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.StatBasicExtendedQueryRecord[]>> {
         const { endDate, parameters, startDate } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (endDate != null) {
-            _queryParams.endDate = endDate;
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (startDate != null) {
-            _queryParams.startDate = startDate;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            endDate,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            startDate,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -217,11 +209,9 @@ export class StatisticClient {
         requestOptions?: StatisticClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.SubscriptionStatsQueryRecord[]>> {
         const { parameters } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            parameters: parameters != null ? toJson(parameters) : undefined,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -324,11 +314,9 @@ export class StatisticClient {
         requestOptions?: StatisticClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.StatBasicQueryRecord[]>> {
         const { parameters } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            parameters: parameters != null ? toJson(parameters) : undefined,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -436,11 +424,9 @@ export class StatisticClient {
         requestOptions?: StatisticClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.StatisticsVendorQueryRecord[]>> {
         const { parameters } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            parameters: parameters != null ? toJson(parameters) : undefined,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

@@ -6,7 +6,7 @@ export interface ResponseDataRefunds {
     authCode: Payabli.Authcode;
     expectedProcessingDateTime: (Payabli.ExpectedProcessingDateTime | undefined) | null;
     /** This field isn't applicable to refund operations. */
-    avsResponseText?: Payabli.AvsResponseText;
+    avsResponseText?: Payabli.AvsResponseText | undefined;
     customerId: Payabli.CustomerId | null;
     /** This field isn't applicable to refund operations. */
     cvvResponseText: Payabli.CvvResponseText | null;

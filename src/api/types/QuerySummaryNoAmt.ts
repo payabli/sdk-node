@@ -3,8 +3,8 @@
 import type * as Payabli from "../index.js";
 
 export interface QuerySummaryNoAmt {
-    pageIdentifier?: Payabli.PageIdentifier;
-    pageSize?: Payabli.Pagesize;
-    totalPages?: Payabli.Totalrecords;
-    totalRecords?: Payabli.Totalrecords;
+    pageIdentifier?: Payabli.PageIdentifier | undefined;
+    pageSize?: Payabli.Pagesize | undefined;
+    totalPages?: Payabli.Totalrecords | undefined;
+    totalRecords?: Payabli.Totalrecords | undefined;
 }

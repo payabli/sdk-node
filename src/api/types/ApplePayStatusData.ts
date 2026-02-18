@@ -7,6 +7,6 @@ import type * as Payabli from "../index.js";
  */
 export interface ApplePayStatusData {
     /** Any error message related to Apple Pay's activation status. */
-    errorMessage?: string;
-    metadata?: Payabli.ApplePayMetadata;
+    errorMessage?: string | undefined;
+    metadata?: Payabli.ApplePayMetadata | undefined;
 }

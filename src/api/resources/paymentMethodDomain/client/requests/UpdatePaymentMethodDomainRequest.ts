@@ -20,10 +20,10 @@ export interface UpdatePaymentMethodDomainRequest {
 
 export namespace UpdatePaymentMethodDomainRequest {
     export interface ApplePay {
-        isEnabled?: Payabli.IsEnabled;
+        isEnabled?: Payabli.IsEnabled | undefined;
     }
 
     export interface GooglePay {
-        isEnabled?: Payabli.IsEnabled;
+        isEnabled?: Payabli.IsEnabled | undefined;
     }
 }

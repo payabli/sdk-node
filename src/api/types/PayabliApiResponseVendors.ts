@@ -3,10 +3,10 @@
 import type * as Payabli from "../index.js";
 
 export interface PayabliApiResponseVendors {
-    isSuccess?: Payabli.IsSuccess;
-    pageIdentifier?: Payabli.PageIdentifier;
-    responseCode?: Payabli.Responsecode;
+    isSuccess?: Payabli.IsSuccess | undefined;
+    pageIdentifier?: Payabli.PageIdentifier | undefined;
+    responseCode?: Payabli.Responsecode | undefined;
     /** If the request was successful, this field contains the identifier for the vendor. */
-    responseData?: number;
+    responseData?: number | undefined;
     responseText: Payabli.ResponseText;
 }

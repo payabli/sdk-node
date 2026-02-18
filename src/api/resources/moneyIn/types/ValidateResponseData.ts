@@ -13,5 +13,5 @@ export interface ValidateResponseData {
     avsResponseText: Payabli.AvsResponseText;
     cvvResponseText: Payabli.CvvResponseText;
     customerId: Payabli.Customeridtrans;
-    methodReferenceId?: Payabli.MethodReferenceId;
+    methodReferenceId?: Payabli.MethodReferenceId | undefined;
 }

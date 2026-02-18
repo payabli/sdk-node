@@ -2,17 +2,17 @@
 
 export interface OdpSetup {
     /** Enables or disables ACH payout functionality */
-    allowAch?: boolean;
+    allowAch?: boolean | undefined;
     /** Enables or disables check printing payout functionality */
-    allowChecks?: boolean;
+    allowChecks?: boolean | undefined;
     /** Enables or disables vCard payout functionality */
-    allowVCard?: boolean;
+    allowVCard?: boolean | undefined;
     /** Region where payment processing occurs */
-    processing_region?: OdpSetup.ProcessingRegion;
+    processing_region?: OdpSetup.ProcessingRegion | undefined;
     /** Payment processor identifier */
-    processor?: string;
+    processor?: string | undefined;
     /** Reference ID for the program enabled for ODP issuance */
-    issuerNetworkSettingsId?: string;
+    issuerNetworkSettingsId?: string | undefined;
 }
 
 export namespace OdpSetup {

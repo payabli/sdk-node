@@ -6,6 +6,6 @@ import type * as Payabli from "../index.js";
  * Response payload for queries related to vendors.
  */
 export interface QueryResponseVendors {
-    Records?: Payabli.VendorQueryRecord[];
-    Summary?: Payabli.QuerySummary;
+    Records?: Payabli.VendorQueryRecord[] | undefined;
+    Summary?: Payabli.QuerySummary | undefined;
 }

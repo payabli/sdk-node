@@ -3,11 +3,11 @@
 import type * as Payabli from "../../../index.js";
 
 export interface CaptureAllOutResponse {
-    isSuccess?: Payabli.IsSuccess;
-    pageIdentifier?: Payabli.PageIdentifier;
-    responseCode?: Payabli.Responsecode;
+    isSuccess?: Payabli.IsSuccess | undefined;
+    pageIdentifier?: Payabli.PageIdentifier | undefined;
+    responseCode?: Payabli.Responsecode | undefined;
     /** Array of objects describing the transactions. */
-    responseData?: CaptureAllOutResponse.ResponseData.Item[];
+    responseData?: CaptureAllOutResponse.ResponseData.Item[] | undefined;
     responseText: Payabli.ResponseText;
 }
 
@@ -17,15 +17,15 @@ export namespace CaptureAllOutResponse {
     export namespace ResponseData {
         export interface Item {
             /** Internal unique Id of vendor owner of transaction. Returns `0` if the transaction wasn't assigned to an existing vendor or no vendor was created. */
-            CustomerId?: Payabli.Customeridtrans;
-            ReferenceId?: Payabli.Referenceidtrans;
-            ResultCode?: Payabli.ResultCode;
+            CustomerId?: Payabli.Customeridtrans | undefined;
+            ReferenceId?: Payabli.Referenceidtrans | undefined;
+            ResultCode?: Payabli.ResultCode | undefined;
             /**
              * Text describing the result.
              * If `ResultCode`` = 1, returns 'Authorized'.
              * If `ResultCode` = 2 or 3, this contains the cause of the decline.
              */
-            ResultText?: Payabli.Resulttext;
+            ResultText?: Payabli.Resulttext | undefined;
         }
     }
 }

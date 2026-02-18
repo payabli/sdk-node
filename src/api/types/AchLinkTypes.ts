@@ -3,7 +3,7 @@
 import type * as Payabli from "../index.js";
 
 export interface AchLinkTypes {
-    ccd?: Payabli.LinkData;
-    ppd?: Payabli.LinkData;
-    web?: Payabli.LinkData;
+    ccd?: Payabli.LinkData | undefined;
+    ppd?: Payabli.LinkData | undefined;
+    web?: Payabli.LinkData | undefined;
 }

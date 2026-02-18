@@ -3,17 +3,17 @@
 import type * as Payabli from "../index.js";
 
 export interface TemplateQueryRecord {
-    addPrice?: boolean;
-    boardingLinks?: Payabli.BoardingQueryLinks[];
-    createdAt?: Payabli.CreatedAt;
-    idTemplate?: number;
+    addPrice?: boolean | undefined;
+    boardingLinks?: Payabli.BoardingQueryLinks[] | undefined;
+    createdAt?: Payabli.CreatedAt | undefined;
+    idTemplate?: number | undefined;
     isRoot?: Payabli.IsRoot | undefined;
-    orgParentName?: Payabli.OrgParentName;
-    recipientEmailNotification?: Payabli.RecipientEmailNotification;
-    resumable?: Payabli.Resumable;
+    orgParentName?: Payabli.OrgParentName | undefined;
+    recipientEmailNotification?: Payabli.RecipientEmailNotification | undefined;
+    resumable?: Payabli.Resumable | undefined;
     templateCode?: Payabli.TemplateCode | undefined;
-    templateContent?: Payabli.TemplateContentResponse;
-    templateDescription?: string;
-    templateTitle?: string;
-    usedBy?: number;
+    templateContent?: Payabli.TemplateContentResponse | undefined;
+    templateDescription?: string | undefined;
+    templateTitle?: string | undefined;
+    usedBy?: number | undefined;
 }

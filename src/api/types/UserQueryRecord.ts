@@ -3,29 +3,29 @@
 import type * as Payabli from "../index.js";
 
 export interface UserQueryRecord {
-    Access?: Payabli.UsrAccess[];
-    AdditionalData?: Payabli.AdditionalDataString;
+    Access?: Payabli.UsrAccess[] | undefined;
+    AdditionalData?: Payabli.AdditionalDataString | undefined;
     /** The timestamp for the user's creation, in UTC. */
-    createdAt?: Payabli.CreatedAt;
+    createdAt?: Payabli.CreatedAt | undefined;
     /** The user's email address. */
-    Email?: Payabli.Email;
-    language?: Payabli.Language;
+    Email?: Payabli.Email | undefined;
+    language?: Payabli.Language | undefined;
     /** The timestamp for the user's last activity, in UTC. */
-    lastAccess?: string;
-    Name?: Payabli.NameUser;
+    lastAccess?: string | undefined;
+    Name?: Payabli.NameUser | undefined;
     /** The user's phone number. */
-    Phone?: Payabli.PhoneNumber;
-    Scope?: Payabli.OrgXScope[];
+    Phone?: Payabli.PhoneNumber | undefined;
+    Scope?: Payabli.OrgXScope[] | undefined;
     /** Additional data provided by the social network related to the customer. */
-    snData?: string;
+    snData?: string | undefined;
     /** Identifier or token for customer in linked social network. */
-    snIdentifier?: string;
+    snIdentifier?: string | undefined;
     /** Social network linked to customer. Possible values: facebook, google, twitter, microsoft. */
-    snProvider?: string;
-    timeZone?: Payabli.Timezone;
+    snProvider?: string | undefined;
+    timeZone?: Payabli.Timezone | undefined;
     /** The user's ID in Payabli. */
-    userId?: number;
+    userId?: number | undefined;
     UsrMFA?: Payabli.Mfa | undefined;
-    UsrMFAMode?: Payabli.MfaMode;
-    UsrStatus?: Payabli.UsrStatus;
+    UsrMFAMode?: Payabli.MfaMode | undefined;
+    UsrStatus?: Payabli.UsrStatus | undefined;
 }

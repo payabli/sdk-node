@@ -3,7 +3,7 @@
 import type * as Payabli from "../index.js";
 
 export interface CardSection {
-    acceptance?: Payabli.CardLinkTypes;
-    fees?: Payabli.BasicTable;
-    price?: Payabli.BasicTable;
+    acceptance?: Payabli.CardLinkTypes | undefined;
+    fees?: Payabli.BasicTable | undefined;
+    price?: Payabli.BasicTable | undefined;
 }

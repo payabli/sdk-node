@@ -4,34 +4,34 @@ import type * as Payabli from "../index.js";
 
 export interface Owners {
     /** Person who is registered as the beneficial owner of the business. This is a combination of first and last name. */
-    ownername?: string;
+    ownername?: string | undefined;
     /** The job title of the person such as CEO or director. */
-    ownertitle?: string;
+    ownertitle?: string | undefined;
     /** Percentage of ownership the person holds, in integer format. */
-    ownerpercent?: number;
+    ownerpercent?: number | undefined;
     /** The relevant identifier for the person such as a Social Security Number. */
-    ownerssn?: string;
+    ownerssn?: string | undefined;
     /** Owner's date of birth. */
-    ownerdob?: string;
+    ownerdob?: string | undefined;
     /** Owner phone 1. */
-    ownerphone1?: string;
+    ownerphone1?: string | undefined;
     /** Owner phone 2. */
-    ownerphone2?: string;
+    ownerphone2?: string | undefined;
     /** Owner email. */
-    owneremail?: Payabli.Email;
+    owneremail?: Payabli.Email | undefined;
     /** Owner driver's license ID number. Payabli strongly recommends including this. */
-    ownerdriver?: string;
+    ownerdriver?: string | undefined;
     /** Owner street address. This must be the physical address of the owner, not a P.O. box. */
-    oaddress?: string;
+    oaddress?: string | undefined;
     /** Owner address city. */
-    ocity?: string;
+    ocity?: string | undefined;
     /** Owner address country in ISO-3166-1 alpha 2 format. Check out https://en.wikipedia.org/wiki/ISO_3166-1 for reference. */
-    ocountry?: string;
+    ocountry?: string | undefined;
     /** Owner driver's license State. Payabli strongly recommends including this. */
-    odriverstate?: string;
+    odriverstate?: string | undefined;
     /** Owner address state. */
-    ostate?: string;
+    ostate?: string | undefined;
     /** Owner address ZIP. */
-    ozip?: string;
-    additionalData?: Payabli.AdditionalDataString;
+    ozip?: string | undefined;
+    additionalData?: Payabli.AdditionalDataString | undefined;
 }

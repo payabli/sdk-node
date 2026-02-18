@@ -71,12 +71,12 @@ export namespace RequestCredit {
      * Object describing the ACH payment method to use for transaction.
      */
     export interface PaymentMethod {
-        achAccount?: Payabli.Achaccount;
-        achAccountType?: Payabli.Achaccounttype;
-        achCode?: Payabli.AchSecCode;
+        achAccount?: Payabli.Achaccount | undefined;
+        achAccountType?: Payabli.Achaccounttype | undefined;
+        achCode?: Payabli.AchSecCode | undefined;
         /** Bank account holder. */
-        achHolder?: Payabli.AchHolder;
-        achRouting?: Payabli.Achrouting;
+        achHolder?: Payabli.AchHolder | undefined;
+        achRouting?: Payabli.Achrouting | undefined;
         /** Method to use for the transaction. Must be ACH. */
         method: "ach";
     }

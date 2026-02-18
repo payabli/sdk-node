@@ -3,8 +3,8 @@
 import type * as Payabli from "../index.js";
 
 export interface CardTypePass {
-    amex?: Payabli.TierItemPass;
-    discover?: Payabli.TierItemPass;
-    masterCard?: Payabli.TierItemPass;
-    visa?: Payabli.TierItemPass;
+    amex?: Payabli.TierItemPass | undefined;
+    discover?: Payabli.TierItemPass | undefined;
+    masterCard?: Payabli.TierItemPass | undefined;
+    visa?: Payabli.TierItemPass | undefined;
 }

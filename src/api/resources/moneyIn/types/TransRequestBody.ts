@@ -68,20 +68,20 @@ import type * as Payabli from "../../../index.js";
  *     }
  */
 export interface TransRequestBody {
-    accountId?: Payabli.Accountid;
+    accountId?: Payabli.Accountid | undefined;
     /** Object describing the Customer/Payor. Which fields are required depends on the paypoint's custom identifier settings. */
-    customerData?: Payabli.PayorDataRequest;
-    entryPoint?: Payabli.Entrypointfield;
+    customerData?: Payabli.PayorDataRequest | undefined;
+    entryPoint?: Payabli.Entrypointfield | undefined;
     /** Object describing an Invoice linked to the transaction. */
-    invoiceData?: Payabli.BillData;
-    ipaddress?: Payabli.IpAddress;
-    orderDescription?: Payabli.Orderdescription;
-    orderId?: Payabli.OrderId;
+    invoiceData?: Payabli.BillData | undefined;
+    ipaddress?: Payabli.IpAddress | undefined;
+    orderDescription?: Payabli.Orderdescription | undefined;
+    orderId?: Payabli.OrderId | undefined;
     /** Object describing details of the payment. Required. */
     paymentDetails: Payabli.PaymentDetail;
     /** Information about the payment method for the transaction. Required and recommended fields for each payment method type are described in each schema below. */
     paymentMethod: Payabli.PaymentMethod;
-    source?: Payabli.Source;
-    subdomain?: Payabli.Subdomain;
-    subscriptionId?: Payabli.Subscriptionid;
+    source?: Payabli.Source | undefined;
+    subdomain?: Payabli.Subdomain | undefined;
+    subscriptionId?: Payabli.Subscriptionid | undefined;
 }

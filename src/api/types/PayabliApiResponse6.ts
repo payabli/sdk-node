@@ -6,9 +6,9 @@ import type * as Payabli from "../index.js";
  * Response schema for line item operations.
  */
 export interface PayabliApiResponse6 {
-    isSuccess?: Payabli.IsSuccess;
-    pageIdentifier?: Payabli.PageIdentifier;
+    isSuccess?: Payabli.IsSuccess | undefined;
+    pageIdentifier?: Payabli.PageIdentifier | undefined;
     /** If `isSuccess` = true, this contains the line item identifier. If `isSuccess` = false, this contains the reason of the error. */
-    responseData?: Payabli.Responsedatanonobject;
+    responseData?: Payabli.Responsedatanonobject | undefined;
     responseText: Payabli.ResponseText;
 }

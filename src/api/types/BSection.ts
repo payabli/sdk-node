@@ -3,6 +3,6 @@
 import type * as Payabli from "../index.js";
 
 export interface BSection {
-    address?: Payabli.BAddress;
-    details?: Payabli.BDetails;
+    address?: Payabli.BAddress | undefined;
+    details?: Payabli.BDetails | undefined;
 }

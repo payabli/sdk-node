@@ -40,25 +40,25 @@ import type * as Payabli from "../index.js";
  *     }
  */
 export interface QueryResponseData {
-    authcode?: Payabli.Authcode;
-    avsresponse?: Payabli.AvsResponse;
-    avsresponse_text?: Payabli.AvsResponseText;
-    cvvresponse?: Payabli.CvvResponse;
-    cvvresponse_text?: Payabli.CvvResponseText;
-    emv_auth_response_data?: Payabli.EmvAuthResponseData;
-    orderid?: Payabli.OrderId;
+    authcode?: Payabli.Authcode | undefined;
+    avsresponse?: Payabli.AvsResponse | undefined;
+    avsresponse_text?: Payabli.AvsResponseText | undefined;
+    cvvresponse?: Payabli.CvvResponse | undefined;
+    cvvresponse_text?: Payabli.CvvResponseText | undefined;
+    emv_auth_response_data?: Payabli.EmvAuthResponseData | undefined;
+    orderid?: Payabli.OrderId | undefined;
     /** Response text for operation: 'Success' or 'Declined'. */
-    response?: string;
+    response?: string | undefined;
     /** Internal result code processing the transaction. Value 1 indicates successful operation, values 2 and 3 indicate errors. */
-    response_code?: string;
+    response_code?: string | undefined;
     /** Text describing the result. If resultCode = 1, will return 'Approved' or a general success message. If resultCode = 2 or 3, will contain the cause of the decline. */
-    response_code_text?: string;
+    response_code_text?: string | undefined;
     /** Text describing the result. If resultCode = 1, will return 'Approved' or a general success message. If resultCode = 2 or 3, will contain the cause of the decline. */
-    responsetext?: string;
-    resultCode?: Payabli.ResultCodev2;
-    resultCodeText?: Payabli.ResultCodeText;
+    responsetext?: string | undefined;
+    resultCode?: Payabli.ResultCodev2 | undefined;
+    resultCodeText?: Payabli.ResultCodeText | undefined;
     /** The transaction identifier in Payabli. */
-    transactionid?: string;
+    transactionid?: string | undefined;
     /** Type of transaction or operation. */
-    type?: string;
+    type?: string | undefined;
 }

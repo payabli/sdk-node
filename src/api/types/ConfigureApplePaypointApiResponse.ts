@@ -3,11 +3,11 @@
 import type * as Payabli from "../index.js";
 
 export interface ConfigureApplePaypointApiResponse {
-    isSuccess?: Payabli.IsSuccess;
-    pageIdentifier?: Payabli.PageIdentifier;
-    responseCode?: Payabli.Responsecode;
-    responseData?: Payabli.ApplePayPaypointRegistrationData;
+    isSuccess?: Payabli.IsSuccess | undefined;
+    pageIdentifier?: Payabli.PageIdentifier | undefined;
+    responseCode?: Payabli.Responsecode | undefined;
+    responseData?: Payabli.ApplePayPaypointRegistrationData | undefined;
     responseText: Payabli.ResponseText;
     /** Field not in use on this endpoint */
-    roomId?: number;
+    roomId?: number | undefined;
 }

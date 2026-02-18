@@ -7,6 +7,6 @@ import type * as Payabli from "../index.js";
  */
 export interface GooglePayStatusData {
     /** Any error message related to Google Pay's activation status. */
-    errorMessage?: string;
-    metadata?: Payabli.GooglePayMetadata;
+    errorMessage?: string | undefined;
+    metadata?: Payabli.GooglePayMetadata | undefined;
 }

@@ -4,7 +4,7 @@ import type * as Payabli from "../../../index.js";
 
 export interface ReverseResponse {
     responseCode: Payabli.Responsecode;
-    pageIdentifier?: Payabli.PageIdentifier;
+    pageIdentifier?: Payabli.PageIdentifier | undefined;
     roomId: number;
     isSuccess: Payabli.IsSuccess;
     responseText: Payabli.ResponseText;

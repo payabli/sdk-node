@@ -6,8 +6,8 @@ import type * as Payabli from "../index.js";
  * Response body for queries about chargebacks.
  */
 export interface QueryChargebacksResponse {
-    Records?: QueryChargebacksResponse.Records.Item[];
-    Summary?: Payabli.QuerySummary;
+    Records?: QueryChargebacksResponse.Records.Item[] | undefined;
+    Summary?: Payabli.QuerySummary | undefined;
 }
 
 export namespace QueryChargebacksResponse {
@@ -16,50 +16,50 @@ export namespace QueryChargebacksResponse {
     export namespace Records {
         export interface Item {
             /** Type of account. */
-            AccountType?: string;
+            AccountType?: string | undefined;
             /** Case number of the chargeback. */
-            CaseNumber?: string;
+            CaseNumber?: string | undefined;
             /** Date of the chargeback. */
-            ChargebackDate?: string;
-            CreatedAt?: Payabli.CreatedAt;
-            Customer?: Payabli.QueryTransactionPayorData;
-            externalPaypointID?: Payabli.ExternalPaypointId;
+            ChargebackDate?: string | undefined;
+            CreatedAt?: Payabli.CreatedAt | undefined;
+            Customer?: Payabli.QueryTransactionPayorData | undefined;
+            externalPaypointID?: Payabli.ExternalPaypointId | undefined;
             /** Unique identifier of the record. */
-            Id?: number;
+            Id?: number | undefined;
             /** Last four digits of the account number. */
-            LastFour?: string;
+            LastFour?: string | undefined;
             /** Method of payment. */
-            Method?: string;
+            Method?: string | undefined;
             /** Net amount after deductions. */
-            NetAmount?: number;
-            OrderId?: Payabli.OrderId;
-            pageidentifier?: Payabli.PageIdentifier;
-            ParentOrgName?: Payabli.OrgParentName;
+            NetAmount?: number | undefined;
+            OrderId?: Payabli.OrderId | undefined;
+            pageidentifier?: Payabli.PageIdentifier | undefined;
+            ParentOrgName?: Payabli.OrgParentName | undefined;
             /** Payment data associated with the transaction. */
-            PaymentData?: Payabli.QueryPaymentData;
+            PaymentData?: Payabli.QueryPaymentData | undefined;
             /** Transaction ID for the payment. */
-            PaymentTransId?: string;
+            PaymentTransId?: string | undefined;
             /** The 'Doing Business As' (DBA) name of the paypoint. */
-            PaypointDbaname?: Payabli.Dbaname;
+            PaypointDbaname?: Payabli.Dbaname | undefined;
             /** Entryname for the paypoint. */
-            PaypointEntryname?: Payabli.Entrypointfield;
+            PaypointEntryname?: Payabli.Entrypointfield | undefined;
             /** Legal name of the paypoint. */
-            PaypointLegalname?: Payabli.Legalname;
+            PaypointLegalname?: Payabli.Legalname | undefined;
             /** Description of the reason for chargeback. */
-            Reason?: string;
+            Reason?: string | undefined;
             /** Code representing the reason for chargeback. */
-            ReasonCode?: string;
+            ReasonCode?: string | undefined;
             /** Reference number for the transaction. */
-            ReferenceNumber?: string;
-            ReplyBy?: Payabli.Replyby;
+            ReferenceNumber?: string | undefined;
+            ReplyBy?: Payabli.Replyby | undefined;
             /** Responses related to the transaction. */
-            Responses?: string;
+            Responses?: string | undefined;
             /** Reference for any scheduled transactions. */
-            ScheduleReference?: number;
+            ScheduleReference?: number | undefined;
             /** Status of the transaction. */
-            Status?: number;
-            Transaction?: Payabli.TransactionQueryRecords;
-            TransactionTime?: Payabli.TransactionTime;
+            Status?: number | undefined;
+            Transaction?: Payabli.TransactionQueryRecords | undefined;
+            TransactionTime?: Payabli.TransactionTime | undefined;
         }
     }
 }

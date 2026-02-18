@@ -3,10 +3,10 @@
 import type * as Payabli from "../index.js";
 
 export interface PayabliApiResponseTemplateId {
-    isSuccess?: Payabli.IsSuccess;
-    pageIdentifier?: Payabli.PageIdentifier;
-    responseCode?: Payabli.Responsecode;
+    isSuccess?: Payabli.IsSuccess | undefined;
+    pageIdentifier?: Payabli.PageIdentifier | undefined;
+    responseCode?: Payabli.Responsecode | undefined;
     /** When the operation is successful, contains the template's ID. */
-    responseData?: Payabli.Responsedatanonobject;
+    responseData?: Payabli.Responsedatanonobject | undefined;
     responseText: Payabli.ResponseText;
 }

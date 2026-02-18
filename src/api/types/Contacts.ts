@@ -4,12 +4,12 @@ import type * as Payabli from "../index.js";
 
 export interface Contacts {
     /** Contact email address. */
-    contactEmail?: Payabli.Email;
+    contactEmail?: Payabli.Email | undefined;
     /** Contact name. */
-    contactName?: string;
+    contactName?: string | undefined;
     /** Contact phone number. */
-    contactPhone?: string;
+    contactPhone?: string | undefined;
     /** Contact title. */
-    contactTitle?: string;
-    additionalData?: Payabli.AdditionalDataString;
+    contactTitle?: string | undefined;
+    additionalData?: Payabli.AdditionalDataString | undefined;
 }

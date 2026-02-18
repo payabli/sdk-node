@@ -3,7 +3,7 @@
 import type * as Payabli from "../index.js";
 
 export interface AchAbsorbSection {
-    multiTier?: boolean;
-    tiers?: Payabli.AchTypesTiers[];
+    multiTier?: boolean | undefined;
+    tiers?: Payabli.AchTypesTiers[] | undefined;
     visible?: Payabli.Visible | undefined;
 }

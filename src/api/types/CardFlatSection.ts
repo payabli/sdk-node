@@ -3,6 +3,6 @@
 import type * as Payabli from "../index.js";
 
 export interface CardFlatSection {
-    tiers?: Payabli.CardType[];
+    tiers?: Payabli.CardType[] | undefined;
     visible?: Payabli.Visible | undefined;
 }

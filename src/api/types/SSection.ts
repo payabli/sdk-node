@@ -3,6 +3,6 @@
 import type * as Payabli from "../index.js";
 
 export interface SSection {
-    ach?: Payabli.AchSection;
-    card?: Payabli.CardSection;
+    ach?: Payabli.AchSection | undefined;
+    card?: Payabli.CardSection | undefined;
 }

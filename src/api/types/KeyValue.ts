@@ -4,8 +4,8 @@ import type * as Payabli from "../index.js";
 
 export interface KeyValue {
     /** Key name. */
-    key?: string;
+    key?: string | undefined;
     readOnly?: Payabli.ReadOnly | undefined;
     /** Key value. */
-    value?: string;
+    value?: string | undefined;
 }

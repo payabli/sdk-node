@@ -42,32 +42,32 @@ export interface BinData {
      * were matched against a Bank Identification Number (BIN) or the Card
      * Range table.
      */
-    binMatchedLength?: string;
+    binMatchedLength?: string | undefined;
     /**
      * The card brand. For example, Visa, Mastercard, American Express,
      * Discover.
      */
-    binCardBrand?: string;
+    binCardBrand?: string | undefined;
     /** The type of card: Credit or Debit. */
-    binCardType?: string;
+    binCardType?: string | undefined;
     /** The category of the card, which indicates the card product. For example: Standard, Gold, Platinum, etc. The binCardCategory for prepaid cards is marked `PREPAID`. */
-    binCardCategory?: string;
+    binCardCategory?: string | undefined;
     /** The name of the financial institution that issued the card. */
-    binCardIssuer?: string;
+    binCardIssuer?: string | undefined;
     /** The issuing financial institution's country name. */
-    binCardIssuerCountry?: string;
+    binCardIssuerCountry?: string | undefined;
     /** The issuing financial institution's two-character ISO country code. See [this resource](https://www.iso.org/obp/ui/#search) for a list of codes. */
-    binCardIssuerCountryCodeA2?: string;
+    binCardIssuerCountryCodeA2?: string | undefined;
     /** The issuing financial institution's ISO standard numeric country code. See [this resource](https://www.iso.org/obp/ui/#search) for a list of codes. */
-    binCardIssuerCountryNumber?: string;
+    binCardIssuerCountryNumber?: string | undefined;
     /** Indicates whether the card is regulated. */
-    binCardIsRegulated?: string;
+    binCardIsRegulated?: string | undefined;
     /** The use category classification for the card. */
-    binCardUseCategory?: string;
+    binCardUseCategory?: string | undefined;
     /**
      * The issuing financial institution's three-character ISO country code.
      * See [this resource](https://www.iso.org/obp/ui/#search) for a list of
      * codes.
      */
-    binCardIssuerCountryCodeA3?: string;
+    binCardIssuerCountryCodeA3?: string | undefined;
 }

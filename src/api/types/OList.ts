@@ -3,19 +3,19 @@
 import type * as Payabli from "../index.js";
 
 export interface OList {
-    oaddress?: Payabli.LinkData;
-    ocity?: Payabli.LinkData;
-    ocountry?: Payabli.LinkData;
-    odriverstate?: Payabli.LinkData;
-    ostate?: Payabli.LinkData;
-    ownerdob?: Payabli.LinkData;
-    ownerdriver?: Payabli.LinkData;
-    owneremail?: Payabli.LinkData;
-    ownername?: Payabli.LinkData;
-    ownerpercent?: Payabli.LinkData;
-    ownerphone1?: Payabli.LinkData;
-    ownerphone2?: Payabli.LinkData;
-    ownerssn?: Payabli.LinkData;
-    ownertitle?: Payabli.LinkData;
-    ozip?: Payabli.LinkData;
+    oaddress?: Payabli.LinkData | undefined;
+    ocity?: Payabli.LinkData | undefined;
+    ocountry?: Payabli.LinkData | undefined;
+    odriverstate?: Payabli.LinkData | undefined;
+    ostate?: Payabli.LinkData | undefined;
+    ownerdob?: Payabli.LinkData | undefined;
+    ownerdriver?: Payabli.LinkData | undefined;
+    owneremail?: Payabli.LinkData | undefined;
+    ownername?: Payabli.LinkData | undefined;
+    ownerpercent?: Payabli.LinkData | undefined;
+    ownerphone1?: Payabli.LinkData | undefined;
+    ownerphone2?: Payabli.LinkData | undefined;
+    ownerssn?: Payabli.LinkData | undefined;
+    ownertitle?: Payabli.LinkData | undefined;
+    ozip?: Payabli.LinkData | undefined;
 }

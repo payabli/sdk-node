@@ -3,13 +3,13 @@
 import type * as Payabli from "../index.js";
 
 export interface PayCategory {
-    description?: string;
-    label?: string;
-    name?: string;
-    optionalPay?: boolean;
-    order?: Payabli.Order;
-    quantity?: number;
-    showDescription?: boolean;
-    type?: string;
-    value?: string;
+    description?: string | undefined;
+    label?: string | undefined;
+    name?: string | undefined;
+    optionalPay?: boolean | undefined;
+    order?: Payabli.Order | undefined;
+    quantity?: number | undefined;
+    showDescription?: boolean | undefined;
+    type?: string | undefined;
+    value?: string | undefined;
 }

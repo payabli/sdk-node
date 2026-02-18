@@ -6,8 +6,8 @@ import type * as Payabli from "../index.js";
  * Object containing details about cloud devices and their registration history.
  */
 export interface CloudQueryApiResponse {
-    isSuccess?: Payabli.IsSuccess;
+    isSuccess?: Payabli.IsSuccess | undefined;
     /** List of devices and history of registration. */
-    responseList?: Payabli.PoiDevice[];
+    responseList?: Payabli.PoiDevice[] | undefined;
     responseText: Payabli.ResponseText;
 }

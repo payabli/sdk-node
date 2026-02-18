@@ -6,8 +6,8 @@ import type * as Payabli from "../index.js";
  * Describes the response for settlement queries.
  */
 export interface QueryResponseSettlements {
-    Records?: QueryResponseSettlements.Records.Item[];
-    Summary?: QueryResponseSettlements.Summary;
+    Records?: QueryResponseSettlements.Records.Item[] | undefined;
+    Summary?: QueryResponseSettlements.Summary | undefined;
 }
 
 export namespace QueryResponseSettlements {
@@ -150,18 +150,18 @@ export namespace QueryResponseSettlements {
          */
         export interface Item {
             /** The batch amount. */
-            BatchAmount?: number;
-            BatchNumber?: Payabli.BatchNumber;
-            Category?: Payabli.Category;
-            CreatedAt?: Payabli.CreatedAt;
-            Customer?: Payabli.QueryTransactionPayorData;
-            DepositDate?: Payabli.DepositDate;
-            ExpectedDepositDate?: Payabli.ExpectedDepositDate;
-            externalPaypointID?: Payabli.ExternalPaypointId;
+            BatchAmount?: number | undefined;
+            BatchNumber?: Payabli.BatchNumber | undefined;
+            Category?: Payabli.Category | undefined;
+            CreatedAt?: Payabli.CreatedAt | undefined;
+            Customer?: Payabli.QueryTransactionPayorData | undefined;
+            DepositDate?: Payabli.DepositDate | undefined;
+            ExpectedDepositDate?: Payabli.ExpectedDepositDate | undefined;
+            externalPaypointID?: Payabli.ExternalPaypointId | undefined;
             /** Internal identifier used for processing. */
-            GatewayTransId?: string;
-            Id?: number;
-            invoiceData?: Payabli.BillData;
+            GatewayTransId?: string | undefined;
+            Id?: number | undefined;
+            invoiceData?: Payabli.BillData | undefined;
             /**
              * Describes whether the transaction is being held or not.
              *
@@ -169,64 +169,64 @@ export namespace QueryResponseSettlements {
              *
              * 0 - Transaction isn't being held
              */
-            isHold?: number;
-            MaskedAccount?: Payabli.Maskedaccount;
+            isHold?: number | undefined;
+            MaskedAccount?: Payabli.Maskedaccount | undefined;
             /** The payment method. */
-            Method?: string;
+            Method?: string | undefined;
             /** Net amount paid. */
             NetAmount?: Payabli.Netamountnullable | undefined;
             /** The operation performed. */
-            Operation?: string;
-            OrderId?: Payabli.OrderId;
-            ParentOrgName?: Payabli.OrgParentName;
-            PaymentData?: Payabli.QueryPaymentData;
+            Operation?: string | undefined;
+            OrderId?: Payabli.OrderId | undefined;
+            ParentOrgName?: Payabli.OrgParentName | undefined;
+            PaymentData?: Payabli.QueryPaymentData | undefined;
             /** The transaction ID for the payment. */
-            PaymentTransId?: string;
-            PaymentTransStatus?: Payabli.TransStatus;
+            PaymentTransId?: string | undefined;
+            PaymentTransStatus?: Payabli.TransStatus | undefined;
             /** Paypoint DBA name. */
-            PaypointDbaname?: string;
+            PaypointDbaname?: string | undefined;
             /** Paypoint entryname. */
-            PaypointEntryname?: string;
+            PaypointEntryname?: string | undefined;
             /** Paypoint legal name. */
-            PaypointLegalname?: string;
-            ResponseData?: Payabli.QueryResponseData;
+            PaypointLegalname?: string | undefined;
+            ResponseData?: Payabli.QueryResponseData | undefined;
             /** Reference to the subscription originating the transaction. */
-            ScheduleReference?: number;
+            ScheduleReference?: number | undefined;
             /** The transaction amount. */
-            SettledAmount?: number;
+            SettledAmount?: number | undefined;
             /** The date and time when the transaction was settled. This field is null when the transaction's `SettlementStatus` is -1, -5, or -6 (Exception, Held, or Released). */
-            SettlementDate?: string;
-            Source?: Payabli.Source;
-            Status?: Payabli.SettlementStatus;
+            SettlementDate?: string | undefined;
+            Source?: Payabli.Source | undefined;
+            Status?: Payabli.SettlementStatus | undefined;
             /** Events associated with this transaction. */
-            TransactionEvents?: Payabli.QueryTransactionEvents[];
-            TransactionTime?: Payabli.TransactionTime;
+            TransactionEvents?: Payabli.QueryTransactionEvents[] | undefined;
+            TransactionTime?: Payabli.TransactionTime | undefined;
             /** Payment method used: card or ach. */
-            TransMethod?: string;
+            TransMethod?: string | undefined;
             /** The transaction type: credit or debit. */
-            Type?: string;
+            Type?: string | undefined;
         }
     }
 
     export interface Summary {
         /** Funds being held for fraud or risk concerns. */
-        heldAmount?: number;
-        pageidentifier?: Payabli.PageIdentifier;
+        heldAmount?: number | undefined;
+        pageidentifier?: Payabli.PageIdentifier | undefined;
         /** Number of records per page. */
-        pageSize?: number;
+        pageSize?: number | undefined;
         /** Total refunds deducted from the transfer. */
-        refunds?: number;
+        refunds?: number | undefined;
         /** Service fees are any pass-through fees charged to the customer at the time of payment. These aren't transferred to the merchant when the batch is transferred and funded. */
-        serviceFees?: number;
+        serviceFees?: number | undefined;
         /** The total sum of the settlements in the response. */
-        totalAmount?: number;
+        totalAmount?: number | undefined;
         /** The total sum of the settlements in the response. */
-        totalNetAmount?: number;
+        totalNetAmount?: number | undefined;
         /** Number of pages in the response. */
-        totalPages?: number;
+        totalPages?: number | undefined;
         /** Number of records in the response. */
-        totalRecords?: number;
+        totalRecords?: number | undefined;
         /** The transfer amount is the net batch amount plus or minus any returns, refunds, billing and fees items, chargebacks, adjustments, and third party payments. This is the amount from the batch that's transferred to the merchant bank account. */
-        transferAmount?: number;
+        transferAmount?: number | undefined;
     }
 }

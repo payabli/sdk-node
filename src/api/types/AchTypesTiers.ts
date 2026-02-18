@@ -3,7 +3,7 @@
 import type * as Payabli from "../index.js";
 
 export interface AchTypesTiers {
-    ccd?: Payabli.TierItem;
-    ppd?: Payabli.TierItem;
-    web?: Payabli.TierItem;
+    ccd?: Payabli.TierItem | undefined;
+    ppd?: Payabli.TierItem | undefined;
+    web?: Payabli.TierItem | undefined;
 }

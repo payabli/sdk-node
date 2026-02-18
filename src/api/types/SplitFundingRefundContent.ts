@@ -2,11 +2,11 @@
 
 export interface SplitFundingRefundContent {
     /** The accountId for the account the transaction was routed to. */
-    accountId?: string;
+    accountId?: string | undefined;
     /** The amount to refund to this account. */
-    amount?: number;
+    amount?: number | undefined;
     /** Refund description. */
-    description?: string;
+    description?: string | undefined;
     /** The entrypoint the transaction belongs to. */
-    originationEntryPoint?: string;
+    originationEntryPoint?: string | undefined;
 }

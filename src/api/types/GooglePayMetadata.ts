@@ -5,9 +5,9 @@
  */
 export interface GooglePayMetadata {
     /** The status code return by the domain verification URL. */
-    statusCode?: number;
+    statusCode?: number | undefined;
     /** If the domain verification URL is redirected, this is the URL it's redirected to.  For example, www.partner.com could redirect to www.partners-new-home-page.com. In this case, you should add www.partners-new-home-page.com as a domain instead of www.partner.com. */
-    redirectUrl?: string;
+    redirectUrl?: string | undefined;
     /** The domain name if the domain verification URL returns a redirect. */
-    redirectDomainName?: string;
+    redirectDomainName?: string | undefined;
 }

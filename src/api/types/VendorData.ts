@@ -3,49 +3,49 @@
 import type * as Payabli from "../index.js";
 
 export interface VendorData {
-    vendorNumber?: Payabli.VendorNumber;
-    AdditionalData?: Payabli.AdditionalData;
+    vendorNumber?: Payabli.VendorNumber | undefined;
+    AdditionalData?: Payabli.AdditionalData | undefined;
     /** Vendor's address */
-    address1?: Payabli.AddressNullable;
+    address1?: Payabli.AddressNullable | undefined;
     /** Additional line for vendor's address. */
-    address2?: Payabli.AddressAddtlNullable;
+    address2?: Payabli.AddressAddtlNullable | undefined;
     /** Object containing vendor's bank information. */
-    billingData?: Payabli.BillingData;
+    billingData?: Payabli.BillingData | undefined;
     /** Vendor's city. */
-    city?: string;
+    city?: string | undefined;
     /** Array of objects describing the vendor's contacts. */
     contacts?: Payabli.ContactsField | undefined;
     /** Vendor's country. */
-    country?: string;
+    country?: string | undefined;
     /** Custom field 1 for vendor */
-    customField1?: string;
+    customField1?: string | undefined;
     /** Custom field 2 for vendor */
-    customField2?: string;
+    customField2?: string | undefined;
     /** Account number of paypoint in the vendor side. */
-    customerVendorAccount?: string;
-    ein?: Payabli.VendorEin;
+    customerVendorAccount?: string | undefined;
+    ein?: Payabli.VendorEin | undefined;
     /** Vendor's email address. Required for vCard. */
-    email?: Payabli.Email;
+    email?: Payabli.Email | undefined;
     /** Internal identifier for global vendor account. */
-    internalReferenceId?: number;
-    locationCode?: Payabli.LocationCode;
-    mcc?: Payabli.Mcc;
-    name1?: Payabli.VendorName1;
-    name2?: Payabli.VendorName2;
-    payeeName1?: Payabli.PayeeName;
-    payeeName2?: Payabli.PayeeName;
-    paymentMethod?: Payabli.VendorPaymentMethodString;
+    internalReferenceId?: number | undefined;
+    locationCode?: Payabli.LocationCode | undefined;
+    mcc?: Payabli.Mcc | undefined;
+    name1?: Payabli.VendorName1 | undefined;
+    name2?: Payabli.VendorName2 | undefined;
+    payeeName1?: Payabli.PayeeName | undefined;
+    payeeName2?: Payabli.PayeeName | undefined;
+    paymentMethod?: Payabli.VendorPaymentMethodString | undefined;
     phone?: Payabli.VendorPhone | undefined;
-    remitAddress1?: Payabli.Remitaddress1;
-    remitAddress2?: Payabli.Remitaddress2;
-    remitCity?: Payabli.Remitcity;
-    remitCountry?: Payabli.Remitcountry;
-    remitEmail?: Payabli.RemitEmail;
-    remitState?: Payabli.Remitstate;
-    remitZip?: Payabli.Remitzip;
+    remitAddress1?: Payabli.Remitaddress1 | undefined;
+    remitAddress2?: Payabli.Remitaddress2 | undefined;
+    remitCity?: Payabli.Remitcity | undefined;
+    remitCountry?: Payabli.Remitcountry | undefined;
+    remitEmail?: Payabli.RemitEmail | undefined;
+    remitState?: Payabli.Remitstate | undefined;
+    remitZip?: Payabli.Remitzip | undefined;
     /** Vendor's state. Must be a 2 character state code. */
-    state?: string;
-    vendorStatus?: Payabli.Vendorstatus;
+    state?: string | undefined;
+    vendorStatus?: Payabli.Vendorstatus | undefined;
     /** Vendor's zip code. */
-    zip?: string;
+    zip?: string | undefined;
 }

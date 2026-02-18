@@ -4,18 +4,18 @@ import type * as Payabli from "../index.js";
 
 export interface SignerSection {
     visible?: Payabli.Visible | undefined;
-    name?: Payabli.TemplateElement;
-    ssn?: Payabli.TemplateElement;
-    dob?: Payabli.TemplateElement;
-    phone?: Payabli.TemplateElement;
-    email?: Payabli.TemplateElement;
-    address?: Payabli.TemplateElement;
-    address1?: Payabli.TemplateElement;
-    city?: Payabli.TemplateElement;
-    country?: Payabli.TemplateElement;
-    state?: Payabli.TemplateElement;
-    zip?: Payabli.TemplateElement;
-    acceptance?: Payabli.TemplateElement;
-    signedDocumentReference?: Payabli.TemplateElement;
-    additionalData?: Payabli.TemplateAdditionalDataSection;
+    name?: Payabli.TemplateElement | undefined;
+    ssn?: Payabli.TemplateElement | undefined;
+    dob?: Payabli.TemplateElement | undefined;
+    phone?: Payabli.TemplateElement | undefined;
+    email?: Payabli.TemplateElement | undefined;
+    address?: Payabli.TemplateElement | undefined;
+    address1?: Payabli.TemplateElement | undefined;
+    city?: Payabli.TemplateElement | undefined;
+    country?: Payabli.TemplateElement | undefined;
+    state?: Payabli.TemplateElement | undefined;
+    zip?: Payabli.TemplateElement | undefined;
+    acceptance?: Payabli.TemplateElement | undefined;
+    signedDocumentReference?: Payabli.TemplateElement | undefined;
+    additionalData?: Payabli.TemplateAdditionalDataSection | undefined;
 }

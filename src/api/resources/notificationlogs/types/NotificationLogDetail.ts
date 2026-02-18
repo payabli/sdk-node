@@ -3,7 +3,7 @@
 import type * as Payabli from "../../../index.js";
 
 export interface NotificationLogDetail extends Payabli.NotificationLog {
-    webHeaders?: Payabli.StringStringKeyValuePair[];
-    responseHeaders?: Payabli.KeyValueArray[];
-    responseContent?: string;
+    webHeaders?: Payabli.StringStringKeyValuePair[] | undefined;
+    responseHeaders?: Payabli.KeyValueArray[] | undefined;
+    responseContent?: string | undefined;
 }

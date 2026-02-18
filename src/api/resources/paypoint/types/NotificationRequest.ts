@@ -6,5 +6,5 @@ export interface NotificationRequest {
     /** Complete HTTP URL receiving the notification */
     notificationUrl: string;
     /** A dictionary of key-value pairs to be inserted in the header when the notification request is submitted */
-    webHeaderParameters?: Payabli.WebHeaderParameter[];
+    webHeaderParameters?: Payabli.WebHeaderParameter[] | undefined;
 }

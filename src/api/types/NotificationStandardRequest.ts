@@ -6,13 +6,13 @@ import type * as Payabli from "../index.js";
  * Information about the standard notification configuration (email, sms, web).
  */
 export interface NotificationStandardRequest {
-    content?: NotificationStandardRequest.Content;
+    content?: NotificationStandardRequest.Content | undefined;
     frequency: NotificationStandardRequest.Frequency;
     /** Get near-instant notifications via email, SMS, or webhooks for important events like new payment disputes, merchant activations, fraud alerts, approved transactions, settlement history, vendor payouts, and more. Use webhooks with notifications to get real-time updates and automate operations based on key those key events. See [Notifications](/developers/developer-guides/notifications-and-webhooks-overview#notifications) for more. */
     method: NotificationStandardRequest.Method;
-    ownerId?: Payabli.Ownerid;
+    ownerId?: Payabli.Ownerid | undefined;
     ownerType: Payabli.Ownertype;
-    status?: Payabli.Statusnotification;
+    status?: Payabli.Statusnotification | undefined;
     /**
      * Specify the notification target.
      *
@@ -26,13 +26,13 @@ export interface NotificationStandardRequest {
 export namespace NotificationStandardRequest {
     export interface Content {
         /** The notification's event name. */
-        eventType?: Content.EventType;
+        eventType?: Content.EventType | undefined;
         /** Array of pairs key:value to insert in request body to target in **method** = *web*. */
-        internalData?: Payabli.KeyValueDuo[];
+        internalData?: Payabli.KeyValueDuo[] | undefined;
         /** Used internally to reference the entity or object generating the event. */
-        transactionId?: string;
+        transactionId?: string | undefined;
         /** Array of pairs key:value to insert in header of request to target in **method** = *web*. */
-        webHeaderParameters?: Payabli.KeyValueDuo[];
+        webHeaderParameters?: Payabli.KeyValueDuo[] | undefined;
     }
 
     export namespace Content {

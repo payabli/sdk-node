@@ -6,6 +6,6 @@ import type * as Payabli from "../index.js";
  * Subscription query response body.
  */
 export interface QuerySubscriptionResponse {
-    Records?: Payabli.SubscriptionQueryRecords[];
-    Summary?: Payabli.QuerySummary;
+    Records?: Payabli.SubscriptionQueryRecords[] | undefined;
+    Summary?: Payabli.QuerySummary | undefined;
 }

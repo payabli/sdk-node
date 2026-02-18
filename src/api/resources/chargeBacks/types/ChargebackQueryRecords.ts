@@ -37,10 +37,10 @@ export interface ChargebackQueryRecords {
     /** ReferenceId of the transaction in Payabli. */
     PaymentTransId: string;
     /** Reference to the subscription originating the transaction. */
-    ScheduleReference?: number;
+    ScheduleReference?: number | undefined;
     OrderId: Payabli.OrderId;
     /** Net amount in chargeback or ACH return. */
-    NetAmount?: Payabli.Netamountnullable;
+    NetAmount?: Payabli.Netamountnullable | undefined;
     TransactionTime: Payabli.TransactionTime;
     Customer: Payabli.QueryTransactionPayorData;
     PaymentData: Payabli.QueryPaymentData;
@@ -56,8 +56,8 @@ export interface ChargebackQueryRecords {
     /** Chargeback response records. */
     Responses: Payabli.ChargeBackResponse[];
     Transaction: Payabli.TransactionQueryRecords;
-    externalPaypointID?: Payabli.ExternalPaypointId;
-    pageidentifier?: Payabli.PageIdentifier;
+    externalPaypointID?: Payabli.ExternalPaypointId | undefined;
+    pageidentifier?: Payabli.PageIdentifier | undefined;
     /** Messages related to the chargeback. */
     messages: Payabli.ChargebackMessage[];
     /** Service group classification. */

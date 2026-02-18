@@ -3,7 +3,7 @@
 import type * as Payabli from "../index.js";
 
 export interface PayabliApiResponseCustomerQuery {
-    isSuccess?: Payabli.IsSuccess;
-    responseData?: Payabli.CustomerQueryRecords;
+    isSuccess?: Payabli.IsSuccess | undefined;
+    responseData?: Payabli.CustomerQueryRecords | undefined;
     responseText: Payabli.ResponseText;
 }

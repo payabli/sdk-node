@@ -3,7 +3,7 @@
 import type * as Payabli from "../../../index.js";
 
 export interface GetPayLinkFromIdResponse extends Payabli.PayabliApiResponseGeneric2Part {
-    responseData?: GetPayLinkFromIdResponse.ResponseData;
+    responseData?: GetPayLinkFromIdResponse.ResponseData | undefined;
 }
 
 export namespace GetPayLinkFromIdResponse {

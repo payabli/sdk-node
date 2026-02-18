@@ -45,13 +45,13 @@ export interface TransactionDetailRecord {
     splitFundingInstructions: (Payabli.SplitFunding | undefined) | null;
     cfeeTransactions: Payabli.QueryCFeeTransaction[];
     transactionEvents: Payabli.TransactionDetailEvent[];
-    pendingFeeAmount?: Payabli.PendingFeeAmount;
-    riskFlagged?: Payabli.RiskFlagged;
-    riskFlaggedOn?: Payabli.RiskFlaggedOn;
+    pendingFeeAmount?: Payabli.PendingFeeAmount | undefined;
+    riskFlagged?: Payabli.RiskFlagged | undefined;
+    riskFlaggedOn?: Payabli.RiskFlaggedOn | undefined;
     riskStatus: Payabli.RiskStatus;
     riskReason: Payabli.RiskReason;
     riskAction: Payabli.RiskAction;
-    riskActionCode?: Payabli.RiskActionCode;
+    riskActionCode?: Payabli.RiskActionCode | undefined;
     deviceId: Payabli.Device;
     achSecCode: Payabli.AchSecCode;
     achHolderType: Payabli.AchHolderType;

@@ -3,21 +3,21 @@
 import type * as Payabli from "../../../index.js";
 
 export interface OcrResultData {
-    billNumber?: string;
-    netAmount?: number;
-    billDate?: string;
-    dueDate?: string;
-    comments?: string;
-    billItems?: Payabli.OcrBillItem[];
-    mode?: number;
-    accountingField1?: string;
-    accountingField2?: string;
-    additionalData?: Payabli.OcrBillItemAdditionalData;
-    vendor?: Payabli.OcrVendor;
-    endDate?: string;
-    frequency?: string;
-    terms?: string;
-    status?: number;
-    lotNumber?: string;
-    attachments?: Payabli.OcrAttachment[];
+    billNumber?: string | undefined;
+    netAmount?: number | undefined;
+    billDate?: string | undefined;
+    dueDate?: string | undefined;
+    comments?: string | undefined;
+    billItems?: Payabli.OcrBillItem[] | undefined;
+    mode?: number | undefined;
+    accountingField1?: string | undefined;
+    accountingField2?: string | undefined;
+    additionalData?: Payabli.OcrBillItemAdditionalData | undefined;
+    vendor?: Payabli.OcrVendor | undefined;
+    endDate?: string | undefined;
+    frequency?: string | undefined;
+    terms?: string | undefined;
+    status?: number | undefined;
+    lotNumber?: string | undefined;
+    attachments?: Payabli.OcrAttachment[] | undefined;
 }

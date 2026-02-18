@@ -3,33 +3,33 @@
 import type * as Payabli from "../index.js";
 
 export interface OrganizationQueryRecord {
-    services?: OrganizationQueryRecord.Services.Item[];
-    billingInfo?: Payabli.Instrument;
+    services?: OrganizationQueryRecord.Services.Item[] | undefined;
+    billingInfo?: Payabli.Instrument | undefined;
     contacts?: Payabli.ContactsField | undefined;
-    createdAt?: Payabli.CreatedAt;
-    hasBilling?: boolean;
-    hasResidual?: boolean;
-    idOrg?: Payabli.Orgid;
+    createdAt?: Payabli.CreatedAt | undefined;
+    hasBilling?: boolean | undefined;
+    hasResidual?: boolean | undefined;
+    idOrg?: Payabli.Orgid | undefined;
     isRoot?: Payabli.IsRoot | undefined;
-    orgAddress?: Payabli.Orgaddress;
-    orgCity?: Payabli.Orgcity;
-    orgCountry?: Payabli.Orgcountry;
-    orgEntryName?: Payabli.Orgentryname;
-    orgId?: Payabli.Orgidstring;
-    orgLogo?: Payabli.FileContent;
-    orgName?: Payabli.Orgname;
-    orgParentId?: Payabli.OrgParentId;
-    orgParentName?: Payabli.OrgParentName;
-    orgState?: Payabli.Orgstate;
-    orgTimezone?: Payabli.Orgtimezone;
-    orgType?: Payabli.Orgtype;
-    orgWebsite?: Payabli.Orgwebsite;
-    orgZip?: Payabli.Orgzip;
-    recipientEmailNotification?: Payabli.RecipientEmailNotification;
-    replyToEmail?: Payabli.ReplyToEmail;
-    resumable?: Payabli.Resumable;
-    summary?: Payabli.SummaryOrg;
-    users?: Payabli.UserQueryRecord[];
+    orgAddress?: Payabli.Orgaddress | undefined;
+    orgCity?: Payabli.Orgcity | undefined;
+    orgCountry?: Payabli.Orgcountry | undefined;
+    orgEntryName?: Payabli.Orgentryname | undefined;
+    orgId?: Payabli.Orgidstring | undefined;
+    orgLogo?: Payabli.FileContent | undefined;
+    orgName?: Payabli.Orgname | undefined;
+    orgParentId?: Payabli.OrgParentId | undefined;
+    orgParentName?: Payabli.OrgParentName | undefined;
+    orgState?: Payabli.Orgstate | undefined;
+    orgTimezone?: Payabli.Orgtimezone | undefined;
+    orgType?: Payabli.Orgtype | undefined;
+    orgWebsite?: Payabli.Orgwebsite | undefined;
+    orgZip?: Payabli.Orgzip | undefined;
+    recipientEmailNotification?: Payabli.RecipientEmailNotification | undefined;
+    replyToEmail?: Payabli.ReplyToEmail | undefined;
+    resumable?: Payabli.Resumable | undefined;
+    summary?: Payabli.SummaryOrg | undefined;
+    users?: Payabli.UserQueryRecord[] | undefined;
 }
 
 export namespace OrganizationQueryRecord {
@@ -37,14 +37,14 @@ export namespace OrganizationQueryRecord {
 
     export namespace Services {
         export interface Item {
-            description?: string;
-            enabled?: boolean;
-            monthlyCost?: number;
-            name?: string;
-            reseller?: boolean;
-            setupCost?: number;
-            txCost?: number;
-            txPercentCost?: number;
+            description?: string | undefined;
+            enabled?: boolean | undefined;
+            monthlyCost?: number | undefined;
+            name?: string | undefined;
+            reseller?: boolean | undefined;
+            setupCost?: number | undefined;
+            txCost?: number | undefined;
+            txPercentCost?: number | undefined;
         }
     }
 }

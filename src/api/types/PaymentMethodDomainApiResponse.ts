@@ -11,7 +11,7 @@ export interface PaymentMethodDomainApiResponse {
     applePay: Payabli.ApplePayData;
     googlePay: Payabli.GooglePayData;
     /** Data about the domain's cascade status. */
-    cascades?: Payabli.CascadeJobDetails[];
+    cascades?: Payabli.CascadeJobDetails[] | undefined;
     createdAt: Payabli.CreatedAt;
     domainName: Payabli.DomainName;
     entityId: Payabli.EntityId;
@@ -19,5 +19,5 @@ export interface PaymentMethodDomainApiResponse {
     id: Payabli.PaymentMethodDomainId;
     ownerEntityId: Payabli.OwnerEntityId;
     ownerEntityType: Payabli.OwnerEntityType;
-    updatedAt?: Payabli.LastModified;
+    updatedAt?: Payabli.LastModified | undefined;
 }

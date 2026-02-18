@@ -3,7 +3,7 @@
 import type * as Payabli from "../index.js";
 
 export interface CardPassThroughSection {
-    multiTier?: boolean;
-    tiers?: Payabli.CardTypePass[];
+    multiTier?: boolean | undefined;
+    tiers?: Payabli.CardTypePass[] | undefined;
     visible?: Payabli.Visible | undefined;
 }

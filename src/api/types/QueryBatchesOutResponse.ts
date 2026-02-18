@@ -15,85 +15,57 @@ export namespace QueryBatchesOutResponse {
 
     export namespace Records {
         export interface Item {
-            /** */
-            AchAmount?: number;
-            /** */
-            AchRecords?: number;
-            /** */
-            AchStatus?: number;
-            /** */
-            AchStatusText?: string;
+            AchAmount?: number | undefined;
+            AchRecords?: number | undefined;
+            AchStatus?: number | undefined;
+            AchStatusText?: string | undefined;
             /** The amount of the batch. */
-            BatchAmount?: number;
-            /** */
-            BatchCancelledAmount?: number;
-            /** */
-            BatchCancelledRecords?: number;
+            BatchAmount?: number | undefined;
+            BatchCancelledAmount?: number | undefined;
+            BatchCancelledRecords?: number | undefined;
             /** The batch date. */
-            BatchDate?: string;
-            BatchNumber?: Payabli.BatchNumber;
-            /** */
-            BatchPaidAmount?: number;
-            /** */
-            BatchPaidRecords?: number;
-            /** */
-            BatchProcessedAmount?: number;
-            /** */
-            BatchProcessedRecords?: number;
-            /** */
-            BatchProcessingAmount?: number;
-            /** */
-            BatchProcessingRecords?: number;
+            BatchDate?: string | undefined;
+            BatchNumber?: Payabli.BatchNumber | undefined;
+            BatchPaidAmount?: number | undefined;
+            BatchPaidRecords?: number | undefined;
+            BatchProcessedAmount?: number | undefined;
+            BatchProcessedRecords?: number | undefined;
+            BatchProcessingAmount?: number | undefined;
+            BatchProcessingRecords?: number | undefined;
             /** The number of records in the batch. */
-            BatchRecords?: number;
+            BatchRecords?: number | undefined;
             /** The batch status. See [Batch Status](/developers/references/money-out-statuses#batch-statuses) for more. */
-            BatchStatus?: number;
+            BatchStatus?: number | undefined;
             /** A text description of the batch status. */
-            BatchStatusText?: string;
-            /** */
-            CardAmount?: number;
-            /** */
-            CardRecords?: number;
-            /** */
-            CardStatus?: number;
-            /** */
-            CardStatusText?: string;
-            /** */
-            CheckAmount?: number;
-            /** */
-            CheckRecords?: number;
-            /** */
-            CheckStatus?: number;
-            /** */
-            CheckStatusText?: string;
-            EntryName?: Payabli.Entrypointfield;
-            externalPaypointID?: Payabli.ExternalPaypointId;
+            BatchStatusText?: string | undefined;
+            CardAmount?: number | undefined;
+            CardRecords?: number | undefined;
+            CardStatus?: number | undefined;
+            CardStatusText?: string | undefined;
+            CheckAmount?: number | undefined;
+            CheckRecords?: number | undefined;
+            CheckStatus?: number | undefined;
+            CheckStatusText?: string | undefined;
+            EntryName?: Payabli.Entrypointfield | undefined;
+            externalPaypointID?: Payabli.ExternalPaypointId | undefined;
             /** The batch ID. */
-            IdBatch?: number;
+            IdBatch?: number | undefined;
             /** The entrypoint's parent org. */
-            ParentOrgName?: string;
+            ParentOrgName?: string | undefined;
             /** Paypoint DBA name. */
-            PaypointDba?: string;
+            PaypointDba?: string | undefined;
             /** Paypoint ID. */
-            PaypointId?: number;
+            PaypointId?: number | undefined;
             /** Paypoint legal name. */
-            PaypointName?: string;
-            /** */
-            VcardAmount?: number;
-            /** */
-            VcardRecords?: number;
-            /** */
-            VcardStatus?: number;
-            /** */
-            VcardStatusText?: string;
-            /** */
-            WireAmount?: number;
-            /** */
-            WireRecords?: number;
-            /** */
-            WireStatus?: number;
-            /** */
-            WireStatusText?: string;
+            PaypointName?: string | undefined;
+            VcardAmount?: number | undefined;
+            VcardRecords?: number | undefined;
+            VcardStatus?: number | undefined;
+            VcardStatusText?: string | undefined;
+            WireAmount?: number | undefined;
+            WireRecords?: number | undefined;
+            WireStatus?: number | undefined;
+            WireStatusText?: string | undefined;
         }
     }
 }

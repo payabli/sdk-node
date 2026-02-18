@@ -2,7 +2,7 @@
 
 export interface OperationResult {
     /** Message describing the result. If the virtual card link was sent successfully, this contains the email address to which the link was sent. */
-    message?: string;
+    message?: string | undefined;
     /** Indicates whether the operation was successful. */
     success: boolean;
 }

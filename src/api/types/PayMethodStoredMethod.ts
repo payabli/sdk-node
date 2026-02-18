@@ -6,12 +6,12 @@ import type * as Payabli from "../index.js";
  * The required and recommended fields for a payment made with a stored payment method.
  */
 export interface PayMethodStoredMethod {
-    initiator?: Payabli.Initiator;
+    initiator?: Payabli.Initiator | undefined;
     /** Method to use for the transaction. Use either `card` or `ach`, depending on what kind of method was tokenized to use a saved payment method for this transaction. */
     method: PayMethodStoredMethod.Method;
     /** Payabli identifier of a tokenized payment method. */
-    storedMethodId?: Payabli.Storedmethodid;
-    storedMethodUsageType?: Payabli.StoredMethodUsageType;
+    storedMethodId?: Payabli.Storedmethodid | undefined;
+    storedMethodUsageType?: Payabli.StoredMethodUsageType | undefined;
 }
 
 export namespace PayMethodStoredMethod {

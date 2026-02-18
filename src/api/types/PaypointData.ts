@@ -3,27 +3,27 @@
 import type * as Payabli from "../index.js";
 
 export interface PaypointData {
-    address1?: Payabli.AddressNullable;
-    address2?: Payabli.AddressAddtlNullable;
+    address1?: Payabli.AddressNullable | undefined;
+    address2?: Payabli.AddressAddtlNullable | undefined;
     bankData?: Payabli.BankData | undefined;
-    boardingId?: Payabli.BoardingId;
-    city?: Payabli.CityNullable;
+    boardingId?: Payabli.BoardingId | undefined;
+    city?: Payabli.CityNullable | undefined;
     contacts?: Payabli.ContactsField | undefined;
-    country?: Payabli.CountryNullable;
-    credentials?: Payabli.PayabliCredentialsPascal[];
-    dbaName?: Payabli.Dbaname;
-    externalPaypointID?: Payabli.ExternalPaypointId;
+    country?: Payabli.CountryNullable | undefined;
+    credentials?: Payabli.PayabliCredentialsPascal[] | undefined;
+    dbaName?: Payabli.Dbaname | undefined;
+    externalPaypointID?: Payabli.ExternalPaypointId | undefined;
     /** Fax number */
-    fax?: Payabli.PhoneNumber;
-    idPaypoint?: Payabli.Idpaypoint;
-    legalName?: Payabli.Legalname;
-    parentOrg?: Payabli.OrgData;
-    paypointStatus?: Payabli.Paypointstatus;
-    phone?: Payabli.PhoneNumber;
-    serviceData?: Payabli.Services;
-    state?: Payabli.StateNullable;
-    summary?: Payabli.PaypointSummary;
-    timeZone?: Payabli.Timezone;
-    websiteAddress?: Payabli.Website;
-    zip?: Payabli.Zip;
+    fax?: Payabli.PhoneNumber | undefined;
+    idPaypoint?: Payabli.Idpaypoint | undefined;
+    legalName?: Payabli.Legalname | undefined;
+    parentOrg?: Payabli.OrgData | undefined;
+    paypointStatus?: Payabli.Paypointstatus | undefined;
+    phone?: Payabli.PhoneNumber | undefined;
+    serviceData?: Payabli.Services | undefined;
+    state?: Payabli.StateNullable | undefined;
+    summary?: Payabli.PaypointSummary | undefined;
+    timeZone?: Payabli.Timezone | undefined;
+    websiteAddress?: Payabli.Website | undefined;
+    zip?: Payabli.Zip | undefined;
 }

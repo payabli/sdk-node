@@ -4,33 +4,33 @@ import type * as Payabli from "../index.js";
 
 export interface PageContent {
     /** Amount section of payment page */
-    amount?: Payabli.AmountElement;
+    amount?: Payabli.AmountElement | undefined;
     /** Autopay section of payment page */
-    autopay?: Payabli.AutoElement;
+    autopay?: Payabli.AutoElement | undefined;
     /** ContactUs section of payment page */
-    contactUs?: Payabli.ContactElement;
+    contactUs?: Payabli.ContactElement | undefined;
     /** Identifier of entry point owner of page */
-    entry?: string;
+    entry?: string | undefined;
     /** Invoices section of payment page */
-    invoices?: Payabli.InvoiceElement;
+    invoices?: Payabli.InvoiceElement | undefined;
     /** Logo section of payment page */
-    logo?: Payabli.Element;
+    logo?: Payabli.Element | undefined;
     /** Message section of payment page */
-    messageBeforePaying?: Payabli.LabelElement;
+    messageBeforePaying?: Payabli.LabelElement | undefined;
     /** Descriptor of page */
-    name?: string;
+    name?: string | undefined;
     /** Notes section of payment page */
-    notes?: Payabli.NoteElement;
+    notes?: Payabli.NoteElement | undefined;
     /** Page header section of payment page */
-    page?: Payabli.PageElement;
+    page?: Payabli.PageElement | undefined;
     /** Payment button section of payment page */
-    paymentButton?: Payabli.LabelElement;
+    paymentButton?: Payabli.LabelElement | undefined;
     /** Payment methods section of payment page */
-    paymentMethods?: Payabli.MethodElement;
+    paymentMethods?: Payabli.MethodElement | undefined;
     /** Customer/Payor section of payment page */
-    payor?: Payabli.PayorElement;
+    payor?: Payabli.PayorElement | undefined;
     /** Review section of payment page */
-    review?: Payabli.HeaderElement;
+    review?: Payabli.HeaderElement | undefined;
     /** Unique identifier assigned to the page. */
-    subdomain?: Payabli.Subdomain;
+    subdomain?: Payabli.Subdomain | undefined;
 }

@@ -4,19 +4,19 @@ import type * as Payabli from "../index.js";
 
 export interface BillingData {
     /** Account number for bank account. */
-    accountNumber?: string;
+    accountNumber?: string | undefined;
     /**
      * Describes whether the bank account is used for deposits or withdrawals in Payabli:
      *   - `0`: Deposit
      *   - `1`: Withdrawal
      *   - `2`: Deposit and withdrawal
      */
-    bankAccountFunction?: number;
-    bankAccountHolderName?: Payabli.BankAccountHolderName;
-    bankAccountHolderType?: Payabli.BankAccountHolderType;
-    bankName?: Payabli.BankName;
+    bankAccountFunction?: number | undefined;
+    bankAccountHolderName?: Payabli.BankAccountHolderName | undefined;
+    bankAccountHolderType?: Payabli.BankAccountHolderType | undefined;
+    bankName?: Payabli.BankName | undefined;
     /** The bank's ID in Payabli. */
-    id?: number;
-    routingAccount?: Payabli.RoutingAccount;
-    typeAccount?: Payabli.TypeAccount;
+    id?: number | undefined;
+    routingAccount?: Payabli.RoutingAccount | undefined;
+    typeAccount?: Payabli.TypeAccount | undefined;
 }

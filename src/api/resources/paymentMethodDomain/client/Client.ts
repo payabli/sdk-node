@@ -401,23 +401,12 @@ export class PaymentMethodDomainClient {
         requestOptions?: PaymentMethodDomainClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.ListPaymentMethodDomainsResponse>> {
         const { entityId, entityType, fromRecord, limitRecord } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (entityId != null) {
-            _queryParams.entityId = entityId.toString();
-        }
-
-        if (entityType != null) {
-            _queryParams.entityType = entityType;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            entityId,
+            entityType,
+            fromRecord,
+            limitRecord,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

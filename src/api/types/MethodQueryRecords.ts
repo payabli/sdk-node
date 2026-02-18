@@ -4,17 +4,17 @@ import type * as Payabli from "../index.js";
 
 export interface MethodQueryRecords {
     /** The bank identification number (BIN). Null when method is ACH. */
-    bin?: string;
-    binData?: Payabli.BinData;
-    descriptor?: Payabli.Descriptor;
+    bin?: string | undefined;
+    binData?: Payabli.BinData | undefined;
+    descriptor?: Payabli.Descriptor | undefined;
     /** Expiration date associated to the method (only for card) in format MMYY. */
-    expDate?: string;
-    holderName?: Payabli.Holdername;
+    expDate?: string | undefined;
+    holderName?: Payabli.Holdername | undefined;
     /** Method internal ID */
-    idPmethod?: string;
+    idPmethod?: string | undefined;
     /** Date of last update */
     lastUpdated?: Payabli.LastModified | undefined;
-    maskedAccount?: Payabli.Maskedaccount;
+    maskedAccount?: Payabli.Maskedaccount | undefined;
     /** Type of payment vehicle: **ach** or **card** */
-    method?: string;
+    method?: string | undefined;
 }

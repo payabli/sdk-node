@@ -1654,6 +1654,82 @@ describe("MoneyInClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
+            customerData: { customerId: 4440 },
+            entryPoint: "f743aed24a",
+            ipaddress: "255.255.255.255",
+            paymentDetails: { checkUniqueId: "abc123def456", serviceFee: 0, totalAmount: 125.5 },
+            paymentMethod: {
+                achAccount: "123456",
+                achAccountType: "Checking",
+                achCode: "BOC",
+                achHolder: "John Doe",
+                achRouting: "123456789",
+                method: "ach",
+            },
+        };
+        const rawResponseBody = {
+            responseText: "Success",
+            isSuccess: true,
+            responseData: {
+                authCode: "123456",
+                referenceId: "132-d9719a411918429cb7ca465927969900",
+                resultCode: 1,
+                resultText: "Approved",
+                avsResponseText: "",
+                cvvResponseText: "",
+                customerId: 4440,
+            },
+        };
+        server
+            .mockEndpoint()
+            .post("/MoneyIn/getpaid")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.moneyIn.getpaid({
+            body: {
+                customerData: {
+                    customerId: 4440,
+                },
+                entryPoint: "f743aed24a",
+                ipaddress: "255.255.255.255",
+                paymentDetails: {
+                    checkUniqueId: "abc123def456",
+                    serviceFee: 0,
+                    totalAmount: 125.5,
+                },
+                paymentMethod: {
+                    achAccount: "123456",
+                    achAccountType: "Checking",
+                    achCode: "BOC",
+                    achHolder: "John Doe",
+                    achRouting: "123456789",
+                    method: "ach",
+                },
+            },
+        });
+        expect(response).toEqual({
+            responseText: "Success",
+            isSuccess: true,
+            responseData: {
+                authCode: "123456",
+                referenceId: "132-d9719a411918429cb7ca465927969900",
+                resultCode: 1,
+                resultText: "Approved",
+                avsResponseText: "",
+                cvvResponseText: "",
+                customerId: 4440,
+            },
+        });
+    });
+
+    test("getpaid (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
             customerData: {
                 billingAddress1: "123 Walnut Street",
                 billingCity: "Johnson City",
@@ -1757,7 +1833,7 @@ describe("MoneyInClient", () => {
         });
     });
 
-    test("getpaid (6)", async () => {
+    test("getpaid (7)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1835,7 +1911,7 @@ describe("MoneyInClient", () => {
         });
     });
 
-    test("getpaid (7)", async () => {
+    test("getpaid (8)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1912,7 +1988,7 @@ describe("MoneyInClient", () => {
         });
     });
 
-    test("getpaid (8)", async () => {
+    test("getpaid (9)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1945,7 +2021,7 @@ describe("MoneyInClient", () => {
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
-    test("getpaid (9)", async () => {
+    test("getpaid (10)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -1978,7 +2054,7 @@ describe("MoneyInClient", () => {
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
-    test("getpaid (10)", async () => {
+    test("getpaid (11)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -2011,7 +2087,7 @@ describe("MoneyInClient", () => {
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
-    test("getpaid (11)", async () => {
+    test("getpaid (12)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {

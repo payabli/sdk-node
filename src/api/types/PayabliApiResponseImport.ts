@@ -3,11 +3,11 @@
 import type * as Payabli from "../index.js";
 
 export interface PayabliApiResponseImport {
-    isSuccess?: Payabli.IsSuccess;
-    pageIdentifier?: Payabli.PageIdentifier;
-    responseCode?: Payabli.Responsecode;
+    isSuccess?: Payabli.IsSuccess | undefined;
+    pageIdentifier?: Payabli.PageIdentifier | undefined;
+    responseCode?: Payabli.Responsecode | undefined;
     /** The response data containing the result of the import operation. */
-    responseData?: PayabliApiResponseImport.ResponseData;
+    responseData?: PayabliApiResponseImport.ResponseData | undefined;
     responseText: Payabli.ResponseText;
 }
 
@@ -17,10 +17,10 @@ export namespace PayabliApiResponseImport {
      */
     export interface ResponseData {
         /** The number of records successfully added. */
-        added?: number;
+        added?: number | undefined;
         /** List of errors, if any. */
-        errors?: string[];
+        errors?: string[] | undefined;
         /** The number of records that were rejected. */
-        rejected?: number;
+        rejected?: number | undefined;
     }
 }

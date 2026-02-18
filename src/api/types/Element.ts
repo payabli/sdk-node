@@ -3,6 +3,6 @@
 import type * as Payabli from "../index.js";
 
 export interface Element {
-    enabled?: Payabli.Enabled;
-    order?: Payabli.Order;
+    enabled?: Payabli.Enabled | undefined;
+    order?: Payabli.Order | undefined;
 }

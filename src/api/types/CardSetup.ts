@@ -2,11 +2,11 @@
 
 export interface CardSetup {
     /** Determines whether American Express is accepted. */
-    acceptAmex?: boolean;
+    acceptAmex?: boolean | undefined;
     /** Determines whether Discover is accepted. */
-    acceptDiscover?: boolean;
+    acceptDiscover?: boolean | undefined;
     /** Determines whether Mastercard is accepted. */
-    acceptMastercard?: boolean;
+    acceptMastercard?: boolean | undefined;
     /** Determines whether Visa is accepted. */
-    acceptVisa?: boolean;
+    acceptVisa?: boolean | undefined;
 }

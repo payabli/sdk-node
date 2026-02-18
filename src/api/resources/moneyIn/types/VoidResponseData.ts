@@ -10,8 +10,8 @@ export interface VoidResponseData {
     referenceId: Payabli.Referenceidtrans;
     resultCode: Payabli.ResultCode;
     resultText: Payabli.Resulttext;
-    avsResponseText?: Payabli.AvsResponseText;
-    cvvResponseText?: Payabli.CvvResponseText;
-    customerId?: Payabli.Customeridtrans;
-    methodReferenceId?: Payabli.MethodReferenceId;
+    avsResponseText?: Payabli.AvsResponseText | undefined;
+    cvvResponseText?: Payabli.CvvResponseText | undefined;
+    customerId?: Payabli.Customeridtrans | undefined;
+    methodReferenceId?: Payabli.MethodReferenceId | undefined;
 }

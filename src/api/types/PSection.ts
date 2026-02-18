@@ -3,16 +3,16 @@
 import type * as Payabli from "../index.js";
 
 export interface PSection {
-    avgmonthly?: Payabli.LinkData;
-    binperson?: Payabli.LinkData;
-    binphone?: Payabli.LinkData;
-    binweb?: Payabli.LinkData;
-    bsummary?: Payabli.LinkData;
-    highticketamt?: Payabli.LinkData;
-    mcc?: Payabli.LinkData;
-    ticketamt?: Payabli.LinkData;
-    whenCharged?: Payabli.LinkData;
-    whenDelivered?: Payabli.LinkData;
-    whenProvided?: Payabli.LinkData;
-    whenRefunded?: Payabli.LinkData;
+    avgmonthly?: Payabli.LinkData | undefined;
+    binperson?: Payabli.LinkData | undefined;
+    binphone?: Payabli.LinkData | undefined;
+    binweb?: Payabli.LinkData | undefined;
+    bsummary?: Payabli.LinkData | undefined;
+    highticketamt?: Payabli.LinkData | undefined;
+    mcc?: Payabli.LinkData | undefined;
+    ticketamt?: Payabli.LinkData | undefined;
+    whenCharged?: Payabli.LinkData | undefined;
+    whenDelivered?: Payabli.LinkData | undefined;
+    whenProvided?: Payabli.LinkData | undefined;
+    whenRefunded?: Payabli.LinkData | undefined;
 }

@@ -6,5 +6,5 @@ export interface RefundResponse {
     responseText: Payabli.ResponseText;
     isSuccess: Payabli.IsSuccess;
     responseData: Payabli.ResponseDataRefunds;
-    pageidentifier?: Payabli.PageIdentifier;
+    pageidentifier?: Payabli.PageIdentifier | undefined;
 }

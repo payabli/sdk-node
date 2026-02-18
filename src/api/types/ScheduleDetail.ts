@@ -4,11 +4,11 @@ import type * as Payabli from "../index.js";
 
 export interface ScheduleDetail {
     /** Subscription end date in any of the accepted formats: YYYY-MM-DD, MM/DD/YYYY or the value `untilcancelled` to indicate a scheduled payment with infinite cycle. */
-    endDate?: string;
+    endDate?: string | undefined;
     /** Frequency of the subscription. */
-    frequency?: Payabli.Frequency;
+    frequency?: Payabli.Frequency | undefined;
     /** This field is for future development, leave null. Identifier of subscription plan applied in the scheduled payment/subscription. */
-    planId?: number;
+    planId?: number | undefined;
     /** Subscription start date in any of the accepted formats: YYYY-MM-DD, MM/DD/YYYY. This must be a future date. */
-    startDate?: string;
+    startDate?: string | undefined;
 }

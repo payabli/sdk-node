@@ -4,37 +4,37 @@ import type * as Payabli from "../index.js";
 
 export interface QueryTransactionPayorDataCustomer {
     /** Array of field names to be used as identifiers. */
-    Identifiers?: unknown[];
+    Identifiers?: unknown[] | undefined;
     /** Customer/Payor first name. */
-    FirstName?: string;
+    FirstName?: string | undefined;
     /** Customer/Payor last name. */
-    LastName?: string;
+    LastName?: string | undefined;
     /** Customer's company name. */
-    CompanyName?: string;
+    CompanyName?: string | undefined;
     /** Customer's billing address. */
-    BillingAddress1?: string;
+    BillingAddress1?: string | undefined;
     /** Additional line for Customer's billing address. */
-    BillingAddress2?: string;
+    BillingAddress2?: string | undefined;
     /** Customer's billing city. */
-    BillingCity?: string;
+    BillingCity?: string | undefined;
     /** Customer's billing state. Must be 2-letter state code for address in US. */
-    BillingState?: string;
+    BillingState?: string | undefined;
     /** Customer's billing ZIP code. */
-    BillingZip?: Payabli.BillingZip;
+    BillingZip?: Payabli.BillingZip | undefined;
     /** Customer's billing country. */
-    BillingCountry?: string;
+    BillingCountry?: string | undefined;
     /** Customer's phone number. */
-    BillingPhone?: string;
+    BillingPhone?: string | undefined;
     /** Customer's email address. */
-    BillingEmail?: Payabli.Email;
-    CustomerNumber?: Payabli.CustomerNumberNullable;
-    ShippingAddress1?: Payabli.Shippingaddress;
-    ShippingAddress2?: Payabli.Shippingaddressadditional;
-    ShippingCity?: Payabli.Shippingcity;
-    ShippingState?: Payabli.Shippingstate;
-    ShippingZip?: Payabli.Shippingzip;
-    ShippingCountry?: Payabli.Shippingcountry;
-    customerId?: Payabli.CustomerId;
-    customerStatus?: Payabli.CustomerStatus;
-    AdditionalData?: Payabli.AdditionalDataMap;
+    BillingEmail?: Payabli.Email | undefined;
+    CustomerNumber?: Payabli.CustomerNumberNullable | undefined;
+    ShippingAddress1?: Payabli.Shippingaddress | undefined;
+    ShippingAddress2?: Payabli.Shippingaddressadditional | undefined;
+    ShippingCity?: Payabli.Shippingcity | undefined;
+    ShippingState?: Payabli.Shippingstate | undefined;
+    ShippingZip?: Payabli.Shippingzip | undefined;
+    ShippingCountry?: Payabli.Shippingcountry | undefined;
+    customerId?: Payabli.CustomerId | undefined;
+    customerStatus?: Payabli.CustomerStatus | undefined;
+    AdditionalData?: Payabli.AdditionalDataMap | undefined;
 }

@@ -73,8 +73,8 @@ import type * as Payabli from "../index.js";
  *     }
  */
 export interface QueryPayoutTransaction {
-    Records?: QueryPayoutTransaction.Records.Item[];
-    Summary?: QueryPayoutTransaction.Summary;
+    Records?: QueryPayoutTransaction.Records.Item[] | undefined;
+    Summary?: QueryPayoutTransaction.Summary | undefined;
 }
 
 export namespace QueryPayoutTransaction {
@@ -82,111 +82,111 @@ export namespace QueryPayoutTransaction {
 
     export namespace Records {
         export interface Item {
-            BatchNumber?: Payabli.BatchNumber;
+            BatchNumber?: Payabli.BatchNumber | undefined;
             /** Identifier of the batch associated with payout transaction. */
-            BatchId?: number;
+            BatchId?: number | undefined;
             /** Events associated with this transaction. */
-            Bills?: Payabli.BillPayOutData[];
-            CardToken?: string;
+            Bills?: Payabli.BillPayOutData[] | undefined;
+            CardToken?: string | undefined;
             /** Object referencing paper check image. */
-            CheckData?: Payabli.FileContent;
+            CheckData?: Payabli.FileContent | undefined;
             /** Paper check number related to payout transaction. */
-            CheckNumber?: string;
+            CheckNumber?: string | undefined;
             /** Any comment or description for payout transaction. */
-            Comments?: Payabli.Comments;
+            Comments?: Payabli.Comments | undefined;
             /** Timestamp when the payment was created, in UTC. */
-            CreatedAt?: Payabli.CreatedAt;
-            EntryName?: Payabli.Entrypointfield;
+            CreatedAt?: Payabli.CreatedAt | undefined;
+            EntryName?: Payabli.Entrypointfield | undefined;
             /** Events associated with this transaction. */
-            Events?: Payabli.QueryTransactionEvents[];
-            externalPaypointID?: Payabli.ExternalPaypointId;
-            FeeAmount?: Payabli.FeeAmount;
-            Gateway?: Payabli.Gatewayfield;
+            Events?: Payabli.QueryTransactionEvents[] | undefined;
+            externalPaypointID?: Payabli.ExternalPaypointId | undefined;
+            FeeAmount?: Payabli.FeeAmount | undefined;
+            Gateway?: Payabli.Gatewayfield | undefined;
             HasVcardTransactions?: Payabli.HasVcardTransactions | undefined;
             /** Identifier of payout transaction. */
-            IdOut?: number;
+            IdOut?: number | undefined;
             IsSameDayACH?: Payabli.IsSameDayAch | undefined;
             /** Timestamp when payment record was updated. */
             LastUpdated?: Payabli.LastModified | undefined;
             /** Net amount paid. */
             NetAmount?: Payabli.Netamountnullable | undefined;
-            ParentOrgName?: Payabli.OrgParentName;
-            ParentOrgId?: Payabli.OrgParentId;
-            PaymentData?: Item.PaymentData;
-            PaymentId?: Payabli.PaymentIdString;
+            ParentOrgName?: Payabli.OrgParentName | undefined;
+            ParentOrgId?: Payabli.OrgParentId | undefined;
+            PaymentData?: Item.PaymentData | undefined;
+            PaymentId?: Payabli.PaymentIdString | undefined;
             /** The payment method for the transaction. */
-            PaymentMethod?: string;
+            PaymentMethod?: string | undefined;
             /** Status of payout transaction. See [Payout Transaction Statuses](guides/money-out-statuses#payout-transaction-statuses) for a full reference. */
-            PaymentStatus?: string;
-            PayoutProgram?: Payabli.PayoutProgram;
-            PaypointDbaname?: Payabli.Dbaname;
+            PaymentStatus?: string | undefined;
+            PayoutProgram?: Payabli.PayoutProgram | undefined;
+            PaypointDbaname?: Payabli.Dbaname | undefined;
             /** Paypoint legal name. */
-            PaypointLegalname?: Payabli.Legalname;
-            RiskAction?: Payabli.RiskAction;
+            PaypointLegalname?: Payabli.Legalname | undefined;
+            RiskAction?: Payabli.RiskAction | undefined;
             RiskActionCode?: Payabli.RiskActionCode | undefined;
             RiskFlagged?: Payabli.RiskFlagged | undefined;
             RiskFlaggedOn?: Payabli.RiskFlaggedOn | undefined;
-            RiskReason?: Payabli.RiskReason;
-            RiskStatus?: Payabli.RiskStatus;
-            ScheduleId?: Payabli.ScheduleId;
-            SettlementStatus?: Payabli.SettlementStatusPayout;
-            Source?: Payabli.Source;
+            RiskReason?: Payabli.RiskReason | undefined;
+            RiskStatus?: Payabli.RiskStatus | undefined;
+            ScheduleId?: Payabli.ScheduleId | undefined;
+            SettlementStatus?: Payabli.SettlementStatusPayout | undefined;
+            Source?: Payabli.Source | undefined;
             /** Internal status of transaction. */
-            Status?: number;
+            Status?: number | undefined;
             /** Transaction total amount (including service fee or sub-charge). */
-            TotalAmount?: number;
+            TotalAmount?: number | undefined;
             /** Vendor related to the payout transaction. */
-            Vendor?: Payabli.VendorQueryRecord;
+            Vendor?: Payabli.VendorQueryRecord | undefined;
         }
 
         export namespace Item {
             export interface PaymentData {
-                AccountExp?: Payabli.Accountexp;
-                accountId?: Payabli.Accountid;
-                AccountType?: Payabli.Accounttype;
-                AccountZip?: Payabli.Accountzip;
-                bankAccount?: string;
-                binData?: Payabli.BinData;
-                cloudSignatureData?: string;
-                cloudSignatureFormat?: string;
-                gatewayConnector?: Payabli.PayoutGatewayConnector;
+                AccountExp?: Payabli.Accountexp | undefined;
+                accountId?: Payabli.Accountid | undefined;
+                AccountType?: Payabli.Accounttype | undefined;
+                AccountZip?: Payabli.Accountzip | undefined;
+                bankAccount?: string | undefined;
+                binData?: Payabli.BinData | undefined;
+                cloudSignatureData?: string | undefined;
+                cloudSignatureFormat?: string | undefined;
+                gatewayConnector?: Payabli.PayoutGatewayConnector | undefined;
                 /** Card or bank account holder name. */
-                HolderName?: Payabli.Holdername;
-                Initiator?: Payabli.Initiator;
-                MaskedAccount?: Payabli.Maskedaccount;
-                orderDescription?: Payabli.Orderdescription;
-                paymentDetails?: Payabli.PaymentDetail;
-                payorData?: string;
-                Sequence?: Payabli.Sequence;
+                HolderName?: Payabli.Holdername | undefined;
+                Initiator?: Payabli.Initiator | undefined;
+                MaskedAccount?: Payabli.Maskedaccount | undefined;
+                orderDescription?: Payabli.Orderdescription | undefined;
+                paymentDetails?: Payabli.PaymentDetail | undefined;
+                payorData?: string | undefined;
+                Sequence?: Payabli.Sequence | undefined;
                 /** Identifier of stored payment method used in transaction. */
-                StoredId?: Payabli.Storedmethodid;
-                StoredMethodUsageType?: Payabli.StoredMethodUsageType;
+                StoredId?: Payabli.Storedmethodid | undefined;
+                StoredMethodUsageType?: Payabli.StoredMethodUsageType | undefined;
             }
         }
     }
 
     export interface Summary {
-        pageIdentifier?: Payabli.PageIdentifier;
-        pageSize?: Payabli.Pagesize;
-        totalAmount?: number;
-        totalAuthorized?: number;
-        totalAuthorizedAmount?: number;
-        totalCanceled?: number;
-        totalCanceledAmount?: number;
-        totalCaptured?: number;
-        totalCapturedAmount?: number;
-        totalNetAmount?: number;
-        totalOpen?: number;
-        totalOpenAmount?: number;
-        totalPages?: number;
-        totalPaid?: number;
-        totalPaidAmount?: number;
+        pageIdentifier?: Payabli.PageIdentifier | undefined;
+        pageSize?: Payabli.Pagesize | undefined;
+        totalAmount?: number | undefined;
+        totalAuthorized?: number | undefined;
+        totalAuthorizedAmount?: number | undefined;
+        totalCanceled?: number | undefined;
+        totalCanceledAmount?: number | undefined;
+        totalCaptured?: number | undefined;
+        totalCapturedAmount?: number | undefined;
+        totalNetAmount?: number | undefined;
+        totalOpen?: number | undefined;
+        totalOpenAmount?: number | undefined;
+        totalPages?: number | undefined;
+        totalPaid?: number | undefined;
+        totalPaidAmount?: number | undefined;
         /** Total number of transactions that are currently on hold. */
-        totalOnHold?: number;
+        totalOnHold?: number | undefined;
         /** Total amount of transactions that are currently on hold. */
-        totalOnHoldAmount?: number;
-        totalProcessing?: number;
-        totalProcessingAmount?: number;
-        totalRecords?: number;
+        totalOnHoldAmount?: number | undefined;
+        totalProcessing?: number | undefined;
+        totalProcessingAmount?: number | undefined;
+        totalRecords?: number | undefined;
     }
 }

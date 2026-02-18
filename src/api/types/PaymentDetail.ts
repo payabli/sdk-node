@@ -10,17 +10,19 @@ export interface PaymentDetail {
      * Array of payment categories/line items describing the amount to be paid.
      * **Note**: These categories are for information only and aren't validated against the total amount provided.
      */
-    categories?: Payabli.PaymentCategories[];
+    categories?: Payabli.PaymentCategories[] | undefined;
     /** Object containing image of paper check. */
-    checkImage?: Record<string, unknown>;
+    checkImage?: Record<string, unknown> | undefined;
     /** A check number to be used in the ach transaction. **Required** for payment method = 'check'. */
-    checkNumber?: string;
+    checkNumber?: string | undefined;
     /** The currency for the transaction, `USD` or `CAD`. If your paypoint is configured for CAD, you must send the `CAD` value in this field, otherwise it defaults to USD, which will cause the transaction to fail. */
-    currency?: string;
+    currency?: string | undefined;
     /** Service fee to be deducted from the total amount. This amount must be a number, percentages aren't accepted. If you are using a percentage-based fee schedule, you must calculate the value manually. */
-    serviceFee?: number;
+    serviceFee?: number | undefined;
     /** Split funding instructions for the transaction. See [Split a Transaction](/developers/developer-guides/money-in-split-funding) for more. */
     splitFunding?: Payabli.SplitFunding | undefined;
+    /** Unique identifier for a processed check image. Required for RDC (Remote Deposit Capture) transactions where `achCode` is `BOC`. Use the `id` value from the [check processing](/developers/api-reference/checkcapture/process-a-check-image) response. */
+    checkUniqueId?: string | undefined;
     /** Total amount to be charged. If a service fee is sent, then this amount should include the service fee." */
     totalAmount: number;
 }

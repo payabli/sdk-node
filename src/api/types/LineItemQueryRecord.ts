@@ -4,31 +4,31 @@ import type * as Payabli from "../index.js";
 
 export interface LineItemQueryRecord {
     /** Timestamp of when line item was created, in UTC. */
-    createdAt?: Payabli.CreatedAt;
+    createdAt?: Payabli.CreatedAt | undefined;
     /** Identifier of line item. */
-    id?: number;
+    id?: number | undefined;
     /** Array of tags classifying item or product. */
-    itemCategories?: (string | undefined)[];
-    itemCommodityCode?: Payabli.ItemCommodityCode;
+    itemCategories?: (string | undefined)[] | undefined;
+    itemCommodityCode?: Payabli.ItemCommodityCode | undefined;
     /** Item or product price per unit. */
     itemCost: number;
-    itemDescription?: Payabli.ItemDescription;
+    itemDescription?: Payabli.ItemDescription | undefined;
     /** Internal class of item or product: value '0' is only for invoices , '1' for bills, and '2' common for both. */
-    itemMode?: number;
-    itemProductCode?: Payabli.ItemProductCode;
-    itemProductName?: Payabli.ItemProductName;
+    itemMode?: number | undefined;
+    itemProductCode?: Payabli.ItemProductCode | undefined;
+    itemProductName?: Payabli.ItemProductName | undefined;
     /** Quantity of item or product. */
     itemQty: number;
-    itemUnitOfMeasure?: Payabli.ItemUnitofMeasure;
+    itemUnitOfMeasure?: Payabli.ItemUnitofMeasure | undefined;
     /** Timestamp of when the line item was updated, in UTC. */
     lastUpdated?: Payabli.LastModified | undefined;
-    pageidentifier?: Payabli.PageIdentifier;
+    pageidentifier?: Payabli.PageIdentifier | undefined;
     /** The name of the paypoint's parent organization. */
-    ParentOrgName?: Payabli.OrgParentName;
+    ParentOrgName?: Payabli.OrgParentName | undefined;
     /** The paypoint's DBA name. */
-    PaypointDbaname?: Payabli.Dbaname;
+    PaypointDbaname?: Payabli.Dbaname | undefined;
     /** The paypoint's entryname (entrypoint) value. */
-    PaypointEntryname?: Payabli.Entrypointfield;
+    PaypointEntryname?: Payabli.Entrypointfield | undefined;
     /** The paypoint's legal name. */
-    PaypointLegalname?: Payabli.Legalname;
+    PaypointLegalname?: Payabli.Legalname | undefined;
 }

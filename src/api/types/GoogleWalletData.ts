@@ -5,7 +5,7 @@
  */
 export interface GoogleWalletData {
     /** The Google Pay merchant identifier. */
-    gatewayMerchantId?: string;
+    gatewayMerchantId?: string | undefined;
     /** The Google Pay gateway identifier. */
-    gatewayId?: string;
+    gatewayId?: string | undefined;
 }

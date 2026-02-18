@@ -45,44 +45,44 @@ import type * as Payabli from "../index.js";
  */
 export interface VCardRecord {
     /** When `true`, the vCard has been sent. */
-    vcardSent?: boolean;
-    cardToken?: string;
+    vcardSent?: boolean | undefined;
+    cardToken?: string | undefined;
     /** The vCard number. */
-    cardNumber?: string;
+    cardNumber?: string | undefined;
     /** The vCard CVC number. */
-    cvc?: string;
+    cvc?: string | undefined;
     /** Expiration date in format YYYY-MM-DD. The minimum time to expire is 3 months, maximum is 3 years. If not provided, the default is 6 months. */
-    expirationDate?: string;
-    status?: string;
+    expirationDate?: string | undefined;
+    status?: string | undefined;
     /** The vCard amount. */
-    amount?: number;
+    amount?: number | undefined;
     /** The vCard's current balance. */
-    currentBalance?: number;
-    expenseLimit?: number;
-    expenseLimitPeriod?: string;
-    maxNumberOfUses?: number;
-    currentNumberOfUses?: number;
-    exactAmount?: boolean;
+    currentBalance?: number | undefined;
+    expenseLimit?: number | undefined;
+    expenseLimitPeriod?: string | undefined;
+    maxNumberOfUses?: number | undefined;
+    currentNumberOfUses?: number | undefined;
+    exactAmount?: boolean | undefined;
     /** MCC assigned to vCard. */
-    mcc?: string;
+    mcc?: string | undefined;
     /** TCC assigned to vCard. */
-    tcc?: string;
+    tcc?: string | undefined;
     /** Custom field 1. */
-    misc1?: string;
+    misc1?: string | undefined;
     /** Custom field 2. */
-    misc2?: string;
-    dateCreated?: Payabli.CreatedAt;
+    misc2?: string | undefined;
+    dateCreated?: Payabli.CreatedAt | undefined;
     dateModified?: Payabli.LastModified | undefined;
-    associatedVendor?: Payabli.AssociatedVendor;
-    associatedCustomer?: Payabli.CustomerData;
-    ParentOrgName?: Payabli.OrgParentName;
+    associatedVendor?: Payabli.AssociatedVendor | undefined;
+    associatedCustomer?: Payabli.CustomerData | undefined;
+    ParentOrgName?: Payabli.OrgParentName | undefined;
     /** The paypoint's DBA name. */
-    PaypointDbaname?: Payabli.Dbaname;
+    PaypointDbaname?: Payabli.Dbaname | undefined;
     /** The paypoint's legal name. */
-    PaypointLegalname?: Payabli.Legalname;
+    PaypointLegalname?: Payabli.Legalname | undefined;
     /** The paypoint's entry name (entrypoint). */
-    PaypointEntryname?: Payabli.Entrypointfield;
-    externalPaypointID?: Payabli.ExternalPaypointId;
+    PaypointEntryname?: Payabli.Entrypointfield | undefined;
+    externalPaypointID?: Payabli.ExternalPaypointId | undefined;
     /** The paypoint's unique identifier. */
-    paypointId?: number;
+    paypointId?: number | undefined;
 }

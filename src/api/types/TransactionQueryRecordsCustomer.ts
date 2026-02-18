@@ -3,61 +3,61 @@
 import type * as Payabli from "../index.js";
 
 export interface TransactionQueryRecordsCustomer {
-    AchHolderType?: Payabli.AchHolderType;
-    AchSecCode?: Payabli.AchSecCode;
+    AchHolderType?: Payabli.AchHolderType | undefined;
+    AchSecCode?: Payabli.AchSecCode | undefined;
     /** Batch amount. */
-    BatchAmount?: number;
-    BatchNumber?: Payabli.BatchNumber;
+    BatchAmount?: number | undefined;
+    BatchNumber?: Payabli.BatchNumber | undefined;
     /** Service Fee or sub-charge transaction associated to the main transaction. */
-    CfeeTransactions?: Payabli.QueryCFeeTransaction[];
+    CfeeTransactions?: Payabli.QueryCFeeTransaction[] | undefined;
     /** Connector used for transaction. */
-    ConnectorName?: string;
-    Customer?: Payabli.QueryTransactionPayorDataCustomer;
-    DeviceId?: Payabli.Device;
-    EntrypageId?: Payabli.EntrypageId;
-    ExternalProcessorInformation?: Payabli.ExternalProcessorInformation;
-    FeeAmount?: Payabli.FeeAmount;
+    ConnectorName?: string | undefined;
+    Customer?: Payabli.QueryTransactionPayorDataCustomer | undefined;
+    DeviceId?: Payabli.Device | undefined;
+    EntrypageId?: Payabli.EntrypageId | undefined;
+    ExternalProcessorInformation?: Payabli.ExternalProcessorInformation | undefined;
+    FeeAmount?: Payabli.FeeAmount | undefined;
     /** Internal identifier used for processing. */
-    GatewayTransId?: string;
-    invoiceData?: Payabli.BillData;
+    GatewayTransId?: string | undefined;
+    invoiceData?: Payabli.BillData | undefined;
     /** Payment method used: card, ach, or wallet. */
-    Method?: string;
+    Method?: string | undefined;
     /** Net amount paid. */
     NetAmount?: Payabli.Netamountnullable | undefined;
-    Operation?: Payabli.Operation;
-    OrderId?: Payabli.OrderId;
+    Operation?: Payabli.Operation | undefined;
+    OrderId?: Payabli.OrderId | undefined;
     /** ID of immediate parent organization. */
-    OrgId?: Payabli.Orgid;
-    ParentOrgName?: Payabli.OrgParentName;
-    PaymentData?: Payabli.QueryPaymentData;
+    OrgId?: Payabli.Orgid | undefined;
+    ParentOrgName?: Payabli.OrgParentName | undefined;
+    PaymentData?: Payabli.QueryPaymentData | undefined;
     /** Unique Transaction ID. */
-    PaymentTransId?: string;
-    PayorId?: Payabli.PayorId;
+    PaymentTransId?: string | undefined;
+    PayorId?: Payabli.PayorId | undefined;
     /** Paypoint's DBA name. */
-    PaypointDbaname?: Payabli.Dbaname;
+    PaypointDbaname?: Payabli.Dbaname | undefined;
     /** Paypoint's entryname. */
-    PaypointEntryname?: Payabli.Entrypointfield;
+    PaypointEntryname?: Payabli.Entrypointfield | undefined;
     /** InternalId for paypoint. */
-    PaypointId?: number;
+    PaypointId?: number | undefined;
     /** Paypoint's legal name. */
-    PaypointLegalname?: Payabli.Legalname;
+    PaypointLegalname?: Payabli.Legalname | undefined;
     PendingFeeAmount?: Payabli.PendingFeeAmount | undefined;
-    RefundId?: Payabli.RefundId;
-    ResponseData?: Payabli.QueryResponseData;
-    ReturnedId?: Payabli.ReturnedId;
+    RefundId?: Payabli.RefundId | undefined;
+    ResponseData?: Payabli.QueryResponseData | undefined;
+    ReturnedId?: Payabli.ReturnedId | undefined;
     /** Reference to the subscription that originated the transaction. */
-    ScheduleReference?: number;
+    ScheduleReference?: number | undefined;
     /** Settlement status for transaction. See [the docs](/developers/references/money-in-statuses#payment-funding-status) for a full reference. */
-    SettlementStatus?: number;
-    Source?: Payabli.Source;
+    SettlementStatus?: number | undefined;
+    Source?: Payabli.Source | undefined;
     splitFundingInstructions?: Payabli.SplitFunding | undefined;
     /** Transaction total amount (including service fee or sub-charge) */
-    TotalAmount?: number;
+    TotalAmount?: number | undefined;
     /** Events associated with this transaction. */
-    TransactionEvents?: Payabli.QueryTransactionEvents[];
+    TransactionEvents?: Payabli.QueryTransactionEvents[] | undefined;
     /** Transaction date and time, in UTC. */
     TransactionTime?: Payabli.DatetimeNullable | undefined;
-    TransAdditionalData?: unknown;
+    TransAdditionalData?: unknown | undefined;
     /** Status of transaction. See [the docs](/developers/references/money-in-statuses#money-in-transaction-status) for a full reference. */
-    TransStatus?: number;
+    TransStatus?: number | undefined;
 }

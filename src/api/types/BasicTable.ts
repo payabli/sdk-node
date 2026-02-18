@@ -3,6 +3,6 @@
 import type * as Payabli from "../index.js";
 
 export interface BasicTable {
-    body?: Payabli.LinkRow[];
-    header?: Payabli.LinkRow;
+    body?: Payabli.LinkRow[] | undefined;
+    header?: Payabli.LinkRow | undefined;
 }

@@ -3,42 +3,42 @@
 import type * as Payabli from "../../../index.js";
 
 export interface GetMethodResponse {
-    isSuccess?: Payabli.IsSuccess;
-    responseData?: GetMethodResponse.ResponseData;
+    isSuccess?: Payabli.IsSuccess | undefined;
+    responseData?: GetMethodResponse.ResponseData | undefined;
     responseText: Payabli.ResponseText;
 }
 
 export namespace GetMethodResponse {
     export interface ResponseData {
         /** Bank routing number */
-        aba?: string;
-        achHolderType?: Payabli.AchHolderType;
-        achSecCode?: Payabli.AchSecCode;
+        aba?: string | undefined;
+        achHolderType?: Payabli.AchHolderType | undefined;
+        achSecCode?: Payabli.AchSecCode | undefined;
         /** The bank identification number (BIN) */
-        bin?: string;
-        binData?: Payabli.BinData;
+        bin?: string | undefined;
+        binData?: Payabli.BinData | undefined;
         /** Timestamp for when card was last updated */
-        cardUpdatedOn?: string;
-        customers?: ResponseData.Customers.Item[];
-        descriptor?: Payabli.Descriptor;
+        cardUpdatedOn?: string | undefined;
+        customers?: ResponseData.Customers.Item[] | undefined;
+        descriptor?: Payabli.Descriptor | undefined;
         /** Expiration date for card in stored method in format MM/YY */
-        expDate?: string;
+        expDate?: string | undefined;
         /** Account holder name in stored method */
-        holderName?: Payabli.Holdername;
+        holderName?: Payabli.Holdername | undefined;
         /** The stored payment method's identifier in Payabli */
-        idPmethod?: string;
+        idPmethod?: string | undefined;
         /** Whether the ACH account has been validated */
-        isValidatedACH?: boolean;
+        isValidatedACH?: boolean | undefined;
         /** Timestamp for last update of stored method, in UTC */
-        lastUpdated?: string;
-        maskedAccount?: Payabli.Maskedaccount;
+        lastUpdated?: string | undefined;
+        maskedAccount?: Payabli.Maskedaccount | undefined;
         /** The saved method's type: `card` or `ach`. */
-        method?: string;
+        method?: string | undefined;
         /** The payment method's token type */
-        methodType?: string;
+        methodType?: string | undefined;
         /** The payment method postal code */
-        postalCode?: string;
-        vendors?: ResponseData.Vendors.Item[];
+        postalCode?: string | undefined;
+        vendors?: ResponseData.Vendors.Item[] | undefined;
     }
 
     export namespace ResponseData {
@@ -47,43 +47,43 @@ export namespace GetMethodResponse {
         export namespace Customers {
             export interface Item extends Payabli.PayorDataRequest {
                 /** Customer's current balance */
-                balance?: number;
+                balance?: number | undefined;
                 /** Creation timestamp */
-                created?: string;
+                created?: string | undefined;
                 /** Customer consent information */
-                customerConsent?: Record<string, unknown>;
+                customerConsent?: Record<string, unknown> | undefined;
                 /** Status code for the customer */
-                customerStatus?: number;
-                customerSummary?: Payabli.CustomerSummaryRecord;
+                customerStatus?: number | undefined;
+                customerSummary?: Payabli.CustomerSummaryRecord | undefined;
                 /** Username of the customer */
-                customerUsername?: string;
-                externalPaypointID?: Payabli.ExternalPaypointId;
+                customerUsername?: string | undefined;
+                externalPaypointID?: Payabli.ExternalPaypointId | undefined;
                 /** Last update timestamp */
-                lastUpdated?: string;
+                lastUpdated?: string | undefined;
                 /** Multi-factor authentication status */
-                mfa?: boolean;
+                mfa?: boolean | undefined;
                 /** MFA mode setting */
-                mfaMode?: number;
-                pageindentifier?: Payabli.PageIdentifier;
+                mfaMode?: number | undefined;
+                pageindentifier?: Payabli.PageIdentifier | undefined;
                 /** Parent organization ID */
-                parentOrgId?: number;
-                parentOrgName?: Payabli.OrgParentName;
-                paypointDbaname?: Payabli.Dbaname;
+                parentOrgId?: number | undefined;
+                parentOrgName?: Payabli.OrgParentName | undefined;
+                paypointDbaname?: Payabli.Dbaname | undefined;
                 /** The paypoint entryname the customer is associated with */
-                paypointEntryname?: string;
-                paypointLegalname?: Payabli.Legalname;
+                paypointEntryname?: string | undefined;
+                paypointLegalname?: Payabli.Legalname | undefined;
                 /** Social network data */
-                snData?: Record<string, unknown>;
+                snData?: Record<string, unknown> | undefined;
                 /** Social network identifier */
-                snIdentifier?: string;
+                snIdentifier?: string | undefined;
                 /** Social network provider */
-                snProvider?: string;
+                snProvider?: string | undefined;
                 /** List of payment methods associated to the customer */
-                storedMethods?: Payabli.MethodQueryRecords[];
+                storedMethods?: Payabli.MethodQueryRecords[] | undefined;
                 /** List of subscriptions associated to the customer */
-                subscriptions?: Payabli.SubscriptionQueryRecords[];
+                subscriptions?: Payabli.SubscriptionQueryRecords[] | undefined;
                 /** Customer's timezone */
-                timeZone?: number;
+                timeZone?: number | undefined;
             }
         }
 
@@ -92,95 +92,95 @@ export namespace GetMethodResponse {
         export namespace Vendors {
             export interface Item {
                 /** Additional data for vendor */
-                additionalData?: Payabli.AdditionalDataMap;
+                additionalData?: Payabli.AdditionalDataMap | undefined;
                 /** Vendor's address */
-                address1?: string;
+                address1?: string | undefined;
                 /** Additional line for vendor's address */
-                address2?: string;
+                address2?: string | undefined;
                 /** Object containing vendor's bank information */
-                billingData?: Payabli.VendorResponseBillingData;
+                billingData?: Payabli.VendorResponseBillingData | undefined;
                 /** Vendor's city */
-                city?: string;
+                city?: string | undefined;
                 /** Array of objects describing the vendor's contacts */
-                contacts?: Payabli.Contacts[];
+                contacts?: Payabli.Contacts[] | undefined;
                 /** Vendor's country */
-                country?: string;
+                country?: string | undefined;
                 /** Date when vendor was created */
-                createdDate?: string;
+                createdDate?: string | undefined;
                 /** Custom field 1 for vendor */
-                customField1?: string;
+                customField1?: string | undefined;
                 /** Custom field 2 for vendor */
-                customField2?: string;
+                customField2?: string | undefined;
                 /** Account number of paypoint in the vendor's side */
-                customerVendorAccount?: string;
+                customerVendorAccount?: string | undefined;
                 /** EIN/Tax ID for vendor. In responses, this field is masked. */
-                ein?: string;
+                ein?: string | undefined;
                 /** Vendor's email address */
-                email?: Payabli.Email;
+                email?: Payabli.Email | undefined;
                 /** Vendor enrollment status */
-                enrollmentStatus?: string;
+                enrollmentStatus?: string | undefined;
                 /** External paypoint identifier */
-                externalPaypointID?: string;
+                externalPaypointID?: string | undefined;
                 /** Internal reference ID for vendor */
-                internalReferenceId?: Payabli.InternalReferenceId;
+                internalReferenceId?: Payabli.InternalReferenceId | undefined;
                 /** Date when vendor was last updated */
-                lastUpdated?: string;
+                lastUpdated?: string | undefined;
                 /** Location code for vendor */
-                locationCode?: Payabli.LocationCode;
+                locationCode?: Payabli.LocationCode | undefined;
                 /** Merchant category code */
-                mcc?: Payabli.Mcc;
+                mcc?: Payabli.Mcc | undefined;
                 /** Primary name for vendor */
-                name1?: string;
+                name1?: string | undefined;
                 /** Secondary name for vendor */
-                name2?: string;
+                name2?: string | undefined;
                 /** ID of the parent organization */
-                parentOrgId?: number;
+                parentOrgId?: number | undefined;
                 /** Name of the parent organization */
-                parentOrgName?: string;
+                parentOrgName?: string | undefined;
                 /** Primary payee name */
-                payeeName1?: Payabli.PayeeName;
+                payeeName1?: Payabli.PayeeName | undefined;
                 /** Secondary payee name */
-                payeeName2?: Payabli.PayeeName;
+                payeeName2?: Payabli.PayeeName | undefined;
                 /** Preferred payment method for vendor */
-                paymentMethod?: string;
+                paymentMethod?: string | undefined;
                 /** DBA name of the paypoint */
-                paypointDbaname?: string;
+                paypointDbaname?: string | undefined;
                 /** Entry name of the paypoint */
-                paypointEntryname?: string;
+                paypointEntryname?: string | undefined;
                 /** Paypoint ID */
-                paypointId?: string;
+                paypointId?: string | undefined;
                 /** Legal name of the paypoint */
-                paypointLegalname?: string;
+                paypointLegalname?: string | undefined;
                 /** Vendor's phone number */
-                phone?: string;
+                phone?: string | undefined;
                 /** Remittance address line 1 */
-                remitAddress1?: Payabli.Remitaddress1;
+                remitAddress1?: Payabli.Remitaddress1 | undefined;
                 /** Remittance address line 2 */
-                remitAddress2?: Payabli.Remitaddress2;
+                remitAddress2?: Payabli.Remitaddress2 | undefined;
                 /** Remittance city */
-                remitCity?: Payabli.Remitcity;
+                remitCity?: Payabli.Remitcity | undefined;
                 /** Remittance country */
-                remitCountry?: Payabli.Remitcountry;
+                remitCountry?: Payabli.Remitcountry | undefined;
                 /** Email address for remittance */
-                remitEmail?: string;
+                remitEmail?: string | undefined;
                 /** Remittance state */
-                remitState?: Payabli.Remitstate;
+                remitState?: Payabli.Remitstate | undefined;
                 /** Remittance ZIP code */
-                remitZip?: Payabli.Remitzip;
+                remitZip?: Payabli.Remitzip | undefined;
                 /** Vendor's state */
-                state?: string;
+                state?: string | undefined;
                 /** Array of stored payment methods for vendor */
-                storedMethods?: Payabli.VendorResponseStoredMethod[];
+                storedMethods?: Payabli.VendorResponseStoredMethod[] | undefined;
                 /** Vendor bill summary statistics */
-                summary?: Payabli.VendorResponseSummary;
+                summary?: Payabli.VendorResponseSummary | undefined;
                 /** The unique numeric ID assigned to the vendor in Payabli */
-                vendorId?: Payabli.Vendorid;
+                vendorId?: Payabli.Vendorid | undefined;
                 /** Custom vendor number assigned by the business */
-                vendorNumber?: Payabli.VendorNumber;
+                vendorNumber?: Payabli.VendorNumber | undefined;
                 /** Status code for the vendor */
-                vendorStatus?: Payabli.Vendorstatus;
+                vendorStatus?: Payabli.Vendorstatus | undefined;
                 /** Vendor's ZIP code */
-                zip?: string;
+                zip?: string | undefined;
             }
         }
     }

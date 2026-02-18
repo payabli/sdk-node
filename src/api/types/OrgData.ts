@@ -3,10 +3,10 @@
 import type * as Payabli from "../index.js";
 
 export interface OrgData {
-    idOrg?: Payabli.Orgid;
-    orgAddress?: Payabli.Orgaddress;
-    orgLogo?: Payabli.FileContent;
-    orgName?: Payabli.Orgname;
+    idOrg?: Payabli.Orgid | undefined;
+    orgAddress?: Payabli.Orgaddress | undefined;
+    orgLogo?: Payabli.FileContent | undefined;
+    orgName?: Payabli.Orgname | undefined;
     /**
      * The paypoint's status.
      *
@@ -14,6 +14,6 @@ export interface OrgData {
      *
      * Inactive - 0
      */
-    orgStatus?: number;
-    orgType?: Payabli.Orgtype;
+    orgStatus?: number | undefined;
+    orgType?: Payabli.Orgtype | undefined;
 }

@@ -6,7 +6,7 @@ import type * as Payabli from "../index.js";
  * Controls which services will be enabled for the merchant.
  */
 export interface Services {
-    ach?: Payabli.AchSetup;
-    card?: Payabli.CardSetup;
-    odp?: Payabli.OdpSetup;
+    ach?: Payabli.AchSetup | undefined;
+    card?: Payabli.CardSetup | undefined;
+    odp?: Payabli.OdpSetup | undefined;
 }

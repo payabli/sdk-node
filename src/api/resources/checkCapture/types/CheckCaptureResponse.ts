@@ -7,47 +7,47 @@ import type * as Payabli from "../../../index.js";
  */
 export interface CheckCaptureResponse {
     /** Unique ID for the check capture, to be used with the /api/MoneyIn/getpaid endpoint. */
-    id?: string;
+    id?: string | undefined;
     /** Indicates whether the check processing was successful. */
     success: boolean;
     /** The date and time when the check was processed (ISO 8601 format). */
     processDate: string;
     /** The OCR-extracted MICR (Magnetic Ink Character Recognition) line from the check. */
-    ocrMicr?: string;
+    ocrMicr?: string | undefined;
     /** Status of the MICR extraction process. */
-    ocrMicrStatus?: string;
+    ocrMicrStatus?: string | undefined;
     /** Confidence score for the MICR extraction (0 to 100). */
-    ocrMicrConfidence?: string;
+    ocrMicrConfidence?: string | undefined;
     /** The bank account number extracted from the check. */
-    ocrAccountNumber?: string;
+    ocrAccountNumber?: string | undefined;
     /** The bank routing number extracted from the check. */
-    ocrRoutingNumber?: string;
+    ocrRoutingNumber?: string | undefined;
     /** The check number extracted from the check. */
-    ocrCheckNumber?: string;
+    ocrCheckNumber?: string | undefined;
     /** The transaction code extracted from the check. */
-    ocrCheckTranCode?: string;
+    ocrCheckTranCode?: string | undefined;
     /** The amount extracted via OCR from the check. */
-    ocrAmount?: string;
+    ocrAmount?: string | undefined;
     /** Status of the amount extraction process. */
-    ocrAmountStatus?: string;
+    ocrAmountStatus?: string | undefined;
     /** Confidence score for the amount extraction (0 to 100). */
-    ocrAmountConfidence?: string;
+    ocrAmountConfidence?: string | undefined;
     /** Flag indicating whether there's a discrepancy between the provided amount and the OCR-detected amount. */
     amountDiscrepancyDetected: boolean;
     /** Flag indicating whether an endorsement was detected on the check. */
     endorsementDetected: boolean;
     /** List of error messages that occurred during processing. */
-    errors?: string[];
+    errors?: string[] | undefined;
     /** List of informational messages about the processing. */
-    messages?: string[];
+    messages?: string[] | undefined;
     /** Confidence score for the match between Courtesy Amount Recognition (CAR) and Legal Amount Recognition (LAR). */
-    carLarMatchConfidence?: string;
+    carLarMatchConfidence?: string | undefined;
     /** Status of the CAR/LAR match. */
-    carLarMatchStatus?: string;
+    carLarMatchStatus?: string | undefined;
     /** Processed front image of the check (Base64-encoded). */
-    frontImage?: string;
+    frontImage?: string | undefined;
     /** Processed rear image of the check (Base64-encoded). */
-    rearImage?: string;
+    rearImage?: string | undefined;
     /**
      * Identifier for the type of check.
      * Personal = 1
@@ -56,6 +56,6 @@ export interface CheckCaptureResponse {
      */
     checkType: number;
     /** Reference number for the transaction. */
-    referenceNumber?: string;
-    pageIdentifier?: Payabli.PageIdentifier;
+    referenceNumber?: string | undefined;
+    pageIdentifier?: Payabli.PageIdentifier | undefined;
 }

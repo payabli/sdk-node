@@ -7,21 +7,21 @@ import type * as Payabli from "../index.js";
  */
 export interface Bank {
     /** The Payabli-assigned internal identifier for the bank account. */
-    id?: number;
+    id?: number | undefined;
     /** A user-defined internal identifier for the bank account. This allows you to specify which bank account should be used for payments in cases where multiple accounts are configured. */
-    accountId?: string;
-    nickname?: Payabli.BankNickname;
-    bankName?: Payabli.BankName;
-    routingAccount?: Payabli.RoutingAccount;
-    accountNumber?: Payabli.AccountNumber;
-    typeAccount?: Payabli.TypeAccount;
-    bankAccountHolderName?: Payabli.BankAccountHolderName;
-    bankAccountHolderType?: Payabli.BankAccountHolderType;
-    bankAccountFunction?: Payabli.BankAccountFunction;
+    accountId?: string | undefined;
+    nickname?: Payabli.BankNickname | undefined;
+    bankName?: Payabli.BankName | undefined;
+    routingAccount?: Payabli.RoutingAccount | undefined;
+    accountNumber?: Payabli.AccountNumber | undefined;
+    typeAccount?: Payabli.TypeAccount | undefined;
+    bankAccountHolderName?: Payabli.BankAccountHolderName | undefined;
+    bankAccountHolderType?: Payabli.BankAccountHolderType | undefined;
+    bankAccountFunction?: Payabli.BankAccountFunction | undefined;
     /** Bank account verification status. When `true`, the account has been verified to exist and be in good standing based on vendor checks or previous processing histories. */
-    verified?: boolean;
+    verified?: boolean | undefined;
     /** Bank account status */
-    status?: number;
+    status?: number | undefined;
     /** Array of services associated with this bank account */
-    services?: string[];
+    services?: string[] | undefined;
 }

@@ -7,5 +7,5 @@ export interface PayabliApiResponseOcr {
     responseText: Payabli.ResponseText;
     responseCode: Payabli.Responsecode;
     /** Details of the OCR processing result */
-    responseData?: Payabli.OcrResponseData;
+    responseData?: Payabli.OcrResponseData | undefined;
 }

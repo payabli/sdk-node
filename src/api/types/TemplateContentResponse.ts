@@ -3,11 +3,11 @@
 import type * as Payabli from "../index.js";
 
 export interface TemplateContentResponse {
-    businessData?: Payabli.BusinessSection;
-    documentsData?: Payabli.DocumentSection;
-    ownershipData?: Payabli.OwnersSection;
-    processingData?: Payabli.ProcessingSection;
-    salesData?: Payabli.SalesSection;
-    servicesData?: Payabli.ServicesSection;
-    underwritingData?: Payabli.UnderwritingDataResponse;
+    businessData?: Payabli.BusinessSection | undefined;
+    documentsData?: Payabli.DocumentSection | undefined;
+    ownershipData?: Payabli.OwnersSection | undefined;
+    processingData?: Payabli.ProcessingSection | undefined;
+    salesData?: Payabli.SalesSection | undefined;
+    servicesData?: Payabli.ServicesSection | undefined;
+    underwritingData?: Payabli.UnderwritingDataResponse | undefined;
 }

@@ -165,24 +165,16 @@ export class MoneyOutClient {
         requestOptions?: MoneyOutClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.AuthCapturePayoutResponse>> {
         const { allowDuplicatedBills, doNotCreateBills, forceVendorCreation, idempotencyKey, body: _body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (allowDuplicatedBills != null) {
-            _queryParams.allowDuplicatedBills = allowDuplicatedBills.toString();
-        }
-
-        if (doNotCreateBills != null) {
-            _queryParams.doNotCreateBills = doNotCreateBills.toString();
-        }
-
-        if (forceVendorCreation != null) {
-            _queryParams.forceVendorCreation = forceVendorCreation.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            allowDuplicatedBills,
+            doNotCreateBills,
+            forceVendorCreation,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey != null ? idempotencyKey : undefined }),
+            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -506,7 +498,7 @@ export class MoneyOutClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey != null ? idempotencyKey : undefined }),
+            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -590,7 +582,7 @@ export class MoneyOutClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey != null ? idempotencyKey : undefined }),
+            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({

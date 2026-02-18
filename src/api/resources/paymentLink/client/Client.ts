@@ -160,20 +160,15 @@ export class PaymentLinkClient {
         requestOptions?: PaymentLinkClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.PayabliApiResponsePaymentLinks>> {
         const { amountFixed, mail2, idempotencyKey, body: _body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (amountFixed != null) {
-            _queryParams.amountFixed = amountFixed.toString();
-        }
-
-        if (mail2 != null) {
-            _queryParams.mail2 = mail2;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            amountFixed,
+            mail2,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey != null ? idempotencyKey : undefined }),
+            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -335,20 +330,15 @@ export class PaymentLinkClient {
         requestOptions?: PaymentLinkClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.PayabliApiResponsePaymentLinks>> {
         const { amountFixed, mail2, idempotencyKey, body: _body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (amountFixed != null) {
-            _queryParams.amountFixed = amountFixed.toString();
-        }
-
-        if (mail2 != null) {
-            _queryParams.mail2 = mail2;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            amountFixed,
+            mail2,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey != null ? idempotencyKey : undefined }),
+            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -685,11 +675,9 @@ export class PaymentLinkClient {
         requestOptions?: PaymentLinkClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.PayabliApiResponsePaymentLinks>> {
         const { amountFixed } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (amountFixed != null) {
-            _queryParams.amountFixed = amountFixed.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            amountFixed,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -780,15 +768,10 @@ export class PaymentLinkClient {
         requestOptions?: PaymentLinkClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.PayabliApiResponsePaymentLinks>> {
         const { attachfile, mail2 } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (attachfile != null) {
-            _queryParams.attachfile = attachfile.toString();
-        }
-
-        if (mail2 != null) {
-            _queryParams.mail2 = mail2;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            attachfile,
+            mail2,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1054,17 +1037,12 @@ export class PaymentLinkClient {
         requestOptions?: PaymentLinkClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.PayabliApiResponsePaymentLinks>> {
         const { entryPoint, vendorNumber, mail2, amountFixed, body: _body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        _queryParams.entryPoint = entryPoint;
-        _queryParams.vendorNumber = vendorNumber;
-        if (mail2 != null) {
-            _queryParams.mail2 = mail2;
-        }
-
-        if (amountFixed != null) {
-            _queryParams.amountFixed = amountFixed;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            entryPoint,
+            vendorNumber,
+            mail2,
+            amountFixed,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

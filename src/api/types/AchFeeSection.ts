@@ -3,17 +3,17 @@
 import type * as Payabli from "../index.js";
 
 export interface AchFeeSection {
-    advancedSettlementAchFee?: Payabli.TemplateElement;
-    annualAchFee?: Payabli.TemplateElement;
-    chargebackAchFee?: Payabli.TemplateElement;
-    earlyTerminationAchFee?: Payabli.TemplateElement;
-    monthlyAchFee?: Payabli.TemplateElement;
-    quarterlyPCIAchFee?: Payabli.TemplateElement;
-    returnedAchFee?: Payabli.TemplateElement;
-    sameDayAchFee?: Payabli.TemplateElement;
-    sundayOriginationAchFee?: Payabli.TemplateElement;
-    verifyBankAchFee?: Payabli.TemplateElement;
-    verifyFundAchFee?: Payabli.TemplateElement;
-    verifyNegativeAchFee?: Payabli.TemplateElement;
+    advancedSettlementAchFee?: Payabli.TemplateElement | undefined;
+    annualAchFee?: Payabli.TemplateElement | undefined;
+    chargebackAchFee?: Payabli.TemplateElement | undefined;
+    earlyTerminationAchFee?: Payabli.TemplateElement | undefined;
+    monthlyAchFee?: Payabli.TemplateElement | undefined;
+    quarterlyPCIAchFee?: Payabli.TemplateElement | undefined;
+    returnedAchFee?: Payabli.TemplateElement | undefined;
+    sameDayAchFee?: Payabli.TemplateElement | undefined;
+    sundayOriginationAchFee?: Payabli.TemplateElement | undefined;
+    verifyBankAchFee?: Payabli.TemplateElement | undefined;
+    verifyFundAchFee?: Payabli.TemplateElement | undefined;
+    verifyNegativeAchFee?: Payabli.TemplateElement | undefined;
     visible?: Payabli.Visible | undefined;
 }

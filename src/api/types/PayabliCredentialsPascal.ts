@@ -3,17 +3,17 @@
 import type * as Payabli from "../index.js";
 
 export interface PayabliCredentialsPascal {
-    Service?: string;
-    Mode?: number;
-    MinTicket?: Payabli.MinTicket;
-    MaxTicket?: Payabli.MaxTicket;
-    CfeeFix?: number;
-    CfeeFloat?: number;
-    CfeeMin?: number;
-    CfeeMax?: number;
-    AccountId?: string;
-    ReferenceId?: number;
-    acceptSameDayACH?: boolean;
+    Service?: string | undefined;
+    Mode?: number | undefined;
+    MinTicket?: Payabli.MinTicket | undefined;
+    MaxTicket?: Payabli.MaxTicket | undefined;
+    CfeeFix?: number | undefined;
+    CfeeFloat?: number | undefined;
+    CfeeMin?: number | undefined;
+    CfeeMax?: number | undefined;
+    AccountId?: string | undefined;
+    ReferenceId?: number | undefined;
+    acceptSameDayACH?: boolean | undefined;
     /** The default currency for the paypoint, either `USD` or `CAD`. */
-    Currency?: string;
+    Currency?: string | undefined;
 }

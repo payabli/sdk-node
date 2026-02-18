@@ -4,15 +4,15 @@ import type * as Payabli from "../../../index.js";
 
 export interface ChargeBackResponse {
     /** Object with attached files to response */
-    attachments?: Payabli.BoardingApplicationAttachments;
+    attachments?: Payabli.BoardingApplicationAttachments | undefined;
     /** Email of response submitter. */
-    contactEmail?: Payabli.Email;
+    contactEmail?: Payabli.Email | undefined;
     /** Name of response submitter */
-    contactName?: string;
+    contactName?: string | undefined;
     /** Timestamp when response was submitted, in UTC. */
-    createdAt?: Payabli.CreatedAt;
+    createdAt?: Payabli.CreatedAt | undefined;
     /** Chargeback response identifier */
-    id?: number;
+    id?: number | undefined;
     /** Response notes */
-    notes?: string;
+    notes?: string | undefined;
 }

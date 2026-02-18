@@ -3,24 +3,24 @@
 import type * as Payabli from "../index.js";
 
 export interface PayabliPages {
-    AdditionalData?: Payabli.AdditionalData;
+    AdditionalData?: Payabli.AdditionalData | undefined;
     /** Array of credential objects with active services for the page */
-    credentials?: Payabli.PayabliCredentials[];
+    credentials?: Payabli.PayabliCredentials[] | undefined;
     /** Timestamp of last access to page structure */
-    lastAccess?: string;
+    lastAccess?: string | undefined;
     /** Sections of page */
-    pageContent?: Payabli.PageContent;
-    pageIdentifier?: Payabli.PageIdentifier;
+    pageContent?: Payabli.PageContent | undefined;
+    pageIdentifier?: Payabli.PageIdentifier | undefined;
     /** Settings of page */
-    pageSettings?: Payabli.PageSetting;
+    pageSettings?: Payabli.PageSetting | undefined;
     /** Flag indicating if page is active to accept payments. `0` for false, `1` for true. */
-    published?: number;
+    published?: number | undefined;
     /** Sections of payment receipt */
-    receiptContent?: Payabli.ReceiptContent;
+    receiptContent?: Payabli.ReceiptContent | undefined;
     /** Page identifier. Must be unique in platform. */
-    subdomain?: Payabli.Subdomain;
+    subdomain?: Payabli.Subdomain | undefined;
     /** Total amount to pay in this page */
-    totalAmount?: number;
+    totalAmount?: number | undefined;
     /** Base64 encoded image of CAPTCHA associated to this page load */
-    validationCode?: string;
+    validationCode?: string | undefined;
 }

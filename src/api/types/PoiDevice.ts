@@ -5,29 +5,29 @@
  */
 export interface PoiDevice {
     /** The device connection status. */
-    connected?: boolean;
+    connected?: boolean | undefined;
     /** The date the device was unregistered. */
-    dateDeRegistered?: string;
+    dateDeRegistered?: string | undefined;
     /** The date the device was registered. */
-    dateRegistered?: string;
+    dateRegistered?: string | undefined;
     /** The device identifier. */
-    deviceId?: string;
+    deviceId?: string | undefined;
     /** Device license. This is typically the same as `deviceId`. */
-    deviceLicense?: string;
+    deviceLicense?: string | undefined;
     /** Device description provided during registration. */
-    deviceNickName?: string;
+    deviceNickName?: string | undefined;
     /** Last connected date. */
-    lastConnectedDate?: string;
+    lastConnectedDate?: string | undefined;
     /** Last disconnected date. */
-    lastDisconnectedDate?: string;
+    lastDisconnectedDate?: string | undefined;
     /** Last transaction date. */
-    lastTransactionDate?: string;
+    lastTransactionDate?: string | undefined;
     /** The device manufacturer. */
-    make?: string;
+    make?: string | undefined;
     /** The device model. */
-    model?: string;
+    model?: string | undefined;
     /** The device registration status. */
-    registered?: boolean;
+    registered?: boolean | undefined;
     /** The device serial number. */
-    serialNumber?: string;
+    serialNumber?: string | undefined;
 }

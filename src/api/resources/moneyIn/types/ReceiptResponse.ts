@@ -6,7 +6,7 @@ import type * as Payabli from "../../../index.js";
  * Response for SendReceipt endpoint.
  */
 export interface ReceiptResponse {
-    isSuccess?: Payabli.IsSuccess;
-    pageIdentifier?: Payabli.PageIdentifier;
+    isSuccess?: Payabli.IsSuccess | undefined;
+    pageIdentifier?: Payabli.PageIdentifier | undefined;
     responseText: Payabli.ResponseText;
 }

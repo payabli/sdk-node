@@ -3,10 +3,10 @@
 import type * as Payabli from "../index.js";
 
 export interface CardAcceptanceElement {
-    types?: Payabli.CardTypes;
-    posCol?: Payabli.PosCol;
-    posRow?: Payabli.PosRow;
+    types?: Payabli.CardTypes | undefined;
+    posCol?: Payabli.PosCol | undefined;
+    posRow?: Payabli.PosRow | undefined;
     readOnly?: Payabli.ReadOnly | undefined;
-    value?: string;
+    value?: string | undefined;
     visible?: Payabli.Visible | undefined;
 }

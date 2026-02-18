@@ -4,22 +4,22 @@ import type * as Payabli from "../index.js";
 
 export interface BillItem {
     /** Array of tags classifying item or product. */
-    itemCategories?: (string | undefined)[];
-    itemCommodityCode?: Payabli.ItemCommodityCode;
+    itemCategories?: (string | undefined)[] | undefined;
+    itemCommodityCode?: Payabli.ItemCommodityCode | undefined;
     /** Item or product price per unit. */
     itemCost: number;
-    itemDescription?: Payabli.ItemDescription;
+    itemDescription?: Payabli.ItemDescription | undefined;
     /** Internal class of item or product: value '0' is only for invoices , '1' for bills and, '2' common for both. */
-    itemMode?: number;
-    itemProductCode?: Payabli.ItemProductCode;
-    itemProductName?: Payabli.ItemProductName;
+    itemMode?: number | undefined;
+    itemProductCode?: Payabli.ItemProductCode | undefined;
+    itemProductName?: Payabli.ItemProductName | undefined;
     /** Quantity of item or product. */
-    itemQty?: number;
+    itemQty?: number | undefined;
     /** Tax amount applied to item or product. */
-    itemTaxAmount?: number;
+    itemTaxAmount?: number | undefined;
     /** Tax rate applied to item or product. */
-    itemTaxRate?: number;
+    itemTaxRate?: number | undefined;
     /** Total amount in item or product. */
-    itemTotalAmount?: number;
-    itemUnitOfMeasure?: Payabli.ItemUnitofMeasure;
+    itemTotalAmount?: number | undefined;
+    itemUnitOfMeasure?: Payabli.ItemUnitofMeasure | undefined;
 }

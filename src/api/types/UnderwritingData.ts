@@ -7,5 +7,5 @@ import type * as Payabli from "../index.js";
  */
 export interface UnderwritingData {
     method: Payabli.UnderWritingMethod;
-    policyId?: Payabli.PolicyId;
+    policyId?: Payabli.PolicyId | undefined;
 }

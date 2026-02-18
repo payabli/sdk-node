@@ -96,6 +96,30 @@ import type * as Payabli from "../../../../index.js";
  *     {
  *         body: {
  *             customerData: {
+ *                 customerId: 4440
+ *             },
+ *             entryPoint: "f743aed24a",
+ *             ipaddress: "255.255.255.255",
+ *             paymentDetails: {
+ *                 checkUniqueId: "abc123def456",
+ *                 serviceFee: 0,
+ *                 totalAmount: 125.5
+ *             },
+ *             paymentMethod: {
+ *                 achAccount: "123456",
+ *                 achAccountType: "Checking",
+ *                 achCode: "BOC",
+ *                 achHolder: "John Doe",
+ *                 achRouting: "123456789",
+ *                 method: "ach"
+ *             }
+ *         }
+ *     }
+ *
+ * @example
+ *     {
+ *         body: {
+ *             customerData: {
  *                 billingAddress1: "123 Walnut Street",
  *                 billingCity: "Johnson City",
  *                 billingCountry: "US",

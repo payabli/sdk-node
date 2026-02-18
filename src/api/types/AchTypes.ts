@@ -3,7 +3,7 @@
 import type * as Payabli from "../index.js";
 
 export interface AchTypes {
-    ccd?: Payabli.BasicTemplateElement;
-    ppd?: Payabli.BasicTemplateElement;
-    web?: Payabli.BasicTemplateElement;
+    ccd?: Payabli.BasicTemplateElement | undefined;
+    ppd?: Payabli.BasicTemplateElement | undefined;
+    web?: Payabli.BasicTemplateElement | undefined;
 }

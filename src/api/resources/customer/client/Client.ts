@@ -66,20 +66,15 @@ export class CustomerClient {
         requestOptions?: CustomerClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.PayabliApiResponseCustomerQuery>> {
         const { forceCustomerCreation, replaceExisting, idempotencyKey, body: _body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (forceCustomerCreation != null) {
-            _queryParams.forceCustomerCreation = forceCustomerCreation.toString();
-        }
-
-        if (replaceExisting != null) {
-            _queryParams.replaceExisting = replaceExisting.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            forceCustomerCreation,
+            replaceExisting,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey != null ? idempotencyKey : undefined }),
+            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({

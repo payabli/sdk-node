@@ -6,8 +6,8 @@ import type * as Payabli from "../index.js";
  * Response payload for queries related to notifications
  */
 export interface QueryResponseNotifications {
-    Records?: QueryResponseNotifications.Records.Item[];
-    Summary?: Payabli.QuerySummary;
+    Records?: QueryResponseNotifications.Records.Item[] | undefined;
+    Summary?: Payabli.QuerySummary | undefined;
 }
 
 export namespace QueryResponseNotifications {
@@ -16,22 +16,22 @@ export namespace QueryResponseNotifications {
     export namespace Records {
         export interface Item {
             /** Notification content. */
-            content?: Payabli.NotificationContent;
+            content?: Payabli.NotificationContent | undefined;
             /** Timestamp of when notification was created, in UTC. */
-            createdAt?: Payabli.CreatedAt;
-            frequency?: Payabli.Frequencynotification;
+            createdAt?: Payabli.CreatedAt | undefined;
+            frequency?: Payabli.Frequencynotification | undefined;
             /** Timestamp of when notification was last updated, in UTC. */
             lastUpdated?: Payabli.LastModified | undefined;
-            method?: Payabli.Methodnotification;
-            notificationId?: Payabli.NotificationId;
-            ownerId?: Payabli.Ownerid;
+            method?: Payabli.Methodnotification | undefined;
+            notificationId?: Payabli.NotificationId | undefined;
+            ownerId?: Payabli.Ownerid | undefined;
             /** Name of entity owner of notification. */
-            ownerName?: string;
-            ownerType?: Payabli.Ownertype;
+            ownerName?: string | undefined;
+            ownerType?: Payabli.Ownertype | undefined;
             /** Custom descriptor of source of notification. */
-            source?: Payabli.Source;
-            status?: Payabli.Statusnotification;
-            target?: Payabli.Target;
+            source?: Payabli.Source | undefined;
+            status?: Payabli.Statusnotification | undefined;
+            target?: Payabli.Target | undefined;
         }
     }
 }

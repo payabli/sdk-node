@@ -3,8 +3,8 @@
 import type * as Payabli from "../index.js";
 
 export interface Bnk {
-    accountNumber?: Payabli.LinkData;
-    bankName?: Payabli.LinkData;
-    routingAccount?: Payabli.LinkData;
-    typeAccount?: Payabli.LinkData;
+    accountNumber?: Payabli.LinkData | undefined;
+    bankName?: Payabli.LinkData | undefined;
+    routingAccount?: Payabli.LinkData | undefined;
+    typeAccount?: Payabli.LinkData | undefined;
 }

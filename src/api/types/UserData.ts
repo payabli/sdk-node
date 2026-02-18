@@ -3,17 +3,17 @@
 import type * as Payabli from "../index.js";
 
 export interface UserData {
-    access?: Payabli.UsrAccess[];
-    additionalData?: Payabli.AdditionalData;
+    access?: Payabli.UsrAccess[] | undefined;
+    additionalData?: Payabli.AdditionalData | undefined;
     /** The user's email address. */
-    email?: Payabli.Email;
-    language?: Payabli.Language;
-    mfaData?: Payabli.MfaData;
-    name?: Payabli.NameUser;
+    email?: Payabli.Email | undefined;
+    language?: Payabli.Language | undefined;
+    mfaData?: Payabli.MfaData | undefined;
+    name?: Payabli.NameUser | undefined;
     /** The user's phone number. */
-    phone?: Payabli.PhoneNumber;
-    pwd?: string;
-    scope?: Payabli.OrgScope[];
-    timeZone?: Payabli.Timezone;
-    usrStatus?: Payabli.UsrStatus;
+    phone?: Payabli.PhoneNumber | undefined;
+    pwd?: string | undefined;
+    scope?: Payabli.OrgScope[] | undefined;
+    timeZone?: Payabli.Timezone | undefined;
+    usrStatus?: Payabli.UsrStatus | undefined;
 }

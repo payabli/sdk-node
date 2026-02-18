@@ -4,39 +4,39 @@ import type * as Payabli from "../index.js";
 
 export interface BillDetailResponse {
     /** Events associated to this transaction. */
-    Bills?: Payabli.BillDetailsResponse[];
+    Bills?: Payabli.BillDetailsResponse[] | undefined;
     /** Object referencing to paper check image. */
-    CheckData?: Payabli.FileContent;
+    CheckData?: Payabli.FileContent | undefined;
     /** Paper check number related to payout transaction. */
-    CheckNumber?: string;
+    CheckNumber?: string | undefined;
     /** Any comment or description for payout transaction. */
-    Comments?: Payabli.Comments;
+    Comments?: Payabli.Comments | undefined;
     /** Timestamp when the payment was created, in UTC. */
-    CreatedDate?: Payabli.CreatedAt;
-    CreatedAt?: Payabli.CreatedAt;
+    CreatedDate?: Payabli.CreatedAt | undefined;
+    CreatedAt?: Payabli.CreatedAt | undefined;
     /** Events associated to this transaction. */
-    Events?: Payabli.QueryTransactionEvents[];
-    FeeAmount?: Payabli.FeeAmount;
-    Gateway?: Payabli.Gatewayfield;
+    Events?: Payabli.QueryTransactionEvents[] | undefined;
+    FeeAmount?: Payabli.FeeAmount | undefined;
+    Gateway?: Payabli.Gatewayfield | undefined;
     /** Identifier of payout transaction. */
-    IdOut?: number;
+    IdOut?: number | undefined;
     /** Timestamp when payment record was updated, in UTC. */
     LastUpdated?: Payabli.LastModified | undefined;
     NetAmount?: Payabli.Netamountnullable | undefined;
-    ParentOrgName?: Payabli.OrgParentName;
-    ParentOrgId?: Payabli.OrgParentId;
-    PaymentData?: Payabli.QueryPaymentData;
+    ParentOrgName?: Payabli.OrgParentName | undefined;
+    ParentOrgId?: Payabli.OrgParentId | undefined;
+    PaymentData?: Payabli.QueryPaymentData | undefined;
     /** Unique identifier for group or batch containing the transaction. */
-    PaymentGroup?: string;
-    PaymentId?: Payabli.PaymentIdString;
+    PaymentGroup?: string | undefined;
+    PaymentId?: Payabli.PaymentIdString | undefined;
     /** Method of payment applied to the transaction. */
-    PaymentMethod?: string;
+    PaymentMethod?: string | undefined;
     /** Status of payout transaction. */
-    PaymentStatus?: string;
-    PaypointDbaname?: Payabli.Dbaname;
+    PaymentStatus?: string | undefined;
+    PaypointDbaname?: Payabli.Dbaname | undefined;
     /** Paypoint legal name. */
-    PaypointLegalname?: Payabli.Legalname;
-    Source?: Payabli.Source;
+    PaypointLegalname?: Payabli.Legalname | undefined;
+    Source?: Payabli.Source | undefined;
     /**
      * Internal status of transaction.
      *
@@ -52,25 +52,25 @@ export interface BillDetailResponse {
      * | **OnHold** | 4 | A payout has been placed on hold and requires review before proceeding. | OnHold |
      * | **Paid** | 5 | A payout has been paid and the recipient has redeemed the funds. | Paid (check cleared, vCard used, ACH settled) |
      */
-    Status?: number;
+    Status?: number | undefined;
     /** Status of payout transaction. */
-    StatusText?: string;
+    StatusText?: string | undefined;
     /** Transaction total amount (including service fee or sub-charge). */
-    TotalAmount?: number;
+    TotalAmount?: number | undefined;
     /** Vendor related to the payout transaction. */
-    Vendor?: Payabli.VendorQueryRecord;
-    externalPaypointID?: Payabli.ExternalPaypointId;
-    EntryName?: Payabli.Entry;
+    Vendor?: Payabli.VendorQueryRecord | undefined;
+    externalPaypointID?: Payabli.ExternalPaypointId | undefined;
+    EntryName?: Payabli.Entry | undefined;
     /** Identifier for the batch in which this transaction was processed. Used to track and reconcile batch-level operations. */
-    BatchId?: string;
+    BatchId?: string | undefined;
     HasVcardTransactions?: Payabli.HasVcardTransactions | undefined;
     IsSameDayACH?: Payabli.IsSameDayAch | undefined;
-    ScheduleId?: Payabli.ScheduleId;
-    SettlementStatus?: Payabli.SettlementStatus;
+    ScheduleId?: Payabli.ScheduleId | undefined;
+    SettlementStatus?: Payabli.SettlementStatus | undefined;
     RiskFlagged?: Payabli.RiskFlagged | undefined;
     RiskFlaggedOn?: Payabli.RiskFlaggedOn | undefined;
-    RiskStatus?: Payabli.RiskStatus;
-    RiskReason?: Payabli.RiskReason;
-    RiskAction?: Payabli.RiskAction;
+    RiskStatus?: Payabli.RiskStatus | undefined;
+    RiskReason?: Payabli.RiskReason | undefined;
+    RiskAction?: Payabli.RiskAction | undefined;
     RiskActionCode?: Payabli.RiskActionCode | undefined;
 }

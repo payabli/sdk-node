@@ -2,17 +2,17 @@
 
 export interface MethodsList {
     /** When `true`, American Express is accepted. */
-    amex?: boolean;
+    amex?: boolean | undefined;
     /** When `true`, Apple Pay is accepted. */
-    applePay?: boolean;
+    applePay?: boolean | undefined;
     /** When `true`, Google Pay is accepted. */
-    googlePay?: boolean;
+    googlePay?: boolean | undefined;
     /** When `true`, Discover is accepted. */
-    discover?: boolean;
+    discover?: boolean | undefined;
     /** When `true`, ACH is accepted. */
-    eCheck?: boolean;
+    eCheck?: boolean | undefined;
     /** When `true`, Mastercard is accepted. */
-    mastercard?: boolean;
+    mastercard?: boolean | undefined;
     /** When `true`, Visa is accepted. */
-    visa?: boolean;
+    visa?: boolean | undefined;
 }

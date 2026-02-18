@@ -5,6 +5,6 @@ import type * as Payabli from "../../../index.js";
 export interface PayabliApiResponsePaymentLinks {
     isSuccess: Payabli.IsSuccess;
     /** If `isSuccess` = true, this contains the payment link identifier. If `isSuccess` = false, this contains the reason of the error. */
-    responseData?: string;
+    responseData?: string | undefined;
     responseText: Payabli.ResponseText;
 }

@@ -3,21 +3,21 @@
 import type * as Payabli from "../../../index.js";
 
 export interface AddMethodResponse extends Payabli.PayabliApiResponseGeneric2Part {
-    responseData?: AddMethodResponse.ResponseData;
+    responseData?: AddMethodResponse.ResponseData | undefined;
 }
 
 export namespace AddMethodResponse {
     export interface ResponseData {
         /** Stored method identifier in Payabli platform. This ID is used to manage the stored method. */
-        referenceId?: Payabli.MethodReferenceId;
-        resultCode?: Payabli.ResultCode;
-        resultText?: Payabli.Resulttext;
+        referenceId?: Payabli.MethodReferenceId | undefined;
+        resultCode?: Payabli.ResultCode | undefined;
+        resultText?: Payabli.Resulttext | undefined;
         /**
          * Internal unique ID of customer owner of the stored method.
          *
          * Returns `0` if the method wasn't assigned to an existing customer or no customer was created."
          */
-        customerId?: Payabli.CustomerId;
-        methodReferenceId?: Payabli.MethodReferenceId;
+        customerId?: Payabli.CustomerId | undefined;
+        methodReferenceId?: Payabli.MethodReferenceId | undefined;
     }
 }

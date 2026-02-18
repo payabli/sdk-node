@@ -4,18 +4,18 @@ import type * as Payabli from "../index.js";
 
 export interface PayorFields {
     /** Flag indicating if the input field will show in container */
-    display?: boolean;
+    display?: boolean | undefined;
     /** Flag indicating if the value in input field is read-only or not. */
-    fixed?: boolean;
+    fixed?: boolean | undefined;
     /** Flag indicating if the input field is a customer identifier */
-    identifier?: boolean;
+    identifier?: boolean | undefined;
     /** Label to display for field */
-    label?: string;
+    label?: string | undefined;
     /** Name of field to show. Should be one of the standard customer fields or a custom field name */
-    name?: string;
-    order?: Payabli.Order;
+    name?: string | undefined;
+    order?: Payabli.Order | undefined;
     /** Flag indicating if the input field is required for validation */
-    required?: boolean;
+    required?: boolean | undefined;
     /**
      * Type of validation to apply to the input field Accepted values:
      *
@@ -29,9 +29,9 @@ export interface PayorFields {
      *
      *   - phone for US phone numbers
      */
-    validation?: string;
+    validation?: string | undefined;
     /** Pre-populated value for field */
-    value?: string;
+    value?: string | undefined;
     /**
      * Numeric value indicating the size of input relative to the container. Accepted values:
      *
@@ -43,5 +43,5 @@ export interface PayorFields {
      *
      *     - 12 = 3/3
      */
-    width?: number;
+    width?: number | undefined;
 }

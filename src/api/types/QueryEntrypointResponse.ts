@@ -3,8 +3,8 @@
 import type * as Payabli from "../index.js";
 
 export interface QueryEntrypointResponse {
-    Records?: QueryEntrypointResponse.Records.Item[];
-    Summary?: Payabli.QuerySummary;
+    Records?: QueryEntrypointResponse.Records.Item[] | undefined;
+    Summary?: Payabli.QuerySummary | undefined;
 }
 
 export namespace QueryEntrypointResponse {
@@ -14,60 +14,60 @@ export namespace QueryEntrypointResponse {
         export interface Item {
             AverageMonthlyVolume?: Payabli.Avgmonthly | undefined;
             AverageTicketAmount?: Payabli.Avgticketamt | undefined;
-            BAddress1?: Payabli.Baddress1;
-            BAddress2?: Payabli.Baddress2;
+            BAddress1?: Payabli.Baddress1 | undefined;
+            BAddress2?: Payabli.Baddress2 | undefined;
             BankData?: Payabli.BankData | undefined;
-            BCity?: Payabli.Bcity;
-            BCountry?: Payabli.Bcountry;
+            BCity?: Payabli.Bcity | undefined;
+            BCountry?: Payabli.Bcountry | undefined;
             /** The business's fax number. */
-            BFax?: Payabli.Bphone;
-            BinPerson?: Payabli.Binperson;
-            BinPhone?: Payabli.Binphone;
-            BinWeb?: Payabli.Binweb;
-            BoardingId?: Payabli.BoardingId;
-            BPhone?: Payabli.Bphone;
-            BStartdate?: Payabli.Busstartdate;
-            BState?: Payabli.Bstate;
-            BSummary?: Payabli.Bsummary;
-            BTimeZone?: Payabli.Timezone;
-            BZip?: Payabli.Bzip;
+            BFax?: Payabli.Bphone | undefined;
+            BinPerson?: Payabli.Binperson | undefined;
+            BinPhone?: Payabli.Binphone | undefined;
+            BinWeb?: Payabli.Binweb | undefined;
+            BoardingId?: Payabli.BoardingId | undefined;
+            BPhone?: Payabli.Bphone | undefined;
+            BStartdate?: Payabli.Busstartdate | undefined;
+            BState?: Payabli.Bstate | undefined;
+            BSummary?: Payabli.Bsummary | undefined;
+            BTimeZone?: Payabli.Timezone | undefined;
+            BZip?: Payabli.Bzip | undefined;
             ContactData?: Payabli.ContactsField | undefined;
-            CreatedAt?: Payabli.CreatedAt;
-            DbaName?: Payabli.Dbaname;
-            DocumentsRef?: string;
-            Ein?: Payabli.Ein;
-            EntryPoints?: Payabli.PaypointEntryConfig[];
-            externalPaypointID?: Payabli.ExternalPaypointId;
-            ExternalProcessorInformation?: Payabli.ExternalProcessorInformation;
+            CreatedAt?: Payabli.CreatedAt | undefined;
+            DbaName?: Payabli.Dbaname | undefined;
+            DocumentsRef?: string | undefined;
+            Ein?: Payabli.Ein | undefined;
+            EntryPoints?: Payabli.PaypointEntryConfig[] | undefined;
+            externalPaypointID?: Payabli.ExternalPaypointId | undefined;
+            ExternalProcessorInformation?: Payabli.ExternalProcessorInformation | undefined;
             HighTicketAmount?: Payabli.Highticketamt | undefined;
-            IdPaypoint?: Payabli.Idpaypoint;
+            IdPaypoint?: Payabli.Idpaypoint | undefined;
             LastModified?: Payabli.LastModified | undefined;
-            LegalName?: Payabli.Legalname;
-            License?: Payabli.License;
-            LicenseState?: Payabli.Licensestate;
-            MAddress1?: Payabli.Maddress;
-            MAddress2?: Payabli.Maddress1;
-            Mccid?: string;
-            MCity?: Payabli.Mcity;
-            MCountry?: Payabli.Mcountry;
-            MState?: Payabli.Mstate;
-            MZip?: Payabli.Mzip;
-            OrgId?: Payabli.Orgid;
-            OrgParentName?: Payabli.OrgParentName;
+            LegalName?: Payabli.Legalname | undefined;
+            License?: Payabli.License | undefined;
+            LicenseState?: Payabli.Licensestate | undefined;
+            MAddress1?: Payabli.Maddress | undefined;
+            MAddress2?: Payabli.Maddress1 | undefined;
+            Mccid?: string | undefined;
+            MCity?: Payabli.Mcity | undefined;
+            MCountry?: Payabli.Mcountry | undefined;
+            MState?: Payabli.Mstate | undefined;
+            MZip?: Payabli.Mzip | undefined;
+            OrgId?: Payabli.Orgid | undefined;
+            OrgParentName?: Payabli.OrgParentName | undefined;
             OwnerData?: Payabli.Ownership | undefined;
-            OwnType?: Payabli.OwnType;
-            PaypointStatus?: Payabli.Paypointstatus;
-            SalesCode?: Payabli.SalesCode;
-            ServiceData?: Payabli.Services;
-            summary?: Payabli.PaypointSummary;
-            Taxfillname?: Payabli.Taxfillname;
-            TemplateId?: Payabli.TemplateId;
+            OwnType?: Payabli.OwnType | undefined;
+            PaypointStatus?: Payabli.Paypointstatus | undefined;
+            SalesCode?: Payabli.SalesCode | undefined;
+            ServiceData?: Payabli.Services | undefined;
+            summary?: Payabli.PaypointSummary | undefined;
+            Taxfillname?: Payabli.Taxfillname | undefined;
+            TemplateId?: Payabli.TemplateId | undefined;
             /** Business website. */
-            WebsiteAddress?: Payabli.Website;
-            Whencharged?: Payabli.Whencharged;
-            Whendelivered?: Payabli.Whendelivered;
-            Whenprovided?: Payabli.Whenprovided;
-            Whenrefund?: Payabli.Whenrefunded;
+            WebsiteAddress?: Payabli.Website | undefined;
+            Whencharged?: Payabli.Whencharged | undefined;
+            Whendelivered?: Payabli.Whendelivered | undefined;
+            Whenprovided?: Payabli.Whenprovided | undefined;
+            Whenrefund?: Payabli.Whenrefunded | undefined;
         }
     }
 }

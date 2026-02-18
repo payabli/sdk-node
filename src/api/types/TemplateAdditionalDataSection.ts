@@ -3,6 +3,6 @@
 import type * as Payabli from "../index.js";
 
 export interface TemplateAdditionalDataSection {
-    visible?: Payabli.Visible;
+    visible?: Payabli.Visible | undefined;
     fields: Record<string, Payabli.TemplateAdditionalDataField>;
 }

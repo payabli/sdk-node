@@ -7,9 +7,9 @@ export interface TokenizeAch {
     method: string;
     achAccount: Payabli.Achaccount;
     achAccountType: Payabli.Achaccounttype;
-    achCode?: Payabli.AchSecCode;
+    achCode?: Payabli.AchSecCode | undefined;
     achHolder: Payabli.AchHolder;
-    achHolderType?: Payabli.AchHolderType;
+    achHolderType?: Payabli.AchHolderType | undefined;
     achRouting: Payabli.Achrouting;
-    device?: Payabli.Device;
+    device?: Payabli.Device | undefined;
 }

@@ -2,11 +2,11 @@
 
 export interface AchSetup {
     /** CCD is an ACH SEC Code that can be used in ACH transactions by the user that indicates the transaction is a Corporate Credit or Debit Entry. Options are: `true` and `false` */
-    acceptCCD?: boolean;
+    acceptCCD?: boolean | undefined;
     /** PPD is an ACH SEC Code that can be used in ACH transactions by the user that indicates the transaction is a Prearranged Payment and Deposit. */
-    acceptPPD?: boolean;
+    acceptPPD?: boolean | undefined;
     /** Web is an ACH SEC Code that can be used in ACH transactions by the user that indicates the transaction is a Internet Initiated/Mobile Entry Options are `true` and `false`. */
-    acceptWeb?: boolean;
+    acceptWeb?: boolean | undefined;
     /** Accepts any additional properties */
     [key: string]: any;
 }

@@ -4,16 +4,16 @@ import type * as Payabli from "../index.js";
 
 export interface LineItem {
     /** Array of tags classifying item or product. */
-    itemCategories?: (string | undefined)[];
-    itemCommodityCode?: Payabli.ItemCommodityCode;
+    itemCategories?: (string | undefined)[] | undefined;
+    itemCommodityCode?: Payabli.ItemCommodityCode | undefined;
     /** Item or product price per unit. */
     itemCost: number;
-    itemDescription?: Payabli.ItemDescription;
+    itemDescription?: Payabli.ItemDescription | undefined;
     /** Internal class of item or product: value '0' is only for invoices, '1' for bills, and '2' is common for both. */
-    itemMode?: number;
-    itemProductCode?: Payabli.ItemProductCode;
-    itemProductName?: Payabli.ItemProductName;
+    itemMode?: number | undefined;
+    itemProductCode?: Payabli.ItemProductCode | undefined;
+    itemProductName?: Payabli.ItemProductName | undefined;
     /** Quantity of item or product. */
     itemQty: number;
-    itemUnitOfMeasure?: Payabli.ItemUnitofMeasure;
+    itemUnitOfMeasure?: Payabli.ItemUnitofMeasure | undefined;
 }

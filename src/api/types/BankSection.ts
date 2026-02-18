@@ -7,8 +7,8 @@ import type * as Payabli from "../index.js";
  */
 export interface BankSection {
     visible?: Payabli.Visible | undefined;
-    accountNumber?: Payabli.TemplateElement;
-    accountType?: Payabli.TemplateElement;
-    bankName?: Payabli.TemplateElement;
-    routingNumber?: Payabli.TemplateElement;
+    accountNumber?: Payabli.TemplateElement | undefined;
+    accountType?: Payabli.TemplateElement | undefined;
+    bankName?: Payabli.TemplateElement | undefined;
+    routingNumber?: Payabli.TemplateElement | undefined;
 }

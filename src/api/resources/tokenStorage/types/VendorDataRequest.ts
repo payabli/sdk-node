@@ -5,7 +5,7 @@
  */
 export interface VendorDataRequest {
     /** The unique numeric ID assigned to the vendor in Payabli. Either `vendorId` or `vendorNumber` is required. */
-    vendorId?: number;
+    vendorId?: number | undefined;
     /** Custom vendor number assigned by the business. Either `vendorId` or `vendorNumber` is required. */
-    vendorNumber?: string;
+    vendorNumber?: string | undefined;
 }

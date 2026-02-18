@@ -6,22 +6,22 @@ import type * as Payabli from "../index.js";
  * The response for canceling a single payout transaction.
  */
 export interface PayabliApiResponse0000 {
-    isSuccess?: Payabli.IsSuccess;
+    isSuccess?: Payabli.IsSuccess | undefined;
     responseText: Payabli.ResponseText;
-    pageIdentifier?: Payabli.PageIdentifier;
-    responseCode?: Payabli.Responsecode;
-    responseData?: PayabliApiResponse0000.ResponseData;
+    pageIdentifier?: Payabli.PageIdentifier | undefined;
+    responseCode?: Payabli.Responsecode | undefined;
+    responseData?: PayabliApiResponse0000.ResponseData | undefined;
 }
 
 export namespace PayabliApiResponse0000 {
     export interface ResponseData {
-        AuthCode?: Payabli.Authcode;
-        avsResponseText?: Payabli.AvsResponseText;
-        CustomerId?: Payabli.Customeridtrans;
-        cvvResponseText?: Payabli.CvvResponseText;
-        methodReferenceId?: Payabli.MethodReferenceId;
-        ReferenceId?: Payabli.Referenceidtrans;
-        ResultCode?: Payabli.ResultCode;
-        ResultText?: Payabli.Resulttext;
+        AuthCode?: Payabli.Authcode | undefined;
+        avsResponseText?: Payabli.AvsResponseText | undefined;
+        CustomerId?: Payabli.Customeridtrans | undefined;
+        cvvResponseText?: Payabli.CvvResponseText | undefined;
+        methodReferenceId?: Payabli.MethodReferenceId | undefined;
+        ReferenceId?: Payabli.Referenceidtrans | undefined;
+        ResultCode?: Payabli.ResultCode | undefined;
+        ResultText?: Payabli.Resulttext | undefined;
     }
 }

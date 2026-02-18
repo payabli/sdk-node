@@ -5,10 +5,10 @@ import type * as Payabli from "../index.js";
 export interface TemplateAdditionalDataField {
     visible?: Payabli.Visible | undefined;
     readOnly?: Payabli.ReadOnly | undefined;
-    required?: Payabli.RequiredElement;
-    posRow?: Payabli.PosRow;
-    posCol?: Payabli.PosCol;
-    value?: Payabli.ValueTemplates;
-    label?: string;
-    type?: string;
+    required?: Payabli.RequiredElement | undefined;
+    posRow?: Payabli.PosRow | undefined;
+    posCol?: Payabli.PosCol | undefined;
+    value?: Payabli.ValueTemplates | undefined;
+    label?: string | undefined;
+    type?: string | undefined;
 }

@@ -101,7 +101,7 @@ export interface VendorDataResponse {
     Phone: string;
     Email: Payabli.Email;
     /** Email address for remittance */
-    RemitEmail?: string;
+    RemitEmail?: string | undefined;
     /** Vendor's address. */
     Address1: string;
     /** Additional line for vendor's address. */
@@ -125,7 +125,7 @@ export interface VendorDataResponse {
     VendorStatus: Payabli.Vendorstatus;
     VendorId: Payabli.Vendorid;
     /** Vendor enrollment status */
-    EnrollmentStatus?: string;
+    EnrollmentStatus?: string | undefined;
     /** Vendor bill summary statistics */
     Summary: Payabli.VendorResponseSummary;
     /** Legal name of the paypoint */
@@ -155,7 +155,7 @@ export interface VendorDataResponse {
     /** Custom field 2 for vendor */
     customField2: string;
     /** Account number of paypoint in the Vendor side. */
-    customerVendorAccount?: string;
+    customerVendorAccount?: string | undefined;
     InternalReferenceId: Payabli.InternalReferenceId;
     additionalData: Payabli.AdditionalDataMap;
     /** External paypoint identifier */

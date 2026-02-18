@@ -3,16 +3,16 @@
 import type * as Payabli from "../index.js";
 
 export interface AutoElement {
-    enabled?: Payabli.Enabled;
+    enabled?: Payabli.Enabled | undefined;
     /** Type of end date */
-    finish?: Payabli.Finishtype;
+    finish?: Payabli.Finishtype | undefined;
     /** accepted frequencies for autopay */
-    frequency?: Payabli.FrequencyList;
+    frequency?: Payabli.FrequencyList | undefined;
     /** Value of pre-selected frequency */
-    frequencySelected?: string;
+    frequencySelected?: string | undefined;
     /** Header text for section */
-    header?: string;
-    order?: Payabli.Order;
+    header?: string | undefined;
+    order?: Payabli.Order | undefined;
     /** Range of days enabled in calendar. Leave empty to enable all days. */
-    startDate?: string;
+    startDate?: string | undefined;
 }

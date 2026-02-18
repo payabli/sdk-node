@@ -5,13 +5,13 @@
  */
 export interface FileContent {
     /** Content of file, Base64-encoded. Ignored if furl is specified. Max upload size is 30 MB. */
-    fContent?: string;
+    fContent?: string | undefined;
     /** The name of the attached file. */
-    filename?: string;
+    filename?: string | undefined;
     /** The MIME type of the file (if content is provided) */
-    ftype?: FileContent.Ftype;
+    ftype?: FileContent.Ftype | undefined;
     /** Optional URL provided to show or download the file remotely */
-    furl?: string;
+    furl?: string | undefined;
 }
 
 export namespace FileContent {

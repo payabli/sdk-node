@@ -3,6 +3,6 @@
 import type * as Payabli from "../../../index.js";
 
 export interface ChangePswUserResponse {
-    isSuccess?: Payabli.IsSuccess;
+    isSuccess?: Payabli.IsSuccess | undefined;
     responseText: Payabli.ResponseText;
 }

@@ -4,13 +4,13 @@ import type * as Payabli from "../index.js";
 
 export interface BillQueryRecord2BillApprovalsItem {
     /** Indicates whether the bill has been approved. `0` is false, and `1` is true. */
-    approved?: number;
+    approved?: number | undefined;
     /** Timestamp of when the approval was made, in UTC. */
     approvedTime?: Payabli.DatetimeNullable | undefined;
     /** Additional comments on the approval. */
-    comments?: string;
+    comments?: string | undefined;
     /** The approving user's email address. */
-    email?: Payabli.Email;
+    email?: Payabli.Email | undefined;
     /** The approving user's ID. */
-    Id?: number;
+    Id?: number | undefined;
 }

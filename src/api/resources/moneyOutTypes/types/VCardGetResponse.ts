@@ -4,58 +4,58 @@ import type * as Payabli from "../../../index.js";
 
 export interface VCardGetResponse {
     /** Indicates if the virtual card was sent. */
-    vcardSent?: boolean;
+    vcardSent?: boolean | undefined;
     /** A unique token identifier for the card. */
-    cardToken?: string;
+    cardToken?: string | undefined;
     /** The masked number of the card. */
-    cardNumber?: string;
+    cardNumber?: string | undefined;
     /** Masked Card Verification Code. */
-    cvc?: string;
+    cvc?: string | undefined;
     /** The expiration date of the card. */
-    expirationDate?: string;
+    expirationDate?: string | undefined;
     /** The current status of the card. */
-    status?: string;
+    status?: string | undefined;
     /** The initial amount loaded on the card. */
-    amount?: number;
+    amount?: number | undefined;
     /** The current balance available on the card. */
-    currentBalance?: number;
+    currentBalance?: number | undefined;
     /** The set limit for expenses. */
-    expenseLimit?: number;
+    expenseLimit?: number | undefined;
     /** The period for the expense limit. */
-    expenseLimitPeriod?: string;
+    expenseLimitPeriod?: string | undefined;
     /** Maximum number of uses allowed for the card. */
-    maxNumberOfUses?: number;
+    maxNumberOfUses?: number | undefined;
     /** The current number of times the card has been used. */
-    currentNumberOfUses?: number;
+    currentNumberOfUses?: number | undefined;
     /** Indicates if only the exact amount is allowed for transactions. */
-    exactAmount?: boolean;
+    exactAmount?: boolean | undefined;
     /** Merchant Category Code, if applicable. */
-    mcc?: string;
+    mcc?: string | undefined;
     /** Transaction Category Code, if applicable. */
-    tcc?: string;
+    tcc?: string | undefined;
     /** A miscellaneous field for additional information. */
-    misc1?: string;
+    misc1?: string | undefined;
     /** Another miscellaneous field for extra information. */
-    misc2?: string;
+    misc2?: string | undefined;
     /** The creation date of the record. */
-    dateCreated?: string;
+    dateCreated?: string | undefined;
     /** The last modified date of the record. */
-    dateModified?: string;
+    dateModified?: string | undefined;
     /** Information about the associated vendor. */
-    associatedVendor?: VCardGetResponse.AssociatedVendor;
+    associatedVendor?: VCardGetResponse.AssociatedVendor | undefined;
     /** Information about the associated customer, if applicable. */
-    associatedCustomer?: string;
+    associatedCustomer?: string | undefined;
     /** Name of the parent organization. */
-    ParentOrgName?: string;
+    ParentOrgName?: string | undefined;
     /** The 'Doing Business As' name of the Paypoint. */
-    PaypointDbaname?: string;
+    PaypointDbaname?: string | undefined;
     /** The legal name of the Paypoint. */
-    PaypointLegalname?: string;
+    PaypointLegalname?: string | undefined;
     /** Entry name for the Paypoint, if applicable. */
-    PaypointEntryname?: string;
-    externalPaypointID?: Payabli.ExternalPaypointId;
+    PaypointEntryname?: string | undefined;
+    externalPaypointID?: Payabli.ExternalPaypointId | undefined;
     /** The unique identifier for the paypoint. */
-    paypointId?: number;
+    paypointId?: number | undefined;
 }
 
 export namespace VCardGetResponse {
@@ -64,84 +64,84 @@ export namespace VCardGetResponse {
      */
     export interface AssociatedVendor {
         /** Unique code identifying the vendor. */
-        VendorNumber?: string;
+        VendorNumber?: string | undefined;
         /** The primary name associated with the vendor. */
-        Name1?: string;
+        Name1?: string | undefined;
         /** Additional name information for the vendor. */
-        Name2?: string;
+        Name2?: string | undefined;
         /** Employer Identification Number of the vendor. */
-        EIN?: string;
+        EIN?: string | undefined;
         /** Contact phone number of the vendor. */
-        Phone?: string;
+        Phone?: string | undefined;
         /** Contact email address of the vendor. */
-        Email?: string;
+        Email?: string | undefined;
         /** Email address for remittance. */
-        RemitEmail?: string;
+        RemitEmail?: string | undefined;
         /** Primary address line of the vendor. */
-        Address1?: string;
+        Address1?: string | undefined;
         /** Secondary address line of the vendor. */
-        Address2?: string;
+        Address2?: string | undefined;
         /** City where the vendor is located. */
-        City?: string;
+        City?: string | undefined;
         /** State where the vendor is located. */
-        State?: string;
+        State?: string | undefined;
         /** ZIP code for the vendor's location. */
-        Zip?: string;
+        Zip?: string | undefined;
         /** Country where the vendor is located. */
-        Country?: string;
+        Country?: string | undefined;
         /** Merchant Category Code for the vendor. */
-        Mcc?: string;
-        LocationCode?: Payabli.LocationCode;
+        Mcc?: string | undefined;
+        LocationCode?: Payabli.LocationCode | undefined;
         /** Array of objects describing the vendor's contacts. */
-        Contacts?: AssociatedVendor.Contacts.Item[];
+        Contacts?: AssociatedVendor.Contacts.Item[] | undefined;
         /** Billing data for the vendor. */
-        BillingData?: AssociatedVendor.BillingData;
+        BillingData?: AssociatedVendor.BillingData | undefined;
         /** Preferred payment method for vendor. */
-        PaymentMethod?: string;
+        PaymentMethod?: string | undefined;
         /** Status of the vendor. */
-        VendorStatus?: number;
+        VendorStatus?: number | undefined;
         /** Unique identifier for the vendor. */
-        VendorId?: number;
+        VendorId?: number | undefined;
         /** Enrollment status of the vendor. */
-        EnrollmentStatus?: string;
+        EnrollmentStatus?: string | undefined;
         /** Summary of vendor's billing and transaction status. */
-        Summary?: AssociatedVendor.Summary;
+        Summary?: AssociatedVendor.Summary | undefined;
         /** Legal name of the paypoint. */
-        PaypointLegalname?: Payabli.Legalname;
+        PaypointLegalname?: Payabli.Legalname | undefined;
         /** DBA name of the paypoint. */
-        PaypointDbaname?: Payabli.Dbaname;
+        PaypointDbaname?: Payabli.Dbaname | undefined;
         /** Entryname of the paypoint. */
-        PaypointEntryname?: string;
-        ParentOrgName?: Payabli.OrgParentName;
+        PaypointEntryname?: string | undefined;
+        ParentOrgName?: Payabli.OrgParentName | undefined;
         /** ID of the parent organization. */
-        ParentOrgId?: number;
+        ParentOrgId?: number | undefined;
         /** Date when the vendor record was created. */
-        CreatedDate?: string;
+        CreatedDate?: string | undefined;
         /** Date when the vendor's information was last updated. */
-        LastUpdated?: string;
-        remitAddress1?: Payabli.Remitaddress1;
-        remitAddress2?: Payabli.Remitaddress2;
-        remitCity?: Payabli.Remitcity;
-        remitState?: Payabli.Remitstate;
-        remitZip?: Payabli.Remitzip;
-        remitCountry?: Payabli.Remitcountry;
+        LastUpdated?: string | undefined;
+        remitAddress1?: Payabli.Remitaddress1 | undefined;
+        remitAddress2?: Payabli.Remitaddress2 | undefined;
+        remitCity?: Payabli.Remitcity | undefined;
+        remitState?: Payabli.Remitstate | undefined;
+        remitZip?: Payabli.Remitzip | undefined;
+        remitCountry?: Payabli.Remitcountry | undefined;
         /** Primary name of the payee. */
-        payeeName1?: string;
+        payeeName1?: string | undefined;
         /** Secondary name of the payee. */
-        payeeName2?: string;
+        payeeName2?: string | undefined;
         /** A custom field for additional data. */
-        customField1?: string;
+        customField1?: string | undefined;
         /** Another custom field for extra data. */
-        customField2?: string;
+        customField2?: string | undefined;
         /** Account number of paypoint in the vendor side. */
-        customerVendorAccount?: string;
+        customerVendorAccount?: string | undefined;
         /** Internal reference ID used within the system. */
-        InternalReferenceId?: number;
+        InternalReferenceId?: number | undefined;
         /** Field for additional data, if any. */
-        additionalData?: string;
-        externalPaypointID?: Payabli.ExternalPaypointId;
+        additionalData?: string | undefined;
+        externalPaypointID?: Payabli.ExternalPaypointId | undefined;
         /** Stored payment methods for the vendor. */
-        StoredMethods?: string;
+        StoredMethods?: string | undefined;
     }
 
     export namespace AssociatedVendor {
@@ -153,13 +153,13 @@ export namespace VCardGetResponse {
              */
             export interface Item {
                 /** Name of the contact. */
-                ContactName?: string;
+                ContactName?: string | undefined;
                 /** Email of the contact. */
-                ContactEmail?: string;
+                ContactEmail?: string | undefined;
                 /** Title of the contact. */
-                ContactTitle?: string;
+                ContactTitle?: string | undefined;
                 /** Phone number of the contact. */
-                ContactPhone?: string;
+                ContactPhone?: string | undefined;
             }
         }
 
@@ -168,33 +168,33 @@ export namespace VCardGetResponse {
          */
         export interface BillingData {
             /** Unique identifier for billing data. */
-            id?: number;
+            id?: number | undefined;
             /** Account identifier. */
-            accountId?: string;
+            accountId?: string | undefined;
             /** Nickname for the account. */
-            nickname?: string;
+            nickname?: string | undefined;
             /** Name of the bank used for transactions. */
-            bankName?: string;
+            bankName?: string | undefined;
             /** Routing number for the bank account. */
-            routingAccount?: string;
+            routingAccount?: string | undefined;
             /** Masked account number for transactions. */
-            accountNumber?: string;
+            accountNumber?: string | undefined;
             /** Type of the bank account. */
-            typeAccount?: string;
+            typeAccount?: string | undefined;
             /** Name of the bank account holder. */
-            bankAccountHolderName?: string;
+            bankAccountHolderName?: string | undefined;
             /** Type of bank account holder. */
-            bankAccountHolderType?: string;
+            bankAccountHolderType?: string | undefined;
             /** Function of the bank account. */
-            bankAccountFunction?: number;
+            bankAccountFunction?: number | undefined;
             /** Indicates if the account is verified. */
-            verified?: boolean;
+            verified?: boolean | undefined;
             /** Status of the billing data. */
-            status?: number;
+            status?: number | undefined;
             /** Services associated with the account. */
-            services?: unknown[];
+            services?: unknown[] | undefined;
             /** Indicates if this is the default billing account. */
-            default?: boolean;
+            default?: boolean | undefined;
         }
 
         /**
@@ -202,37 +202,37 @@ export namespace VCardGetResponse {
          */
         export interface Summary {
             /** Number of active bills. */
-            ActiveBills?: number;
+            ActiveBills?: number | undefined;
             /** Number of bills pending approval or payment. */
-            PendingBills?: number;
+            PendingBills?: number | undefined;
             /** Number of bills in transit. */
-            InTransitBills?: number;
+            InTransitBills?: number | undefined;
             /** Number of bills that have been paid. */
-            PaidBills?: number;
+            PaidBills?: number | undefined;
             /** Number of bills that are overdue. */
-            OverdueBills?: number;
+            OverdueBills?: number | undefined;
             /** Number of bills that have been approved. */
-            ApprovedBills?: number;
+            ApprovedBills?: number | undefined;
             /** Number of bills that have been disapproved. */
-            DisapprovedBills?: number;
+            DisapprovedBills?: number | undefined;
             /** Total number of bills. */
-            TotalBills?: number;
+            TotalBills?: number | undefined;
             /** Total amount of active bills. */
-            ActiveBillsAmount?: number;
+            ActiveBillsAmount?: number | undefined;
             /** Total amount of pending bills. */
-            PendingBillsAmount?: number;
+            PendingBillsAmount?: number | undefined;
             /** Total amount of bills in transit. */
-            InTransitBillsAmount?: number;
+            InTransitBillsAmount?: number | undefined;
             /** Total amount of paid bills. */
-            PaidBillsAmount?: number;
+            PaidBillsAmount?: number | undefined;
             /** Total amount of overdue bills. */
-            OverdueBillsAmount?: number;
+            OverdueBillsAmount?: number | undefined;
             /** Total amount of approved bills. */
-            ApprovedBillsAmount?: number;
+            ApprovedBillsAmount?: number | undefined;
             /** Total amount of rejected bills. */
-            DisapprovedBillsAmount?: number;
+            DisapprovedBillsAmount?: number | undefined;
             /** Total amount of all bills. */
-            TotalBillsAmount?: number;
+            TotalBillsAmount?: number | undefined;
         }
     }
 }

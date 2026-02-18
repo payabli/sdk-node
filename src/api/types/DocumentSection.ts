@@ -4,23 +4,23 @@ import type * as Payabli from "../index.js";
 
 export interface DocumentSection {
     visble?: Payabli.Visible | undefined;
-    subFooter?: Payabli.SubFooter;
-    subHeader?: Payabli.SubHeader;
-    depositBank?: Payabli.BankSection;
+    subFooter?: Payabli.SubFooter | undefined;
+    subHeader?: Payabli.SubHeader | undefined;
+    depositBank?: Payabli.BankSection | undefined;
     /** The minimum number of documents the applicant must upload with the application. */
-    minimumDocuments?: number;
+    minimumDocuments?: number | undefined;
     /** When `true`, allows the applicant to upload documents to the application. */
-    uploadDocuments?: boolean;
-    bankData?: Payabli.BankSection;
-    termsAndConditions?: DocumentSection.TermsAndConditions;
-    signer?: Payabli.SignerSection;
+    uploadDocuments?: boolean | undefined;
+    bankData?: Payabli.BankSection | undefined;
+    termsAndConditions?: DocumentSection.TermsAndConditions | undefined;
+    signer?: Payabli.SignerSection | undefined;
     visible?: Payabli.Visible | undefined;
-    withdrawalBank?: Payabli.BankSection;
+    withdrawalBank?: Payabli.BankSection | undefined;
 }
 
 export namespace DocumentSection {
     export interface TermsAndConditions {
-        tcLinks?: TermsAndConditions.TcLinks.Item[];
+        tcLinks?: TermsAndConditions.TcLinks.Item[] | undefined;
         visible?: Payabli.Visible | undefined;
     }
 
@@ -29,8 +29,8 @@ export namespace DocumentSection {
 
         export namespace TcLinks {
             export interface Item {
-                label?: string;
-                value?: string;
+                label?: string | undefined;
+                value?: string | undefined;
             }
         }
     }

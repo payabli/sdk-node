@@ -3,12 +3,12 @@
 import type * as Payabli from "../index.js";
 
 export interface NoteElement {
-    enabled?: Payabli.Enabled;
+    enabled?: Payabli.Enabled | undefined;
     /** Header text for section */
-    header?: string;
-    order?: Payabli.Order;
+    header?: string | undefined;
+    order?: Payabli.Order | undefined;
     /** Placeholder text for input field */
-    placeholder?: string;
+    placeholder?: string | undefined;
     /** Pre-populated value for input field */
-    value?: string;
+    value?: string | undefined;
 }

@@ -6,8 +6,8 @@ import type * as Payabli from "../index.js";
  *
  */
 export interface QueryBoardingLinksResponse {
-    Records?: QueryBoardingLinksResponse.Records.Item[];
-    Summary?: Payabli.QuerySummary;
+    Records?: QueryBoardingLinksResponse.Records.Item[] | undefined;
+    Summary?: Payabli.QuerySummary | undefined;
 }
 
 export namespace QueryBoardingLinksResponse {
@@ -17,15 +17,15 @@ export namespace QueryBoardingLinksResponse {
         export interface Item {
             AcceptOauth?: Payabli.AcceptOauth | undefined;
             AcceptRegister?: Payabli.AcceptRegister | undefined;
-            EntryAttributes?: Payabli.EntryAttributes;
+            EntryAttributes?: Payabli.EntryAttributes | undefined;
             /** The record ID. */
-            Id?: number;
+            Id?: number | undefined;
             LastUpdated?: Payabli.LastModified | undefined;
-            OrgParentName?: Payabli.OrgParentName;
-            ReferenceName?: Payabli.ReferenceName;
-            ReferenceTemplateId?: Payabli.ReferenceTemplateId;
+            OrgParentName?: Payabli.OrgParentName | undefined;
+            ReferenceName?: Payabli.ReferenceName | undefined;
+            ReferenceTemplateId?: Payabli.ReferenceTemplateId | undefined;
             TemplateCode?: Payabli.TemplateCode | undefined;
-            TemplateName?: Payabli.TemplateName;
+            TemplateName?: Payabli.TemplateName | undefined;
         }
     }
 }

@@ -1013,11 +1013,9 @@ export class BoardingClient {
         requestOptions?: BoardingClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.PayabliApiResponse00>> {
         const { sendEmail } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (sendEmail != null) {
-            _queryParams.sendEmail = sendEmail.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            sendEmail,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1188,27 +1186,13 @@ export class BoardingClient {
         requestOptions?: BoardingClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryBoardingAppsListResponse>> {
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1296,23 +1280,12 @@ export class BoardingClient {
         requestOptions?: BoardingClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryBoardingLinksResponse>> {
         const { fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

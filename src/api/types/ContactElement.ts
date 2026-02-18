@@ -4,13 +4,13 @@ import type * as Payabli from "../index.js";
 
 export interface ContactElement {
     /** Custom content for email */
-    emailLabel?: string;
-    enabled?: Payabli.Enabled;
+    emailLabel?: string | undefined;
+    enabled?: Payabli.Enabled | undefined;
     /** Header text for section */
-    header?: string;
-    order?: Payabli.Order;
+    header?: string | undefined;
+    order?: Payabli.Order | undefined;
     /** Flag indicating if icons for accepted card brands will be shown */
-    paymentIcons?: boolean;
+    paymentIcons?: boolean | undefined;
     /** Custom content for phone number */
-    phoneLabel?: string;
+    phoneLabel?: string | undefined;
 }

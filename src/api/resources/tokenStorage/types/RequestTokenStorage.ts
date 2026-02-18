@@ -4,19 +4,19 @@ import type * as Payabli from "../../../index.js";
 
 export interface RequestTokenStorage {
     /** Object describing the Customer/Payor owner of payment method. Required for POST requests. Which fields are required depends on the paypoint's custom identifier settings. */
-    customerData?: Payabli.PayorDataRequest;
+    customerData?: Payabli.PayorDataRequest | undefined;
     /** Entrypoint identifier. Required for POST requests. */
-    entryPoint?: Payabli.Entrypointfield;
+    entryPoint?: Payabli.Entrypointfield | undefined;
     /** When `true`, if tokenization fails, Payabli will attempt an authorization transaction to request a permanent token for the card. If the authorization is successful, the card will be tokenized and the authorization will be voided automatically. */
-    fallbackAuth?: boolean;
+    fallbackAuth?: boolean | undefined;
     /** The amount for the `fallbackAuth` transaction. Defaults to one dollar (`100`). */
-    fallbackAuthAmount?: number;
+    fallbackAuthAmount?: number | undefined;
     /** Custom description for stored payment method. */
-    methodDescription?: string;
+    methodDescription?: string | undefined;
     /** Information about the payment method for the transaction. */
-    paymentMethod?: Payabli.RequestTokenStoragePaymentMethod;
-    vendorData?: Payabli.VendorDataRequest;
+    paymentMethod?: Payabli.RequestTokenStoragePaymentMethod | undefined;
+    vendorData?: Payabli.VendorDataRequest | undefined;
     /** Custom identifier to indicate the source for the request */
-    source?: Payabli.Source;
-    subdomain?: Payabli.Subdomain;
+    source?: Payabli.Source | undefined;
+    subdomain?: Payabli.Subdomain | undefined;
 }

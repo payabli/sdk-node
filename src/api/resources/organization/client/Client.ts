@@ -90,7 +90,7 @@ export class OrganizationClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey != null ? idempotencyKey : undefined }),
+            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({

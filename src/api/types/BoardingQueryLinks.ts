@@ -5,12 +5,12 @@ import type * as Payabli from "../index.js";
 export interface BoardingQueryLinks {
     acceptOauth?: Payabli.AcceptOauth | undefined;
     acceptRegister?: Payabli.AcceptRegister | undefined;
-    entryAttributes?: Payabli.EntryAttributes;
-    id?: Payabli.BoardingLinkId;
+    entryAttributes?: Payabli.EntryAttributes | undefined;
+    id?: Payabli.BoardingLinkId | undefined;
     lastUpdated?: Payabli.LastModified | undefined;
-    orgParentName?: Payabli.OrgParentName;
-    referenceName?: Payabli.ReferenceName;
-    referenceTemplateId?: Payabli.ReferenceTemplateId;
+    orgParentName?: Payabli.OrgParentName | undefined;
+    referenceName?: Payabli.ReferenceName | undefined;
+    referenceTemplateId?: Payabli.ReferenceTemplateId | undefined;
     templateCode?: Payabli.TemplateCode | undefined;
-    templateName?: Payabli.TemplateName;
+    templateName?: Payabli.TemplateName | undefined;
 }

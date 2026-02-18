@@ -287,23 +287,12 @@ export class TemplatesClient {
         requestOptions?: TemplatesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.TemplateQueryResponse>> {
         const { fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

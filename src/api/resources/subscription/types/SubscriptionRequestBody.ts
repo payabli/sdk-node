@@ -4,19 +4,19 @@ import type * as Payabli from "../../../index.js";
 
 export interface SubscriptionRequestBody {
     /** Object describing the customer/payor. */
-    customerData?: Payabli.PayorDataRequest;
-    entryPoint?: Payabli.Entrypointfield;
+    customerData?: Payabli.PayorDataRequest | undefined;
+    entryPoint?: Payabli.Entrypointfield | undefined;
     /** Object describing an Invoice linked to the subscription. */
-    invoiceData?: Payabli.BillData;
+    invoiceData?: Payabli.BillData | undefined;
     /** Object describing details of the payment. To skip the payment, set the `totalAmount` to 0. Payments will be paused until the amount is updated to a non-zero value. When `totalAmount` is set to 0, the `serviceFee` must also be set to 0. */
-    paymentDetails?: Payabli.PaymentDetail;
+    paymentDetails?: Payabli.PaymentDetail | undefined;
     /** Information about the payment method for the transaction. Required and recommended fields for each payment method type are described in each schema below. */
-    paymentMethod?: SubscriptionRequestBody.PaymentMethod;
+    paymentMethod?: SubscriptionRequestBody.PaymentMethod | undefined;
     /** Object describing the schedule for subscription. */
-    scheduleDetails?: Payabli.ScheduleDetail;
-    setPause?: Payabli.SetPause;
-    source?: Payabli.Source;
-    subdomain?: Payabli.Subdomain;
+    scheduleDetails?: Payabli.ScheduleDetail | undefined;
+    setPause?: Payabli.SetPause | undefined;
+    source?: Payabli.Source | undefined;
+    subdomain?: Payabli.Subdomain | undefined;
 }
 
 export namespace SubscriptionRequestBody {

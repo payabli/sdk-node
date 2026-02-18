@@ -3,8 +3,8 @@
 import type * as Payabli from "../index.js";
 
 export interface PaymentMethodDomainGeneralResponse {
-    isSuccess?: Payabli.IsSuccess;
-    pageidentifier?: Payabli.PageIdentifier;
-    responseData?: Payabli.PaymentMethodDomainApiResponse;
+    isSuccess?: Payabli.IsSuccess | undefined;
+    pageidentifier?: Payabli.PageIdentifier | undefined;
+    responseData?: Payabli.PaymentMethodDomainApiResponse | undefined;
     responseText: string;
 }

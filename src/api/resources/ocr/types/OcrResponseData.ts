@@ -3,5 +3,5 @@
 import type * as Payabli from "../../../index.js";
 
 export interface OcrResponseData {
-    resultData?: Payabli.OcrResultData;
+    resultData?: Payabli.OcrResultData | undefined;
 }

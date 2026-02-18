@@ -3,11 +3,11 @@
 import type * as Payabli from "../index.js";
 
 export interface PayabliApiResponse00Responsedatanonobject {
-    responseCode?: Payabli.Responsecode;
-    pageIdentifier?: Payabli.PageIdentifier;
+    responseCode?: Payabli.Responsecode | undefined;
+    pageIdentifier?: Payabli.PageIdentifier | undefined;
     /** Describes the room ID. Only in use on Boarding endpoints, returns `0` when not applicable. */
-    roomId?: number;
-    isSuccess?: Payabli.IsSuccess;
+    roomId?: number | undefined;
+    isSuccess?: Payabli.IsSuccess | undefined;
     responseText: Payabli.ResponseText;
-    responseData?: Payabli.Responsedatanonobject;
+    responseData?: Payabli.Responsedatanonobject | undefined;
 }

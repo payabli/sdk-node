@@ -3,8 +3,8 @@
 import type * as Payabli from "../index.js";
 
 export interface CardTypes {
-    amex?: Payabli.BasicTemplateElement;
-    discover?: Payabli.BasicTemplateElement;
-    masterCard?: Payabli.BasicTemplateElement;
-    visa?: Payabli.BasicTemplateElement;
+    amex?: Payabli.BasicTemplateElement | undefined;
+    discover?: Payabli.BasicTemplateElement | undefined;
+    masterCard?: Payabli.BasicTemplateElement | undefined;
+    visa?: Payabli.BasicTemplateElement | undefined;
 }

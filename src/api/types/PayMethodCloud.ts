@@ -3,7 +3,7 @@
 import type * as Payabli from "../index.js";
 
 export interface PayMethodCloud {
-    device?: Payabli.Device;
+    device?: Payabli.Device | undefined;
     /** Method to use for the transaction. For cloud device transactions, the method is `cloud`. */
     method: "cloud";
     saveIfSuccess?: Payabli.SaveIfSuccess | undefined;

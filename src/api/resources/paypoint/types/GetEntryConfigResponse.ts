@@ -4,8 +4,8 @@ import type * as Payabli from "../../../index.js";
 
 export interface GetEntryConfigResponse {
     isSuccess: Payabli.IsSuccess;
-    pageIdentifier?: Payabli.PageIdentifier;
-    responseCode?: Payabli.Responsecode;
-    responseData?: Payabli.PaypointEntryConfig;
+    pageIdentifier?: Payabli.PageIdentifier | undefined;
+    responseCode?: Payabli.Responsecode | undefined;
+    responseData?: Payabli.PaypointEntryConfig | undefined;
     responseText: Payabli.ResponseText;
 }

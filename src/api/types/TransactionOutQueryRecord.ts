@@ -4,56 +4,56 @@ import type * as Payabli from "../index.js";
 
 export interface TransactionOutQueryRecord {
     /** Identifier of payout transaction. */
-    IdOut?: number;
-    CreatedAt?: Payabli.CreatedAt;
+    IdOut?: number | undefined;
+    CreatedAt?: Payabli.CreatedAt | undefined;
     /** Any comment or description for payout transaction. */
-    Comments?: Payabli.Comments;
+    Comments?: Payabli.Comments | undefined;
     /** Vendor related to the payout transaction. */
-    Vendor?: Payabli.VendorQueryRecord;
-    PaypointDbaname?: Payabli.Dbaname;
-    PaypointLegalname?: Payabli.Legalname;
+    Vendor?: Payabli.VendorQueryRecord | undefined;
+    PaypointDbaname?: Payabli.Dbaname | undefined;
+    PaypointLegalname?: Payabli.Legalname | undefined;
     /** Internal status of transaction. */
-    Status?: number;
+    Status?: number | undefined;
     /** Timestamp when payment record was updated, in UTC. */
     LastUpdated?: Payabli.LastModified | undefined;
     /** Transaction total amount (including service fee or sub-charge). */
-    TotalAmount?: number;
+    TotalAmount?: number | undefined;
     NetAmount?: Payabli.Netamountnullable | undefined;
-    FeeAmount?: Payabli.FeeAmount;
-    Source?: Payabli.Source;
-    ParentOrgName?: Payabli.OrgParentName;
-    ParentOrgId?: Payabli.Orgid;
+    FeeAmount?: Payabli.FeeAmount | undefined;
+    Source?: Payabli.Source | undefined;
+    ParentOrgName?: Payabli.OrgParentName | undefined;
+    ParentOrgId?: Payabli.Orgid | undefined;
     /** The batch number for the payout transaction. */
-    BatchNumber?: string;
+    BatchNumber?: string | undefined;
     /** Status of payout transaction. */
-    PaymentStatus?: string;
+    PaymentStatus?: string | undefined;
     /** Method of payment applied to the transaction. */
-    PaymentMethod?: string;
-    CardToken?: string;
+    PaymentMethod?: string | undefined;
+    CardToken?: string | undefined;
     /** Paper check number related to payout transaction. */
-    CheckNumber?: string;
+    CheckNumber?: string | undefined;
     /** Object referencing to paper check image. */
-    CheckData?: Payabli.FileContent;
-    PaymentId?: Payabli.PaymentIdString;
-    PaymentData?: Payabli.QueryPaymentData;
+    CheckData?: Payabli.FileContent | undefined;
+    PaymentId?: Payabli.PaymentIdString | undefined;
+    PaymentData?: Payabli.QueryPaymentData | undefined;
     /** Events associated to this transaction. */
-    Bills?: Payabli.BillPayOutData[];
+    Bills?: Payabli.BillPayOutData[] | undefined;
     /** Events associated to this transaction. */
-    Events?: Payabli.QueryTransactionEvents[];
-    externalPaypointID?: Payabli.ExternalPaypointId;
-    EntryName?: Payabli.Entrypointfield;
-    Gateway?: Payabli.Gatewayfield;
+    Events?: Payabli.QueryTransactionEvents[] | undefined;
+    externalPaypointID?: Payabli.ExternalPaypointId | undefined;
+    EntryName?: Payabli.Entrypointfield | undefined;
+    Gateway?: Payabli.Gatewayfield | undefined;
     /** ID of the batch the transaction belongs to. */
-    BatchId?: string;
+    BatchId?: string | undefined;
     HasVcardTransactions?: Payabli.HasVcardTransactions | undefined;
     IsSameDayACH?: Payabli.IsSameDayAch | undefined;
-    ScheduleId?: Payabli.ScheduleId;
-    SettlementStatus?: Payabli.SettlementStatusPayout;
+    ScheduleId?: Payabli.ScheduleId | undefined;
+    SettlementStatus?: Payabli.SettlementStatusPayout | undefined;
     RiskFlagged?: Payabli.RiskFlagged | undefined;
     RiskFlaggedOn?: Payabli.RiskFlaggedOn | undefined;
-    RiskStatus?: Payabli.RiskStatus;
-    RiskReason?: Payabli.RiskReason;
-    RiskAction?: Payabli.RiskAction;
+    RiskStatus?: Payabli.RiskStatus | undefined;
+    RiskReason?: Payabli.RiskReason | undefined;
+    RiskAction?: Payabli.RiskAction | undefined;
     RiskActionCode?: Payabli.RiskActionCode | undefined;
-    PayoutProgram?: Payabli.PayoutProgram;
+    PayoutProgram?: Payabli.PayoutProgram | undefined;
 }

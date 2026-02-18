@@ -4,16 +4,16 @@ import type * as Payabli from "../index.js";
 
 export interface PageSetting {
     /** An HTML color code in format #RRGGBB */
-    color?: string;
+    color?: string | undefined;
     /** Complete URL to a custom CSS file to be loaded with the page */
-    customCssUrl?: string;
+    customCssUrl?: string | undefined;
     /** Two-letter code following ISO 639-1 */
-    language?: string;
+    language?: string | undefined;
     /** Object containing logo file to upload/ use in page */
-    pageLogo?: Payabli.FileContent;
-    paymentButton?: Payabli.ButtonElement;
+    pageLogo?: Payabli.FileContent | undefined;
+    paymentButton?: Payabli.ButtonElement | undefined;
     /** Flag indicating if the capability for redirection in the page will be activated */
-    redirectAfterApprove?: boolean;
+    redirectAfterApprove?: boolean | undefined;
     /** Complete URL where the page will be redirected after completion */
-    redirectAfterApproveUrl?: string;
+    redirectAfterApproveUrl?: string | undefined;
 }

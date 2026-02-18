@@ -7,7 +7,7 @@ import type * as Payabli from "../../../index.js";
  */
 export interface VoidResponse {
     responseCode: Payabli.Responsecode;
-    pageIdentifier?: Payabli.PageIdentifier;
+    pageIdentifier?: Payabli.PageIdentifier | undefined;
     roomId: Payabli.RoomIdNotInUse;
     isSuccess: Payabli.IsSuccess;
     responseText: Payabli.ResponseText;

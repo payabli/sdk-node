@@ -3,6 +3,6 @@
 import type * as Payabli from "../index.js";
 
 export interface VCardQueryResponse {
-    Summary?: Payabli.VCardSummary;
-    Records?: Payabli.VCardRecord[];
+    Summary?: Payabli.VCardSummary | undefined;
+    Records?: Payabli.VCardRecord[] | undefined;
 }

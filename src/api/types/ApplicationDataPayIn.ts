@@ -8,78 +8,78 @@ import type * as Payabli from "../index.js";
 export interface ApplicationDataPayIn {
     services: ApplicationDataPayIn.Services;
     annualRevenue?: Payabli.Annualrevenue | undefined;
-    averageBillSize?: Payabli.BoardingAverageBillSize;
-    averageMonthlyBill?: Payabli.BoardingAvgMonthlyBill;
+    averageBillSize?: Payabli.BoardingAverageBillSize | undefined;
+    averageMonthlyBill?: Payabli.BoardingAvgMonthlyBill | undefined;
     avgmonthly?: Payabli.Avgmonthly | undefined;
-    baddress?: Payabli.Baddress1;
-    baddress1?: Payabli.Baddress2;
+    baddress?: Payabli.Baddress1 | undefined;
+    baddress1?: Payabli.Baddress2 | undefined;
     bankData: ApplicationDataPayIn.BankData;
-    bcity?: Payabli.Bcity;
-    bcountry?: Payabli.Bcountry;
-    binperson?: Payabli.Binperson;
-    binphone?: Payabli.Binphone;
-    binweb?: Payabli.Binweb;
+    bcity?: Payabli.Bcity | undefined;
+    bcountry?: Payabli.Bcountry | undefined;
+    binperson?: Payabli.Binperson | undefined;
+    binphone?: Payabli.Binphone | undefined;
+    binweb?: Payabli.Binweb | undefined;
     /** Boarding link ID for the application. Either `templateId` or `boardingLinkId` are required. */
-    boardingLinkId?: string;
-    bstate?: Payabli.Bstate;
-    bsummary?: Payabli.Bsummary;
-    btype?: Payabli.OwnType;
-    bzip?: Payabli.Bzip;
+    boardingLinkId?: string | undefined;
+    bstate?: Payabli.Bstate | undefined;
+    bsummary?: Payabli.Bsummary | undefined;
+    btype?: Payabli.OwnType | undefined;
+    bzip?: Payabli.Bzip | undefined;
     /** List of contacts for the business. */
-    contacts?: ApplicationDataPayIn.Contacts.Item[];
+    contacts?: ApplicationDataPayIn.Contacts.Item[] | undefined;
     /** The maximum amount of credit that our lending partner, has authorized to your business. It's the upper boundary on how much you can spend or owe on a credit account at any given time. */
-    creditLimit?: string;
+    creditLimit?: string | undefined;
     /** The alternate or common name that this business is doing business under usually referred to as a DBA name. Payabli strongly recommends including this information. */
-    dbaName?: Payabli.Dbaname;
-    ein?: Payabli.Ein;
-    externalpaypointID?: Payabli.ExternalPaypointId;
+    dbaName?: Payabli.Dbaname | undefined;
+    ein?: Payabli.Ein | undefined;
+    externalpaypointID?: Payabli.ExternalPaypointId | undefined;
     /** The business's fax number. */
-    faxnumber?: Payabli.FaxNumber;
+    faxnumber?: Payabli.FaxNumber | undefined;
     highticketamt?: Payabli.Highticketamt | undefined;
-    legalName?: Payabli.Legalname;
-    license?: Payabli.License;
-    licstate?: Payabli.Licensestate;
-    maddress?: Payabli.Maddress;
-    maddress1?: Payabli.Maddress1;
-    mcc?: Payabli.Mcc;
-    mcity?: Payabli.Mcity;
-    mcountry?: Payabli.Mcountry;
-    mstate?: Payabli.Mstate;
-    mzip?: Payabli.Mzip;
-    orgId?: Payabli.Orgid;
+    legalName?: Payabli.Legalname | undefined;
+    license?: Payabli.License | undefined;
+    licstate?: Payabli.Licensestate | undefined;
+    maddress?: Payabli.Maddress | undefined;
+    maddress1?: Payabli.Maddress1 | undefined;
+    mcc?: Payabli.Mcc | undefined;
+    mcity?: Payabli.Mcity | undefined;
+    mcountry?: Payabli.Mcountry | undefined;
+    mstate?: Payabli.Mstate | undefined;
+    mzip?: Payabli.Mzip | undefined;
+    orgId?: Payabli.Orgid | undefined;
     /** List of Owners with at least a 25% ownership. */
-    ownership?: ApplicationDataPayIn.Ownership.Item[];
+    ownership?: ApplicationDataPayIn.Ownership.Item[] | undefined;
     /** The business's phone number. */
     phonenumber: Payabli.PhoneNumber;
     /** The business's processing region, either `US` or `CA`. */
     processingRegion: string;
     /** Email address for the applicant. This is used to send the applicant a boarding link. */
-    recipientEmail?: Payabli.Email;
-    recipientEmailNotification?: Payabli.RecipientEmailNotification;
-    resumable?: Payabli.Resumable;
+    recipientEmail?: Payabli.Email | undefined;
+    recipientEmailNotification?: Payabli.RecipientEmailNotification | undefined;
+    resumable?: Payabli.Resumable | undefined;
     signer: Payabli.SignerDataRequest;
-    startdate?: Payabli.Busstartdate;
-    taxFillName?: Payabli.Taxfillname;
+    startdate?: Payabli.Busstartdate | undefined;
+    taxFillName?: Payabli.Taxfillname | undefined;
     /** The associated boarding template's ID in Payabli. Either `templateId` or `boardingLinkId` are required. */
-    templateId?: Payabli.TemplateId;
+    templateId?: Payabli.TemplateId | undefined;
     ticketamt?: Payabli.Ticketamt | undefined;
-    website?: Payabli.Website;
+    website?: Payabli.Website | undefined;
     whenCharged: Payabli.Whencharged;
     whenDelivered: Payabli.Whendelivered;
     whenProvided: Payabli.Whenprovided;
     whenRefunded: Payabli.Whenrefunded;
-    additionalData?: Payabli.AdditionalDataString;
-    RepCode?: Payabli.RepCode;
-    RepName?: Payabli.RepName;
-    RepOffice?: Payabli.RepOffice;
-    onCreate?: Payabli.OnCreate;
+    additionalData?: Payabli.AdditionalDataString | undefined;
+    RepCode?: Payabli.RepCode | undefined;
+    RepName?: Payabli.RepName | undefined;
+    RepOffice?: Payabli.RepOffice | undefined;
+    onCreate?: Payabli.OnCreate | undefined;
 }
 
 export namespace ApplicationDataPayIn {
     export interface Services {
         ach: Services.Ach;
         card: Services.Card;
-        odp?: Payabli.OdpSetup;
+        odp?: Payabli.OdpSetup | undefined;
     }
 
     export namespace Services {

@@ -4,7 +4,7 @@ import type * as Payabli from "../index.js";
 
 export interface BoardingApplicationAttachments {
     /** Array of objects describing files contained in the ZIP file. */
-    filelist?: Payabli.PairFiles[];
+    filelist?: Payabli.PairFiles[] | undefined;
     /** Zip file containing attachments. */
-    zipfile?: string;
+    zipfile?: string | undefined;
 }

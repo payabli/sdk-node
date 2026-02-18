@@ -3,6 +3,6 @@
 import type * as Payabli from "../index.js";
 
 export interface OSection {
-    contact_list?: Payabli.CList;
-    own_list?: Payabli.OList;
+    contact_list?: Payabli.CList | undefined;
+    own_list?: Payabli.OList | undefined;
 }

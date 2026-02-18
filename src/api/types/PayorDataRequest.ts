@@ -6,29 +6,29 @@ import type * as Payabli from "../index.js";
  * Customer information. May be required, depending on the paypoint's settings. Required for subscriptions.
  */
 export interface PayorDataRequest {
-    additionalData?: Payabli.AdditionalData;
-    billingAddress1?: Payabli.BillingAddressNullable;
-    billingAddress2?: Payabli.BillingAddressAddtlNullable;
-    billingCity?: Payabli.BillingCityNullable;
-    billingCountry?: Payabli.BillingCountryNullable;
-    billingEmail?: Payabli.Email;
-    billingPhone?: Payabli.PhoneNumber;
-    billingState?: Payabli.BillingStateNullable;
+    additionalData?: Payabli.AdditionalData | undefined;
+    billingAddress1?: Payabli.BillingAddressNullable | undefined;
+    billingAddress2?: Payabli.BillingAddressAddtlNullable | undefined;
+    billingCity?: Payabli.BillingCityNullable | undefined;
+    billingCountry?: Payabli.BillingCountryNullable | undefined;
+    billingEmail?: Payabli.Email | undefined;
+    billingPhone?: Payabli.PhoneNumber | undefined;
+    billingState?: Payabli.BillingStateNullable | undefined;
     /** Customer's billing ZIP code. For Pay In functions, this field supports 5-digit and 9-digit ZIP codes and alphanumeric Canadian postal codes. For example: "37615-1234" or "37615". */
-    billingZip?: Payabli.BillingZip;
+    billingZip?: Payabli.BillingZip | undefined;
     /** Customer's company name. */
-    company?: string;
-    customerId?: Payabli.CustomerId;
-    customerNumber?: Payabli.CustomerNumberNullable;
+    company?: string | undefined;
+    customerId?: Payabli.CustomerId | undefined;
+    customerNumber?: Payabli.CustomerNumberNullable | undefined;
     /** Customer/Payor first name. */
-    firstName?: string;
-    identifierFields?: Payabli.Identifierfields;
+    firstName?: string | undefined;
+    identifierFields?: Payabli.Identifierfields | undefined;
     /** Customer/Payor last name. */
-    lastName?: string;
-    shippingAddress1?: Payabli.Shippingaddress;
-    shippingAddress2?: Payabli.Shippingaddressadditional;
-    shippingCity?: Payabli.Shippingcity;
-    shippingCountry?: Payabli.Shippingcountry;
-    shippingState?: Payabli.Shippingstate;
-    shippingZip?: Payabli.Shippingzip;
+    lastName?: string | undefined;
+    shippingAddress1?: Payabli.Shippingaddress | undefined;
+    shippingAddress2?: Payabli.Shippingaddressadditional | undefined;
+    shippingCity?: Payabli.Shippingcity | undefined;
+    shippingCountry?: Payabli.Shippingcountry | undefined;
+    shippingState?: Payabli.Shippingstate | undefined;
+    shippingZip?: Payabli.Shippingzip | undefined;
 }

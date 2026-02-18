@@ -3,12 +3,12 @@
 import type * as Payabli from "../index.js";
 
 export interface SettingElement {
-    enabled?: Payabli.Enabled;
+    enabled?: Payabli.Enabled | undefined;
     /** Fields to display on the reciept. */
-    fields?: Payabli.DisplayProperty[];
-    order?: Payabli.Order;
+    fields?: Payabli.DisplayProperty[] | undefined;
+    order?: Payabli.Order | undefined;
     /** When `true`, Payabli automatically sends the receipt to the payor email address. */
-    sendAuto?: boolean;
+    sendAuto?: boolean | undefined;
     /** When `true`, you must send the reciept to the payor manually using the [/MoneyIn/sendreceipt/\{transId\}](/developers/api-reference/moneyin/send-receipt-for-transaction) endpoint. */
-    sendManual?: boolean;
+    sendManual?: boolean | undefined;
 }

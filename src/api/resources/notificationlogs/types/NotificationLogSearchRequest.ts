@@ -6,11 +6,11 @@ export interface NotificationLogSearchRequest {
     /** The end date for the search. */
     endDate: string;
     /** The type of notification event to filter by. */
-    notificationEvent?: string;
+    notificationEvent?: string | undefined;
     /** Indicates whether the notification was successful. */
-    succeeded?: boolean;
+    succeeded?: boolean | undefined;
     /** The ID of the organization to filter by. */
-    orgId?: number;
+    orgId?: number | undefined;
     /** The ID of the paypoint to filter by. */
-    paypointId?: number;
+    paypointId?: number | undefined;
 }

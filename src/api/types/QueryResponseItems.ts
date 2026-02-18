@@ -6,8 +6,8 @@ import type * as Payabli from "../index.js";
  * Response for line item queries
  */
 export interface QueryResponseItems {
-    Records?: QueryResponseItems.Records.Item[];
-    Summary?: Payabli.QuerySummary;
+    Records?: QueryResponseItems.Records.Item[] | undefined;
+    Summary?: Payabli.QuerySummary | undefined;
 }
 
 export namespace QueryResponseItems {
@@ -15,14 +15,14 @@ export namespace QueryResponseItems {
 
     export namespace Records {
         export interface Item {
-            LineItem?: Payabli.LineItem;
-            ParentOrgName?: Payabli.OrgParentName;
+            LineItem?: Payabli.LineItem | undefined;
+            ParentOrgName?: Payabli.OrgParentName | undefined;
             /** The paypoint's DBA name. */
-            PaypointDbaname?: Payabli.Dbaname;
+            PaypointDbaname?: Payabli.Dbaname | undefined;
             /** The paypoint's entry name (entrypoint). */
-            PaypointEntryname?: Payabli.Entrypointfield;
+            PaypointEntryname?: Payabli.Entrypointfield | undefined;
             /** the Paypoint's legal name. */
-            PaypointLegalname?: Payabli.Legalname;
+            PaypointLegalname?: Payabli.Legalname | undefined;
         }
     }
 }

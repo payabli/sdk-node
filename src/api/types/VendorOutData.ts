@@ -3,13 +3,13 @@
 import type * as Payabli from "../index.js";
 
 export interface VendorOutData {
-    additionalData?: Payabli.AdditionalData;
+    additionalData?: Payabli.AdditionalData | undefined;
     /** Vendor's address */
-    Address1?: Payabli.AddressNullable;
+    Address1?: Payabli.AddressNullable | undefined;
     /** Additional line for vendor's address. */
-    Address2?: Payabli.AddressAddtlNullable;
+    Address2?: Payabli.AddressAddtlNullable | undefined;
     /** Object containing vendor's bank information. */
-    BillingData?: Payabli.BillingData;
+    BillingData?: Payabli.BillingData | undefined;
     /** Vendor's city. */
     City: string;
     /** Array of objects describing the vendor's contacts. */
@@ -17,36 +17,36 @@ export interface VendorOutData {
     /** Vendor's country. */
     Country: string;
     /** Account number of paypoint in the vendor side. */
-    customerVendorAccount?: string;
+    customerVendorAccount?: string | undefined;
     /** EIN/Tax ID for vendor. In reponses, this field is masked, and looks like: `XXXXX6789`. */
     EIN: string;
     /** Vendor's email address. Required for vCard. */
-    Email?: Payabli.Email;
+    Email?: Payabli.Email | undefined;
     /** Internal identifier for global vendor account. */
-    InternalReferenceId?: number;
-    LocationCode?: Payabli.LocationCode;
-    Mcc?: Payabli.Mcc;
+    InternalReferenceId?: number | undefined;
+    LocationCode?: Payabli.LocationCode | undefined;
+    Mcc?: Payabli.Mcc | undefined;
     /** Primary name for vendor. Required for new vendor. */
     Name1: string;
     /** Secondary name for vendor. */
-    Name2?: string;
-    payeeName1?: Payabli.PayeeName;
-    payeeName2?: Payabli.PayeeName;
-    PaymentMethod?: Payabli.VendorPaymentMethod;
+    Name2?: string | undefined;
+    payeeName1?: Payabli.PayeeName | undefined;
+    payeeName2?: Payabli.PayeeName | undefined;
+    PaymentMethod?: Payabli.VendorPaymentMethod | undefined;
     /** Vendor's phone number */
     Phone: string;
-    remitAddress1?: Payabli.Remitaddress1;
-    remitAddress2?: Payabli.Remitaddress2;
-    remitCity?: Payabli.Remitcity;
-    remitCountry?: Payabli.Remitcountry;
-    remitState?: Payabli.Remitstate;
-    remitZip?: Payabli.Remitzip;
+    remitAddress1?: Payabli.Remitaddress1 | undefined;
+    remitAddress2?: Payabli.Remitaddress2 | undefined;
+    remitCity?: Payabli.Remitcity | undefined;
+    remitCountry?: Payabli.Remitcountry | undefined;
+    remitState?: Payabli.Remitstate | undefined;
+    remitZip?: Payabli.Remitzip | undefined;
     /** Vendor's state. Must be a 2 character state code. */
     State: string;
     /** Payabli identifier for vendor record. Required when `VendorNumber` isn't included. */
-    VendorId?: Payabli.Vendorid;
-    VendorNumber?: Payabli.VendorNumber;
-    VendorStatus?: Payabli.Vendorstatus;
+    VendorId?: Payabli.Vendorid | undefined;
+    VendorNumber?: Payabli.VendorNumber | undefined;
+    VendorStatus?: Payabli.Vendorstatus | undefined;
     /** Vendor's zip code. */
     Zip: string;
 }

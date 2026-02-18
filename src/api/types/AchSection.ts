@@ -3,7 +3,7 @@
 import type * as Payabli from "../index.js";
 
 export interface AchSection {
-    acceptance?: Payabli.AchLinkTypes;
-    fees?: Payabli.BasicTable;
-    price?: Payabli.BasicTable;
+    acceptance?: Payabli.AchLinkTypes | undefined;
+    fees?: Payabli.BasicTable | undefined;
+    price?: Payabli.BasicTable | undefined;
 }

@@ -8,6 +8,6 @@ import type * as Payabli from "../../../index.js";
 export interface PayabliApiResponseGetPaid {
     responseText: Payabli.ResponseText;
     isSuccess: Payabli.IsSuccess;
-    pageIdentifier?: string;
+    pageIdentifier?: string | undefined;
     responseData: Payabli.GetPaidResponseData;
 }

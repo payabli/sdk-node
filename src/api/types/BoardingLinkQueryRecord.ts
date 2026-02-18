@@ -5,15 +5,15 @@ import type * as Payabli from "../index.js";
 export interface BoardingLinkQueryRecord {
     acceptOauth?: Payabli.AcceptOauth | undefined;
     acceptRegister?: Payabli.AcceptRegister | undefined;
-    builderData?: Payabli.BuilderData;
-    entryAttributes?: Payabli.EntryAttributes;
-    id?: number;
+    builderData?: Payabli.BuilderData | undefined;
+    entryAttributes?: Payabli.EntryAttributes | undefined;
+    id?: number | undefined;
     /** Object containing logo file. */
-    logo?: Payabli.FileContent;
-    orgId?: Payabli.Orgid;
-    "pageIdentifier:"?: Payabli.PageIdentifier;
-    recipientEmailNotification?: Payabli.RecipientEmailNotification;
-    referenceName?: Payabli.ReferenceName;
-    referenceTemplateId?: Payabli.ReferenceTemplateId;
-    resumable?: Payabli.Resumable;
+    logo?: Payabli.FileContent | undefined;
+    orgId?: Payabli.Orgid | undefined;
+    "pageIdentifier:"?: Payabli.PageIdentifier | undefined;
+    recipientEmailNotification?: Payabli.RecipientEmailNotification | undefined;
+    referenceName?: Payabli.ReferenceName | undefined;
+    referenceTemplateId?: Payabli.ReferenceTemplateId | undefined;
+    resumable?: Payabli.Resumable | undefined;
 }

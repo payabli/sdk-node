@@ -4,14 +4,14 @@ import type * as Payabli from "../index.js";
 
 export interface MethodElement {
     /** Flag indicating if all allowed payment methods will be pre-selected. */
-    allMethodsChecked?: boolean;
-    enabled?: Payabli.Enabled;
+    allMethodsChecked?: boolean | undefined;
+    enabled?: Payabli.Enabled | undefined;
     /** Header text for section */
-    header?: string;
-    methods?: Payabli.MethodsList;
-    order?: Payabli.Order;
+    header?: string | undefined;
+    methods?: Payabli.MethodsList | undefined;
+    order?: Payabli.Order | undefined;
     /** Settings for wallet payment methods. */
-    settings?: MethodElement.Settings;
+    settings?: MethodElement.Settings | undefined;
 }
 
 export namespace MethodElement {
@@ -19,17 +19,17 @@ export namespace MethodElement {
      * Settings for wallet payment methods.
      */
     export interface Settings {
-        applePay?: Settings.ApplePay;
+        applePay?: Settings.ApplePay | undefined;
     }
 
     export namespace Settings {
         export interface ApplePay {
             /** The Apple Pay button style. See [Apple Pay Button Style](/developers/developer-guides/hosted-payment-page-apple-pay#param-applepay-button-style) for more information. */
-            buttonStyle?: ApplePay.ButtonStyle;
+            buttonStyle?: ApplePay.ButtonStyle | undefined;
             /** The text on Apple Pay button. See [Apple Pay Button Type](/developers/developer-guides/hosted-payment-page-apple-pay#param-applepay-button-type) for more information. */
-            buttonType?: ApplePay.ButtonType;
+            buttonType?: ApplePay.ButtonType | undefined;
             /** The Apple Pay button locale. See [Apple Pay Button Language](/developers/developer-guides/hosted-payment-page-apple-pay#param-applepay-language) for more information. */
-            language?: ApplePay.Language;
+            language?: ApplePay.Language | undefined;
         }
 
         export namespace ApplePay {

@@ -2,11 +2,11 @@
 
 export interface QueryTransactionEvents {
     /** Any data associated to the event received from processor. Contents vary by event type. */
-    EventData?: QueryTransactionEvents.EventData;
+    EventData?: QueryTransactionEvents.EventData | undefined;
     /** Date and time of event. */
-    EventTime?: string;
+    EventTime?: string | undefined;
     /** Event descriptor. See [TransEvent Reference](/guides/pay-in-transevents-reference) for more details. */
-    TransEvent?: string;
+    TransEvent?: string | undefined;
 }
 
 export namespace QueryTransactionEvents {

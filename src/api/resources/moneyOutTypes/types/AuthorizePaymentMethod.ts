@@ -14,17 +14,17 @@ export interface AuthorizePaymentMethod {
     /** Payment method type - "managed", "vcard", "check", or "ach" */
     method: string;
     /** Account holder name for ACH payments. Required when method is "ach" and not using `storedMethodId`. */
-    achHolder?: string;
+    achHolder?: string | undefined;
     /** Bank routing number for ACH payments. Required when method is "ach" and not using `storedMethodId`. */
-    achRouting?: string;
+    achRouting?: string | undefined;
     /** Bank account number for ACH payments. Required when method is "ach" and not using `storedMethodId`. */
-    achAccount?: string;
+    achAccount?: string | undefined;
     /** Account type for ACH payments ("checking" or "savings"). Required when method is "ach" and not using `storedMethodId`. */
-    achAccountType?: string;
-    achCode?: Payabli.AchSecCode;
-    achHolderType?: Payabli.AchHolderType;
+    achAccountType?: string | undefined;
+    achCode?: Payabli.AchSecCode | undefined;
+    achHolderType?: Payabli.AchHolderType | undefined;
     /** ID of the stored ACH payment method. Only applicable when method is `ach`. Use this to reference a previously saved ACH method instead of providing bank details directly. */
-    storedMethodId?: string;
-    initiator?: Payabli.Initiator;
-    storedMethodUsageType?: Payabli.StoredMethodUsageType;
+    storedMethodId?: string | undefined;
+    initiator?: Payabli.Initiator | undefined;
+    storedMethodUsageType?: Payabli.StoredMethodUsageType | undefined;
 }

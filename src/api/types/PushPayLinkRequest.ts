@@ -15,9 +15,9 @@ export namespace PushPayLinkRequest {
          * Payment links and opt-in requests are sent to the customer email address on file, and additional
          * recipients can be specified here.
          */
-        additionalEmails?: string[];
+        additionalEmails?: string[] | undefined;
         /** When `true`, attaches a PDF version of the invoice to the email. */
-        attachFile?: boolean;
+        attachFile?: boolean | undefined;
     }
 
     export interface Sms {

@@ -685,15 +685,10 @@ export class UserClient {
         requestOptions?: UserClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.UserQueryRecord>> {
         const { entry, level } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (entry != null) {
-            _queryParams.entry = entry;
-        }
-
-        if (level != null) {
-            _queryParams.level = level.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            entry,
+            level,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

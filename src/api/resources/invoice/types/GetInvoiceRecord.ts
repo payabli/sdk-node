@@ -7,11 +7,11 @@ export interface GetInvoiceRecord {
     customerId: Payabli.CustomerId;
     paypointId: Payabli.PaypointId;
     invoiceNumber: Payabli.InvoiceNumber;
-    invoiceDate?: Payabli.Datenullable;
-    invoiceDueDate?: Payabli.Datenullable;
-    invoiceSentDate?: Payabli.DatetimeNullable;
-    invoiceEndDate?: Payabli.Datenullable;
-    lastPaymentDate?: Payabli.DatetimeNullable;
+    invoiceDate?: Payabli.Datenullable | undefined;
+    invoiceDueDate?: Payabli.Datenullable | undefined;
+    invoiceSentDate?: Payabli.DatetimeNullable | undefined;
+    invoiceEndDate?: Payabli.Datenullable | undefined;
+    lastPaymentDate?: Payabli.DatetimeNullable | undefined;
     createdAt: Payabli.CreatedAt;
     invoiceStatus: Payabli.Invoicestatus;
     invoiceType: Payabli.InvoiceType;
@@ -19,19 +19,19 @@ export interface GetInvoiceRecord {
     paymentTerms: Payabli.Terms;
     termsConditions: Payabli.TermsConditions | null;
     notes: string | null;
-    tax?: Payabli.Tax;
-    discount?: Payabli.Discount;
+    tax?: Payabli.Tax | undefined;
+    discount?: Payabli.Discount | undefined;
     invoiceAmount: Payabli.InvoiceAmount;
     invoicePaidAmount: Payabli.InvoicePaidAmount;
-    freightAmount?: Payabli.FreightAmount;
-    dutyAmount?: Payabli.DutyAmount;
+    freightAmount?: Payabli.FreightAmount | undefined;
+    dutyAmount?: Payabli.DutyAmount | undefined;
     purchaseOrder: Payabli.PurchaseOrder;
     /** First name of the recipient of the invoice. */
-    firstName?: string;
+    firstName?: string | undefined;
     /** Last name of the recipient of the invoice. */
-    lastName?: string;
+    lastName?: string | undefined;
     /** Company name of the recipient of the invoice. */
-    company?: string;
+    company?: string | undefined;
     shippingAddress1: Payabli.Shippingaddress;
     shippingAddress2: Payabli.Shippingaddressadditional;
     shippingCity: Payabli.Shippingcity;
@@ -45,13 +45,13 @@ export interface GetInvoiceRecord {
     items: Payabli.BillItem[];
     Customer: Payabli.PayorDataResponse;
     paylinkId: Payabli.PaylinkId;
-    billEvents?: Payabli.BillEvents;
+    billEvents?: Payabli.BillEvents | undefined;
     scheduledOptions: Payabli.BillOptions;
     PaypointLegalname: string;
     PaypointDbaname: Payabli.Dbaname;
     PaypointEntryname: Payabli.Entrypointfield;
     ParentOrgName: Payabli.OrgParentName;
-    AdditionalData?: Payabli.AdditionalDataMap;
+    AdditionalData?: Payabli.AdditionalDataMap | undefined;
     DocumentsRef: Payabli.DocumentsRef;
-    externalPaypointID?: Payabli.ExternalPaypointId;
+    externalPaypointID?: Payabli.ExternalPaypointId | undefined;
 }

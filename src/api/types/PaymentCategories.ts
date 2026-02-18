@@ -4,9 +4,9 @@ export interface PaymentCategories {
     /** Price/cost per unit of item or category. */
     amount: number;
     /** Description of item or category */
-    description?: string;
+    description?: string | undefined;
     /** Name of item or category. */
     label: string;
     /** Quantity of item or category */
-    qty?: number;
+    qty?: number | undefined;
 }

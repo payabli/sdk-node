@@ -3,12 +3,12 @@
 import type * as Payabli from "../index.js";
 
 export interface QuerySummary {
-    pageIdentifier?: Payabli.PageIdentifier;
-    pageSize?: Payabli.Pagesize;
+    pageIdentifier?: Payabli.PageIdentifier | undefined;
+    pageSize?: Payabli.Pagesize | undefined;
     /** Total amount for the records. */
-    totalAmount?: number;
+    totalAmount?: number | undefined;
     /** Total net amount for the records. */
-    totalNetAmount?: number;
-    totalPages?: Payabli.Totalrecords;
-    totalRecords?: Payabli.Totalrecords;
+    totalNetAmount?: number | undefined;
+    totalPages?: Payabli.Totalrecords | undefined;
+    totalRecords?: Payabli.Totalrecords | undefined;
 }

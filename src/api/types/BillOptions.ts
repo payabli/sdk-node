@@ -2,7 +2,7 @@
 
 export interface BillOptions {
     /** Flag to indicate if the scheduled invoice includes a payment link. */
-    includePaylink?: boolean;
+    includePaylink?: boolean | undefined;
     /** Flag to indicate if the scheduled invoice includes a PDF version of invoice */
-    includePdf?: boolean;
+    includePdf?: boolean | undefined;
 }

@@ -7,11 +7,11 @@ import type * as Payabli from "../index.js";
  */
 export interface TemplateData {
     /** The ID of the organization the template belongs to. */
-    orgId?: Payabli.Orgid;
-    pricingId?: number;
+    orgId?: Payabli.Orgid | undefined;
+    pricingId?: number | undefined;
     templateCode?: Payabli.TemplateCode | undefined;
-    templateContent?: Payabli.TemplateContent;
+    templateContent?: Payabli.TemplateContent | undefined;
     /** A description for the template. */
-    templateDescription?: string;
-    templateName?: Payabli.TemplateName;
+    templateDescription?: string | undefined;
+    templateName?: Payabli.TemplateName | undefined;
 }

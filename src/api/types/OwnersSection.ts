@@ -6,31 +6,31 @@ import type * as Payabli from "../index.js";
  * Information about a business owner.
  */
 export interface OwnersSection {
-    contactEmail?: Payabli.TemplateElement;
-    contactName?: Payabli.TemplateElement;
-    contactPhone?: Payabli.TemplateElement;
-    contactTitle?: Payabli.TemplateElement;
+    contactEmail?: Payabli.TemplateElement | undefined;
+    contactName?: Payabli.TemplateElement | undefined;
+    contactPhone?: Payabli.TemplateElement | undefined;
+    contactTitle?: Payabli.TemplateElement | undefined;
     /** Offer add more contacts */
-    multipleContacts?: boolean;
+    multipleContacts?: boolean | undefined;
     /** offer add more owners */
-    multipleOwners?: boolean;
-    oaddress?: Payabli.TemplateElement;
-    ocity?: Payabli.TemplateElement;
-    ocountry?: Payabli.TemplateElement;
-    odriverstate?: Payabli.TemplateElement;
-    ostate?: Payabli.TemplateElement;
-    ownerdob?: Payabli.TemplateElement;
-    ownerdriver?: Payabli.TemplateElement;
-    owneremail?: Payabli.TemplateElement;
-    ownername?: Payabli.TemplateElement;
-    ownerpercent?: Payabli.TemplateElement;
-    ownerphone1?: Payabli.TemplateElement;
-    ownerphone2?: Payabli.TemplateElement;
-    ownerssn?: Payabli.TemplateElement;
-    ownertitle?: Payabli.TemplateElement;
-    ozip?: Payabli.TemplateElement;
-    subFooter?: Payabli.SubFooter;
-    subHeader?: Payabli.SubHeader;
+    multipleOwners?: boolean | undefined;
+    oaddress?: Payabli.TemplateElement | undefined;
+    ocity?: Payabli.TemplateElement | undefined;
+    ocountry?: Payabli.TemplateElement | undefined;
+    odriverstate?: Payabli.TemplateElement | undefined;
+    ostate?: Payabli.TemplateElement | undefined;
+    ownerdob?: Payabli.TemplateElement | undefined;
+    ownerdriver?: Payabli.TemplateElement | undefined;
+    owneremail?: Payabli.TemplateElement | undefined;
+    ownername?: Payabli.TemplateElement | undefined;
+    ownerpercent?: Payabli.TemplateElement | undefined;
+    ownerphone1?: Payabli.TemplateElement | undefined;
+    ownerphone2?: Payabli.TemplateElement | undefined;
+    ownerssn?: Payabli.TemplateElement | undefined;
+    ownertitle?: Payabli.TemplateElement | undefined;
+    ozip?: Payabli.TemplateElement | undefined;
+    subFooter?: Payabli.SubFooter | undefined;
+    subHeader?: Payabli.SubHeader | undefined;
     visible?: Payabli.Visible | undefined;
-    additionalData?: Payabli.TemplateAdditionalDataSection;
+    additionalData?: Payabli.TemplateAdditionalDataSection | undefined;
 }

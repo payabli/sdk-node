@@ -6,22 +6,22 @@ import type * as Payabli from "../index.js";
  * Information about the application's signer.
  */
 export interface SignerDataRequest {
-    name?: Payabli.SignerName;
-    ssn?: Payabli.SignerSsn;
-    dob?: Payabli.SignerDob;
-    phone?: Payabli.SignerPhone;
+    name?: Payabli.SignerName | undefined;
+    ssn?: Payabli.SignerSsn | undefined;
+    dob?: Payabli.SignerDob | undefined;
+    phone?: Payabli.SignerPhone | undefined;
     /** The signer's email address. */
-    email?: Payabli.Email;
-    address?: Payabli.Signeraddress;
-    address1?: Payabli.SignerAddress1;
-    city?: Payabli.SignerCity;
-    country?: Payabli.SignerCountry;
-    state?: Payabli.SignerState;
-    zip?: Payabli.SignerZip;
+    email?: Payabli.Email | undefined;
+    address?: Payabli.Signeraddress | undefined;
+    address1?: Payabli.SignerAddress1 | undefined;
+    city?: Payabli.SignerCity | undefined;
+    country?: Payabli.SignerCountry | undefined;
+    state?: Payabli.SignerState | undefined;
+    zip?: Payabli.SignerZip | undefined;
     acceptance?: Payabli.SignerAcceptance | undefined;
-    signedDocumentReference?: Payabli.SignedDocumentReference;
+    signedDocumentReference?: Payabli.SignedDocumentReference | undefined;
     pciAttestation?: Payabli.PciAttestation | undefined;
-    attestationDate?: Payabli.AttestationDate;
-    additionalData?: Payabli.AdditionalDataString;
-    signDate?: Payabli.SignDate;
+    attestationDate?: Payabli.AttestationDate | undefined;
+    additionalData?: Payabli.AdditionalDataString | undefined;
+    signDate?: Payabli.SignDate | undefined;
 }

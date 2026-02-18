@@ -7,5 +7,5 @@ export interface CapturePaymentDetails {
      */
     totalAmount: number;
     /** Service fee to capture for the transaction. */
-    serviceFee?: number;
+    serviceFee?: number | undefined;
 }

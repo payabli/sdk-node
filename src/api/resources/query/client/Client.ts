@@ -57,27 +57,13 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryBatchesDetailResponse>> {
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -162,27 +148,13 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryResponseSettlements>> {
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -272,27 +244,13 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryBatchesResponse>> {
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -377,27 +335,13 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryBatchesResponse>> {
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -482,27 +426,13 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryBatchesOutResponse>> {
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -587,27 +517,13 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryBatchesOutResponse>> {
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -692,27 +608,13 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryChargebacksResponse>> {
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -797,27 +699,13 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryChargebacksResponse>> {
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -907,27 +795,13 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryCustomerResponse>> {
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1012,27 +886,13 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryCustomerResponse>> {
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1117,23 +977,12 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryResponseNotificationReports>> {
         const { fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1226,23 +1075,12 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryResponseNotificationReports>> {
         const { fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1335,23 +1173,12 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryResponseNotifications>> {
         const { fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1436,23 +1263,12 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryResponseNotifications>> {
         const { fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1542,27 +1358,13 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.ListOrganizationsResponse>> {
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1647,27 +1449,13 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryPayoutTransaction>> {
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1752,27 +1540,13 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryPayoutTransaction>> {
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1857,27 +1631,13 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryEntrypointResponse>> {
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1962,27 +1722,13 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryResponseSettlements>> {
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -2067,27 +1813,13 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryResponseSettlements>> {
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -2177,27 +1909,13 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QuerySubscriptionResponse>> {
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -2282,27 +2000,13 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QuerySubscriptionResponse>> {
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -2399,27 +2103,13 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryResponseTransactions>> {
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -2518,27 +2208,13 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryResponseTransactions>> {
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -2629,27 +2305,13 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryTransferDetailResponse>> {
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -2738,27 +2400,13 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.TransferQueryResponse>> {
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(
@@ -2835,27 +2483,13 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.TransferQueryResponse>> {
         const { orgId, exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(
@@ -2934,23 +2568,12 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.TransferOutQueryResponse>> {
         const { fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(
@@ -3034,23 +2657,12 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.TransferOutQueryResponse>> {
         const { fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(
@@ -3134,23 +2746,12 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.TransferOutDetailQueryResponse>> {
         const { fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(
@@ -3238,23 +2839,12 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryUserResponse>> {
         const { fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -3339,23 +2929,12 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryUserResponse>> {
         const { fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -3440,27 +3019,13 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryResponseVendors>> {
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -3545,27 +3110,13 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryResponseVendors>> {
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -3650,27 +3201,13 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.VCardQueryResponse>> {
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -3750,27 +3287,13 @@ export class QueryClient {
         requestOptions?: QueryClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.VCardQueryResponse>> {
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

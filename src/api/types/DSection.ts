@@ -3,6 +3,6 @@
 import type * as Payabli from "../index.js";
 
 export interface DSection {
-    depositAccount?: Payabli.Bnk;
-    withdrawalAccount?: Payabli.Bnk;
+    depositAccount?: Payabli.Bnk | undefined;
+    withdrawalAccount?: Payabli.Bnk | undefined;
 }

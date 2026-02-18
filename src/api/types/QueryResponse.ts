@@ -4,6 +4,6 @@
  *
  */
 export interface QueryResponse {
-    records?: unknown[];
-    summary?: string;
+    records?: unknown[] | undefined;
+    summary?: string | undefined;
 }

@@ -3,11 +3,11 @@
 import type * as Payabli from "../../../index.js";
 
 export interface EditBillResponse {
-    responseCode?: Payabli.Responsecode;
-    pageIdentifier?: Payabli.PageIdentifier;
-    roomId?: Payabli.RoomIdNotInUse;
-    isSuccess?: Payabli.IsSuccess;
+    responseCode?: Payabli.Responsecode | undefined;
+    pageIdentifier?: Payabli.PageIdentifier | undefined;
+    roomId?: Payabli.RoomIdNotInUse | undefined;
+    isSuccess?: Payabli.IsSuccess | undefined;
     responseText: Payabli.ResponseText;
     /** If `isSuccess` = true, this contains the bill identifier. If `isSuccess` = false, this contains the reason for the error. */
-    responseData?: number;
+    responseData?: number | undefined;
 }

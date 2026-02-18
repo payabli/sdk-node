@@ -3,8 +3,8 @@
 import type * as Payabli from "../index.js";
 
 export interface CList {
-    contactEmail?: Payabli.LinkData;
-    contactName?: Payabli.LinkData;
-    contactPhone?: Payabli.LinkData;
-    contactTitle?: Payabli.LinkData;
+    contactEmail?: Payabli.LinkData | undefined;
+    contactName?: Payabli.LinkData | undefined;
+    contactPhone?: Payabli.LinkData | undefined;
+    contactTitle?: Payabli.LinkData | undefined;
 }

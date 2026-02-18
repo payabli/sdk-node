@@ -3,36 +3,36 @@
 import type * as Payabli from "../index.js";
 
 export interface BillQueryResponseSummary {
-    pageidentifier?: Payabli.PageIdentifier;
-    pageSize?: Payabli.Pagesize;
-    total2approval?: number;
-    totalactive?: number;
+    pageidentifier?: Payabli.PageIdentifier | undefined;
+    pageSize?: Payabli.Pagesize | undefined;
+    total2approval?: number | undefined;
+    totalactive?: number | undefined;
     /** Total amount of bills in response. */
-    totalAmount?: number;
-    totalamount2approval?: number;
-    totalamountactive?: number;
+    totalAmount?: number | undefined;
+    totalamount2approval?: number | undefined;
+    totalamountactive?: number | undefined;
     /** The total amount of approved bills. */
-    totalamountapproved?: number;
-    totalamountcancel?: number;
+    totalamountapproved?: number | undefined;
+    totalamountcancel?: number | undefined;
     /** The total amount of disapproved bills. */
-    totalamountdisapproved?: number;
-    totalamountintransit?: number;
+    totalamountdisapproved?: number | undefined;
+    totalamountintransit?: number | undefined;
     /** The total amount of bills that are overdue. */
-    totalamountoverdue?: number;
+    totalamountoverdue?: number | undefined;
     /** The total amount of paid bills. */
-    totalamountpaid?: number;
-    totalamountsent2approval?: number;
+    totalamountpaid?: number | undefined;
+    totalamountsent2approval?: number | undefined;
     /** The total number of bills that were approved. */
-    totalapproved?: number;
-    totalcancel?: number;
+    totalapproved?: number | undefined;
+    totalcancel?: number | undefined;
     /** The number of bills that were disapproved. */
-    totaldisapproved?: number;
-    totalintransit?: number;
+    totaldisapproved?: number | undefined;
+    totalintransit?: number | undefined;
     /** The number of bills that are overdue. */
-    totaloverdue?: number;
-    totalPages?: Payabli.Totalpages;
+    totaloverdue?: number | undefined;
+    totalPages?: Payabli.Totalpages | undefined;
     /** The total number of paid bills. */
-    totalpaid?: number;
-    totalRecords?: Payabli.Totalrecords;
-    totalsent2approval?: number;
+    totalpaid?: number | undefined;
+    totalRecords?: Payabli.Totalrecords | undefined;
+    totalsent2approval?: number | undefined;
 }

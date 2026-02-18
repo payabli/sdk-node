@@ -83,16 +83,14 @@ export class InvoiceClient {
         requestOptions?: InvoiceClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.InvoiceResponseWithoutData>> {
         const { forceCustomerCreation, idempotencyKey, body: _body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (forceCustomerCreation != null) {
-            _queryParams.forceCustomerCreation = forceCustomerCreation.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            forceCustomerCreation,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey != null ? idempotencyKey : undefined }),
+            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -358,11 +356,9 @@ export class InvoiceClient {
         requestOptions?: InvoiceClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.InvoiceResponseWithoutData>> {
         const { forceCustomerCreation, body: _body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (forceCustomerCreation != null) {
-            _queryParams.forceCustomerCreation = forceCustomerCreation.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            forceCustomerCreation,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -463,11 +459,9 @@ export class InvoiceClient {
         requestOptions?: InvoiceClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.FileContent>> {
         const { returnObject } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (returnObject != null) {
-            _queryParams.returnObject = returnObject.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            returnObject,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -709,27 +703,13 @@ export class InvoiceClient {
         requestOptions?: InvoiceClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryInvoiceResponse>> {
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -814,27 +794,13 @@ export class InvoiceClient {
         requestOptions?: InvoiceClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.QueryInvoiceResponse>> {
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (exportFormat != null) {
-            _queryParams.exportFormat = exportFormat;
-        }
-
-        if (fromRecord != null) {
-            _queryParams.fromRecord = fromRecord.toString();
-        }
-
-        if (limitRecord != null) {
-            _queryParams.limitRecord = limitRecord.toString();
-        }
-
-        if (parameters != null) {
-            _queryParams.parameters = toJson(parameters);
-        }
-
-        if (sortBy != null) {
-            _queryParams.sortBy = sortBy;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -918,15 +884,10 @@ export class InvoiceClient {
         requestOptions?: InvoiceClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.SendInvoiceResponse>> {
         const { attachfile, mail2 } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (attachfile != null) {
-            _queryParams.attachfile = attachfile.toString();
-        }
-
-        if (mail2 != null) {
-            _queryParams.mail2 = mail2;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            attachfile,
+            mail2,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

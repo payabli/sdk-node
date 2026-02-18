@@ -4,9 +4,9 @@ import type * as Payabli from "../../../index.js";
 
 export interface InvoiceDataRequest {
     /** Object describing the customer/payor. Required for POST requests. Which fields are required depends on the paypoint's custom identifier settings. */
-    customerData?: Payabli.PayorDataRequest;
+    customerData?: Payabli.PayorDataRequest | undefined;
     /** Object describing the invoice. Required for POST requests. */
-    invoiceData?: Payabli.BillData;
+    invoiceData?: Payabli.BillData | undefined;
     /** Object with options for scheduled invoices. */
-    scheduledOptions?: Payabli.BillOptions;
+    scheduledOptions?: Payabli.BillOptions | undefined;
 }

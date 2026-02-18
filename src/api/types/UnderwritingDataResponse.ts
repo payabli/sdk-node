@@ -6,6 +6,6 @@ import type * as Payabli from "../index.js";
  * Underwriting data is used to manage risk orchestration in the boarding application lifecycle.
  */
 export interface UnderwritingDataResponse {
-    method?: Payabli.UnderWritingMethod;
-    policyId?: Payabli.PolicyId;
+    method?: Payabli.UnderWritingMethod | undefined;
+    policyId?: Payabli.PolicyId | undefined;
 }

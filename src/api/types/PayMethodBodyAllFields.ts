@@ -8,20 +8,20 @@ import type * as Payabli from "../index.js";
 export interface PayMethodBodyAllFields {
     /** Bank account number. This field is **required** when method = 'ach'. */
     achAccount: Payabli.Achaccount;
-    achAccountType?: Payabli.Achaccounttype;
-    achCode?: Payabli.AchSecCode;
+    achAccountType?: Payabli.Achaccounttype | undefined;
+    achCode?: Payabli.AchSecCode | undefined;
     achHolder: Payabli.AchHolder;
     /** ABA/routing number of Bank account. This field is **required** when method = 'ach'. */
     achRouting: Payabli.Achrouting;
-    cardcvv?: Payabli.Cardcvv;
-    cardexp?: Payabli.Cardexp;
-    cardHolder?: Payabli.Cardholder;
-    cardnumber?: Payabli.Cardnumber;
-    cardzip?: Payabli.Cardzip;
-    device?: Payabli.Device;
-    initator?: Payabli.Initiator;
-    method?: Payabli.Methodall;
+    cardcvv?: Payabli.Cardcvv | undefined;
+    cardexp?: Payabli.Cardexp | undefined;
+    cardHolder?: Payabli.Cardholder | undefined;
+    cardnumber?: Payabli.Cardnumber | undefined;
+    cardzip?: Payabli.Cardzip | undefined;
+    device?: Payabli.Device | undefined;
+    initator?: Payabli.Initiator | undefined;
+    method?: Payabli.Methodall | undefined;
     saveIfSuccess?: Payabli.SaveIfSuccess | undefined;
-    storedMethodId?: Payabli.Storedmethodid;
-    storedMethodUsageType?: Payabli.StoredMethodUsageType;
+    storedMethodId?: Payabli.Storedmethodid | undefined;
+    storedMethodUsageType?: Payabli.StoredMethodUsageType | undefined;
 }

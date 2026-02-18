@@ -126,7 +126,7 @@ import type * as Payabli from "../index.js";
  */
 export interface BillQueryResponse {
     /** Summary statistics for the bill query response. */
-    Summary?: Payabli.BillQueryResponseSummary;
+    Summary?: Payabli.BillQueryResponseSummary | undefined;
     /** Array of bill records returned by the query. */
-    Records?: Payabli.BillQueryRecord2[];
+    Records?: Payabli.BillQueryRecord2[] | undefined;
 }

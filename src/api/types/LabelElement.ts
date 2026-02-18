@@ -3,8 +3,8 @@
 import type * as Payabli from "../index.js";
 
 export interface LabelElement {
-    enabled?: Payabli.Enabled;
+    enabled?: Payabli.Enabled | undefined;
     /** Label to display for section or element */
-    label?: string;
-    order?: Payabli.Order;
+    label?: string | undefined;
+    order?: Payabli.Order | undefined;
 }

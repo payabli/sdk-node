@@ -3,7 +3,7 @@
 import type * as Payabli from "../index.js";
 
 export interface AchPassThroughSection {
-    multiTier?: boolean;
-    tiers?: Payabli.AchTypesPass[];
+    multiTier?: boolean | undefined;
+    tiers?: Payabli.AchTypesPass[] | undefined;
     visible?: Payabli.Visible | undefined;
 }

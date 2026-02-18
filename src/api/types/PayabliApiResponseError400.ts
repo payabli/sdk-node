@@ -4,14 +4,14 @@ import type * as Payabli from "../index.js";
 
 export interface PayabliApiResponseError400 {
     /** Boolean indicating whether the operation was successful. A `true` value indicates success. A `false` value indicates failure. */
-    isSuccess?: boolean;
-    pageidentifier?: Payabli.PageIdentifier;
+    isSuccess?: boolean | undefined;
+    pageidentifier?: Payabli.PageIdentifier | undefined;
     /** A code that indicates the operation's failure reason. See [API Response Codes](https://docs.payabli.com/api-reference/api-responses) for a full reference. */
-    responseCode?: number;
+    responseCode?: number | undefined;
     /** Describes the reason for a failed operation and how to resolve it. */
-    responseData?: PayabliApiResponseError400.ResponseData;
+    responseData?: PayabliApiResponseError400.ResponseData | undefined;
     /** Response text for operation: 'Success' or 'Declined'. */
-    responseText?: string;
+    responseText?: string | undefined;
 }
 
 export namespace PayabliApiResponseError400 {
@@ -20,8 +20,8 @@ export namespace PayabliApiResponseError400 {
      */
     export interface ResponseData {
         /** Describes the reason the operation failed. */
-        explanation?: string;
+        explanation?: string | undefined;
         /** Describes how to resolve the error. */
-        todoAction?: string;
+        todoAction?: string | undefined;
     }
 }

@@ -31,13 +31,13 @@ export namespace AddPaymentMethodDomainRequest {
      * Apple Pay configuration information.
      */
     export interface ApplePay {
-        isEnabled?: Payabli.IsEnabled;
+        isEnabled?: Payabli.IsEnabled | undefined;
     }
 
     /**
      * Google Pay configuration information.
      */
     export interface GooglePay {
-        isEnabled?: Payabli.IsEnabled;
+        isEnabled?: Payabli.IsEnabled | undefined;
     }
 }

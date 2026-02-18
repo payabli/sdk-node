@@ -3,10 +3,10 @@
 import type * as Payabli from "../index.js";
 
 export interface InvoiceElement {
-    enabled?: Payabli.Enabled;
+    enabled?: Payabli.Enabled | undefined;
     /** Link to invoice */
-    invoiceLink?: Payabli.LabelElement;
-    order?: Payabli.Order;
+    invoiceLink?: Payabli.LabelElement | undefined;
+    order?: Payabli.Order | undefined;
     /** Link to view invoice details */
-    viewInvoiceDetails?: Payabli.LabelElement;
+    viewInvoiceDetails?: Payabli.LabelElement | undefined;
 }

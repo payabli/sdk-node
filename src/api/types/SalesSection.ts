@@ -3,6 +3,6 @@
 import type * as Payabli from "../index.js";
 
 export interface SalesSection {
-    salesCode?: Payabli.SalesCode;
-    salesCRM?: string;
+    salesCode?: Payabli.SalesCode | undefined;
+    salesCRM?: string | undefined;
 }

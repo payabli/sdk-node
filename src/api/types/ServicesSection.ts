@@ -6,9 +6,9 @@ import type * as Payabli from "../index.js";
  * Details about pricing and payment services for a business.
  */
 export interface ServicesSection {
-    ach?: Payabli.AchService;
-    card?: Payabli.CardService;
-    subFooter?: Payabli.SubFooter;
-    subHeader?: Payabli.SubHeader;
+    ach?: Payabli.AchService | undefined;
+    card?: Payabli.CardService | undefined;
+    subFooter?: Payabli.SubFooter | undefined;
+    subHeader?: Payabli.SubHeader | undefined;
     visible?: Payabli.Visible | undefined;
 }

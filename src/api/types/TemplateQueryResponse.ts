@@ -3,6 +3,6 @@
 import type * as Payabli from "../index.js";
 
 export interface TemplateQueryResponse {
-    records?: Payabli.TemplateQueryRecord[];
-    summary?: Payabli.QuerySummary;
+    records?: Payabli.TemplateQueryRecord[] | undefined;
+    summary?: Payabli.QuerySummary | undefined;
 }

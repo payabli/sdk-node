@@ -58,7 +58,7 @@ export class CloudClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey != null ? idempotencyKey : undefined }),
+            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -222,11 +222,9 @@ export class CloudClient {
         requestOptions?: CloudClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.CloudQueryApiResponse>> {
         const { forceRefresh } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (forceRefresh != null) {
-            _queryParams.forceRefresh = forceRefresh.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            forceRefresh,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

@@ -3,7 +3,7 @@
 import type * as Payabli from "../index.js";
 
 export interface AmountElement {
-    categories?: Payabli.PayCategory[];
-    enabled?: Payabli.Enabled;
-    order?: Payabli.Order;
+    categories?: Payabli.PayCategory[] | undefined;
+    enabled?: Payabli.Enabled | undefined;
+    order?: Payabli.Order | undefined;
 }

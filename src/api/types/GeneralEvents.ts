@@ -4,13 +4,13 @@ import type * as Payabli from "../index.js";
 
 export interface GeneralEvents {
     /** Event description. */
-    description?: string;
+    description?: string | undefined;
     /** Event timestamp, in UTC. */
-    eventTime?: string;
+    eventTime?: string | undefined;
     /** Extra data. */
-    extraData?: Record<string, unknown>;
+    extraData?: Record<string, unknown> | undefined;
     /** Reference data. */
-    refData?: string;
+    refData?: string | undefined;
     /** The event source. */
-    source?: Payabli.Source;
+    source?: Payabli.Source | undefined;
 }

@@ -4,9 +4,9 @@ import type * as Payabli from "../index.js";
 
 export interface PageElement {
     /** Page description in header */
-    description?: string;
-    enabled?: Payabli.Enabled;
+    description?: string | undefined;
+    enabled?: Payabli.Enabled | undefined;
     /** Page header */
-    header?: string;
-    order?: Payabli.Order;
+    header?: string | undefined;
+    order?: Payabli.Order | undefined;
 }

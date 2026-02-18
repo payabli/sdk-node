@@ -4,18 +4,18 @@
  * Object containing vendor's bank information
  */
 export interface VendorResponseBillingData {
-    id?: number;
-    accountId?: string;
-    nickname?: string;
-    bankName?: string;
-    routingAccount?: string;
-    accountNumber?: string;
-    typeAccount?: string;
-    bankAccountHolderName?: string;
-    bankAccountHolderType?: string;
-    bankAccountFunction?: number;
-    verified?: boolean;
-    status?: number;
-    services?: unknown[];
-    default?: boolean;
+    id?: number | undefined;
+    accountId?: string | undefined;
+    nickname?: string | undefined;
+    bankName?: string | undefined;
+    routingAccount?: string | undefined;
+    accountNumber?: string | undefined;
+    typeAccount?: string | undefined;
+    bankAccountHolderName?: string | undefined;
+    bankAccountHolderType?: string | undefined;
+    bankAccountFunction?: number | undefined;
+    verified?: boolean | undefined;
+    status?: number | undefined;
+    services?: unknown[] | undefined;
+    default?: boolean | undefined;
 }

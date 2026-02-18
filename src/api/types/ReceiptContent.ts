@@ -7,21 +7,21 @@ import type * as Payabli from "../index.js";
  */
 export interface ReceiptContent {
     /** Section amount of payment receipt */
-    amount?: Payabli.Element;
+    amount?: Payabli.Element | undefined;
     /** Section contactUs of payment receipt */
-    contactUs?: Payabli.Element;
+    contactUs?: Payabli.Element | undefined;
     /** Section payment details of payment receipt */
-    details?: Payabli.Element;
+    details?: Payabli.Element | undefined;
     /** Section logo of payment receipt */
-    logo?: Payabli.Element;
+    logo?: Payabli.Element | undefined;
     /** Section message of payment receipt */
-    messageBeforeButton?: Payabli.LabelElement;
+    messageBeforeButton?: Payabli.LabelElement | undefined;
     /** Section page of payment receipt */
-    page?: Payabli.PageElement;
+    page?: Payabli.PageElement | undefined;
     /** Section payment button of payment receipt */
-    paymentButton?: Payabli.LabelElement;
+    paymentButton?: Payabli.LabelElement | undefined;
     /** Section payment information of payment receipt */
-    paymentInformation?: Payabli.Element;
+    paymentInformation?: Payabli.Element | undefined;
     /** The receipt's settings. */
-    settings?: Payabli.SettingElement;
+    settings?: Payabli.SettingElement | undefined;
 }

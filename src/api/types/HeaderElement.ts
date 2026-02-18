@@ -3,8 +3,8 @@
 import type * as Payabli from "../index.js";
 
 export interface HeaderElement {
-    enabled?: Payabli.Enabled;
+    enabled?: Payabli.Enabled | undefined;
     /** Header text for section */
-    header?: string;
-    order?: Payabli.Order;
+    header?: string | undefined;
+    order?: Payabli.Order | undefined;
 }

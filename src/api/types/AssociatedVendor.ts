@@ -3,59 +3,59 @@
 import type * as Payabli from "../index.js";
 
 export interface AssociatedVendor {
-    VendorNumber?: Payabli.VendorNumber;
+    VendorNumber?: Payabli.VendorNumber | undefined;
     /** Primary name for vendor. */
-    Name1?: string;
+    Name1?: string | undefined;
     /** Secondary name for vendor. */
-    Name2?: string;
-    EIN?: Payabli.Ein;
+    Name2?: string | undefined;
+    EIN?: Payabli.Ein | undefined;
     /** Vendor's phone number. */
-    Phone?: string;
+    Phone?: string | undefined;
     /** Vendor's email address. */
-    Email?: Payabli.Email;
+    Email?: Payabli.Email | undefined;
     /** Vendor's address. */
-    Address1?: string;
+    Address1?: string | undefined;
     /** Additional line for vendor's address. */
-    Address2?: string;
+    Address2?: string | undefined;
     /** Vendor's city. */
-    City?: string;
+    City?: string | undefined;
     /** Vendor's state. */
-    State?: string;
+    State?: string | undefined;
     /** Vendor's postal code. */
-    Zip?: string;
+    Zip?: string | undefined;
     /** Vendor's country. */
-    Country?: string;
-    Mcc?: Payabli.Mcc;
-    LocationCode?: Payabli.LocationCode;
+    Country?: string | undefined;
+    Mcc?: Payabli.Mcc | undefined;
+    LocationCode?: Payabli.LocationCode | undefined;
     /** Array of objects describing the vendor's contacts. */
-    Contacts?: Payabli.Contacts[];
-    BillingData?: Payabli.BillingDataResponse;
-    PaymentMethod?: string;
-    VendorStatus?: Payabli.Vendorstatus;
-    VendorId?: number;
+    Contacts?: Payabli.Contacts[] | undefined;
+    BillingData?: Payabli.BillingDataResponse | undefined;
+    PaymentMethod?: string | undefined;
+    VendorStatus?: Payabli.Vendorstatus | undefined;
+    VendorId?: number | undefined;
     EnrollmentStatus?: Payabli.EnrollmentStatus | undefined;
-    Summary?: Payabli.VendorSummary;
+    Summary?: Payabli.VendorSummary | undefined;
     /** The paypoint's legal name. */
-    PaypointLegalname?: Payabli.Legalname;
+    PaypointLegalname?: Payabli.Legalname | undefined;
     /** The paypoint's DBA name. */
-    PaypointDbaname?: Payabli.Dbaname;
+    PaypointDbaname?: Payabli.Dbaname | undefined;
     /** Paypoint's entryname. */
-    PaypointEntryname?: Payabli.Entrypointfield;
-    ParentOrgName?: Payabli.OrgParentName;
-    CreatedDate?: Payabli.CreatedAt;
+    PaypointEntryname?: Payabli.Entrypointfield | undefined;
+    ParentOrgName?: Payabli.OrgParentName | undefined;
+    CreatedDate?: Payabli.CreatedAt | undefined;
     LastUpdated?: Payabli.LastModified | undefined;
-    remitAddress1?: Payabli.Remitaddress1;
-    remitAddress2?: Payabli.Remitaddress2;
-    remitCity?: Payabli.Remitcity;
-    remitState?: Payabli.Remitstate;
-    remitZip?: Payabli.Remitzip;
-    remitCountry?: Payabli.Remitcountry;
-    payeeName1?: Payabli.PayeeName;
-    payeeName2?: Payabli.PayeeName;
-    customField1?: string;
-    customField2?: string;
-    customerVendorAccount?: string;
-    InternalReferenceId?: Payabli.InternalReferenceId;
-    additionalData?: Payabli.AdditionalData;
-    externalPaypointID?: string;
+    remitAddress1?: Payabli.Remitaddress1 | undefined;
+    remitAddress2?: Payabli.Remitaddress2 | undefined;
+    remitCity?: Payabli.Remitcity | undefined;
+    remitState?: Payabli.Remitstate | undefined;
+    remitZip?: Payabli.Remitzip | undefined;
+    remitCountry?: Payabli.Remitcountry | undefined;
+    payeeName1?: Payabli.PayeeName | undefined;
+    payeeName2?: Payabli.PayeeName | undefined;
+    customField1?: string | undefined;
+    customField2?: string | undefined;
+    customerVendorAccount?: string | undefined;
+    InternalReferenceId?: Payabli.InternalReferenceId | undefined;
+    additionalData?: Payabli.AdditionalData | undefined;
+    externalPaypointID?: string | undefined;
 }

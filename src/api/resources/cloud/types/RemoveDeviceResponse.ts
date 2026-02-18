@@ -3,10 +3,10 @@
 import type * as Payabli from "../../../index.js";
 
 export interface RemoveDeviceResponse extends Payabli.PayabliApiResponseGeneric2Part {
-    pageIdentifier?: Payabli.PageIdentifier;
+    pageIdentifier?: Payabli.PageIdentifier | undefined;
     /**
      * If `isSuccess` = true, this contains the device identifier.
      * If `isSuccess` = false, this contains the reason for the error.
      */
-    responseData?: string;
+    responseData?: string | undefined;
 }

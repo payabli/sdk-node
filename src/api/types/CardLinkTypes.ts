@@ -3,8 +3,8 @@
 import type * as Payabli from "../index.js";
 
 export interface CardLinkTypes {
-    amex?: Payabli.LinkData;
-    discover?: Payabli.LinkData;
-    mastercard?: Payabli.LinkData;
-    visa?: Payabli.LinkData;
+    amex?: Payabli.LinkData | undefined;
+    discover?: Payabli.LinkData | undefined;
+    mastercard?: Payabli.LinkData | undefined;
+    visa?: Payabli.LinkData | undefined;
 }

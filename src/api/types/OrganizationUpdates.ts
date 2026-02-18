@@ -3,6 +3,6 @@
 import type * as Payabli from "../index.js";
 
 export interface OrganizationUpdates {
-    cascade?: Payabli.WalletCascade;
-    isEnabled?: Payabli.WalletIsEnabled;
+    cascade?: Payabli.WalletCascade | undefined;
+    isEnabled?: Payabli.WalletIsEnabled | undefined;
 }

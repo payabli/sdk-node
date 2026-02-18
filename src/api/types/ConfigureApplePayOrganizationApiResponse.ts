@@ -3,9 +3,9 @@
 import type * as Payabli from "../index.js";
 
 export interface ConfigureApplePayOrganizationApiResponse {
-    isSuccess?: Payabli.IsSuccess;
-    pageIdentifier?: Payabli.PageIdentifier;
-    responseCode?: Payabli.Responsecode;
-    responseData?: Payabli.ApplePayOrganizationUpdateData;
+    isSuccess?: Payabli.IsSuccess | undefined;
+    pageIdentifier?: Payabli.PageIdentifier | undefined;
+    responseCode?: Payabli.Responsecode | undefined;
+    responseData?: Payabli.ApplePayOrganizationUpdateData | undefined;
     responseText: Payabli.ResponseText;
 }

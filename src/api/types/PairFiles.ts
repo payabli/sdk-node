@@ -2,9 +2,9 @@
 
 export interface PairFiles {
     /** Original filename */
-    originalName?: string;
+    originalName?: string | undefined;
     /** Filename assigned to zipped file. This is the name to use for reference in the API functions to get files in attachments. */
-    zipName?: string;
+    zipName?: string | undefined;
     /** Descriptor of the file. */
-    descriptor?: string;
+    descriptor?: string | undefined;
 }

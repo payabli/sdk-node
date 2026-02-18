@@ -3,7 +3,7 @@
 import type * as Payabli from "../index.js";
 
 export interface AchTypesPass {
-    ccd?: Payabli.TierItemPass;
-    ppd?: Payabli.TierItemPass;
-    web?: Payabli.TierItemPass;
+    ccd?: Payabli.TierItemPass | undefined;
+    ppd?: Payabli.TierItemPass | undefined;
+    web?: Payabli.TierItemPass | undefined;
 }

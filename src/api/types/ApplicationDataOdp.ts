@@ -3,59 +3,59 @@
 import type * as Payabli from "../index.js";
 
 export interface ApplicationDataOdp {
-    services?: Payabli.Services;
+    services?: Payabli.Services | undefined;
     /** Annual revenue amount. We recommend including this value. */
     annualRevenue?: Payabli.Annualrevenue | undefined;
     attachments?: Payabli.Attachments | undefined;
-    baddress?: Payabli.Baddress1;
-    baddress1?: Payabli.Baddress2;
+    baddress?: Payabli.Baddress1 | undefined;
+    baddress1?: Payabli.Baddress2 | undefined;
     bankData?: Payabli.BankData | undefined;
-    bcity?: Payabli.Bcity;
-    bcountry?: Payabli.Bcountry;
+    bcity?: Payabli.Bcity | undefined;
+    bcountry?: Payabli.Bcountry | undefined;
     /** Boarding link ID for the application. Either `templateId` or `boardingLinkId` are required. */
-    boardingLinkId?: string;
-    bstate?: Payabli.Bstate;
-    bsummary?: Payabli.Bsummary;
-    btype?: Payabli.OwnType;
-    bzip?: Payabli.Bzip;
+    boardingLinkId?: string | undefined;
+    bstate?: Payabli.Bstate | undefined;
+    bsummary?: Payabli.Bsummary | undefined;
+    btype?: Payabli.OwnType | undefined;
+    bzip?: Payabli.Bzip | undefined;
     /** List of contacts for the business. */
-    contacts?: ApplicationDataOdp.Contacts.Item[];
-    dbaname?: Payabli.Dbaname;
-    ein?: Payabli.Ein;
-    faxnumber?: Payabli.BoardingBusinessFax;
+    contacts?: ApplicationDataOdp.Contacts.Item[] | undefined;
+    dbaname?: Payabli.Dbaname | undefined;
+    ein?: Payabli.Ein | undefined;
+    faxnumber?: Payabli.BoardingBusinessFax | undefined;
     highticketamt?: Payabli.Highticketamt | undefined;
-    legalname?: Payabli.Legalname;
-    license?: Payabli.License;
-    licstate?: Payabli.Licensestate;
-    maddress?: Payabli.Maddress;
-    maddress1?: Payabli.Maddress1;
-    mcc?: Payabli.Mcc;
-    mcity?: Payabli.Mcity;
-    mcountry?: Payabli.Mcountry;
-    mstate?: Payabli.Mstate;
-    mzip?: Payabli.Mzip;
-    orgId?: Payabli.Orgid;
+    legalname?: Payabli.Legalname | undefined;
+    license?: Payabli.License | undefined;
+    licstate?: Payabli.Licensestate | undefined;
+    maddress?: Payabli.Maddress | undefined;
+    maddress1?: Payabli.Maddress1 | undefined;
+    mcc?: Payabli.Mcc | undefined;
+    mcity?: Payabli.Mcity | undefined;
+    mcountry?: Payabli.Mcountry | undefined;
+    mstate?: Payabli.Mstate | undefined;
+    mzip?: Payabli.Mzip | undefined;
+    orgId?: Payabli.Orgid | undefined;
     /** List of Owners with at least a 25% ownership. */
-    ownership?: ApplicationDataOdp.Ownership.Item[];
+    ownership?: ApplicationDataOdp.Ownership.Item[] | undefined;
     payoutAverageMonthlyVolume: Payabli.PayoutAverageMonthlyVolume;
     payoutAverageTicketAmount: Payabli.PayoutAverageTicketLimit;
     payoutCreditLimit: Payabli.PayoutCreditLimit;
     payoutHighTicketAmount: Payabli.PayoutHighTicketAmount;
-    phonenumber?: Payabli.BoardingBusinessPhone;
+    phonenumber?: Payabli.BoardingBusinessPhone | undefined;
     /** Email address for the applicant. This is used to send the applicant a boarding link. */
-    recipientEmail?: Payabli.Email;
-    recipientEmailNotification?: Payabli.RecipientEmailNotification;
-    resumable?: Payabli.Resumable;
+    recipientEmail?: Payabli.Email | undefined;
+    recipientEmailNotification?: Payabli.RecipientEmailNotification | undefined;
+    resumable?: Payabli.Resumable | undefined;
     signer: Payabli.SignerDataRequest;
-    startdate?: Payabli.Busstartdate;
-    taxfillname?: Payabli.Taxfillname;
+    startdate?: Payabli.Busstartdate | undefined;
+    taxfillname?: Payabli.Taxfillname | undefined;
     /** The associated boarding template's ID in Payabli. Either `templateId` or `boardingLinkId` are required. */
-    templateId?: Payabli.TemplateId;
-    website?: Payabli.Website;
-    RepCode?: Payabli.RepCode;
-    RepName?: Payabli.RepName;
-    RepOffice?: Payabli.RepOffice;
-    onCreate?: Payabli.OnCreate;
+    templateId?: Payabli.TemplateId | undefined;
+    website?: Payabli.Website | undefined;
+    RepCode?: Payabli.RepCode | undefined;
+    RepName?: Payabli.RepName | undefined;
+    RepOffice?: Payabli.RepOffice | undefined;
+    onCreate?: Payabli.OnCreate | undefined;
 }
 
 export namespace ApplicationDataOdp {

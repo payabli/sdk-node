@@ -7,5 +7,5 @@ export interface PaypointMoveRequest {
     /** The ID for the paypoint's new parent organization. */
     newParentOrganizationId: number;
     /** Optional notification request object for a webhook */
-    notificationRequest?: Payabli.NotificationRequest;
+    notificationRequest?: Payabli.NotificationRequest | undefined;
 }

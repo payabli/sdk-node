@@ -144,28 +144,17 @@ export class TokenStorageClient {
             idempotencyKey,
             body: _body,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (achValidation != null) {
-            _queryParams.achValidation = achValidation.toString();
-        }
-
-        if (createAnonymous != null) {
-            _queryParams.createAnonymous = createAnonymous.toString();
-        }
-
-        if (forceCustomerCreation != null) {
-            _queryParams.forceCustomerCreation = forceCustomerCreation.toString();
-        }
-
-        if (temporary != null) {
-            _queryParams.temporary = temporary.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            achValidation,
+            createAnonymous,
+            forceCustomerCreation,
+            temporary,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey != null ? idempotencyKey : undefined }),
+            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -254,15 +243,10 @@ export class TokenStorageClient {
         requestOptions?: TokenStorageClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.GetMethodResponse>> {
         const { cardExpirationFormat, includeTemporary } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (cardExpirationFormat != null) {
-            _queryParams.cardExpirationFormat = cardExpirationFormat.toString();
-        }
-
-        if (includeTemporary != null) {
-            _queryParams.includeTemporary = includeTemporary.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            cardExpirationFormat,
+            includeTemporary,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -474,11 +458,9 @@ export class TokenStorageClient {
         requestOptions?: TokenStorageClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.PayabliApiResponsePaymethodDelete>> {
         const { achValidation, body: _body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (achValidation != null) {
-            _queryParams.achValidation = achValidation.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            achValidation,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

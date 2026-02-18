@@ -73,16 +73,14 @@ export class MoneyInClient {
         requestOptions?: MoneyInClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.AuthResponse>> {
         const { forceCustomerCreation, idempotencyKey, body: _body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (forceCustomerCreation != null) {
-            _queryParams.forceCustomerCreation = forceCustomerCreation.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            forceCustomerCreation,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey != null ? idempotencyKey : undefined }),
+            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -402,16 +400,14 @@ export class MoneyInClient {
         requestOptions?: MoneyInClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.PayabliApiResponse0>> {
         const { forceCustomerCreation, idempotencyKey, ..._body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (forceCustomerCreation != null) {
-            _queryParams.forceCustomerCreation = forceCustomerCreation.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            forceCustomerCreation,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey != null ? idempotencyKey : undefined }),
+            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -649,6 +645,30 @@ export class MoneyInClient {
      *     await client.moneyIn.getpaid({
      *         body: {
      *             customerData: {
+     *                 customerId: 4440
+     *             },
+     *             entryPoint: "f743aed24a",
+     *             ipaddress: "255.255.255.255",
+     *             paymentDetails: {
+     *                 checkUniqueId: "abc123def456",
+     *                 serviceFee: 0,
+     *                 totalAmount: 125.5
+     *             },
+     *             paymentMethod: {
+     *                 achAccount: "123456",
+     *                 achAccountType: "Checking",
+     *                 achCode: "BOC",
+     *                 achHolder: "John Doe",
+     *                 achRouting: "123456789",
+     *                 method: "ach"
+     *             }
+     *         }
+     *     })
+     *
+     * @example
+     *     await client.moneyIn.getpaid({
+     *         body: {
+     *             customerData: {
      *                 billingAddress1: "123 Walnut Street",
      *                 billingCity: "Johnson City",
      *                 billingCountry: "US",
@@ -726,27 +746,16 @@ export class MoneyInClient {
             validationCode,
             body: _body,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (achValidation != null) {
-            _queryParams.achValidation = achValidation.toString();
-        }
-
-        if (forceCustomerCreation != null) {
-            _queryParams.forceCustomerCreation = forceCustomerCreation.toString();
-        }
-
-        if (includeDetails != null) {
-            _queryParams.includeDetails = includeDetails.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            achValidation,
+            forceCustomerCreation,
+            includeDetails,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                idempotencyKey: idempotencyKey != null ? idempotencyKey : undefined,
-                validationCode: validationCode != null ? validationCode : undefined,
-            }),
+            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey, validationCode: validationCode }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -1057,7 +1066,7 @@ export class MoneyInClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey != null ? idempotencyKey : undefined }),
+            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -1223,11 +1232,9 @@ export class MoneyInClient {
         requestOptions?: MoneyInClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.ReceiptResponse>> {
         const { email } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (email != null) {
-            _queryParams.email = email;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            email,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1324,7 +1331,7 @@ export class MoneyInClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey != null ? idempotencyKey : undefined }),
+            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -1567,23 +1574,15 @@ export class MoneyInClient {
         requestOptions?: MoneyInClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.V2TransactionResponseWrapper>> {
         const { achValidation, forceCustomerCreation, idempotencyKey, validationCode, body: _body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (achValidation != null) {
-            _queryParams.achValidation = achValidation.toString();
-        }
-
-        if (forceCustomerCreation != null) {
-            _queryParams.forceCustomerCreation = forceCustomerCreation.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            achValidation,
+            forceCustomerCreation,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                idempotencyKey: idempotencyKey != null ? idempotencyKey : undefined,
-                validationCode: validationCode != null ? validationCode : undefined,
-            }),
+            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey, validationCode: validationCode }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -1689,16 +1688,14 @@ export class MoneyInClient {
         requestOptions?: MoneyInClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.V2TransactionResponseWrapper>> {
         const { forceCustomerCreation, idempotencyKey, body: _body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (forceCustomerCreation != null) {
-            _queryParams.forceCustomerCreation = forceCustomerCreation.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            forceCustomerCreation,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey != null ? idempotencyKey : undefined }),
+            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({

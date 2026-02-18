@@ -3,8 +3,8 @@
 import type * as Payabli from "../index.js";
 
 export interface QueryResponseNotificationReports {
-    Records?: QueryResponseNotificationReports.Records.Item[];
-    Summary?: Payabli.QuerySummary;
+    Records?: QueryResponseNotificationReports.Records.Item[] | undefined;
+    Summary?: Payabli.QuerySummary | undefined;
 }
 
 export namespace QueryResponseNotificationReports {
@@ -12,13 +12,13 @@ export namespace QueryResponseNotificationReports {
 
     export namespace Records {
         export interface Item {
-            createdAt?: Payabli.CreatedAt;
+            createdAt?: Payabli.CreatedAt | undefined;
             /** Unique identifier for the report. */
-            id?: number;
+            id?: number | undefined;
             /** Indicator of whether the report can be downloaded. */
-            isDownloadable?: boolean;
+            isDownloadable?: boolean | undefined;
             /** Name of the report. */
-            reportName?: string;
+            reportName?: string | undefined;
         }
     }
 }

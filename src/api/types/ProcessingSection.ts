@@ -3,19 +3,19 @@
 import type * as Payabli from "../index.js";
 
 export interface ProcessingSection {
-    avgmonthly?: Payabli.TemplateElement;
-    binperson?: Payabli.TemplateElement;
-    binphone?: Payabli.TemplateElement;
-    binweb?: Payabli.TemplateElement;
-    bsummary?: Payabli.TemplateElement;
-    highticketamt?: Payabli.TemplateElement;
-    mcc?: Payabli.TemplateElement;
-    subFooter?: Payabli.SubFooter;
-    subHeader?: Payabli.SubHeader;
-    ticketamt?: Payabli.TemplateElement;
+    avgmonthly?: Payabli.TemplateElement | undefined;
+    binperson?: Payabli.TemplateElement | undefined;
+    binphone?: Payabli.TemplateElement | undefined;
+    binweb?: Payabli.TemplateElement | undefined;
+    bsummary?: Payabli.TemplateElement | undefined;
+    highticketamt?: Payabli.TemplateElement | undefined;
+    mcc?: Payabli.TemplateElement | undefined;
+    subFooter?: Payabli.SubFooter | undefined;
+    subHeader?: Payabli.SubHeader | undefined;
+    ticketamt?: Payabli.TemplateElement | undefined;
     visible?: Payabli.Visible | undefined;
-    whenCharged?: Payabli.TemplateElement;
-    whenDelivered?: Payabli.TemplateElement;
-    whenProvided?: Payabli.TemplateElement;
-    whenRefunded?: Payabli.TemplateElement;
+    whenCharged?: Payabli.TemplateElement | undefined;
+    whenDelivered?: Payabli.TemplateElement | undefined;
+    whenProvided?: Payabli.TemplateElement | undefined;
+    whenRefunded?: Payabli.TemplateElement | undefined;
 }

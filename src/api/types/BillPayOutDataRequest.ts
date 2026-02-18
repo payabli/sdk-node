@@ -4,24 +4,24 @@ import type * as Payabli from "../index.js";
 
 export interface BillPayOutDataRequest {
     /** Bill ID in Payabli. */
-    billId?: number;
+    billId?: number | undefined;
     /** Any comments about bill. **For managed payouts, this field has a limit of 100 characters**. */
-    comments?: Payabli.Comments;
+    comments?: Payabli.Comments | undefined;
     /** Bill due date in format YYYY-MM-DD or MM/DD/YYYY. */
     dueDate?: Payabli.Datenullable | undefined;
     /** Bill date in format YYYY-MM-DD or MM/DD/YYYY. */
     invoiceDate?: Payabli.Datenullable | undefined;
     /** Custom number identifying the bill. Must be unique in paypoint. **Required** for new bill and when `billId` isn't provided. */
-    invoiceNumber?: Payabli.InvoiceNumber;
+    invoiceNumber?: Payabli.InvoiceNumber | undefined;
     /** Net Amount owed in bill. Required when adding a bill. */
-    netAmount?: Payabli.NetAmountstring;
+    netAmount?: Payabli.NetAmountstring | undefined;
     /** Bill discount amount. */
-    discount?: string;
+    discount?: string | undefined;
     /** Description of payment terms. */
-    terms?: Payabli.Terms;
-    accountingField1?: Payabli.AccountingField;
-    accountingField2?: Payabli.AccountingField;
-    additionalData?: Payabli.AdditionalDataString;
+    terms?: Payabli.Terms | undefined;
+    accountingField1?: Payabli.AccountingField | undefined;
+    accountingField2?: Payabli.AccountingField | undefined;
+    additionalData?: Payabli.AdditionalDataString | undefined;
     /** Bill image attachment. Send the bill image as Base64-encoded string, or as a publicly accessible link. For full details on using this field with a payout authorization, see [the documentation](/developers/developer-guides/pay-out-manage-payouts). */
     attachments?: Payabli.Attachments | undefined;
 }

@@ -5,9 +5,9 @@
  */
 export interface PaymentDetailCredit {
     /** Currency code ISO-4217. If not code is provided the currency in the paypoint setting is taken. Default is **USD** */
-    currency?: string;
+    currency?: string | undefined;
     /** Service fee to be deducted from the total amount. This amount must be a number, percentages aren't accepted. If you are using a percentage-based fee schedule, you must calculate the value manually. */
-    serviceFee?: number;
+    serviceFee?: number | undefined;
     /** Total amount to be charged. If a service fee is provided, then this amount should include the service fee. */
     totalAmount: number;
 }

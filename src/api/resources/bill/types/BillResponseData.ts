@@ -3,59 +3,59 @@
 import type * as Payabli from "../../../index.js";
 
 export interface BillResponseData {
-    IdBill?: Payabli.BillId;
+    IdBill?: Payabli.BillId | undefined;
     /** Unique identifier for the bill. */
-    BillNumber?: string;
+    BillNumber?: string | undefined;
     /** Net amount owed in bill. */
-    NetAmount?: number;
+    NetAmount?: number | undefined;
     /** Bill discount amount. */
-    Discount?: number;
+    Discount?: number | undefined;
     /** Total amount for the bill. */
-    TotalAmount?: number;
+    TotalAmount?: number | undefined;
     /** Date of bill. Accepted formats: YYYY-MM-DD, MM/DD/YYYY */
     BillDate?: Payabli.Datenullable | undefined;
     /** Due Date of bill. Accepted formats: YYYY-MM-DD, MM/DD/YYYY */
     DueDate?: Payabli.Datenullable | undefined;
     /** Comments associated with the bill. For managed payables, the character limit is 200. For on demand payouts, the characters limit is 250. */
-    Comments?: string;
+    Comments?: string | undefined;
     /** The batch number that the bill belongs to. */
-    BatchNumber?: string;
+    BatchNumber?: string | undefined;
     /** Array of `LineItems` contained in bill. */
     BillItems?: Payabli.Billitems | undefined;
     /** Bill mode: value `0` for single/one-time bills, `1` for scheduled bills. */
-    Mode?: number;
+    Mode?: number | undefined;
     /** Payment method used for the bill. */
-    PaymentMethod?: string;
+    PaymentMethod?: string | undefined;
     /** Payment ID associated with the bill. */
-    PaymentId?: string;
-    AccountingField1?: Payabli.AccountingField;
-    AccountingField2?: Payabli.AccountingField;
-    Terms?: Payabli.Terms;
+    PaymentId?: string | undefined;
+    AccountingField1?: Payabli.AccountingField | undefined;
+    AccountingField2?: Payabli.AccountingField | undefined;
+    Terms?: Payabli.Terms | undefined;
     /** The source of the bill, such as "API" or "UI". */
-    Source?: string;
-    AdditionalData?: Payabli.AdditionalDataString;
-    Vendor?: Payabli.VendorDataResponse;
-    Status?: Payabli.Billstatus;
-    CreatedAt?: Payabli.CreatedAt;
+    Source?: string | undefined;
+    AdditionalData?: Payabli.AdditionalDataString | undefined;
+    Vendor?: Payabli.VendorDataResponse | undefined;
+    Status?: Payabli.Billstatus | undefined;
+    CreatedAt?: Payabli.CreatedAt | undefined;
     /** End date for scheduled bills. Applied only in `Mode` = 1. */
     EndDate?: Payabli.Datenullable | undefined;
     LastUpdated?: Payabli.LastModified | undefined;
     /** Frequency for scheduled bills. Applied only in `Mode` = 1. */
-    Frequency?: Payabli.Frequency;
+    Frequency?: Payabli.Frequency | undefined;
     /** MoneyOut transaction associated to the bill */
-    Transaction?: Payabli.TransactionOutQueryRecord;
+    Transaction?: Payabli.TransactionOutQueryRecord | undefined;
     billEvents?: Payabli.BillEvents | undefined;
     billApprovals?: Payabli.BillApprovals | undefined;
-    PaypointLegalname?: Payabli.Legalname;
-    PaypointDbaname?: Payabli.Dbaname;
-    ParentOrgId?: Payabli.OrgParentId;
-    ParentOrgName?: Payabli.OrgParentName;
-    PaypointEntryname?: Payabli.Entrypointfield;
-    paylinkId?: Payabli.PaylinkId;
+    PaypointLegalname?: Payabli.Legalname | undefined;
+    PaypointDbaname?: Payabli.Dbaname | undefined;
+    ParentOrgId?: Payabli.OrgParentId | undefined;
+    ParentOrgName?: Payabli.OrgParentName | undefined;
+    PaypointEntryname?: Payabli.Entrypointfield | undefined;
+    paylinkId?: Payabli.PaylinkId | undefined;
     /** Object with the attached documents. */
-    DocumentsRef?: Payabli.DocumentsRef;
-    externalPaypointID?: Payabli.ExternalPaypointId;
+    DocumentsRef?: Payabli.DocumentsRef | undefined;
+    externalPaypointID?: Payabli.ExternalPaypointId | undefined;
     /** Lot number of the bill. */
-    LotNumber?: string;
-    EntityID?: Payabli.EntityId;
+    LotNumber?: string | undefined;
+    EntityID?: Payabli.EntityId | undefined;
 }

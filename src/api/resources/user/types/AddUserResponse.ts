@@ -3,8 +3,8 @@
 import type * as Payabli from "../../../index.js";
 
 export interface AddUserResponse {
-    isSuccess?: Payabli.IsSuccess;
+    isSuccess?: Payabli.IsSuccess | undefined;
     /** The response data. */
-    responseData?: string;
+    responseData?: string | undefined;
     responseText: Payabli.ResponseText;
 }

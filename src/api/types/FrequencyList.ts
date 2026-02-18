@@ -2,17 +2,17 @@
 
 export interface FrequencyList {
     /** Enable or disable frequency */
-    annually?: boolean;
+    annually?: boolean | undefined;
     /** Enable or disable frequency */
-    every2Weeks?: boolean;
+    every2Weeks?: boolean | undefined;
     /** Enable or disable frequency */
-    every3Months?: boolean;
+    every3Months?: boolean | undefined;
     /** Enable or disable frequency */
-    every6Months?: boolean;
+    every6Months?: boolean | undefined;
     /** Enable or disable frequency */
-    monthly?: boolean;
+    monthly?: boolean | undefined;
     /** Enable or disable frequency */
-    onetime?: boolean;
+    onetime?: boolean | undefined;
     /** Enable or disable frequency */
-    weekly?: boolean;
+    weekly?: boolean | undefined;
 }

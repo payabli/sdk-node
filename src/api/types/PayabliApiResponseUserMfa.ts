@@ -3,9 +3,9 @@
 import type * as Payabli from "../index.js";
 
 export interface PayabliApiResponseUserMfa {
-    inactiveTokenTime?: number;
-    isSuccess?: Payabli.IsSuccess;
-    remaining?: number;
-    responseData?: Payabli.Responsedatanonobject;
+    inactiveTokenTime?: number | undefined;
+    isSuccess?: Payabli.IsSuccess | undefined;
+    remaining?: number | undefined;
+    responseData?: Payabli.Responsedatanonobject | undefined;
     responseText: Payabli.ResponseText;
 }

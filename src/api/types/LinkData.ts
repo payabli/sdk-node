@@ -4,7 +4,7 @@ import type * as Payabli from "../index.js";
 
 export interface LinkData {
     ro?: Payabli.ReadOnly | undefined;
-    rq?: Payabli.RequiredElement;
+    rq?: Payabli.RequiredElement | undefined;
     /**
      * The type of validation applied to the field. Available values:
      * - text
@@ -20,6 +20,6 @@ export interface LinkData {
      * - email
      * - routing
      */
-    validator?: string;
-    value?: Payabli.ValueTemplates;
+    validator?: string | undefined;
+    value?: Payabli.ValueTemplates | undefined;
 }

@@ -208,11 +208,9 @@ export class PaypointClient {
         requestOptions?: PaypointClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.GetEntryConfigResponse>> {
         const { entrypages } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (entrypages != null) {
-            _queryParams.entrypages = entrypages;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            entrypages,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

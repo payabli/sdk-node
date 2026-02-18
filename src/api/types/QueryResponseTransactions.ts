@@ -6,6 +6,6 @@ import type * as Payabli from "../index.js";
  * Response payload for queries related to transactions
  */
 export interface QueryResponseTransactions {
-    Records?: Payabli.TransactionQueryRecords[];
-    Summary?: Payabli.QuerySummary;
+    Records?: Payabli.TransactionQueryRecords[] | undefined;
+    Summary?: Payabli.QuerySummary | undefined;
 }

@@ -6,21 +6,21 @@ import type * as Payabli from "../index.js";
  * General response for certain `moneyIn` and `moneyOut` endpoints.
  */
 export interface PayabliApiResponse0 {
-    isSuccess?: Payabli.IsSuccess;
-    pageIdentifier?: Payabli.PageIdentifier;
-    responseData?: PayabliApiResponse0.ResponseData;
+    isSuccess?: Payabli.IsSuccess | undefined;
+    pageIdentifier?: Payabli.PageIdentifier | undefined;
+    responseData?: PayabliApiResponse0.ResponseData | undefined;
     responseText: Payabli.ResponseText;
 }
 
 export namespace PayabliApiResponse0 {
     export interface ResponseData {
-        AuthCode?: Payabli.Authcode;
-        avsResponseText?: Payabli.AvsResponseText;
-        CustomerId?: Payabli.Customeridtrans;
-        cvvResponseText?: Payabli.CvvResponseText;
-        methodReferenceId?: Payabli.MethodReferenceId;
-        ReferenceId?: Payabli.Referenceidtrans;
-        ResultCode?: Payabli.ResultCode;
-        ResultText?: Payabli.Resulttext;
+        AuthCode?: Payabli.Authcode | undefined;
+        avsResponseText?: Payabli.AvsResponseText | undefined;
+        CustomerId?: Payabli.Customeridtrans | undefined;
+        cvvResponseText?: Payabli.CvvResponseText | undefined;
+        methodReferenceId?: Payabli.MethodReferenceId | undefined;
+        ReferenceId?: Payabli.Referenceidtrans | undefined;
+        ResultCode?: Payabli.ResultCode | undefined;
+        ResultText?: Payabli.Resulttext | undefined;
     }
 }

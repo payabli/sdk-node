@@ -3,19 +3,19 @@
 import type * as Payabli from "../index.js";
 
 export interface QueryPaymentData {
-    AccountExp?: Payabli.Accountexp;
-    accountId?: Payabli.Accountid;
-    AccountType?: Payabli.Accounttype;
-    AccountZip?: Payabli.Accountzip;
-    binData?: Payabli.BinData;
-    HolderName?: Payabli.Holdername;
-    Initiator?: Payabli.Initiator;
-    MaskedAccount?: Payabli.Maskedaccount;
-    orderDescription?: Payabli.Orderdescription;
-    paymentDetails?: Payabli.PaymentDetail;
-    Sequence?: Payabli.Sequence;
-    SignatureData?: Payabli.Signaturedata;
+    AccountExp?: Payabli.Accountexp | undefined;
+    accountId?: Payabli.Accountid | undefined;
+    AccountType?: Payabli.Accounttype | undefined;
+    AccountZip?: Payabli.Accountzip | undefined;
+    binData?: Payabli.BinData | undefined;
+    HolderName?: Payabli.Holdername | undefined;
+    Initiator?: Payabli.Initiator | undefined;
+    MaskedAccount?: Payabli.Maskedaccount | undefined;
+    orderDescription?: Payabli.Orderdescription | undefined;
+    paymentDetails?: Payabli.PaymentDetail | undefined;
+    Sequence?: Payabli.Sequence | undefined;
+    SignatureData?: Payabli.Signaturedata | undefined;
     /** Identifier of stored payment method used in transaction. */
-    StoredId?: Payabli.Storedmethodid;
-    StoredMethodUsageType?: Payabli.StoredMethodUsageType;
+    StoredId?: Payabli.Storedmethodid | undefined;
+    StoredMethodUsageType?: Payabli.StoredMethodUsageType | undefined;
 }

@@ -3,6 +3,6 @@
 import type * as Payabli from "../index.js";
 
 export interface QueryBoardingAppsListResponse {
-    Records?: Payabli.ApplicationQueryRecord[];
-    Summary?: Payabli.QuerySummary;
+    Records?: Payabli.ApplicationQueryRecord[] | undefined;
+    Summary?: Payabli.QuerySummary | undefined;
 }

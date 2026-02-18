@@ -4,9 +4,9 @@ import type * as Payabli from "../../../index.js";
 
 export interface AuthorizePayoutBody {
     entryPoint: Payabli.Entrypointfield;
-    source?: Payabli.Source;
-    orderId?: Payabli.OrderId;
-    orderDescription?: Payabli.Orderdescription;
+    source?: Payabli.Source | undefined;
+    orderId?: Payabli.OrderId | undefined;
+    orderDescription?: Payabli.Orderdescription | undefined;
     paymentMethod: Payabli.AuthorizePaymentMethod;
     /** Object containing payment details. */
     paymentDetails: AuthorizePayoutBody.PaymentDetails;
@@ -14,9 +14,9 @@ export interface AuthorizePayoutBody {
     vendorData: AuthorizePayoutBody.VendorData;
     /** Array of bills associated to the transaction */
     invoiceData: AuthorizePayoutBody.InvoiceData.Item[];
-    accountId?: Payabli.Accountid;
-    subdomain?: Payabli.Subdomain;
-    subscriptionId?: Payabli.Subscriptionid;
+    accountId?: Payabli.Accountid | undefined;
+    subdomain?: Payabli.Subdomain | undefined;
+    subscriptionId?: Payabli.Subscriptionid | undefined;
 }
 
 export namespace AuthorizePayoutBody {
@@ -24,53 +24,53 @@ export namespace AuthorizePayoutBody {
      * Object containing payment details.
      */
     export interface PaymentDetails {
-        checkNumber?: Payabli.VendorCheckNumber;
+        checkNumber?: Payabli.VendorCheckNumber | undefined;
         /** Currency code ISO-4217. If no code is provided, then the currency in the paypoint setting is used. Default is **USD**. */
-        currency?: string;
+        currency?: string | undefined;
         /** Service fee to be deducted from the total amount. This amount must be a number, percentages aren't accepted. If you are using a percentage-based fee schedule, you must calculate the value manually. */
-        serviceFee?: number;
+        serviceFee?: number | undefined;
         /** Total amount to be charged. If a service fee is included, then this amount should include the service fee. */
-        totalAmount?: number;
+        totalAmount?: number | undefined;
         /** Indicates whether the payout should be bundled into a single transaction or processed separately. If set to `true`, each bill will be processed as a separate payout. If `false` or not provided, then multiple bills will be paid with a single payout. */
-        unbundled?: boolean;
+        unbundled?: boolean | undefined;
     }
 
     /**
      * Object containing vendor data.
      */
     export interface VendorData {
-        vendorNumber?: Payabli.VendorNumber;
-        name1?: Payabli.VendorName1;
-        name2?: Payabli.VendorName2;
-        ein?: Payabli.VendorEin;
+        vendorNumber?: Payabli.VendorNumber | undefined;
+        name1?: Payabli.VendorName1 | undefined;
+        name2?: Payabli.VendorName2 | undefined;
+        ein?: Payabli.VendorEin | undefined;
         phone?: Payabli.VendorPhone | undefined;
-        email?: Payabli.Email;
-        address1?: Payabli.AddressNullable;
-        city?: string;
-        state?: string;
-        zip?: string;
-        country?: string;
-        mcc?: Payabli.Mcc;
+        email?: Payabli.Email | undefined;
+        address1?: Payabli.AddressNullable | undefined;
+        city?: string | undefined;
+        state?: string | undefined;
+        zip?: string | undefined;
+        country?: string | undefined;
+        mcc?: Payabli.Mcc | undefined;
         contacts?: Payabli.ContactsField | undefined;
-        billingData?: VendorData.BillingData;
-        vendorStatus?: Payabli.Vendorstatus;
-        remitAddress1?: Payabli.Remitaddress1;
-        remitAddress2?: Payabli.Remitaddress2;
-        remitCity?: Payabli.Remitcity;
-        remitState?: Payabli.Remitstate;
-        remitZip?: Payabli.Remitzip;
-        remitCountry?: Payabli.Remitcountry;
-        customerVendorAccount?: string;
-        customField1?: string;
-        customField2?: string;
-        additionalData?: Payabli.AdditionalData;
-        address2?: Payabli.AddressAddtlNullable;
-        internalReferenceId?: number;
-        locationCode?: Payabli.LocationCode;
-        payeeName1?: Payabli.PayeeName;
-        payeeName2?: Payabli.PayeeName;
-        paymentMethod?: Payabli.VendorPaymentMethod;
-        vendorId?: Payabli.Vendorid;
+        billingData?: VendorData.BillingData | undefined;
+        vendorStatus?: Payabli.Vendorstatus | undefined;
+        remitAddress1?: Payabli.Remitaddress1 | undefined;
+        remitAddress2?: Payabli.Remitaddress2 | undefined;
+        remitCity?: Payabli.Remitcity | undefined;
+        remitState?: Payabli.Remitstate | undefined;
+        remitZip?: Payabli.Remitzip | undefined;
+        remitCountry?: Payabli.Remitcountry | undefined;
+        customerVendorAccount?: string | undefined;
+        customField1?: string | undefined;
+        customField2?: string | undefined;
+        additionalData?: Payabli.AdditionalData | undefined;
+        address2?: Payabli.AddressAddtlNullable | undefined;
+        internalReferenceId?: number | undefined;
+        locationCode?: Payabli.LocationCode | undefined;
+        payeeName1?: Payabli.PayeeName | undefined;
+        payeeName2?: Payabli.PayeeName | undefined;
+        paymentMethod?: Payabli.VendorPaymentMethod | undefined;
+        vendorId?: Payabli.Vendorid | undefined;
     }
 
     export namespace VendorData {
@@ -78,11 +78,11 @@ export namespace AuthorizePayoutBody {
          * Object containing vendor's bank information. This object is deprecated for this endpoint. Use the `paymentMethod` object in payout authorize requests instead.
          */
         export interface BillingData {
-            bankName?: Payabli.BankName;
-            routingAccount?: Payabli.RoutingAccount;
-            accountNumber?: Payabli.AccountNumber;
-            typeAccount?: Payabli.TypeAccount;
-            bankAccountHolderName?: Payabli.BankAccountHolderName;
+            bankName?: Payabli.BankName | undefined;
+            routingAccount?: Payabli.RoutingAccount | undefined;
+            accountNumber?: Payabli.AccountNumber | undefined;
+            typeAccount?: Payabli.TypeAccount | undefined;
+            bankAccountHolderName?: Payabli.BankAccountHolderName | undefined;
         }
     }
 
@@ -90,20 +90,20 @@ export namespace AuthorizePayoutBody {
 
     export namespace InvoiceData {
         export interface Item {
-            invoiceNumber?: Payabli.InvoiceNumber;
-            netAmount?: Payabli.NetAmountstring;
+            invoiceNumber?: Payabli.InvoiceNumber | undefined;
+            netAmount?: Payabli.NetAmountstring | undefined;
             /** Invoice date in any of the accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
             invoiceDate?: Payabli.Datenullable | undefined;
             /** Invoice due date in any of the accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
             dueDate?: Payabli.Datenullable | undefined;
-            comments?: Payabli.Comments;
-            lotNumber?: Payabli.LotNumber;
-            billId?: Payabli.BillId;
+            comments?: Payabli.Comments | undefined;
+            lotNumber?: Payabli.LotNumber | undefined;
+            billId?: Payabli.BillId | undefined;
             discount?: Payabli.Discount | undefined;
-            terms?: Payabli.Terms;
-            accountingField1?: Payabli.AccountingField;
-            accountingField2?: Payabli.AccountingField;
-            additionalData?: Payabli.AdditionalDataString;
+            terms?: Payabli.Terms | undefined;
+            accountingField1?: Payabli.AccountingField | undefined;
+            accountingField2?: Payabli.AccountingField | undefined;
+            additionalData?: Payabli.AdditionalDataString | undefined;
             attachments?: Payabli.Attachments | undefined;
         }
     }

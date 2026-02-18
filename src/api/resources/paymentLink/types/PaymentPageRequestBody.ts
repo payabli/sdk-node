@@ -193,25 +193,25 @@ import type * as Payabli from "../../../index.js";
  */
 export interface PaymentPageRequestBody {
     /** ContactUs section of payment link page */
-    contactUs?: Payabli.ContactElement;
+    contactUs?: Payabli.ContactElement | undefined;
     /** Invoices section of payment link page */
-    invoices?: Payabli.InvoiceElement;
+    invoices?: Payabli.InvoiceElement | undefined;
     /** Logo section of payment link page */
-    logo?: Payabli.Element;
+    logo?: Payabli.Element | undefined;
     /** Message section of payment link page */
-    messageBeforePaying?: Payabli.LabelElement;
+    messageBeforePaying?: Payabli.LabelElement | undefined;
     /** Notes section of payment link page */
-    notes?: Payabli.NoteElement;
+    notes?: Payabli.NoteElement | undefined;
     /** Page header section of payment link page */
-    page?: Payabli.PageElement;
+    page?: Payabli.PageElement | undefined;
     /** Payment button section of payment link page */
-    paymentButton?: Payabli.LabelElement;
+    paymentButton?: Payabli.LabelElement | undefined;
     /** Payment methods section of payment link page */
-    paymentMethods?: Payabli.MethodElement;
+    paymentMethods?: Payabli.MethodElement | undefined;
     /** Customer/Payor section of payment link page */
-    payor?: Payabli.PayorElement;
+    payor?: Payabli.PayorElement | undefined;
     /** Review section of payment link page */
-    review?: Payabli.HeaderElement;
+    review?: Payabli.HeaderElement | undefined;
     /** Settings section of payment link page */
-    settings?: Payabli.PagelinkSetting;
+    settings?: Payabli.PagelinkSetting | undefined;
 }

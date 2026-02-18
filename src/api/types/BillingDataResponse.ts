@@ -24,7 +24,7 @@ import type * as Payabli from "../index.js";
 export interface BillingDataResponse {
     /** The bank's ID in Payabli. */
     id: number;
-    accountId?: unknown;
+    accountId?: unknown | undefined;
     nickname: string;
     bankName: Payabli.BankName;
     routingAccount: Payabli.RoutingAccount;

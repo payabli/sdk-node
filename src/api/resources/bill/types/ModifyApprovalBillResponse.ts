@@ -4,5 +4,5 @@ import type * as Payabli from "../../../index.js";
 
 export interface ModifyApprovalBillResponse extends Payabli.PayabliApiResponseGeneric2Part {
     /** If `isSuccess` = true, this contains the bill identifier. If `isSuccess` = false, this contains the reason for the error. */
-    responseData?: number;
+    responseData?: number | undefined;
 }

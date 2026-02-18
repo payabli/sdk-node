@@ -6,5 +6,6 @@
  *   - WEB (Internet-Initiated/Mobile Entry) - Used for debit entries when authorization is obtained from an accountholder via the internet or a wireless network. Common examples are online bill payments, ecommerce purchases, and mobile app payments where the consumer enters their banking information online.
  *   - TEL (Telephone-Initiated Entry) - Used for one-time debit entries where authorization is obtained from a consumer via telephone. Common examples are phone-based purchases or bill payments where the consumer provides their banking information over the phone.
  *   - CCD (Corporate Credit or Debit) - Used for fund transfers between business accounts. This code is specifically for business-to-business transactions. Common examples include vendor payments and other business-to-business payments.
+ *   - BOC (Back Office Conversion) - Used to convert paper checks received in-person at a point-of-sale or staffed payment location into electronic ACH debits. Required for Remote Deposit Capture (RDC) transactions. Only supports consumer checks; business, government, and mailed checks aren't eligible.
  */
 export type AchSecCode = string;

@@ -13,11 +13,11 @@ import type * as Payabli from "../index.js";
  */
 export interface ContactsResponse {
     /** Contact email address. */
-    ContactEmail?: Payabli.Email;
+    ContactEmail?: Payabli.Email | undefined;
     /** Contact name. */
-    ContactName?: string;
+    ContactName?: string | undefined;
     /** Contact phone number. */
-    ContactPhone?: string;
+    ContactPhone?: string | undefined;
     /** Contact title. */
-    ContactTitle?: string;
+    ContactTitle?: string | undefined;
 }

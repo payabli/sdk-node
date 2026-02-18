@@ -4,6 +4,6 @@ import type * as Payabli from "../index.js";
 
 export interface BasicTemplateElement {
     readOnly?: Payabli.ReadOnly | undefined;
-    required?: Payabli.RequiredElement;
+    required?: Payabli.RequiredElement | undefined;
     visible?: Payabli.Visible | undefined;
 }

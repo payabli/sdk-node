@@ -6,20 +6,20 @@ import type * as Payabli from "../index.js";
  * The wallet data.
  */
 export interface AppleWalletData {
-    entry?: Payabli.Entry;
+    entry?: Payabli.Entry | undefined;
     /** The Apple Pay merchant identifier. */
-    applePayMerchantId?: string;
+    applePayMerchantId?: string | undefined;
     /** A list of domain names that are enabled for this paypoint. */
-    domainNames?: Payabli.DomainName[];
-    paypointName?: Payabli.PaypointName;
+    domainNames?: Payabli.DomainName[] | undefined;
+    paypointName?: Payabli.PaypointName | undefined;
     /** The paypoint URL. */
-    paypointUrl?: string;
+    paypointUrl?: string | undefined;
     /** The date and time a paypoint's Apple Pay registration was scheduled for deletion. The paypoint will be unregistered from Apple Pay permanently 30 days from this value. */
-    markedForDeletionAt?: string;
-    createdAt?: Payabli.CreatedAt;
+    markedForDeletionAt?: string | undefined;
+    createdAt?: Payabli.CreatedAt | undefined;
     updatedAt?: Payabli.LastModified | undefined;
     /** Internal ID for the Apple Pay paypoint registration update. */
-    id?: Payabli.ApplePayId;
+    id?: Payabli.ApplePayId | undefined;
     /** The record type, in this context it will always be `ApplePayRegistration`. */
     type?: Payabli.ApplePayType | undefined;
 }

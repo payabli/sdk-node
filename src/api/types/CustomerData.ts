@@ -6,45 +6,45 @@ import type * as Payabli from "../index.js";
  * Data about a single customer.
  */
 export interface CustomerData {
-    customerNumber?: Payabli.CustomerNumberNullable;
+    customerNumber?: Payabli.CustomerNumberNullable | undefined;
     /** Customer username for customer portal */
-    customerUsername?: string;
+    customerUsername?: string | undefined;
     /** Customer password for customer portal */
-    customerPsw?: string;
-    customerStatus?: Payabli.CustomerStatus;
+    customerPsw?: string | undefined;
+    customerStatus?: Payabli.CustomerStatus | undefined;
     /** Company name */
-    company?: string;
+    company?: string | undefined;
     /** Customer first name */
-    firstname?: string;
+    firstname?: string | undefined;
     /** Customer last name */
-    lastname?: string;
+    lastname?: string | undefined;
     /** Customer phone number */
-    phone?: string;
+    phone?: string | undefined;
     /** Customer email address. */
-    email?: Payabli.Email;
+    email?: Payabli.Email | undefined;
     /** Customer address */
-    address?: string;
+    address?: string | undefined;
     /** Additional customer address */
-    address1?: string;
+    address1?: string | undefined;
     /** Customer city */
-    city?: string;
+    city?: string | undefined;
     /** Customer State */
-    state?: string;
+    state?: string | undefined;
     /** Customer postal code */
-    zip?: string;
+    zip?: string | undefined;
     /** Customer country in ISO-3166-1 alpha 2 format. See https://en.wikipedia.org/wiki/ISO_3166-1 for reference. */
-    country?: string;
-    shippingAddress?: Payabli.Shippingaddress;
-    shippingAddress1?: Payabli.Shippingaddressadditional;
-    shippingCity?: Payabli.Shippingcity;
-    shippingState?: Payabli.Shippingstate;
-    shippingZip?: Payabli.Shippingzip;
-    shippingCountry?: Payabli.Shippingcountry;
+    country?: string | undefined;
+    shippingAddress?: Payabli.Shippingaddress | undefined;
+    shippingAddress1?: Payabli.Shippingaddressadditional | undefined;
+    shippingCity?: Payabli.Shippingcity | undefined;
+    shippingState?: Payabli.Shippingstate | undefined;
+    shippingZip?: Payabli.Shippingzip | undefined;
+    shippingCountry?: Payabli.Shippingcountry | undefined;
     /** Customer balance. */
-    balance?: number;
-    timeZone?: Payabli.Timezone;
+    balance?: number | undefined;
+    timeZone?: Payabli.Timezone | undefined;
     /** Additional Custom fields in format "key":"value". */
-    additionalFields?: Record<string, string | undefined>;
-    identifierFields?: Payabli.Identifierfields;
-    createdAt?: Payabli.CreatedAt;
+    additionalFields?: Record<string, string | undefined> | undefined;
+    identifierFields?: Payabli.Identifierfields | undefined;
+    createdAt?: Payabli.CreatedAt | undefined;
 }

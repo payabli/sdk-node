@@ -3,12 +3,12 @@
 import type * as Payabli from "../index.js";
 
 export interface QueryCFeeTransaction {
-    cFeeTransid?: string;
-    feeAmount?: number;
-    operation?: string;
-    refundId?: number;
-    responseData?: Record<string, unknown>;
-    settlementStatus?: number;
-    transactionTime?: Payabli.TransactionTime;
-    transStatus?: number;
+    cFeeTransid?: string | undefined;
+    feeAmount?: number | undefined;
+    operation?: string | undefined;
+    refundId?: number | undefined;
+    responseData?: Record<string, unknown> | undefined;
+    settlementStatus?: number | undefined;
+    transactionTime?: Payabli.TransactionTime | undefined;
+    transStatus?: number | undefined;
 }

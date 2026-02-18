@@ -3,16 +3,16 @@
 import type * as Payabli from "../index.js";
 
 export interface CardFeeSection {
-    achBatchCardFee?: Payabli.TemplateElement;
-    annualCardFee?: Payabli.TemplateElement;
-    avsCardFee?: Payabli.TemplateElement;
-    chargebackCardFee?: Payabli.TemplateElement;
-    ddaRejectsCardFee?: Payabli.TemplateElement;
-    earlyTerminationCardFee?: Payabli.TemplateElement;
-    minimumProcessingCardFee?: Payabli.TemplateElement;
-    monthlyPCICardFee?: Payabli.TemplateElement;
-    montlyPlatformCardFee?: Payabli.TemplateElement;
-    retrievalCardFee?: Payabli.TemplateElement;
-    transactionCardFee?: Payabli.TemplateElement;
+    achBatchCardFee?: Payabli.TemplateElement | undefined;
+    annualCardFee?: Payabli.TemplateElement | undefined;
+    avsCardFee?: Payabli.TemplateElement | undefined;
+    chargebackCardFee?: Payabli.TemplateElement | undefined;
+    ddaRejectsCardFee?: Payabli.TemplateElement | undefined;
+    earlyTerminationCardFee?: Payabli.TemplateElement | undefined;
+    minimumProcessingCardFee?: Payabli.TemplateElement | undefined;
+    monthlyPCICardFee?: Payabli.TemplateElement | undefined;
+    montlyPlatformCardFee?: Payabli.TemplateElement | undefined;
+    retrievalCardFee?: Payabli.TemplateElement | undefined;
+    transactionCardFee?: Payabli.TemplateElement | undefined;
     visible?: Payabli.Visible | undefined;
 }

@@ -3,8 +3,8 @@
 import type * as Payabli from "../../../index.js";
 
 export interface AddOrganizationResponse {
-    isSuccess?: Payabli.IsSuccess;
+    isSuccess?: Payabli.IsSuccess | undefined;
     /** Returns the organization ID. */
-    responseData?: Payabli.Responsedatanonobject;
+    responseData?: Payabli.Responsedatanonobject | undefined;
     responseText: Payabli.ResponseText;
 }

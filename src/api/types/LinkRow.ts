@@ -3,5 +3,5 @@
 import type * as Payabli from "../index.js";
 
 export interface LinkRow {
-    columns?: Payabli.LinkData[];
+    columns?: Payabli.LinkData[] | undefined;
 }

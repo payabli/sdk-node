@@ -2,9 +2,9 @@
 
 export interface DisplayProperty {
     /** When `true`, the field is displayed on the receipt. */
-    display?: boolean;
+    display?: boolean | undefined;
     /** This field is unused. */
-    Fixed?: boolean;
+    Fixed?: boolean | undefined;
     /** The field's name. */
-    name?: string;
+    name?: string | undefined;
 }

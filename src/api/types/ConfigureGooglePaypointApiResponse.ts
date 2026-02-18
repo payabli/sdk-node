@@ -9,5 +9,5 @@ export interface ConfigureGooglePaypointApiResponse {
     responseData: Payabli.GooglePayPaypointRegistrationData;
     responseText: Payabli.ResponseText;
     /** Field not in use on this endpoint */
-    roomId?: number;
+    roomId?: number | undefined;
 }

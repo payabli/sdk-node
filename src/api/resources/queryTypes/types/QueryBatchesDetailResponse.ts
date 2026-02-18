@@ -187,7 +187,7 @@ export namespace QueryBatchesDetailResponse {
             OrderId: Payabli.OrderId;
             TransMethod: string;
             PaymentData: Payabli.QueryPaymentData | null;
-            NetAmount?: Payabli.Netamountnullable;
+            NetAmount?: Payabli.Netamountnullable | undefined;
             Operation: Payabli.Operation;
             Category: Payabli.Category;
             Source: Payabli.Source | null;
@@ -218,10 +218,10 @@ export namespace QueryBatchesDetailResponse {
             OrgId: Payabli.Orgid;
             PayorId: Payabli.PayorId;
             PaypointId: Payabli.PaypointId;
-            PendingFeeAmount?: Payabli.PendingFeeAmount;
+            PendingFeeAmount?: Payabli.PendingFeeAmount | undefined;
             RefundId: Payabli.RefundId;
             ReturnedId: Payabli.ReturnedId;
-            splitFundingInstructions?: Payabli.SplitFunding;
+            splitFundingInstructions?: Payabli.SplitFunding | undefined;
             TotalAmount: number;
             CfeeTransactions: Payabli.QueryCFeeTransaction[];
             invoiceData: Payabli.BillData | null;

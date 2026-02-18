@@ -3,6 +3,6 @@
 import type * as Payabli from "../../../index.js";
 
 export interface EditMfaUserResponse {
-    isSuccess?: Payabli.IsSuccess;
+    isSuccess?: Payabli.IsSuccess | undefined;
     responseText: Payabli.ResponseText;
 }

@@ -3,12 +3,12 @@
 import type * as Payabli from "../index.js";
 
 export interface PaypointEntryConfig {
-    EntryComment?: string;
-    EntryLogo?: string;
-    EntryName?: string;
-    EntryPages?: Payabli.PayabliPages[];
-    EntrySubtitle?: string;
-    EntryTitle?: string;
-    IdEntry?: number;
-    Paypoint?: Payabli.PaypointData;
+    EntryComment?: string | undefined;
+    EntryLogo?: string | undefined;
+    EntryName?: string | undefined;
+    EntryPages?: Payabli.PayabliPages[] | undefined;
+    EntrySubtitle?: string | undefined;
+    EntryTitle?: string | undefined;
+    IdEntry?: number | undefined;
+    Paypoint?: Payabli.PaypointData | undefined;
 }

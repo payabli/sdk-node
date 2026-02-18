@@ -5,9 +5,9 @@ import type * as Payabli from "../index.js";
 export interface Instrument {
     achAccount: Payabli.Achaccount;
     achRouting: Payabli.Achrouting;
-    billingAddress?: Payabli.BillingAddressNullable;
-    billingCity?: Payabli.BillingCityNullable;
-    billingCountry?: Payabli.BillingCountryNullable;
-    billingState?: Payabli.BillingStateNullable;
-    billingZip?: Payabli.BillingZip;
+    billingAddress?: Payabli.BillingAddressNullable | undefined;
+    billingCity?: Payabli.BillingCityNullable | undefined;
+    billingCountry?: Payabli.BillingCountryNullable | undefined;
+    billingState?: Payabli.BillingStateNullable | undefined;
+    billingZip?: Payabli.BillingZip | undefined;
 }

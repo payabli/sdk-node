@@ -3,9 +3,9 @@
 import type * as Payabli from "../index.js";
 
 export interface GooglePayPaypointRegistrationData {
-    entry?: Payabli.Entry;
-    isEnabled?: Payabli.IsEnabled;
+    entry?: Payabli.Entry | undefined;
+    isEnabled?: Payabli.IsEnabled | undefined;
     /** The wallet type. In this context it will always be `googlePay`. */
-    walletType?: string;
-    walletData?: Payabli.GoogleWalletData;
+    walletType?: string | undefined;
+    walletData?: Payabli.GoogleWalletData | undefined;
 }

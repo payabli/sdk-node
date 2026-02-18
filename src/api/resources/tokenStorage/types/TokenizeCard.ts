@@ -5,9 +5,9 @@ import type * as Payabli from "../../../index.js";
 export interface TokenizeCard {
     /** The type of payment method to tokenize. For cards, this is always `card`. */
     method: string;
-    cardcvv?: Payabli.Cardcvv;
+    cardcvv?: Payabli.Cardcvv | undefined;
     cardexp: Payabli.Cardexp;
     cardHolder: Payabli.Cardholder;
     cardnumber: Payabli.Cardnumber;
-    cardzip?: Payabli.Cardzip;
+    cardzip?: Payabli.Cardzip | undefined;
 }

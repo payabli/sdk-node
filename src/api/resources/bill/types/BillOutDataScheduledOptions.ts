@@ -2,5 +2,5 @@
 
 export interface BillOutDataScheduledOptions {
     /** The ID of the stored payment method to use for the bill. */
-    storedMethodId?: string;
+    storedMethodId?: string | undefined;
 }

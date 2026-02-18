@@ -61,15 +61,10 @@ export class NotificationlogsClient {
         requestOptions?: NotificationlogsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.NotificationLog[]>> {
         const { PageSize: pageSize, Page: page, body: _body } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (pageSize != null) {
-            _queryParams.PageSize = pageSize.toString();
-        }
-
-        if (page != null) {
-            _queryParams.Page = page.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            PageSize: pageSize,
+            Page: page,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

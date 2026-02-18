@@ -154,7 +154,6 @@ export namespace QueryBatchesResponse {
             TransferIdentifier: Payabli.TransferIdentifier | null;
             /** Events associated with the batch. */
             EventsData: Payabli.GeneralEvents[] | null;
-            /** */
             ConnectorName: string | null;
             /** The batch date. */
             BatchDate: string | null;
@@ -162,7 +161,6 @@ export namespace QueryBatchesResponse {
             BatchAmount: number | null;
             /** The total of fees in the batch. */
             BatchFeesAmount: number | null;
-            /** */
             BatchAuthAmount: number | null;
             /** Previously held funds that have been released after a risk review. */
             BatchReleasedAmount: number | null;

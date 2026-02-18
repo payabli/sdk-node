@@ -4,7 +4,7 @@ export interface ButtonElement {
     /** Label for custom payment button */
     label: string;
     /** Specify size of custom payment button */
-    size?: ButtonElement.Size;
+    size?: ButtonElement.Size | undefined;
 }
 
 export namespace ButtonElement {

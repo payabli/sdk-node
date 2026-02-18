@@ -4,20 +4,20 @@ import type * as Payabli from "../index.js";
 
 export interface NotificationQueryRecord {
     /** Notification content. */
-    content?: Payabli.NotificationContent;
+    content?: Payabli.NotificationContent | undefined;
     /** Timestamp of when notification was created. */
-    createdAt?: Payabli.CreatedAt;
-    frequency?: Payabli.Frequencynotification;
+    createdAt?: Payabli.CreatedAt | undefined;
+    frequency?: Payabli.Frequencynotification | undefined;
     /** Timestamp of when notification was last updated. */
     lastUpdated?: Payabli.LastModified | undefined;
-    method?: Payabli.Methodnotification;
-    notificationId?: Payabli.NotificationId;
-    ownerId?: Payabli.Ownerid;
+    method?: Payabli.Methodnotification | undefined;
+    notificationId?: Payabli.NotificationId | undefined;
+    ownerId?: Payabli.Ownerid | undefined;
     /** Name of entity owner of notification. */
-    ownerName?: string;
-    ownerType?: Payabli.Ownertype;
+    ownerName?: string | undefined;
+    ownerType?: Payabli.Ownertype | undefined;
     /** Custom descriptor of source of notification. */
-    source?: Payabli.Source;
-    status?: Payabli.Statusnotification;
-    target?: Payabli.Target;
+    source?: Payabli.Source | undefined;
+    status?: Payabli.Statusnotification | undefined;
+    target?: Payabli.Target | undefined;
 }
