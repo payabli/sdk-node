@@ -16,9 +16,9 @@ export interface BillDetailsResponse {
     /** Bill discount amount. */
     discount?: string | undefined;
     /** Bill due date in format YYYY-MM-DD or MM/DD/YYYY. */
-    dueDate?: Payabli.Datenullable | undefined;
+    dueDate: string | null;
     /** Bill date in format YYYY-MM-DD or MM/DD/YYYY. */
-    invoiceDate?: Payabli.Datenullable | undefined;
+    invoiceDate: string | null;
     /** Any comments about bill. **For managed payouts, this field has a limit of 100 characters**. */
     comments?: Payabli.Comments | undefined;
 }

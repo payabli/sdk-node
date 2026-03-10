@@ -694,6 +694,7 @@ describe("BillClient", () => {
                 },
                 Status: -99,
                 CreatedAt: "2025-07-01T15:00:01Z",
+                EndDate: null,
                 LastUpdated: "2025-07-01T15:00:01Z",
                 billEvents: [
                     {
@@ -839,6 +840,7 @@ describe("BillClient", () => {
                 },
                 Status: -99,
                 CreatedAt: "2025-07-01T15:00:01Z",
+                EndDate: null,
                 LastUpdated: "2025-07-01T15:00:01Z",
                 billEvents: [
                     {

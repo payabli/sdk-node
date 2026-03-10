@@ -9,7 +9,7 @@ export interface BillOutData {
     /** An array of bill images. Attachments aren't required, but we strongly recommend including them. Including a bill image can make payouts smoother and prevent delays. You can include either the Base64-encoded file content, or you can include an fURL to a public file. The maximum file size for image uploads is 30 MB. */
     attachments?: Payabli.Attachments | undefined;
     /** Date of bill. Accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
-    billDate?: Payabli.Datenullable | undefined;
+    billDate?: string | undefined;
     billItems?: Payabli.Billitems | undefined;
     /** Unique identifier for the bill. Required when adding a bill. */
     billNumber?: string | undefined;
@@ -17,9 +17,9 @@ export interface BillOutData {
     /** Discount amount applied to the bill. */
     discount?: number | undefined;
     /** Due date of bill. Accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
-    dueDate?: Payabli.Datenullable | undefined;
+    dueDate?: string | undefined;
     /** End Date for scheduled bills. Applied only in `Mode` = 1. Accepted formats: YYYY-MM-DD, MM/DD/YYYY */
-    endDate?: Payabli.Datenullable | undefined;
+    endDate?: string | undefined;
     /** Frequency for scheduled bills. Applied only in `Mode` = 1. */
     frequency?: Payabli.Frequency | undefined;
     /** Lot number associated with the bill. */

@@ -3,4 +3,4 @@
 /**
  * Annual revenue amount.
  */
-export type Annualrevenue = number | undefined;
+export type Annualrevenue = number;

@@ -3,4 +3,4 @@
 /**
  * High ticket amount.
  */
-export type Highticketamt = number | undefined;
+export type Highticketamt = number;

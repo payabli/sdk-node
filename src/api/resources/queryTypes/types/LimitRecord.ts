@@ -3,4 +3,4 @@
 /**
  * Max number of records to return for the query. Use `0` or negative value to return all records. Defaults to 20.
  */
-export type LimitRecord = number | undefined;
+export type LimitRecord = number;

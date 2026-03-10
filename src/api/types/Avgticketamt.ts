@@ -3,4 +3,4 @@
 /**
  * Average ticket amount.
  */
-export type Avgticketamt = number | undefined;
+export type Avgticketamt = number;

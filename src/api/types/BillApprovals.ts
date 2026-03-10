@@ -5,4 +5,4 @@ import type * as Payabli from "../index.js";
 /**
  * Approvals associated with the bill.
  */
-export type BillApprovals = (Payabli.BillQueryRecord2BillApprovalsItem | undefined)[] | undefined;
+export type BillApprovals = (Payabli.BillQueryRecord2BillApprovalsItem | undefined)[];

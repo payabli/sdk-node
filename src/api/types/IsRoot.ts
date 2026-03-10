@@ -3,4 +3,4 @@
 /**
  * When `true`, indicates that this is the organization's root template.
  */
-export type IsRoot = boolean | undefined;
+export type IsRoot = boolean;

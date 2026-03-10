@@ -3,4 +3,4 @@
 /**
  * Freight/shipping amount.
  */
-export type FreightAmount = number | undefined;
+export type FreightAmount = number;

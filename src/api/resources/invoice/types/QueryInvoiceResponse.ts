@@ -17,15 +17,15 @@ export namespace QueryInvoiceResponse {
             paypointId: Payabli.PaypointId;
             invoiceNumber: Payabli.InvoiceNumber;
             /** Invoice date in any of the accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
-            invoiceDate?: Payabli.Datenullable | undefined;
+            invoiceDate: string | null;
             /** Invoice due date in any of the accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
-            invoiceDueDate?: Payabli.Datenullable | undefined;
+            invoiceDueDate: string | null;
             /** Invoice sent date in any of the accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
-            invoiceSentDate?: Payabli.Datenullable | undefined;
+            invoiceSentDate: string | null;
             /** The end date for a scheduled invoice cycle (`invoiceType` = 1). */
-            invoiceEndDate?: Payabli.Datenullable | undefined;
+            invoiceEndDate: string | null;
             /** Timestamp of last payment. */
-            lastPaymentDate?: Payabli.DatetimeNullable | undefined;
+            lastPaymentDate: string | null;
             createdAt: Payabli.CreatedAt;
             invoiceStatus: Payabli.Invoicestatus;
             invoiceType: Payabli.InvoiceType;

@@ -13,9 +13,9 @@ export interface BillResponseData {
     /** Total amount for the bill. */
     TotalAmount?: number | undefined;
     /** Date of bill. Accepted formats: YYYY-MM-DD, MM/DD/YYYY */
-    BillDate?: Payabli.Datenullable | undefined;
+    BillDate: string | null;
     /** Due Date of bill. Accepted formats: YYYY-MM-DD, MM/DD/YYYY */
-    DueDate?: Payabli.Datenullable | undefined;
+    DueDate: string | null;
     /** Comments associated with the bill. For managed payables, the character limit is 200. For on demand payouts, the characters limit is 250. */
     Comments?: string | undefined;
     /** The batch number that the bill belongs to. */
@@ -38,7 +38,7 @@ export interface BillResponseData {
     Status?: Payabli.Billstatus | undefined;
     CreatedAt?: Payabli.CreatedAt | undefined;
     /** End date for scheduled bills. Applied only in `Mode` = 1. */
-    EndDate?: Payabli.Datenullable | undefined;
+    EndDate: string | null;
     LastUpdated?: Payabli.LastModified | undefined;
     /** Frequency for scheduled bills. Applied only in `Mode` = 1. */
     Frequency?: Payabli.Frequency | undefined;

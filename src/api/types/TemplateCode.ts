@@ -3,4 +3,4 @@
 /**
  * The internal code for the template.
  */
-export type TemplateCode = string | undefined;
+export type TemplateCode = string;

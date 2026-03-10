@@ -22,7 +22,11 @@ import type * as Payabli from "../index.js";
  *         signedDocumentReference: "https://example.com/signed-document.pdf",
  *         attestationDate: "04/20/2025",
  *         signDate: "04/20/2025",
- *         additionalData: "{\"deviceId\":\"499585-389fj484-3jcj8hj3\",\"session\":\"fifji4-fiu443-fn4843\",\"timeWithCompany\":\"6 Years\"}"
+ *         additionalData: {
+ *             "deviceId": "499585-389fj484-3jcj8hj3",
+ *             "session": "fifji4-fiu443-fn4843",
+ *             "timeWithCompany": "6 Years"
+ *         }
  *     }
  */
 export interface SignerData {
@@ -46,5 +50,5 @@ export interface SignerData {
     pciAttestation?: Payabli.PciAttestation | undefined;
     attestationDate?: Payabli.AttestationDate | undefined;
     signDate?: Payabli.SignDate | undefined;
-    additionalData?: Payabli.AdditionalDataString | undefined;
+    additionalData?: Payabli.AdditionalDataMap | undefined;
 }

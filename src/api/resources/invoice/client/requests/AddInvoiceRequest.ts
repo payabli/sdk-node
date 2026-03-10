@@ -38,7 +38,7 @@ import type * as Payabli from "../../../../index.js";
  *     }
  */
 export interface AddInvoiceRequest {
-    forceCustomerCreation?: Payabli.ForceCustomerCreation | undefined;
+    forceCustomerCreation?: Payabli.ForceCustomerCreation;
     idempotencyKey?: Payabli.IdempotencyKey;
     body: Payabli.InvoiceDataRequest;
 }

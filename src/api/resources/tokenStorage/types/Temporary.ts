@@ -3,4 +3,4 @@
 /**
  * Creates a temporary, one-time-use token for the payment method that expires in 12 hours. Defaults to `false`.
  */
-export type Temporary = boolean | undefined;
+export type Temporary = boolean;

@@ -5,4 +5,4 @@ import type * as Payabli from "../index.js";
 /**
  * Split funding instructions for the transaction. The total amount of the splits must match the total amount of the transaction.
  */
-export type SplitFunding = Payabli.SplitFundingContent[] | undefined;
+export type SplitFunding = Payabli.SplitFundingContent[];

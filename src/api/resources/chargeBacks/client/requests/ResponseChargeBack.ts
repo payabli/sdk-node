@@ -11,7 +11,7 @@ import type * as Payabli from "../../../../index.js";
 export interface ResponseChargeBack {
     idempotencyKey?: Payabli.IdempotencyKey;
     /** Array of attached files to response. */
-    attachments?: Payabli.Attachments | undefined;
+    attachments?: Payabli.Attachments;
     /** Email of response submitter. */
     contactEmail?: Payabli.Email;
     /** Name of response submitter */

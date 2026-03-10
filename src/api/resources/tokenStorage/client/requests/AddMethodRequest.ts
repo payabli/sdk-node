@@ -11,6 +11,8 @@ import type * as Payabli from "../../../../index.js";
  *             },
  *             entryPoint: "f743aed24a",
  *             fallbackAuth: true,
+ *             fallbackAuthAmount: 100,
+ *             methodDescription: "Primary Visa card",
  *             paymentMethod: {
  *                 cardcvv: "123",
  *                 cardexp: "02/25",
@@ -18,7 +20,8 @@ import type * as Payabli from "../../../../index.js";
  *                 cardnumber: "4111111111111111",
  *                 cardzip: "12345",
  *                 method: "card"
- *             }
+ *             },
+ *             source: "api"
  *         }
  *     }
  *
@@ -96,9 +99,9 @@ import type * as Payabli from "../../../../index.js";
  *     }
  */
 export interface AddMethodRequest {
-    achValidation?: Payabli.AchValidation | undefined;
+    achValidation?: Payabli.AchValidation;
     createAnonymous?: Payabli.CreateAnonymous;
-    forceCustomerCreation?: Payabli.ForceCustomerCreation | undefined;
+    forceCustomerCreation?: Payabli.ForceCustomerCreation;
     temporary?: Payabli.Temporary;
     idempotencyKey?: Payabli.IdempotencyKey;
     body: Payabli.RequestTokenStorage;

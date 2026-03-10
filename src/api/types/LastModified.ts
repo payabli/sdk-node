@@ -3,4 +3,4 @@
 /**
  * Timestamp of when record was last updated, in UTC.
  */
-export type LastModified = string | undefined;
+export type LastModified = string;

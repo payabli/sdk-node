@@ -8,9 +8,9 @@ export interface BillPayOutDataRequest {
     /** Any comments about bill. **For managed payouts, this field has a limit of 100 characters**. */
     comments?: Payabli.Comments | undefined;
     /** Bill due date in format YYYY-MM-DD or MM/DD/YYYY. */
-    dueDate?: Payabli.Datenullable | undefined;
+    dueDate?: string | undefined;
     /** Bill date in format YYYY-MM-DD or MM/DD/YYYY. */
-    invoiceDate?: Payabli.Datenullable | undefined;
+    invoiceDate?: string | undefined;
     /** Custom number identifying the bill. Must be unique in paypoint. **Required** for new bill and when `billId` isn't provided. */
     invoiceNumber?: Payabli.InvoiceNumber | undefined;
     /** Net Amount owed in bill. Required when adding a bill. */

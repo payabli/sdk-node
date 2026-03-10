@@ -80,7 +80,7 @@ export namespace QueryTransferDetailResponse {
             /** Transaction total amount (including service fee or sub-charge) */
             TotalAmount: number | null;
             /** Net amount paid */
-            NetAmount: (Payabli.Netamountnullable | undefined) | null;
+            NetAmount: Payabli.Netamountnullable | null;
             FeeAmount: Payabli.FeeAmount | null;
             /** Settlement status for transaction. See [the docs](/developers/references/money-in-statuses#payment-funding-status) for a full reference. */
             SettlementStatus: number | null;
@@ -103,19 +103,19 @@ export namespace QueryTransferDetailResponse {
             /** Indicates whether the ACH account has been validated */
             IsValidatedACH: boolean | null;
             /** Transaction date and time, in UTC */
-            TransactionTime: (Payabli.DatetimeNullable | undefined) | null;
+            TransactionTime: string | null;
             Customer: Payabli.QueryTransactionPayorData | null;
-            splitFundingInstructions: (Payabli.SplitFunding | undefined) | null;
+            splitFundingInstructions: Payabli.SplitFunding | null;
             CfeeTransactions: Payabli.QueryCFeeTransaction[] | null;
             TransactionEvents: Payabli.QueryTransactionEvents[] | null;
-            PendingFeeAmount: (Payabli.PendingFeeAmount | undefined) | null;
-            RiskFlagged: (Payabli.RiskFlagged | undefined) | null;
-            RiskFlaggedOn: (Payabli.RiskFlaggedOn | undefined) | null;
+            PendingFeeAmount: Payabli.PendingFeeAmount | null;
+            RiskFlagged: Payabli.RiskFlagged | null;
+            RiskFlaggedOn: Payabli.RiskFlaggedOn | null;
             RiskStatus: Payabli.RiskStatus | null;
             RiskReason: Payabli.RiskReason | null;
             RiskAction: Payabli.RiskAction | null;
-            RiskActionCode: (Payabli.RiskActionCode | undefined) | null;
-            DeviceId: (Payabli.DeviceId | undefined) | null;
+            RiskActionCode: Payabli.RiskActionCode | null;
+            DeviceId: Payabli.DeviceId | null;
             AchSecCode: Payabli.AchSecCode | null;
             AchHolderType: Payabli.AchHolderType | null;
             IpAddress: Payabli.IpAddress | null;

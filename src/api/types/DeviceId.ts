@@ -5,4 +5,4 @@ import type * as Payabli from "../index.js";
 /**
  * Identifier of registered cloud device used in the transaction
  */
-export type DeviceId = Payabli.Device | undefined;
+export type DeviceId = Payabli.Device;

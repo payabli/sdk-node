@@ -5,4 +5,4 @@ import type * as Payabli from "../index.js";
 /**
  * Array of event objects with information related to events associated to the invoice.
  */
-export type BillEvents = Payabli.GeneralEvents[] | undefined;
+export type BillEvents = Payabli.GeneralEvents[];

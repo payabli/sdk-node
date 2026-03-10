@@ -3,4 +3,4 @@
 /**
  * Average total amount of transactions in your local currency that are processed each month.
  */
-export type Avgmonthly = number | undefined;
+export type Avgmonthly = number;

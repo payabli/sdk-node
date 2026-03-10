@@ -5,4 +5,4 @@ import type * as Payabli from "../index.js";
 /**
  * Array of `LineItems` contained in bill.
  */
-export type Billitems = Payabli.BillItem[] | undefined;
+export type Billitems = Payabli.BillItem[];

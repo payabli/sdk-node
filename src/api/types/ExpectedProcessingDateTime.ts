@@ -3,4 +3,4 @@
 /**
  * The expected time that the refund will be processed. This value only appears when the `resultCode` is `10`, which means that the refund has been initiated and is queued for processing. See [Enhanced Refund Flow](/guides/pay-in-enhanced-refund-flow) for more information about refund processing.
  */
-export type ExpectedProcessingDateTime = string | undefined;
+export type ExpectedProcessingDateTime = string;

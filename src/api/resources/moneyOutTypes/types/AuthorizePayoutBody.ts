@@ -93,9 +93,9 @@ export namespace AuthorizePayoutBody {
             invoiceNumber?: Payabli.InvoiceNumber | undefined;
             netAmount?: Payabli.NetAmountstring | undefined;
             /** Invoice date in any of the accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
-            invoiceDate?: Payabli.Datenullable | undefined;
+            invoiceDate?: string | undefined;
             /** Invoice due date in any of the accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
-            dueDate?: Payabli.Datenullable | undefined;
+            dueDate?: string | undefined;
             comments?: Payabli.Comments | undefined;
             lotNumber?: Payabli.LotNumber | undefined;
             billId?: Payabli.BillId | undefined;

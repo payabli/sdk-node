@@ -9,7 +9,7 @@ export interface ApplicationData {
     avgmonthly?: Payabli.Avgmonthly | undefined;
     baddress?: Payabli.Baddress1 | undefined;
     baddress1?: Payabli.Baddress2 | undefined;
-    bankData?: Payabli.Bank | undefined;
+    bankData?: Payabli.BankData | undefined;
     bcity?: Payabli.Bcity | undefined;
     bcountry?: Payabli.Bcountry | undefined;
     binperson?: Payabli.Binperson | undefined;

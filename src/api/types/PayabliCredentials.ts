@@ -8,7 +8,9 @@ export interface PayabliCredentials {
     cfeeMin?: number | undefined;
     maxticket?: number | undefined;
     minticket?: number | undefined;
+    /** The payment mode supported by this service. `0` for one-time payments, `1` for recurring payments, `2` for both. */
     mode?: number | undefined;
     referenceId?: number | undefined;
+    /** The payment service that this credential applies to. A paypoint can support multiple services, each represented by its own credential object in the array. Possible values are `card` (credit/debit card), `ach` (ACH bank transfer), `check` (paper check), `vcard` (virtual card), `cloud` (card-present), `cash`, `managed` (managed payment service), and `wallet`. */
     service?: string | undefined;
 }

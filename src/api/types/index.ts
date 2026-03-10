@@ -173,8 +173,6 @@ export * from "./CustomerSummaryRecord.js";
 export * from "./CustomerVaultId.js";
 export * from "./CvvResponse.js";
 export * from "./CvvResponseText.js";
-export * from "./Datenullable.js";
-export * from "./DatetimeNullable.js";
 export * from "./Dbaname.js";
 export * from "./DepositDate.js";
 export * from "./Descriptor.js";

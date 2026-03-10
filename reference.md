@@ -914,7 +914,27 @@ await client.boarding.addApplication({
     avgmonthly: 1000,
     baddress: "123 Walnut Street",
     baddress1: "Suite 103",
-    bankData: {},
+    bankData: [{
+            accountNumber: "123123123",
+            bankAccountFunction: 1,
+            bankAccountHolderName: "Gruzya Adventure Outfitters LLC",
+            bankAccountHolderType: "Business",
+            bankName: "Test Bank",
+            nickname: "Withdrawal Account",
+            routingAccount: "123123123",
+            typeAccount: "Checking",
+            accountId: "123-456"
+        }, {
+            accountNumber: "123123123",
+            bankAccountFunction: 0,
+            bankAccountHolderName: "Gruzya Adventure Outfitters LLC",
+            bankAccountHolderType: "Business",
+            bankName: "Test Bank",
+            nickname: "Deposit Account",
+            routingAccount: "123123123",
+            typeAccount: "Checking",
+            accountId: "123-456"
+        }],
     bcity: "New Vegas",
     bcountry: "US",
     binperson: 60,
@@ -984,7 +1004,11 @@ await client.boarding.addApplication({
         signedDocumentReference: "https://example.com/signed-document.pdf",
         attestationDate: "04/20/2025",
         signDate: "04/20/2025",
-        additionalData: "{\"deviceId\":\"499585-389fj484-3jcj8hj3\",\"session\":\"fifji4-fiu443-fn4843\",\"timeWithCompany\":\"6 Years\"}"
+        additionalData: {
+            "deviceId": "499585-389fj484-3jcj8hj3",
+            "session": "fifji4-fiu443-fn4843",
+            "timeWithCompany": "6 Years"
+        }
     },
     startdate: "01/01/1990",
     taxFillName: "Sunshine LLC",
@@ -7025,7 +7049,7 @@ await client.moneyIn.captureAuth("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", {
 <dl>
 <dd>
 
-Make a temporary microdeposit in a customer account to verify the customer's ownership and access to the target account. Reverse the microdeposit with `reverseCredit`.
+Make a temporary microdeposit in a customer account to verify the customer's ownership and access to the target account. Reverse the microdeposit with `reverseCredit`. Payabli doesn't automatically make microdeposits when you add a bank account, you must manually make the requests.
 
 This feature must be enabled by Payabli on a per-merchant basis. Contact support for help. 
 </dd>
@@ -9009,7 +9033,7 @@ await client.notification.addNotification({
     },
     frequency: "untilcancelled",
     method: "web",
-    ownerId: "236",
+    ownerId: 236,
     ownerType: 0,
     status: 1,
     target: "https://webhook.site/2871b8f8-edc7-441a-b376-98d8c8e33275"
@@ -9208,7 +9232,7 @@ await client.notification.updateNotification("1717", {
     },
     frequency: "untilcancelled",
     method: "email",
-    ownerId: "136",
+    ownerId: 136,
     ownerType: 0,
     status: 1,
     target: "newemail@email.com"
@@ -10433,7 +10457,7 @@ await client.paymentLink.addPayLinkFromInvoice(23548884, {
 <dl>
 <dd>
 
-Generates a payment link for a bill from the bill ID. 
+Generates a payment link for a bill from the bill ID. The vendor receives a secure page where they can select their preferred payment method (ACH, virtual card, or check) and complete the payment.
 </dd>
 </dl>
 </dd>
@@ -10488,34 +10512,17 @@ await client.paymentLink.addPayLinkFromBill(23548884, {
         },
         paymentMethods: {
             allMethodsChecked: true,
+            allowMultipleMethods: true,
+            defaultMethod: "vcard",
             enabled: true,
             header: "Payment Methods",
             methods: {
-                amex: true,
-                applePay: true,
-                discover: true,
-                eCheck: true,
-                mastercard: true,
-                visa: true
+                ach: true,
+                check: true,
+                vcard: true
             },
-            order: 0
-        },
-        payor: {
-            enabled: true,
-            fields: [{
-                    display: true,
-                    fixed: true,
-                    identifier: true,
-                    label: "Full Name",
-                    name: "fullName",
-                    order: 0,
-                    required: true,
-                    validation: "alpha",
-                    value: "",
-                    width: 0
-                }],
-            header: "Payor Information",
-            order: 0
+            order: 0,
+            showPreviewVirtualCard: true
         },
         review: {
             enabled: true,
@@ -10598,7 +10605,7 @@ Deletes a payment link by ID.
 <dd>
 
 ```typescript
-await client.paymentLink.deletePayLinkFromId("payLinkId");
+await client.paymentLink.deletePayLinkFromId("2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234");
 
 ```
 </dd>
@@ -11068,34 +11075,17 @@ await client.paymentLink.addPayLinkFromBillLotNumber("LOT-2024-001", {
         },
         paymentMethods: {
             allMethodsChecked: true,
+            allowMultipleMethods: true,
+            defaultMethod: "vcard",
             enabled: true,
             header: "Payment Methods",
             methods: {
-                amex: true,
-                applePay: true,
-                discover: true,
-                eCheck: true,
-                mastercard: true,
-                visa: true
+                ach: true,
+                check: true,
+                vcard: true
             },
-            order: 0
-        },
-        payor: {
-            enabled: true,
-            fields: [{
-                    display: true,
-                    fixed: true,
-                    identifier: true,
-                    label: "Full Name",
-                    name: "fullName",
-                    order: 0,
-                    required: true,
-                    validation: "alpha",
-                    value: "",
-                    width: 0
-                }],
-            header: "Payor Information",
-            order: 0
+            order: 0,
+            showPreviewVirtualCard: true
         },
         review: {
             enabled: true,
@@ -11132,6 +11122,210 @@ await client.paymentLink.addPayLinkFromBillLotNumber("LOT-2024-001", {
 <dd>
 
 **request:** `Payabli.PayLinkDataOut` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PaymentLinkClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.paymentLink.<a href="/src/api/resources/paymentLink/client/Client.ts">patchOutPaymentLink</a>(paylinkId, { ...params }) -> Payabli.PayabliApiResponsePaymentLinks</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Partially updates a Pay Out payment link's content, expiration date, and/or status. Use this to modify the payment page configuration, extend or change the expiration, or cancel a link. Updating the expiration date of an expired link reactivates it to Active status.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.paymentLink.patchOutPaymentLink("2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234", {
+    expirationDate: "2026-06-01T00:00:00Z",
+    status: "Active"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**paylinkId:** `string` — ID for the payment link.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.PatchOutPaymentLinkRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PaymentLinkClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.paymentLink.<a href="/src/api/resources/paymentLink/client/Client.ts">updatePayLinkOutFromId</a>(paylinkId, { ...params }) -> Payabli.PayabliApiResponsePaymentLinks</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates the payment page content for a Pay Out payment link. Use this to change the branding, messaging, payment methods offered, or other page configuration.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.paymentLink.updatePayLinkOutFromId("2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234", {
+    contactUs: {
+        emailLabel: "Email",
+        enabled: true,
+        header: "Contact Us",
+        order: 0,
+        paymentIcons: true,
+        phoneLabel: "Phone"
+    },
+    logo: {
+        enabled: true,
+        order: 0
+    },
+    messageBeforePaying: {
+        enabled: true,
+        label: "Please review your payment details",
+        order: 0
+    },
+    notes: {
+        enabled: true,
+        header: "Additional Notes",
+        order: 0,
+        placeholder: "Enter any additional notes here",
+        value: ""
+    },
+    page: {
+        description: "Get paid securely",
+        enabled: true,
+        header: "Payment Page",
+        order: 0
+    },
+    paymentButton: {
+        enabled: true,
+        label: "Pay Now",
+        order: 0
+    },
+    paymentMethods: {
+        allMethodsChecked: true,
+        allowMultipleMethods: true,
+        defaultMethod: "vcard",
+        enabled: true,
+        header: "Payment Methods",
+        methods: {
+            ach: true,
+            check: true,
+            vcard: true
+        },
+        order: 0,
+        showPreviewVirtualCard: true
+    },
+    review: {
+        enabled: true,
+        header: "Review Payment",
+        order: 0
+    },
+    settings: {
+        color: "#000000",
+        language: "en"
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**paylinkId:** `string` — ID for the payment link.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.PaymentPageRequestBodyOut` 
     
 </dd>
 </dl>
@@ -15935,6 +16129,8 @@ await client.tokenStorage.addMethod({
         },
         entryPoint: "f743aed24a",
         fallbackAuth: true,
+        fallbackAuthAmount: 100,
+        methodDescription: "Primary Visa card",
         paymentMethod: {
             cardcvv: "123",
             cardexp: "02/25",
@@ -15942,7 +16138,8 @@ await client.tokenStorage.addMethod({
             cardnumber: "4111111111111111",
             cardzip: "12345",
             method: "card"
-        }
+        },
+        source: "api"
     }
 });
 

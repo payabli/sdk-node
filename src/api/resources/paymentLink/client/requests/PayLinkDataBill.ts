@@ -44,34 +44,81 @@ import type * as Payabli from "../../../../index.js";
  *             },
  *             paymentMethods: {
  *                 allMethodsChecked: true,
+ *                 allowMultipleMethods: true,
+ *                 defaultMethod: "vcard",
  *                 enabled: true,
  *                 header: "Payment Methods",
  *                 methods: {
- *                     amex: true,
- *                     applePay: true,
- *                     discover: true,
- *                     eCheck: true,
- *                     mastercard: true,
- *                     visa: true
+ *                     ach: true,
+ *                     check: true,
+ *                     vcard: true
  *                 },
+ *                 order: 0,
+ *                 showPreviewVirtualCard: true
+ *             },
+ *             review: {
+ *                 enabled: true,
+ *                 header: "Review Payment",
  *                 order: 0
  *             },
- *             payor: {
+ *             settings: {
+ *                 color: "#000000",
+ *                 language: "en"
+ *             }
+ *         }
+ *     }
+ *
+ * @example
+ *     {
+ *         body: {
+ *             contactUs: {
+ *                 emailLabel: "Email",
  *                 enabled: true,
- *                 fields: [{
- *                         display: true,
- *                         fixed: true,
- *                         identifier: true,
- *                         label: "Full Name",
- *                         name: "fullName",
- *                         order: 0,
- *                         required: true,
- *                         validation: "alpha",
- *                         value: "",
- *                         width: 0
- *                     }],
- *                 header: "Payor Information",
+ *                 header: "Contact Us",
+ *                 order: 0,
+ *                 paymentIcons: true,
+ *                 phoneLabel: "Phone"
+ *             },
+ *             logo: {
+ *                 enabled: true,
  *                 order: 0
+ *             },
+ *             messageBeforePaying: {
+ *                 enabled: true,
+ *                 label: "Please review your payment details",
+ *                 order: 0
+ *             },
+ *             notes: {
+ *                 enabled: true,
+ *                 header: "Additional Notes",
+ *                 order: 0,
+ *                 placeholder: "Enter any additional notes here",
+ *                 value: ""
+ *             },
+ *             page: {
+ *                 description: "Get paid securely",
+ *                 enabled: true,
+ *                 header: "Payment Page",
+ *                 order: 0
+ *             },
+ *             paymentButton: {
+ *                 enabled: true,
+ *                 label: "Pay Now",
+ *                 order: 0
+ *             },
+ *             paymentMethods: {
+ *                 allMethodsChecked: true,
+ *                 allowMultipleMethods: true,
+ *                 defaultMethod: "vcard",
+ *                 enabled: true,
+ *                 header: "Payment Methods",
+ *                 methods: {
+ *                     ach: true,
+ *                     check: true,
+ *                     vcard: true
+ *                 },
+ *                 order: 0,
+ *                 showPreviewVirtualCard: true
  *             },
  *             review: {
  *                 enabled: true,
@@ -91,5 +138,5 @@ export interface PayLinkDataBill {
     /** List of recipient email addresses. When there is more than one, separate them by a semicolon (;). */
     mail2?: string;
     idempotencyKey?: Payabli.IdempotencyKey;
-    body: Payabli.PaymentPageRequestBody;
+    body: Payabli.PaymentPageRequestBodyOut;
 }

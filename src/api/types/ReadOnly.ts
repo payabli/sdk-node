@@ -3,4 +3,4 @@
 /**
  * When `true`, the element is read-only.
  */
-export type ReadOnly = boolean | undefined;
+export type ReadOnly = boolean;

@@ -24,7 +24,7 @@ import type * as Payabli from "../../../index.js";
  *             method: "card",
  *             batchNumber: "3040_combined_20251201",
  *             batchAmount: 420,
- *             payorId: 40144,
+ *             payorId: 4440,
  *             paymentData: {
  *                 maskedAccount: "4XXXXXXXXXXX5439",
  *                 accountType: "visa",
@@ -160,7 +160,7 @@ import type * as Payabli from "../../../index.js";
  *                 shippingState: "",
  *                 shippingZip: "45157",
  *                 shippingCountry: "US",
- *                 customerId: 40144,
+ *                 customerId: 4440,
  *                 customerStatus: 0,
  *                 additionalData: null
  *             },

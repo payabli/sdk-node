@@ -47,34 +47,17 @@ import type * as Payabli from "../../../../index.js";
  *             },
  *             paymentMethods: {
  *                 allMethodsChecked: true,
+ *                 allowMultipleMethods: true,
+ *                 defaultMethod: "vcard",
  *                 enabled: true,
  *                 header: "Payment Methods",
  *                 methods: {
- *                     amex: true,
- *                     applePay: true,
- *                     discover: true,
- *                     eCheck: true,
- *                     mastercard: true,
- *                     visa: true
+ *                     ach: true,
+ *                     check: true,
+ *                     vcard: true
  *                 },
- *                 order: 0
- *             },
- *             payor: {
- *                 enabled: true,
- *                 fields: [{
- *                         display: true,
- *                         fixed: true,
- *                         identifier: true,
- *                         label: "Full Name",
- *                         name: "fullName",
- *                         order: 0,
- *                         required: true,
- *                         validation: "alpha",
- *                         value: "",
- *                         width: 0
- *                     }],
- *                 header: "Payor Information",
- *                 order: 0
+ *                 order: 0,
+ *                 showPreviewVirtualCard: true
  *             },
  *             review: {
  *                 enabled: true,
@@ -96,5 +79,5 @@ export interface PayLinkDataOut {
     mail2?: string;
     /** Indicates whether customer can modify the payment amount. A value of `true` means the amount isn't modifiable, a value `false` means the payor can modify the amount to pay. */
     amountFixed?: string;
-    body: Payabli.PaymentPageRequestBody;
+    body: Payabli.PaymentPageRequestBodyOut;
 }

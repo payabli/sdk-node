@@ -3,4 +3,4 @@
 /**
  * Net amount.
  */
-export type Netamountnullable = number | undefined;
+export type Netamountnullable = number;

@@ -3,4 +3,4 @@
 /**
  * Tax rate in percent applied to the invoice.
  */
-export type Tax = number | undefined;
+export type Tax = number;

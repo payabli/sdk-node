@@ -203,8 +203,8 @@ import type * as Payabli from "../../../../index.js";
  *     }
  */
 export interface RequestPayment {
-    achValidation?: Payabli.AchValidation | undefined;
-    forceCustomerCreation?: Payabli.ForceCustomerCreation | undefined;
+    achValidation?: Payabli.AchValidation;
+    forceCustomerCreation?: Payabli.ForceCustomerCreation;
     /** When `true`, transactionDetails object is returned in the response. See a full example of the `transactionDetails` object in the [Transaction integration guide](/developers/developer-guides/money-in-transaction-add#includedetailstrue-response). */
     includeDetails?: boolean;
     idempotencyKey?: Payabli.IdempotencyKey;

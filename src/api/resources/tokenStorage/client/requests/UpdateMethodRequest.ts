@@ -64,6 +64,6 @@ import type * as Payabli from "../../../../index.js";
  *     }
  */
 export interface UpdateMethodRequest {
-    achValidation?: Payabli.AchValidation | undefined;
+    achValidation?: Payabli.AchValidation;
     body: Payabli.RequestTokenStorage;
 }

@@ -12,6 +12,8 @@ describe("TokenStorageClient", () => {
             customerData: { customerId: 4440 },
             entryPoint: "f743aed24a",
             fallbackAuth: true,
+            fallbackAuthAmount: 100,
+            methodDescription: "Primary Visa card",
             paymentMethod: {
                 cardcvv: "123",
                 cardexp: "02/25",
@@ -20,6 +22,7 @@ describe("TokenStorageClient", () => {
                 cardzip: "12345",
                 method: "card",
             },
+            source: "api",
         };
         const rawResponseBody = {
             isSuccess: true,
@@ -48,6 +51,8 @@ describe("TokenStorageClient", () => {
                 },
                 entryPoint: "f743aed24a",
                 fallbackAuth: true,
+                fallbackAuthAmount: 100,
+                methodDescription: "Primary Visa card",
                 paymentMethod: {
                     cardcvv: "123",
                     cardexp: "02/25",
@@ -56,6 +61,7 @@ describe("TokenStorageClient", () => {
                     cardzip: "12345",
                     method: "card",
                 },
+                source: "api",
             },
         });
         expect(response).toEqual({

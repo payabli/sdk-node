@@ -42,7 +42,7 @@ export interface TransactionDetailRecord {
     isValidatedACH: boolean;
     transactionTime: string;
     customer: Payabli.TransactionDetailCustomer;
-    splitFundingInstructions: (Payabli.SplitFunding | undefined) | null;
+    splitFundingInstructions: Payabli.SplitFunding | null;
     cfeeTransactions: Payabli.QueryCFeeTransaction[];
     transactionEvents: Payabli.TransactionDetailEvent[];
     pendingFeeAmount?: Payabli.PendingFeeAmount | undefined;

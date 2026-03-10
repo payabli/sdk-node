@@ -7,6 +7,6 @@
  *   - `first`: The first use of the payment method. This is almost always a cardholder-initiated transaction.
  *   - `subsequent`: For merchant-initiated transactions after the first use of the payment method.
  *
- *   See [Understanding CIT and MIT Indicators](/guides/money-in-cit-mit) for more information.
+ *   See [Understanding CIT and MIT Indicators](/guides/pay-in-transactions-cit-mit-overview) for more information.
  */
 export type Sequence = string;

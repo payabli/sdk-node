@@ -3,4 +3,4 @@
 /**
  * When `true`, indicates that the merchant acknowledges PCI responsibilities and can be enrolled in the PCI program for breach insurance
  */
-export type PciAttestation = boolean | undefined;
+export type PciAttestation = boolean;

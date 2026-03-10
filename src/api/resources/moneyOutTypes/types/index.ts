@@ -4,5 +4,8 @@ export * from "./AuthorizePaymentMethod.js";
 export * from "./AuthorizePayoutBody.js";
 export * from "./CaptureAllOutResponse.js";
 export * from "./LotNumber.js";
+export * from "./MethodElementOut.js";
+export * from "./MethodsListOut.js";
 export * from "./OperationResult.js";
+export * from "./PaymentLinkStatus.js";
 export * from "./VCardGetResponse.js";

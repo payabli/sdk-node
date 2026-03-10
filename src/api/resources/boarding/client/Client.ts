@@ -51,7 +51,27 @@ export class BoardingClient {
      *         avgmonthly: 1000,
      *         baddress: "123 Walnut Street",
      *         baddress1: "Suite 103",
-     *         bankData: {},
+     *         bankData: [{
+     *                 accountNumber: "123123123",
+     *                 bankAccountFunction: 1,
+     *                 bankAccountHolderName: "Gruzya Adventure Outfitters LLC",
+     *                 bankAccountHolderType: "Business",
+     *                 bankName: "Test Bank",
+     *                 nickname: "Withdrawal Account",
+     *                 routingAccount: "123123123",
+     *                 typeAccount: "Checking",
+     *                 accountId: "123-456"
+     *             }, {
+     *                 accountNumber: "123123123",
+     *                 bankAccountFunction: 0,
+     *                 bankAccountHolderName: "Gruzya Adventure Outfitters LLC",
+     *                 bankAccountHolderType: "Business",
+     *                 bankName: "Test Bank",
+     *                 nickname: "Deposit Account",
+     *                 routingAccount: "123123123",
+     *                 typeAccount: "Checking",
+     *                 accountId: "123-456"
+     *             }],
      *         bcity: "New Vegas",
      *         bcountry: "US",
      *         binperson: 60,
@@ -121,7 +141,11 @@ export class BoardingClient {
      *             signedDocumentReference: "https://example.com/signed-document.pdf",
      *             attestationDate: "04/20/2025",
      *             signDate: "04/20/2025",
-     *             additionalData: "{\"deviceId\":\"499585-389fj484-3jcj8hj3\",\"session\":\"fifji4-fiu443-fn4843\",\"timeWithCompany\":\"6 Years\"}"
+     *             additionalData: {
+     *                 "deviceId": "499585-389fj484-3jcj8hj3",
+     *                 "session": "fifji4-fiu443-fn4843",
+     *                 "timeWithCompany": "6 Years"
+     *             }
      *         },
      *         startdate: "01/01/1990",
      *         taxFillName: "Sunshine LLC",
@@ -233,7 +257,11 @@ export class BoardingClient {
      *             signedDocumentReference: "https://example.com/signed-document.pdf",
      *             attestationDate: "04/20/2025",
      *             signDate: "04/20/2025",
-     *             additionalData: "{\"deviceId\":\"499585-389fj484-3jcj8hj3\",\"session\":\"fifji4-fiu443-fn4843\",\"timeWithCompany\":\"6 Years\"}"
+     *             additionalData: {
+     *                 "deviceId": "499585-389fj484-3jcj8hj3",
+     *                 "session": "fifji4-fiu443-fn4843",
+     *                 "timeWithCompany": "6 Years"
+     *             }
      *         },
      *         startdate: "01/01/2015",
      *         taxfillname: "Herman's Coatings LLC",
@@ -366,7 +394,11 @@ export class BoardingClient {
      *             signedDocumentReference: "https://example.com/signed-document.pdf",
      *             attestationDate: "04/20/2025",
      *             signDate: "04/20/2025",
-     *             additionalData: "{\"deviceId\":\"499585-389fj484-3jcj8hj3\",\"session\":\"fifji4-fiu443-fn4843\",\"timeWithCompany\":\"6 Years\"}"
+     *             additionalData: {
+     *                 "deviceId": "499585-389fj484-3jcj8hj3",
+     *                 "session": "fifji4-fiu443-fn4843",
+     *                 "timeWithCompany": "6 Years"
+     *             }
      *         },
      *         startdate: "01/01/2015",
      *         taxfillname: "Herman's Coatings LLC",
@@ -501,7 +533,11 @@ export class BoardingClient {
      *             signedDocumentReference: "https://example.com/signed-document.pdf",
      *             attestationDate: "04/20/2025",
      *             signDate: "04/20/2025",
-     *             additionalData: "{\"deviceId\":\"499585-389fj484-3jcj8hj3\",\"session\":\"fifji4-fiu443-fn4843\",\"timeWithCompany\":\"6 Years\"}"
+     *             additionalData: {
+     *                 "deviceId": "499585-389fj484-3jcj8hj3",
+     *                 "session": "fifji4-fiu443-fn4843",
+     *                 "timeWithCompany": "6 Years"
+     *             }
      *         },
      *         startdate: "01/01/2015",
      *         taxfillname: "Herman's Coatings LLC",

@@ -3,4 +3,4 @@
 /**
  * When `true`, enables real-time validation of ACH account and routing numbers. This is an add-on feature, contact Payabli for more information.
  */
-export type AchValidation = boolean | undefined;
+export type AchValidation = boolean;

@@ -3,4 +3,4 @@
 /**
  * When `true`, multi-factor authentication (MFA) is enabled.
  */
-export type Mfa = boolean | undefined;
+export type Mfa = boolean;

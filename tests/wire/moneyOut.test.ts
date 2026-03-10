@@ -253,6 +253,83 @@ describe("MoneyOutClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
+            entryPoint: "48acde49",
+            invoiceData: [{ billId: 54323 }],
+            orderDescription: "Office Supplies",
+            paymentDetails: { totalAmount: 1500, checkNumber: "10001" },
+            paymentMethod: { method: "check" },
+            vendorData: { vendorNumber: "7895433" },
+        };
+        const rawResponseBody = {
+            responseCode: 1,
+            pageIdentifier: null,
+            roomId: 0,
+            isSuccess: true,
+            responseText: "Success",
+            responseData: {
+                authCode: null,
+                referenceId: "129-219",
+                resultCode: 1,
+                resultText: "Authorized",
+                avsResponseText: null,
+                cvvResponseText: null,
+                customerId: 0,
+                methodReferenceId: null,
+            },
+        };
+        server
+            .mockEndpoint()
+            .post("/MoneyOut/authorize")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.moneyOut.authorizeOut({
+            body: {
+                entryPoint: "48acde49",
+                invoiceData: [
+                    {
+                        billId: 54323,
+                    },
+                ],
+                orderDescription: "Office Supplies",
+                paymentDetails: {
+                    totalAmount: 1500,
+                    checkNumber: "10001",
+                },
+                paymentMethod: {
+                    method: "check",
+                },
+                vendorData: {
+                    vendorNumber: "7895433",
+                },
+            },
+        });
+        expect(response).toEqual({
+            responseCode: 1,
+            pageIdentifier: null,
+            roomId: 0,
+            isSuccess: true,
+            responseText: "Success",
+            responseData: {
+                authCode: null,
+                referenceId: "129-219",
+                resultCode: 1,
+                resultText: "Authorized",
+                avsResponseText: null,
+                cvvResponseText: null,
+                customerId: 0,
+                methodReferenceId: null,
+            },
+        });
+    });
+
+    test("AuthorizeOut (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
             entryPoint: "47ced57b",
             paymentMethod: {
                 method: "ach",
@@ -401,7 +478,7 @@ describe("MoneyOutClient", () => {
         });
     });
 
-    test("AuthorizeOut (5)", async () => {
+    test("AuthorizeOut (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -436,7 +513,7 @@ describe("MoneyOutClient", () => {
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
-    test("AuthorizeOut (6)", async () => {
+    test("AuthorizeOut (7)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -471,7 +548,7 @@ describe("MoneyOutClient", () => {
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
-    test("AuthorizeOut (7)", async () => {
+    test("AuthorizeOut (8)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -506,7 +583,7 @@ describe("MoneyOutClient", () => {
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
-    test("AuthorizeOut (8)", async () => {
+    test("AuthorizeOut (9)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {

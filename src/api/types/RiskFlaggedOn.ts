@@ -3,4 +3,4 @@
 /**
  * Timestamp when the transaction was flagged for risk
  */
-export type RiskFlaggedOn = string | undefined;
+export type RiskFlaggedOn = string;

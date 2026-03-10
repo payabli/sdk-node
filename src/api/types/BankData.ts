@@ -5,4 +5,4 @@ import type * as Payabli from "../index.js";
 /**
  * Information about associated bank accounts.
  */
-export type BankData = Payabli.Bank[] | undefined;
+export type BankData = Payabli.Bank[];

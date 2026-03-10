@@ -4,7 +4,7 @@ import type * as Payabli from "../../../index.js";
 
 export interface ResponseDataRefunds {
     authCode: Payabli.Authcode;
-    expectedProcessingDateTime: (Payabli.ExpectedProcessingDateTime | undefined) | null;
+    expectedProcessingDateTime: Payabli.ExpectedProcessingDateTime | null;
     /** This field isn't applicable to refund operations. */
     avsResponseText?: Payabli.AvsResponseText | undefined;
     customerId: Payabli.CustomerId | null;

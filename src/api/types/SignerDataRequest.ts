@@ -22,6 +22,6 @@ export interface SignerDataRequest {
     signedDocumentReference?: Payabli.SignedDocumentReference | undefined;
     pciAttestation?: Payabli.PciAttestation | undefined;
     attestationDate?: Payabli.AttestationDate | undefined;
-    additionalData?: Payabli.AdditionalDataString | undefined;
+    additionalData?: Payabli.AdditionalDataMap | undefined;
     signDate?: Payabli.SignDate | undefined;
 }

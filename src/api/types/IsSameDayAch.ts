@@ -4,4 +4,4 @@
  * Indicates if the payout transaction is processed as Same Day ACH. This
  * is only applicable for ACH transactions.
  */
-export type IsSameDayAch = boolean | undefined;
+export type IsSameDayAch = boolean;

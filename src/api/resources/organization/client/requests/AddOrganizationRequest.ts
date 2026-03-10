@@ -48,7 +48,7 @@ export interface AddOrganizationRequest {
     idempotencyKey?: Payabli.IdempotencyKey;
     services?: Payabli.ServiceCost[];
     billingInfo?: Payabli.Instrument;
-    contacts?: Payabli.ContactsField | undefined;
+    contacts?: Payabli.ContactsField;
     hasBilling?: boolean;
     hasResidual?: boolean;
     orgAddress?: Payabli.Orgaddress;

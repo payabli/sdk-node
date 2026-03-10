@@ -3,4 +3,4 @@
 /**
  * Duty amount.
  */
-export type DutyAmount = number | undefined;
+export type DutyAmount = number;

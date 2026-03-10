@@ -3,4 +3,4 @@
 /**
  * Indicates if the transaction was flagged for risk
  */
-export type RiskFlagged = boolean | undefined;
+export type RiskFlagged = boolean;

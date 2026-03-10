@@ -320,29 +320,13 @@ describe("PaymentLinkClient", () => {
             paymentButton: { enabled: true, label: "Pay Now", order: 0 },
             paymentMethods: {
                 allMethodsChecked: true,
+                allowMultipleMethods: true,
+                defaultMethod: "vcard",
                 enabled: true,
                 header: "Payment Methods",
-                methods: { amex: true, applePay: true, discover: true, eCheck: true, mastercard: true, visa: true },
+                methods: { ach: true, check: true, vcard: true },
                 order: 0,
-            },
-            payor: {
-                enabled: true,
-                fields: [
-                    {
-                        display: true,
-                        fixed: true,
-                        identifier: true,
-                        label: "Full Name",
-                        name: "fullName",
-                        order: 0,
-                        required: true,
-                        validation: "alpha",
-                        value: "",
-                        width: 0,
-                    },
-                ],
-                header: "Payor Information",
-                order: 0,
+                showPreviewVirtualCard: true,
             },
             review: { enabled: true, header: "Review Payment", order: 0 },
             settings: { color: "#000000", language: "en" },
@@ -401,36 +385,17 @@ describe("PaymentLinkClient", () => {
                 },
                 paymentMethods: {
                     allMethodsChecked: true,
+                    allowMultipleMethods: true,
+                    defaultMethod: "vcard",
                     enabled: true,
                     header: "Payment Methods",
                     methods: {
-                        amex: true,
-                        applePay: true,
-                        discover: true,
-                        eCheck: true,
-                        mastercard: true,
-                        visa: true,
+                        ach: true,
+                        check: true,
+                        vcard: true,
                     },
                     order: 0,
-                },
-                payor: {
-                    enabled: true,
-                    fields: [
-                        {
-                            display: true,
-                            fixed: true,
-                            identifier: true,
-                            label: "Full Name",
-                            name: "fullName",
-                            order: 0,
-                            required: true,
-                            validation: "alpha",
-                            value: "",
-                            width: 0,
-                        },
-                    ],
-                    header: "Payor Information",
-                    order: 0,
+                    showPreviewVirtualCard: true,
                 },
                 review: {
                     enabled: true,
@@ -453,6 +418,125 @@ describe("PaymentLinkClient", () => {
     test("AddPayLinkFromBill (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            contactUs: {
+                emailLabel: "Email",
+                enabled: true,
+                header: "Contact Us",
+                order: 0,
+                paymentIcons: true,
+                phoneLabel: "Phone",
+            },
+            logo: { enabled: true, order: 0 },
+            messageBeforePaying: { enabled: true, label: "Please review your payment details", order: 0 },
+            notes: {
+                enabled: true,
+                header: "Additional Notes",
+                order: 0,
+                placeholder: "Enter any additional notes here",
+                value: "",
+            },
+            page: { description: "Get paid securely", enabled: true, header: "Payment Page", order: 0 },
+            paymentButton: { enabled: true, label: "Pay Now", order: 0 },
+            paymentMethods: {
+                allMethodsChecked: true,
+                allowMultipleMethods: true,
+                defaultMethod: "vcard",
+                enabled: true,
+                header: "Payment Methods",
+                methods: { ach: true, check: true, vcard: true },
+                order: 0,
+                showPreviewVirtualCard: true,
+            },
+            review: { enabled: true, header: "Review Payment", order: 0 },
+            settings: { color: "#000000", language: "en" },
+        };
+        const rawResponseBody = {
+            isSuccess: true,
+            responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
+            responseText: "Success",
+        };
+        server
+            .mockEndpoint()
+            .post("/PaymentLink/bill/23548884")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.paymentLink.addPayLinkFromBill(23548884, {
+            body: {
+                contactUs: {
+                    emailLabel: "Email",
+                    enabled: true,
+                    header: "Contact Us",
+                    order: 0,
+                    paymentIcons: true,
+                    phoneLabel: "Phone",
+                },
+                logo: {
+                    enabled: true,
+                    order: 0,
+                },
+                messageBeforePaying: {
+                    enabled: true,
+                    label: "Please review your payment details",
+                    order: 0,
+                },
+                notes: {
+                    enabled: true,
+                    header: "Additional Notes",
+                    order: 0,
+                    placeholder: "Enter any additional notes here",
+                    value: "",
+                },
+                page: {
+                    description: "Get paid securely",
+                    enabled: true,
+                    header: "Payment Page",
+                    order: 0,
+                },
+                paymentButton: {
+                    enabled: true,
+                    label: "Pay Now",
+                    order: 0,
+                },
+                paymentMethods: {
+                    allMethodsChecked: true,
+                    allowMultipleMethods: true,
+                    defaultMethod: "vcard",
+                    enabled: true,
+                    header: "Payment Methods",
+                    methods: {
+                        ach: true,
+                        check: true,
+                        vcard: true,
+                    },
+                    order: 0,
+                    showPreviewVirtualCard: true,
+                },
+                review: {
+                    enabled: true,
+                    header: "Review Payment",
+                    order: 0,
+                },
+                settings: {
+                    color: "#000000",
+                    language: "en",
+                },
+            },
+        });
+        expect(response).toEqual({
+            isSuccess: true,
+            responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
+            responseText: "Success",
+        });
+    });
+
+    test("AddPayLinkFromBill (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
         server
@@ -471,7 +555,7 @@ describe("PaymentLinkClient", () => {
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
-    test("AddPayLinkFromBill (3)", async () => {
+    test("AddPayLinkFromBill (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
@@ -492,7 +576,7 @@ describe("PaymentLinkClient", () => {
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
-    test("AddPayLinkFromBill (4)", async () => {
+    test("AddPayLinkFromBill (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
@@ -513,7 +597,7 @@ describe("PaymentLinkClient", () => {
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
-    test("AddPayLinkFromBill (5)", async () => {
+    test("AddPayLinkFromBill (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
@@ -545,13 +629,13 @@ describe("PaymentLinkClient", () => {
         };
         server
             .mockEndpoint()
-            .delete("/PaymentLink/payLinkId")
+            .delete("/PaymentLink/2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.paymentLink.deletePayLinkFromId("payLinkId");
+        const response = await client.paymentLink.deletePayLinkFromId("2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234");
         expect(response).toEqual({
             isSuccess: true,
             responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
@@ -1355,29 +1439,13 @@ describe("PaymentLinkClient", () => {
             paymentButton: { enabled: true, label: "Pay Now", order: 0 },
             paymentMethods: {
                 allMethodsChecked: true,
+                allowMultipleMethods: true,
+                defaultMethod: "vcard",
                 enabled: true,
                 header: "Payment Methods",
-                methods: { amex: true, applePay: true, discover: true, eCheck: true, mastercard: true, visa: true },
+                methods: { ach: true, check: true, vcard: true },
                 order: 0,
-            },
-            payor: {
-                enabled: true,
-                fields: [
-                    {
-                        display: true,
-                        fixed: true,
-                        identifier: true,
-                        label: "Full Name",
-                        name: "fullName",
-                        order: 0,
-                        required: true,
-                        validation: "alpha",
-                        value: "",
-                        width: 0,
-                    },
-                ],
-                header: "Payor Information",
-                order: 0,
+                showPreviewVirtualCard: true,
             },
             review: { enabled: true, header: "Review Payment", order: 0 },
             settings: { color: "#000000", language: "en" },
@@ -1439,36 +1507,17 @@ describe("PaymentLinkClient", () => {
                 },
                 paymentMethods: {
                     allMethodsChecked: true,
+                    allowMultipleMethods: true,
+                    defaultMethod: "vcard",
                     enabled: true,
                     header: "Payment Methods",
                     methods: {
-                        amex: true,
-                        applePay: true,
-                        discover: true,
-                        eCheck: true,
-                        mastercard: true,
-                        visa: true,
+                        ach: true,
+                        check: true,
+                        vcard: true,
                     },
                     order: 0,
-                },
-                payor: {
-                    enabled: true,
-                    fields: [
-                        {
-                            display: true,
-                            fixed: true,
-                            identifier: true,
-                            label: "Full Name",
-                            name: "fullName",
-                            order: 0,
-                            required: true,
-                            validation: "alpha",
-                            value: "",
-                            width: 0,
-                        },
-                    ],
-                    header: "Payor Information",
-                    order: 0,
+                    showPreviewVirtualCard: true,
                 },
                 review: {
                     enabled: true,
@@ -1486,5 +1535,464 @@ describe("PaymentLinkClient", () => {
             responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
             responseText: "Success",
         });
+    });
+
+    test("patchOutPaymentLink (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { expirationDate: "2026-06-01T00:00:00Z", status: "Active" };
+        const rawResponseBody = {
+            isSuccess: true,
+            responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
+            responseText: "Success",
+        };
+        server
+            .mockEndpoint()
+            .patch("/PaymentLink/out/2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.paymentLink.patchOutPaymentLink("2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234", {
+            expirationDate: "2026-06-01T00:00:00Z",
+            status: "Active",
+        });
+        expect(response).toEqual({
+            isSuccess: true,
+            responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
+            responseText: "Success",
+        });
+    });
+
+    test("patchOutPaymentLink (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { status: "Canceled" };
+        const rawResponseBody = {
+            isSuccess: true,
+            responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
+            responseText: "Success",
+        };
+        server
+            .mockEndpoint()
+            .patch("/PaymentLink/out/2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.paymentLink.patchOutPaymentLink("2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234", {
+            status: "Canceled",
+        });
+        expect(response).toEqual({
+            isSuccess: true,
+            responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
+            responseText: "Success",
+        });
+    });
+
+    test("patchOutPaymentLink (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            billPageData: {
+                page: { description: "You have a payment waiting", enabled: true, header: "Vendor Payment", order: 0 },
+                paymentButton: { enabled: true, label: "Select Payment Method", order: 0 },
+                paymentMethods: {
+                    allMethodsChecked: true,
+                    allowMultipleMethods: true,
+                    defaultMethod: "ach",
+                    enabled: true,
+                    header: "Payment Methods",
+                    methods: { ach: true, check: true, vcard: true },
+                    order: 0,
+                    showPreviewVirtualCard: false,
+                },
+            },
+        };
+        const rawResponseBody = {
+            isSuccess: true,
+            responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
+            responseText: "Success",
+        };
+        server
+            .mockEndpoint()
+            .patch("/PaymentLink/out/2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.paymentLink.patchOutPaymentLink("2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234", {
+            billPageData: {
+                page: {
+                    description: "You have a payment waiting",
+                    enabled: true,
+                    header: "Vendor Payment",
+                    order: 0,
+                },
+                paymentButton: {
+                    enabled: true,
+                    label: "Select Payment Method",
+                    order: 0,
+                },
+                paymentMethods: {
+                    allMethodsChecked: true,
+                    allowMultipleMethods: true,
+                    defaultMethod: "ach",
+                    enabled: true,
+                    header: "Payment Methods",
+                    methods: {
+                        ach: true,
+                        check: true,
+                        vcard: true,
+                    },
+                    order: 0,
+                    showPreviewVirtualCard: false,
+                },
+            },
+        });
+        expect(response).toEqual({
+            isSuccess: true,
+            responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
+            responseText: "Success",
+        });
+    });
+
+    test("patchOutPaymentLink (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .patch("/PaymentLink/out/paylinkId")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.paymentLink.patchOutPaymentLink("paylinkId", {});
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("patchOutPaymentLink (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .patch("/PaymentLink/out/paylinkId")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.paymentLink.patchOutPaymentLink("paylinkId", {});
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("patchOutPaymentLink (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .patch("/PaymentLink/out/paylinkId")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.paymentLink.patchOutPaymentLink("paylinkId", {});
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("patchOutPaymentLink (7)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { responseText: "responseText" };
+        server
+            .mockEndpoint()
+            .patch("/PaymentLink/out/paylinkId")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.paymentLink.patchOutPaymentLink("paylinkId", {});
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("updatePayLinkOutFromId (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            contactUs: {
+                emailLabel: "Email",
+                enabled: true,
+                header: "Contact Us",
+                order: 0,
+                paymentIcons: true,
+                phoneLabel: "Phone",
+            },
+            logo: { enabled: true, order: 0 },
+            messageBeforePaying: { enabled: true, label: "Please review your payment details", order: 0 },
+            notes: {
+                enabled: true,
+                header: "Additional Notes",
+                order: 0,
+                placeholder: "Enter any additional notes here",
+                value: "",
+            },
+            page: { description: "Get paid securely", enabled: true, header: "Payment Page", order: 0 },
+            paymentButton: { enabled: true, label: "Pay Now", order: 0 },
+            paymentMethods: {
+                allMethodsChecked: true,
+                allowMultipleMethods: true,
+                defaultMethod: "vcard",
+                enabled: true,
+                header: "Payment Methods",
+                methods: { ach: true, check: true, vcard: true },
+                order: 0,
+                showPreviewVirtualCard: true,
+            },
+            review: { enabled: true, header: "Review Payment", order: 0 },
+            settings: { color: "#000000", language: "en" },
+        };
+        const rawResponseBody = {
+            isSuccess: true,
+            responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
+            responseText: "Success",
+        };
+        server
+            .mockEndpoint()
+            .patch("/PaymentLink/updateOut/2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.paymentLink.updatePayLinkOutFromId(
+            "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
+            {
+                contactUs: {
+                    emailLabel: "Email",
+                    enabled: true,
+                    header: "Contact Us",
+                    order: 0,
+                    paymentIcons: true,
+                    phoneLabel: "Phone",
+                },
+                logo: {
+                    enabled: true,
+                    order: 0,
+                },
+                messageBeforePaying: {
+                    enabled: true,
+                    label: "Please review your payment details",
+                    order: 0,
+                },
+                notes: {
+                    enabled: true,
+                    header: "Additional Notes",
+                    order: 0,
+                    placeholder: "Enter any additional notes here",
+                    value: "",
+                },
+                page: {
+                    description: "Get paid securely",
+                    enabled: true,
+                    header: "Payment Page",
+                    order: 0,
+                },
+                paymentButton: {
+                    enabled: true,
+                    label: "Pay Now",
+                    order: 0,
+                },
+                paymentMethods: {
+                    allMethodsChecked: true,
+                    allowMultipleMethods: true,
+                    defaultMethod: "vcard",
+                    enabled: true,
+                    header: "Payment Methods",
+                    methods: {
+                        ach: true,
+                        check: true,
+                        vcard: true,
+                    },
+                    order: 0,
+                    showPreviewVirtualCard: true,
+                },
+                review: {
+                    enabled: true,
+                    header: "Review Payment",
+                    order: 0,
+                },
+                settings: {
+                    color: "#000000",
+                    language: "en",
+                },
+            },
+        );
+        expect(response).toEqual({
+            isSuccess: true,
+            responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
+            responseText: "Success",
+        });
+    });
+
+    test("updatePayLinkOutFromId (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            paymentMethods: {
+                allMethodsChecked: false,
+                allowMultipleMethods: true,
+                defaultMethod: "vcard",
+                enabled: true,
+                header: "Payment Methods",
+                methods: { ach: true, check: false, vcard: true },
+                order: 0,
+                showPreviewVirtualCard: true,
+            },
+            paymentButton: { enabled: true, label: "Choose Payment Method", order: 0 },
+        };
+        const rawResponseBody = {
+            isSuccess: true,
+            responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
+            responseText: "Success",
+        };
+        server
+            .mockEndpoint()
+            .patch("/PaymentLink/updateOut/2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.paymentLink.updatePayLinkOutFromId(
+            "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
+            {
+                paymentMethods: {
+                    allMethodsChecked: false,
+                    allowMultipleMethods: true,
+                    defaultMethod: "vcard",
+                    enabled: true,
+                    header: "Payment Methods",
+                    methods: {
+                        ach: true,
+                        check: false,
+                        vcard: true,
+                    },
+                    order: 0,
+                    showPreviewVirtualCard: true,
+                },
+                paymentButton: {
+                    enabled: true,
+                    label: "Choose Payment Method",
+                    order: 0,
+                },
+            },
+        );
+        expect(response).toEqual({
+            isSuccess: true,
+            responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
+            responseText: "Success",
+        });
+    });
+
+    test("updatePayLinkOutFromId (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .patch("/PaymentLink/updateOut/paylinkId")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.paymentLink.updatePayLinkOutFromId("paylinkId", {});
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("updatePayLinkOutFromId (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .patch("/PaymentLink/updateOut/paylinkId")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.paymentLink.updatePayLinkOutFromId("paylinkId", {});
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("updatePayLinkOutFromId (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .patch("/PaymentLink/updateOut/paylinkId")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.paymentLink.updatePayLinkOutFromId("paylinkId", {});
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("updatePayLinkOutFromId (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { responseText: "responseText" };
+        server
+            .mockEndpoint()
+            .patch("/PaymentLink/updateOut/paylinkId")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.paymentLink.updatePayLinkOutFromId("paylinkId", {});
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 });

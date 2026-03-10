@@ -51,7 +51,7 @@ import type * as Payabli from "../../../../index.js";
  *     }
  */
 export interface RequestCredit {
-    forceCustomerCreation?: Payabli.ForceCustomerCreation | undefined;
+    forceCustomerCreation?: Payabli.ForceCustomerCreation;
     idempotencyKey?: Payabli.IdempotencyKey;
     accountId?: Payabli.Accountid;
     /** Object describing the customer/payor. */

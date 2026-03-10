@@ -19,7 +19,7 @@ import type * as Payabli from "../../../index.js";
  *         method: "card",
  *         batchNumber: "3040_combined_20251201_3a50747d-6b5c-40ef-9f69-93a9cc7fcb49",
  *         batchAmount: 420,
- *         payorId: 40144,
+ *         payorId: 4440,
  *         paymentData: {
  *             maskedAccount: "4XXXXXXXXXXX5439",
  *             accountType: "visa",
@@ -147,7 +147,7 @@ import type * as Payabli from "../../../index.js";
  *             billingZip: "45157",
  *             billingCountry: "US",
  *             billingPhone: "+15555555555",
- *             billingEmail: "mrinal.kundu@payabli.com",
+ *             billingEmail: "example@payabli.com",
  *             customerNumber: "C-90010",
  *             shippingAddress1: "Home Address",
  *             shippingAddress2: "",
@@ -155,7 +155,7 @@ import type * as Payabli from "../../../index.js";
  *             shippingState: "",
  *             shippingZip: "45157",
  *             shippingCountry: "US",
- *             customerId: 40144,
+ *             customerId: 4440,
  *             customerStatus: 0,
  *             additionalData: null
  *         },
@@ -385,13 +385,13 @@ import type * as Payabli from "../../../index.js";
  *         method: "card",
  *         batchNumber: "3040_combined_20251201_3a50747d-6b5c-40ef-9f69-93a9cc7fcb49",
  *         batchAmount: 630,
- *         payorId: 40144,
+ *         payorId: 4440,
  *         paymentData: {
  *             maskedAccount: "3XXXXXXXXXX0227",
  *             accountType: "amex",
  *             accountExp: "12/25",
  *             holderName: "Alexa Amazon",
- *             storedId: "fb1f5ec2-1ba4-4ba6-9839-20c2cc4baf5a-40144",
+ *             storedId: "fb1f5ec2-1ba4-4ba6-9839-20c2cc4baf5a-4440",
  *             initiator: "merchant",
  *             storedMethodUsageType: "unscheduled",
  *             sequence: "subsequent",
@@ -513,7 +513,7 @@ import type * as Payabli from "../../../index.js";
  *             billingZip: "45157",
  *             billingCountry: "US",
  *             billingPhone: "+15555555555",
- *             billingEmail: "mrinal.kundu@payabli.com",
+ *             billingEmail: "example@payabli.com",
  *             customerNumber: "C-90010",
  *             shippingAddress1: "Home Address",
  *             shippingAddress2: "",
@@ -521,7 +521,7 @@ import type * as Payabli from "../../../index.js";
  *             shippingState: "",
  *             shippingZip: "45157",
  *             shippingCountry: "US",
- *             customerId: 40144,
+ *             customerId: 4440,
  *             customerStatus: 0,
  *             additionalData: null
  *         },
@@ -574,7 +574,7 @@ import type * as Payabli from "../../../index.js";
  *         method: "card",
  *         batchNumber: "3040_combined_20251201_3a50747d-6b5c-40ef-9f69-93a9cc7fcb49",
  *         batchAmount: 420,
- *         payorId: 40144,
+ *         payorId: 4440,
  *         paymentData: {
  *             maskedAccount: "4XXXXXXXXXXX5439",
  *             accountType: "visa",
@@ -702,7 +702,7 @@ import type * as Payabli from "../../../index.js";
  *             billingZip: "45157",
  *             billingCountry: "US",
  *             billingPhone: "+15555555555",
- *             billingEmail: "mrinal.kundu@payabli.com",
+ *             billingEmail: "example@payabli.com",
  *             customerNumber: "C-90010",
  *             shippingAddress1: "Home Address",
  *             shippingAddress2: "",
@@ -710,7 +710,7 @@ import type * as Payabli from "../../../index.js";
  *             shippingState: "",
  *             shippingZip: "45157",
  *             shippingCountry: "US",
- *             customerId: 40144,
+ *             customerId: 4440,
  *             customerStatus: 0,
  *             additionalData: null
  *         },
@@ -763,7 +763,7 @@ import type * as Payabli from "../../../index.js";
  *         method: "card",
  *         batchNumber: "3040_combined_20251201_3a50747d-6b5c-40ef-9f69-93a9cc7fcb49",
  *         batchAmount: 420,
- *         payorId: 40144,
+ *         payorId: 4440,
  *         paymentData: {
  *             maskedAccount: "4XXXXXXXXXXX5439",
  *             accountType: "visa",
@@ -891,7 +891,7 @@ import type * as Payabli from "../../../index.js";
  *             billingZip: "45157",
  *             billingCountry: "US",
  *             billingPhone: "+15555555555",
- *             billingEmail: "mrinal.kundu@payabli.com",
+ *             billingEmail: "example@payabli.com",
  *             customerNumber: "C-90010",
  *             shippingAddress1: "Home Address",
  *             shippingAddress2: "",
@@ -899,7 +899,7 @@ import type * as Payabli from "../../../index.js";
  *             shippingState: "",
  *             shippingZip: "45157",
  *             shippingCountry: "US",
- *             customerId: 40144,
+ *             customerId: 4440,
  *             customerStatus: 0,
  *             additionalData: null
  *         },
@@ -985,7 +985,7 @@ export interface V2TransactionDetails {
     /** Timestamp when transaction was created. */
     transactionTime: string;
     customer: Payabli.TransactionDetailCustomer;
-    splitFundingInstructions: (Payabli.SplitFunding | undefined) | null;
+    splitFundingInstructions: Payabli.SplitFunding | null;
     cfeeTransactions: Payabli.QueryCFeeTransaction[];
     transactionEvents: Payabli.TransactionDetailEvent[];
     pendingFeeAmount?: Payabli.PendingFeeAmount | undefined;

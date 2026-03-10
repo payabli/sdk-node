@@ -21,7 +21,7 @@ export interface PaymentDetail {
     serviceFee?: number | undefined;
     /** Split funding instructions for the transaction. See [Split a Transaction](/developers/developer-guides/money-in-split-funding) for more. */
     splitFunding?: Payabli.SplitFunding | undefined;
-    /** Unique identifier for a processed check image. Required for RDC (Remote Deposit Capture) transactions where `achCode` is `BOC`. Use the `id` value from the [check processing](/developers/api-reference/checkcapture/process-a-check-image) response. */
+    /** Unique identifier for a processed check image. Required for RDC (Remote Deposit Capture) transactions where `achCode` is `BOC`. Use the `id` value from the [check processing](/developers/api-reference/moneyin/check-capture) response. */
     checkUniqueId?: string | undefined;
     /** Total amount to be charged. If a service fee is sent, then this amount should include the service fee." */
     totalAmount: number;

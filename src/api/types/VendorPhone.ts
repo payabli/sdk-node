@@ -3,4 +3,4 @@
 /**
  * Vendor's phone number. Phone number can't contain non-digit characters like hyphens or parentheses.
  */
-export type VendorPhone = string | undefined;
+export type VendorPhone = string;

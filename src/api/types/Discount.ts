@@ -3,4 +3,4 @@
 /**
  * Discount applied to the invoice.
  */
-export type Discount = number | undefined;
+export type Discount = number;

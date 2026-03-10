@@ -3,4 +3,4 @@
 /**
  * Numeric code representing the risk action
  */
-export type RiskActionCode = number | undefined;
+export type RiskActionCode = number;

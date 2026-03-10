@@ -74,6 +74,27 @@ import type * as Payabli from "../../../../index.js";
  * @example
  *     {
  *         body: {
+ *             entryPoint: "48acde49",
+ *             invoiceData: [{
+ *                     billId: 54323
+ *                 }],
+ *             orderDescription: "Office Supplies",
+ *             paymentDetails: {
+ *                 totalAmount: 1500,
+ *                 checkNumber: "10001"
+ *             },
+ *             paymentMethod: {
+ *                 method: "check"
+ *             },
+ *             vendorData: {
+ *                 vendorNumber: "7895433"
+ *             }
+ *         }
+ *     }
+ *
+ * @example
+ *     {
+ *         body: {
  *             entryPoint: "47ced57b",
  *             paymentMethod: {
  *                 method: "ach",

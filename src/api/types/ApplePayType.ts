@@ -3,4 +3,4 @@
 /**
  * The record type.
  */
-export type ApplePayType = string | undefined;
+export type ApplePayType = string;

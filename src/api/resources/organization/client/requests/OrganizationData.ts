@@ -27,7 +27,7 @@ import type * as Payabli from "../../../../index.js";
 export interface OrganizationData {
     services?: Payabli.ServiceCost[];
     billingInfo?: Payabli.Instrument;
-    contacts?: Payabli.ContactsField | undefined;
+    contacts?: Payabli.ContactsField;
     hasBilling?: boolean;
     hasResidual?: boolean;
     orgAddress?: Payabli.Orgaddress;

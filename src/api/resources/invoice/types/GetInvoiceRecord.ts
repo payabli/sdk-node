@@ -7,11 +7,11 @@ export interface GetInvoiceRecord {
     customerId: Payabli.CustomerId;
     paypointId: Payabli.PaypointId;
     invoiceNumber: Payabli.InvoiceNumber;
-    invoiceDate?: Payabli.Datenullable | undefined;
-    invoiceDueDate?: Payabli.Datenullable | undefined;
-    invoiceSentDate?: Payabli.DatetimeNullable | undefined;
-    invoiceEndDate?: Payabli.Datenullable | undefined;
-    lastPaymentDate?: Payabli.DatetimeNullable | undefined;
+    invoiceDate: string | null;
+    invoiceDueDate: string | null;
+    invoiceSentDate: string | null;
+    invoiceEndDate: string | null;
+    lastPaymentDate: string | null;
     createdAt: Payabli.CreatedAt;
     invoiceStatus: Payabli.Invoicestatus;
     invoiceType: Payabli.InvoiceType;

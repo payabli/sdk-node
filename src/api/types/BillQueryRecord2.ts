@@ -11,7 +11,7 @@ export interface BillQueryRecord2 {
     BatchNumber: string | null;
     billApprovals: Payabli.BillQueryRecord2BillApprovalsItem[] | null;
     /** Bill creation date in one of the accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
-    BillDate: (Payabli.Datenullable | undefined) | null;
+    BillDate: string | null;
     /** Events associated with the bill. */
     billEvents: Payabli.GeneralEvents[] | null;
     /** Array of items included in the bill. */
@@ -27,9 +27,9 @@ export interface BillQueryRecord2 {
     /** Reference to documents associated with the bill. */
     DocumentsRef: string | null;
     /** Bill due date in one of the accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
-    DueDate: (Payabli.Datenullable | undefined) | null;
+    DueDate: string | null;
     /** End date for the bill. */
-    EndDate: (Payabli.Datenullable | undefined) | null;
+    EndDate: string | null;
     /** Entity identifier associated with the bill. */
     EntityID: string | null;
     externalPaypointID: Payabli.ExternalPaypointId | null;
@@ -38,7 +38,7 @@ export interface BillQueryRecord2 {
     /** Identifier of the bill. */
     IdBill: number | null;
     /** Timestamp of when bill was last updated, in UTC. */
-    LastUpdated: (Payabli.DatetimeNullable | undefined) | null;
+    LastUpdated: string | null;
     /** Lot number associated with the bill. */
     LotNumber: string | null;
     /** Bill mode: value `0` for single/one-time bills, `1` for scheduled bills. */

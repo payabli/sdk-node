@@ -3,4 +3,4 @@
 /**
  * When `true`, the request creates a new customer record, regardless of whether customer identifiers match an existing customer. Defaults to `false`.
  */
-export type ForceCustomerCreation = boolean | undefined;
+export type ForceCustomerCreation = boolean;

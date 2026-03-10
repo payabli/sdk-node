@@ -66,7 +66,7 @@ export interface ApplicationDetailsRecord {
     whendelivered?: Payabli.Whendelivered | undefined;
     whenProvided?: Payabli.Whenprovided | undefined;
     whenrefund?: Payabli.Whenrefunded | undefined;
-    additionalData?: Payabli.AdditionalDataString | undefined;
+    additionalData?: Payabli.AdditionalDataMap | undefined;
 }
 
 export namespace ApplicationDetailsRecord {

@@ -13,7 +13,7 @@ export interface ApplicationDataPayIn {
     avgmonthly?: Payabli.Avgmonthly | undefined;
     baddress?: Payabli.Baddress1 | undefined;
     baddress1?: Payabli.Baddress2 | undefined;
-    bankData: ApplicationDataPayIn.BankData;
+    bankData: Payabli.BankData;
     bcity?: Payabli.Bcity | undefined;
     bcountry?: Payabli.Bcountry | undefined;
     binperson?: Payabli.Binperson | undefined;
@@ -27,7 +27,7 @@ export interface ApplicationDataPayIn {
     bzip?: Payabli.Bzip | undefined;
     /** List of contacts for the business. */
     contacts?: ApplicationDataPayIn.Contacts.Item[] | undefined;
-    /** The maximum amount of credit that our lending partner, has authorized to your business. It's the upper boundary on how much you can spend or owe on a credit account at any given time. */
+    /** The maximum amount of credit that our lending partner has authorized to your business for Pay In processing. It's the upper boundary on how much you can spend or owe on a credit account at any given time. For on-demand payout (Pay Out) credit limits, see `payoutCreditLimit`. */
     creditLimit?: string | undefined;
     /** The alternate or common name that this business is doing business under usually referred to as a DBA name. Payabli strongly recommends including this information. */
     dbaName?: Payabli.Dbaname | undefined;
@@ -68,7 +68,7 @@ export interface ApplicationDataPayIn {
     whenDelivered: Payabli.Whendelivered;
     whenProvided: Payabli.Whenprovided;
     whenRefunded: Payabli.Whenrefunded;
-    additionalData?: Payabli.AdditionalDataString | undefined;
+    additionalData?: Payabli.AdditionalDataMap | undefined;
     RepCode?: Payabli.RepCode | undefined;
     RepName?: Payabli.RepName | undefined;
     RepOffice?: Payabli.RepOffice | undefined;
@@ -87,8 +87,6 @@ export namespace ApplicationDataPayIn {
 
         export interface Card extends Payabli.CardSetup {}
     }
-
-    export interface BankData extends Payabli.Bank {}
 
     export type Contacts = Contacts.Item[];
 

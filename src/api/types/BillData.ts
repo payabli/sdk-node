@@ -16,11 +16,11 @@ export interface BillData {
     frequency?: Payabli.Frequency | undefined;
     invoiceAmount?: Payabli.InvoiceAmount | undefined;
     /** Invoice date in any of the accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
-    invoiceDate?: Payabli.Datenullable | undefined;
+    invoiceDate?: string | undefined;
     /** Invoice due date in one of the accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
-    invoiceDueDate?: Payabli.Datenullable | undefined;
+    invoiceDueDate?: string | undefined;
     /** Indicate the date to finish a scheduled invoice cycle (`invoiceType`` = 1) in any of the accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
-    invoiceEndDate?: Payabli.Datenullable | undefined;
+    invoiceEndDate?: string | undefined;
     /** Invoice number. Identifies the invoice under a paypoint. */
     invoiceNumber?: Payabli.InvoiceNumber | undefined;
     invoiceStatus?: Payabli.Invoicestatus | undefined;

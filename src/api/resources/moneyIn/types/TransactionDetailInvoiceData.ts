@@ -7,20 +7,20 @@ import type * as Payabli from "../../../index.js";
  */
 export interface TransactionDetailInvoiceData {
     invoiceNumber: Payabli.InvoiceNumber | null;
-    invoiceDate: (Payabli.Datenullable | undefined) | null;
-    invoiceDueDate: (Payabli.Datenullable | undefined) | null;
-    invoiceEndDate: (Payabli.Datenullable | undefined) | null;
+    invoiceDate: string | null;
+    invoiceDueDate: string | null;
+    invoiceEndDate: string | null;
     invoiceStatus: Payabli.Invoicestatus | null;
     invoiceType: Payabli.InvoiceType | null;
     frequency: Payabli.Frequency | null;
     paymentTerms: string | null;
     termsConditions: Payabli.TermsConditions | null;
     notes: string | null;
-    tax: (Payabli.Tax | undefined) | null;
-    discount: (Payabli.Discount | undefined) | null;
+    tax: Payabli.Tax | null;
+    discount: Payabli.Discount | null;
     invoiceAmount: Payabli.InvoiceAmount | null;
-    freightAmount: (Payabli.FreightAmount | undefined) | null;
-    dutyAmount: (Payabli.DutyAmount | undefined) | null;
+    freightAmount: Payabli.FreightAmount | null;
+    dutyAmount: Payabli.DutyAmount | null;
     purchaseOrder: Payabli.PurchaseOrder | null;
     firstName: string | null;
     lastName: string | null;
@@ -36,6 +36,6 @@ export interface TransactionDetailInvoiceData {
     shippingFromZip: Payabli.ShippingFromZip | null;
     summaryCommodityCode: Payabli.SummaryCommodityCode | null;
     items: Payabli.BillItem[] | null;
-    attachments: (Payabli.Attachments | undefined) | null;
+    attachments: Payabli.Attachments | null;
     additionalData: Payabli.AdditionalDataString | null;
 }

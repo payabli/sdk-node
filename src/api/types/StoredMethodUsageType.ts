@@ -7,6 +7,6 @@
  *   - `subscription`: This type is used for subscription payments. For example, monthly rental fees or ongoing service subscriptions.
  *   - `recurring`: This type is used for recurring payments that occur per a set plan. For example, splitting an HOA special assessment over 6 monthly payments.
  *
- * See [Understanding CIT and MIT Indicators](/guides/money-in-cit-mit) for more information.
+ * See [Understanding CIT and MIT Indicators](/guides/pay-in-transactions-cit-mit-overview) for more information.
  */
 export type StoredMethodUsageType = string;

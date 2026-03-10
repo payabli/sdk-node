@@ -3,4 +3,4 @@
 /**
  * Enrollment status of vendor in payables program.
  */
-export type EnrollmentStatus = string | undefined;
+export type EnrollmentStatus = string;

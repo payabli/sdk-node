@@ -6,7 +6,7 @@ export interface BillQueryRecord2BillApprovalsItem {
     /** Indicates whether the bill has been approved. `0` is false, and `1` is true. */
     approved?: number | undefined;
     /** Timestamp of when the approval was made, in UTC. */
-    approvedTime?: Payabli.DatetimeNullable | undefined;
+    approvedTime: string | null;
     /** Additional comments on the approval. */
     comments?: string | undefined;
     /** The approving user's email address. */

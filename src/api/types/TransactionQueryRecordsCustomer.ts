@@ -56,7 +56,7 @@ export interface TransactionQueryRecordsCustomer {
     /** Events associated with this transaction. */
     TransactionEvents?: Payabli.QueryTransactionEvents[] | undefined;
     /** Transaction date and time, in UTC. */
-    TransactionTime?: Payabli.DatetimeNullable | undefined;
+    TransactionTime: string | null;
     TransAdditionalData?: unknown | undefined;
     /** Status of transaction. See [the docs](/developers/references/money-in-statuses#money-in-transaction-status) for a full reference. */
     TransStatus?: number | undefined;

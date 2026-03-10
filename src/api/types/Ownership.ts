@@ -5,4 +5,4 @@ import type * as Payabli from "../index.js";
 /**
  * List of Owners with at least a 25% ownership.
  */
-export type Ownership = Payabli.Owners[] | undefined;
+export type Ownership = Payabli.Owners[];

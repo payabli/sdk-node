@@ -93,8 +93,8 @@ import type * as Payabli from "../../../../index.js";
  *     }
  */
 export interface RequestPaymentV2 {
-    achValidation?: Payabli.AchValidation | undefined;
-    forceCustomerCreation?: Payabli.ForceCustomerCreation | undefined;
+    achValidation?: Payabli.AchValidation;
+    forceCustomerCreation?: Payabli.ForceCustomerCreation;
     idempotencyKey?: Payabli.IdempotencyKey;
     /** Value obtained from user when an API generated CAPTCHA is used in payment page */
     validationCode?: string;

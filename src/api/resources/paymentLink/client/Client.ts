@@ -223,7 +223,7 @@ export class PaymentLinkClient {
     }
 
     /**
-     * Generates a payment link for a bill from the bill ID.
+     * Generates a payment link for a bill from the bill ID. The vendor receives a secure page where they can select their preferred payment method (ACH, virtual card, or check) and complete the payment.
      *
      * @param {number} billId - The Payabli ID for the bill.
      * @param {Payabli.PayLinkDataBill} request
@@ -275,34 +275,81 @@ export class PaymentLinkClient {
      *             },
      *             paymentMethods: {
      *                 allMethodsChecked: true,
+     *                 allowMultipleMethods: true,
+     *                 defaultMethod: "vcard",
      *                 enabled: true,
      *                 header: "Payment Methods",
      *                 methods: {
-     *                     amex: true,
-     *                     applePay: true,
-     *                     discover: true,
-     *                     eCheck: true,
-     *                     mastercard: true,
-     *                     visa: true
+     *                     ach: true,
+     *                     check: true,
+     *                     vcard: true
      *                 },
+     *                 order: 0,
+     *                 showPreviewVirtualCard: true
+     *             },
+     *             review: {
+     *                 enabled: true,
+     *                 header: "Review Payment",
      *                 order: 0
      *             },
-     *             payor: {
+     *             settings: {
+     *                 color: "#000000",
+     *                 language: "en"
+     *             }
+     *         }
+     *     })
+     *
+     * @example
+     *     await client.paymentLink.addPayLinkFromBill(23548884, {
+     *         body: {
+     *             contactUs: {
+     *                 emailLabel: "Email",
      *                 enabled: true,
-     *                 fields: [{
-     *                         display: true,
-     *                         fixed: true,
-     *                         identifier: true,
-     *                         label: "Full Name",
-     *                         name: "fullName",
-     *                         order: 0,
-     *                         required: true,
-     *                         validation: "alpha",
-     *                         value: "",
-     *                         width: 0
-     *                     }],
-     *                 header: "Payor Information",
+     *                 header: "Contact Us",
+     *                 order: 0,
+     *                 paymentIcons: true,
+     *                 phoneLabel: "Phone"
+     *             },
+     *             logo: {
+     *                 enabled: true,
      *                 order: 0
+     *             },
+     *             messageBeforePaying: {
+     *                 enabled: true,
+     *                 label: "Please review your payment details",
+     *                 order: 0
+     *             },
+     *             notes: {
+     *                 enabled: true,
+     *                 header: "Additional Notes",
+     *                 order: 0,
+     *                 placeholder: "Enter any additional notes here",
+     *                 value: ""
+     *             },
+     *             page: {
+     *                 description: "Get paid securely",
+     *                 enabled: true,
+     *                 header: "Payment Page",
+     *                 order: 0
+     *             },
+     *             paymentButton: {
+     *                 enabled: true,
+     *                 label: "Pay Now",
+     *                 order: 0
+     *             },
+     *             paymentMethods: {
+     *                 allMethodsChecked: true,
+     *                 allowMultipleMethods: true,
+     *                 defaultMethod: "vcard",
+     *                 enabled: true,
+     *                 header: "Payment Methods",
+     *                 methods: {
+     *                     ach: true,
+     *                     check: true,
+     *                     vcard: true
+     *                 },
+     *                 order: 0,
+     *                 showPreviewVirtualCard: true
      *             },
      *             review: {
      *                 enabled: true,
@@ -404,7 +451,7 @@ export class PaymentLinkClient {
      * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
-     *     await client.paymentLink.deletePayLinkFromId("payLinkId")
+     *     await client.paymentLink.deletePayLinkFromId("2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234")
      */
     public deletePayLinkFromId(
         payLinkId: string,
@@ -980,34 +1027,17 @@ export class PaymentLinkClient {
      *             },
      *             paymentMethods: {
      *                 allMethodsChecked: true,
+     *                 allowMultipleMethods: true,
+     *                 defaultMethod: "vcard",
      *                 enabled: true,
      *                 header: "Payment Methods",
      *                 methods: {
-     *                     amex: true,
-     *                     applePay: true,
-     *                     discover: true,
-     *                     eCheck: true,
-     *                     mastercard: true,
-     *                     visa: true
+     *                     ach: true,
+     *                     check: true,
+     *                     vcard: true
      *                 },
-     *                 order: 0
-     *             },
-     *             payor: {
-     *                 enabled: true,
-     *                 fields: [{
-     *                         display: true,
-     *                         fixed: true,
-     *                         identifier: true,
-     *                         label: "Full Name",
-     *                         name: "fullName",
-     *                         order: 0,
-     *                         required: true,
-     *                         validation: "alpha",
-     *                         value: "",
-     *                         width: 0
-     *                     }],
-     *                 header: "Payor Information",
-     *                 order: 0
+     *                 order: 0,
+     *                 showPreviewVirtualCard: true
      *             },
      *             review: {
      *                 enabled: true,
@@ -1088,6 +1118,307 @@ export class PaymentLinkClient {
             _response.rawResponse,
             "POST",
             "/PaymentLink/bill/lotNumber/{lotNumber}",
+        );
+    }
+
+    /**
+     * Partially updates a Pay Out payment link's content, expiration date, and/or status. Use this to modify the payment page configuration, extend or change the expiration, or cancel a link. Updating the expiration date of an expired link reactivates it to Active status.
+     *
+     * @param {string} paylinkId - ID for the payment link.
+     * @param {Payabli.PatchOutPaymentLinkRequest} request
+     * @param {PaymentLinkClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.paymentLink.patchOutPaymentLink("2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234", {
+     *         expirationDate: "2026-06-01T00:00:00Z",
+     *         status: "Active"
+     *     })
+     *
+     * @example
+     *     await client.paymentLink.patchOutPaymentLink("2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234", {
+     *         status: "Canceled"
+     *     })
+     *
+     * @example
+     *     await client.paymentLink.patchOutPaymentLink("2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234", {
+     *         billPageData: {
+     *             page: {
+     *                 description: "You have a payment waiting",
+     *                 enabled: true,
+     *                 header: "Vendor Payment",
+     *                 order: 0
+     *             },
+     *             paymentButton: {
+     *                 enabled: true,
+     *                 label: "Select Payment Method",
+     *                 order: 0
+     *             },
+     *             paymentMethods: {
+     *                 allMethodsChecked: true,
+     *                 allowMultipleMethods: true,
+     *                 defaultMethod: "ach",
+     *                 enabled: true,
+     *                 header: "Payment Methods",
+     *                 methods: {
+     *                     ach: true,
+     *                     check: true,
+     *                     vcard: true
+     *                 },
+     *                 order: 0,
+     *                 showPreviewVirtualCard: false
+     *             }
+     *         }
+     *     })
+     */
+    public patchOutPaymentLink(
+        paylinkId: string,
+        request: Payabli.PatchOutPaymentLinkRequest,
+        requestOptions?: PaymentLinkClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.PayabliApiResponsePaymentLinks> {
+        return core.HttpResponsePromise.fromPromise(this.__patchOutPaymentLink(paylinkId, request, requestOptions));
+    }
+
+    private async __patchOutPaymentLink(
+        paylinkId: string,
+        request: Payabli.PatchOutPaymentLinkRequest,
+        requestOptions?: PaymentLinkClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.PayabliApiResponsePaymentLinks>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `PaymentLink/out/${core.url.encodePathParam(paylinkId)}`,
+            ),
+            method: "PATCH",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
+            requestType: "json",
+            body: request,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as Payabli.PayabliApiResponsePaymentLinks,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "PATCH",
+            "/PaymentLink/out/{paylinkId}",
+        );
+    }
+
+    /**
+     * Updates the payment page content for a Pay Out payment link. Use this to change the branding, messaging, payment methods offered, or other page configuration.
+     *
+     * @param {string} paylinkId - ID for the payment link.
+     * @param {Payabli.PaymentPageRequestBodyOut} request
+     * @param {PaymentLinkClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.paymentLink.updatePayLinkOutFromId("2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234", {
+     *         contactUs: {
+     *             emailLabel: "Email",
+     *             enabled: true,
+     *             header: "Contact Us",
+     *             order: 0,
+     *             paymentIcons: true,
+     *             phoneLabel: "Phone"
+     *         },
+     *         logo: {
+     *             enabled: true,
+     *             order: 0
+     *         },
+     *         messageBeforePaying: {
+     *             enabled: true,
+     *             label: "Please review your payment details",
+     *             order: 0
+     *         },
+     *         notes: {
+     *             enabled: true,
+     *             header: "Additional Notes",
+     *             order: 0,
+     *             placeholder: "Enter any additional notes here",
+     *             value: ""
+     *         },
+     *         page: {
+     *             description: "Get paid securely",
+     *             enabled: true,
+     *             header: "Payment Page",
+     *             order: 0
+     *         },
+     *         paymentButton: {
+     *             enabled: true,
+     *             label: "Pay Now",
+     *             order: 0
+     *         },
+     *         paymentMethods: {
+     *             allMethodsChecked: true,
+     *             allowMultipleMethods: true,
+     *             defaultMethod: "vcard",
+     *             enabled: true,
+     *             header: "Payment Methods",
+     *             methods: {
+     *                 ach: true,
+     *                 check: true,
+     *                 vcard: true
+     *             },
+     *             order: 0,
+     *             showPreviewVirtualCard: true
+     *         },
+     *         review: {
+     *             enabled: true,
+     *             header: "Review Payment",
+     *             order: 0
+     *         },
+     *         settings: {
+     *             color: "#000000",
+     *             language: "en"
+     *         }
+     *     })
+     *
+     * @example
+     *     await client.paymentLink.updatePayLinkOutFromId("2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234", {
+     *         paymentMethods: {
+     *             allMethodsChecked: false,
+     *             allowMultipleMethods: true,
+     *             defaultMethod: "vcard",
+     *             enabled: true,
+     *             header: "Payment Methods",
+     *             methods: {
+     *                 ach: true,
+     *                 check: false,
+     *                 vcard: true
+     *             },
+     *             order: 0,
+     *             showPreviewVirtualCard: true
+     *         },
+     *         paymentButton: {
+     *             enabled: true,
+     *             label: "Choose Payment Method",
+     *             order: 0
+     *         }
+     *     })
+     */
+    public updatePayLinkOutFromId(
+        paylinkId: string,
+        request: Payabli.PaymentPageRequestBodyOut,
+        requestOptions?: PaymentLinkClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.PayabliApiResponsePaymentLinks> {
+        return core.HttpResponsePromise.fromPromise(this.__updatePayLinkOutFromId(paylinkId, request, requestOptions));
+    }
+
+    private async __updatePayLinkOutFromId(
+        paylinkId: string,
+        request: Payabli.PaymentPageRequestBodyOut,
+        requestOptions?: PaymentLinkClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.PayabliApiResponsePaymentLinks>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `PaymentLink/updateOut/${core.url.encodePathParam(paylinkId)}`,
+            ),
+            method: "PATCH",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
+            requestType: "json",
+            body: request,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as Payabli.PayabliApiResponsePaymentLinks,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "PATCH",
+            "/PaymentLink/updateOut/{paylinkId}",
         );
     }
 }

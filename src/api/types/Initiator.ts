@@ -7,6 +7,6 @@
  *   - `payor`: For cardholder-initiated transactions
  *   - `merchant`: For merchant-initiated transactions
  *
- *   See [Understanding CIT and MIT Indicators](/guides/money-in-cit-mit) for more information.
+ *   See [Understanding CIT and MIT Indicators](/guides/pay-in-transactions-cit-mit-overview) for more information.
  */
 export type Initiator = string;

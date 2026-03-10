@@ -10,7 +10,7 @@ export interface ListTransfersPaypointRequest {
     exportFormat?: Payabli.ExportFormat;
     /** The number of records to skip before starting to collect the result set. */
     fromRecord?: number;
-    limitRecord?: Payabli.LimitRecord | undefined;
+    limitRecord?: Payabli.LimitRecord;
     /**
      * Collection of field names, conditions, and values used to filter
      * the query.

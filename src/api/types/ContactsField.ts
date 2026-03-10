@@ -5,4 +5,4 @@ import type * as Payabli from "../index.js";
 /**
  * List of contacts.
  */
-export type ContactsField = Payabli.Contacts[] | undefined;
+export type ContactsField = Payabli.Contacts[];

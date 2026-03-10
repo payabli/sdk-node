@@ -3,4 +3,4 @@
 /**
  * When `true`, makes the section visible on the application.
  */
-export type Visible = boolean | undefined;
+export type Visible = boolean;
