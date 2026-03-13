@@ -27,5 +27,5 @@ export interface TransactionDetailCustomer {
     shippingCountry: Payabli.Shippingcountry;
     customerId: Payabli.CustomerId;
     customerStatus: Payabli.CustomerStatus;
-    additionalData: Payabli.AdditionalDataString | null;
+    additionalData: Payabli.AdditionalDataMap | null;
 }

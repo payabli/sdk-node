@@ -37,5 +37,5 @@ export interface TransactionDetailInvoiceData {
     summaryCommodityCode: Payabli.SummaryCommodityCode | null;
     items: Payabli.BillItem[] | null;
     attachments: Payabli.Attachments | null;
-    additionalData: Payabli.AdditionalDataString | null;
+    additionalData: Payabli.AdditionalDataMap | null;
 }
