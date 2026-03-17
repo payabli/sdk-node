@@ -105,6 +105,7 @@ describe("HostedPaymentPagesClient", () => {
             totalAmount: 1.1,
             validationCode: "validationCode",
         };
+
         server
             .mockEndpoint()
             .get("/Paypoint/load/8cfec329267/pay-your-fees-1")
@@ -303,6 +304,7 @@ describe("HostedPaymentPagesClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Paypoint/load/entry/subdomain")
@@ -321,6 +323,7 @@ describe("HostedPaymentPagesClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Paypoint/load/entry/subdomain")
@@ -339,6 +342,7 @@ describe("HostedPaymentPagesClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Paypoint/load/entry/subdomain")
@@ -357,6 +361,7 @@ describe("HostedPaymentPagesClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Paypoint/load/entry/subdomain")
@@ -381,6 +386,7 @@ describe("HostedPaymentPagesClient", () => {
             responseData: "responseData",
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .post("/Paypoint/8cfec329267")
@@ -409,6 +415,7 @@ describe("HostedPaymentPagesClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Paypoint/entry")
@@ -430,6 +437,7 @@ describe("HostedPaymentPagesClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Paypoint/entry")
@@ -451,6 +459,7 @@ describe("HostedPaymentPagesClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Paypoint/entry")
@@ -472,6 +481,7 @@ describe("HostedPaymentPagesClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/Paypoint/entry")
@@ -493,6 +503,7 @@ describe("HostedPaymentPagesClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: "string", responseText: "Updated" };
+
         server
             .mockEndpoint()
             .put("/Paypoint/8cfec329267/pay-your-fees-1")
@@ -516,6 +527,7 @@ describe("HostedPaymentPagesClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Paypoint/entry/subdomain")
@@ -535,6 +547,7 @@ describe("HostedPaymentPagesClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Paypoint/entry/subdomain")
@@ -554,6 +567,7 @@ describe("HostedPaymentPagesClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Paypoint/entry/subdomain")
@@ -573,6 +587,7 @@ describe("HostedPaymentPagesClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .put("/Paypoint/entry/subdomain")

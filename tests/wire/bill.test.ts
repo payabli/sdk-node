@@ -46,6 +46,7 @@ describe("BillClient", () => {
             responseText: "Success",
             responseData: 6101,
         };
+
         server
             .mockEndpoint()
             .post("/Bill/single/8cfec329267")
@@ -110,6 +111,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Bill/single/entry")
@@ -131,6 +133,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Bill/single/entry")
@@ -152,6 +155,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Bill/single/entry")
@@ -173,6 +177,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/Bill/single/entry")
@@ -200,6 +205,7 @@ describe("BillClient", () => {
             responseText: "Success",
             responseData: 6101,
         };
+
         server
             .mockEndpoint()
             .delete("/Bill/attachedFileFromBill/285/0_Bill.pdf")
@@ -223,6 +229,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/Bill/attachedFileFromBill/1/filename")
@@ -241,6 +248,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/Bill/attachedFileFromBill/1/filename")
@@ -259,6 +267,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/Bill/attachedFileFromBill/1/filename")
@@ -277,6 +286,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .delete("/Bill/attachedFileFromBill/1/filename")
@@ -301,6 +311,7 @@ describe("BillClient", () => {
             responseText: "Success",
             responseData: 6101,
         };
+
         server.mockEndpoint().delete("/Bill/285").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.bill.deleteBill(285);
@@ -318,6 +329,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().delete("/Bill/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -330,6 +342,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().delete("/Bill/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -342,6 +355,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().delete("/Bill/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -354,6 +368,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server.mockEndpoint().delete("/Bill/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -372,6 +387,7 @@ describe("BillClient", () => {
             responseText: "Success",
             responseData: 6101,
         };
+
         server
             .mockEndpoint()
             .put("/Bill/285")
@@ -399,6 +415,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Bill/1")
@@ -418,6 +435,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Bill/1")
@@ -437,6 +455,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Bill/1")
@@ -456,6 +475,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .put("/Bill/1")
@@ -480,6 +500,7 @@ describe("BillClient", () => {
             ftype: "pdf",
             furl: "https://mysite.com/my-doc.pdf",
         };
+
         server
             .mockEndpoint()
             .get("/Bill/attachedFileFromBill/285/0_Bill.pdf")
@@ -504,6 +525,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Bill/attachedFileFromBill/1/filename")
@@ -522,6 +544,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Bill/attachedFileFromBill/1/filename")
@@ -540,6 +563,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Bill/attachedFileFromBill/1/filename")
@@ -558,6 +582,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Bill/attachedFileFromBill/1/filename")
@@ -631,6 +656,7 @@ describe("BillClient", () => {
                     ],
                     BillingData: {
                         id: 123,
+                        accountId: "acct-1xxxxx3123",
                         nickname: "Checking Account",
                         bankName: "Country Bank",
                         routingAccount: "123123123",
@@ -718,6 +744,7 @@ describe("BillClient", () => {
                 LotNumber: "LOT-285",
             },
         };
+
         server.mockEndpoint().get("/Bill/285").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.bill.getBill(285);
@@ -777,6 +804,7 @@ describe("BillClient", () => {
                     ],
                     BillingData: {
                         id: 123,
+                        accountId: "acct-1xxxxx3123",
                         nickname: "Checking Account",
                         bankName: "Country Bank",
                         routingAccount: "123123123",
@@ -875,6 +903,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Bill/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -887,6 +916,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Bill/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -899,6 +929,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Bill/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -911,6 +942,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server.mockEndpoint().get("/Bill/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1041,6 +1073,7 @@ describe("BillClient", () => {
                 },
             ],
         };
+
         server
             .mockEndpoint()
             .get("/Query/bills/8cfec329267")
@@ -1190,6 +1223,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Query/bills/entry").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1202,6 +1236,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Query/bills/entry").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1214,6 +1249,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Query/bills/entry").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1226,6 +1262,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server.mockEndpoint().get("/Query/bills/entry").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1356,6 +1393,7 @@ describe("BillClient", () => {
                 },
             ],
         };
+
         server
             .mockEndpoint()
             .get("/Query/bills/org/123")
@@ -1505,6 +1543,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Query/bills/org/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1517,6 +1556,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Query/bills/org/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1529,6 +1569,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Query/bills/org/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1541,6 +1582,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server.mockEndpoint().get("/Query/bills/org/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1553,6 +1595,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string"];
         const rawResponseBody = { isSuccess: true, responseData: 6101, responseText: "Success" };
+
         server
             .mockEndpoint()
             .put("/Bill/approval/285")
@@ -1575,6 +1618,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Bill/approval/1")
@@ -1594,6 +1638,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Bill/approval/1")
@@ -1613,6 +1658,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Bill/approval/1")
@@ -1632,6 +1678,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .put("/Bill/approval/1")
@@ -1657,6 +1704,7 @@ describe("BillClient", () => {
             responseText: "Success",
             responseData: 6101,
         };
+
         server
             .mockEndpoint()
             .post("/Bill/approval/285")
@@ -1685,6 +1733,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Bill/approval/1")
@@ -1706,6 +1755,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Bill/approval/1")
@@ -1727,6 +1777,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Bill/approval/1")
@@ -1748,6 +1799,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/Bill/approval/1")
@@ -1769,6 +1821,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { isSuccess: true, responseData: 6101, responseText: "Success" };
+
         server
             .mockEndpoint()
             .get("/Bill/approval/285/true")
@@ -1790,6 +1843,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Bill/approval/1/approved")
@@ -1808,6 +1862,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Bill/approval/1/approved")
@@ -1826,6 +1881,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Bill/approval/1/approved")
@@ -1844,6 +1900,7 @@ describe("BillClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Bill/approval/1/approved")

@@ -67,5 +67,5 @@ export interface ExportBatchesOrgRequest {
      * - `fromRecord`: initial record in query
      * Example: `batchAmount(gt)=20` returns all records with a `batchAmount` greater than 20.00
      */
-    parameters?: Record<string, string | undefined>;
+    parameters?: Record<string, string>;
 }

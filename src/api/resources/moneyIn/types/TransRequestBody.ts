@@ -68,7 +68,7 @@ import type * as Payabli from "../../../index.js";
  *     }
  */
 export interface TransRequestBody {
-    accountId?: Payabli.Accountid | undefined;
+    accountId?: Payabli.AccountId | undefined;
     /** Object describing the Customer/Payor. Which fields are required depends on the paypoint's custom identifier settings. */
     customerData?: Payabli.PayorDataRequest | undefined;
     entryPoint?: Payabli.Entrypointfield | undefined;

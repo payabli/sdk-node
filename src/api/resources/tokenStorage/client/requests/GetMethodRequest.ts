@@ -6,18 +6,6 @@
  *         cardExpirationFormat: 1,
  *         includeTemporary: false
  *     }
- *
- * @example
- *     {
- *         cardExpirationFormat: 1,
- *         includeTemporary: false
- *     }
- *
- * @example
- *     {
- *         cardExpirationFormat: 1,
- *         includeTemporary: false
- *     }
  */
 export interface GetMethodRequest {
     /**

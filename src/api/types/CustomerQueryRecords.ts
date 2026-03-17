@@ -237,7 +237,7 @@ export interface CustomerQueryRecords {
     /** Date and time created. */
     Created?: string | undefined;
     /** List of additional custom fields in format key:value. */
-    AdditionalFields?: Record<string, string | undefined> | undefined;
+    AdditionalFields?: Record<string, string> | undefined;
     IdentifierFields?: Payabli.Identifierfields | undefined;
     /** List of subscriptions associated to the customer. */
     Subscriptions?: Payabli.SubscriptionQueryRecords[] | undefined;

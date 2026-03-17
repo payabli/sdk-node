@@ -33,6 +33,7 @@ describe("MoneyOutClient", () => {
                 methodReferenceId: null,
             },
         };
+
         server
             .mockEndpoint()
             .post("/MoneyOut/authorize")
@@ -115,6 +116,7 @@ describe("MoneyOutClient", () => {
                 methodReferenceId: null,
             },
         };
+
         server
             .mockEndpoint()
             .post("/MoneyOut/authorize")
@@ -199,6 +201,7 @@ describe("MoneyOutClient", () => {
                 methodReferenceId: null,
             },
         };
+
         server
             .mockEndpoint()
             .post("/MoneyOut/authorize")
@@ -277,6 +280,7 @@ describe("MoneyOutClient", () => {
                 methodReferenceId: null,
             },
         };
+
         server
             .mockEndpoint()
             .post("/MoneyOut/authorize")
@@ -396,6 +400,7 @@ describe("MoneyOutClient", () => {
                 methodReferenceId: "12dea40cba9130s93s-12345",
             },
         };
+
         server
             .mockEndpoint()
             .post("/MoneyOut/authorize")
@@ -489,6 +494,7 @@ describe("MoneyOutClient", () => {
             invoiceData: [{}, {}],
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/MoneyOut/authorize")
@@ -524,6 +530,7 @@ describe("MoneyOutClient", () => {
             invoiceData: [{}, {}],
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/MoneyOut/authorize")
@@ -559,6 +566,7 @@ describe("MoneyOutClient", () => {
             invoiceData: [{}, {}],
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/MoneyOut/authorize")
@@ -594,6 +602,7 @@ describe("MoneyOutClient", () => {
             invoiceData: [{}, {}],
         };
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/MoneyOut/authorize")
@@ -632,6 +641,7 @@ describe("MoneyOutClient", () => {
             ],
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .post("/MoneyOut/cancelAll")
@@ -669,6 +679,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/MoneyOut/cancelAll")
@@ -688,6 +699,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/MoneyOut/cancelAll")
@@ -707,6 +719,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/MoneyOut/cancelAll")
@@ -726,6 +739,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/MoneyOut/cancelAll")
@@ -749,6 +763,7 @@ describe("MoneyOutClient", () => {
             responseText: "Success",
             responseData: { ReferenceId: "129-219", ResultCode: 1, ResultText: "Approved", CustomerId: 0 },
         };
+
         server
             .mockEndpoint()
             .get("/MoneyOut/cancel/129-219")
@@ -775,6 +790,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyOut/cancel/referenceId")
@@ -793,6 +809,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyOut/cancel/referenceId")
@@ -811,6 +828,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyOut/cancel/referenceId")
@@ -829,6 +847,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/MoneyOut/cancel/referenceId")
@@ -851,6 +870,7 @@ describe("MoneyOutClient", () => {
             responseText: "Success",
             responseData: { ReferenceId: "129-219", ResultCode: 1, ResultText: "Approved", CustomerId: 0 },
         };
+
         server
             .mockEndpoint()
             .delete("/MoneyOut/cancel/129-219")
@@ -877,6 +897,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/MoneyOut/cancel/referenceId")
@@ -895,6 +916,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/MoneyOut/cancel/referenceId")
@@ -913,6 +935,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/MoneyOut/cancel/referenceId")
@@ -931,6 +954,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .delete("/MoneyOut/cancel/referenceId")
@@ -958,6 +982,7 @@ describe("MoneyOutClient", () => {
             ],
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .post("/MoneyOut/captureAll")
@@ -997,6 +1022,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/MoneyOut/captureAll")
@@ -1018,6 +1044,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/MoneyOut/captureAll")
@@ -1039,6 +1066,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/MoneyOut/captureAll")
@@ -1060,6 +1088,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/MoneyOut/captureAll")
@@ -1097,6 +1126,7 @@ describe("MoneyOutClient", () => {
                 methodReferenceId: null,
             },
         };
+
         server
             .mockEndpoint()
             .get("/MoneyOut/capture/129-219")
@@ -1130,6 +1160,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyOut/capture/referenceId")
@@ -1148,6 +1179,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyOut/capture/referenceId")
@@ -1166,6 +1198,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyOut/capture/referenceId")
@@ -1184,6 +1217,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/MoneyOut/capture/referenceId")
@@ -1327,6 +1361,7 @@ describe("MoneyOutClient", () => {
             IsSameDayACH: false,
             RiskFlagged: false,
         };
+
         server
             .mockEndpoint()
             .get("/MoneyOut/details/45-as456777hhhhhhhhhh77777777-324")
@@ -1707,6 +1742,7 @@ describe("MoneyOutClient", () => {
             IsSameDayACH: false,
             RiskFlagged: false,
         };
+
         server
             .mockEndpoint()
             .get("/MoneyOut/details/45-as456777hhhhhhhhhh77777777-324")
@@ -1965,6 +2001,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyOut/details/transId")
@@ -1983,6 +2020,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyOut/details/transId")
@@ -2001,6 +2039,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyOut/details/transId")
@@ -2019,6 +2058,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/MoneyOut/details/transId")
@@ -2131,6 +2171,7 @@ describe("MoneyOutClient", () => {
             PaypointEntryname: "47acde49",
             paypointId: 12345,
         };
+
         server
             .mockEndpoint()
             .get("/MoneyOut/vcard/20230403315245421165")
@@ -2242,6 +2283,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyOut/vcard/cardToken")
@@ -2260,6 +2302,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyOut/vcard/cardToken")
@@ -2278,6 +2321,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyOut/vcard/cardToken")
@@ -2296,6 +2340,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/MoneyOut/vcard/cardToken")
@@ -2314,6 +2359,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { transId: "01K33Z6YQZ6GD5QVKZ856MJBSC" };
         const rawResponseBody = { message: "Successfully sent email to: vendor@vendor.com", success: true };
+
         server
             .mockEndpoint()
             .post("/vcard/send-card-link")
@@ -2337,6 +2383,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { transId: "transId" };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/vcard/send-card-link")
@@ -2358,6 +2405,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { transId: "transId" };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/vcard/send-card-link")
@@ -2379,6 +2427,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { transId: "transId" };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/vcard/send-card-link")
@@ -2400,6 +2449,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { transId: "transId" };
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/vcard/send-card-link")
@@ -2422,6 +2472,7 @@ describe("MoneyOutClient", () => {
 
         const rawResponseBody =
             '%PDF-1.7\n%����\n123 0 obj\n<</Linearized 1/L 123456/O 125/E 78901/N 1/T 123450/H [ 800 200]>>\nendobj\n\n124 0 obj\n<</DecodeParms<</Columns 4/Predictor 12>>/Filter/FlateDecode/ID[<AB123C4567EF890123456789ABCDEF01><12345678ABCDEF9876543210FEDCBA98>]/Index[123 100]/Info 122 0 R/Length 128/Prev 123450/Root 125 0 R/Size 223/Type/XRef/W[1 3 1]>>stream\nh�bbd```b``�\n"x�a7�r�H~�����A�D���2����m�f��L`v6�H����D���J[@����H8�I��)0��q� XD��`��a���P�`�`��"�A$������r���p�$�Ip������a� �';
+
         server
             .mockEndpoint()
             .get("/MoneyOut/checkimage/check133832686289732320_01JKBNZ5P32JPTZY8XXXX000000.pdf")
@@ -2441,6 +2492,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyOut/checkimage/assetName")
@@ -2459,6 +2511,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyOut/checkimage/assetName")
@@ -2477,6 +2530,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyOut/checkimage/assetName")
@@ -2495,6 +2549,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/MoneyOut/checkimage/assetName")
@@ -2519,6 +2574,7 @@ describe("MoneyOutClient", () => {
             responseText: "Success",
             responseData: "TRANS123456",
         };
+
         server
             .mockEndpoint()
             .patch("/MoneyOut/status/TRANS123456/5")
@@ -2548,6 +2604,7 @@ describe("MoneyOutClient", () => {
             responseText: "Success",
             responseData: "TRANS123456",
         };
+
         server
             .mockEndpoint()
             .patch("/MoneyOut/status/TRANS123456/0")
@@ -2571,6 +2628,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .patch("/MoneyOut/status/transId/0")
@@ -2589,6 +2647,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .patch("/MoneyOut/status/transId/0")
@@ -2607,6 +2666,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .patch("/MoneyOut/status/transId/0")
@@ -2625,6 +2685,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .patch("/MoneyOut/status/transId/0")
@@ -2635,6 +2696,281 @@ describe("MoneyOutClient", () => {
 
         await expect(async () => {
             return await client.moneyOut.updateCheckPaymentStatus("transId", "0");
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("ReissueOut (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            paymentMethod: {
+                method: "ach",
+                achAccount: "9876543210",
+                achAccountType: "savings",
+                achRouting: "021000021",
+                achHolder: "Acme Corp",
+                achHolderType: "business",
+            },
+        };
+        const rawResponseBody = {
+            isSuccess: true,
+            responseCode: 1,
+            responseText: "Success",
+            responseData: { transactionId: "130-220", status: "Authorized", originalTransactionId: "129-219" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/MoneyOut/reissue")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.moneyOut.reissueOut({
+            transId: "129-219",
+            body: {
+                paymentMethod: {
+                    method: "ach",
+                    achAccount: "9876543210",
+                    achAccountType: "savings",
+                    achRouting: "021000021",
+                    achHolder: "Acme Corp",
+                    achHolderType: "business",
+                },
+            },
+        });
+        expect(response).toEqual({
+            isSuccess: true,
+            responseCode: 1,
+            responseText: "Success",
+            responseData: {
+                transactionId: "130-220",
+                status: "Authorized",
+                originalTransactionId: "129-219",
+            },
+        });
+    });
+
+    test("ReissueOut (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { paymentMethod: { method: "check" } };
+        const rawResponseBody = {
+            isSuccess: true,
+            responseCode: 1,
+            responseText: "Success",
+            responseData: { transactionId: "130-221", status: "Authorized", originalTransactionId: "129-219" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/MoneyOut/reissue")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.moneyOut.reissueOut({
+            transId: "129-219",
+            body: {
+                paymentMethod: {
+                    method: "check",
+                },
+            },
+        });
+        expect(response).toEqual({
+            isSuccess: true,
+            responseCode: 1,
+            responseText: "Success",
+            responseData: {
+                transactionId: "130-221",
+                status: "Authorized",
+                originalTransactionId: "129-219",
+            },
+        });
+    });
+
+    test("ReissueOut (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { paymentMethod: { method: "vcard" } };
+        const rawResponseBody = {
+            isSuccess: true,
+            responseCode: 1,
+            responseText: "Success",
+            responseData: { transactionId: "130-222", status: "Authorized", originalTransactionId: "129-219" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/MoneyOut/reissue")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.moneyOut.reissueOut({
+            transId: "129-219",
+            body: {
+                paymentMethod: {
+                    method: "vcard",
+                },
+            },
+        });
+        expect(response).toEqual({
+            isSuccess: true,
+            responseCode: 1,
+            responseText: "Success",
+            responseData: {
+                transactionId: "130-222",
+                status: "Authorized",
+                originalTransactionId: "129-219",
+            },
+        });
+    });
+
+    test("ReissueOut (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { paymentMethod: { method: "method" } };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/MoneyOut/reissue")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.moneyOut.reissueOut({
+                transId: "transId",
+                body: {
+                    paymentMethod: {
+                        method: "method",
+                    },
+                },
+            });
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("ReissueOut (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { paymentMethod: { method: "method" } };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/MoneyOut/reissue")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.moneyOut.reissueOut({
+                transId: "transId",
+                body: {
+                    paymentMethod: {
+                        method: "method",
+                    },
+                },
+            });
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("ReissueOut (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { paymentMethod: { method: "method" } };
+        const rawResponseBody = {
+            isSuccess: true,
+            pageIdentifier: null,
+            responseCode: 1,
+            responseData: { responseData: { key: "value" } },
+            responseText: "responseText",
+        };
+
+        server
+            .mockEndpoint()
+            .post("/MoneyOut/reissue")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.moneyOut.reissueOut({
+                transId: "transId",
+                body: {
+                    paymentMethod: {
+                        method: "method",
+                    },
+                },
+            });
+        }).rejects.toThrow(Payabli.ForbiddenError);
+    });
+
+    test("ReissueOut (7)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { paymentMethod: { method: "method" } };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/MoneyOut/reissue")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.moneyOut.reissueOut({
+                transId: "transId",
+                body: {
+                    paymentMethod: {
+                        method: "method",
+                    },
+                },
+            });
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("ReissueOut (8)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { paymentMethod: { method: "method" } };
+        const rawResponseBody = { responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .post("/MoneyOut/reissue")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.moneyOut.reissueOut({
+                transId: "transId",
+                body: {
+                    paymentMethod: {
+                        method: "method",
+                    },
+                },
+            });
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 });

@@ -133,6 +133,7 @@ describe("BoardingClient", () => {
             whenRefunded: "30 Days or Less",
         };
         const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 3625, responseText: "Success" };
+
         server
             .mockEndpoint()
             .post("/Boarding/app")
@@ -400,6 +401,7 @@ describe("BoardingClient", () => {
             website: "www.hermanscoatings.com",
         };
         const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 3625, responseText: "Success" };
+
         server
             .mockEndpoint()
             .post("/Boarding/app")
@@ -672,6 +674,7 @@ describe("BoardingClient", () => {
             website: "www.hermanscoatings.com",
         };
         const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 3625, responseText: "Success" };
+
         server
             .mockEndpoint()
             .post("/Boarding/app")
@@ -968,6 +971,7 @@ describe("BoardingClient", () => {
             website: "www.hermanscoatings.com",
         };
         const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 3625, responseText: "Success" };
+
         server
             .mockEndpoint()
             .post("/Boarding/app")
@@ -1145,6 +1149,7 @@ describe("BoardingClient", () => {
             whenRefunded: "Exchange Only",
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Boarding/app")
@@ -1187,6 +1192,7 @@ describe("BoardingClient", () => {
             whenRefunded: "Exchange Only",
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Boarding/app")
@@ -1229,6 +1235,7 @@ describe("BoardingClient", () => {
             whenRefunded: "Exchange Only",
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Boarding/app")
@@ -1271,6 +1278,7 @@ describe("BoardingClient", () => {
             whenRefunded: "Exchange Only",
         };
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/Boarding/app")
@@ -1303,6 +1311,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 3625, responseText: "Success" };
+
         server
             .mockEndpoint()
             .delete("/Boarding/app/352")
@@ -1325,6 +1334,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().delete("/Boarding/app/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1337,6 +1347,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().delete("/Boarding/app/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1349,6 +1360,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().delete("/Boarding/app/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1361,6 +1373,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server.mockEndpoint().delete("/Boarding/app/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1674,6 +1687,7 @@ describe("BoardingClient", () => {
             whenProvided: "30 Days or Less",
             whenrefund: "Exchange Only",
         };
+
         server.mockEndpoint().get("/Boarding/read/352").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.boarding.getApplication(352);
@@ -2312,6 +2326,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Boarding/read/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2324,6 +2339,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Boarding/read/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2336,6 +2352,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Boarding/read/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2348,6 +2365,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server.mockEndpoint().get("/Boarding/read/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2509,6 +2527,7 @@ describe("BoardingClient", () => {
             whenProvided: "30 Days or Less",
             whenrefund: "Exchange Only",
         };
+
         server
             .mockEndpoint()
             .post("/Boarding/read/17E")
@@ -2699,6 +2718,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Boarding/read/xId")
@@ -2718,6 +2738,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Boarding/read/xId")
@@ -2737,6 +2758,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Boarding/read/xId")
@@ -2756,6 +2778,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/Boarding/read/xId")
@@ -2793,6 +2816,7 @@ describe("BoardingClient", () => {
             referenceTemplateId: 1830,
             resumable: false,
         };
+
         server
             .mockEndpoint()
             .get("/Boarding/linkbyId/91")
@@ -2834,6 +2858,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Boarding/linkbyId/1")
@@ -2852,6 +2877,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Boarding/linkbyId/1")
@@ -2870,6 +2896,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Boarding/linkbyId/1")
@@ -2888,6 +2915,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Boarding/linkbyId/1")
@@ -2924,6 +2952,7 @@ describe("BoardingClient", () => {
             referenceTemplateId: 1830,
             resumable: false,
         };
+
         server
             .mockEndpoint()
             .get("/Boarding/linkbyTemplate/80")
@@ -2965,6 +2994,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Boarding/linkbyTemplate/1.1")
@@ -2983,6 +3013,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Boarding/linkbyTemplate/1.1")
@@ -3001,6 +3032,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Boarding/linkbyTemplate/1.1")
@@ -3019,6 +3051,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Boarding/linkbyTemplate/1.1")
@@ -3045,6 +3078,7 @@ describe("BoardingClient", () => {
             },
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .put("/Boarding/applink/352/mail2")
@@ -3070,6 +3104,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Boarding/applink/1/mail2")
@@ -3088,6 +3123,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Boarding/applink/1/mail2")
@@ -3106,6 +3142,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Boarding/applink/1/mail2")
@@ -3124,6 +3161,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .put("/Boarding/applink/1/mail2")
@@ -3160,6 +3198,7 @@ describe("BoardingClient", () => {
             referenceTemplateId: 1830,
             resumable: false,
         };
+
         server
             .mockEndpoint()
             .get("/Boarding/link/myorgaccountname-00091")
@@ -3201,6 +3240,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Boarding/link/boardingLinkReference")
@@ -3219,6 +3259,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Boarding/link/boardingLinkReference")
@@ -3237,6 +3278,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Boarding/link/boardingLinkReference")
@@ -3255,6 +3297,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Boarding/link/boardingLinkReference")
@@ -3365,6 +3408,7 @@ describe("BoardingClient", () => {
                 totalRecords: 2,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/boarding/123")
@@ -3483,6 +3527,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Query/boarding/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -3495,6 +3540,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Query/boarding/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -3507,6 +3553,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Query/boarding/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -3519,6 +3566,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server.mockEndpoint().get("/Query/boarding/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -3554,6 +3602,7 @@ describe("BoardingClient", () => {
                 totalRecords: 2,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/boardinglinks/123")
@@ -3598,6 +3647,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/boardinglinks/1")
@@ -3616,6 +3666,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/boardinglinks/1")
@@ -3634,6 +3685,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/boardinglinks/1")
@@ -3652,6 +3704,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/boardinglinks/1")
@@ -3670,6 +3723,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 3625, responseText: "Success" };
+
         server
             .mockEndpoint()
             .put("/Boarding/app/352")
@@ -3693,6 +3747,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Boarding/app/1")
@@ -3712,6 +3767,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Boarding/app/1")
@@ -3731,6 +3787,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Boarding/app/1")
@@ -3750,6 +3807,7 @@ describe("BoardingClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .put("/Boarding/app/1")

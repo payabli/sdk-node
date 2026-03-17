@@ -66,5 +66,5 @@ export interface ExportOrganizationsRequest {
      *
      * Example: name(ct)=hoa  return all records where name contains "hoa"
      */
-    parameters?: Record<string, string | undefined>;
+    parameters?: Record<string, string>;
 }

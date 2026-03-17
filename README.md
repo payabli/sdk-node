@@ -15,6 +15,7 @@ The Payabli TypeScript library provides convenient access to the Payabli APIs fr
 - [Exception Handling](#exception-handling)
 - [File Uploads](#file-uploads)
 - [Advanced](#advanced)
+  - [Subpackage Exports](#subpackage-exports)
   - [Additional Headers](#additional-headers)
   - [Additional Query String Parameters](#additional-query-string-parameters)
   - [Retries](#retries)
@@ -22,6 +23,7 @@ The Payabli TypeScript library provides convenient access to the Payabli APIs fr
   - [Aborting Requests](#aborting-requests)
   - [Access Raw Response Data](#access-raw-response-data)
   - [Logging](#logging)
+  - [Custom Fetch](#custom-fetch)
   - [Runtime Compatibility](#runtime-compatibility)
 - [Contributing](#contributing)
 
@@ -149,6 +151,16 @@ For example, `fs.ReadStream` has a `path` property which the SDK uses to retriev
 
 
 ## Advanced
+
+### Subpackage Exports
+
+This SDK supports direct imports of subpackage clients, which allows JavaScript bundlers to tree-shake and include only the imported subpackage code. This results in much smaller bundle sizes.
+
+```typescript
+import { BillClient } from '@payabli/sdk-node/bill';
+
+const client = new BillClient({...});
+```
 
 ### Additional Headers
 
@@ -299,6 +311,26 @@ const logger: logging.ILogger = {
 ```
 </details>
 
+
+### Custom Fetch
+
+The SDK provides a low-level `fetch` method for making custom HTTP requests while still
+benefiting from SDK-level configuration like authentication, retries, timeouts, and logging.
+This is useful for calling API endpoints not yet supported in the SDK.
+
+```typescript
+const response = await client.fetch("/v1/custom/endpoint", {
+    method: "GET",
+}, {
+    timeoutInSeconds: 30,
+    maxRetries: 3,
+    headers: {
+        "X-Custom-Header": "custom-value",
+    },
+});
+
+const data = await response.json();
+```
 
 ### Runtime Compatibility
 

@@ -18,7 +18,7 @@ import type * as Payabli from "../../../../index.js";
  */
 export interface RequestPaymentValidate {
     idempotencyKey?: Payabli.IdempotencyKey;
-    accountId?: Payabli.Accountid;
+    accountId?: Payabli.AccountId;
     entryPoint: Payabli.Entrypointfield;
     orderDescription?: Payabli.Orderdescription;
     orderId?: Payabli.OrderId;

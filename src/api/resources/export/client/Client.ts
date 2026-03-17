@@ -24,6 +24,8 @@ export class ExportClient {
     }
 
     /**
+     * @deprecated
+     *
      * Export a list of boarding applications for an organization. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
@@ -122,6 +124,8 @@ export class ExportClient {
     }
 
     /**
+     * @deprecated
+     *
      * This endpoint is deprecated. Export batch details for a paypoint. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
@@ -220,6 +224,8 @@ export class ExportClient {
     }
 
     /**
+     * @deprecated
+     *
      * This endpoint is deprecated. Export batch details for an organization. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
@@ -320,6 +326,8 @@ export class ExportClient {
     }
 
     /**
+     * @deprecated
+     *
      * Export a list of batches for an entrypoint. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
@@ -418,6 +426,8 @@ export class ExportClient {
     }
 
     /**
+     * @deprecated
+     *
      * Export a list of batches for an organization. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
@@ -516,6 +526,8 @@ export class ExportClient {
     }
 
     /**
+     * @deprecated
+     *
      * Export a list of money out batches for a paypoint. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
@@ -614,6 +626,8 @@ export class ExportClient {
     }
 
     /**
+     * @deprecated
+     *
      * Export a list of money out batches for an organization. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
@@ -712,6 +726,8 @@ export class ExportClient {
     }
 
     /**
+     * @deprecated
+     *
      * Export a list of bills for an entrypoint. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
@@ -810,6 +826,8 @@ export class ExportClient {
     }
 
     /**
+     * @deprecated
+     *
      * Export a list of bills for an organization. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
@@ -908,6 +926,8 @@ export class ExportClient {
     }
 
     /**
+     * @deprecated
+     *
      * Export a list of chargebacks and ACH returns for an entrypoint. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
@@ -1006,6 +1026,8 @@ export class ExportClient {
     }
 
     /**
+     * @deprecated
+     *
      * Export a list of chargebacks and ACH returns for an organization. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
@@ -1106,6 +1128,8 @@ export class ExportClient {
     }
 
     /**
+     * @deprecated
+     *
      * Export a list of customers for an entrypoint. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
@@ -1204,6 +1228,8 @@ export class ExportClient {
     }
 
     /**
+     * @deprecated
+     *
      * Exports a list of customers for an organization. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
@@ -1302,6 +1328,8 @@ export class ExportClient {
     }
 
     /**
+     * @deprecated
+     *
      * Export list of invoices for an entrypoint. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
@@ -1400,6 +1428,8 @@ export class ExportClient {
     }
 
     /**
+     * @deprecated
+     *
      * Export a list of invoices for an organization. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
@@ -1498,6 +1528,8 @@ export class ExportClient {
     }
 
     /**
+     * @deprecated
+     *
      * Export a list of child organizations (suborganizations) for a parent organization.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
@@ -1596,6 +1628,8 @@ export class ExportClient {
     }
 
     /**
+     * @deprecated
+     *
      * Export a list of payouts and their statuses for an entrypoint. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
@@ -1694,6 +1728,8 @@ export class ExportClient {
     }
 
     /**
+     * @deprecated
+     *
      * Export a list of payouts and their details for an organization. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
@@ -1792,6 +1828,8 @@ export class ExportClient {
     }
 
     /**
+     * @deprecated
+     *
      * Export a list of paypoints in an organization. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
@@ -1890,6 +1928,8 @@ export class ExportClient {
     }
 
     /**
+     * @deprecated
+     *
      * Export a list of settled transactions for an entrypoint. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
@@ -1988,6 +2028,8 @@ export class ExportClient {
     }
 
     /**
+     * @deprecated
+     *
      * Export a list of settled transactions for an organization. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
@@ -2088,6 +2130,8 @@ export class ExportClient {
     }
 
     /**
+     * @deprecated
+     *
      * Export a list of subscriptions for an entrypoint. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
@@ -2186,6 +2230,8 @@ export class ExportClient {
     }
 
     /**
+     * @deprecated
+     *
      * Export a list of subscriptions for an organization. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
@@ -2286,6 +2332,8 @@ export class ExportClient {
     }
 
     /**
+     * @deprecated
+     *
      * Export a list of transactions for an entrypoint in a file in XLXS or CSV format. Use filters to limit results. If you don't specify a date range in the request, the last two months of data are returned.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
@@ -2384,6 +2432,8 @@ export class ExportClient {
     }
 
     /**
+     * @deprecated
+     *
      * Export a list of transactions for an org in a file in XLSX or CSV format. Use filters to limit results. If you don't specify a date range in the request, the last two months of data are returned.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
@@ -2484,6 +2534,8 @@ export class ExportClient {
     }
 
     /**
+     * @deprecated
+     *
      * Export a list of transfer details for an entrypoint. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
@@ -2589,6 +2641,8 @@ export class ExportClient {
     }
 
     /**
+     * @deprecated
+     *
      * Get a list of transfers for an entrypoint. Use filters to limit results.
      *
      * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
@@ -2681,6 +2735,8 @@ export class ExportClient {
     }
 
     /**
+     * @deprecated
+     *
      * Export a list of vendors for an entrypoint. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.
@@ -2779,6 +2835,8 @@ export class ExportClient {
     }
 
     /**
+     * @deprecated
+     *
      * Export a list of vendors for an organization. Use filters to limit results.
      *
      * @param {Payabli.ExportFormat1} format - Format for the export, either XLSX or CSV.

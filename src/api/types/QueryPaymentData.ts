@@ -4,7 +4,7 @@ import type * as Payabli from "../index.js";
 
 export interface QueryPaymentData {
     AccountExp?: Payabli.Accountexp | undefined;
-    accountId?: Payabli.Accountid | undefined;
+    accountId?: Payabli.AccountId | undefined;
     AccountType?: Payabli.Accounttype | undefined;
     AccountZip?: Payabli.Accountzip | undefined;
     binData?: Payabli.BinData | undefined;

@@ -68,5 +68,5 @@ export interface ExportApplicationsRequest {
      *
      * Example: `dbaname(ct)=hoa` returns all records with a `dbaname` containing "hoa"
      */
-    parameters?: Record<string, string | undefined>;
+    parameters?: Record<string, string>;
 }

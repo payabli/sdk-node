@@ -15,7 +15,7 @@ export interface TransactionDetailPaymentData {
     storedMethodUsageType: Payabli.StoredMethodUsageType | null;
     sequence: Payabli.Sequence | null;
     orderDescription: Payabli.Orderdescription;
-    accountId: Payabli.Accountid | null;
+    accountId: Payabli.AccountId | null;
     signatureData: Payabli.Signaturedata | null;
     binData: Payabli.BinData | null;
     paymentDetails: Payabli.TransactionDetailPaymentDetails;

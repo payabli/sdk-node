@@ -3,7 +3,7 @@
 import type * as Payabli from "../index.js";
 
 export interface BillDetailResponse {
-    /** Events associated to this transaction. */
+    /** Bills associated with this transaction. */
     Bills?: Payabli.BillDetailsResponse[] | undefined;
     /** Object referencing to paper check image. */
     CheckData?: Payabli.FileContent | undefined;
@@ -53,7 +53,7 @@ export interface BillDetailResponse {
      * | **Paid** | 5 | A payout has been paid and the recipient has redeemed the funds. | Paid (check cleared, vCard used, ACH settled) |
      */
     Status?: number | undefined;
-    /** Status of payout transaction. */
+    /** Text description of the payout transaction status. */
     StatusText?: string | undefined;
     /** Transaction total amount (including service fee or sub-charge). */
     TotalAmount?: number | undefined;

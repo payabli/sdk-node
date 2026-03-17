@@ -785,6 +785,8 @@ export class PaymentLinkClient {
     }
 
     /**
+     * @deprecated
+     *
      * Sends a payment link to the specified email addresses.
      *
      * @param {string} payLinkId - ID for the payment link.
@@ -977,6 +979,8 @@ export class PaymentLinkClient {
     }
 
     /**
+     * @beta This endpoint is in development and may change.
+     *
      * Generates a vendor payment link for a specific bill lot number. This allows you to pay all bills with the same lot number for a vendor with a single payment link.
      *
      * @param {string} lotNumber - Lot number of the bills to pay. All bills with this lot number will be included.

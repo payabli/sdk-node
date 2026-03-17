@@ -14,7 +14,7 @@ export interface AuthorizePayoutBody {
     vendorData: AuthorizePayoutBody.VendorData;
     /** Array of bills associated to the transaction */
     invoiceData: AuthorizePayoutBody.InvoiceData.Item[];
-    accountId?: Payabli.Accountid | undefined;
+    accountId?: Payabli.AccountId | undefined;
     subdomain?: Payabli.Subdomain | undefined;
     subscriptionId?: Payabli.Subscriptionid | undefined;
 }

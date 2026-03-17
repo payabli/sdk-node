@@ -177,30 +177,6 @@ import type * as Payabli from "../../../../index.js";
  *             }
  *         }
  *     }
- *
- * @example
- *     {
- *         body: {
- *             customerData: {
- *                 customerId: 4440
- *             },
- *             entryPoint: "f743aed24a",
- *             ipaddress: "255.255.255.255",
- *             paymentDetails: {
- *                 serviceFee: 0,
- *                 totalAmount: 100
- *             },
- *             paymentMethod: {
- *                 cardcvv: "999",
- *                 cardexp: "02/27",
- *                 cardHolder: "John Cassian",
- *                 cardnumber: "4111111111111111",
- *                 cardzip: "12345",
- *                 initiator: "payor",
- *                 method: "card"
- *             }
- *         }
- *     }
  */
 export interface RequestPayment {
     achValidation?: Payabli.AchValidation;

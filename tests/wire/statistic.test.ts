@@ -50,6 +50,7 @@ describe("StatisticClient", () => {
                 inACHReturnsVolume: 0,
             },
         ];
+
         server
             .mockEndpoint()
             .get("/Statistic/basic/ytd/m/1/1000000")
@@ -110,6 +111,7 @@ describe("StatisticClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Statistic/basic/mode/freq/1/1000000")
@@ -128,6 +130,7 @@ describe("StatisticClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Statistic/basic/mode/freq/1/1000000")
@@ -146,6 +149,7 @@ describe("StatisticClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Statistic/basic/mode/freq/1/1000000")
@@ -164,6 +168,7 @@ describe("StatisticClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Statistic/basic/mode/freq/1/1000000")
@@ -182,6 +187,7 @@ describe("StatisticClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = [{ interval: "2023-03", count: 45, volume: 12500.75 }];
+
         server
             .mockEndpoint()
             .get("/Statistic/customerbasic/ytd/m/998")
@@ -205,6 +211,7 @@ describe("StatisticClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Statistic/customerbasic/mode/freq/1")
@@ -223,6 +230,7 @@ describe("StatisticClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Statistic/customerbasic/mode/freq/1")
@@ -241,6 +249,7 @@ describe("StatisticClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Statistic/customerbasic/mode/freq/1")
@@ -259,6 +268,7 @@ describe("StatisticClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Statistic/customerbasic/mode/freq/1")
@@ -285,6 +295,7 @@ describe("StatisticClient", () => {
                 inWalletVolume: 1000.5,
             },
         ];
+
         server
             .mockEndpoint()
             .get("/Statistic/subscriptions/30/1/1000000")
@@ -310,6 +321,7 @@ describe("StatisticClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Statistic/subscriptions/interval/1/1000000")
@@ -328,6 +340,7 @@ describe("StatisticClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Statistic/subscriptions/interval/1/1000000")
@@ -346,6 +359,7 @@ describe("StatisticClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Statistic/subscriptions/interval/1/1000000")
@@ -364,6 +378,7 @@ describe("StatisticClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Statistic/subscriptions/interval/1/1000000")
@@ -402,6 +417,7 @@ describe("StatisticClient", () => {
                 paidVolume: 3800.5,
             },
         ];
+
         server
             .mockEndpoint()
             .get("/Statistic/vendorbasic/ytd/m/1")

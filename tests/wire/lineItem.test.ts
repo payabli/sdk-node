@@ -19,6 +19,7 @@ describe("LineItemClient", () => {
             itemMode: 0,
         };
         const rawResponseBody = { isSuccess: true, responseData: 700, responseText: "Success" };
+
         server
             .mockEndpoint()
             .post("/LineItem/47cae3d74")
@@ -52,6 +53,7 @@ describe("LineItemClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { itemCost: 1.1, itemQty: 1 };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/LineItem/entry")
@@ -76,6 +78,7 @@ describe("LineItemClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { itemCost: 1.1, itemQty: 1 };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/LineItem/entry")
@@ -100,6 +103,7 @@ describe("LineItemClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { itemCost: 1.1, itemQty: 1 };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/LineItem/entry")
@@ -124,6 +128,7 @@ describe("LineItemClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { itemCost: 1.1, itemQty: 1 };
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/LineItem/entry")
@@ -148,6 +153,7 @@ describe("LineItemClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { isSuccess: true, responseText: "Success" };
+
         server.mockEndpoint().delete("/LineItem/700").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.lineItem.deleteItem(700);
@@ -162,6 +168,7 @@ describe("LineItemClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().delete("/LineItem/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -174,6 +181,7 @@ describe("LineItemClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().delete("/LineItem/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -186,6 +194,7 @@ describe("LineItemClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().delete("/LineItem/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -198,6 +207,7 @@ describe("LineItemClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server.mockEndpoint().delete("/LineItem/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -228,6 +238,7 @@ describe("LineItemClient", () => {
             PaypointEntryname: "d193cf9a46",
             PaypointLegalname: "Sunshine Services, LLC",
         };
+
         server.mockEndpoint().get("/LineItem/700").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.lineItem.getItem(700);
@@ -257,6 +268,7 @@ describe("LineItemClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/LineItem/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -269,6 +281,7 @@ describe("LineItemClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/LineItem/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -281,6 +294,7 @@ describe("LineItemClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/LineItem/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -293,6 +307,7 @@ describe("LineItemClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server.mockEndpoint().get("/LineItem/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -323,6 +338,7 @@ describe("LineItemClient", () => {
                 totalRecords: 2,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/lineitems/8cfec329267")
@@ -366,6 +382,7 @@ describe("LineItemClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/lineitems/entry")
@@ -384,6 +401,7 @@ describe("LineItemClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/lineitems/entry")
@@ -402,6 +420,7 @@ describe("LineItemClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/lineitems/entry")
@@ -420,6 +439,7 @@ describe("LineItemClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/lineitems/entry")
@@ -438,6 +458,7 @@ describe("LineItemClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { itemCost: 12.45, itemQty: 1 };
         const rawResponseBody = { isSuccess: true, responseData: 700, responseText: "Success" };
+
         server
             .mockEndpoint()
             .put("/LineItem/700")

@@ -85,7 +85,7 @@ export namespace QueryPayoutTransaction {
             BatchNumber?: Payabli.BatchNumber | undefined;
             /** Identifier of the batch associated with payout transaction. */
             BatchId?: number | undefined;
-            /** Events associated with this transaction. */
+            /** Bills associated with this transaction. */
             Bills?: Payabli.BillPayOutData[] | undefined;
             CardToken?: string | undefined;
             /** Object referencing paper check image. */
@@ -142,7 +142,7 @@ export namespace QueryPayoutTransaction {
         export namespace Item {
             export interface PaymentData {
                 AccountExp?: Payabli.Accountexp | undefined;
-                accountId?: Payabli.Accountid | undefined;
+                accountId?: Payabli.AccountId | undefined;
                 AccountType?: Payabli.Accounttype | undefined;
                 AccountZip?: Payabli.Accountzip | undefined;
                 bankAccount?: string | undefined;

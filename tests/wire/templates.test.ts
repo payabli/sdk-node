@@ -10,6 +10,7 @@ describe("TemplatesClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 3625, responseText: "Success" };
+
         server.mockEndpoint().delete("/Templates/80").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.templates.deleteTemplate(80);
@@ -26,6 +27,7 @@ describe("TemplatesClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().delete("/Templates/1.1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -38,6 +40,7 @@ describe("TemplatesClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().delete("/Templates/1.1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -50,6 +53,7 @@ describe("TemplatesClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().delete("/Templates/1.1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -62,6 +66,7 @@ describe("TemplatesClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server.mockEndpoint().delete("/Templates/1.1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -74,6 +79,7 @@ describe("TemplatesClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseData: "34", responseText: "Success" };
+
         server
             .mockEndpoint()
             .get("/Templates/getlink/80/true")
@@ -94,6 +100,7 @@ describe("TemplatesClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Templates/getlink/1.1/true")
@@ -112,6 +119,7 @@ describe("TemplatesClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Templates/getlink/1.1/true")
@@ -130,6 +138,7 @@ describe("TemplatesClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Templates/getlink/1.1/true")
@@ -148,6 +157,7 @@ describe("TemplatesClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Templates/getlink/1.1/true")
@@ -213,6 +223,7 @@ describe("TemplatesClient", () => {
             templateTitle: "templateTitle",
             usedBy: 1,
         };
+
         server.mockEndpoint().get("/Templates/get/80").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.templates.getTemplate(80);
@@ -287,6 +298,7 @@ describe("TemplatesClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Templates/get/1.1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -299,6 +311,7 @@ describe("TemplatesClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Templates/get/1.1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -311,6 +324,7 @@ describe("TemplatesClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Templates/get/1.1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -323,6 +337,7 @@ describe("TemplatesClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server.mockEndpoint().get("/Templates/get/1.1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -360,6 +375,7 @@ describe("TemplatesClient", () => {
                 totalRecords: 2,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/templates/123")

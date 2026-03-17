@@ -10,6 +10,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { isSuccess: true, responseText: "Success" };
+
         server
             .mockEndpoint()
             .post("/User")
@@ -31,6 +32,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/User")
@@ -50,6 +52,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/User")
@@ -69,6 +72,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/User")
@@ -88,6 +92,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/User")
@@ -113,6 +118,7 @@ describe("UserClient", () => {
             responseData: "u.fPLVSzFv1gZpHl......",
             responseText: "Success",
         };
+
         server.mockEndpoint().post("/User/authrefresh").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.user.authRefreshUser();
@@ -130,6 +136,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().post("/User/authrefresh").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -142,6 +149,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().post("/User/authrefresh").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -154,6 +162,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().post("/User/authrefresh").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -166,6 +175,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server.mockEndpoint().post("/User/authrefresh").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -178,6 +188,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { isSuccess: true, responseText: "Success" };
+
         server
             .mockEndpoint()
             .post("/User/authreset")
@@ -199,6 +210,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/User/authreset")
@@ -218,6 +230,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/User/authreset")
@@ -237,6 +250,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/User/authreset")
@@ -256,6 +270,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/User/authreset")
@@ -282,6 +297,7 @@ describe("UserClient", () => {
             responseData: "g**.com",
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .post("/User/auth/provider")
@@ -307,6 +323,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/User/auth/provider")
@@ -326,6 +343,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/User/auth/provider")
@@ -345,6 +363,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/User/auth/provider")
@@ -364,6 +383,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/User/auth/provider")
@@ -383,6 +403,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { isSuccess: true, responseText: "Success" };
+
         server
             .mockEndpoint()
             .put("/User/authpsw")
@@ -404,6 +425,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/User/authpsw")
@@ -423,6 +445,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/User/authpsw")
@@ -442,6 +465,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/User/authpsw")
@@ -461,6 +485,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .put("/User/authpsw")
@@ -480,6 +505,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "Success" };
+
         server.mockEndpoint().delete("/User/1000000").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.user.deleteUser(1000000);
@@ -493,6 +519,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().delete("/User/1000000").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -505,6 +532,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().delete("/User/1000000").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -517,6 +545,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().delete("/User/1000000").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -529,6 +558,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server.mockEndpoint().delete("/User/1000000").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -541,6 +571,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { isSuccess: true, responseText: "Success" };
+
         server
             .mockEndpoint()
             .put("/User/mfa/1000000")
@@ -562,6 +593,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/User/mfa/1000000")
@@ -581,6 +613,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/User/mfa/1000000")
@@ -600,6 +633,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/User/mfa/1000000")
@@ -619,6 +653,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .put("/User/mfa/1000000")
@@ -638,6 +673,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { isSuccess: true, responseText: "Success" };
+
         server
             .mockEndpoint()
             .put("/User/1000000")
@@ -659,6 +695,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/User/1000000")
@@ -678,6 +715,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/User/1000000")
@@ -697,6 +735,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/User/1000000")
@@ -716,6 +755,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .put("/User/1000000")
@@ -753,6 +793,7 @@ describe("UserClient", () => {
             UsrMFAMode: 0,
             UsrStatus: 1,
         };
+
         server.mockEndpoint().get("/User/1000000").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.user.getUser(1000000, {
@@ -795,6 +836,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/User/1000000").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -807,6 +849,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/User/1000000").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -819,6 +862,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/User/1000000").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -831,6 +875,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server.mockEndpoint().get("/User/1000000").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -843,6 +888,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { isSuccess: true, responseText: "Success" };
+
         server.mockEndpoint().get("/User/authlogout").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.user.logoutUser();
@@ -857,6 +903,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/User/authlogout").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -869,6 +916,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/User/authlogout").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -881,6 +929,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/User/authlogout").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -893,6 +942,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server.mockEndpoint().get("/User/authlogout").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -912,6 +962,7 @@ describe("UserClient", () => {
             responseData: "g**.com",
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .post("/User/resendmfa/usrname/Entry/1")
@@ -936,6 +987,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/User/resendmfa/usrname/Entry/1")
@@ -954,6 +1006,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/User/resendmfa/usrname/Entry/1")
@@ -972,6 +1025,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/User/resendmfa/usrname/Entry/1")
@@ -990,6 +1044,7 @@ describe("UserClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/User/resendmfa/usrname/Entry/1")
@@ -1014,6 +1069,7 @@ describe("UserClient", () => {
             responseData: "u.fPLVSzFv1gZpHl......",
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .post("/User/mfa")

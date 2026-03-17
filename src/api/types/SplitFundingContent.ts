@@ -3,7 +3,7 @@
 export interface SplitFundingContent {
     /** The accountId for the account the split should be sent to. */
     accountId?: string | undefined;
-    /** Amount from the transaction to sent to this recipient. */
+    /** Amount from the transaction to send to this recipient. */
     amount?: number | undefined;
     /** A description for the split. */
     description?: string | undefined;

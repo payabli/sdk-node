@@ -23,6 +23,8 @@ export class CheckCaptureClient {
     }
 
     /**
+     * @beta This endpoint is in pre-release and may change.
+     *
      * Captures a check for Remote Deposit Capture (RDC) using the provided check images and details. This endpoint handles the OCR extraction of check data including MICR, routing number, account number, and amount. See the [RDC guide](/developers/developer-guides/pay-in-rdc) for more details.
      *
      * @param {Payabli.CheckCaptureRequestBody} request

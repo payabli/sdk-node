@@ -8,7 +8,8 @@ export interface TokenizeAch {
     achAccount: Payabli.Achaccount;
     achAccountType: Payabli.Achaccounttype;
     achCode?: Payabli.AchSecCode | undefined;
-    achHolder: Payabli.AchHolder;
+    /** Bank account holder. This field is **required** when `method` is `ach`. Only letters, numbers, spaces, hyphens, apostrophes, and periods are allowed. */
+    achHolder: string;
     achHolderType?: Payabli.AchHolderType | undefined;
     achRouting: Payabli.Achrouting;
     device?: Payabli.Device | undefined;

@@ -36,9 +36,9 @@ export interface TransactionOutQueryRecord {
     CheckData?: Payabli.FileContent | undefined;
     PaymentId?: Payabli.PaymentIdString | undefined;
     PaymentData?: Payabli.QueryPaymentData | undefined;
-    /** Events associated to this transaction. */
+    /** Bills associated with this transaction. */
     Bills?: Payabli.BillPayOutData[] | undefined;
-    /** Events associated to this transaction. */
+    /** Events associated with this transaction. */
     Events?: Payabli.QueryTransactionEvents[] | undefined;
     externalPaypointID?: Payabli.ExternalPaypointId | undefined;
     EntryName?: Payabli.Entrypointfield | undefined;

@@ -53,7 +53,7 @@ import type * as Payabli from "../../../../index.js";
 export interface RequestCredit {
     forceCustomerCreation?: Payabli.ForceCustomerCreation;
     idempotencyKey?: Payabli.IdempotencyKey;
-    accountId?: Payabli.Accountid;
+    accountId?: Payabli.AccountId;
     /** Object describing the customer/payor. */
     customerData: Payabli.PayorDataRequest;
     entrypoint?: Payabli.Entrypointfield;

@@ -137,6 +137,7 @@ describe("SubscriptionClient", () => {
             TotalCycles: 24,
             UntilCancelled: true,
         };
+
         server.mockEndpoint().get("/Subscription/263").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.subscription.getSubscription(263);
@@ -290,6 +291,7 @@ describe("SubscriptionClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Subscription/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -302,6 +304,7 @@ describe("SubscriptionClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Subscription/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -314,6 +317,7 @@ describe("SubscriptionClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Subscription/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -326,6 +330,7 @@ describe("SubscriptionClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server.mockEndpoint().get("/Subscription/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -352,6 +357,7 @@ describe("SubscriptionClient", () => {
             scheduleDetails: { endDate: "03-20-2025", frequency: "weekly", planId: 1, startDate: "09-20-2024" },
         };
         const rawResponseBody = { responseText: "Success", isSuccess: true, responseData: 396, customerId: 4440 };
+
         server
             .mockEndpoint()
             .post("/Subscription/add")
@@ -415,6 +421,7 @@ describe("SubscriptionClient", () => {
             scheduleDetails: { endDate: "03-20-2025", frequency: "weekly", planId: 1, startDate: "09-20-2024" },
         };
         const rawResponseBody = { responseText: "Success", isSuccess: true, responseData: 396, customerId: 4440 };
+
         server
             .mockEndpoint()
             .post("/Subscription/add")
@@ -474,6 +481,7 @@ describe("SubscriptionClient", () => {
             scheduleDetails: { endDate: "03-20-2025", frequency: "weekly", planId: 1, startDate: "09-20-2024" },
         };
         const rawResponseBody = { responseText: "Success", isSuccess: true, responseData: 396, customerId: 4440 };
+
         server
             .mockEndpoint()
             .post("/Subscription/add")
@@ -519,6 +527,7 @@ describe("SubscriptionClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Subscription/add")
@@ -540,6 +549,7 @@ describe("SubscriptionClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Subscription/add")
@@ -561,6 +571,7 @@ describe("SubscriptionClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Subscription/add")
@@ -582,6 +593,7 @@ describe("SubscriptionClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/Subscription/add")
@@ -603,6 +615,7 @@ describe("SubscriptionClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { isSuccess: true, responseData: "396", responseText: "Success" };
+
         server
             .mockEndpoint()
             .delete("/Subscription/396")
@@ -624,6 +637,7 @@ describe("SubscriptionClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().delete("/Subscription/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -636,6 +650,7 @@ describe("SubscriptionClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().delete("/Subscription/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -648,6 +663,7 @@ describe("SubscriptionClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().delete("/Subscription/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -660,6 +676,7 @@ describe("SubscriptionClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server.mockEndpoint().delete("/Subscription/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -677,6 +694,7 @@ describe("SubscriptionClient", () => {
             responseData: "396 paused",
             customerId: 4440,
         };
+
         server
             .mockEndpoint()
             .put("/Subscription/231")
@@ -707,6 +725,7 @@ describe("SubscriptionClient", () => {
             responseData: "396 unpaused",
             customerId: 4440,
         };
+
         server
             .mockEndpoint()
             .put("/Subscription/231")
@@ -740,6 +759,7 @@ describe("SubscriptionClient", () => {
             responseData: "396 updated",
             customerId: 4440,
         };
+
         server
             .mockEndpoint()
             .put("/Subscription/231")

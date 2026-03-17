@@ -49,6 +49,7 @@ describe("OrganizationClient", () => {
             replyToEmail: "email@example.com",
         };
         const rawResponseBody = { isSuccess: true, responseData: 245, responseText: "Success" };
+
         server
             .mockEndpoint()
             .post("/Organization")
@@ -112,6 +113,7 @@ describe("OrganizationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { orgName: "orgName", orgType: 1, replyToEmail: "replyToEmail" };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Organization")
@@ -135,6 +137,7 @@ describe("OrganizationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { orgName: "orgName", orgType: 1, replyToEmail: "replyToEmail" };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Organization")
@@ -158,6 +161,7 @@ describe("OrganizationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { orgName: "orgName", orgType: 1, replyToEmail: "replyToEmail" };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Organization")
@@ -181,6 +185,7 @@ describe("OrganizationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { orgName: "orgName", orgType: 1, replyToEmail: "replyToEmail" };
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/Organization")
@@ -204,6 +209,7 @@ describe("OrganizationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { isSuccess: true, responseData: 245, responseText: "Success" };
+
         server
             .mockEndpoint()
             .delete("/Organization/123")
@@ -225,6 +231,7 @@ describe("OrganizationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().delete("/Organization/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -237,6 +244,7 @@ describe("OrganizationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().delete("/Organization/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -249,6 +257,7 @@ describe("OrganizationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().delete("/Organization/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -261,6 +270,7 @@ describe("OrganizationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server.mockEndpoint().delete("/Organization/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -293,6 +303,7 @@ describe("OrganizationClient", () => {
             orgZip: "37615",
         };
         const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 2442, responseText: "Success" };
+
         server
             .mockEndpoint()
             .put("/Organization/123")
@@ -336,6 +347,7 @@ describe("OrganizationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Organization/1")
@@ -355,6 +367,7 @@ describe("OrganizationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Organization/1")
@@ -374,6 +387,7 @@ describe("OrganizationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Organization/1")
@@ -393,6 +407,7 @@ describe("OrganizationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .put("/Organization/1")
@@ -491,6 +506,7 @@ describe("OrganizationClient", () => {
                 },
             ],
         };
+
         server
             .mockEndpoint()
             .get("/Organization/basic/8cfec329267")
@@ -602,6 +618,7 @@ describe("OrganizationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Organization/basic/entry")
@@ -620,6 +637,7 @@ describe("OrganizationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Organization/basic/entry")
@@ -638,6 +656,7 @@ describe("OrganizationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Organization/basic/entry")
@@ -656,6 +675,7 @@ describe("OrganizationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Organization/basic/entry")
@@ -753,6 +773,7 @@ describe("OrganizationClient", () => {
                 },
             ],
         };
+
         server
             .mockEndpoint()
             .get("/Organization/basicById/123")
@@ -864,6 +885,7 @@ describe("OrganizationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Organization/basicById/1")
@@ -882,6 +904,7 @@ describe("OrganizationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Organization/basicById/1")
@@ -900,6 +923,7 @@ describe("OrganizationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Organization/basicById/1")
@@ -918,6 +942,7 @@ describe("OrganizationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Organization/basicById/1")
@@ -1015,6 +1040,7 @@ describe("OrganizationClient", () => {
                 },
             ],
         };
+
         server
             .mockEndpoint()
             .get("/Organization/read/123")
@@ -1126,6 +1152,7 @@ describe("OrganizationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Organization/read/1")
@@ -1144,6 +1171,7 @@ describe("OrganizationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Organization/read/1")
@@ -1162,6 +1190,7 @@ describe("OrganizationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Organization/read/1")
@@ -1180,6 +1209,7 @@ describe("OrganizationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Organization/read/1")
@@ -1205,6 +1235,7 @@ describe("OrganizationClient", () => {
             general: [{ key: "key", readOnly: false, value: "value" }],
             identifiers: [{ key: "key", readOnly: false, value: "value" }],
         };
+
         server
             .mockEndpoint()
             .get("/Organization/settings/123")

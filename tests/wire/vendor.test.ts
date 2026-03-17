@@ -55,6 +55,7 @@ describe("VendorClient", () => {
             internalReferenceId: 123,
         };
         const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 3890, responseText: "Success" };
+
         server
             .mockEndpoint()
             .post("/Vendor/single/8cfec329267")
@@ -123,6 +124,7 @@ describe("VendorClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Vendor/single/entry")
@@ -142,6 +144,7 @@ describe("VendorClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Vendor/single/entry")
@@ -161,6 +164,7 @@ describe("VendorClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Vendor/single/entry")
@@ -180,6 +184,7 @@ describe("VendorClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/Vendor/single/entry")
@@ -199,6 +204,7 @@ describe("VendorClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 3890, responseText: "Success" };
+
         server.mockEndpoint().delete("/Vendor/1").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.vendor.deleteVendor(1);
@@ -215,6 +221,7 @@ describe("VendorClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().delete("/Vendor/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -227,6 +234,7 @@ describe("VendorClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().delete("/Vendor/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -239,6 +247,7 @@ describe("VendorClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().delete("/Vendor/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -251,6 +260,7 @@ describe("VendorClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server.mockEndpoint().delete("/Vendor/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -263,6 +273,7 @@ describe("VendorClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { name1: "Theodore's Janitorial" };
         const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 3890, responseText: "Success" };
+
         server
             .mockEndpoint()
             .put("/Vendor/1")
@@ -288,6 +299,7 @@ describe("VendorClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Vendor/1")
@@ -307,6 +319,7 @@ describe("VendorClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Vendor/1")
@@ -326,6 +339,7 @@ describe("VendorClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Vendor/1")
@@ -345,6 +359,7 @@ describe("VendorClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .put("/Vendor/1")
@@ -442,6 +457,7 @@ describe("VendorClient", () => {
             externalPaypointID: "Paypoint-100",
             StoredMethods: [],
         };
+
         server.mockEndpoint().get("/Vendor/1").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.vendor.getVendor(1);

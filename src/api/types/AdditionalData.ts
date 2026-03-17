@@ -13,4 +13,4 @@
  * }
  * ```
  */
-export type AdditionalData = Record<string, Record<string, unknown> | undefined>;
+export type AdditionalData = Record<string, Record<string, unknown>>;

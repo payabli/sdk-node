@@ -44,7 +44,7 @@ export interface CustomerData {
     balance?: number | undefined;
     timeZone?: Payabli.Timezone | undefined;
     /** Additional Custom fields in format "key":"value". */
-    additionalFields?: Record<string, string | undefined> | undefined;
+    additionalFields?: Record<string, string> | undefined;
     identifierFields?: Payabli.Identifierfields | undefined;
     createdAt?: Payabli.CreatedAt | undefined;
 }

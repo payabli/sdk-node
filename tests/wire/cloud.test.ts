@@ -14,6 +14,7 @@ describe("CloudClient", () => {
             responseData: "6c361c7d-674c-44cc-b790-382b75d1xxx",
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .post("/Cloud/register/8cfec329267")
@@ -39,6 +40,7 @@ describe("CloudClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Cloud/register/entry")
@@ -58,6 +60,7 @@ describe("CloudClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Cloud/register/entry")
@@ -77,6 +80,7 @@ describe("CloudClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Cloud/register/entry")
@@ -96,6 +100,7 @@ describe("CloudClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/Cloud/register/entry")
@@ -130,6 +135,7 @@ describe("CloudClient", () => {
             ],
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .get("/Cloud/history/8cfec329267/WXGDWB")
@@ -162,6 +168,7 @@ describe("CloudClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Cloud/history/entry/deviceId")
@@ -180,6 +187,7 @@ describe("CloudClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Cloud/history/entry/deviceId")
@@ -198,6 +206,7 @@ describe("CloudClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Cloud/history/entry/deviceId")
@@ -216,6 +225,7 @@ describe("CloudClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Cloud/history/entry/deviceId")
@@ -249,6 +259,7 @@ describe("CloudClient", () => {
             ],
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .get("/Cloud/list/8cfec329267")
@@ -281,6 +292,7 @@ describe("CloudClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Cloud/list/entry").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -293,6 +305,7 @@ describe("CloudClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Cloud/list/entry").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -305,6 +318,7 @@ describe("CloudClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Cloud/list/entry").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -317,6 +331,7 @@ describe("CloudClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server.mockEndpoint().get("/Cloud/list/entry").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -333,6 +348,7 @@ describe("CloudClient", () => {
             responseData: "6c361c7d-674c-44cc-b790-382b75d1xxx",
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .delete("/Cloud/register/8cfec329267/6c361c7d-674c-44cc-b790-382b75d1xxx")
@@ -354,6 +370,7 @@ describe("CloudClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/Cloud/register/entry/deviceId")
@@ -372,6 +389,7 @@ describe("CloudClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/Cloud/register/entry/deviceId")
@@ -390,6 +408,7 @@ describe("CloudClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/Cloud/register/entry/deviceId")
@@ -408,6 +427,7 @@ describe("CloudClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .delete("/Cloud/register/entry/deviceId")

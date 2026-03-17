@@ -132,6 +132,8 @@ export class MoneyInClient {
     }
 
     /**
+     * @deprecated
+     *
      * <Warning>
      *   This endpoint is deprecated and will be sunset on November 24, 2025. Migrate to [POST `/capture/{transId}`](/developers/api-reference/moneyin/capture-an-authorized-transaction)`.
      * </Warning>

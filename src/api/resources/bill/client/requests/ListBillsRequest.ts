@@ -61,7 +61,7 @@ export interface ListBillsRequest {
      * - `fromRecord` : initial record in query
      * Example: `totalAmount(gt)=20` returns all records with a `totalAmount` that's greater than 20.00
      */
-    parameters?: Record<string, string | undefined>;
+    parameters?: Record<string, string>;
     /** The field name to use for sorting results. Use `desc(field_name)` to sort descending by `field_name`, and use `asc(field_name)` to sort ascending by `field_name`. */
     sortBy?: string;
 }

@@ -45,6 +45,7 @@ describe("InvoiceClient", () => {
             pageidentifier: null,
             roomId: 0,
         };
+
         server
             .mockEndpoint()
             .post("/Invoice/8cfec329267")
@@ -104,6 +105,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Invoice/entry")
@@ -125,6 +127,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Invoice/entry")
@@ -146,6 +149,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Invoice/entry")
@@ -167,6 +171,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/Invoice/entry")
@@ -195,6 +200,7 @@ describe("InvoiceClient", () => {
             pageidentifier: null,
             roomId: 0,
         };
+
         server
             .mockEndpoint()
             .delete("/Invoice/attachedFileFromInvoice/23548884/0_Bill.pdf")
@@ -219,6 +225,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/Invoice/attachedFileFromInvoice/1/filename")
@@ -237,6 +244,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/Invoice/attachedFileFromInvoice/1/filename")
@@ -255,6 +263,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/Invoice/attachedFileFromInvoice/1/filename")
@@ -273,6 +282,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .delete("/Invoice/attachedFileFromInvoice/1/filename")
@@ -298,6 +308,7 @@ describe("InvoiceClient", () => {
             pageidentifier: null,
             roomId: 0,
         };
+
         server
             .mockEndpoint()
             .delete("/Invoice/23548884")
@@ -322,6 +333,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().delete("/Invoice/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -334,6 +346,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().delete("/Invoice/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -346,6 +359,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().delete("/Invoice/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -358,6 +372,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server.mockEndpoint().delete("/Invoice/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -391,6 +406,7 @@ describe("InvoiceClient", () => {
             pageidentifier: null,
             roomId: 0,
         };
+
         server
             .mockEndpoint()
             .put("/Invoice/332")
@@ -432,6 +448,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Invoice/1")
@@ -453,6 +470,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Invoice/1")
@@ -474,6 +492,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Invoice/1")
@@ -495,6 +514,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .put("/Invoice/1")
@@ -516,6 +536,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { fContent: "fContent", filename: "filename", ftype: "pdf", furl: "furl" };
+
         server
             .mockEndpoint()
             .get("/Invoice/attachedFileFromInvoice/1/filename")
@@ -538,6 +559,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Invoice/attachedFileFromInvoice/1/filename")
@@ -556,6 +578,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Invoice/attachedFileFromInvoice/1/filename")
@@ -574,6 +597,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Invoice/attachedFileFromInvoice/1/filename")
@@ -592,6 +616,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Invoice/attachedFileFromInvoice/1/filename")
@@ -702,6 +727,7 @@ describe("InvoiceClient", () => {
             tax: 2.05,
             termsConditions: "termsConditions",
         };
+
         server.mockEndpoint().get("/Invoice/23548884").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.invoice.getInvoice(23548884);
@@ -813,6 +839,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Invoice/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -825,6 +852,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Invoice/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -837,6 +865,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Invoice/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -849,6 +878,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server.mockEndpoint().get("/Invoice/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -861,6 +891,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { isSuccess: true, responseData: "MyInvoice-114434565s32440", responseText: "Success" };
+
         server
             .mockEndpoint()
             .get("/Invoice/getNumber/8cfec329267")
@@ -882,6 +913,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Invoice/getNumber/entry")
@@ -900,6 +932,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Invoice/getNumber/entry")
@@ -918,6 +951,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Invoice/getNumber/entry")
@@ -936,6 +970,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Invoice/getNumber/entry")
@@ -1027,6 +1062,7 @@ describe("InvoiceClient", () => {
                 totalRecords: 2,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/invoices/8cfec329267")
@@ -1132,6 +1168,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/invoices/entry")
@@ -1150,6 +1187,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/invoices/entry")
@@ -1168,6 +1206,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/invoices/entry")
@@ -1186,6 +1225,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/invoices/entry")
@@ -1269,6 +1309,7 @@ describe("InvoiceClient", () => {
                 totalRecords: 2,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/invoices/org/123")
@@ -1366,6 +1407,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/invoices/org/1")
@@ -1384,6 +1426,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/invoices/org/1")
@@ -1402,6 +1445,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/invoices/org/1")
@@ -1420,6 +1464,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/invoices/org/1")
@@ -1438,6 +1483,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { isSuccess: true, responseText: "Success" };
+
         server
             .mockEndpoint()
             .get("/Invoice/send/23548884")
@@ -1461,6 +1507,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Invoice/send/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1473,6 +1520,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Invoice/send/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1485,6 +1533,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Invoice/send/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1497,6 +1546,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server.mockEndpoint().get("/Invoice/send/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1509,6 +1559,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Export/invoicePdf/23548884")
@@ -1528,6 +1579,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Export/invoicePdf/1")
@@ -1546,6 +1598,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Export/invoicePdf/1")
@@ -1564,6 +1617,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Export/invoicePdf/1")
@@ -1582,6 +1636,7 @@ describe("InvoiceClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Export/invoicePdf/1")

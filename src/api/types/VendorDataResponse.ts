@@ -27,6 +27,7 @@ import type * as Payabli from "../index.js";
  *             }],
  *         BillingData: {
  *             id: 123,
+ *             accountId: "acct-1xxxxx3123",
  *             nickname: "Checking Account",
  *             bankName: "Country Bank",
  *             routingAccount: "123123123",

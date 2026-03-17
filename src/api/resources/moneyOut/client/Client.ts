@@ -326,6 +326,8 @@ export class MoneyOutClient {
     }
 
     /**
+     * @deprecated
+     *
      * Cancel a payout transaction by ID.
      *
      * @param {string} referenceId - The ID for the payout transaction.
@@ -1082,5 +1084,131 @@ export class MoneyOutClient {
             "PATCH",
             "/MoneyOut/status/{transId}/{checkPaymentStatus}",
         );
+    }
+
+    /**
+     * Reissues a payout transaction with a new payment method. This creates a new transaction linked to the original and marks the original transaction as reissued.
+     *
+     * The original transaction must be in **Processing** or **Processed** status. The payment method in the request body is used directly. The endpoint doesn't fall back to vendor-managed payment methods.
+     *
+     * The new transaction goes through the standard authorize-and-capture flow automatically. Both the original and new transactions are linked through their event histories for audit purposes.
+     *
+     * @param {Payabli.ReissueOutRequest} request
+     * @param {MoneyOutClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.ForbiddenError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.moneyOut.reissueOut({
+     *         transId: "129-219",
+     *         body: {
+     *             paymentMethod: {
+     *                 method: "ach",
+     *                 achAccount: "9876543210",
+     *                 achAccountType: "savings",
+     *                 achRouting: "021000021",
+     *                 achHolder: "Acme Corp",
+     *                 achHolderType: "business"
+     *             }
+     *         }
+     *     })
+     *
+     * @example
+     *     await client.moneyOut.reissueOut({
+     *         transId: "129-219",
+     *         body: {
+     *             paymentMethod: {
+     *                 method: "check"
+     *             }
+     *         }
+     *     })
+     *
+     * @example
+     *     await client.moneyOut.reissueOut({
+     *         transId: "129-219",
+     *         body: {
+     *             paymentMethod: {
+     *                 method: "vcard"
+     *             }
+     *         }
+     *     })
+     */
+    public reissueOut(
+        request: Payabli.ReissueOutRequest,
+        requestOptions?: MoneyOutClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.ReissuePayoutResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__reissueOut(request, requestOptions));
+    }
+
+    private async __reissueOut(
+        request: Payabli.ReissueOutRequest,
+        requestOptions?: MoneyOutClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.ReissuePayoutResponse>> {
+        const { transId, idempotencyKey, body: _body } = request;
+        const _queryParams: Record<string, unknown> = {
+            transId,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey }),
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                "MoneyOut/reissue",
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            requestType: "json",
+            body: _body,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.ReissuePayoutResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 403:
+                    throw new Payabli.ForbiddenError(
+                        _response.error.body as Payabli.PayabliApiResponsePaylinks,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/MoneyOut/reissue");
     }
 }

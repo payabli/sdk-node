@@ -25,6 +25,7 @@ describe("WalletClient", () => {
             },
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .post("/Wallet/applepay/configure-organization")
@@ -65,6 +66,7 @@ describe("WalletClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Wallet/applepay/configure-organization")
@@ -84,6 +86,7 @@ describe("WalletClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Wallet/applepay/configure-organization")
@@ -103,6 +106,7 @@ describe("WalletClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Wallet/applepay/configure-organization")
@@ -122,6 +126,7 @@ describe("WalletClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/Wallet/applepay/configure-organization")
@@ -162,6 +167,7 @@ describe("WalletClient", () => {
             },
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .post("/Wallet/applepay/configure-paypoint")
@@ -204,6 +210,7 @@ describe("WalletClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Wallet/applepay/configure-paypoint")
@@ -223,6 +230,7 @@ describe("WalletClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Wallet/applepay/configure-paypoint")
@@ -242,6 +250,7 @@ describe("WalletClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Wallet/applepay/configure-paypoint")
@@ -261,6 +270,7 @@ describe("WalletClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/Wallet/applepay/configure-paypoint")
@@ -295,6 +305,7 @@ describe("WalletClient", () => {
             },
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .post("/Wallet/googlepay/configure-organization")
@@ -335,6 +346,7 @@ describe("WalletClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Wallet/googlepay/configure-organization")
@@ -354,6 +366,7 @@ describe("WalletClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Wallet/googlepay/configure-organization")
@@ -373,6 +386,7 @@ describe("WalletClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Wallet/googlepay/configure-organization")
@@ -392,6 +406,7 @@ describe("WalletClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/Wallet/googlepay/configure-organization")
@@ -422,6 +437,7 @@ describe("WalletClient", () => {
             },
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .post("/Wallet/googlepay/configure-paypoint")

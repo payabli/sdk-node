@@ -125,6 +125,7 @@ describe("OcrClient", () => {
                 },
             },
         };
+
         server
             .mockEndpoint()
             .post("/Import/ocrDocumentForm/typeResult")
@@ -260,6 +261,7 @@ describe("OcrClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Import/ocrDocumentForm/typeResult")
@@ -279,6 +281,7 @@ describe("OcrClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Import/ocrDocumentForm/typeResult")
@@ -298,6 +301,7 @@ describe("OcrClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Import/ocrDocumentForm/typeResult")
@@ -317,6 +321,7 @@ describe("OcrClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/Import/ocrDocumentForm/typeResult")
@@ -451,6 +456,7 @@ describe("OcrClient", () => {
                 },
             },
         };
+
         server
             .mockEndpoint()
             .post("/Import/ocrDocumentJson/typeResult")

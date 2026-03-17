@@ -26,4 +26,6 @@ export interface PaypointData {
     timeZone?: Payabli.Timezone | undefined;
     websiteAddress?: Payabli.Website | undefined;
     zip?: Payabli.Zip | undefined;
+    /** Configuration for billing statement email recipients and sender address. `null` if not configured. */
+    statementEmail?: Payabli.StatementEmailConfig | undefined;
 }

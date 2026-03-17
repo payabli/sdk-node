@@ -71,5 +71,5 @@ export interface ExportVendorsRequest {
      *
      * Example: `netAmount(gt)=20` returns all records with a `netAmount` greater than 20.00
      */
-    parameters?: Record<string, string | undefined>;
+    parameters?: Record<string, string>;
 }

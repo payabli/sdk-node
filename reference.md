@@ -8999,6 +8999,85 @@ await client.moneyOut.updateCheckPaymentStatus("TRANS123456", "5");
 </dl>
 </details>
 
+<details><summary><code>client.moneyOut.<a href="/src/api/resources/moneyOut/client/Client.ts">reissueOut</a>({ ...params }) -> Payabli.ReissuePayoutResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Reissues a payout transaction with a new payment method. This creates a new transaction linked to the original and marks the original transaction as reissued.
+
+The original transaction must be in **Processing** or **Processed** status. The payment method in the request body is used directly. The endpoint doesn't fall back to vendor-managed payment methods.
+
+The new transaction goes through the standard authorize-and-capture flow automatically. Both the original and new transactions are linked through their event histories for audit purposes.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.moneyOut.reissueOut({
+    transId: "129-219",
+    body: {
+        paymentMethod: {
+            method: "ach",
+            achAccount: "9876543210",
+            achAccountType: "savings",
+            achRouting: "021000021",
+            achHolder: "Acme Corp",
+            achHolderType: "business"
+        }
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Payabli.ReissueOutRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `MoneyOutClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Notification
 <details><summary><code>client.notification.<a href="/src/api/resources/notification/client/Client.ts">addNotification</a>({ ...params }) -> Payabli.PayabliApiResponseNotifications</code></summary>
 <dl>
@@ -17772,3 +17851,4 @@ await client.wallet.configureGooglePayPaypoint({
 </dd>
 </dl>
 </details>
+

@@ -10,6 +10,7 @@ describe("ChargeBacksClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { isSuccess: true, responseData: 126, responseText: "Success" };
+
         server
             .mockEndpoint()
             .post("/ChargeBacks/response/1000000")
@@ -35,6 +36,7 @@ describe("ChargeBacksClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/ChargeBacks/response/1000000")
@@ -54,6 +56,7 @@ describe("ChargeBacksClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/ChargeBacks/response/1000000")
@@ -73,6 +76,7 @@ describe("ChargeBacksClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/ChargeBacks/response/1000000")
@@ -92,6 +96,7 @@ describe("ChargeBacksClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/ChargeBacks/response/1000000")
@@ -353,6 +358,7 @@ describe("ChargeBacksClient", () => {
             DisputeType: "chargeback",
             ProcessorName: "Global Payments",
         };
+
         server
             .mockEndpoint()
             .get("/ChargeBacks/read/1000000")
@@ -635,6 +641,7 @@ describe("ChargeBacksClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/ChargeBacks/read/1000000")
@@ -653,6 +660,7 @@ describe("ChargeBacksClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/ChargeBacks/read/1000000")
@@ -671,6 +679,7 @@ describe("ChargeBacksClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/ChargeBacks/read/1000000")
@@ -689,6 +698,7 @@ describe("ChargeBacksClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/ChargeBacks/read/1000000")

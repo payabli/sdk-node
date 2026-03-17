@@ -24,7 +24,8 @@ import type * as Payabli from "../index.js";
 export interface BillingDataResponse {
     /** The bank's ID in Payabli. */
     id: number;
-    accountId?: unknown | undefined;
+    /** An identifier for the bank account. If not provided during creation or update, the system generates one in the format `acct-{first_digit}xxxxx{last_4_digits}` based on the account number. If a duplicate exists within the same service at the paypoint, a numeric suffix is appended, such as `-2`. This value is also used as the identifier for the bank account's associated payment connector. */
+    accountId?: Payabli.AccountId | undefined;
     nickname: string;
     bankName: Payabli.BankName;
     routingAccount: Payabli.RoutingAccount;

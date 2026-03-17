@@ -18,6 +18,7 @@ describe("NotificationClient", () => {
             target: "https://webhook.site/2871b8f8-edc7-441a-b376-98d8c8e33275",
         };
         const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 1717, responseText: "Success" };
+
         server
             .mockEndpoint()
             .post("/Notification")
@@ -59,6 +60,7 @@ describe("NotificationClient", () => {
             target: "https://cfe9dc390ce2.ngrok-free.app/webhook",
         };
         const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 1717, responseText: "Success" };
+
         server
             .mockEndpoint()
             .post("/Notification")
@@ -106,6 +108,7 @@ describe("NotificationClient", () => {
             target: "admin@example.com",
         };
         const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 1717, responseText: "Success" };
+
         server
             .mockEndpoint()
             .post("/Notification")
@@ -143,6 +146,7 @@ describe("NotificationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { frequency: "one-time", method: "email", ownerType: 1, target: "target" };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Notification")
@@ -167,6 +171,7 @@ describe("NotificationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { frequency: "one-time", method: "email", ownerType: 1, target: "target" };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Notification")
@@ -191,6 +196,7 @@ describe("NotificationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { frequency: "one-time", method: "email", ownerType: 1, target: "target" };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/Notification")
@@ -215,6 +221,7 @@ describe("NotificationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { frequency: "one-time", method: "email", ownerType: 1, target: "target" };
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/Notification")
@@ -239,6 +246,7 @@ describe("NotificationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 1717, responseText: "Success" };
+
         server
             .mockEndpoint()
             .delete("/Notification/1717")
@@ -261,6 +269,7 @@ describe("NotificationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/Notification/nId")
@@ -279,6 +288,7 @@ describe("NotificationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/Notification/nId")
@@ -297,6 +307,7 @@ describe("NotificationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/Notification/nId")
@@ -315,6 +326,7 @@ describe("NotificationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .delete("/Notification/nId")
@@ -345,6 +357,7 @@ describe("NotificationClient", () => {
             status: 1,
             target: "admin@business.com",
         };
+
         server.mockEndpoint().get("/Notification/1717").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.notification.getNotification("1717");
@@ -371,6 +384,7 @@ describe("NotificationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Notification/nId").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -383,6 +397,7 @@ describe("NotificationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Notification/nId").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -395,6 +410,7 @@ describe("NotificationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Notification/nId").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -407,6 +423,7 @@ describe("NotificationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server.mockEndpoint().get("/Notification/nId").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -427,6 +444,7 @@ describe("NotificationClient", () => {
             target: "newemail@email.com",
         };
         const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 1717, responseText: "Success" };
+
         server
             .mockEndpoint()
             .put("/Notification/1717")
@@ -460,6 +478,7 @@ describe("NotificationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { frequency: "one-time", method: "email", ownerType: 1, target: "target" };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Notification/nId")
@@ -484,6 +503,7 @@ describe("NotificationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { frequency: "one-time", method: "email", ownerType: 1, target: "target" };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Notification/nId")
@@ -508,6 +528,7 @@ describe("NotificationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { frequency: "one-time", method: "email", ownerType: 1, target: "target" };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Notification/nId")
@@ -532,6 +553,7 @@ describe("NotificationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { frequency: "one-time", method: "email", ownerType: 1, target: "target" };
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .put("/Notification/nId")
@@ -556,6 +578,7 @@ describe("NotificationClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Export/notificationReport/1000000")

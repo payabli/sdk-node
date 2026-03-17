@@ -36,6 +36,7 @@ describe("MoneyInClient", () => {
                 customerId: 4440,
             },
         };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/authorize")
@@ -90,6 +91,7 @@ describe("MoneyInClient", () => {
             paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/authorize")
@@ -123,6 +125,7 @@ describe("MoneyInClient", () => {
             paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/authorize")
@@ -156,6 +159,7 @@ describe("MoneyInClient", () => {
             paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/authorize")
@@ -189,6 +193,7 @@ describe("MoneyInClient", () => {
             paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
         };
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/authorize")
@@ -235,6 +240,7 @@ describe("MoneyInClient", () => {
                 methodReferenceId: null,
             },
         };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/capture/10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13/0")
@@ -268,6 +274,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/capture/transId/1.1")
@@ -286,6 +293,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/capture/transId/1.1")
@@ -304,6 +312,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/capture/transId/1.1")
@@ -322,6 +331,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/capture/transId/1.1")
@@ -356,6 +366,7 @@ describe("MoneyInClient", () => {
                 methodReferenceId: null,
             },
         };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/capture/10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13")
@@ -411,6 +422,7 @@ describe("MoneyInClient", () => {
                 methodReferenceId: null,
             },
         };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/capture/10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13")
@@ -466,6 +478,7 @@ describe("MoneyInClient", () => {
                 methodReferenceId: null,
             },
         };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/capture/10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13")
@@ -504,6 +517,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { paymentDetails: { totalAmount: 1.1 } };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/capture/transId")
@@ -527,6 +541,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { paymentDetails: { totalAmount: 1.1 } };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/capture/transId")
@@ -550,6 +565,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { paymentDetails: { totalAmount: 1.1 } };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/capture/transId")
@@ -573,6 +589,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { paymentDetails: { totalAmount: 1.1 } };
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/capture/transId")
@@ -618,6 +635,7 @@ describe("MoneyInClient", () => {
             },
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/makecredit")
@@ -696,6 +714,7 @@ describe("MoneyInClient", () => {
             },
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/makecredit")
@@ -753,6 +772,7 @@ describe("MoneyInClient", () => {
             paymentMethod: { method: "ach" },
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/makecredit")
@@ -784,6 +804,7 @@ describe("MoneyInClient", () => {
             paymentMethod: { method: "ach" },
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/makecredit")
@@ -815,6 +836,7 @@ describe("MoneyInClient", () => {
             paymentMethod: { method: "ach" },
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/makecredit")
@@ -846,6 +868,7 @@ describe("MoneyInClient", () => {
             paymentMethod: { method: "ach" },
         };
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/makecredit")
@@ -1065,6 +1088,7 @@ describe("MoneyInClient", () => {
             TransactionTime: "2024-02-15T10:30:00Z",
             TransStatus: 2,
         };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/details/45-as456777hhhhhhhhhh77777777-324")
@@ -1289,6 +1313,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/details/transId")
@@ -1307,6 +1332,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/details/transId")
@@ -1325,6 +1351,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/details/transId")
@@ -1343,6 +1370,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/details/transId")
@@ -1388,6 +1416,7 @@ describe("MoneyInClient", () => {
                 customerId: 41892,
             },
         };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/getpaid")
@@ -1464,6 +1493,7 @@ describe("MoneyInClient", () => {
                 methodReferenceId: "1ed73d3c67-4076-8f8c-9f26317762ef",
             },
         };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/getpaid")
@@ -1531,6 +1561,7 @@ describe("MoneyInClient", () => {
                 customerId: 4440,
             },
         };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/getpaid")
@@ -1604,6 +1635,7 @@ describe("MoneyInClient", () => {
                 customerId: 545,
             },
         };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/getpaid")
@@ -1680,6 +1712,7 @@ describe("MoneyInClient", () => {
                 customerId: 4440,
             },
         };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/getpaid")
@@ -1773,6 +1806,7 @@ describe("MoneyInClient", () => {
                 methodReferenceId: "1ed73d3c67-4076-8f8c-9f26317762ef",
             },
         };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/getpaid")
@@ -1864,6 +1898,7 @@ describe("MoneyInClient", () => {
                 customerId: 41892,
             },
         };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/getpaid")
@@ -1942,6 +1977,7 @@ describe("MoneyInClient", () => {
                 customerId: 4440,
             },
         };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/getpaid")
@@ -1996,6 +2032,7 @@ describe("MoneyInClient", () => {
             paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/getpaid")
@@ -2029,6 +2066,7 @@ describe("MoneyInClient", () => {
             paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/getpaid")
@@ -2062,6 +2100,7 @@ describe("MoneyInClient", () => {
             paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/getpaid")
@@ -2095,6 +2134,7 @@ describe("MoneyInClient", () => {
             paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
         };
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/getpaid")
@@ -2139,6 +2179,7 @@ describe("MoneyInClient", () => {
                 methodReferenceId: null,
             },
         };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/reverse/10-3ffa27df-b171-44e0-b251-e95fbfc7a723/0")
@@ -2184,6 +2225,7 @@ describe("MoneyInClient", () => {
                 methodReferenceId: null,
             },
         };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/reverse/10-3ffa27df-b171-44e0-b251-e95fbfc7a723/53.76")
@@ -2215,6 +2257,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/reverse/transId/1.1")
@@ -2233,6 +2276,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/reverse/transId/1.1")
@@ -2251,6 +2295,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/reverse/transId/1.1")
@@ -2269,6 +2314,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/reverse/transId/1.1")
@@ -2300,6 +2346,7 @@ describe("MoneyInClient", () => {
                 methodReferenceId: null,
             },
         };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/refund/10-3ffa27df-b171-44e0-b251-e95fbfc7a723/0")
@@ -2342,6 +2389,7 @@ describe("MoneyInClient", () => {
                 methodReferenceId: null,
             },
         };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/refund/10-3ffa27df-b171-44e0-b251-e95fbfc7a723/100.99")
@@ -2371,6 +2419,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/refund/transId/1.1")
@@ -2389,6 +2438,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/refund/transId/1.1")
@@ -2407,6 +2457,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/refund/transId/1.1")
@@ -2425,6 +2476,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/refund/transId/1.1")
@@ -2475,6 +2527,7 @@ describe("MoneyInClient", () => {
                 methodReferenceId: null,
             },
         };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/refund/10-3ffa27df-b171-44e0-b251-e95fbfc7a723")
@@ -2559,6 +2612,7 @@ describe("MoneyInClient", () => {
                 methodReferenceId: null,
             },
         };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/refund/10-3ffa27df-b171-44e0-b251-e95fbfc7a723")
@@ -2611,6 +2665,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/refund/transId")
@@ -2630,6 +2685,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/refund/transId")
@@ -2649,6 +2705,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/refund/transId")
@@ -2668,6 +2725,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/refund/transId")
@@ -2699,6 +2757,7 @@ describe("MoneyInClient", () => {
             },
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/reverseCredit/45-as456777hhhhhhhhhh77777777-324")
@@ -2728,6 +2787,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/reverseCredit/transId")
@@ -2746,6 +2806,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/reverseCredit/transId")
@@ -2764,6 +2825,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/reverseCredit/transId")
@@ -2782,6 +2844,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/reverseCredit/transId")
@@ -2800,6 +2863,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { isSuccess: true, pageIdentifier: "null", responseText: "Success" };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/sendreceipt/45-as456777hhhhhhhhhh77777777-324")
@@ -2823,6 +2887,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/sendreceipt/transId")
@@ -2841,6 +2906,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/sendreceipt/transId")
@@ -2859,6 +2925,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/sendreceipt/transId")
@@ -2877,6 +2944,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/sendreceipt/transId")
@@ -2916,6 +2984,7 @@ describe("MoneyInClient", () => {
             },
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/validate")
@@ -2966,6 +3035,7 @@ describe("MoneyInClient", () => {
             },
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/validate")
@@ -3003,6 +3073,7 @@ describe("MoneyInClient", () => {
             },
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/validate")
@@ -3040,6 +3111,7 @@ describe("MoneyInClient", () => {
             },
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/validate")
@@ -3077,6 +3149,7 @@ describe("MoneyInClient", () => {
             },
         };
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/MoneyIn/validate")
@@ -3116,6 +3189,7 @@ describe("MoneyInClient", () => {
                 resultText: "Transaction Void Successful",
             },
         };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/void/10-3ffa27df-b171-44e0-b251-e95fbfc7a723")
@@ -3144,6 +3218,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/void/transId")
@@ -3162,6 +3237,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/void/transId")
@@ -3180,6 +3256,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/void/transId")
@@ -3198,6 +3275,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/MoneyIn/void/transId")
@@ -3428,6 +3506,7 @@ describe("MoneyInClient", () => {
             },
             token: null,
         };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/getpaid")
@@ -3874,6 +3953,7 @@ describe("MoneyInClient", () => {
             },
             token: null,
         };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/getpaid")
@@ -4308,6 +4388,7 @@ describe("MoneyInClient", () => {
             },
             token: null,
         };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/getpaid")
@@ -4737,6 +4818,7 @@ describe("MoneyInClient", () => {
             },
             token: null,
         };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/getpaid")
@@ -4987,6 +5069,7 @@ describe("MoneyInClient", () => {
             },
             token: null,
         };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/getpaid")
@@ -5020,6 +5103,7 @@ describe("MoneyInClient", () => {
             paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/getpaid")
@@ -5216,6 +5300,7 @@ describe("MoneyInClient", () => {
             },
             token: null,
         };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/getpaid")
@@ -5249,6 +5334,7 @@ describe("MoneyInClient", () => {
             paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
         };
         const rawResponseBody = { title: "title", status: 1, detail: "detail", instance: "instance" };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/getpaid")
@@ -5491,6 +5577,7 @@ describe("MoneyInClient", () => {
             },
             token: null,
         };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/authorize")
@@ -5745,6 +5832,7 @@ describe("MoneyInClient", () => {
             },
             token: null,
         };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/authorize")
@@ -5778,6 +5866,7 @@ describe("MoneyInClient", () => {
             paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/authorize")
@@ -5974,6 +6063,7 @@ describe("MoneyInClient", () => {
             },
             token: null,
         };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/authorize")
@@ -6007,6 +6097,7 @@ describe("MoneyInClient", () => {
             paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
         };
         const rawResponseBody = { title: "title", status: 1, detail: "detail", instance: "instance" };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/authorize")
@@ -6235,6 +6326,7 @@ describe("MoneyInClient", () => {
             },
             token: null,
         };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/capture/10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13")
@@ -6654,6 +6746,7 @@ describe("MoneyInClient", () => {
             },
             token: null,
         };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/capture/10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13")
@@ -6889,6 +6982,7 @@ describe("MoneyInClient", () => {
             },
             token: null,
         };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/capture/transId")
@@ -6912,6 +7006,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { paymentDetails: { totalAmount: 1.1 } };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/capture/transId")
@@ -7098,6 +7193,7 @@ describe("MoneyInClient", () => {
             },
             token: null,
         };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/capture/transId")
@@ -7121,6 +7217,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { paymentDetails: { totalAmount: 1.1 } };
         const rawResponseBody = { title: "title", status: 1, detail: "detail", instance: "instance" };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/capture/transId")
@@ -7342,6 +7439,7 @@ describe("MoneyInClient", () => {
             },
             token: null,
         };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/refund/10-3ffa27df-b171-44e0-b251-e95fbfc7a723")
@@ -7571,6 +7669,7 @@ describe("MoneyInClient", () => {
             },
             token: null,
         };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/refund/transId")
@@ -7589,6 +7688,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/refund/transId")
@@ -7770,6 +7870,7 @@ describe("MoneyInClient", () => {
             },
             token: null,
         };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/refund/transId")
@@ -7788,6 +7889,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { title: "title", status: 1, detail: "detail", instance: "instance" };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/refund/transId")
@@ -8004,6 +8106,7 @@ describe("MoneyInClient", () => {
             },
             token: null,
         };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/refund/10-3ffa27df-b171-44e0-b251-e95fbfc7a723/0")
@@ -8417,6 +8520,7 @@ describe("MoneyInClient", () => {
             },
             token: null,
         };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/refund/10-3ffa27df-b171-44e0-b251-e95fbfc7a723/100.99")
@@ -8646,6 +8750,7 @@ describe("MoneyInClient", () => {
             },
             token: null,
         };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/refund/transId/1.1")
@@ -8664,6 +8769,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/refund/transId/1.1")
@@ -8845,6 +8951,7 @@ describe("MoneyInClient", () => {
             },
             token: null,
         };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/refund/transId/1.1")
@@ -8863,6 +8970,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { title: "title", status: 1, detail: "detail", instance: "instance" };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/refund/transId/1.1")
@@ -9079,6 +9187,7 @@ describe("MoneyInClient", () => {
             },
             token: null,
         };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/void/10-3ffa27df-b171-44e0-b251-e95fbfc7a723")
@@ -9308,6 +9417,7 @@ describe("MoneyInClient", () => {
             },
             token: null,
         };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/void/transId")
@@ -9326,6 +9436,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/void/transId")
@@ -9507,6 +9618,7 @@ describe("MoneyInClient", () => {
             },
             token: null,
         };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/void/transId")
@@ -9525,6 +9637,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { title: "title", status: 1, detail: "detail", instance: "instance" };
+
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/void/transId")

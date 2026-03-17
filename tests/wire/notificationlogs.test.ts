@@ -31,6 +31,7 @@ describe("NotificationlogsClient", () => {
                 isInProgress: false,
             },
         ];
+
         server
             .mockEndpoint()
             .post("/v2/notificationlogs")
@@ -73,6 +74,7 @@ describe("NotificationlogsClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { startDate: "2024-01-15T09:30:00Z", endDate: "2024-01-15T09:30:00Z" };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/v2/notificationlogs")
@@ -97,6 +99,7 @@ describe("NotificationlogsClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { startDate: "2024-01-15T09:30:00Z", endDate: "2024-01-15T09:30:00Z" };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/v2/notificationlogs")
@@ -121,6 +124,7 @@ describe("NotificationlogsClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { startDate: "2024-01-15T09:30:00Z", endDate: "2024-01-15T09:30:00Z" };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/v2/notificationlogs")
@@ -145,6 +149,7 @@ describe("NotificationlogsClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { startDate: "2024-01-15T09:30:00Z", endDate: "2024-01-15T09:30:00Z" };
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/v2/notificationlogs")
@@ -191,6 +196,7 @@ describe("NotificationlogsClient", () => {
             ],
             responseContent: '{"status":"received","id":"wh_123"}',
         };
+
         server
             .mockEndpoint()
             .get("/v2/notificationlogs/550e8400-e29b-41d4-a716-446655440000")
@@ -242,6 +248,7 @@ describe("NotificationlogsClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/v2/notificationlogs/d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32")
@@ -260,6 +267,7 @@ describe("NotificationlogsClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/v2/notificationlogs/d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32")
@@ -278,6 +286,7 @@ describe("NotificationlogsClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/v2/notificationlogs/d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32")
@@ -296,6 +305,7 @@ describe("NotificationlogsClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/v2/notificationlogs/d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32")
@@ -330,6 +340,7 @@ describe("NotificationlogsClient", () => {
             responseHeaders: [{ key: "Content-Type", value: ["application/json"] }],
             responseContent: '{"status":"received","id":"wh_123"}',
         };
+
         server
             .mockEndpoint()
             .get("/v2/notificationlogs/550e8400-e29b-41d4-a716-446655440000/retry")
@@ -373,6 +384,7 @@ describe("NotificationlogsClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/v2/notificationlogs/d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32/retry")
@@ -391,6 +403,7 @@ describe("NotificationlogsClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/v2/notificationlogs/d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32/retry")
@@ -409,6 +422,7 @@ describe("NotificationlogsClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/v2/notificationlogs/d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32/retry")
@@ -427,6 +441,7 @@ describe("NotificationlogsClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/v2/notificationlogs/d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32/retry")

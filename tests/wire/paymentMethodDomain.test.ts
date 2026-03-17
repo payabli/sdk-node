@@ -53,6 +53,7 @@ describe("PaymentMethodDomainClient", () => {
             },
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .post("/PaymentMethodDomain")
@@ -122,6 +123,7 @@ describe("PaymentMethodDomainClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/PaymentMethodDomain")
@@ -141,6 +143,7 @@ describe("PaymentMethodDomainClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/PaymentMethodDomain")
@@ -160,6 +163,7 @@ describe("PaymentMethodDomainClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/PaymentMethodDomain")
@@ -179,6 +183,7 @@ describe("PaymentMethodDomainClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/PaymentMethodDomain")
@@ -223,6 +228,7 @@ describe("PaymentMethodDomainClient", () => {
             },
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .post("/PaymentMethodDomain/pmd_b8237fa45c964d8a9ef27160cd42b8c5/cascade")
@@ -271,6 +277,7 @@ describe("PaymentMethodDomainClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/PaymentMethodDomain/domainId/cascade")
@@ -289,6 +296,7 @@ describe("PaymentMethodDomainClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/PaymentMethodDomain/domainId/cascade")
@@ -307,6 +315,7 @@ describe("PaymentMethodDomainClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/PaymentMethodDomain/domainId/cascade")
@@ -325,6 +334,7 @@ describe("PaymentMethodDomainClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/PaymentMethodDomain/domainId/cascade")
@@ -348,6 +358,7 @@ describe("PaymentMethodDomainClient", () => {
             responseData: "pmd_b8237fa45c964d8a9ef27160cd42b8c5",
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .delete("/PaymentMethodDomain/pmd_b8237fa45c964d8a9ef27160cd42b8c5")
@@ -372,6 +383,7 @@ describe("PaymentMethodDomainClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/PaymentMethodDomain/domainId")
@@ -390,6 +402,7 @@ describe("PaymentMethodDomainClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/PaymentMethodDomain/domainId")
@@ -408,6 +421,7 @@ describe("PaymentMethodDomainClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/PaymentMethodDomain/domainId")
@@ -426,6 +440,7 @@ describe("PaymentMethodDomainClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .delete("/PaymentMethodDomain/domainId")
@@ -464,6 +479,7 @@ describe("PaymentMethodDomainClient", () => {
             createdAt: "2025-03-15T10:24:36.207Z",
             updatedAt: "2025-04-25T15:38:46.804Z",
         };
+
         server
             .mockEndpoint()
             .get("/PaymentMethodDomain/pmd_b8237fa45c964d8a9ef27160cd42b8c5")
@@ -507,6 +523,7 @@ describe("PaymentMethodDomainClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/PaymentMethodDomain/domainId")
@@ -525,6 +542,7 @@ describe("PaymentMethodDomainClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/PaymentMethodDomain/domainId")
@@ -543,6 +561,7 @@ describe("PaymentMethodDomainClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/PaymentMethodDomain/domainId")
@@ -561,6 +580,7 @@ describe("PaymentMethodDomainClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/PaymentMethodDomain/domainId")
@@ -627,6 +647,7 @@ describe("PaymentMethodDomainClient", () => {
                 totalRecords: 17,
             },
         };
+
         server
             .mockEndpoint()
             .get("/PaymentMethodDomain/list")
@@ -737,6 +758,7 @@ describe("PaymentMethodDomainClient", () => {
             ],
             summary: { pageIdentifier: "pageIdentifier", pageSize: 20, totalPages: 1, totalRecords: 2 },
         };
+
         server
             .mockEndpoint()
             .get("/PaymentMethodDomain/list")
@@ -800,6 +822,7 @@ describe("PaymentMethodDomainClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/PaymentMethodDomain/list")
@@ -818,6 +841,7 @@ describe("PaymentMethodDomainClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/PaymentMethodDomain/list")
@@ -836,6 +860,7 @@ describe("PaymentMethodDomainClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/PaymentMethodDomain/list")
@@ -854,6 +879,7 @@ describe("PaymentMethodDomainClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/PaymentMethodDomain/list")
@@ -897,6 +923,7 @@ describe("PaymentMethodDomainClient", () => {
             },
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .patch("/PaymentMethodDomain/pmd_b8237fa45c964d8a9ef27160cd42b8c5")
@@ -954,6 +981,7 @@ describe("PaymentMethodDomainClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .patch("/PaymentMethodDomain/domainId")
@@ -973,6 +1001,7 @@ describe("PaymentMethodDomainClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .patch("/PaymentMethodDomain/domainId")
@@ -992,6 +1021,7 @@ describe("PaymentMethodDomainClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .patch("/PaymentMethodDomain/domainId")
@@ -1011,6 +1041,7 @@ describe("PaymentMethodDomainClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .patch("/PaymentMethodDomain/domainId")
@@ -1055,6 +1086,7 @@ describe("PaymentMethodDomainClient", () => {
             },
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .post("/PaymentMethodDomain/pmd_b8237fa45c964d8a9ef27160cd42b8c5/verify")
@@ -1141,6 +1173,7 @@ describe("PaymentMethodDomainClient", () => {
             },
             responseText: "Failed",
         };
+
         server
             .mockEndpoint()
             .post("/PaymentMethodDomain/pmd_b8237fa45c964d8a9ef27160cd42b8c5/verify")

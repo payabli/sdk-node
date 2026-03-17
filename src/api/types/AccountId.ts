@@ -3,4 +3,4 @@
 /**
  * Custom identifier for payment connector.
  */
-export type Accountid = string;
+export type AccountId = string;

@@ -35,6 +35,7 @@ describe("TokenStorageClient", () => {
             },
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .post("/TokenStorage/add")
@@ -102,6 +103,7 @@ describe("TokenStorageClient", () => {
             },
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .post("/TokenStorage/add")
@@ -159,6 +161,7 @@ describe("TokenStorageClient", () => {
             },
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .post("/TokenStorage/add")
@@ -222,6 +225,7 @@ describe("TokenStorageClient", () => {
             },
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .post("/TokenStorage/add")
@@ -289,6 +293,7 @@ describe("TokenStorageClient", () => {
             },
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .post("/TokenStorage/add")
@@ -334,6 +339,7 @@ describe("TokenStorageClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/TokenStorage/add")
@@ -355,6 +361,7 @@ describe("TokenStorageClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/TokenStorage/add")
@@ -376,6 +383,7 @@ describe("TokenStorageClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/TokenStorage/add")
@@ -397,6 +405,7 @@ describe("TokenStorageClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/TokenStorage/add")
@@ -477,6 +486,7 @@ describe("TokenStorageClient", () => {
             },
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .get("/TokenStorage/32-8877drt00045632-678")
@@ -614,6 +624,7 @@ describe("TokenStorageClient", () => {
             },
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .get("/TokenStorage/32-8877drt00045632-678")
@@ -757,6 +768,7 @@ describe("TokenStorageClient", () => {
             },
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .get("/TokenStorage/749e236c-59a3-49c7-ab47-73e06f9e94aa-199689")
@@ -842,6 +854,7 @@ describe("TokenStorageClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/TokenStorage/methodId")
@@ -860,6 +873,7 @@ describe("TokenStorageClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/TokenStorage/methodId")
@@ -878,6 +892,7 @@ describe("TokenStorageClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/TokenStorage/methodId")
@@ -896,6 +911,7 @@ describe("TokenStorageClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/TokenStorage/methodId")
@@ -918,6 +934,7 @@ describe("TokenStorageClient", () => {
             responseData: { referenceId: "32-8877drt65345632-678", resultCode: 1, resultText: "Removed" },
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .delete("/TokenStorage/32-8877drt00045632-678")
@@ -943,6 +960,7 @@ describe("TokenStorageClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/TokenStorage/methodId")
@@ -961,6 +979,7 @@ describe("TokenStorageClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/TokenStorage/methodId")
@@ -979,6 +998,7 @@ describe("TokenStorageClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/TokenStorage/methodId")
@@ -997,6 +1017,7 @@ describe("TokenStorageClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .delete("/TokenStorage/methodId")
@@ -1035,6 +1056,7 @@ describe("TokenStorageClient", () => {
             },
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .put("/TokenStorage/32-8877drt00045632-678")
@@ -1097,6 +1119,7 @@ describe("TokenStorageClient", () => {
             },
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .put("/TokenStorage/32-8877drt00045632-678")
@@ -1160,6 +1183,7 @@ describe("TokenStorageClient", () => {
             },
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .put("/TokenStorage/32-8877drt00045632-678")

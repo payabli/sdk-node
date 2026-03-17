@@ -37,6 +37,7 @@ describe("CheckCaptureClient", () => {
             checkType: 1,
             referenceNumber: "REF_XYZ789",
         };
+
         server
             .mockEndpoint()
             .post("/CheckCapture/CheckProcessing")
@@ -87,6 +88,7 @@ describe("CheckCaptureClient", () => {
             checkAmount: 1,
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/CheckCapture/CheckProcessing")
@@ -116,6 +118,7 @@ describe("CheckCaptureClient", () => {
             checkAmount: 1,
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/CheckCapture/CheckProcessing")
@@ -145,6 +148,7 @@ describe("CheckCaptureClient", () => {
             checkAmount: 1,
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/CheckCapture/CheckProcessing")
@@ -174,6 +178,7 @@ describe("CheckCaptureClient", () => {
             checkAmount: 1,
         };
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/CheckCapture/CheckProcessing")

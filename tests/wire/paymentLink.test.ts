@@ -82,6 +82,7 @@ describe("PaymentLinkClient", () => {
             responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .post("/PaymentLink/23548884")
@@ -216,6 +217,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/PaymentLink/1")
@@ -237,6 +239,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/PaymentLink/1")
@@ -258,6 +261,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/PaymentLink/1")
@@ -279,6 +283,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/PaymentLink/1")
@@ -336,6 +341,7 @@ describe("PaymentLinkClient", () => {
             responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .post("/PaymentLink/bill/23548884")
@@ -456,6 +462,7 @@ describe("PaymentLinkClient", () => {
             responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .post("/PaymentLink/bill/23548884")
@@ -539,6 +546,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/PaymentLink/bill/1")
@@ -560,6 +568,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/PaymentLink/bill/1")
@@ -581,6 +590,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/PaymentLink/bill/1")
@@ -602,6 +612,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/PaymentLink/bill/1")
@@ -627,6 +638,7 @@ describe("PaymentLinkClient", () => {
             responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .delete("/PaymentLink/2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234")
@@ -648,6 +660,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/PaymentLink/payLinkId")
@@ -666,6 +679,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/PaymentLink/payLinkId")
@@ -684,6 +698,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/PaymentLink/payLinkId")
@@ -702,6 +717,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .delete("/PaymentLink/payLinkId")
@@ -768,6 +784,7 @@ describe("PaymentLinkClient", () => {
             },
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .get("/PaymentLink/load/paylinkId")
@@ -885,6 +902,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/PaymentLink/load/paylinkId")
@@ -903,6 +921,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/PaymentLink/load/paylinkId")
@@ -921,6 +940,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/PaymentLink/load/paylinkId")
@@ -939,6 +959,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/PaymentLink/load/paylinkId")
@@ -961,6 +982,7 @@ describe("PaymentLinkClient", () => {
             responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .post("/PaymentLink/push/payLinkId")
@@ -993,6 +1015,7 @@ describe("PaymentLinkClient", () => {
             responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .post("/PaymentLink/push/payLinkId")
@@ -1019,6 +1042,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { channel: "email" };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/PaymentLink/push/payLinkId")
@@ -1040,6 +1064,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { channel: "email" };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/PaymentLink/push/payLinkId")
@@ -1061,6 +1086,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { channel: "email" };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/PaymentLink/push/payLinkId")
@@ -1082,6 +1108,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { channel: "email" };
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .post("/PaymentLink/push/payLinkId")
@@ -1107,6 +1134,7 @@ describe("PaymentLinkClient", () => {
             responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .get("/PaymentLink/refresh/payLinkId")
@@ -1128,6 +1156,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/PaymentLink/refresh/payLinkId")
@@ -1146,6 +1175,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/PaymentLink/refresh/payLinkId")
@@ -1164,6 +1194,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/PaymentLink/refresh/payLinkId")
@@ -1182,6 +1213,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/PaymentLink/refresh/payLinkId")
@@ -1204,6 +1236,7 @@ describe("PaymentLinkClient", () => {
             responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .get("/PaymentLink/send/payLinkId")
@@ -1227,6 +1260,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/PaymentLink/send/payLinkId")
@@ -1245,6 +1279,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/PaymentLink/send/payLinkId")
@@ -1263,6 +1298,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/PaymentLink/send/payLinkId")
@@ -1281,6 +1317,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/PaymentLink/send/payLinkId")
@@ -1308,6 +1345,7 @@ describe("PaymentLinkClient", () => {
             paymentButton: { enabled: true, label: "Pay Now", order: 0 },
         };
         const rawResponseBody = { isSuccess: true, responseData: "332-c277b704-1301", responseText: "Success" };
+
         server
             .mockEndpoint()
             .put("/PaymentLink/update/332-c277b704-1301")
@@ -1343,6 +1381,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/PaymentLink/update/payLinkId")
@@ -1362,6 +1401,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/PaymentLink/update/payLinkId")
@@ -1381,6 +1421,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/PaymentLink/update/payLinkId")
@@ -1400,6 +1441,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .put("/PaymentLink/update/payLinkId")
@@ -1455,6 +1497,7 @@ describe("PaymentLinkClient", () => {
             responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .post("/PaymentLink/bill/lotNumber/LOT-2024-001")
@@ -1546,6 +1589,7 @@ describe("PaymentLinkClient", () => {
             responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .patch("/PaymentLink/out/2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234")
@@ -1575,6 +1619,7 @@ describe("PaymentLinkClient", () => {
             responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .patch("/PaymentLink/out/2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234")
@@ -1618,6 +1663,7 @@ describe("PaymentLinkClient", () => {
             responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .patch("/PaymentLink/out/2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234")
@@ -1668,6 +1714,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .patch("/PaymentLink/out/paylinkId")
@@ -1687,6 +1734,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .patch("/PaymentLink/out/paylinkId")
@@ -1706,6 +1754,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .patch("/PaymentLink/out/paylinkId")
@@ -1725,6 +1774,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .patch("/PaymentLink/out/paylinkId")
@@ -1780,6 +1830,7 @@ describe("PaymentLinkClient", () => {
             responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .patch("/PaymentLink/updateOut/2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234")
@@ -1880,6 +1931,7 @@ describe("PaymentLinkClient", () => {
             responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .patch("/PaymentLink/updateOut/2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234")
@@ -1925,6 +1977,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .patch("/PaymentLink/updateOut/paylinkId")
@@ -1944,6 +1997,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .patch("/PaymentLink/updateOut/paylinkId")
@@ -1963,6 +2017,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .patch("/PaymentLink/updateOut/paylinkId")
@@ -1982,6 +2037,7 @@ describe("PaymentLinkClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .patch("/PaymentLink/updateOut/paylinkId")

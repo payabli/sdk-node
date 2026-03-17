@@ -50,6 +50,7 @@ describe("PaypointClient", () => {
             },
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .get("/Paypoint/basic/8cfec329267")
@@ -129,6 +130,7 @@ describe("PaypointClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Paypoint/basic/entry")
@@ -147,6 +149,7 @@ describe("PaypointClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Paypoint/basic/entry")
@@ -165,6 +168,7 @@ describe("PaypointClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Paypoint/basic/entry")
@@ -183,6 +187,7 @@ describe("PaypointClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Paypoint/basic/entry")
@@ -241,6 +246,7 @@ describe("PaypointClient", () => {
             },
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .get("/Paypoint/basicById/198")
@@ -320,6 +326,7 @@ describe("PaypointClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Paypoint/basicById/IdPaypoint")
@@ -338,6 +345,7 @@ describe("PaypointClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Paypoint/basicById/IdPaypoint")
@@ -356,6 +364,7 @@ describe("PaypointClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Paypoint/basicById/IdPaypoint")
@@ -374,6 +383,7 @@ describe("PaypointClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Paypoint/basicById/IdPaypoint")
@@ -428,10 +438,12 @@ describe("PaypointClient", () => {
                     timeZone: -5,
                     websiteAddress: "www.example.com",
                     zip: "31113",
+                    statementEmail: { sender: "acme-partners@payabli.com", recipients: ["billing@example.com"] },
                 },
             },
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .get("/Paypoint/8cfec329267")
@@ -500,6 +512,10 @@ describe("PaypointClient", () => {
                     timeZone: -5,
                     websiteAddress: "www.example.com",
                     zip: "31113",
+                    statementEmail: {
+                        sender: "acme-partners@payabli.com",
+                        recipients: ["billing@example.com"],
+                    },
                 },
             },
             responseText: "Success",
@@ -511,6 +527,7 @@ describe("PaypointClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Paypoint/entry").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -523,6 +540,7 @@ describe("PaypointClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Paypoint/entry").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -535,6 +553,7 @@ describe("PaypointClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Paypoint/entry").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -547,6 +566,7 @@ describe("PaypointClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server.mockEndpoint().get("/Paypoint/entry").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -572,6 +592,9 @@ describe("PaypointClient", () => {
                     mode: 1,
                     referenceId: 1000000,
                     service: "service",
+                    greaterValueAllowed: true,
+                    absorbDifference: false,
+                    allowOverride: false,
                 },
             ],
             lastAccess: "2022-06-30T15:01:00Z",
@@ -654,6 +677,7 @@ describe("PaypointClient", () => {
             totalAmount: 1.1,
             validationCode: "validationCode",
         };
+
         server
             .mockEndpoint()
             .get("/Paypoint/8cfec329267/pay-your-fees-1")
@@ -687,6 +711,9 @@ describe("PaypointClient", () => {
                     mode: 1,
                     referenceId: 1000000,
                     service: "service",
+                    greaterValueAllowed: true,
+                    absorbDifference: false,
+                    allowOverride: false,
                 },
             ],
             lastAccess: "2022-06-30T15:01:00Z",
@@ -852,6 +879,7 @@ describe("PaypointClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Paypoint/entry/subdomain")
@@ -870,6 +898,7 @@ describe("PaypointClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Paypoint/entry/subdomain")
@@ -888,6 +917,7 @@ describe("PaypointClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Paypoint/entry/subdomain")
@@ -906,6 +936,7 @@ describe("PaypointClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Paypoint/entry/subdomain")
@@ -924,6 +955,7 @@ describe("PaypointClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { isSuccess: true, responseText: "Success" };
+
         server
             .mockEndpoint()
             .delete("/Paypoint/8cfec329267/pay-your-fees-1")
@@ -944,6 +976,7 @@ describe("PaypointClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/Paypoint/entry/subdomain")
@@ -962,6 +995,7 @@ describe("PaypointClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/Paypoint/entry/subdomain")
@@ -980,6 +1014,7 @@ describe("PaypointClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/Paypoint/entry/subdomain")
@@ -998,6 +1033,7 @@ describe("PaypointClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .delete("/Paypoint/entry/subdomain")
@@ -1022,6 +1058,7 @@ describe("PaypointClient", () => {
             responseData: "responseData",
             responseText: "Success",
         };
+
         server
             .mockEndpoint()
             .put("/Paypoint/logo/8cfec329267")
@@ -1046,6 +1083,7 @@ describe("PaypointClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Paypoint/logo/entry")
@@ -1065,6 +1103,7 @@ describe("PaypointClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Paypoint/logo/entry")
@@ -1084,6 +1123,7 @@ describe("PaypointClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/Paypoint/logo/entry")
@@ -1103,6 +1143,7 @@ describe("PaypointClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .put("/Paypoint/logo/entry")
@@ -1170,6 +1211,7 @@ describe("PaypointClient", () => {
             ],
             identifiers: [{ key: "key", readOnly: false, value: "value" }],
         };
+
         server
             .mockEndpoint()
             .get("/Paypoint/settings/8cfec329267")
@@ -1370,6 +1412,7 @@ describe("PaypointClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Paypoint/settings/entry")
@@ -1388,6 +1431,7 @@ describe("PaypointClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Paypoint/settings/entry")
@@ -1406,6 +1450,7 @@ describe("PaypointClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Paypoint/settings/entry")
@@ -1424,6 +1469,7 @@ describe("PaypointClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Paypoint/settings/entry")
@@ -1449,6 +1495,7 @@ describe("PaypointClient", () => {
             },
         };
         const rawResponseBody = { isSuccess: true, responseCode: 1, responseText: "Success" };
+
         server
             .mockEndpoint()
             .post("/Paypoint/migrate")

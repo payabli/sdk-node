@@ -8,4 +8,7 @@ export * from "./MethodElementOut.js";
 export * from "./MethodsListOut.js";
 export * from "./OperationResult.js";
 export * from "./PaymentLinkStatus.js";
+export * from "./ReissuePaymentMethod.js";
+export * from "./ReissuePayoutBody.js";
+export * from "./ReissuePayoutResponse.js";
 export * from "./VCardGetResponse.js";
