@@ -2064,12 +2064,209 @@ export class QueryClient {
     }
 
     /**
+     * Returns a list of payout subscriptions for a single paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information.
+     *
+     * @param {Payabli.Entry} entry
+     * @param {Payabli.ListPayoutSubscriptionsRequest} request
+     * @param {QueryClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.query.listPayoutSubscriptions("8cfec329267", {
+     *         fromRecord: 0,
+     *         limitRecord: 20,
+     *         sortBy: "desc(field_name)"
+     *     })
+     */
+    public listPayoutSubscriptions(
+        entry: Payabli.Entry,
+        request: Payabli.ListPayoutSubscriptionsRequest = {},
+        requestOptions?: QueryClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.QueryPayoutSubscriptionResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__listPayoutSubscriptions(entry, request, requestOptions));
+    }
+
+    private async __listPayoutSubscriptions(
+        entry: Payabli.Entry,
+        request: Payabli.ListPayoutSubscriptionsRequest = {},
+        requestOptions?: QueryClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.QueryPayoutSubscriptionResponse>> {
+        const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `Query/payoutsubscriptions/${core.url.encodePathParam(entry)}`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as Payabli.QueryPayoutSubscriptionResponse,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/Query/payoutsubscriptions/{entry}",
+        );
+    }
+
+    /**
+     * Returns a list of payout subscriptions for a single org. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information.
+     *
+     * @param {number} orgId - The numeric identifier for organization, assigned by Payabli.
+     * @param {Payabli.ListPayoutSubscriptionsOrgRequest} request
+     * @param {QueryClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.query.listPayoutSubscriptionsOrg(123, {
+     *         fromRecord: 0,
+     *         limitRecord: 20,
+     *         sortBy: "desc(field_name)"
+     *     })
+     */
+    public listPayoutSubscriptionsOrg(
+        orgId: number,
+        request: Payabli.ListPayoutSubscriptionsOrgRequest = {},
+        requestOptions?: QueryClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.QueryPayoutSubscriptionResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__listPayoutSubscriptionsOrg(orgId, request, requestOptions));
+    }
+
+    private async __listPayoutSubscriptionsOrg(
+        orgId: number,
+        request: Payabli.ListPayoutSubscriptionsOrgRequest = {},
+        requestOptions?: QueryClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.QueryPayoutSubscriptionResponse>> {
+        const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `Query/payoutsubscriptions/org/${core.url.encodePathParam(orgId)}`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as Payabli.QueryPayoutSubscriptionResponse,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/Query/payoutsubscriptions/org/{orgId}",
+        );
+    }
+
+    /**
      * Retrieve a list of transactions for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
      * By default, this endpoint returns only transactions from the last 60 days. To query transactions outside of this period, include `transactionDate` filters.
      * For example, this request parameters filter for transactions between April 01, 2024 and April 09, 2024.
-     * ``` curl --request GET \
-     *   --url https://sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59\
-     *   --header 'requestToken: <api-key>'
+     * ``` curl -X GET https://sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59\
+     *   -H 'requestToken: <API TOKEN>'
      *
      *   ```
      *
@@ -2172,9 +2369,8 @@ export class QueryClient {
      * For example, this request parameters filter for transactions between April 01, 2024 and April 09, 2024.
      *
      * ```
-     * curl --request GET \
-     *   --url https://sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59\
-     *   --header 'requestToken: <api-key>'
+     * curl -X GET "https://sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59"\
+     *   -H 'requestToken: <API TOKEN>'
      *
      *   ```
      *

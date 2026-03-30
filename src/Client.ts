@@ -7,6 +7,7 @@ import { CheckCaptureClient } from "./api/resources/checkCapture/client/Client.j
 import { CloudClient } from "./api/resources/cloud/client/Client.js";
 import { CustomerClient } from "./api/resources/customer/client/Client.js";
 import { ExportClient } from "./api/resources/export/client/Client.js";
+import { GhostCardClient } from "./api/resources/ghostCard/client/Client.js";
 import { HostedPaymentPagesClient } from "./api/resources/hostedPaymentPages/client/Client.js";
 import { ImportClient } from "./api/resources/import/client/Client.js";
 import { InvoiceClient } from "./api/resources/invoice/client/Client.js";
@@ -19,6 +20,7 @@ import { OcrClient } from "./api/resources/ocr/client/Client.js";
 import { OrganizationClient } from "./api/resources/organization/client/Client.js";
 import { PaymentLinkClient } from "./api/resources/paymentLink/client/Client.js";
 import { PaymentMethodDomainClient } from "./api/resources/paymentMethodDomain/client/Client.js";
+import { PayoutSubscriptionClient } from "./api/resources/payoutSubscription/client/Client.js";
 import { PaypointClient } from "./api/resources/paypoint/client/Client.js";
 import { QueryClient } from "./api/resources/query/client/Client.js";
 import { StatisticClient } from "./api/resources/statistic/client/Client.js";
@@ -47,6 +49,7 @@ export class PayabliClient {
     protected _cloud: CloudClient | undefined;
     protected _customer: CustomerClient | undefined;
     protected _export: ExportClient | undefined;
+    protected _ghostCard: GhostCardClient | undefined;
     protected _hostedPaymentPages: HostedPaymentPagesClient | undefined;
     protected _import: ImportClient | undefined;
     protected _invoice: InvoiceClient | undefined;
@@ -59,6 +62,7 @@ export class PayabliClient {
     protected _organization: OrganizationClient | undefined;
     protected _paymentLink: PaymentLinkClient | undefined;
     protected _paymentMethodDomain: PaymentMethodDomainClient | undefined;
+    protected _payoutSubscription: PayoutSubscriptionClient | undefined;
     protected _paypoint: PaypointClient | undefined;
     protected _query: QueryClient | undefined;
     protected _statistic: StatisticClient | undefined;
@@ -99,6 +103,10 @@ export class PayabliClient {
 
     public get export(): ExportClient {
         return (this._export ??= new ExportClient(this._options));
+    }
+
+    public get ghostCard(): GhostCardClient {
+        return (this._ghostCard ??= new GhostCardClient(this._options));
     }
 
     public get hostedPaymentPages(): HostedPaymentPagesClient {
@@ -147,6 +155,10 @@ export class PayabliClient {
 
     public get paymentMethodDomain(): PaymentMethodDomainClient {
         return (this._paymentMethodDomain ??= new PaymentMethodDomainClient(this._options));
+    }
+
+    public get payoutSubscription(): PayoutSubscriptionClient {
+        return (this._payoutSubscription ??= new PayoutSubscriptionClient(this._options));
     }
 
     public get paypoint(): PaypointClient {

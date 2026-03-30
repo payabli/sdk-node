@@ -4,9 +4,9 @@ import type * as Payabli from "../index.js";
 
 export interface VendorOutData {
     additionalData?: Payabli.AdditionalData | undefined;
-    /** Vendor's address */
+    /** Vendor's street address. Allowed characters are letters, numbers, spaces, and `. , */
     Address1?: Payabli.AddressNullable | undefined;
-    /** Additional line for vendor's address. */
+    /** Additional line for vendor's address, such as a suite or unit number. */
     Address2?: Payabli.AddressAddtlNullable | undefined;
     /** Object containing vendor's bank information. */
     BillingData?: Payabli.BillingData | undefined;
@@ -14,11 +14,11 @@ export interface VendorOutData {
     City: string;
     /** Array of objects describing the vendor's contacts. */
     Contacts?: Payabli.ContactsField | undefined;
-    /** Vendor's country. */
+    /** Vendor's country. `US` or `CA`. */
     Country: string;
     /** Account number of paypoint in the vendor side. */
     customerVendorAccount?: string | undefined;
-    /** EIN/Tax ID for vendor. In reponses, this field is masked, and looks like: `XXXXX6789`. */
+    /** EIN/Tax ID for vendor. Must be nine digits formatted as `XX-XXXXXXX`. In responses, this field is masked and looks like: `XXXXX6789`. */
     EIN: string;
     /** Vendor's email address. Required for vCard. */
     Email?: Payabli.Email | undefined;
@@ -26,14 +26,14 @@ export interface VendorOutData {
     InternalReferenceId?: number | undefined;
     LocationCode?: Payabli.LocationCode | undefined;
     Mcc?: Payabli.Mcc | undefined;
-    /** Primary name for vendor. Required for new vendor. */
+    /** Primary name for vendor. Required for new vendor. Allowed characters are letters, numbers, spaces, and `. , ' & ( ) */
     Name1: string;
-    /** Secondary name for vendor. */
+    /** Secondary name for vendor. If provided, allowed characters are the same as `Name1`. */
     Name2?: string | undefined;
     payeeName1?: Payabli.PayeeName | undefined;
     payeeName2?: Payabli.PayeeName | undefined;
     PaymentMethod?: Payabli.VendorPaymentMethod | undefined;
-    /** Vendor's phone number */
+    /** Vendor's phone number. Digits only when creating or updating a vendor. */
     Phone: string;
     remitAddress1?: Payabli.Remitaddress1 | undefined;
     remitAddress2?: Payabli.Remitaddress2 | undefined;
@@ -41,12 +41,12 @@ export interface VendorOutData {
     remitCountry?: Payabli.Remitcountry | undefined;
     remitState?: Payabli.Remitstate | undefined;
     remitZip?: Payabli.Remitzip | undefined;
-    /** Vendor's state. Must be a 2 character state code. */
+    /** Vendor's state or province. Must be a valid US state or Canadian province abbreviation, depending on the `Country` value. */
     State: string;
     /** Payabli identifier for vendor record. Required when `VendorNumber` isn't included. */
     VendorId?: Payabli.Vendorid | undefined;
     VendorNumber?: Payabli.VendorNumber | undefined;
     VendorStatus?: Payabli.Vendorstatus | undefined;
-    /** Vendor's zip code. */
+    /** Vendor's ZIP or postal code. For US addresses, five digits (`12345`) or ZIP+4 format (`12345-6789`). */
     Zip: string;
 }

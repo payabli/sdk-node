@@ -5145,6 +5145,169 @@ await client.export.exportVendorsOrg("csv", 123, {
 </dl>
 </details>
 
+## GhostCard
+<details><summary><code>client.ghostCard.<a href="/src/api/resources/ghostCard/client/Client.ts">createGhostCard</a>(entry, { ...params }) -> Payabli.CreateGhostCardResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a ghost card, a multi-use virtual debit card issued to a vendor for recurring or discretionary spend.
+
+Unlike single-use virtual cards issued as part of a payout transaction, ghost cards aren't tied to a specific payout. They're issued directly to a vendor and can be reused up to a configurable number of times within the card's spending limits.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ghostCard.createGhostCard("8cfec2e0fa", {
+    vendorId: 42,
+    expenseLimit: 500,
+    maxNumberOfUses: 3,
+    exactAmount: false,
+    expenseLimitPeriod: "monthly",
+    billingCycle: "monthly",
+    billingCycleDay: "1",
+    dailyTransactionCount: 5,
+    dailyAmountLimit: 200,
+    transactionAmountLimit: 100,
+    mcc: "5411",
+    tcc: "R",
+    misc1: "PO-98765",
+    misc2: "Dept-Finance"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**entry:** `Payabli.Entry` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.CreateGhostCardRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `GhostCardClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ghostCard.<a href="/src/api/resources/ghostCard/client/Client.ts">updateCard</a>(entry, { ...params }) -> Payabli.PayabliApiResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates the status of a virtual card (including ghost cards) under a paypoint.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.ghostCard.updateCard("8cfec2e0fa", {
+    cardToken: "gc_abc123def456",
+    status: "Cancelled"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**entry:** `Payabli.Entry` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.UpdateCardRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `GhostCardClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## HostedPaymentPages
 <details><summary><code>client.hostedPaymentPages.<a href="/src/api/resources/hostedPaymentPages/client/Client.ts">loadPage</a>(entry, subdomain) -> Payabli.PayabliPages</code></summary>
 <dl>
@@ -11894,6 +12057,299 @@ await client.paymentMethodDomain.verifyPaymentMethodDomain("pmd_b8237fa45c964d8a
 </dl>
 </details>
 
+## PayoutSubscription
+<details><summary><code>client.payoutSubscription.<a href="/src/api/resources/payoutSubscription/client/Client.ts">createPayoutSubscription</a>({ ...params }) -> Payabli.AddPayoutSubscriptionResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a payout subscription to automatically send payouts to a vendor on a recurring schedule. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for a step-by-step guide.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.payoutSubscription.createPayoutSubscription({
+    body: {
+        entryPoint: "d193cf9a46",
+        paymentMethod: {
+            method: "ach",
+            achHolder: "Herman Coatings",
+            achRouting: "021000021",
+            achAccount: "3453445666",
+            achAccountType: "checking"
+        },
+        paymentDetails: {
+            totalAmount: 500,
+            serviceFee: 0,
+            currency: "USD"
+        },
+        vendorData: {
+            vendorId: 1501
+        },
+        billData: [{
+                invoiceNumber: "INV-5001",
+                netAmount: "500",
+                invoiceDate: "2025-08-01",
+                dueDate: "2025-08-15"
+            }],
+        scheduleDetails: {
+            startDate: "09/01/2025",
+            endDate: "09/01/2026",
+            frequency: "monthly"
+        }
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Payabli.RequestPayoutSchedule` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PayoutSubscriptionClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.payoutSubscription.<a href="/src/api/resources/payoutSubscription/client/Client.ts">getPayoutSubscription</a>(id) -> Payabli.GetPayoutSubscriptionResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a single payout subscription's details. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.payoutSubscription.getPayoutSubscription(42);
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `number` — The payout subscription ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PayoutSubscriptionClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.payoutSubscription.<a href="/src/api/resources/payoutSubscription/client/Client.ts">updatePayoutSubscription</a>(id, { ...params }) -> Payabli.UpdatePayoutSubscriptionResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates a payout subscription's details. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.payoutSubscription.updatePayoutSubscription(42, {
+    setPause: true
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `number` — The payout subscription ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.UpdatePayoutSubscriptionBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PayoutSubscriptionClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.payoutSubscription.<a href="/src/api/resources/payoutSubscription/client/Client.ts">deletePayoutSubscription</a>(id) -> Payabli.DeletePayoutSubscriptionResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a payout subscription and prevents future payouts. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.payoutSubscription.deletePayoutSubscription(42);
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `number` — The payout subscription ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PayoutSubscriptionClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Paypoint
 <details><summary><code>client.paypoint.<a href="/src/api/resources/paypoint/client/Client.ts">getBasicEntry</a>(entry) -> Payabli.GetBasicEntryResponse</code></summary>
 <dl>
@@ -14093,6 +14549,156 @@ await client.query.listSubscriptionsOrg(123, {
 </dl>
 </details>
 
+<details><summary><code>client.query.<a href="/src/api/resources/query/client/Client.ts">listPayoutSubscriptions</a>(entry, { ...params }) -> Payabli.QueryPayoutSubscriptionResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of payout subscriptions for a single paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.query.listPayoutSubscriptions("8cfec329267", {
+    fromRecord: 0,
+    limitRecord: 20,
+    sortBy: "desc(field_name)"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**entry:** `Payabli.Entry` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.ListPayoutSubscriptionsRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.query.<a href="/src/api/resources/query/client/Client.ts">listPayoutSubscriptionsOrg</a>(orgId, { ...params }) -> Payabli.QueryPayoutSubscriptionResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of payout subscriptions for a single org. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.query.listPayoutSubscriptionsOrg(123, {
+    fromRecord: 0,
+    limitRecord: 20,
+    sortBy: "desc(field_name)"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.ListPayoutSubscriptionsOrgRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.query.<a href="/src/api/resources/query/client/Client.ts">listTransactions</a>(entry, { ...params }) -> Payabli.QueryResponseTransactions</code></summary>
 <dl>
 <dd>
@@ -14108,9 +14714,8 @@ await client.query.listSubscriptionsOrg(123, {
 Retrieve a list of transactions for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 By default, this endpoint returns only transactions from the last 60 days. To query transactions outside of this period, include `transactionDate` filters.
 For example, this request parameters filter for transactions between April 01, 2024 and April 09, 2024. 
-``` curl --request GET \
-  --url https://sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59\
-  --header 'requestToken: <api-key>'
+``` curl -X GET https://sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59\
+  -H 'requestToken: <API TOKEN>'
 
   ```
 </dd>
@@ -14197,9 +14802,8 @@ By default, this endpoint returns only transactions from the last 60 days. To qu
 For example, this request parameters filter for transactions between April 01, 2024 and April 09, 2024. 
 
 ```
-curl --request GET \
-  --url https://sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59\
-  --header 'requestToken: <api-key>'
+curl -X GET "https://sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59"\
+  -H 'requestToken: <API TOKEN>'
 
   ```
 </dd>

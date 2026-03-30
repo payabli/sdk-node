@@ -15,6 +15,8 @@ export type { ListNotificationsRequest } from "./ListNotificationsRequest.js";
 export type { ListOrganizationsRequest } from "./ListOrganizationsRequest.js";
 export type { ListPayoutOrgRequest } from "./ListPayoutOrgRequest.js";
 export type { ListPayoutRequest } from "./ListPayoutRequest.js";
+export type { ListPayoutSubscriptionsOrgRequest } from "./ListPayoutSubscriptionsOrgRequest.js";
+export type { ListPayoutSubscriptionsRequest } from "./ListPayoutSubscriptionsRequest.js";
 export type { ListPaypointsRequest } from "./ListPaypointsRequest.js";
 export type { ListSettlementsOrgRequest } from "./ListSettlementsOrgRequest.js";
 export type { ListSettlementsRequest } from "./ListSettlementsRequest.js";

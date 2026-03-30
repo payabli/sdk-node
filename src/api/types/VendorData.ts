@@ -5,17 +5,17 @@ import type * as Payabli from "../index.js";
 export interface VendorData {
     vendorNumber?: Payabli.VendorNumber | undefined;
     AdditionalData?: Payabli.AdditionalData | undefined;
-    /** Vendor's address */
+    /** Vendor's street address. If any address field is provided, this field is required along with `city`, `state`, and `zip`. Allowed characters are letters, numbers, spaces, and `. , */
     address1?: Payabli.AddressNullable | undefined;
-    /** Additional line for vendor's address. */
+    /** Additional line for vendor's address, such as a suite or unit number. Always optional. */
     address2?: Payabli.AddressAddtlNullable | undefined;
     /** Object containing vendor's bank information. */
     billingData?: Payabli.BillingData | undefined;
-    /** Vendor's city. */
+    /** Vendor's city. Required if any address field is provided. */
     city?: string | undefined;
     /** Array of objects describing the vendor's contacts. */
     contacts?: Payabli.ContactsField | undefined;
-    /** Vendor's country. */
+    /** Vendor's country. Must be `US` or `CA`. Defaults to `US` if not provided. */
     country?: string | undefined;
     /** Custom field 1 for vendor */
     customField1?: string | undefined;
@@ -43,9 +43,9 @@ export interface VendorData {
     remitEmail?: Payabli.RemitEmail | undefined;
     remitState?: Payabli.Remitstate | undefined;
     remitZip?: Payabli.Remitzip | undefined;
-    /** Vendor's state. Must be a 2 character state code. */
+    /** Vendor's state or province. Required if any address field is provided. Must be a valid US state abbreviation (such as `CA`, `NY`) or Canadian province abbreviation (such as `ON`, `BC`), depending on the `country` value. */
     state?: string | undefined;
     vendorStatus?: Payabli.Vendorstatus | undefined;
-    /** Vendor's zip code. */
+    /** Vendor's ZIP or postal code. Required if any address field is provided. For US addresses, use five digits (`12345`) or ZIP+4 format (`12345-6789`). */
     zip?: string | undefined;
 }

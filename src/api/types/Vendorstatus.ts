@@ -2,10 +2,12 @@
 
 /**
  * Vendor's status.
- * Allowed status:
+ * Allowed values:
  *
- *   - 0 Inactive
+ *   - `0` Inactive
  *
- *   - 1 Active
+ *   - `1` Active
+ *
+ *   - `-99` Deleted
  */
 export type Vendorstatus = number;

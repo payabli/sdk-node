@@ -9,7 +9,7 @@ import type * as Payabli from "../index.js";
  *         Name1: "Herman's Coatings",
  *         Name2: "Herman's Coating Supply Company, LLC",
  *         EIN: "123456789",
- *         Phone: "212-555-1234",
+ *         Phone: "2125551234",
  *         Email: "example@email.com",
  *         Address1: "123 Ocean Drive",
  *         Address2: "Suite 400",
