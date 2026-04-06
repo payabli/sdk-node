@@ -5,6 +5,7 @@
  *     {
  *         vendorId: 42,
  *         expenseLimit: 500,
+ *         amount: 500,
  *         maxNumberOfUses: 3,
  *         exactAmount: false,
  *         expenseLimitPeriod: "monthly",
@@ -26,24 +27,24 @@ export interface CreateGhostCardRequestBody {
     expenseLimit: number;
     /** Requested expiration date for the card. If not provided, defaults to 30 days from creation. */
     expirationDate?: string;
-    /** Initial load amount for the card. Defaults to `0`. */
-    amount?: number;
-    /** Maximum number of times the card can be used. If `0` or negative, defaults to `9999`. Ignored and set to `1` when `exactAmount` is `true`. */
-    maxNumberOfUses?: number;
+    /** Initial load amount for the card. */
+    amount: number;
+    /** Maximum number of times the card can be used. Ignored and set to `1` when `exactAmount` is `true`. */
+    maxNumberOfUses: number;
     /** When `true`, restricts the card to a single use. `maxNumberOfUses` is automatically set to `1` regardless of any other value provided. */
-    exactAmount?: boolean;
-    /** Time period over which `expenseLimit` applies (for example, `monthly` or `weekly`). No server-side enforcement. */
-    expenseLimitPeriod?: string;
+    exactAmount: boolean;
+    /** Time period over which `expenseLimit` applies (for example, `monthly` or `weekly`). */
+    expenseLimitPeriod: string;
     /** Billing cycle identifier. */
-    billingCycle?: string;
+    billingCycle: string;
     /** Day within the billing cycle. */
-    billingCycleDay?: string;
-    /** Maximum number of transactions allowed per day. Defaults to `0` (unlimited). */
-    dailyTransactionCount?: number;
-    /** Maximum total spend allowed per day. Defaults to `0` (unlimited). */
-    dailyAmountLimit?: number;
-    /** Maximum spend allowed per single transaction. Defaults to `0` (unlimited). */
-    transactionAmountLimit?: number;
+    billingCycleDay: string;
+    /** Maximum number of transactions allowed per day. */
+    dailyTransactionCount: number;
+    /** Maximum total spend allowed per day. */
+    dailyAmountLimit: number;
+    /** Maximum spend allowed per single transaction. */
+    transactionAmountLimit: number;
     /** Merchant Category Code to restrict where the card can be used. Must be a valid MCC if provided. */
     mcc?: string;
     /** Transaction Category Code to restrict where the card can be used. Must be a valid TCC if provided. */

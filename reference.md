@@ -5161,6 +5161,8 @@ await client.export.exportVendorsOrg("csv", 123, {
 Creates a ghost card, a multi-use virtual debit card issued to a vendor for recurring or discretionary spend.
 
 Unlike single-use virtual cards issued as part of a payout transaction, ghost cards aren't tied to a specific payout. They're issued directly to a vendor and can be reused up to a configurable number of times within the card's spending limits.
+
+Only one ghost card can exist per vendor per paypoint. To issue a new card to the same vendor, cancel the existing card first.
 </dd>
 </dl>
 </dd>
@@ -5178,6 +5180,7 @@ Unlike single-use virtual cards issued as part of a payout transaction, ghost ca
 await client.ghostCard.createGhostCard("8cfec2e0fa", {
     vendorId: 42,
     expenseLimit: 500,
+    amount: 500,
     maxNumberOfUses: 3,
     exactAmount: false,
     expenseLimitPeriod: "monthly",

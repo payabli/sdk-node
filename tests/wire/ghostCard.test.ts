@@ -11,6 +11,7 @@ describe("GhostCardClient", () => {
         const rawRequestBody = {
             vendorId: 42,
             expenseLimit: 500,
+            amount: 500,
             maxNumberOfUses: 3,
             exactAmount: false,
             expenseLimitPeriod: "monthly",
@@ -42,6 +43,7 @@ describe("GhostCardClient", () => {
         const response = await client.ghostCard.createGhostCard("8cfec2e0fa", {
             vendorId: 42,
             expenseLimit: 500,
+            amount: 500,
             maxNumberOfUses: 3,
             exactAmount: false,
             expenseLimitPeriod: "monthly",
@@ -69,7 +71,19 @@ describe("GhostCardClient", () => {
     test("CreateGhostCard (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { vendorId: 1000000, expenseLimit: 1.1 };
+        const rawRequestBody = {
+            vendorId: 1000000,
+            expenseLimit: 1.1,
+            amount: 1.1,
+            maxNumberOfUses: 1,
+            exactAmount: true,
+            expenseLimitPeriod: "expenseLimitPeriod",
+            billingCycle: "billingCycle",
+            billingCycleDay: "billingCycleDay",
+            dailyTransactionCount: 1,
+            dailyAmountLimit: 1.1,
+            transactionAmountLimit: 1,
+        };
         const rawResponseBody = { key: "value" };
 
         server
@@ -85,6 +99,15 @@ describe("GhostCardClient", () => {
             return await client.ghostCard.createGhostCard("entry", {
                 vendorId: 1000000,
                 expenseLimit: 1.1,
+                amount: 1.1,
+                maxNumberOfUses: 1,
+                exactAmount: true,
+                expenseLimitPeriod: "expenseLimitPeriod",
+                billingCycle: "billingCycle",
+                billingCycleDay: "billingCycleDay",
+                dailyTransactionCount: 1,
+                dailyAmountLimit: 1.1,
+                transactionAmountLimit: 1,
             });
         }).rejects.toThrow(Payabli.BadRequestError);
     });
@@ -92,7 +115,19 @@ describe("GhostCardClient", () => {
     test("CreateGhostCard (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { vendorId: 1000000, expenseLimit: 1.1 };
+        const rawRequestBody = {
+            vendorId: 1000000,
+            expenseLimit: 1.1,
+            amount: 1.1,
+            maxNumberOfUses: 1,
+            exactAmount: true,
+            expenseLimitPeriod: "expenseLimitPeriod",
+            billingCycle: "billingCycle",
+            billingCycleDay: "billingCycleDay",
+            dailyTransactionCount: 1,
+            dailyAmountLimit: 1.1,
+            transactionAmountLimit: 1,
+        };
         const rawResponseBody = { key: "value" };
 
         server
@@ -108,6 +143,15 @@ describe("GhostCardClient", () => {
             return await client.ghostCard.createGhostCard("entry", {
                 vendorId: 1000000,
                 expenseLimit: 1.1,
+                amount: 1.1,
+                maxNumberOfUses: 1,
+                exactAmount: true,
+                expenseLimitPeriod: "expenseLimitPeriod",
+                billingCycle: "billingCycle",
+                billingCycleDay: "billingCycleDay",
+                dailyTransactionCount: 1,
+                dailyAmountLimit: 1.1,
+                transactionAmountLimit: 1,
             });
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
@@ -115,7 +159,19 @@ describe("GhostCardClient", () => {
     test("CreateGhostCard (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { vendorId: 1000000, expenseLimit: 1.1 };
+        const rawRequestBody = {
+            vendorId: 1000000,
+            expenseLimit: 1.1,
+            amount: 1.1,
+            maxNumberOfUses: 1,
+            exactAmount: true,
+            expenseLimitPeriod: "expenseLimitPeriod",
+            billingCycle: "billingCycle",
+            billingCycleDay: "billingCycleDay",
+            dailyTransactionCount: 1,
+            dailyAmountLimit: 1.1,
+            transactionAmountLimit: 1,
+        };
         const rawResponseBody = { key: "value" };
 
         server
@@ -131,6 +187,15 @@ describe("GhostCardClient", () => {
             return await client.ghostCard.createGhostCard("entry", {
                 vendorId: 1000000,
                 expenseLimit: 1.1,
+                amount: 1.1,
+                maxNumberOfUses: 1,
+                exactAmount: true,
+                expenseLimitPeriod: "expenseLimitPeriod",
+                billingCycle: "billingCycle",
+                billingCycleDay: "billingCycleDay",
+                dailyTransactionCount: 1,
+                dailyAmountLimit: 1.1,
+                transactionAmountLimit: 1,
             });
         }).rejects.toThrow(Payabli.InternalServerError);
     });
@@ -138,7 +203,19 @@ describe("GhostCardClient", () => {
     test("CreateGhostCard (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { vendorId: 1000000, expenseLimit: 1.1 };
+        const rawRequestBody = {
+            vendorId: 1000000,
+            expenseLimit: 1.1,
+            amount: 1.1,
+            maxNumberOfUses: 1,
+            exactAmount: true,
+            expenseLimitPeriod: "expenseLimitPeriod",
+            billingCycle: "billingCycle",
+            billingCycleDay: "billingCycleDay",
+            dailyTransactionCount: 1,
+            dailyAmountLimit: 1.1,
+            transactionAmountLimit: 1,
+        };
         const rawResponseBody = { responseText: "responseText" };
 
         server
@@ -154,6 +231,15 @@ describe("GhostCardClient", () => {
             return await client.ghostCard.createGhostCard("entry", {
                 vendorId: 1000000,
                 expenseLimit: 1.1,
+                amount: 1.1,
+                maxNumberOfUses: 1,
+                exactAmount: true,
+                expenseLimitPeriod: "expenseLimitPeriod",
+                billingCycle: "billingCycle",
+                billingCycleDay: "billingCycleDay",
+                dailyTransactionCount: 1,
+                dailyAmountLimit: 1.1,
+                transactionAmountLimit: 1,
             });
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });

@@ -10,6 +10,7 @@ The Payabli TypeScript library provides convenient access to the Payabli APIs fr
 - [Documentation](#documentation)
 - [Installation](#installation)
 - [Reference](#reference)
+- [Changelog](#changelog)
 - [Usage](#usage)
 - [Environments](#environments)
 - [Request and Response Types](#request-and-response-types)
@@ -41,6 +42,11 @@ npm i -s @payabli/sdk-node
 ## Reference
 
 A full reference for this library is available [here](https://github.com/payabli/sdk-node/blob/HEAD/./reference.md).
+
+## Changelog
+
+The changelog for the official Payabli TypeScript SDK is available on the Payabli Docs site. See [TypeScript SDK Changelog](https://docs.payabli.com/changelog/typescript-sdk) for more information.
+
 
 ## Usage
 
