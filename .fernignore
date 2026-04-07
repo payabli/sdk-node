@@ -2,3 +2,4 @@
 src/api/resources/query/types/Entry.ts
 tests/wire/query.test.ts
 LICENSE.md
+CONTRIBUTING.md
