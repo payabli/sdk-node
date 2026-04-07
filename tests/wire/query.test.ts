@@ -167,6 +167,7 @@ describe("QueryClient", () => {
                 pageidentifier: null,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/batchDetails/8cfec329267")
@@ -364,6 +365,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/batchDetails/entry")
@@ -382,6 +384,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/batchDetails/entry")
@@ -400,6 +403,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/batchDetails/entry")
@@ -418,6 +422,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/batchDetails/entry")
@@ -431,339 +436,341 @@ describe("QueryClient", () => {
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
-    // test("ListBatchDetailsOrg (1)", async () => {
-    //     const server = mockServerPool.createServer();
-    //     const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-    //
-    //     const rawResponseBody = {
-    //         Records: [
-    //             {
-    //                 PaymentSettlementStatus: 1,
-    //                 BatchStatus: 1,
-    //                 ParentOrgId: 123,
-    //                 DeviceId: "",
-    //                 RetrievalId: 0,
-    //                 ChargebackId: 0,
-    //                 AchHolderType: "personal",
-    //                 AchSecCode: "PPD",
-    //                 ConnectorName: "DefaultConnector",
-    //                 EntrypageId: 0,
-    //                 FeeAmount: 0,
-    //                 OrgId: 123,
-    //                 PayorId: 2707,
-    //                 PaypointId: 123,
-    //                 PendingFeeAmount: 0,
-    //                 RefundId: 0,
-    //                 ReturnedId: 0,
-    //                 splitFundingInstructions: [],
-    //                 TotalAmount: 2,
-    //                 CfeeTransactions: [],
-    //                 Id: 25048,
-    //                 Method: "ach",
-    //                 SettledAmount: 0.5,
-    //                 Type: "credit",
-    //                 BatchNumber: "batch-100-20-2024",
-    //                 BatchAmount: 32,
-    //                 PaymentTransId: "245-9e4072eef77e45979ea0e49f680000X",
-    //                 PaymentTransStatus: 1,
-    //                 ScheduleReference: 0,
-    //                 GatewayTransId: "TRN_XXXXX",
-    //                 OrderId: "",
-    //                 TransMethod: "ach",
-    //                 PaymentData: {
-    //                     AccountType: "Checking",
-    //                     HolderName: "Lydia Marshall",
-    //                     MaskedAccount: "1XXXXXX5678",
-    //                     paymentDetails: {
-    //                         categories: [{ amount: 1000, label: "Deposit" }],
-    //                         currency: "USD",
-    //                         serviceFee: 0,
-    //                         splitFunding: [{}],
-    //                         totalAmount: 2,
-    //                     },
-    //                 },
-    //                 NetAmount: 2,
-    //                 Operation: "Sale",
-    //                 Category: "auth",
-    //                 Source: "api",
-    //                 Status: 1,
-    //                 TransactionTime: "2024-11-19T15:58:01Z",
-    //                 Customer: {
-    //                     BillingAddress1: "100 Golden Ridge Drive",
-    //                     BillingAddress2: "STE 100",
-    //                     BillingCity: "Mendota",
-    //                     BillingCountry: "US",
-    //                     BillingEmail: "lydia@example.com",
-    //                     BillingPhone: "+12345678",
-    //                     BillingState: "VA",
-    //                     BillingZip: "20147",
-    //                     customerId: 2707,
-    //                     CustomerNumber: "901102",
-    //                     customerStatus: 1,
-    //                     FirstName: "Lydia",
-    //                     LastName: "Marshall",
-    //                 },
-    //                 SettlementDate: "2024-11-20T00:00:00Z",
-    //                 DepositDate: "2024-11-22T00:00:00Z",
-    //                 ExpectedDepositDate: "2024-11-22T00:00:00Z",
-    //                 MaskedAccount: "1XXXXXX5678",
-    //                 CreatedAt: "2024-11-19T15:58:01Z",
-    //                 PaypointLegalname: "Gruzya Adventure Outfitters, LLC",
-    //                 ResponseData: {
-    //                     authcode: " ",
-    //                     avsresponse: " ",
-    //                     avsresponse_text: "",
-    //                     cvvresponse: " ",
-    //                     cvvresponse_text: " ",
-    //                     emv_auth_response_data: " ",
-    //                     response: "Success",
-    //                     response_code: "100",
-    //                     response_code_text: "Transaction was approved.",
-    //                     responsetext: "CAPTURED",
-    //                     resultCode: "A0000",
-    //                     resultCodeText: "Approved",
-    //                     transactionid: "TRN_xwCAjQorWAYX1nAhAoHZVfN8iYHbI0",
-    //                 },
-    //                 PaypointDbaname: "Gruzya Adventure Outfitters, LLC",
-    //                 ParentOrgName: "Pilgrim Planner",
-    //                 PaypointEntryname: "7f1a3816XX",
-    //                 TransactionEvents: [
-    //                     { EventTime: "2024-11-19T15:57:40Z", TransEvent: "Created" },
-    //                     {
-    //                         EventData: {
-    //                             account_id: "TRA_XXXXX",
-    //                             account_name: "123456",
-    //                             action: {
-    //                                 app_id: "XXXXX",
-    //                                 app_name: "PayAbli",
-    //                                 id: "ACT_XXXXX",
-    //                                 result_code: "SUCCESS",
-    //                                 time_created: "2024-11-19T20:58:01.583Z",
-    //                                 type: "AUTHORIZE",
-    //                             },
-    //                             amount: "200",
-    //                             batch_id: "",
-    //                             capture_mode: "AUTO",
-    //                             channel: "CNP",
-    //                             country: "US",
-    //                             currency: "USD",
-    //                             fees: { amount: "0", rate: "0.00", total_amount: "0" },
-    //                             id: "TRN_XXXXX",
-    //                             merchant_amount: "200",
-    //                             merchant_id: "MER_XXXXX",
-    //                             merchant_name: "Henriette97",
-    //                             order: { reference: "" },
-    //                             payment_method: {
-    //                                 bank_transfer: {
-    //                                     account_type: "CHECKING",
-    //                                     bank: { name: "" },
-    //                                     masked_account_number_last4: "XXXX5678",
-    //                                 },
-    //                                 entry_mode: "ECOM",
-    //                                 message: "Success",
-    //                                 narrative: "Lydia Marshall",
-    //                                 result: "00",
-    //                             },
-    //                             reference: "245-XXXXX",
-    //                             status: "CAPTURED",
-    //                             time_created: "2024-11-19T20:58:01.583Z",
-    //                             type: "SALE",
-    //                         },
-    //                         EventTime: "2024-11-19T20:58:01Z",
-    //                         TransEvent: "Approved",
-    //                     },
-    //                     { EventTime: "2024-11-20T03:05:10Z", TransEvent: "ClosedBatch" },
-    //                 ],
-    //                 externalPaypointID: "ext-paypoint-123",
-    //                 isHold: 0,
-    //             },
-    //         ],
-    //         Summary: {
-    //             heldAmount: 3.7,
-    //             pageSize: 0,
-    //             refunds: -3521.85,
-    //             serviceFees: 852.48,
-    //             totalAmount: 61645.74,
-    //             totalNetAmount: 61645.74,
-    //             totalPages: 21872,
-    //             totalRecords: 21872,
-    //             transferAmount: 0,
-    //         },
-    //     };
-    //     server
-    //         .mockEndpoint()
-    //         .get("/Query/batchDetails/org/123")
-    //         .respondWith()
-    //         .statusCode(200)
-    //         .jsonBody(rawResponseBody)
-    //         .build();
-    //
-    //     const response = await client.query.listBatchDetailsOrg(123, {
-    //         fromRecord: 251,
-    //         limitRecord: 0,
-    //         sortBy: "desc(field_name)",
-    //     });
-    //     expect(response).toEqual({
-    //         Records: [
-    //             {
-    //                 Id: 25048,
-    //                 Method: "ach",
-    //                 SettledAmount: 0.5,
-    //                 Type: "credit",
-    //                 BatchNumber: "batch-100-20-2024",
-    //                 BatchAmount: 32,
-    //                 PaymentTransId: "245-9e4072eef77e45979ea0e49f680000X",
-    //                 PaymentTransStatus: 1,
-    //                 ScheduleReference: 0,
-    //                 GatewayTransId: "TRN_XXXXX",
-    //                 OrderId: "",
-    //                 TransMethod: "ach",
-    //                 PaymentData: {
-    //                     AccountType: "Checking",
-    //                     HolderName: "Lydia Marshall",
-    //                     MaskedAccount: "1XXXXXX5678",
-    //                     paymentDetails: {
-    //                         categories: [
-    //                             {
-    //                                 amount: 1000,
-    //                                 label: "Deposit",
-    //                             },
-    //                         ],
-    //                         currency: "USD",
-    //                         serviceFee: 0,
-    //                         splitFunding: [{}],
-    //                         totalAmount: 2,
-    //                     },
-    //                 },
-    //                 NetAmount: 2,
-    //                 Operation: "Sale",
-    //                 Category: "auth",
-    //                 Source: "api",
-    //                 Status: 1,
-    //                 TransactionTime: "2024-11-19T15:58:01Z",
-    //                 Customer: {
-    //                     BillingAddress1: "100 Golden Ridge Drive",
-    //                     BillingAddress2: "STE 100",
-    //                     BillingCity: "Mendota",
-    //                     BillingCountry: "US",
-    //                     BillingEmail: "lydia@example.com",
-    //                     BillingPhone: "+12345678",
-    //                     BillingState: "VA",
-    //                     BillingZip: "20147",
-    //                     customerId: 2707,
-    //                     CustomerNumber: "901102",
-    //                     customerStatus: 1,
-    //                     FirstName: "Lydia",
-    //                     LastName: "Marshall",
-    //                 },
-    //                 SettlementDate: "2024-11-20T00:00:00Z",
-    //                 DepositDate: "2024-11-22T00:00:00Z",
-    //                 ExpectedDepositDate: "2024-11-22T00:00:00Z",
-    //                 MaskedAccount: "1XXXXXX5678",
-    //                 CreatedAt: "2024-11-19T15:58:01Z",
-    //                 PaypointLegalname: "Gruzya Adventure Outfitters, LLC",
-    //                 ResponseData: {
-    //                     authcode: " ",
-    //                     avsresponse: " ",
-    //                     avsresponse_text: "",
-    //                     cvvresponse: " ",
-    //                     cvvresponse_text: " ",
-    //                     emv_auth_response_data: " ",
-    //                     response: "Success",
-    //                     response_code: "100",
-    //                     response_code_text: "Transaction was approved.",
-    //                     responsetext: "CAPTURED",
-    //                     resultCode: "A0000",
-    //                     resultCodeText: "Approved",
-    //                     transactionid: "TRN_xwCAjQorWAYX1nAhAoHZVfN8iYHbI0",
-    //                 },
-    //                 PaypointDbaname: "Gruzya Adventure Outfitters, LLC",
-    //                 ParentOrgName: "Pilgrim Planner",
-    //                 PaypointEntryname: "7f1a3816XX",
-    //                 TransactionEvents: [
-    //                     {
-    //                         EventTime: "2024-11-19T15:57:40Z",
-    //                         TransEvent: "Created",
-    //                     },
-    //                     {
-    //                         EventData: {
-    //                             account_id: "TRA_XXXXX",
-    //                             account_name: "123456",
-    //                             action: {
-    //                                 app_id: "XXXXX",
-    //                                 app_name: "PayAbli",
-    //                                 id: "ACT_XXXXX",
-    //                                 result_code: "SUCCESS",
-    //                                 time_created: "2024-11-19T20:58:01.583Z",
-    //                                 type: "AUTHORIZE",
-    //                             },
-    //                             amount: "200",
-    //                             batch_id: "",
-    //                             capture_mode: "AUTO",
-    //                             channel: "CNP",
-    //                             country: "US",
-    //                             currency: "USD",
-    //                             fees: {
-    //                                 amount: "0",
-    //                                 rate: "0.00",
-    //                                 total_amount: "0",
-    //                             },
-    //                             id: "TRN_XXXXX",
-    //                             merchant_amount: "200",
-    //                             merchant_id: "MER_XXXXX",
-    //                             merchant_name: "Henriette97",
-    //                             order: {
-    //                                 reference: "",
-    //                             },
-    //                             payment_method: {
-    //                                 bank_transfer: {
-    //                                     account_type: "CHECKING",
-    //                                     bank: {
-    //                                         name: "",
-    //                                     },
-    //                                     masked_account_number_last4: "XXXX5678",
-    //                                 },
-    //                                 entry_mode: "ECOM",
-    //                                 message: "Success",
-    //                                 narrative: "Lydia Marshall",
-    //                                 result: "00",
-    //                             },
-    //                             reference: "245-XXXXX",
-    //                             status: "CAPTURED",
-    //                             time_created: "2024-11-19T20:58:01.583Z",
-    //                             type: "SALE",
-    //                         },
-    //                         EventTime: "2024-11-19T20:58:01Z",
-    //                         TransEvent: "Approved",
-    //                     },
-    //                     {
-    //                         EventTime: "2024-11-20T03:05:10Z",
-    //                         TransEvent: "ClosedBatch",
-    //                     },
-    //                 ],
-    //                 externalPaypointID: "ext-paypoint-123",
-    //                 isHold: 0,
-    //             },
-    //         ],
-    //         Summary: {
-    //             heldAmount: 3.7,
-    //             pageSize: 0,
-    //             refunds: -3521.85,
-    //             serviceFees: 852.48,
-    //             totalAmount: 61645.74,
-    //             totalNetAmount: 61645.74,
-    //             totalPages: 21872,
-    //             totalRecords: 21872,
-    //             transferAmount: 0,
-    //         },
-    //     });
-    // });
+    test("ListBatchDetailsOrg (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            Records: [
+                {
+                    PaymentSettlementStatus: 1,
+                    BatchStatus: 1,
+                    ParentOrgId: 123,
+                    DeviceId: "",
+                    RetrievalId: 0,
+                    ChargebackId: 0,
+                    AchHolderType: "personal",
+                    AchSecCode: "PPD",
+                    ConnectorName: "DefaultConnector",
+                    EntrypageId: 0,
+                    FeeAmount: 0,
+                    OrgId: 123,
+                    PayorId: 2707,
+                    PaypointId: 123,
+                    PendingFeeAmount: 0,
+                    RefundId: 0,
+                    ReturnedId: 0,
+                    splitFundingInstructions: [],
+                    TotalAmount: 2,
+                    CfeeTransactions: [],
+                    Id: 25048,
+                    Method: "ach",
+                    SettledAmount: 0.5,
+                    Type: "credit",
+                    BatchNumber: "batch-100-20-2024",
+                    BatchAmount: 32,
+                    PaymentTransId: "245-9e4072eef77e45979ea0e49f680000X",
+                    PaymentTransStatus: 1,
+                    ScheduleReference: 0,
+                    GatewayTransId: "TRN_XXXXX",
+                    OrderId: "",
+                    TransMethod: "ach",
+                    PaymentData: {
+                        AccountType: "Checking",
+                        HolderName: "Lydia Marshall",
+                        MaskedAccount: "1XXXXXX5678",
+                        paymentDetails: {
+                            categories: [{ amount: 1000, label: "Deposit" }],
+                            currency: "USD",
+                            serviceFee: 0,
+                            splitFunding: [{}],
+                            totalAmount: 2,
+                        },
+                    },
+                    NetAmount: 2,
+                    Operation: "Sale",
+                    Category: "auth",
+                    Source: "api",
+                    Status: 1,
+                    TransactionTime: "2024-11-19T15:58:01Z",
+                    Customer: {
+                        BillingAddress1: "100 Golden Ridge Drive",
+                        BillingAddress2: "STE 100",
+                        BillingCity: "Mendota",
+                        BillingCountry: "US",
+                        BillingEmail: "lydia@example.com",
+                        BillingPhone: "+12345678",
+                        BillingState: "VA",
+                        BillingZip: "20147",
+                        customerId: 2707,
+                        CustomerNumber: "901102",
+                        customerStatus: 1,
+                        FirstName: "Lydia",
+                        LastName: "Marshall",
+                    },
+                    SettlementDate: "2024-11-20T00:00:00Z",
+                    DepositDate: "2024-11-22T00:00:00Z",
+                    ExpectedDepositDate: "2024-11-22T00:00:00Z",
+                    MaskedAccount: "1XXXXXX5678",
+                    CreatedAt: "2024-11-19T15:58:01Z",
+                    PaypointLegalname: "Gruzya Adventure Outfitters, LLC",
+                    ResponseData: {
+                        authcode: " ",
+                        avsresponse: " ",
+                        avsresponse_text: "",
+                        cvvresponse: " ",
+                        cvvresponse_text: " ",
+                        emv_auth_response_data: " ",
+                        response: "Success",
+                        response_code: "100",
+                        response_code_text: "Transaction was approved.",
+                        responsetext: "CAPTURED",
+                        resultCode: "A0000",
+                        resultCodeText: "Approved",
+                        transactionid: "TRN_xwCAjQorWAYX1nAhAoHZVfN8iYHbI0",
+                    },
+                    PaypointDbaname: "Gruzya Adventure Outfitters, LLC",
+                    ParentOrgName: "Pilgrim Planner",
+                    PaypointEntryname: "7f1a3816XX",
+                    TransactionEvents: [
+                        { EventTime: "2024-11-19T15:57:40Z", TransEvent: "Created" },
+                        {
+                            EventData: {
+                                account_id: "TRA_XXXXX",
+                                account_name: "123456",
+                                action: {
+                                    app_id: "XXXXX",
+                                    app_name: "PayAbli",
+                                    id: "ACT_XXXXX",
+                                    result_code: "SUCCESS",
+                                    time_created: "2024-11-19T20:58:01.583Z",
+                                    type: "AUTHORIZE",
+                                },
+                                amount: "200",
+                                batch_id: "",
+                                capture_mode: "AUTO",
+                                channel: "CNP",
+                                country: "US",
+                                currency: "USD",
+                                fees: { amount: "0", rate: "0.00", total_amount: "0" },
+                                id: "TRN_XXXXX",
+                                merchant_amount: "200",
+                                merchant_id: "MER_XXXXX",
+                                merchant_name: "Henriette97",
+                                order: { reference: "" },
+                                payment_method: {
+                                    bank_transfer: {
+                                        account_type: "CHECKING",
+                                        bank: { name: "" },
+                                        masked_account_number_last4: "XXXX5678",
+                                    },
+                                    entry_mode: "ECOM",
+                                    message: "Success",
+                                    narrative: "Lydia Marshall",
+                                    result: "00",
+                                },
+                                reference: "245-XXXXX",
+                                status: "CAPTURED",
+                                time_created: "2024-11-19T20:58:01.583Z",
+                                type: "SALE",
+                            },
+                            EventTime: "2024-11-19T20:58:01Z",
+                            TransEvent: "Approved",
+                        },
+                        { EventTime: "2024-11-20T03:05:10Z", TransEvent: "ClosedBatch" },
+                    ],
+                    externalPaypointID: "ext-paypoint-123",
+                    isHold: 0,
+                },
+            ],
+            Summary: {
+                heldAmount: 3.7,
+                pageSize: 0,
+                refunds: -3521.85,
+                serviceFees: 852.48,
+                totalAmount: 61645.74,
+                totalNetAmount: 61645.74,
+                totalPages: 21872,
+                totalRecords: 21872,
+                transferAmount: 0,
+            },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/Query/batchDetails/org/123")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.query.listBatchDetailsOrg(123, {
+            fromRecord: 251,
+            limitRecord: 0,
+            sortBy: "desc(field_name)",
+        });
+        expect(response).toEqual({
+            Records: [
+                {
+                    Id: 25048,
+                    Method: "ach",
+                    SettledAmount: 0.5,
+                    Type: "credit",
+                    BatchNumber: "batch-100-20-2024",
+                    BatchAmount: 32,
+                    PaymentTransId: "245-9e4072eef77e45979ea0e49f680000X",
+                    PaymentTransStatus: 1,
+                    ScheduleReference: 0,
+                    GatewayTransId: "TRN_XXXXX",
+                    OrderId: "",
+                    TransMethod: "ach",
+                    PaymentData: {
+                        AccountType: "Checking",
+                        HolderName: "Lydia Marshall",
+                        MaskedAccount: "1XXXXXX5678",
+                        paymentDetails: {
+                            categories: [
+                                {
+                                    amount: 1000,
+                                    label: "Deposit",
+                                },
+                            ],
+                            currency: "USD",
+                            serviceFee: 0,
+                            splitFunding: [{}],
+                            totalAmount: 2,
+                        },
+                    },
+                    NetAmount: 2,
+                    Operation: "Sale",
+                    Category: "auth",
+                    Source: "api",
+                    Status: 1,
+                    TransactionTime: "2024-11-19T15:58:01Z",
+                    Customer: {
+                        BillingAddress1: "100 Golden Ridge Drive",
+                        BillingAddress2: "STE 100",
+                        BillingCity: "Mendota",
+                        BillingCountry: "US",
+                        BillingEmail: "lydia@example.com",
+                        BillingPhone: "+12345678",
+                        BillingState: "VA",
+                        BillingZip: "20147",
+                        customerId: 2707,
+                        CustomerNumber: "901102",
+                        customerStatus: 1,
+                        FirstName: "Lydia",
+                        LastName: "Marshall",
+                    },
+                    SettlementDate: "2024-11-20T00:00:00Z",
+                    DepositDate: "2024-11-22T00:00:00Z",
+                    ExpectedDepositDate: "2024-11-22T00:00:00Z",
+                    MaskedAccount: "1XXXXXX5678",
+                    CreatedAt: "2024-11-19T15:58:01Z",
+                    PaypointLegalname: "Gruzya Adventure Outfitters, LLC",
+                    ResponseData: {
+                        authcode: " ",
+                        avsresponse: " ",
+                        avsresponse_text: "",
+                        cvvresponse: " ",
+                        cvvresponse_text: " ",
+                        emv_auth_response_data: " ",
+                        response: "Success",
+                        response_code: "100",
+                        response_code_text: "Transaction was approved.",
+                        responsetext: "CAPTURED",
+                        resultCode: "A0000",
+                        resultCodeText: "Approved",
+                        transactionid: "TRN_xwCAjQorWAYX1nAhAoHZVfN8iYHbI0",
+                    },
+                    PaypointDbaname: "Gruzya Adventure Outfitters, LLC",
+                    ParentOrgName: "Pilgrim Planner",
+                    PaypointEntryname: "7f1a3816XX",
+                    TransactionEvents: [
+                        {
+                            EventTime: "2024-11-19T15:57:40Z",
+                            TransEvent: "Created",
+                        },
+                        {
+                            EventData: {
+                                account_id: "TRA_XXXXX",
+                                account_name: "123456",
+                                action: {
+                                    app_id: "XXXXX",
+                                    app_name: "PayAbli",
+                                    id: "ACT_XXXXX",
+                                    result_code: "SUCCESS",
+                                    time_created: "2024-11-19T20:58:01.583Z",
+                                    type: "AUTHORIZE",
+                                },
+                                amount: "200",
+                                batch_id: "",
+                                capture_mode: "AUTO",
+                                channel: "CNP",
+                                country: "US",
+                                currency: "USD",
+                                fees: {
+                                    amount: "0",
+                                    rate: "0.00",
+                                    total_amount: "0",
+                                },
+                                id: "TRN_XXXXX",
+                                merchant_amount: "200",
+                                merchant_id: "MER_XXXXX",
+                                merchant_name: "Henriette97",
+                                order: {
+                                    reference: "",
+                                },
+                                payment_method: {
+                                    bank_transfer: {
+                                        account_type: "CHECKING",
+                                        bank: {
+                                            name: "",
+                                        },
+                                        masked_account_number_last4: "XXXX5678",
+                                    },
+                                    entry_mode: "ECOM",
+                                    message: "Success",
+                                    narrative: "Lydia Marshall",
+                                    result: "00",
+                                },
+                                reference: "245-XXXXX",
+                                status: "CAPTURED",
+                                time_created: "2024-11-19T20:58:01.583Z",
+                                type: "SALE",
+                            },
+                            EventTime: "2024-11-19T20:58:01Z",
+                            TransEvent: "Approved",
+                        },
+                        {
+                            EventTime: "2024-11-20T03:05:10Z",
+                            TransEvent: "ClosedBatch",
+                        },
+                    ],
+                    externalPaypointID: "ext-paypoint-123",
+                    isHold: 0,
+                },
+            ],
+            Summary: {
+                heldAmount: 3.7,
+                pageSize: 0,
+                refunds: -3521.85,
+                serviceFees: 852.48,
+                totalAmount: 61645.74,
+                totalNetAmount: 61645.74,
+                totalPages: 21872,
+                totalRecords: 21872,
+                transferAmount: 0,
+            },
+        });
+    });
 
     test("ListBatchDetailsOrg (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/batchDetails/org/1")
@@ -782,6 +789,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/batchDetails/org/1")
@@ -800,6 +808,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/batchDetails/org/1")
@@ -818,6 +827,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/batchDetails/org/1")
@@ -864,7 +874,7 @@ describe("QueryClient", () => {
                     ParentOrgId: 105,
                     externalPaypointID: null,
                     EntryName: "47f4f8c7e1",
-                    BankName: null,
+                    BankName: "Riverdale Community Bank",
                     BatchType: 0,
                     Method: "combined",
                     ExpectedDepositDate: "2025-08-26T00:00:00Z",
@@ -896,7 +906,7 @@ describe("QueryClient", () => {
                     ParentOrgId: 105,
                     externalPaypointID: null,
                     EntryName: "d193cf9a46",
-                    BankName: null,
+                    BankName: "Riverdale Community Bank",
                     BatchType: 0,
                     Method: "card",
                     ExpectedDepositDate: "2023-04-19T00:00:00Z",
@@ -936,7 +946,7 @@ describe("QueryClient", () => {
                     ParentOrgId: 105,
                     externalPaypointID: null,
                     EntryName: "d193cf9a46",
-                    BankName: null,
+                    BankName: "Riverdale Community Bank",
                     BatchType: 0,
                     Method: "card",
                     ExpectedDepositDate: "2023-04-15T00:00:00Z",
@@ -961,6 +971,7 @@ describe("QueryClient", () => {
                 },
             ],
         };
+
         server
             .mockEndpoint()
             .get("/Query/batches/8cfec329267")
@@ -1013,7 +1024,7 @@ describe("QueryClient", () => {
                     ParentOrgId: 105,
                     externalPaypointID: null,
                     EntryName: "47f4f8c7e1",
-                    BankName: null,
+                    BankName: "Riverdale Community Bank",
                     BatchType: 0,
                     Method: "combined",
                     ExpectedDepositDate: "2025-08-26T00:00:00Z",
@@ -1045,7 +1056,7 @@ describe("QueryClient", () => {
                     ParentOrgId: 105,
                     externalPaypointID: null,
                     EntryName: "d193cf9a46",
-                    BankName: null,
+                    BankName: "Riverdale Community Bank",
                     BatchType: 0,
                     Method: "card",
                     ExpectedDepositDate: "2023-04-19T00:00:00Z",
@@ -1089,7 +1100,7 @@ describe("QueryClient", () => {
                     ParentOrgId: 105,
                     externalPaypointID: null,
                     EntryName: "d193cf9a46",
-                    BankName: null,
+                    BankName: "Riverdale Community Bank",
                     BatchType: 0,
                     Method: "card",
                     ExpectedDepositDate: "2023-04-15T00:00:00Z",
@@ -1121,6 +1132,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/batches/entry")
@@ -1139,6 +1151,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/batches/entry")
@@ -1157,6 +1170,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/batches/entry")
@@ -1175,6 +1189,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/batches/entry")
@@ -1221,7 +1236,7 @@ describe("QueryClient", () => {
                     ParentOrgId: 105,
                     externalPaypointID: null,
                     EntryName: "47f4f8c7e1",
-                    BankName: null,
+                    BankName: "Riverdale Community Bank",
                     BatchType: 0,
                     Method: "combined",
                     ExpectedDepositDate: "2025-08-26T00:00:00Z",
@@ -1253,7 +1268,7 @@ describe("QueryClient", () => {
                     ParentOrgId: 105,
                     externalPaypointID: null,
                     EntryName: "d193cf9a46",
-                    BankName: null,
+                    BankName: "Riverdale Community Bank",
                     BatchType: 0,
                     Method: "card",
                     ExpectedDepositDate: "2023-04-19T00:00:00Z",
@@ -1293,7 +1308,7 @@ describe("QueryClient", () => {
                     ParentOrgId: 105,
                     externalPaypointID: null,
                     EntryName: "d193cf9a46",
-                    BankName: null,
+                    BankName: "Riverdale Community Bank",
                     BatchType: 0,
                     Method: "card",
                     ExpectedDepositDate: "2023-04-15T00:00:00Z",
@@ -1318,6 +1333,7 @@ describe("QueryClient", () => {
                 },
             ],
         };
+
         server
             .mockEndpoint()
             .get("/Query/batches/org/123")
@@ -1370,7 +1386,7 @@ describe("QueryClient", () => {
                     ParentOrgId: 105,
                     externalPaypointID: null,
                     EntryName: "47f4f8c7e1",
-                    BankName: null,
+                    BankName: "Riverdale Community Bank",
                     BatchType: 0,
                     Method: "combined",
                     ExpectedDepositDate: "2025-08-26T00:00:00Z",
@@ -1402,7 +1418,7 @@ describe("QueryClient", () => {
                     ParentOrgId: 105,
                     externalPaypointID: null,
                     EntryName: "d193cf9a46",
-                    BankName: null,
+                    BankName: "Riverdale Community Bank",
                     BatchType: 0,
                     Method: "card",
                     ExpectedDepositDate: "2023-04-19T00:00:00Z",
@@ -1446,7 +1462,7 @@ describe("QueryClient", () => {
                     ParentOrgId: 105,
                     externalPaypointID: null,
                     EntryName: "d193cf9a46",
-                    BankName: null,
+                    BankName: "Riverdale Community Bank",
                     BatchType: 0,
                     Method: "card",
                     ExpectedDepositDate: "2023-04-15T00:00:00Z",
@@ -1478,6 +1494,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/batches/org/1")
@@ -1496,6 +1513,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/batches/org/1")
@@ -1514,6 +1532,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/batches/org/1")
@@ -1532,6 +1551,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/batches/org/1")
@@ -1604,6 +1624,7 @@ describe("QueryClient", () => {
                 totalRecords: 46,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/batchesOut/8cfec329267")
@@ -1679,6 +1700,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/batchesOut/entry")
@@ -1697,6 +1719,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/batchesOut/entry")
@@ -1715,6 +1738,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/batchesOut/entry")
@@ -1733,6 +1757,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/batchesOut/entry")
@@ -1805,6 +1830,7 @@ describe("QueryClient", () => {
                 totalRecords: 46,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/batchesOut/org/123")
@@ -1880,6 +1906,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/batchesOut/org/1")
@@ -1898,6 +1925,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/batchesOut/org/1")
@@ -1916,6 +1944,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/batchesOut/org/1")
@@ -1934,6 +1963,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/batchesOut/org/1")
@@ -2091,6 +2121,7 @@ describe("QueryClient", () => {
                 totalRecords: 1,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/chargebacks/8cfec329267")
@@ -2260,6 +2291,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/chargebacks/entry")
@@ -2278,6 +2310,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/chargebacks/entry")
@@ -2296,6 +2329,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/chargebacks/entry")
@@ -2314,6 +2348,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/chargebacks/entry")
@@ -2379,6 +2414,7 @@ describe("QueryClient", () => {
                 totalRecords: 2,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/chargebacks/org/123")
@@ -2451,6 +2487,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/chargebacks/org/1")
@@ -2469,6 +2506,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/chargebacks/org/1")
@@ -2487,6 +2525,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/chargebacks/org/1")
@@ -2505,6 +2544,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/chargebacks/org/1")
@@ -2573,6 +2613,7 @@ describe("QueryClient", () => {
                 totalRecords: 510,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/customers/8cfec329267")
@@ -2644,6 +2685,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/customers/entry")
@@ -2662,6 +2704,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/customers/entry")
@@ -2680,6 +2723,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/customers/entry")
@@ -2698,6 +2742,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/customers/entry")
@@ -2766,6 +2811,7 @@ describe("QueryClient", () => {
                 totalRecords: 510,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/customers/org/123")
@@ -2837,6 +2883,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/customers/org/1")
@@ -2855,6 +2902,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/customers/org/1")
@@ -2873,6 +2921,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/customers/org/1")
@@ -2891,6 +2940,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/customers/org/1")
@@ -2926,6 +2976,7 @@ describe("QueryClient", () => {
                 totalRecords: 1,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/notificationReports/8cfec329267")
@@ -2964,6 +3015,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/notificationReports/entry")
@@ -2982,6 +3034,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/notificationReports/entry")
@@ -3000,6 +3053,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/notificationReports/entry")
@@ -3018,6 +3072,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/notificationReports/entry")
@@ -3053,6 +3108,7 @@ describe("QueryClient", () => {
                 totalRecords: 1,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/notificationReports/org/123")
@@ -3091,6 +3147,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/notificationReports/org/1")
@@ -3109,6 +3166,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/notificationReports/org/1")
@@ -3127,6 +3185,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/notificationReports/org/1")
@@ -3145,6 +3204,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/notificationReports/org/1")
@@ -3171,7 +3231,7 @@ describe("QueryClient", () => {
                     lastUpdated: "2022-06-07T05:00:00Z",
                     method: "email",
                     notificationId: 88976,
-                    ownerId: "123",
+                    ownerId: 123,
                     ownerName: "Pilgrim Planner",
                     ownerType: 2,
                     source: "api",
@@ -3185,7 +3245,7 @@ describe("QueryClient", () => {
                     lastUpdated: "2022-06-07T05:00:00Z",
                     method: "email",
                     notificationId: 88975,
-                    ownerId: "123",
+                    ownerId: 123,
                     ownerName: "Pilgrim Planner",
                     ownerType: 2,
                     source: "api",
@@ -3195,6 +3255,7 @@ describe("QueryClient", () => {
             ],
             Summary: { pageSize: 20, totalAmount: 0, totalNetAmount: 0, totalPages: 1, totalRecords: 2 },
         };
+
         server
             .mockEndpoint()
             .get("/Query/notifications/8cfec329267")
@@ -3220,7 +3281,7 @@ describe("QueryClient", () => {
                     lastUpdated: "2022-06-07T05:00:00Z",
                     method: "email",
                     notificationId: 88976,
-                    ownerId: "123",
+                    ownerId: 123,
                     ownerName: "Pilgrim Planner",
                     ownerType: 2,
                     source: "api",
@@ -3237,7 +3298,7 @@ describe("QueryClient", () => {
                     lastUpdated: "2022-06-07T05:00:00Z",
                     method: "email",
                     notificationId: 88975,
-                    ownerId: "123",
+                    ownerId: 123,
                     ownerName: "Pilgrim Planner",
                     ownerType: 2,
                     source: "api",
@@ -3260,6 +3321,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/notifications/entry")
@@ -3278,6 +3340,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/notifications/entry")
@@ -3296,6 +3359,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/notifications/entry")
@@ -3314,6 +3378,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/notifications/entry")
@@ -3340,7 +3405,7 @@ describe("QueryClient", () => {
                     lastUpdated: "2022-06-07T05:00:00Z",
                     method: "email",
                     notificationId: 88976,
-                    ownerId: "123",
+                    ownerId: 123,
                     ownerName: "Pilgrim Planner",
                     ownerType: 2,
                     source: "api",
@@ -3354,7 +3419,7 @@ describe("QueryClient", () => {
                     lastUpdated: "2022-06-07T05:00:00Z",
                     method: "email",
                     notificationId: 88975,
-                    ownerId: "123",
+                    ownerId: 123,
                     ownerName: "Pilgrim Planner",
                     ownerType: 2,
                     source: "api",
@@ -3364,6 +3429,7 @@ describe("QueryClient", () => {
             ],
             Summary: { pageSize: 20, totalAmount: 0, totalNetAmount: 0, totalPages: 1, totalRecords: 2 },
         };
+
         server
             .mockEndpoint()
             .get("/Query/notifications/org/123")
@@ -3389,7 +3455,7 @@ describe("QueryClient", () => {
                     lastUpdated: "2022-06-07T05:00:00Z",
                     method: "email",
                     notificationId: 88976,
-                    ownerId: "123",
+                    ownerId: 123,
                     ownerName: "Pilgrim Planner",
                     ownerType: 2,
                     source: "api",
@@ -3406,7 +3472,7 @@ describe("QueryClient", () => {
                     lastUpdated: "2022-06-07T05:00:00Z",
                     method: "email",
                     notificationId: 88975,
-                    ownerId: "123",
+                    ownerId: 123,
                     ownerName: "Pilgrim Planner",
                     ownerType: 2,
                     source: "api",
@@ -3429,6 +3495,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/notifications/org/1")
@@ -3447,6 +3514,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/notifications/org/1")
@@ -3465,6 +3533,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/notifications/org/1")
@@ -3483,6 +3552,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/notifications/org/1")
@@ -3538,6 +3608,7 @@ describe("QueryClient", () => {
                 totalRecords: 2,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/organizations/123")
@@ -3601,6 +3672,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/organizations/1")
@@ -3619,6 +3691,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/organizations/1")
@@ -3637,6 +3710,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/organizations/1")
@@ -3655,6 +3729,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/organizations/1")
@@ -3727,6 +3802,7 @@ describe("QueryClient", () => {
                 pageSize: 20,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/payouts/8cfec329267")
@@ -3816,6 +3892,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/payouts/entry")
@@ -3834,6 +3911,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/payouts/entry")
@@ -3852,6 +3930,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/payouts/entry")
@@ -3870,6 +3949,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/payouts/entry")
@@ -3942,6 +4022,7 @@ describe("QueryClient", () => {
                 pageSize: 20,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/payouts/org/123")
@@ -4031,6 +4112,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/payouts/org/1")
@@ -4049,6 +4131,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/payouts/org/1")
@@ -4067,6 +4150,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/payouts/org/1")
@@ -4085,6 +4169,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/payouts/org/1")
@@ -4174,6 +4259,7 @@ describe("QueryClient", () => {
                 totalRecords: 2,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/paypoints/123")
@@ -4266,6 +4352,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Query/paypoints/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -4278,6 +4365,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Query/paypoints/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -4290,6 +4378,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Query/paypoints/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -4302,6 +4391,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server.mockEndpoint().get("/Query/paypoints/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -4446,6 +4536,7 @@ describe("QueryClient", () => {
                 transferAmount: 0,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/settlements/8cfec329267")
@@ -4618,6 +4709,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/settlements/entry")
@@ -4636,6 +4728,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/settlements/entry")
@@ -4654,6 +4747,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/settlements/entry")
@@ -4672,6 +4766,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/settlements/entry")
@@ -4822,6 +4917,7 @@ describe("QueryClient", () => {
                 transferAmount: 0,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/settlements/org/123")
@@ -4994,6 +5090,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/settlements/org/1")
@@ -5012,6 +5109,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/settlements/org/1")
@@ -5030,6 +5128,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/settlements/org/1")
@@ -5048,6 +5147,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/settlements/org/1")
@@ -5187,6 +5287,7 @@ describe("QueryClient", () => {
                 totalRecords: 2,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/subscriptions/8cfec329267")
@@ -5333,6 +5434,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/subscriptions/entry")
@@ -5351,6 +5453,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/subscriptions/entry")
@@ -5369,6 +5472,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/subscriptions/entry")
@@ -5387,6 +5491,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/subscriptions/entry")
@@ -5437,7 +5542,6 @@ describe("QueryClient", () => {
                     Frequency: "monthly",
                     IdSub: 580,
                     InvoiceData: {
-                        AdditionalData: "AdditionalData",
                         frequency: "onetime",
                         invoiceAmount: 100,
                         invoiceNumber: "QA-1702561870",
@@ -5527,6 +5631,7 @@ describe("QueryClient", () => {
                 totalRecords: 2,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/subscriptions/org/123")
@@ -5573,7 +5678,6 @@ describe("QueryClient", () => {
                     Frequency: "monthly",
                     IdSub: 580,
                     InvoiceData: {
-                        AdditionalData: "AdditionalData",
                         frequency: "onetime",
                         invoiceAmount: 100,
                         invoiceNumber: "QA-1702561870",
@@ -5674,6 +5778,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/subscriptions/org/1")
@@ -5692,6 +5797,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/subscriptions/org/1")
@@ -5710,6 +5816,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/subscriptions/org/1")
@@ -5728,6 +5835,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/subscriptions/org/1")
@@ -5738,6 +5846,790 @@ describe("QueryClient", () => {
 
         await expect(async () => {
             return await client.query.listSubscriptionsOrg(1);
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("ListPayoutSubscriptions (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            Summary: {
+                totalRecords: 1,
+                totalAmount: 500,
+                totalNetAmount: 500,
+                totalPages: 1,
+                pageSize: 20,
+                pageIdentifier: "XXXXXXXXXXXXXXXXXXX",
+            },
+            Records: [
+                {
+                    IdOutSubscription: 42,
+                    Status: 1,
+                    Events: [
+                        {
+                            description: "TransferCreated",
+                            eventTime: "2025-09-01T06:00:00Z",
+                            extraData: { key: "value" },
+                            refData: "refData",
+                            source: "api",
+                        },
+                    ],
+                    Vendor: {
+                        VendorNumber: "1234",
+                        Name1: "Herman's Coatings",
+                        Name2: "Herman's Coating Supply Company, LLC",
+                        EIN: "123456789",
+                        Phone: "2125551234",
+                        Email: "example@email.com",
+                        Address1: "123 Ocean Drive",
+                        Address2: "Suite 400",
+                        City: "Bristol",
+                        State: "GA",
+                        Zip: "31113",
+                        Country: "US",
+                        Mcc: "7777",
+                        LocationCode: "LOC123",
+                        Contacts: {
+                            ContactEmail: "eric@martinezcoatings.com",
+                            ContactName: "Eric Martinez",
+                            ContactPhone: "5555555555",
+                            ContactTitle: "Owner",
+                        },
+                        BillingData: {
+                            id: 123456,
+                            accountId: "bank-account-001",
+                            nickname: "Main Checking Account",
+                            bankName: "Example Bank",
+                            routingAccount: "123456789",
+                            accountNumber: "9876543210",
+                            typeAccount: "Checking",
+                            bankAccountHolderName: "John Doe",
+                            bankAccountHolderType: "Business",
+                            bankAccountFunction: 2,
+                            verified: true,
+                            status: 1,
+                            services: [],
+                            default: true,
+                        },
+                        VendorStatus: 1,
+                        VendorId: 1,
+                        Summary: {
+                            ActiveBills: 2,
+                            PendingBills: 4,
+                            InTransitBills: 3,
+                            PaidBills: 18,
+                            OverdueBills: 1,
+                            ApprovedBills: 5,
+                            DisapprovedBills: 1,
+                            TotalBills: 34,
+                            ActiveBillsAmount: 1250.75,
+                            PendingBillsAmount: 2890.5,
+                            InTransitBillsAmount: 1675.25,
+                            PaidBillsAmount: 15420.8,
+                            OverdueBillsAmount: 425,
+                            ApprovedBillsAmount: 3240.9,
+                            DisapprovedBillsAmount: 180,
+                            TotalBillsAmount: 25083.2,
+                        },
+                        PaypointLegalname: "Sunshine Services, LLC",
+                        PaypointDbaname: "Sunshine Gutters",
+                        PaypointEntryname: "d193cf9a46",
+                        ParentOrgName: "PropertyManager Pro",
+                        ParentOrgId: 1000,
+                        CreatedDate: "2022-07-01T15:00:01Z",
+                        LastUpdated: "2022-07-01T15:00:01Z",
+                        remitAddress1: "123 Walnut Street",
+                        remitAddress2: "Suite 900",
+                        remitCity: "Miami",
+                        remitState: "FL",
+                        remitZip: "31113",
+                        remitCountry: "US",
+                        payeeName1: "payeeName1",
+                        payeeName2: "payeeName2",
+                        customField1: "",
+                        customField2: "",
+                        customerVendorAccount: "123-456",
+                        InternalReferenceId: 1000000,
+                        externalPaypointID: "Paypoint-100",
+                        StoredMethods: [],
+                    },
+                    BillData: [
+                        {
+                            billId: 3001,
+                            invoiceNumber: "INV-5001",
+                            netAmount: "500",
+                            invoiceDate: "2025-08-01",
+                            dueDate: "2025-08-15",
+                        },
+                    ],
+                    ExternalPaypointID: "d193cf9a46-10",
+                    Method: "ach",
+                    PaypointId: 255,
+                    TotalAmount: 500,
+                    NetAmount: 500,
+                    FeeAmount: 0,
+                    PaymentData: {
+                        AccountType: "checking",
+                        HolderName: "Herman Coatings",
+                        Initiator: "merchant",
+                        MaskedAccount: "XXXXXX5666",
+                        paymentDetails: { currency: "USD", serviceFee: 0, totalAmount: 500 },
+                        Sequence: "subsequent",
+                        StoredMethodUsageType: "recurring",
+                    },
+                    StartDate: "2025-09-01T00:00:00Z",
+                    EndDate: "2026-09-01T00:00:00Z",
+                    NextDate: "2025-10-01T00:00:00Z",
+                    Frequency: "monthly",
+                    TotalCycles: 12,
+                    LeftCycles: 11,
+                    LastRun: "2025-09-01T06:00:00Z",
+                    EntrypageId: 0,
+                    UntilCancelled: false,
+                    LastUpdated: "2025-08-01T12:00:00Z",
+                    CreatedAt: "2025-08-01T12:00:00Z",
+                    PaypointLegalname: "Sunshine Services, LLC",
+                    PaypointDbaname: "Sunshine Gutters",
+                    PaypointEntryname: "d193cf9a46",
+                    ParentOrgName: "PropertyManager Pro",
+                    ParentOrgId: 236,
+                    Source: "api",
+                },
+            ],
+        };
+
+        server
+            .mockEndpoint()
+            .get("/Query/payoutsubscriptions/8cfec329267")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.query.listPayoutSubscriptions("8cfec329267", {
+            fromRecord: 0,
+            limitRecord: 20,
+            sortBy: "desc(field_name)",
+        });
+        expect(response).toEqual({
+            Summary: {
+                totalRecords: 1,
+                totalAmount: 500,
+                totalNetAmount: 500,
+                totalPages: 1,
+                pageSize: 20,
+                pageIdentifier: "XXXXXXXXXXXXXXXXXXX",
+            },
+            Records: [
+                {
+                    IdOutSubscription: 42,
+                    Status: 1,
+                    Events: [
+                        {
+                            description: "TransferCreated",
+                            eventTime: "2025-09-01T06:00:00Z",
+                            extraData: {
+                                key: "value",
+                            },
+                            refData: "refData",
+                            source: "api",
+                        },
+                    ],
+                    Vendor: {
+                        VendorNumber: "1234",
+                        Name1: "Herman's Coatings",
+                        Name2: "Herman's Coating Supply Company, LLC",
+                        EIN: "123456789",
+                        Phone: "2125551234",
+                        Email: "example@email.com",
+                        Address1: "123 Ocean Drive",
+                        Address2: "Suite 400",
+                        City: "Bristol",
+                        State: "GA",
+                        Zip: "31113",
+                        Country: "US",
+                        Mcc: "7777",
+                        LocationCode: "LOC123",
+                        Contacts: {
+                            ContactEmail: "eric@martinezcoatings.com",
+                            ContactName: "Eric Martinez",
+                            ContactPhone: "5555555555",
+                            ContactTitle: "Owner",
+                        },
+                        BillingData: {
+                            id: 123456,
+                            accountId: "bank-account-001",
+                            nickname: "Main Checking Account",
+                            bankName: "Example Bank",
+                            routingAccount: "123456789",
+                            accountNumber: "9876543210",
+                            typeAccount: "Checking",
+                            bankAccountHolderName: "John Doe",
+                            bankAccountHolderType: "Business",
+                            bankAccountFunction: 2,
+                            verified: true,
+                            status: 1,
+                            services: [],
+                            default: true,
+                        },
+                        VendorStatus: 1,
+                        VendorId: 1,
+                        Summary: {
+                            ActiveBills: 2,
+                            PendingBills: 4,
+                            InTransitBills: 3,
+                            PaidBills: 18,
+                            OverdueBills: 1,
+                            ApprovedBills: 5,
+                            DisapprovedBills: 1,
+                            TotalBills: 34,
+                            ActiveBillsAmount: 1250.75,
+                            PendingBillsAmount: 2890.5,
+                            InTransitBillsAmount: 1675.25,
+                            PaidBillsAmount: 15420.8,
+                            OverdueBillsAmount: 425,
+                            ApprovedBillsAmount: 3240.9,
+                            DisapprovedBillsAmount: 180,
+                            TotalBillsAmount: 25083.2,
+                        },
+                        PaypointLegalname: "Sunshine Services, LLC",
+                        PaypointDbaname: "Sunshine Gutters",
+                        PaypointEntryname: "d193cf9a46",
+                        ParentOrgName: "PropertyManager Pro",
+                        ParentOrgId: 1000,
+                        CreatedDate: "2022-07-01T15:00:01Z",
+                        LastUpdated: "2022-07-01T15:00:01Z",
+                        remitAddress1: "123 Walnut Street",
+                        remitAddress2: "Suite 900",
+                        remitCity: "Miami",
+                        remitState: "FL",
+                        remitZip: "31113",
+                        remitCountry: "US",
+                        payeeName1: "payeeName1",
+                        payeeName2: "payeeName2",
+                        customField1: "",
+                        customField2: "",
+                        customerVendorAccount: "123-456",
+                        InternalReferenceId: 1000000,
+                        externalPaypointID: "Paypoint-100",
+                        StoredMethods: [],
+                    },
+                    BillData: [
+                        {
+                            billId: 3001,
+                            invoiceNumber: "INV-5001",
+                            netAmount: "500",
+                            invoiceDate: "2025-08-01",
+                            dueDate: "2025-08-15",
+                        },
+                    ],
+                    ExternalPaypointID: "d193cf9a46-10",
+                    Method: "ach",
+                    PaypointId: 255,
+                    TotalAmount: 500,
+                    NetAmount: 500,
+                    FeeAmount: 0,
+                    PaymentData: {
+                        AccountType: "checking",
+                        HolderName: "Herman Coatings",
+                        Initiator: "merchant",
+                        MaskedAccount: "XXXXXX5666",
+                        paymentDetails: {
+                            currency: "USD",
+                            serviceFee: 0,
+                            totalAmount: 500,
+                        },
+                        Sequence: "subsequent",
+                        StoredMethodUsageType: "recurring",
+                    },
+                    StartDate: "2025-09-01T00:00:00Z",
+                    EndDate: "2026-09-01T00:00:00Z",
+                    NextDate: "2025-10-01T00:00:00Z",
+                    Frequency: "monthly",
+                    TotalCycles: 12,
+                    LeftCycles: 11,
+                    LastRun: "2025-09-01T06:00:00Z",
+                    EntrypageId: 0,
+                    UntilCancelled: false,
+                    LastUpdated: "2025-08-01T12:00:00Z",
+                    CreatedAt: "2025-08-01T12:00:00Z",
+                    PaypointLegalname: "Sunshine Services, LLC",
+                    PaypointDbaname: "Sunshine Gutters",
+                    PaypointEntryname: "d193cf9a46",
+                    ParentOrgName: "PropertyManager Pro",
+                    ParentOrgId: 236,
+                    Source: "api",
+                },
+            ],
+        });
+    });
+
+    test("ListPayoutSubscriptions (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/payoutsubscriptions/entry")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listPayoutSubscriptions("entry");
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("ListPayoutSubscriptions (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/payoutsubscriptions/entry")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listPayoutSubscriptions("entry");
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("ListPayoutSubscriptions (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/payoutsubscriptions/entry")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listPayoutSubscriptions("entry");
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("ListPayoutSubscriptions (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/payoutsubscriptions/entry")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listPayoutSubscriptions("entry");
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("ListPayoutSubscriptionsOrg (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            Summary: {
+                totalRecords: 1,
+                totalAmount: 500,
+                totalNetAmount: 500,
+                totalPages: 1,
+                pageSize: 20,
+                pageIdentifier: "XXXXXXXXXXXXXXXXXXX",
+            },
+            Records: [
+                {
+                    IdOutSubscription: 42,
+                    Status: 1,
+                    Events: [
+                        {
+                            description: "TransferCreated",
+                            eventTime: "2025-09-01T06:00:00Z",
+                            extraData: { key: "value" },
+                            refData: "refData",
+                            source: "api",
+                        },
+                    ],
+                    Vendor: {
+                        VendorNumber: "1234",
+                        Name1: "Herman's Coatings",
+                        Name2: "Herman's Coating Supply Company, LLC",
+                        EIN: "123456789",
+                        Phone: "2125551234",
+                        Email: "example@email.com",
+                        Address1: "123 Ocean Drive",
+                        Address2: "Suite 400",
+                        City: "Bristol",
+                        State: "GA",
+                        Zip: "31113",
+                        Country: "US",
+                        Mcc: "7777",
+                        LocationCode: "LOC123",
+                        Contacts: {
+                            ContactEmail: "eric@martinezcoatings.com",
+                            ContactName: "Eric Martinez",
+                            ContactPhone: "5555555555",
+                            ContactTitle: "Owner",
+                        },
+                        BillingData: {
+                            id: 123456,
+                            accountId: "bank-account-001",
+                            nickname: "Main Checking Account",
+                            bankName: "Example Bank",
+                            routingAccount: "123456789",
+                            accountNumber: "9876543210",
+                            typeAccount: "Checking",
+                            bankAccountHolderName: "John Doe",
+                            bankAccountHolderType: "Business",
+                            bankAccountFunction: 2,
+                            verified: true,
+                            status: 1,
+                            services: [],
+                            default: true,
+                        },
+                        VendorStatus: 1,
+                        VendorId: 1,
+                        Summary: {
+                            ActiveBills: 2,
+                            PendingBills: 4,
+                            InTransitBills: 3,
+                            PaidBills: 18,
+                            OverdueBills: 1,
+                            ApprovedBills: 5,
+                            DisapprovedBills: 1,
+                            TotalBills: 34,
+                            ActiveBillsAmount: 1250.75,
+                            PendingBillsAmount: 2890.5,
+                            InTransitBillsAmount: 1675.25,
+                            PaidBillsAmount: 15420.8,
+                            OverdueBillsAmount: 425,
+                            ApprovedBillsAmount: 3240.9,
+                            DisapprovedBillsAmount: 180,
+                            TotalBillsAmount: 25083.2,
+                        },
+                        PaypointLegalname: "Sunshine Services, LLC",
+                        PaypointDbaname: "Sunshine Gutters",
+                        PaypointEntryname: "d193cf9a46",
+                        ParentOrgName: "PropertyManager Pro",
+                        ParentOrgId: 1000,
+                        CreatedDate: "2022-07-01T15:00:01Z",
+                        LastUpdated: "2022-07-01T15:00:01Z",
+                        remitAddress1: "123 Walnut Street",
+                        remitAddress2: "Suite 900",
+                        remitCity: "Miami",
+                        remitState: "FL",
+                        remitZip: "31113",
+                        remitCountry: "US",
+                        payeeName1: "payeeName1",
+                        payeeName2: "payeeName2",
+                        customField1: "",
+                        customField2: "",
+                        customerVendorAccount: "123-456",
+                        InternalReferenceId: 1000000,
+                        externalPaypointID: "Paypoint-100",
+                        StoredMethods: [],
+                    },
+                    BillData: [
+                        {
+                            billId: 3001,
+                            invoiceNumber: "INV-5001",
+                            netAmount: "500",
+                            invoiceDate: "2025-08-01",
+                            dueDate: "2025-08-15",
+                        },
+                    ],
+                    ExternalPaypointID: "d193cf9a46-10",
+                    Method: "ach",
+                    PaypointId: 255,
+                    TotalAmount: 500,
+                    NetAmount: 500,
+                    FeeAmount: 0,
+                    PaymentData: {
+                        AccountType: "checking",
+                        HolderName: "Herman Coatings",
+                        Initiator: "merchant",
+                        MaskedAccount: "XXXXXX5666",
+                        paymentDetails: { currency: "USD", serviceFee: 0, totalAmount: 500 },
+                        Sequence: "subsequent",
+                        StoredMethodUsageType: "recurring",
+                    },
+                    StartDate: "2025-09-01T00:00:00Z",
+                    EndDate: "2026-09-01T00:00:00Z",
+                    NextDate: "2025-10-01T00:00:00Z",
+                    Frequency: "monthly",
+                    TotalCycles: 12,
+                    LeftCycles: 11,
+                    LastRun: "2025-09-01T06:00:00Z",
+                    EntrypageId: 0,
+                    UntilCancelled: false,
+                    LastUpdated: "2025-08-01T12:00:00Z",
+                    CreatedAt: "2025-08-01T12:00:00Z",
+                    PaypointLegalname: "Sunshine Services, LLC",
+                    PaypointDbaname: "Sunshine Gutters",
+                    PaypointEntryname: "d193cf9a46",
+                    ParentOrgName: "PropertyManager Pro",
+                    ParentOrgId: 236,
+                    Source: "api",
+                },
+            ],
+        };
+
+        server
+            .mockEndpoint()
+            .get("/Query/payoutsubscriptions/org/123")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.query.listPayoutSubscriptionsOrg(123, {
+            fromRecord: 0,
+            limitRecord: 20,
+            sortBy: "desc(field_name)",
+        });
+        expect(response).toEqual({
+            Summary: {
+                totalRecords: 1,
+                totalAmount: 500,
+                totalNetAmount: 500,
+                totalPages: 1,
+                pageSize: 20,
+                pageIdentifier: "XXXXXXXXXXXXXXXXXXX",
+            },
+            Records: [
+                {
+                    IdOutSubscription: 42,
+                    Status: 1,
+                    Events: [
+                        {
+                            description: "TransferCreated",
+                            eventTime: "2025-09-01T06:00:00Z",
+                            extraData: {
+                                key: "value",
+                            },
+                            refData: "refData",
+                            source: "api",
+                        },
+                    ],
+                    Vendor: {
+                        VendorNumber: "1234",
+                        Name1: "Herman's Coatings",
+                        Name2: "Herman's Coating Supply Company, LLC",
+                        EIN: "123456789",
+                        Phone: "2125551234",
+                        Email: "example@email.com",
+                        Address1: "123 Ocean Drive",
+                        Address2: "Suite 400",
+                        City: "Bristol",
+                        State: "GA",
+                        Zip: "31113",
+                        Country: "US",
+                        Mcc: "7777",
+                        LocationCode: "LOC123",
+                        Contacts: {
+                            ContactEmail: "eric@martinezcoatings.com",
+                            ContactName: "Eric Martinez",
+                            ContactPhone: "5555555555",
+                            ContactTitle: "Owner",
+                        },
+                        BillingData: {
+                            id: 123456,
+                            accountId: "bank-account-001",
+                            nickname: "Main Checking Account",
+                            bankName: "Example Bank",
+                            routingAccount: "123456789",
+                            accountNumber: "9876543210",
+                            typeAccount: "Checking",
+                            bankAccountHolderName: "John Doe",
+                            bankAccountHolderType: "Business",
+                            bankAccountFunction: 2,
+                            verified: true,
+                            status: 1,
+                            services: [],
+                            default: true,
+                        },
+                        VendorStatus: 1,
+                        VendorId: 1,
+                        Summary: {
+                            ActiveBills: 2,
+                            PendingBills: 4,
+                            InTransitBills: 3,
+                            PaidBills: 18,
+                            OverdueBills: 1,
+                            ApprovedBills: 5,
+                            DisapprovedBills: 1,
+                            TotalBills: 34,
+                            ActiveBillsAmount: 1250.75,
+                            PendingBillsAmount: 2890.5,
+                            InTransitBillsAmount: 1675.25,
+                            PaidBillsAmount: 15420.8,
+                            OverdueBillsAmount: 425,
+                            ApprovedBillsAmount: 3240.9,
+                            DisapprovedBillsAmount: 180,
+                            TotalBillsAmount: 25083.2,
+                        },
+                        PaypointLegalname: "Sunshine Services, LLC",
+                        PaypointDbaname: "Sunshine Gutters",
+                        PaypointEntryname: "d193cf9a46",
+                        ParentOrgName: "PropertyManager Pro",
+                        ParentOrgId: 1000,
+                        CreatedDate: "2022-07-01T15:00:01Z",
+                        LastUpdated: "2022-07-01T15:00:01Z",
+                        remitAddress1: "123 Walnut Street",
+                        remitAddress2: "Suite 900",
+                        remitCity: "Miami",
+                        remitState: "FL",
+                        remitZip: "31113",
+                        remitCountry: "US",
+                        payeeName1: "payeeName1",
+                        payeeName2: "payeeName2",
+                        customField1: "",
+                        customField2: "",
+                        customerVendorAccount: "123-456",
+                        InternalReferenceId: 1000000,
+                        externalPaypointID: "Paypoint-100",
+                        StoredMethods: [],
+                    },
+                    BillData: [
+                        {
+                            billId: 3001,
+                            invoiceNumber: "INV-5001",
+                            netAmount: "500",
+                            invoiceDate: "2025-08-01",
+                            dueDate: "2025-08-15",
+                        },
+                    ],
+                    ExternalPaypointID: "d193cf9a46-10",
+                    Method: "ach",
+                    PaypointId: 255,
+                    TotalAmount: 500,
+                    NetAmount: 500,
+                    FeeAmount: 0,
+                    PaymentData: {
+                        AccountType: "checking",
+                        HolderName: "Herman Coatings",
+                        Initiator: "merchant",
+                        MaskedAccount: "XXXXXX5666",
+                        paymentDetails: {
+                            currency: "USD",
+                            serviceFee: 0,
+                            totalAmount: 500,
+                        },
+                        Sequence: "subsequent",
+                        StoredMethodUsageType: "recurring",
+                    },
+                    StartDate: "2025-09-01T00:00:00Z",
+                    EndDate: "2026-09-01T00:00:00Z",
+                    NextDate: "2025-10-01T00:00:00Z",
+                    Frequency: "monthly",
+                    TotalCycles: 12,
+                    LeftCycles: 11,
+                    LastRun: "2025-09-01T06:00:00Z",
+                    EntrypageId: 0,
+                    UntilCancelled: false,
+                    LastUpdated: "2025-08-01T12:00:00Z",
+                    CreatedAt: "2025-08-01T12:00:00Z",
+                    PaypointLegalname: "Sunshine Services, LLC",
+                    PaypointDbaname: "Sunshine Gutters",
+                    PaypointEntryname: "d193cf9a46",
+                    ParentOrgName: "PropertyManager Pro",
+                    ParentOrgId: 236,
+                    Source: "api",
+                },
+            ],
+        });
+    });
+
+    test("ListPayoutSubscriptionsOrg (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/payoutsubscriptions/org/1")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listPayoutSubscriptionsOrg(1);
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("ListPayoutSubscriptionsOrg (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/payoutsubscriptions/org/1")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listPayoutSubscriptionsOrg(1);
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("ListPayoutSubscriptionsOrg (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/payoutsubscriptions/org/1")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listPayoutSubscriptionsOrg(1);
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("ListPayoutSubscriptionsOrg (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/payoutsubscriptions/org/1")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listPayoutSubscriptionsOrg(1);
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
@@ -5916,6 +6808,7 @@ describe("QueryClient", () => {
                 totalRecords: 2,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/transactions/8cfec329267")
@@ -6109,6 +7002,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/transactions/entry")
@@ -6127,6 +7021,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/transactions/entry")
@@ -6145,6 +7040,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/transactions/entry")
@@ -6163,6 +7059,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/transactions/entry")
@@ -6245,6 +7142,7 @@ describe("QueryClient", () => {
                 totalRecords: 2,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/transactions/org/123")
@@ -6340,6 +7238,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/transactions/org/1")
@@ -6358,6 +7257,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/transactions/org/1")
@@ -6376,6 +7276,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/transactions/org/1")
@@ -6394,6 +7295,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/transactions/org/1")
@@ -6555,6 +7457,7 @@ describe("QueryClient", () => {
                 },
             ],
         };
+
         server
             .mockEndpoint()
             .get("/Query/transferDetails/47862acd/123456")
@@ -6715,6 +7618,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/transferDetails/entry/1")
@@ -6733,6 +7637,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/transferDetails/entry/1")
@@ -6751,6 +7656,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/transferDetails/entry/1")
@@ -6769,6 +7675,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/transferDetails/entry/1")
@@ -6805,7 +7712,11 @@ describe("QueryClient", () => {
                     parentOrgEntryName: "43aebc000",
                     parentOrgLogo: "https://example.com/parent-logo.png",
                     externalPaypointID: "ext-12345",
-                    bankAccount: { accountNumber: "****1234", routingNumber: "123456789" },
+                    bankAccount: {
+                        accountNumber: "****1234",
+                        routingNumber: "123456789",
+                        bankName: "Riverdale Community Bank",
+                    },
                     transferDate: "2024-11-17T08:20:07.288+00:00",
                     processor: "gp",
                     transferStatus: 2,
@@ -6831,6 +7742,7 @@ describe("QueryClient", () => {
             ],
             Summary: { totalPages: 1, totalRecords: 2, pageSize: 20 },
         };
+
         server
             .mockEndpoint()
             .get("/Query/transfers/47862acd")
@@ -6865,6 +7777,7 @@ describe("QueryClient", () => {
                     bankAccount: {
                         accountNumber: "****1234",
                         routingNumber: "123456789",
+                        bankName: "Riverdale Community Bank",
                     },
                     transferDate: "2024-11-17T08:20:07.288+00:00",
                     processor: "gp",
@@ -6902,6 +7815,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/transfers/entry")
@@ -6920,6 +7834,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/transfers/entry")
@@ -6938,6 +7853,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/transfers/entry")
@@ -6956,6 +7872,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/transfers/entry")
@@ -6992,7 +7909,11 @@ describe("QueryClient", () => {
                     parentOrgEntryName: "43aebc000",
                     parentOrgLogo: "https://example.com/parent-logo.png",
                     externalPaypointID: "ext-12345",
-                    bankAccount: { accountNumber: "****1234", routingNumber: "123456789" },
+                    bankAccount: {
+                        accountNumber: "****1234",
+                        routingNumber: "123456789",
+                        bankName: "Riverdale Community Bank",
+                    },
                     transferDate: "2024-11-17T08:20:07.288+00:00",
                     processor: "gp",
                     transferStatus: 2,
@@ -7018,6 +7939,7 @@ describe("QueryClient", () => {
             ],
             Summary: { totalPages: 1, totalRecords: 2, pageSize: 20 },
         };
+
         server
             .mockEndpoint()
             .get("/Query/transfers/org/123")
@@ -7053,6 +7975,7 @@ describe("QueryClient", () => {
                     bankAccount: {
                         accountNumber: "****1234",
                         routingNumber: "123456789",
+                        bankName: "Riverdale Community Bank",
                     },
                     transferDate: "2024-11-17T08:20:07.288+00:00",
                     processor: "gp",
@@ -7090,6 +8013,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/transfers/org/1000000")
@@ -7110,6 +8034,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/transfers/org/1000000")
@@ -7130,6 +8055,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/transfers/org/1000000")
@@ -7150,6 +8076,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/transfers/org/1000000")
@@ -7162,6 +8089,947 @@ describe("QueryClient", () => {
             return await client.query.listTransfersOrg({
                 orgId: 1000000,
             });
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("ListTransfersOutOrg (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            Summary: { totalPages: 12, totalRecords: 234, pageSize: 20 },
+            Records: [
+                {
+                    transferId: 4521,
+                    paypointId: 892,
+                    batchNumber: null,
+                    batchCurrency: null,
+                    batchRecords: null,
+                    transferIdentifier: null,
+                    batchId: null,
+                    batchNetAmount: null,
+                    batchStatus: null,
+                    paypointEntryName: "47cade237",
+                    paypointLegalName: "Solid Rock Concrete Coatings LLC",
+                    paypointDbaName: "Solid Rock Coatings",
+                    paypointLogo: "https://example.com/logos/solidrock.png",
+                    parentOrgName: "Premier Property Services",
+                    parentOrgId: 77,
+                    parentOrgLogo: "https://example.com/logos/premier.png",
+                    parentOrgEntryName: "premierps",
+                    externalPaypointID: "SR-892",
+                    bankAccount: {
+                        accountNumber: "4XXXXXX7231",
+                        routingNumber: "121000358",
+                        bankName: "Riverdale Community Bank",
+                    },
+                    transferDate: "2025-01-15T14:30:00Z",
+                    processor: "BK",
+                    transferStatus: null,
+                    grossAmount: 2847.5,
+                    chargeBackAmount: null,
+                    returnedAmount: 0,
+                    holdAmount: 0,
+                    releasedAmount: 0,
+                    billingFeesAmount: 12.5,
+                    thirdPartyPaidAmount: null,
+                    adjustmentsAmount: null,
+                    netTransferAmount: 2835,
+                    splitAmount: null,
+                    eventsData: [
+                        {
+                            description: "Payout funded",
+                            eventTime: "2025-01-15T14:28:45",
+                            refData: "",
+                            extraData: null,
+                            source: "system",
+                        },
+                    ],
+                    messages: [
+                        {
+                            Id: 8842,
+                            RoomId: 1205,
+                            UserId: 334,
+                            UserName: "Maria Santos",
+                            Content: "Transfer processed successfully",
+                            CreatedAt: "2025-01-15T14:30:00",
+                            MessageType: 1,
+                            MessageProperties: {
+                                originalTransferStatus: "pending",
+                                currentTransferStatus: "completed",
+                            },
+                        },
+                    ],
+                },
+            ],
+        };
+
+        server
+            .mockEndpoint()
+            .get("/Query/transfersOut/org/77")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.query.listTransfersOutOrg(77, {
+            fromRecord: 0,
+            limitRecord: 20,
+        });
+        expect(response).toEqual({
+            Summary: {
+                totalPages: 12,
+                totalRecords: 234,
+                pageSize: 20,
+            },
+            Records: [
+                {
+                    transferId: 4521,
+                    paypointId: 892,
+                    batchNumber: null,
+                    batchCurrency: null,
+                    batchRecords: null,
+                    transferIdentifier: null,
+                    batchId: null,
+                    batchNetAmount: null,
+                    batchStatus: null,
+                    paypointEntryName: "47cade237",
+                    paypointLegalName: "Solid Rock Concrete Coatings LLC",
+                    paypointDbaName: "Solid Rock Coatings",
+                    paypointLogo: "https://example.com/logos/solidrock.png",
+                    parentOrgName: "Premier Property Services",
+                    parentOrgId: 77,
+                    parentOrgLogo: "https://example.com/logos/premier.png",
+                    parentOrgEntryName: "premierps",
+                    externalPaypointID: "SR-892",
+                    bankAccount: {
+                        accountNumber: "4XXXXXX7231",
+                        routingNumber: "121000358",
+                        bankName: "Riverdale Community Bank",
+                    },
+                    transferDate: "2025-01-15T14:30:00Z",
+                    processor: "BK",
+                    transferStatus: null,
+                    grossAmount: 2847.5,
+                    chargeBackAmount: null,
+                    returnedAmount: 0,
+                    holdAmount: 0,
+                    releasedAmount: 0,
+                    billingFeesAmount: 12.5,
+                    thirdPartyPaidAmount: null,
+                    adjustmentsAmount: null,
+                    netTransferAmount: 2835,
+                    splitAmount: null,
+                    eventsData: [
+                        {
+                            description: "Payout funded",
+                            eventTime: "2025-01-15T14:28:45",
+                            refData: "",
+                            extraData: null,
+                            source: "system",
+                        },
+                    ],
+                    messages: [
+                        {
+                            Id: 8842,
+                            RoomId: 1205,
+                            UserId: 334,
+                            UserName: "Maria Santos",
+                            Content: "Transfer processed successfully",
+                            CreatedAt: "2025-01-15T14:30:00",
+                            MessageType: 1,
+                            MessageProperties: {
+                                originalTransferStatus: "pending",
+                                currentTransferStatus: "completed",
+                            },
+                        },
+                    ],
+                },
+            ],
+        });
+    });
+
+    test("ListTransfersOutOrg (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/transfersOut/org/1")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listTransfersOutOrg(1);
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("ListTransfersOutOrg (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/transfersOut/org/1")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listTransfersOutOrg(1);
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("ListTransfersOutOrg (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/transfersOut/org/1")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listTransfersOutOrg(1);
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("ListTransfersOutOrg (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/transfersOut/org/1")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listTransfersOutOrg(1);
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("ListTransfersOutPaypoint (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            Summary: { totalPages: 8, totalRecords: 156, pageSize: 20 },
+            Records: [
+                {
+                    transferId: 4521,
+                    paypointId: 892,
+                    batchNumber: null,
+                    batchCurrency: null,
+                    batchRecords: null,
+                    transferIdentifier: null,
+                    batchId: null,
+                    batchNetAmount: null,
+                    batchStatus: null,
+                    paypointEntryName: "47cade237",
+                    paypointLegalName: "Solid Rock Concrete Coatings LLC",
+                    paypointDbaName: "Solid Rock Coatings",
+                    paypointLogo: "https://example.com/logos/solidrock.png",
+                    parentOrgName: "Premier Property Services",
+                    parentOrgId: 77,
+                    parentOrgLogo: "https://example.com/logos/premier.png",
+                    parentOrgEntryName: "premierps",
+                    externalPaypointID: "SR-892",
+                    bankAccount: {
+                        accountNumber: "4XXXXXX7231",
+                        routingNumber: "121000358",
+                        bankName: "Riverdale Community Bank",
+                    },
+                    transferDate: "2025-01-15T14:30:00Z",
+                    processor: "BK",
+                    transferStatus: null,
+                    grossAmount: 2847.5,
+                    chargeBackAmount: null,
+                    returnedAmount: 0,
+                    holdAmount: 0,
+                    releasedAmount: 0,
+                    billingFeesAmount: 12.5,
+                    thirdPartyPaidAmount: null,
+                    adjustmentsAmount: null,
+                    netTransferAmount: 2835,
+                    splitAmount: null,
+                    eventsData: [
+                        {
+                            description: "Payout funded",
+                            eventTime: "2025-01-15T14:28:45",
+                            refData: "",
+                            extraData: null,
+                            source: "system",
+                        },
+                    ],
+                    messages: [
+                        {
+                            Id: 8842,
+                            RoomId: 1205,
+                            UserId: 334,
+                            UserName: "Maria Santos",
+                            Content: "Transfer processed successfully",
+                            CreatedAt: "2025-01-15T14:30:00",
+                            MessageType: 1,
+                            MessageProperties: {
+                                originalTransferStatus: "pending",
+                                currentTransferStatus: "completed",
+                            },
+                        },
+                    ],
+                },
+            ],
+        };
+
+        server
+            .mockEndpoint()
+            .get("/Query/transfersOut/47cade237")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.query.listTransfersOutPaypoint("47cade237", {
+            fromRecord: 0,
+            limitRecord: 20,
+        });
+        expect(response).toEqual({
+            Summary: {
+                totalPages: 8,
+                totalRecords: 156,
+                pageSize: 20,
+            },
+            Records: [
+                {
+                    transferId: 4521,
+                    paypointId: 892,
+                    batchNumber: null,
+                    batchCurrency: null,
+                    batchRecords: null,
+                    transferIdentifier: null,
+                    batchId: null,
+                    batchNetAmount: null,
+                    batchStatus: null,
+                    paypointEntryName: "47cade237",
+                    paypointLegalName: "Solid Rock Concrete Coatings LLC",
+                    paypointDbaName: "Solid Rock Coatings",
+                    paypointLogo: "https://example.com/logos/solidrock.png",
+                    parentOrgName: "Premier Property Services",
+                    parentOrgId: 77,
+                    parentOrgLogo: "https://example.com/logos/premier.png",
+                    parentOrgEntryName: "premierps",
+                    externalPaypointID: "SR-892",
+                    bankAccount: {
+                        accountNumber: "4XXXXXX7231",
+                        routingNumber: "121000358",
+                        bankName: "Riverdale Community Bank",
+                    },
+                    transferDate: "2025-01-15T14:30:00Z",
+                    processor: "BK",
+                    transferStatus: null,
+                    grossAmount: 2847.5,
+                    chargeBackAmount: null,
+                    returnedAmount: 0,
+                    holdAmount: 0,
+                    releasedAmount: 0,
+                    billingFeesAmount: 12.5,
+                    thirdPartyPaidAmount: null,
+                    adjustmentsAmount: null,
+                    netTransferAmount: 2835,
+                    splitAmount: null,
+                    eventsData: [
+                        {
+                            description: "Payout funded",
+                            eventTime: "2025-01-15T14:28:45",
+                            refData: "",
+                            extraData: null,
+                            source: "system",
+                        },
+                    ],
+                    messages: [
+                        {
+                            Id: 8842,
+                            RoomId: 1205,
+                            UserId: 334,
+                            UserName: "Maria Santos",
+                            Content: "Transfer processed successfully",
+                            CreatedAt: "2025-01-15T14:30:00",
+                            MessageType: 1,
+                            MessageProperties: {
+                                originalTransferStatus: "pending",
+                                currentTransferStatus: "completed",
+                            },
+                        },
+                    ],
+                },
+            ],
+        });
+    });
+
+    test("ListTransfersOutPaypoint (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/transfersOut/entry")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listTransfersOutPaypoint("entry");
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("ListTransfersOutPaypoint (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/transfersOut/entry")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listTransfersOutPaypoint("entry");
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("ListTransfersOutPaypoint (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/transfersOut/entry")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listTransfersOutPaypoint("entry");
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("ListTransfersOutPaypoint (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/transfersOut/entry")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listTransfersOutPaypoint("entry");
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("ListTransferDetailsOut (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            Summary: {
+                achReturns: 0,
+                adjustments: 0,
+                billingFees: 25,
+                chargebacks: 0,
+                grossTransferAmount: 4875,
+                releaseAmount: 0,
+                thirdPartyPaid: 0,
+                totalNetAmountTransfer: 4850,
+                netBatchAmount: 0,
+                splitAmount: 0,
+                serviceFees: 0,
+                transferAmount: 0,
+                refunds: 0,
+                heldAmount: 0,
+                totalRecords: 156,
+                totalAmount: 0,
+                totalNetAmount: 0,
+                totalPages: 8,
+                pageSize: 20,
+                pageidentifier: null,
+            },
+            Records: [
+                {
+                    transferDetailId: 9847,
+                    transferId: 4521,
+                    transactionId: "01KXYZ789ABC123DEF456GHI",
+                    IdOut: 88234,
+                    method: null,
+                    type: "Debit",
+                    category: "grouped",
+                    grossAmount: 1250,
+                    returnedAmount: 0,
+                    refundAmount: 0,
+                    holdAmount: 0,
+                    releasedAmount: 0,
+                    billingFeesAmount: 5,
+                    adjustmentsAmount: 0,
+                    netTransferAmount: 1245,
+                    billingFeesDetails: null,
+                    CreatedAt: "2025-01-15T10:22:18",
+                    Comments: "Epoxy floor coating materials",
+                    Vendor: {
+                        VendorNumber: "V-CC-2847",
+                        Name1: "Concrete Supply Distributors",
+                        Name2: null,
+                        EIN: "XXXXX4567",
+                        Phone: "(512) 555-0147",
+                        Email: "accounts@concretesupply.example.com",
+                        RemitEmail: "payments@concretesupply.example.com",
+                        Address1: "4200 Industrial Parkway",
+                        Address2: "Unit B",
+                        City: "Austin",
+                        State: "TX",
+                        Zip: "78745",
+                        Country: "US",
+                        Mcc: "5039",
+                        LocationCode: null,
+                        Contacts: [
+                            {
+                                ContactName: "Robert Chen",
+                                ContactEmail: "rchen@concretesupply.example.com",
+                                ContactTitle: "Accounts Receivable",
+                                ContactPhone: "(512) 555-0148",
+                            },
+                        ],
+                        BillingData: null,
+                        PaymentMethod: "ach",
+                        VendorStatus: 1,
+                        VendorId: 24891,
+                        EnrollmentStatus: null,
+                        Summary: null,
+                        PaypointLegalname: "Solid Rock Concrete Coatings LLC",
+                        PaypointId: null,
+                        PaypointDbaname: "Solid Rock Coatings",
+                        PaypointEntryname: "47cade237",
+                        ParentOrgName: "Premier Property Services",
+                        ParentOrgId: 77,
+                        CreatedDate: "2024-08-12T09:15:00",
+                        LastUpdated: "2025-01-10T14:30:22",
+                        remitAddress1: "4200 Industrial Parkway",
+                        remitAddress2: "Unit B",
+                        remitCity: "Austin",
+                        remitState: "TX",
+                        remitZip: "78745",
+                        remitCountry: "US",
+                        payeeName1: null,
+                        payeeName2: null,
+                        customField1: "",
+                        customField2: "",
+                        customerVendorAccount: "SRCC-001847",
+                        InternalReferenceId: 3392,
+                        additionalData: null,
+                        externalPaypointID: "SR-892",
+                        StoredMethods: null,
+                    },
+                    PaypointDbaname: "Solid Rock Coatings",
+                    PaypointLegalname: "Solid Rock Concrete Coatings LLC",
+                    PaypointId: 892,
+                    Status: 2,
+                    PaymentId: "01KXYZ789ABC123DEF456GHI",
+                    TransId: null,
+                    TransStatus: null,
+                    TransStatusDetail: null,
+                    TransStatusName: null,
+                    TransStatusCategory: null,
+                    LastUpdated: "2025-01-15T10:23:05",
+                    TotalAmount: 1250,
+                    NetAmount: 1245,
+                    FeeAmount: 5,
+                    Source: "api",
+                    ParentOrgName: "Premier Property Services",
+                    ParentOrgId: 77,
+                    BatchNumber: "b7c3e891-4f2a-4d8e-9a1b-c5d6e7f8a9b0",
+                    PaymentStatus: "Processing",
+                    PaymentMethod: "ach",
+                    CardToken: null,
+                    CheckNumber: "",
+                    CheckData: null,
+                    PaymentData: {
+                        MaskedAccount: "7XXXXXX4523",
+                        AccountType: "checking",
+                        AccountExp: "",
+                        AccountZip: "",
+                        HolderName: null,
+                        StoredId: "f8e7d6c5-b4a3-9281-7654-321098fedcba",
+                        Initiator: null,
+                        StoredMethodUsageType: null,
+                        Sequence: null,
+                        orderDescription: "Epoxy floor coating materials",
+                        cloudSignatureData: null,
+                        cloudSignatureFormat: null,
+                        paymentDetails: null,
+                        payorData: null,
+                        accountId: "bankOut1",
+                        bankAccount: null,
+                        gatewayConnector: null,
+                        binData: null,
+                    },
+                    Bills: [
+                        {
+                            billId: 78234,
+                            LotNumber: "LOT-2025-0115",
+                            AccountingField1: null,
+                            AccountingField2: null,
+                            Terms: null,
+                            AdditionalData: null,
+                            attachments: null,
+                            invoiceNumber: "INV-2025-00892",
+                            netAmount: "1250.00",
+                            invoiceDate: "2025-01-10T00:00:00",
+                            dueDate: "2025-02-09",
+                            comments: "50 gal epoxy primer, 25 gal topcoat - Project Riverside Plaza",
+                            identifier: null,
+                            discount: null,
+                            totalAmount: null,
+                        },
+                    ],
+                    Events: [
+                        { TransEvent: "Risk Validated: PASSED", EventData: "", EventTime: "2025-01-15T10:22:20" },
+                        {
+                            TransEvent: "Captured",
+                            EventData: "0ABC123XYZ789:00000012",
+                            EventTime: "2025-01-15T10:22:25",
+                        },
+                    ],
+                    externalPaypointID: "SR-892",
+                    EntryName: "47cade237",
+                    Gateway: "bank",
+                    BatchId: 12847,
+                    HasVcardTransactions: null,
+                    IsSameDayACH: false,
+                    ScheduleId: 0,
+                    SettlementStatus: "Pending",
+                    SettlementStatusName: "",
+                    SettlementDate: null,
+                    RiskFlagged: false,
+                    RiskFlaggedOn: "2025-01-15T10:22:18",
+                    RiskStatus: "PASSED",
+                    RiskReason: "",
+                    RiskAction: "",
+                    RiskActionCode: 0,
+                    PayoutProgram: "ODP",
+                    AchTraceNumber: null,
+                },
+            ],
+        };
+
+        server
+            .mockEndpoint()
+            .get("/Query/transferDetailsOut/47ace2b25/4521")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.query.listTransferDetailsOut("47ace2b25", 4521, {
+            fromRecord: 0,
+            limitRecord: 20,
+        });
+        expect(response).toEqual({
+            Summary: {
+                achReturns: 0,
+                adjustments: 0,
+                billingFees: 25,
+                chargebacks: 0,
+                grossTransferAmount: 4875,
+                releaseAmount: 0,
+                thirdPartyPaid: 0,
+                totalNetAmountTransfer: 4850,
+                netBatchAmount: 0,
+                splitAmount: 0,
+                serviceFees: 0,
+                transferAmount: 0,
+                refunds: 0,
+                heldAmount: 0,
+                totalRecords: 156,
+                totalAmount: 0,
+                totalNetAmount: 0,
+                totalPages: 8,
+                pageSize: 20,
+                pageidentifier: null,
+            },
+            Records: [
+                {
+                    transferDetailId: 9847,
+                    transferId: 4521,
+                    transactionId: "01KXYZ789ABC123DEF456GHI",
+                    IdOut: 88234,
+                    method: null,
+                    type: "Debit",
+                    category: "grouped",
+                    grossAmount: 1250,
+                    returnedAmount: 0,
+                    refundAmount: 0,
+                    holdAmount: 0,
+                    releasedAmount: 0,
+                    billingFeesAmount: 5,
+                    adjustmentsAmount: 0,
+                    netTransferAmount: 1245,
+                    billingFeesDetails: null,
+                    CreatedAt: "2025-01-15T10:22:18",
+                    Comments: "Epoxy floor coating materials",
+                    Vendor: {
+                        VendorNumber: "V-CC-2847",
+                        Name1: "Concrete Supply Distributors",
+                        Name2: null,
+                        EIN: "XXXXX4567",
+                        Phone: "(512) 555-0147",
+                        Email: "accounts@concretesupply.example.com",
+                        RemitEmail: "payments@concretesupply.example.com",
+                        Address1: "4200 Industrial Parkway",
+                        Address2: "Unit B",
+                        City: "Austin",
+                        State: "TX",
+                        Zip: "78745",
+                        Country: "US",
+                        Mcc: "5039",
+                        LocationCode: null,
+                        Contacts: [
+                            {
+                                ContactName: "Robert Chen",
+                                ContactEmail: "rchen@concretesupply.example.com",
+                                ContactTitle: "Accounts Receivable",
+                                ContactPhone: "(512) 555-0148",
+                            },
+                        ],
+                        BillingData: null,
+                        PaymentMethod: "ach",
+                        VendorStatus: 1,
+                        VendorId: 24891,
+                        EnrollmentStatus: null,
+                        Summary: null,
+                        PaypointLegalname: "Solid Rock Concrete Coatings LLC",
+                        PaypointId: null,
+                        PaypointDbaname: "Solid Rock Coatings",
+                        PaypointEntryname: "47cade237",
+                        ParentOrgName: "Premier Property Services",
+                        ParentOrgId: 77,
+                        CreatedDate: "2024-08-12T09:15:00",
+                        LastUpdated: "2025-01-10T14:30:22",
+                        remitAddress1: "4200 Industrial Parkway",
+                        remitAddress2: "Unit B",
+                        remitCity: "Austin",
+                        remitState: "TX",
+                        remitZip: "78745",
+                        remitCountry: "US",
+                        payeeName1: null,
+                        payeeName2: null,
+                        customField1: "",
+                        customField2: "",
+                        customerVendorAccount: "SRCC-001847",
+                        InternalReferenceId: 3392,
+                        additionalData: null,
+                        externalPaypointID: "SR-892",
+                        StoredMethods: null,
+                    },
+                    PaypointDbaname: "Solid Rock Coatings",
+                    PaypointLegalname: "Solid Rock Concrete Coatings LLC",
+                    PaypointId: 892,
+                    Status: 2,
+                    PaymentId: "01KXYZ789ABC123DEF456GHI",
+                    TransId: null,
+                    TransStatus: null,
+                    TransStatusDetail: null,
+                    TransStatusName: null,
+                    TransStatusCategory: null,
+                    LastUpdated: "2025-01-15T10:23:05",
+                    TotalAmount: 1250,
+                    NetAmount: 1245,
+                    FeeAmount: 5,
+                    Source: "api",
+                    ParentOrgName: "Premier Property Services",
+                    ParentOrgId: 77,
+                    BatchNumber: "b7c3e891-4f2a-4d8e-9a1b-c5d6e7f8a9b0",
+                    PaymentStatus: "Processing",
+                    PaymentMethod: "ach",
+                    CardToken: null,
+                    CheckNumber: "",
+                    CheckData: null,
+                    PaymentData: {
+                        MaskedAccount: "7XXXXXX4523",
+                        AccountType: "checking",
+                        AccountExp: "",
+                        AccountZip: "",
+                        HolderName: null,
+                        StoredId: "f8e7d6c5-b4a3-9281-7654-321098fedcba",
+                        Initiator: null,
+                        StoredMethodUsageType: null,
+                        Sequence: null,
+                        orderDescription: "Epoxy floor coating materials",
+                        cloudSignatureData: null,
+                        cloudSignatureFormat: null,
+                        paymentDetails: null,
+                        payorData: null,
+                        accountId: "bankOut1",
+                        bankAccount: null,
+                        gatewayConnector: null,
+                        binData: null,
+                    },
+                    Bills: [
+                        {
+                            billId: 78234,
+                            LotNumber: "LOT-2025-0115",
+                            AccountingField1: null,
+                            AccountingField2: null,
+                            Terms: null,
+                            AdditionalData: null,
+                            attachments: null,
+                            invoiceNumber: "INV-2025-00892",
+                            netAmount: "1250.00",
+                            invoiceDate: "2025-01-10T00:00:00",
+                            dueDate: "2025-02-09",
+                            comments: "50 gal epoxy primer, 25 gal topcoat - Project Riverside Plaza",
+                            identifier: null,
+                            discount: null,
+                            totalAmount: null,
+                        },
+                    ],
+                    Events: [
+                        {
+                            TransEvent: "Risk Validated: PASSED",
+                            EventData: "",
+                            EventTime: "2025-01-15T10:22:20",
+                        },
+                        {
+                            TransEvent: "Captured",
+                            EventData: "0ABC123XYZ789:00000012",
+                            EventTime: "2025-01-15T10:22:25",
+                        },
+                    ],
+                    externalPaypointID: "SR-892",
+                    EntryName: "47cade237",
+                    Gateway: "bank",
+                    BatchId: 12847,
+                    HasVcardTransactions: null,
+                    IsSameDayACH: false,
+                    ScheduleId: 0,
+                    SettlementStatus: "Pending",
+                    SettlementStatusName: "",
+                    SettlementDate: null,
+                    RiskFlagged: false,
+                    RiskFlaggedOn: "2025-01-15T10:22:18",
+                    RiskStatus: "PASSED",
+                    RiskReason: "",
+                    RiskAction: "",
+                    RiskActionCode: 0,
+                    PayoutProgram: "ODP",
+                    AchTraceNumber: null,
+                },
+            ],
+        });
+    });
+
+    test("ListTransferDetailsOut (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/transferDetailsOut/entry/1")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listTransferDetailsOut("entry", 1);
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("ListTransferDetailsOut (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/transferDetailsOut/entry/1")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listTransferDetailsOut("entry", 1);
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("ListTransferDetailsOut (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/transferDetailsOut/entry/1")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listTransferDetailsOut("entry", 1);
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("ListTransferDetailsOut (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/transferDetailsOut/entry/1")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listTransferDetailsOut("entry", 1);
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
@@ -7200,6 +9068,7 @@ describe("QueryClient", () => {
                 totalRecords: 2,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/users/org/123")
@@ -7259,6 +9128,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Query/users/org/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -7271,6 +9141,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Query/users/org/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -7283,6 +9154,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/Query/users/org/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -7295,6 +9167,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server.mockEndpoint().get("/Query/users/org/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -7337,6 +9210,7 @@ describe("QueryClient", () => {
                 totalRecords: 2,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/users/point/8cfec329267")
@@ -7396,6 +9270,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/users/point/entry")
@@ -7414,6 +9289,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/users/point/entry")
@@ -7432,6 +9308,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/users/point/entry")
@@ -7450,6 +9327,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/users/point/entry")
@@ -7474,7 +9352,7 @@ describe("QueryClient", () => {
                     Name1: "Herman's Coatings",
                     Name2: "Herman's Coating Supply Company, LLC",
                     EIN: "123456789",
-                    Phone: "212-555-1234",
+                    Phone: "2125551234",
                     Email: "example@email.com",
                     Address1: "123 Ocean Drive",
                     Address2: "Suite 400",
@@ -7558,6 +9436,7 @@ describe("QueryClient", () => {
                 totalRecords: 1,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/vendors/8cfec329267")
@@ -7578,7 +9457,7 @@ describe("QueryClient", () => {
                     Name1: "Herman's Coatings",
                     Name2: "Herman's Coating Supply Company, LLC",
                     EIN: "123456789",
-                    Phone: "212-555-1234",
+                    Phone: "2125551234",
                     Email: "example@email.com",
                     Address1: "123 Ocean Drive",
                     Address2: "Suite 400",
@@ -7669,6 +9548,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/vendors/entry")
@@ -7687,6 +9567,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/vendors/entry")
@@ -7705,6 +9586,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/vendors/entry")
@@ -7723,6 +9605,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/vendors/entry")
@@ -7747,7 +9630,7 @@ describe("QueryClient", () => {
                     Name1: "Herman's Coatings",
                     Name2: "Herman's Coating Supply Company, LLC",
                     EIN: "123456789",
-                    Phone: "212-555-1234",
+                    Phone: "2125551234",
                     Email: "example@email.com",
                     Address1: "123 Ocean Drive",
                     Address2: "Suite 400",
@@ -7831,6 +9714,7 @@ describe("QueryClient", () => {
                 totalRecords: 1,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/vendors/org/123")
@@ -7851,7 +9735,7 @@ describe("QueryClient", () => {
                     Name1: "Herman's Coatings",
                     Name2: "Herman's Coating Supply Company, LLC",
                     EIN: "123456789",
-                    Phone: "212-555-1234",
+                    Phone: "2125551234",
                     Email: "example@email.com",
                     Address1: "123 Ocean Drive",
                     Address2: "Suite 400",
@@ -7942,6 +9826,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/vendors/org/1")
@@ -7960,6 +9845,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/vendors/org/1")
@@ -7978,6 +9864,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/vendors/org/1")
@@ -7996,6 +9883,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/vendors/org/1")
@@ -8062,6 +9950,7 @@ describe("QueryClient", () => {
                 totalRecords: 5,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/vcards/8cfec329267")
@@ -8134,6 +10023,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/vcards/entry")
@@ -8152,6 +10042,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/vcards/entry")
@@ -8170,6 +10061,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/Query/vcards/entry")
@@ -8188,6 +10080,7 @@ describe("QueryClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { responseText: "responseText" };
+
         server
             .mockEndpoint()
             .get("/Query/vcards/entry")
@@ -8254,6 +10147,7 @@ describe("QueryClient", () => {
                 totalRecords: 5,
             },
         };
+
         server
             .mockEndpoint()
             .get("/Query/vcards/org/123")

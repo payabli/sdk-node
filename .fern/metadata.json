@@ -6,6 +6,6 @@
         "namespaceExport": "Payabli",
         "noSerdeLayer": true
     },
-    "originGitCommit": "6415b5451c2da0d2c1cef85dc4081265a866360c",
-    "sdkVersion": "0.0.138"
+    "originGitCommit": "1c808101b3d6b53335ed8e4ad2204aa9f91662cb",
+    "sdkVersion": "0.0.139"
 }
