@@ -141,149 +141,7 @@ describe("SubscriptionClient", () => {
         server.mockEndpoint().get("/Subscription/263").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.subscription.getSubscription(263);
-        expect(response).toEqual({
-            CreatedAt: "2022-07-01T15:00:01Z",
-            Customer: {
-                BillingAddress1: "1111 West 1st Street",
-                BillingAddress2: "Suite 200",
-                BillingCity: "Miami",
-                BillingCountry: "US",
-                BillingEmail: "example@email.com",
-                BillingPhone: "5555555555",
-                BillingState: "FL",
-                BillingZip: "45567",
-                CompanyName: "Sunshine LLC",
-                customerId: 4440,
-                CustomerNumber: "3456-7645A",
-                customerStatus: 1,
-                FirstName: "John",
-                Identifiers: ['\\"firstname\\"', '\\"lastname\\"', '\\"email\\"', '\\"customId\\"'],
-                LastName: "Doe",
-                ShippingAddress1: "123 Walnut St",
-                ShippingAddress2: "STE 900",
-                ShippingCity: "Johnson City",
-                ShippingCountry: "US",
-                ShippingState: "TN",
-                ShippingZip: "37619",
-            },
-            EndDate: "2025-10-19T00:00:00Z",
-            EntrypageId: 0,
-            ExternalPaypointID: "Paypoint-100",
-            FeeAmount: 3,
-            Frequency: "monthly",
-            IdSub: 396,
-            InvoiceData: {
-                attachments: [{}],
-                company: "ACME, INC",
-                discount: 10,
-                dutyAmount: 0,
-                firstName: "Chad",
-                freightAmount: 10,
-                frequency: "onetime",
-                invoiceAmount: 105,
-                invoiceDate: "2025-07-01",
-                invoiceDueDate: "2025-07-01",
-                invoiceEndDate: "2025-07-01",
-                invoiceNumber: "INV-2345",
-                invoiceStatus: 1,
-                invoiceType: 0,
-                items: [
-                    {
-                        itemCost: 5,
-                        itemProductName: "Materials deposit",
-                        itemQty: 1,
-                    },
-                ],
-                lastName: "Mercia",
-                notes: "Example notes.",
-                paymentTerms: "PIA",
-                purchaseOrder: "PO-345",
-                shippingAddress1: "123 Walnut St",
-                shippingAddress2: "STE 900",
-                shippingCity: "Johnson City",
-                shippingCountry: "US",
-                shippingEmail: "example@email.com",
-                shippingFromZip: "30040",
-                shippingPhone: "5555555555",
-                shippingState: "TN",
-                shippingZip: "37619",
-                summaryCommodityCode: "501718",
-                tax: 2.05,
-                termsConditions: "Must be paid before work scheduled.",
-            },
-            LastRun: "2025-10-19T00:00:00Z",
-            LastUpdated: "2022-07-01T15:00:01Z",
-            LeftCycles: 15,
-            Method: "card",
-            NetAmount: 3762.87,
-            NextDate: "2025-10-19T00:00:00Z",
-            ParentOrgName: "PropertyManager Pro",
-            PaymentData: {
-                AccountExp: "11/29",
-                accountId: "accountId",
-                AccountType: "visa",
-                AccountZip: "90210",
-                binData: {
-                    binMatchedLength: "6",
-                    binCardBrand: "Visa",
-                    binCardType: "Credit",
-                    binCardCategory: "PLATINUM",
-                    binCardIssuer: "Bank of Example",
-                    binCardIssuerCountry: "United States",
-                    binCardIssuerCountryCodeA2: "US",
-                    binCardIssuerCountryNumber: "840",
-                    binCardIsRegulated: "false",
-                    binCardUseCategory: "Consumer",
-                    binCardIssuerCountryCodeA3: "USA",
-                },
-                HolderName: "Chad Mercia",
-                Initiator: "payor",
-                MaskedAccount: "4XXXXXXXX1111",
-                orderDescription: "Depost for materials for 123 Walnut St",
-                paymentDetails: {
-                    categories: [
-                        {
-                            amount: 1000,
-                            label: "Deposit",
-                        },
-                    ],
-                    checkImage: {
-                        key: "value",
-                    },
-                    checkNumber: "107",
-                    currency: "USD",
-                    serviceFee: 0,
-                    splitFunding: [{}],
-                    totalAmount: 100,
-                },
-                Sequence: "subsequent",
-                SignatureData: "SignatureData",
-                StoredId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                StoredMethodUsageType: "subscription",
-            },
-            PaypointDbaname: "Sunshine Gutters",
-            PaypointEntryname: "d193cf9a46",
-            PaypointId: 255,
-            PaypointLegalname: "Sunshine Services, LLC",
-            PlanId: 0,
-            Source: "api",
-            StartDate: "2025-10-19T00:00:00Z",
-            SubEvents: [
-                {
-                    description: "TransferCreated",
-                    eventTime: "2023-07-05T22:31:06Z",
-                    extraData: {
-                        key: "value",
-                    },
-                    refData: "refData",
-                    source: "api",
-                },
-            ],
-            SubStatus: 1,
-            TotalAmount: 103,
-            TotalCycles: 24,
-            UntilCancelled: true,
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("GetSubscription (2)", async () => {
@@ -394,12 +252,7 @@ describe("SubscriptionClient", () => {
                 },
             },
         });
-        expect(response).toEqual({
-            responseText: "Success",
-            isSuccess: true,
-            responseData: 396,
-            customerId: 4440,
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("NewSubscription (2)", async () => {
@@ -458,12 +311,7 @@ describe("SubscriptionClient", () => {
                 },
             },
         });
-        expect(response).toEqual({
-            responseText: "Success",
-            isSuccess: true,
-            responseData: 396,
-            customerId: 4440,
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("NewSubscription (3)", async () => {
@@ -514,12 +362,7 @@ describe("SubscriptionClient", () => {
                 },
             },
         });
-        expect(response).toEqual({
-            responseText: "Success",
-            isSuccess: true,
-            responseData: 396,
-            customerId: 4440,
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("NewSubscription (4)", async () => {
@@ -625,11 +468,7 @@ describe("SubscriptionClient", () => {
             .build();
 
         const response = await client.subscription.removeSubscription(396);
-        expect(response).toEqual({
-            isSuccess: true,
-            responseData: "396",
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("RemoveSubscription (2)", async () => {
@@ -707,12 +546,7 @@ describe("SubscriptionClient", () => {
         const response = await client.subscription.updateSubscription(231, {
             setPause: true,
         });
-        expect(response).toEqual({
-            responseText: "Success",
-            isSuccess: true,
-            responseData: "396 paused",
-            customerId: 4440,
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("UpdateSubscription (2)", async () => {
@@ -738,12 +572,7 @@ describe("SubscriptionClient", () => {
         const response = await client.subscription.updateSubscription(231, {
             setPause: false,
         });
-        expect(response).toEqual({
-            responseText: "Success",
-            isSuccess: true,
-            responseData: "396 unpaused",
-            customerId: 4440,
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("UpdateSubscription (3)", async () => {
@@ -781,11 +610,6 @@ describe("SubscriptionClient", () => {
                 startDate: "09-20-2024",
             },
         });
-        expect(response).toEqual({
-            responseText: "Success",
-            isSuccess: true,
-            responseData: "396 updated",
-            customerId: 4440,
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 });

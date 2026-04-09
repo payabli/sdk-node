@@ -41,11 +41,7 @@ describe("LineItemClient", () => {
                 itemMode: 0,
             },
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseData: 700,
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("AddItem (2)", async () => {
@@ -157,10 +153,7 @@ describe("LineItemClient", () => {
         server.mockEndpoint().delete("/LineItem/700").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.lineItem.deleteItem(700);
-        expect(response).toEqual({
-            isSuccess: true,
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("DeleteItem (2)", async () => {
@@ -242,25 +235,7 @@ describe("LineItemClient", () => {
         server.mockEndpoint().get("/LineItem/700").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.lineItem.getItem(700);
-        expect(response).toEqual({
-            createdAt: "2022-07-01T15:00:01Z",
-            id: 45,
-            itemCategories: ["itemCategories"],
-            itemCommodityCode: "010",
-            itemCost: 5,
-            itemDescription: "Deposit for materials.",
-            itemMode: 0,
-            itemProductCode: "M-DEPOSIT",
-            itemProductName: "Materials deposit",
-            itemQty: 1,
-            itemUnitOfMeasure: "SqFt",
-            lastUpdated: "2022-07-01T15:00:01Z",
-            pageidentifier: "null",
-            ParentOrgName: "PropertyManager Pro",
-            PaypointDbaname: "Sunshine Gutters",
-            PaypointEntryname: "d193cf9a46",
-            PaypointLegalname: "Sunshine Services, LLC",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("GetItem (2)", async () => {
@@ -352,29 +327,7 @@ describe("LineItemClient", () => {
             limitRecord: 0,
             sortBy: "desc(field_name)",
         });
-        expect(response).toEqual({
-            Records: [
-                {
-                    LineItem: {
-                        itemCost: 12.45,
-                        itemProductName: "Materials deposit",
-                        itemQty: 1,
-                    },
-                    ParentOrgName: "PropertyManager Pro",
-                    PaypointDbaname: "Sunshine Gutters",
-                    PaypointEntryname: "d193cf9a46",
-                    PaypointLegalname: "Sunshine Services, LLC",
-                },
-            ],
-            Summary: {
-                pageIdentifier: "null",
-                pageSize: 20,
-                totalAmount: 77.22,
-                totalNetAmount: 77.22,
-                totalPages: 2,
-                totalRecords: 2,
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ListLineItems (2)", async () => {
@@ -472,10 +425,6 @@ describe("LineItemClient", () => {
             itemCost: 12.45,
             itemQty: 1,
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseData: 700,
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 });

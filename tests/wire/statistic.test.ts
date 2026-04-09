@@ -63,47 +63,7 @@ describe("StatisticClient", () => {
             endDate: "2025-11-01",
             startDate: "2025-11-30",
         });
-        expect(response).toEqual([
-            {
-                outCustomers: 18196,
-                outNewCustomers: 1089,
-                outTransactions: 3319,
-                outSubscriptionsPaid: 0,
-                outCardTransactions: 0,
-                outVCardTransactions: 0,
-                outACHTransactions: 0,
-                outCheckTransactions: 0,
-                outPendingMethodTransactions: 22,
-                outTransactionsVolume: 13111741.78,
-                outSubscriptionsPaidVolume: 0,
-                outCardVolume: 0,
-                outVCardVolume: 0,
-                outACHVolume: 0,
-                outCheckVolume: 0,
-                outPendingMethodVolume: 82,
-                statX: "2025-11",
-                inTransactions: 168204,
-                inSubscriptionsPaid: 311,
-                inCustomers: 2561522,
-                inNewCustomers: 44846,
-                inCardTransactions: 115059,
-                inACHTransactions: 53153,
-                inCheckTransactions: 0,
-                inCashTransactions: 15,
-                inWalletTransactions: 0,
-                inCardChargeBacks: 17,
-                inACHReturns: 0,
-                inTransactionsVolume: 104795896.94,
-                inSubscriptionsPaidVolume: 81569.32,
-                inCardVolume: 41085285.13,
-                inACHVolume: 63706101.81,
-                inCheckVolume: 0,
-                inCashVolume: 4510,
-                inWalletVolume: 0,
-                inCardChargeBackVolume: 15455.75,
-                inACHReturnsVolume: 0,
-            },
-        ]);
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("BasicStats (2)", async () => {
@@ -197,13 +157,7 @@ describe("StatisticClient", () => {
             .build();
 
         const response = await client.statistic.customerBasicStats("ytd", "m", 998);
-        expect(response).toEqual([
-            {
-                interval: "2023-03",
-                count: 45,
-                volume: 12500.75,
-            },
-        ]);
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("CustomerBasicStats (2)", async () => {
@@ -305,15 +259,7 @@ describe("StatisticClient", () => {
             .build();
 
         const response = await client.statistic.subStats("30", 1, 1000000);
-        expect(response).toEqual([
-            {
-                statX: "2023-03",
-                inTransactions: 150,
-                inTransactionsVolume: 25000.5,
-                inWalletTransactions: 10,
-                inWalletVolume: 1000.5,
-            },
-        ]);
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("SubStats (2)", async () => {
@@ -427,26 +373,6 @@ describe("StatisticClient", () => {
             .build();
 
         const response = await client.statistic.vendorBasicStats("ytd", "m", 1);
-        expect(response).toEqual([
-            {
-                statX: "2023-03",
-                active: 25,
-                activeVolume: 5000.25,
-                sentToApproval: 10,
-                sentToApprovalVolume: 2500.75,
-                toApproval: 8,
-                toApprovalVolume: 1800.5,
-                approved: 20,
-                approvedVolume: 4200,
-                disapproved: 3,
-                disapprovedVolume: 600.25,
-                cancelled: 2,
-                cancelledVolume: 400,
-                inTransit: 5,
-                inTransitVolume: 1250.75,
-                paid: 18,
-                paidVolume: 3800.5,
-            },
-        ]);
+        expect(response).toEqual(rawResponseBody);
     });
 });

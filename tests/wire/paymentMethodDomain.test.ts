@@ -74,48 +74,7 @@ describe("PaymentMethodDomainClient", () => {
                 isEnabled: true,
             },
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            pageidentifier: "pageidentifier",
-            responseData: {
-                id: "pmd_a4c7e39d15f24b8c8d6259f174e3d081",
-                type: "PaymentMethodDomains",
-                entityId: 109,
-                entityType: "paypoint",
-                domainName: "checkout.example.com",
-                applePay: {
-                    isEnabled: true,
-                },
-                googlePay: {
-                    isEnabled: true,
-                },
-                ownerEntityId: 109,
-                ownerEntityType: "paypoint",
-                cascades: [
-                    {
-                        jobId: "1030398",
-                        jobStatus: "completed",
-                        createdAt: "2025-04-25T15:37:28.685Z",
-                        updatedAt: "2025-04-25T15:37:33.228Z",
-                    },
-                    {
-                        jobId: "611502",
-                        jobStatus: "completed",
-                        createdAt: "2026-09-26T22:25:45.095Z",
-                        updatedAt: "2026-09-26T22:25:46.187Z",
-                    },
-                    {
-                        jobId: "611172",
-                        jobStatus: "completed",
-                        createdAt: "2026-09-26T19:46:40.075Z",
-                        updatedAt: "2026-09-26T19:47:13.548Z",
-                    },
-                ],
-                createdAt: "2025-04-25T15:44:17.016Z",
-                updatedAt: "2025-04-25T15:44:17.016Z",
-            },
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("AddPaymentMethodDomain (2)", async () => {
@@ -240,36 +199,7 @@ describe("PaymentMethodDomainClient", () => {
         const response = await client.paymentMethodDomain.cascadePaymentMethodDomain(
             "pmd_b8237fa45c964d8a9ef27160cd42b8c5",
         );
-        expect(response).toEqual({
-            isSuccess: true,
-            pageidentifier: "null",
-            responseData: {
-                id: "pmd_b8237fa45c964d8a9ef27160cd42b8c5",
-                type: "PaymentMethodDomains",
-                entityId: 78,
-                entityType: "organization",
-                domainName: "checkout.example.com",
-                applePay: {
-                    isEnabled: true,
-                },
-                googlePay: {
-                    isEnabled: true,
-                },
-                ownerEntityId: 78,
-                ownerEntityType: "organization",
-                cascades: [
-                    {
-                        jobId: "1245697",
-                        jobStatus: "completed",
-                        createdAt: "2025-04-25T15:37:28.685Z",
-                        updatedAt: "2025-04-25T15:37:33.228Z",
-                    },
-                ],
-                createdAt: "2025-03-15T10:24:36.207Z",
-                updatedAt: "2025-04-25T15:38:46.804Z",
-            },
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("CascadePaymentMethodDomain (2)", async () => {
@@ -370,12 +300,7 @@ describe("PaymentMethodDomainClient", () => {
         const response = await client.paymentMethodDomain.deletePaymentMethodDomain(
             "pmd_b8237fa45c964d8a9ef27160cd42b8c5",
         );
-        expect(response).toEqual({
-            isSuccess: true,
-            pageIdentifier: "null",
-            responseData: "pmd_b8237fa45c964d8a9ef27160cd42b8c5",
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("DeletePaymentMethodDomain (2)", async () => {
@@ -491,31 +416,7 @@ describe("PaymentMethodDomainClient", () => {
         const response = await client.paymentMethodDomain.getPaymentMethodDomain(
             "pmd_b8237fa45c964d8a9ef27160cd42b8c5",
         );
-        expect(response).toEqual({
-            id: "pmd_b8237fa45c964d8a9ef27160cd42b8c5",
-            type: "PaymentMethodDomains",
-            entityId: 78,
-            entityType: "organization",
-            domainName: "checkout.example.com",
-            applePay: {
-                isEnabled: true,
-            },
-            googlePay: {
-                isEnabled: true,
-            },
-            ownerEntityId: 78,
-            ownerEntityType: "organization",
-            cascades: [
-                {
-                    jobId: "1245697",
-                    jobStatus: "completed",
-                    createdAt: "2025-04-25T15:37:28.685Z",
-                    updatedAt: "2025-04-25T15:37:33.228Z",
-                },
-            ],
-            createdAt: "2025-03-15T10:24:36.207Z",
-            updatedAt: "2025-04-25T15:38:46.804Z",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("GetPaymentMethodDomain (2)", async () => {
@@ -660,67 +561,7 @@ describe("PaymentMethodDomainClient", () => {
             entityId: 1147,
             entityType: "paypoint",
         });
-        expect(response).toEqual({
-            records: [
-                {
-                    id: "pmd_7b4b3ca0f6b74f02853dfcee5ec090a3",
-                    type: "PaymentMethodDomains",
-                    entityId: 1147,
-                    entityType: "paypoint",
-                    domainName: "payment.example.com",
-                    applePay: {
-                        isEnabled: true,
-                    },
-                    googlePay: {
-                        isEnabled: true,
-                    },
-                    ownerEntityId: 1147,
-                    ownerEntityType: "paypoint",
-                    createdAt: "2025-02-13T18:31:07.023Z",
-                    updatedAt: "2025-03-18T13:48:39.056Z",
-                },
-                {
-                    id: "pmd_1f799c8ab7dd432dbc2052ce332c101c",
-                    type: "PaymentMethodDomains",
-                    entityId: 1147,
-                    entityType: "paypoint",
-                    domainName: "checkout.example.com",
-                    applePay: {
-                        isEnabled: true,
-                    },
-                    googlePay: {
-                        isEnabled: true,
-                    },
-                    ownerEntityId: 1147,
-                    ownerEntityType: "paypoint",
-                    createdAt: "2025-02-13T18:04:50.207Z",
-                    updatedAt: "2025-02-13T18:04:50.207Z",
-                },
-                {
-                    id: "pmd_135ac1be6fab4a97850aadbbba77ce1b",
-                    type: "PaymentMethodDomains",
-                    entityId: 1147,
-                    entityType: "paypoint",
-                    domainName: "pay.example.com",
-                    applePay: {
-                        isEnabled: true,
-                    },
-                    googlePay: {
-                        isEnabled: false,
-                    },
-                    ownerEntityId: 1147,
-                    ownerEntityType: "paypoint",
-                    createdAt: "2026-09-06T03:55:32.213Z",
-                    updatedAt: "2026-09-06T03:55:47.586Z",
-                },
-            ],
-            summary: {
-                pageIdentifier: "t.wlbQ4YZ3/JJkaP2/muAxibhlwdVz1Ve89QtI40H9KPhf...",
-                pageSize: 20,
-                totalPages: 1,
-                totalRecords: 17,
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ListPaymentMethodDomains (2)", async () => {
@@ -771,50 +612,7 @@ describe("PaymentMethodDomainClient", () => {
             entityId: 39,
             entityType: "organization",
         });
-        expect(response).toEqual({
-            records: [
-                {
-                    id: "pmd_1bed085c821e432fa71ae0817c571dd6",
-                    type: "PaymentMethodDomains",
-                    entityId: 39,
-                    entityType: "organization",
-                    domainName: "checkout.example.com",
-                    applePay: {
-                        isEnabled: true,
-                    },
-                    googlePay: {
-                        isEnabled: false,
-                    },
-                    ownerEntityId: 39,
-                    ownerEntityType: "organization",
-                    createdAt: "2026-09-27T01:20:17.486Z",
-                    updatedAt: "2025-03-26T23:55:36.876Z",
-                },
-                {
-                    id: "pmd_dab1e3d2a3774216920bdc2afd62c307",
-                    type: "PaymentMethodDomains",
-                    entityId: 39,
-                    entityType: "organization",
-                    domainName: "checkout.example.com",
-                    applePay: {
-                        isEnabled: true,
-                    },
-                    googlePay: {
-                        isEnabled: false,
-                    },
-                    ownerEntityId: 39,
-                    ownerEntityType: "organization",
-                    createdAt: "2026-08-23T03:42:06.673Z",
-                    updatedAt: "2025-03-26T23:56:15.708Z",
-                },
-            ],
-            summary: {
-                pageIdentifier: "pageIdentifier",
-                pageSize: 20,
-                totalPages: 1,
-                totalRecords: 2,
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ListPaymentMethodDomains (3)", async () => {
@@ -944,36 +742,7 @@ describe("PaymentMethodDomainClient", () => {
                 },
             },
         );
-        expect(response).toEqual({
-            isSuccess: true,
-            pageidentifier: "null",
-            responseData: {
-                id: "pmd_b8237fa45c964d8a9ef27160cd42b8c5",
-                type: "PaymentMethodDomains",
-                entityId: 78,
-                entityType: "organization",
-                domainName: "checkout.example.com",
-                applePay: {
-                    isEnabled: false,
-                },
-                googlePay: {
-                    isEnabled: false,
-                },
-                ownerEntityId: 78,
-                ownerEntityType: "organization",
-                cascades: [
-                    {
-                        jobId: "1245697",
-                        jobStatus: "completed",
-                        createdAt: "2025-04-25T15:37:28.685Z",
-                        updatedAt: "2025-04-25T15:37:33.228Z",
-                    },
-                ],
-                createdAt: "2025-03-15T10:24:36.207Z",
-                updatedAt: "2025-04-25T16:05:12.345Z",
-            },
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("UpdatePaymentMethodDomain (2)", async () => {
@@ -1098,36 +867,7 @@ describe("PaymentMethodDomainClient", () => {
         const response = await client.paymentMethodDomain.verifyPaymentMethodDomain(
             "pmd_b8237fa45c964d8a9ef27160cd42b8c5",
         );
-        expect(response).toEqual({
-            isSuccess: true,
-            pageidentifier: "null",
-            responseData: {
-                id: "pmd_b8237fa45c964d8a9ef27160cd42b8c5",
-                type: "PaymentMethodDomains",
-                entityId: 78,
-                entityType: "organization",
-                domainName: "checkout.example.com",
-                applePay: {
-                    isEnabled: true,
-                },
-                googlePay: {
-                    isEnabled: true,
-                },
-                ownerEntityId: 78,
-                ownerEntityType: "organization",
-                cascades: [
-                    {
-                        jobId: "1245697",
-                        jobStatus: "completed",
-                        createdAt: "2025-04-25T15:37:28.685Z",
-                        updatedAt: "2025-04-25T15:37:33.228Z",
-                    },
-                ],
-                createdAt: "2025-03-15T10:24:36.207Z",
-                updatedAt: "2025-04-25T15:45:21.517Z",
-            },
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("VerifyPaymentMethodDomain (2)", async () => {
@@ -1185,50 +925,6 @@ describe("PaymentMethodDomainClient", () => {
         const response = await client.paymentMethodDomain.verifyPaymentMethodDomain(
             "pmd_b8237fa45c964d8a9ef27160cd42b8c5",
         );
-        expect(response).toEqual({
-            isSuccess: false,
-            pageidentifier: "null",
-            responseData: {
-                id: "pmd_b8237fa45c964d8a9ef27160cd42b8c5",
-                type: "PaymentMethodDomains",
-                entityId: 78,
-                entityType: "organization",
-                domainName: "checkout.example.com",
-                applePay: {
-                    isEnabled: true,
-                    data: {
-                        errorMessage:
-                            "Unable to validate the domain. Verification file not found at https://checkout.example.com/.well-known/apple-developer-merchantid-domain-association",
-                        metadata: {
-                            isFileAvailable: false,
-                            isFileContentValid: false,
-                            statusCode: 404,
-                        },
-                    },
-                },
-                googlePay: {
-                    isEnabled: true,
-                    data: {
-                        errorMessage: "Unable to validate the domain. Domain not found.",
-                        metadata: {
-                            statusCode: 404,
-                        },
-                    },
-                },
-                ownerEntityId: 78,
-                ownerEntityType: "organization",
-                cascades: [
-                    {
-                        jobId: "1245697",
-                        jobStatus: "completed",
-                        createdAt: "2025-04-25T15:37:28.685Z",
-                        updatedAt: "2025-04-25T15:37:33.228Z",
-                    },
-                ],
-                createdAt: "2025-03-15T10:24:36.207Z",
-                updatedAt: "2025-04-25T15:45:21.517Z",
-            },
-            responseText: "Failed",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 });

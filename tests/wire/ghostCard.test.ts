@@ -57,15 +57,7 @@ describe("GhostCardClient", () => {
             misc1: "PO-98765",
             misc2: "Dept-Finance",
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseText: "Success",
-            responseData: {
-                ReferenceId: "gc_abc123def456",
-                ResultCode: 1,
-                ResultText: "Ghost Card created",
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("CreateGhostCard (2)", async () => {
@@ -263,10 +255,7 @@ describe("GhostCardClient", () => {
             cardToken: "gc_abc123def456",
             status: "Cancelled",
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("UpdateCard (2)", async () => {

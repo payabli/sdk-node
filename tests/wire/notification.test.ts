@@ -39,12 +39,7 @@ describe("NotificationClient", () => {
             status: 1,
             target: "https://webhook.site/2871b8f8-edc7-441a-b376-98d8c8e33275",
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseCode: 1,
-            responseData: 1717,
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("AddNotification (2)", async () => {
@@ -81,12 +76,7 @@ describe("NotificationClient", () => {
             status: 1,
             target: "https://cfe9dc390ce2.ngrok-free.app/webhook",
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseCode: 1,
-            responseData: 1717,
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("AddNotification (3)", async () => {
@@ -133,12 +123,7 @@ describe("NotificationClient", () => {
             status: 1,
             target: "admin@example.com",
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseCode: 1,
-            responseData: 1717,
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("AddNotification (4)", async () => {
@@ -256,12 +241,7 @@ describe("NotificationClient", () => {
             .build();
 
         const response = await client.notification.deleteNotification("1717");
-        expect(response).toEqual({
-            isSuccess: true,
-            responseCode: 1,
-            responseData: 1717,
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("DeleteNotification (2)", async () => {
@@ -361,22 +341,7 @@ describe("NotificationClient", () => {
         server.mockEndpoint().get("/Notification/1717").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.notification.getNotification("1717");
-        expect(response).toEqual({
-            content: {
-                fileFormat: "csv",
-                reportName: "Returned",
-            },
-            createdAt: "2024-02-21T09:16:31Z",
-            frequency: "weekly",
-            lastUpdated: "2024-02-21T09:16:31Z",
-            method: "report-email",
-            notificationId: 1717,
-            ownerId: 123,
-            ownerName: "The Pilgrim Planner",
-            ownerType: 0,
-            status: 1,
-            target: "admin@business.com",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("GetNotification (2)", async () => {
@@ -465,12 +430,7 @@ describe("NotificationClient", () => {
             status: 1,
             target: "newemail@email.com",
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseCode: 1,
-            responseData: 1717,
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("UpdateNotification (2)", async () => {
@@ -588,8 +548,6 @@ describe("NotificationClient", () => {
             .build();
 
         const response = await client.notification.getReportFile(1000000);
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 });

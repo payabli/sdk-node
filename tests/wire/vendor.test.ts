@@ -111,12 +111,7 @@ describe("VendorClient", () => {
             customerVendorAccount: "A-37622",
             internalReferenceId: 123,
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseCode: 1,
-            responseData: 3890,
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("AddVendor (2)", async () => {
@@ -208,12 +203,7 @@ describe("VendorClient", () => {
         server.mockEndpoint().delete("/Vendor/1").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.vendor.deleteVendor(1);
-        expect(response).toEqual({
-            isSuccess: true,
-            responseCode: 1,
-            responseData: 3890,
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("DeleteVendor (2)", async () => {
@@ -286,12 +276,7 @@ describe("VendorClient", () => {
         const response = await client.vendor.editVendor(1, {
             name1: "Theodore's Janitorial",
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseCode: 1,
-            responseData: 3890,
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("EditVendor (2)", async () => {
@@ -461,84 +446,6 @@ describe("VendorClient", () => {
         server.mockEndpoint().get("/Vendor/1").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.vendor.getVendor(1);
-        expect(response).toEqual({
-            VendorNumber: "1234",
-            Name1: "Herman's Coatings",
-            Name2: "Herman's Coating Supply Company, LLC",
-            EIN: "123456789",
-            Phone: "2125551234",
-            Email: "example@email.com",
-            Address1: "123 Ocean Drive",
-            Address2: "Suite 400",
-            City: "Bristol",
-            State: "GA",
-            Zip: "31113",
-            Country: "US",
-            Mcc: "7777",
-            LocationCode: "LOC123",
-            Contacts: {
-                ContactEmail: "eric@martinezcoatings.com",
-                ContactName: "Eric Martinez",
-                ContactPhone: "5555555555",
-                ContactTitle: "Owner",
-            },
-            BillingData: {
-                id: 123456,
-                accountId: "bank-account-001",
-                nickname: "Main Checking Account",
-                bankName: "Example Bank",
-                routingAccount: "123456789",
-                accountNumber: "9876543210",
-                typeAccount: "Checking",
-                bankAccountHolderName: "John Doe",
-                bankAccountHolderType: "Business",
-                bankAccountFunction: 2,
-                verified: true,
-                status: 1,
-                services: [],
-                default: true,
-            },
-            VendorStatus: 1,
-            VendorId: 1,
-            Summary: {
-                ActiveBills: 2,
-                PendingBills: 4,
-                InTransitBills: 3,
-                PaidBills: 18,
-                OverdueBills: 1,
-                ApprovedBills: 5,
-                DisapprovedBills: 1,
-                TotalBills: 34,
-                ActiveBillsAmount: 1250.75,
-                PendingBillsAmount: 2890.5,
-                InTransitBillsAmount: 1675.25,
-                PaidBillsAmount: 15420.8,
-                OverdueBillsAmount: 425,
-                ApprovedBillsAmount: 3240.9,
-                DisapprovedBillsAmount: 180,
-                TotalBillsAmount: 25083.2,
-            },
-            PaypointLegalname: "Sunshine Services, LLC",
-            PaypointDbaname: "Sunshine Gutters",
-            PaypointEntryname: "d193cf9a46",
-            ParentOrgName: "PropertyManager Pro",
-            ParentOrgId: 1000,
-            CreatedDate: "2022-07-01T15:00:01Z",
-            LastUpdated: "2022-07-01T15:00:01Z",
-            remitAddress1: "123 Walnut Street",
-            remitAddress2: "Suite 900",
-            remitCity: "Miami",
-            remitState: "FL",
-            remitZip: "31113",
-            remitCountry: "US",
-            payeeName1: "payeeName1",
-            payeeName2: "payeeName2",
-            customField1: "",
-            customField2: "",
-            customerVendorAccount: "123-456",
-            InternalReferenceId: 1000000,
-            externalPaypointID: "Paypoint-100",
-            StoredMethods: [],
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 });

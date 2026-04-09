@@ -205,11 +205,7 @@ describe("PaymentLinkClient", () => {
                 },
             },
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("AddPayLinkFromInvoice (2)", async () => {
@@ -414,11 +410,7 @@ describe("PaymentLinkClient", () => {
                 },
             },
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("AddPayLinkFromBill (2)", async () => {
@@ -534,11 +526,7 @@ describe("PaymentLinkClient", () => {
                 },
             },
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("AddPayLinkFromBill (3)", async () => {
@@ -648,11 +636,7 @@ describe("PaymentLinkClient", () => {
             .build();
 
         const response = await client.paymentLink.deletePayLinkFromId("2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234");
-        expect(response).toEqual({
-            isSuccess: true,
-            responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("deletePayLinkFromId (2)", async () => {
@@ -794,107 +778,7 @@ describe("PaymentLinkClient", () => {
             .build();
 
         const response = await client.paymentLink.getPayLinkFromId("paylinkId");
-        expect(response).toEqual({
-            isSuccess: true,
-            responseData: {
-                AdditionalData: {
-                    key1: {
-                        key: "value",
-                    },
-                    key2: {
-                        key: "value",
-                    },
-                    key3: {
-                        key: "value",
-                    },
-                },
-                credentials: [{}],
-                lastAccess: "2022-06-30T15:01:00Z",
-                pageContent: {
-                    amount: {
-                        enabled: true,
-                    },
-                    autopay: {
-                        enabled: true,
-                    },
-                    contactUs: {
-                        enabled: true,
-                    },
-                    entry: "entry",
-                    invoices: {
-                        enabled: true,
-                    },
-                    logo: {
-                        enabled: true,
-                    },
-                    messageBeforePaying: {
-                        enabled: true,
-                    },
-                    name: "name",
-                    notes: {
-                        enabled: true,
-                    },
-                    page: {
-                        enabled: true,
-                    },
-                    paymentButton: {
-                        enabled: true,
-                    },
-                    paymentMethods: {
-                        enabled: true,
-                    },
-                    payor: {
-                        enabled: true,
-                    },
-                    review: {
-                        enabled: true,
-                    },
-                    subdomain: "mypage-1",
-                },
-                pageIdentifier: "null",
-                pageSettings: {
-                    color: "color",
-                    customCssUrl: "customCssUrl",
-                    language: "language",
-                    redirectAfterApprove: true,
-                    redirectAfterApproveUrl: "redirectAfterApproveUrl",
-                },
-                published: 1,
-                receiptContent: {
-                    amount: {
-                        enabled: true,
-                    },
-                    contactUs: {
-                        enabled: true,
-                    },
-                    details: {
-                        enabled: true,
-                    },
-                    logo: {
-                        enabled: true,
-                    },
-                    messageBeforeButton: {
-                        enabled: true,
-                    },
-                    page: {
-                        enabled: true,
-                    },
-                    paymentButton: {
-                        enabled: true,
-                    },
-                    paymentInformation: {
-                        enabled: true,
-                    },
-                    settings: {
-                        enabled: true,
-                    },
-                },
-                subdomain: "mypage-1",
-                totalAmount: 1.1,
-                validationCode: "validationCode",
-            },
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("getPayLinkFromId (2)", async () => {
@@ -995,11 +879,7 @@ describe("PaymentLinkClient", () => {
         const response = await client.paymentLink.pushPayLinkFromId("payLinkId", {
             channel: "sms",
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("pushPayLinkFromId (2)", async () => {
@@ -1030,11 +910,7 @@ describe("PaymentLinkClient", () => {
             additionalEmails: ["admin@example.com", "accounting@example.com"],
             attachFile: true,
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("pushPayLinkFromId (3)", async () => {
@@ -1144,11 +1020,7 @@ describe("PaymentLinkClient", () => {
             .build();
 
         const response = await client.paymentLink.refreshPayLinkFromId("payLinkId");
-        expect(response).toEqual({
-            isSuccess: true,
-            responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("refreshPayLinkFromId (2)", async () => {
@@ -1248,11 +1120,7 @@ describe("PaymentLinkClient", () => {
         const response = await client.paymentLink.sendPayLinkFromId("payLinkId", {
             mail2: "jo@example.com; ceo@example.com",
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("sendPayLinkFromId (2)", async () => {
@@ -1369,11 +1237,7 @@ describe("PaymentLinkClient", () => {
                 order: 0,
             },
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseData: "332-c277b704-1301",
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("updatePayLinkFromId (2)", async () => {
@@ -1573,11 +1437,7 @@ describe("PaymentLinkClient", () => {
                 },
             },
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("patchOutPaymentLink (1)", async () => {
@@ -1603,11 +1463,7 @@ describe("PaymentLinkClient", () => {
             expirationDate: "2026-06-01T00:00:00Z",
             status: "Active",
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("patchOutPaymentLink (2)", async () => {
@@ -1632,11 +1488,7 @@ describe("PaymentLinkClient", () => {
         const response = await client.paymentLink.patchOutPaymentLink("2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234", {
             status: "Canceled",
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("patchOutPaymentLink (3)", async () => {
@@ -1702,11 +1554,7 @@ describe("PaymentLinkClient", () => {
                 },
             },
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("patchOutPaymentLink (4)", async () => {
@@ -1903,11 +1751,7 @@ describe("PaymentLinkClient", () => {
                 },
             },
         );
-        expect(response).toEqual({
-            isSuccess: true,
-            responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("updatePayLinkOutFromId (2)", async () => {
@@ -1965,11 +1809,7 @@ describe("PaymentLinkClient", () => {
                 },
             },
         );
-        expect(response).toEqual({
-            isSuccess: true,
-            responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("updatePayLinkOutFromId (3)", async () => {

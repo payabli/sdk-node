@@ -68,12 +68,7 @@ describe("PayoutSubscriptionClient", () => {
                 },
             },
         });
-        expect(response).toEqual({
-            responseText: "Success",
-            isSuccess: true,
-            responseData: 42,
-            customerId: 1501,
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("CreatePayoutSubscription (2)", async () => {
@@ -128,12 +123,7 @@ describe("PayoutSubscriptionClient", () => {
                 },
             },
         });
-        expect(response).toEqual({
-            responseText: "Success",
-            isSuccess: true,
-            responseData: 42,
-            customerId: 1501,
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("CreatePayoutSubscription (3)", async () => {
@@ -399,149 +389,7 @@ describe("PayoutSubscriptionClient", () => {
             .build();
 
         const response = await client.payoutSubscription.getPayoutSubscription(42);
-        expect(response).toEqual({
-            responseText: "Success",
-            isSuccess: true,
-            responseData: {
-                idOutSubscription: 42,
-                status: 1,
-                events: [
-                    {
-                        description: "TransferCreated",
-                        eventTime: "2025-09-01T06:00:00Z",
-                        extraData: {
-                            key: "value",
-                        },
-                        refData: "refData",
-                        source: "api",
-                    },
-                ],
-                vendor: {
-                    VendorNumber: "1234",
-                    Name1: "Herman's Coatings",
-                    Name2: "Herman's Coating Supply Company, LLC",
-                    EIN: "123456789",
-                    Phone: "2125551234",
-                    Email: "example@email.com",
-                    Address1: "123 Ocean Drive",
-                    Address2: "Suite 400",
-                    City: "Bristol",
-                    State: "GA",
-                    Zip: "31113",
-                    Country: "US",
-                    Mcc: "7777",
-                    LocationCode: "LOC123",
-                    Contacts: {
-                        ContactEmail: "eric@martinezcoatings.com",
-                        ContactName: "Eric Martinez",
-                        ContactPhone: "5555555555",
-                        ContactTitle: "Owner",
-                    },
-                    BillingData: {
-                        id: 123456,
-                        accountId: "bank-account-001",
-                        nickname: "Main Checking Account",
-                        bankName: "Example Bank",
-                        routingAccount: "123456789",
-                        accountNumber: "9876543210",
-                        typeAccount: "Checking",
-                        bankAccountHolderName: "John Doe",
-                        bankAccountHolderType: "Business",
-                        bankAccountFunction: 2,
-                        verified: true,
-                        status: 1,
-                        services: [],
-                        default: true,
-                    },
-                    VendorStatus: 1,
-                    VendorId: 1,
-                    Summary: {
-                        ActiveBills: 2,
-                        PendingBills: 4,
-                        InTransitBills: 3,
-                        PaidBills: 18,
-                        OverdueBills: 1,
-                        ApprovedBills: 5,
-                        DisapprovedBills: 1,
-                        TotalBills: 34,
-                        ActiveBillsAmount: 1250.75,
-                        PendingBillsAmount: 2890.5,
-                        InTransitBillsAmount: 1675.25,
-                        PaidBillsAmount: 15420.8,
-                        OverdueBillsAmount: 425,
-                        ApprovedBillsAmount: 3240.9,
-                        DisapprovedBillsAmount: 180,
-                        TotalBillsAmount: 25083.2,
-                    },
-                    PaypointLegalname: "Sunshine Services, LLC",
-                    PaypointDbaname: "Sunshine Gutters",
-                    PaypointEntryname: "d193cf9a46",
-                    ParentOrgName: "PropertyManager Pro",
-                    ParentOrgId: 1000,
-                    CreatedDate: "2022-07-01T15:00:01Z",
-                    LastUpdated: "2022-07-01T15:00:01Z",
-                    remitAddress1: "123 Walnut Street",
-                    remitAddress2: "Suite 900",
-                    remitCity: "Miami",
-                    remitState: "FL",
-                    remitZip: "31113",
-                    remitCountry: "US",
-                    payeeName1: "payeeName1",
-                    payeeName2: "payeeName2",
-                    customField1: "",
-                    customField2: "",
-                    customerVendorAccount: "123-456",
-                    InternalReferenceId: 1000000,
-                    externalPaypointID: "Paypoint-100",
-                    StoredMethods: [],
-                },
-                billData: [
-                    {
-                        billId: 3001,
-                        invoiceNumber: "INV-5001",
-                        netAmount: "500",
-                        invoiceDate: "2025-08-01",
-                        dueDate: "2025-08-15",
-                    },
-                ],
-                externalPaypointID: "d193cf9a46-10",
-                method: "ach",
-                paypointId: 255,
-                totalAmount: 500,
-                netAmount: 500,
-                feeAmount: 0,
-                paymentData: {
-                    AccountType: "checking",
-                    HolderName: "Herman Coatings",
-                    Initiator: "merchant",
-                    MaskedAccount: "XXXXXX5666",
-                    paymentDetails: {
-                        currency: "USD",
-                        serviceFee: 0,
-                        totalAmount: 500,
-                    },
-                    Sequence: "subsequent",
-                    StoredMethodUsageType: "recurring",
-                },
-                startDate: "2025-09-01T00:00:00Z",
-                endDate: "2026-09-01T00:00:00Z",
-                nextDate: "2025-10-01T00:00:00Z",
-                frequency: "monthly",
-                totalCycles: 12,
-                leftCycles: 11,
-                lastRun: "2025-09-01T06:00:00Z",
-                entrypageId: 0,
-                untilCancelled: false,
-                lastUpdated: "2025-08-01T12:00:00Z",
-                createdAt: "2025-08-01T12:00:00Z",
-                paypointLegalname: "Sunshine Services, LLC",
-                paypointDbaname: "Sunshine Gutters",
-                paypointEntryname: "d193cf9a46",
-                parentOrgName: "PropertyManager Pro",
-                parentOrgId: 236,
-                source: "api",
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("GetPayoutSubscription (2)", async () => {
@@ -643,12 +491,7 @@ describe("PayoutSubscriptionClient", () => {
         const response = await client.payoutSubscription.updatePayoutSubscription(42, {
             setPause: true,
         });
-        expect(response).toEqual({
-            responseText: "Success",
-            isSuccess: true,
-            responseData: "42 paused",
-            customerId: 1501,
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("UpdatePayoutSubscription (2)", async () => {
@@ -669,12 +512,7 @@ describe("PayoutSubscriptionClient", () => {
         const response = await client.payoutSubscription.updatePayoutSubscription(42, {
             setPause: false,
         });
-        expect(response).toEqual({
-            responseText: "Success",
-            isSuccess: true,
-            responseData: "42",
-            customerId: 1501,
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("UpdatePayoutSubscription (3)", async () => {
@@ -706,12 +544,7 @@ describe("PayoutSubscriptionClient", () => {
                 startDate: "01/01/2026",
             },
         });
-        expect(response).toEqual({
-            responseText: "Success",
-            isSuccess: true,
-            responseData: "42",
-            customerId: 1501,
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("UpdatePayoutSubscription (4)", async () => {
@@ -809,11 +642,7 @@ describe("PayoutSubscriptionClient", () => {
             .build();
 
         const response = await client.payoutSubscription.deletePayoutSubscription(42);
-        expect(response).toEqual({
-            isSuccess: true,
-            responseData: "42",
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("DeletePayoutSubscription (2)", async () => {

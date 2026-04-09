@@ -40,25 +40,7 @@ describe("WalletClient", () => {
             isEnabled: true,
             orgId: 901,
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            pageIdentifier: "null",
-            responseCode: 1,
-            responseData: {
-                createdAt: "2022-07-01T15:00:01Z",
-                id: "id",
-                jobId: "445865",
-                jobStatus: "completed",
-                organizationId: 901,
-                type: "type",
-                updatedAt: "2022-07-01T15:00:01Z",
-                updates: {
-                    cascade: true,
-                    isEnabled: true,
-                },
-            },
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ConfigureApplePayOrganization (2)", async () => {
@@ -181,28 +163,7 @@ describe("WalletClient", () => {
             entry: "8cfec329267",
             isEnabled: true,
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            pageIdentifier: "null",
-            responseCode: 1,
-            responseData: {
-                entry: "8cfec329267",
-                isEnabled: true,
-                walletType: "applepay",
-                walletData: {
-                    entry: "8cfec329267",
-                    applePayMerchantId: "applePayMerchantId",
-                    domainNames: ["subdomain.domain.com"],
-                    paypointName: "Alaskan Domes",
-                    markedForDeletionAt: "2022-07-01T15:00:01Z",
-                    createdAt: "2022-07-01T15:00:01Z",
-                    updatedAt: "2022-07-01T15:00:01Z",
-                    id: "id",
-                    type: "ApplePayRegistration",
-                },
-            },
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ConfigureApplePayPaypoint (2)", async () => {
@@ -320,25 +281,7 @@ describe("WalletClient", () => {
             isEnabled: true,
             orgId: 901,
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            pageIdentifier: "null",
-            responseCode: 1,
-            responseData: {
-                createdAt: "2022-07-01T15:00:01Z",
-                id: "id",
-                jobId: "445865",
-                jobStatus: "completed",
-                organizationId: 901,
-                type: "type",
-                updatedAt: "2022-07-01T15:00:01Z",
-                updates: {
-                    cascade: true,
-                    isEnabled: true,
-                },
-            },
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ConfigureGooglePayOrganization (2)", async () => {
@@ -451,20 +394,6 @@ describe("WalletClient", () => {
             entry: "8cfec329267",
             isEnabled: true,
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            pageIdentifier: "null",
-            responseCode: 1,
-            responseData: {
-                entry: "8cfec329267",
-                isEnabled: true,
-                walletType: "googlepay",
-                walletData: {
-                    gatewayMerchantId: "123ID",
-                    gatewayId: "123ID",
-                },
-            },
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 });

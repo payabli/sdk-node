@@ -90,14 +90,7 @@ describe("InvoiceClient", () => {
                 },
             },
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseCode: 1,
-            responseData: 3625,
-            responseText: "Success",
-            pageidentifier: null,
-            roomId: 0,
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("AddInvoice (2)", async () => {
@@ -210,14 +203,7 @@ describe("InvoiceClient", () => {
             .build();
 
         const response = await client.invoice.deleteAttachedFromInvoice(23548884, "0_Bill.pdf");
-        expect(response).toEqual({
-            isSuccess: true,
-            responseCode: 1,
-            responseData: 3625,
-            responseText: "Success",
-            pageidentifier: null,
-            roomId: 0,
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("deleteAttachedFromInvoice (2)", async () => {
@@ -318,14 +304,7 @@ describe("InvoiceClient", () => {
             .build();
 
         const response = await client.invoice.deleteInvoice(23548884);
-        expect(response).toEqual({
-            isSuccess: true,
-            responseCode: 1,
-            responseData: 3625,
-            responseText: "Success",
-            pageidentifier: null,
-            roomId: 0,
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("DeleteInvoice (2)", async () => {
@@ -433,14 +412,7 @@ describe("InvoiceClient", () => {
                 },
             },
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseCode: 1,
-            responseData: 332,
-            responseText: "Success",
-            pageidentifier: null,
-            roomId: 0,
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("EditInvoice (2)", async () => {
@@ -546,12 +518,7 @@ describe("InvoiceClient", () => {
             .build();
 
         const response = await client.invoice.getAttachedFileFromInvoice(1, "filename");
-        expect(response).toEqual({
-            fContent: "fContent",
-            filename: "filename",
-            ftype: "pdf",
-            furl: "furl",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("GetAttachedFileFromInvoice (2)", async () => {
@@ -731,107 +698,7 @@ describe("InvoiceClient", () => {
         server.mockEndpoint().get("/Invoice/23548884").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.invoice.getInvoice(23548884);
-        expect(response).toEqual({
-            billEvents: [
-                {
-                    description: "TransferCreated",
-                    eventTime: "2023-07-05T22:31:06Z",
-                    extraData: {
-                        key: "value",
-                    },
-                    refData: "refData",
-                    source: "api",
-                },
-            ],
-            company: "Acme Inc",
-            createdAt: "2022-07-01T15:00:01Z",
-            Customer: {
-                AdditionalData: null,
-                BillingAddress1: "1111 West 1st Street",
-                BillingAddress2: "Suite 200",
-                BillingCity: "Miami",
-                BillingCountry: "US",
-                BillingEmail: "example@email.com",
-                BillingPhone: "5555555555",
-                BillingState: "FL",
-                BillingZip: "45567",
-                CompanyName: "Sunshine LLC",
-                customerId: 4440,
-                CustomerNumber: "3456-7645A",
-                customerStatus: 1,
-                FirstName: "John",
-                Identifiers: ['\\"firstname\\"', '\\"lastname\\"', '\\"email\\"', '\\"customId\\"'],
-                LastName: "Doe",
-                ShippingAddress1: "123 Walnut St",
-                ShippingAddress2: "STE 900",
-                ShippingCity: "Johnson City",
-                ShippingCountry: "US",
-                ShippingState: "TN",
-                ShippingZip: "37619",
-            },
-            customerId: 4440,
-            discount: 10,
-            DocumentsRef: {
-                filelist: [{}],
-                zipfile: "zx45.zip",
-            },
-            dutyAmount: 0,
-            firstName: "firstName",
-            freightAmount: 10,
-            frequency: "onetime",
-            invoiceAmount: 105,
-            invoiceDate: "2025-07-01",
-            invoiceDueDate: "2025-07-01",
-            invoiceEndDate: "2025-07-01",
-            invoiceId: 236,
-            invoiceNumber: "INV-2345",
-            invoicePaidAmount: 0,
-            invoiceSentDate: "2025-10-19T00:00:00Z",
-            invoiceStatus: 1,
-            invoiceType: 0,
-            items: [
-                {
-                    itemCommodityCode: "010",
-                    itemCost: 5,
-                    itemDescription: "Deposit for materials.",
-                    itemMode: 0,
-                    itemProductCode: "M-DEPOSIT",
-                    itemProductName: "Materials deposit",
-                    itemQty: 1,
-                    itemTaxAmount: 7,
-                    itemTaxRate: 0.075,
-                    itemTotalAmount: 1.1,
-                    itemUnitOfMeasure: "SqFt",
-                },
-            ],
-            lastName: "lastName",
-            lastPaymentDate: "2025-10-19T00:00:00Z",
-            notes: null,
-            ParentOrgName: "parentOrgName",
-            paylinkId: "paylinkId",
-            paymentTerms: "NET30",
-            PaypointDbaname: "Sinks Inc",
-            PaypointEntryname: "5789a30009s",
-            paypointId: 56,
-            PaypointLegalname: "Sinks and Faucets LLC",
-            purchaseOrder: "PO-345",
-            scheduledOptions: {
-                includePaylink: true,
-                includePdf: true,
-            },
-            shippingAddress1: "123 Walnut St",
-            shippingAddress2: "STE 900",
-            shippingCity: "Johnson City",
-            shippingCountry: "US",
-            shippingEmail: "example@email.com",
-            shippingFromZip: "30040",
-            shippingPhone: "shippingPhone",
-            shippingState: "TN",
-            shippingZip: "37619",
-            summaryCommodityCode: "501718",
-            tax: 2.05,
-            termsConditions: "termsConditions",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("GetInvoice (2)", async () => {
@@ -901,11 +768,7 @@ describe("InvoiceClient", () => {
             .build();
 
         const response = await client.invoice.getInvoiceNumber("8cfec329267");
-        expect(response).toEqual({
-            isSuccess: true,
-            responseData: "MyInvoice-114434565s32440",
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("GetInvoiceNumber (2)", async () => {
@@ -1076,91 +939,7 @@ describe("InvoiceClient", () => {
             limitRecord: 0,
             sortBy: "desc(field_name)",
         });
-        expect(response).toEqual({
-            Records: [
-                {
-                    invoiceId: 3674,
-                    customerId: 1323,
-                    paypointId: 10,
-                    invoiceNumber: "QA-1709680125",
-                    invoiceDate: "2025-03-05",
-                    invoiceDueDate: "2025-03-05",
-                    invoiceSentDate: "2025-03-05",
-                    invoiceEndDate: "2025-03-05",
-                    lastPaymentDate: null,
-                    createdAt: "2024-03-05T18:08:45Z",
-                    invoiceStatus: 1,
-                    invoiceType: 0,
-                    frequency: "onetime",
-                    paymentTerms: "N30",
-                    termsConditions: null,
-                    notes: null,
-                    tax: 0,
-                    discount: 0,
-                    invoiceAmount: 50,
-                    invoicePaidAmount: 0,
-                    freightAmount: 0,
-                    dutyAmount: 0,
-                    purchaseOrder: null,
-                    firstName: "Amirah",
-                    lastName: "Tan",
-                    company: null,
-                    shippingAddress1: "1234 Rainier Ave",
-                    shippingAddress2: "Apt 567",
-                    shippingCity: "Seattle",
-                    shippingState: "WA",
-                    shippingZip: "98101",
-                    shippingFromZip: "",
-                    shippingCountry: "US",
-                    shippingEmail: "amirah.tan@example.com",
-                    shippingPhone: "",
-                    summaryCommodityCode: null,
-                    items: [
-                        {
-                            itemCost: 50,
-                            itemDescription: "service",
-                            itemProductName: "Internet",
-                            itemQty: 1,
-                        },
-                    ],
-                    Customer: {
-                        AdditionalData: {
-                            key1: "value",
-                            key2: "value",
-                            key3: "value",
-                        },
-                        BillingPhone: "1234567890",
-                        customerId: 1323,
-                    },
-                    paylinkId: "3674-cf15b881-f276-4b69-bdc8-841b2d123XXXXXX",
-                    billEvents: [
-                        {
-                            description: "Invoice created",
-                            eventTime: "2024-03-05T23:08:45Z",
-                            refData: "00-802fa578504a7af6f3dd890a3802f7ef-61b4bedXXXX1234",
-                        },
-                    ],
-                    scheduledOptions: null,
-                    PaypointLegalname: "Emerald City LLC",
-                    PaypointDbaname: "Emerald City Trading",
-                    PaypointEntryname: "47a30009s",
-                    ParentOrgId: 123,
-                    ParentOrgName: "Emerald Enterprises",
-                    AdditionalData: null,
-                    DocumentsRef: null,
-                    externalPaypointID: "seattletrade01-10",
-                    pageIdentifier: null,
-                },
-            ],
-            Summary: {
-                pageIdentifier: "null",
-                pageSize: 20,
-                totalAmount: 77.22,
-                totalNetAmount: 77.22,
-                totalPages: 2,
-                totalRecords: 2,
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ListInvoices (2)", async () => {
@@ -1323,83 +1102,7 @@ describe("InvoiceClient", () => {
             limitRecord: 0,
             sortBy: "desc(field_name)",
         });
-        expect(response).toEqual({
-            Records: [
-                {
-                    billEvents: [
-                        {
-                            description: "Invoice created",
-                            eventTime: "2024-03-05T23:08:45Z",
-                            refData: "00-802fa578504a7af6f3dd890a3802f7ef-61b4bedXXXX1234",
-                        },
-                    ],
-                    createdAt: "2024-03-05T18:08:45Z",
-                    Customer: {
-                        AdditionalData: {
-                            key1: "value",
-                            key2: "value",
-                            key3: "value",
-                        },
-                        BillingPhone: "1234567890",
-                        customerId: 1323,
-                    },
-                    customerId: 1323,
-                    discount: 0,
-                    dutyAmount: 0,
-                    externalPaypointID: "seattletrade01-10",
-                    firstName: "Amirah",
-                    freightAmount: 0,
-                    frequency: "onetime",
-                    termsConditions: null,
-                    notes: null,
-                    invoiceAmount: 50,
-                    invoiceDate: "2025-03-05",
-                    invoiceDueDate: "2025-03-05",
-                    invoiceSentDate: "2025-03-05",
-                    invoiceEndDate: "2025-03-05",
-                    invoiceId: 3674,
-                    invoiceNumber: "QA-1709680125",
-                    invoicePaidAmount: 0,
-                    invoiceStatus: 1,
-                    invoiceType: 0,
-                    items: [
-                        {
-                            itemCost: 50,
-                            itemDescription: "service",
-                            itemProductName: "Internet",
-                            itemQty: 1,
-                        },
-                    ],
-                    lastName: "Tan",
-                    ParentOrgName: "Emerald Enterprises",
-                    ParentOrgId: 123,
-                    paylinkId: "3674-cf15b881-f276-4b69-bdc8-841b2d123XXXXXX",
-                    paymentTerms: "N30",
-                    PaypointDbaname: "Emerald City Trading",
-                    PaypointEntryname: "47a30009s",
-                    paypointId: 10,
-                    PaypointLegalname: "Emerald City LLC",
-                    shippingAddress1: "1234 Rainier Ave",
-                    shippingAddress2: "Apt 567",
-                    shippingCity: "Seattle",
-                    shippingCountry: "US",
-                    shippingEmail: "amirah.tan@example.com",
-                    shippingFromZip: "",
-                    shippingPhone: "",
-                    shippingState: "WA",
-                    shippingZip: "98101",
-                    tax: 0,
-                },
-            ],
-            Summary: {
-                pageIdentifier: "null",
-                pageSize: 20,
-                totalAmount: 77.22,
-                totalNetAmount: 77.22,
-                totalPages: 2,
-                totalRecords: 2,
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ListInvoicesOrg (2)", async () => {
@@ -1496,10 +1199,7 @@ describe("InvoiceClient", () => {
             attachfile: true,
             mail2: "tamara@example.com",
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("SendInvoice (2)", async () => {
@@ -1569,9 +1269,7 @@ describe("InvoiceClient", () => {
             .build();
 
         const response = await client.invoice.getInvoicePdf(23548884);
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("GetInvoicePDF (2)", async () => {

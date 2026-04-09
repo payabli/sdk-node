@@ -97,13 +97,7 @@ describe("BillClient", () => {
                 ],
             },
         });
-        expect(response).toEqual({
-            responseCode: 1,
-            roomId: 0,
-            isSuccess: true,
-            responseText: "Success",
-            responseData: 6101,
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("AddBill (2)", async () => {
@@ -215,13 +209,7 @@ describe("BillClient", () => {
             .build();
 
         const response = await client.bill.deleteAttachedFromBill(285, "0_Bill.pdf");
-        expect(response).toEqual({
-            responseCode: 1,
-            roomId: 0,
-            isSuccess: true,
-            responseText: "Success",
-            responseData: 6101,
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("deleteAttachedFromBill (2)", async () => {
@@ -315,13 +303,7 @@ describe("BillClient", () => {
         server.mockEndpoint().delete("/Bill/285").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.bill.deleteBill(285);
-        expect(response).toEqual({
-            responseCode: 1,
-            roomId: 0,
-            isSuccess: true,
-            responseText: "Success",
-            responseData: 6101,
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("DeleteBill (2)", async () => {
@@ -401,13 +383,7 @@ describe("BillClient", () => {
             netAmount: 3762.87,
             billDate: "2025-07-01",
         });
-        expect(response).toEqual({
-            responseCode: 1,
-            roomId: 0,
-            isSuccess: true,
-            responseText: "Success",
-            responseData: 6101,
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("EditBill (2)", async () => {
@@ -512,12 +488,7 @@ describe("BillClient", () => {
         const response = await client.bill.getAttachedFromBill(285, "0_Bill.pdf", {
             returnObject: true,
         });
-        expect(response).toEqual({
-            fContent: "TXkgdGVzdCBmaWxlHJ==...",
-            filename: "my-doc.pdf",
-            ftype: "pdf",
-            furl: "https://mysite.com/my-doc.pdf",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("getAttachedFromBill (2)", async () => {
@@ -748,154 +719,7 @@ describe("BillClient", () => {
         server.mockEndpoint().get("/Bill/285").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.bill.getBill(285);
-        expect(response).toEqual({
-            responseCode: 1,
-            roomId: 0,
-            isSuccess: true,
-            responseText: "Success",
-            responseData: {
-                IdBill: 285,
-                BillNumber: "ABC-123",
-                NetAmount: 100,
-                TotalAmount: 100,
-                BillDate: "2025-07-01",
-                DueDate: "2025-07-01",
-                Comments: "Deposit for materials",
-                BillItems: [
-                    {
-                        itemTotalAmount: 123,
-                        itemTaxAmount: 7,
-                        itemTaxRate: 0.075,
-                        itemProductCode: "M-DEPOSIT",
-                        itemProductName: "Materials deposit",
-                        itemDescription: "Deposit for materials.",
-                        itemCommodityCode: "010",
-                        itemUnitOfMeasure: "SqFt",
-                        itemCost: 5,
-                        itemQty: 1,
-                        itemMode: 0,
-                    },
-                ],
-                Mode: 0,
-                AccountingField1: "MyInternalId",
-                AccountingField2: "MyInternalId",
-                Vendor: {
-                    VendorNumber: "1234",
-                    Name1: "Herman's Coatings and Masonry",
-                    Name2: "",
-                    EIN: "XXXX6789",
-                    Phone: "5555555555",
-                    Email: "contact@hermanscoatings.com",
-                    Address1: "123 Ocean Drive",
-                    Address2: "Suite 400",
-                    City: "Miami",
-                    State: "FL",
-                    Zip: "33139",
-                    Country: "US",
-                    Mcc: "7777",
-                    LocationCode: "MIA123",
-                    Contacts: [
-                        {
-                            ContactName: "Herman Martinez",
-                            ContactEmail: "herman@hermanscoatings.com",
-                            ContactTitle: "Owner",
-                            ContactPhone: "3055550000",
-                        },
-                    ],
-                    BillingData: {
-                        id: 123,
-                        accountId: "acct-1xxxxx3123",
-                        nickname: "Checking Account",
-                        bankName: "Country Bank",
-                        routingAccount: "123123123",
-                        accountNumber: "1XXXXXX3123",
-                        typeAccount: "Checking",
-                        bankAccountHolderName: "Gruzya Adventure Outfitters LLC",
-                        bankAccountHolderType: "Business",
-                        bankAccountFunction: 0,
-                        verified: true,
-                        status: 1,
-                        services: [],
-                        default: true,
-                    },
-                    PaymentMethod: "vcard",
-                    VendorStatus: 1,
-                    VendorId: 1234,
-                    Summary: {
-                        ActiveBills: 5,
-                        PendingBills: 2,
-                        InTransitBills: 1,
-                        PaidBills: 10,
-                        OverdueBills: 0,
-                        ApprovedBills: 3,
-                        DisapprovedBills: 0,
-                        TotalBills: 21,
-                        ActiveBillsAmount: 1500,
-                        PendingBillsAmount: 500,
-                        InTransitBillsAmount: 200,
-                        PaidBillsAmount: 3000,
-                        OverdueBillsAmount: 0,
-                        ApprovedBillsAmount: 800,
-                        DisapprovedBillsAmount: 0,
-                        TotalBillsAmount: 6000,
-                    },
-                    PaypointLegalname: "Gruzya Adventure Outfitters LLC",
-                    PaypointDbaname: "Gruzya Adventure Outfitters",
-                    PaypointEntryname: "41035afaa7",
-                    ParentOrgName: "Pilgrim Planner",
-                    ParentOrgId: 1232,
-                    CreatedDate: "2022-07-01T15:00:01Z",
-                    LastUpdated: "2022-07-01T15:00:01Z",
-                    remitAddress1: "123 Walnut Street",
-                    remitAddress2: "Suite 900",
-                    remitCity: "Miami",
-                    remitState: "FL",
-                    remitZip: "31113",
-                    remitCountry: "US",
-                    payeeName1: "Herman Martinez",
-                    payeeName2: "",
-                    customField1: "",
-                    customField2: "",
-                    customerVendorAccount: "A-37622",
-                    InternalReferenceId: 123,
-                    additionalData: {
-                        customField: "Custom Value 1",
-                        reference: "REF-12345",
-                        notes: "Additional vendor information",
-                    },
-                    externalPaypointID: "ext123",
-                    StoredMethods: [],
-                },
-                Status: -99,
-                CreatedAt: "2025-07-01T15:00:01Z",
-                EndDate: null,
-                LastUpdated: "2025-07-01T15:00:01Z",
-                billEvents: [
-                    {
-                        description: "Created Bill",
-                        eventTime: "2025-07-01T15:00:01Z",
-                        refData: "REF-12345",
-                        source: "API",
-                    },
-                ],
-                PaypointLegalname: "Gruzya Adventure Outfitters LLC",
-                PaypointDbaname: "Gruzya Adventure Outfitters",
-                ParentOrgId: 1232,
-                ParentOrgName: "Pilgrim Planner",
-                PaypointEntryname: "41035afaa7",
-                DocumentsRef: {
-                    zipfile: "documents_285.zip",
-                    filelist: [
-                        {
-                            originalName: "invoice.pdf",
-                            zipName: "0_invoice.pdf",
-                            descriptor: "Invoice document",
-                        },
-                    ],
-                },
-                LotNumber: "LOT-285",
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("GetBill (2)", async () => {
@@ -1087,135 +911,7 @@ describe("BillClient", () => {
             limitRecord: 0,
             sortBy: "desc(field_name)",
         });
-        expect(response).toEqual({
-            Summary: {
-                pageSize: 20,
-                total2approval: 1,
-                totalactive: 1,
-                totalAmount: 1.1,
-                totalamount2approval: 1.1,
-                totalamountactive: 1.1,
-                totalamountapproved: 1.1,
-                totalamountcancel: 1.1,
-                totalamountdisapproved: 1.1,
-                totalamountintransit: 1.1,
-                totalamountoverdue: 1.1,
-                totalamountpaid: 1.1,
-                totalamountsent2approval: 1.1,
-                totalapproved: 1,
-                totalcancel: 1,
-                totaldisapproved: 1,
-                totalintransit: 1,
-                totaloverdue: 1,
-                totalPages: 1,
-                totalpaid: 1,
-                totalRecords: 2,
-                totalsent2approval: 1,
-            },
-            Records: [
-                {
-                    AdditionalData: null,
-                    billApprovals: [
-                        {
-                            approved: 0,
-                            approvedTime: "2024-03-13T15:54:27Z",
-                            email: "lisandra@example.com",
-                            Id: 34,
-                        },
-                        {
-                            approved: 0,
-                            approvedTime: "2024-03-13T15:54:27Z",
-                            email: "jccastillo@example.com",
-                            Id: 293,
-                        },
-                    ],
-                    BillDate: "2025-03-10",
-                    billEvents: [
-                        {
-                            description: "Created Bill",
-                            eventTime: "2024-03-13T15:54:26Z",
-                            refData: "00-45e1c2d8b53b72fafc4082f374e68753-ffea4ba4c2ce63ce-00",
-                        },
-                        {
-                            description: "Sent to Approval",
-                            eventTime: "2024-03-13T15:54:28Z",
-                            refData: "00-086a951822211bc2eb1803ed64db9d4f-0f07e0e8c394e481-00",
-                        },
-                    ],
-                    BillItems: [
-                        {
-                            itemCommodityCode: "Commod-MI-2024031926",
-                            itemCost: 200,
-                            itemDescription: "Consultation price",
-                            itemMode: 0,
-                            itemProductCode: "Prod-MI-2024031926",
-                            itemProductName: "Consultation",
-                            itemQty: 1,
-                            itemTaxAmount: 0,
-                            itemTaxRate: 0,
-                            itemTotalAmount: 200,
-                            itemUnitOfMeasure: "per each",
-                        },
-                    ],
-                    BillNumber: "MI-bill-2024031926",
-                    Comments: "PAYBILL",
-                    CreatedAt: "2024-03-13T15:54:26Z",
-                    Discount: 0,
-                    DocumentsRef: null,
-                    DueDate: "2025-03-10",
-                    EndDate: null,
-                    EntityID: null,
-                    externalPaypointID: "micasa-10",
-                    Frequency: "onetime",
-                    IdBill: 6104,
-                    LastUpdated: "2024-03-13T10:54:26Z",
-                    LotNumber: "LOT123",
-                    Mode: 0,
-                    NetAmount: 200,
-                    ParentOrgId: 1001,
-                    ParentOrgName: "Fitness Hub",
-                    PaymentId: null,
-                    PaymentMethod: null,
-                    paylinkId: null,
-                    PaypointDbaname: "MiCasa Sports",
-                    PaypointEntryname: "micasa",
-                    PaypointLegalname: "MiCasa Sports LLC",
-                    Source: "web",
-                    Status: 2,
-                    Terms: "Net30",
-                    TotalAmount: 200,
-                    Transaction: null,
-                    Vendor: {
-                        Address1: "1234 Liberdad St.",
-                        Address2: "Suite 100",
-                        BillingData: {
-                            accountNumber: "12345XXXX",
-                            bankAccountFunction: 0,
-                            bankAccountHolderName: "Elena Gomez",
-                            bankAccountHolderType: "Business",
-                            bankName: "Michigan Savings Bank",
-                            id: 0,
-                            routingAccount: "072000326",
-                            typeAccount: "Checking",
-                        },
-                        City: "Detroit",
-                        Country: "US",
-                        EIN: "XXXXX6789",
-                        Email: "elenag@industriesexample.com",
-                        InternalReferenceId: 1215,
-                        Mcc: "700",
-                        Name1: "Gomez-Radulescu Industries",
-                        Name2: "Elena",
-                        Phone: "517-555-0123",
-                        State: "MI",
-                        VendorId: 8723,
-                        VendorNumber: "MI-vendor-2024031926",
-                        VendorStatus: 1,
-                        Zip: "48201",
-                    },
-                },
-            ],
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ListBills (2)", async () => {
@@ -1407,135 +1103,7 @@ describe("BillClient", () => {
             limitRecord: 0,
             sortBy: "desc(field_name)",
         });
-        expect(response).toEqual({
-            Summary: {
-                pageSize: 20,
-                total2approval: 1,
-                totalactive: 1,
-                totalAmount: 1.1,
-                totalamount2approval: 1.1,
-                totalamountactive: 1.1,
-                totalamountapproved: 1.1,
-                totalamountcancel: 1.1,
-                totalamountdisapproved: 1.1,
-                totalamountintransit: 1.1,
-                totalamountoverdue: 1.1,
-                totalamountpaid: 1.1,
-                totalamountsent2approval: 1.1,
-                totalapproved: 1,
-                totalcancel: 1,
-                totaldisapproved: 1,
-                totalintransit: 1,
-                totaloverdue: 1,
-                totalPages: 1,
-                totalpaid: 1,
-                totalRecords: 2,
-                totalsent2approval: 1,
-            },
-            Records: [
-                {
-                    AdditionalData: null,
-                    billApprovals: [
-                        {
-                            approved: 0,
-                            approvedTime: "2024-03-13T15:54:27Z",
-                            email: "lisandra@example.com",
-                            Id: 34,
-                        },
-                        {
-                            approved: 0,
-                            approvedTime: "2024-03-13T15:54:27Z",
-                            email: "jccastillo@example.com",
-                            Id: 293,
-                        },
-                    ],
-                    BillDate: "2025-03-10",
-                    billEvents: [
-                        {
-                            description: "Created Bill",
-                            eventTime: "2024-03-13T15:54:26Z",
-                            refData: "00-45e1c2d8b53b72fafc4082f374e68753-ffea4ba4c2ce63ce-00",
-                        },
-                        {
-                            description: "Sent to Approval",
-                            eventTime: "2024-03-13T15:54:28Z",
-                            refData: "00-086a951822211bc2eb1803ed64db9d4f-0f07e0e8c394e481-00",
-                        },
-                    ],
-                    BillItems: [
-                        {
-                            itemCommodityCode: "Commod-MI-2024031926",
-                            itemCost: 200,
-                            itemDescription: "Consultation price",
-                            itemMode: 0,
-                            itemProductCode: "Prod-MI-2024031926",
-                            itemProductName: "Consultation",
-                            itemQty: 1,
-                            itemTaxAmount: 0,
-                            itemTaxRate: 0,
-                            itemTotalAmount: 200,
-                            itemUnitOfMeasure: "per each",
-                        },
-                    ],
-                    BillNumber: "MI-bill-2024031926",
-                    Comments: "PAYBILL",
-                    CreatedAt: "2024-03-13T15:54:26Z",
-                    Discount: 0,
-                    DocumentsRef: null,
-                    DueDate: "2025-03-10",
-                    EndDate: null,
-                    EntityID: null,
-                    externalPaypointID: "micasa-10",
-                    Frequency: "onetime",
-                    IdBill: 6104,
-                    LastUpdated: "2024-03-13T10:54:26Z",
-                    LotNumber: "LOT123",
-                    Mode: 0,
-                    NetAmount: 200,
-                    ParentOrgId: 1001,
-                    ParentOrgName: "Fitness Hub",
-                    PaymentId: null,
-                    PaymentMethod: null,
-                    paylinkId: null,
-                    PaypointDbaname: "MiCasa Sports",
-                    PaypointEntryname: "micasa",
-                    PaypointLegalname: "MiCasa Sports LLC",
-                    Source: "web",
-                    Status: 2,
-                    Terms: "Net30",
-                    TotalAmount: 200,
-                    Transaction: null,
-                    Vendor: {
-                        Address1: "1234 Liberdad St.",
-                        Address2: "Suite 100",
-                        BillingData: {
-                            accountNumber: "12345XXXX",
-                            bankAccountFunction: 0,
-                            bankAccountHolderName: "Elena Gomez",
-                            bankAccountHolderType: "Business",
-                            bankName: "Michigan Savings Bank",
-                            id: 0,
-                            routingAccount: "072000326",
-                            typeAccount: "Checking",
-                        },
-                        City: "Detroit",
-                        Country: "US",
-                        EIN: "XXXXX6789",
-                        Email: "elenag@industriesexample.com",
-                        InternalReferenceId: 1215,
-                        Mcc: "700",
-                        Name1: "Gomez-Radulescu Industries",
-                        Name2: "Elena",
-                        Phone: "517-555-0123",
-                        State: "MI",
-                        VendorId: 8723,
-                        VendorNumber: "MI-vendor-2024031926",
-                        VendorStatus: 1,
-                        Zip: "48201",
-                    },
-                },
-            ],
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ListBillsOrg (2)", async () => {
@@ -1606,11 +1174,7 @@ describe("BillClient", () => {
             .build();
 
         const response = await client.bill.modifyApprovalBill(285, ["string"]);
-        expect(response).toEqual({
-            isSuccess: true,
-            responseData: 6101,
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ModifyApprovalBill (2)", async () => {
@@ -1719,13 +1283,7 @@ describe("BillClient", () => {
             idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA",
             body: ["string"],
         });
-        expect(response).toEqual({
-            responseCode: 1,
-            roomId: 0,
-            isSuccess: true,
-            responseText: "Success",
-            responseData: 6101,
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("SendToApprovalBill (2)", async () => {
@@ -1831,11 +1389,7 @@ describe("BillClient", () => {
             .build();
 
         const response = await client.bill.setApprovedBill(285, "true");
-        expect(response).toEqual({
-            isSuccess: true,
-            responseData: 6101,
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("SetApprovedBill (2)", async () => {

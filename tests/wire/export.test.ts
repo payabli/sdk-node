@@ -24,9 +24,7 @@ describe("ExportClient", () => {
             fromRecord: 251,
             limitRecord: 1000,
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ExportApplications (2)", async () => {
@@ -124,9 +122,7 @@ describe("ExportClient", () => {
             fromRecord: 251,
             limitRecord: 1000,
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ExportBatchDetails (2)", async () => {
@@ -224,9 +220,7 @@ describe("ExportClient", () => {
             fromRecord: 251,
             limitRecord: 1000,
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ExportBatchDetailsOrg (2)", async () => {
@@ -324,9 +318,7 @@ describe("ExportClient", () => {
             fromRecord: 251,
             limitRecord: 1000,
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ExportBatches (2)", async () => {
@@ -424,9 +416,7 @@ describe("ExportClient", () => {
             fromRecord: 251,
             limitRecord: 1000,
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ExportBatchesOrg (2)", async () => {
@@ -524,9 +514,7 @@ describe("ExportClient", () => {
             fromRecord: 251,
             limitRecord: 1000,
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ExportBatchesOut (2)", async () => {
@@ -624,9 +612,7 @@ describe("ExportClient", () => {
             fromRecord: 251,
             limitRecord: 1000,
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ExportBatchesOutOrg (2)", async () => {
@@ -724,9 +710,7 @@ describe("ExportClient", () => {
             fromRecord: 251,
             limitRecord: 1000,
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ExportBills (2)", async () => {
@@ -824,9 +808,7 @@ describe("ExportClient", () => {
             fromRecord: 251,
             limitRecord: 1000,
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ExportBillsOrg (2)", async () => {
@@ -924,9 +906,7 @@ describe("ExportClient", () => {
             fromRecord: 251,
             limitRecord: 1000,
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ExportChargebacks (2)", async () => {
@@ -1024,9 +1004,7 @@ describe("ExportClient", () => {
             fromRecord: 251,
             limitRecord: 1000,
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ExportChargebacksOrg (2)", async () => {
@@ -1124,9 +1102,7 @@ describe("ExportClient", () => {
             fromRecord: 251,
             limitRecord: 1000,
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ExportCustomers (2)", async () => {
@@ -1224,9 +1200,7 @@ describe("ExportClient", () => {
             fromRecord: 251,
             limitRecord: 1000,
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ExportCustomersOrg (2)", async () => {
@@ -1324,9 +1298,7 @@ describe("ExportClient", () => {
             fromRecord: 251,
             limitRecord: 1000,
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ExportInvoices (2)", async () => {
@@ -1424,9 +1396,7 @@ describe("ExportClient", () => {
             fromRecord: 251,
             limitRecord: 1000,
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ExportInvoicesOrg (2)", async () => {
@@ -1524,9 +1494,7 @@ describe("ExportClient", () => {
             fromRecord: 251,
             limitRecord: 1000,
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ExportOrganizations (2)", async () => {
@@ -1624,9 +1592,7 @@ describe("ExportClient", () => {
             fromRecord: 251,
             limitRecord: 1000,
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ExportPayout (2)", async () => {
@@ -1724,9 +1690,7 @@ describe("ExportClient", () => {
             fromRecord: 251,
             limitRecord: 1000,
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ExportPayoutOrg (2)", async () => {
@@ -1824,9 +1788,7 @@ describe("ExportClient", () => {
             fromRecord: 251,
             limitRecord: 1000,
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ExportPaypoints (2)", async () => {
@@ -1924,9 +1886,7 @@ describe("ExportClient", () => {
             fromRecord: 251,
             limitRecord: 1000,
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ExportSettlements (2)", async () => {
@@ -2024,9 +1984,7 @@ describe("ExportClient", () => {
             fromRecord: 251,
             limitRecord: 1000,
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ExportSettlementsOrg (2)", async () => {
@@ -2124,9 +2082,7 @@ describe("ExportClient", () => {
             fromRecord: 251,
             limitRecord: 1000,
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ExportSubscriptions (2)", async () => {
@@ -2224,9 +2180,7 @@ describe("ExportClient", () => {
             fromRecord: 251,
             limitRecord: 1000,
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ExportSubscriptionsOrg (2)", async () => {
@@ -2324,9 +2278,7 @@ describe("ExportClient", () => {
             fromRecord: 251,
             limitRecord: 1000,
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ExportTransactions (2)", async () => {
@@ -2424,9 +2376,7 @@ describe("ExportClient", () => {
             fromRecord: 251,
             limitRecord: 1000,
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ExportTransactionsOrg (2)", async () => {
@@ -2525,9 +2475,7 @@ describe("ExportClient", () => {
             limitRecord: 1000,
             sortBy: "desc(field_name)",
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ExportTransferDetails (2)", async () => {
@@ -2626,9 +2574,7 @@ describe("ExportClient", () => {
             limitRecord: 1000,
             sortBy: "desc(field_name)",
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ExportTransfers (2)", async () => {
@@ -2726,9 +2672,7 @@ describe("ExportClient", () => {
             fromRecord: 251,
             limitRecord: 1000,
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ExportVendors (2)", async () => {
@@ -2826,8 +2770,6 @@ describe("ExportClient", () => {
             fromRecord: 251,
             limitRecord: 1000,
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 });

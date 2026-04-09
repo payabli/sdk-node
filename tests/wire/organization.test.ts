@@ -101,11 +101,7 @@ describe("OrganizationClient", () => {
             orgZip: "37615",
             replyToEmail: "email@example.com",
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseData: 245,
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("AddOrganization (2)", async () => {
@@ -219,11 +215,7 @@ describe("OrganizationClient", () => {
             .build();
 
         const response = await client.organization.deleteOrganization(123);
-        expect(response).toEqual({
-            isSuccess: true,
-            responseData: 245,
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("DeleteOrganization (2)", async () => {
@@ -334,12 +326,7 @@ describe("OrganizationClient", () => {
             orgWebsite: "www.pilgrimageplanner.com",
             orgZip: "37615",
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseCode: 1,
-            responseData: 2442,
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("EditOrganization (2)", async () => {
@@ -516,101 +503,7 @@ describe("OrganizationClient", () => {
             .build();
 
         const response = await client.organization.getBasicOrganization("8cfec329267");
-        expect(response).toEqual({
-            services: [
-                {
-                    description: "description",
-                    enabled: true,
-                    monthlyCost: 1.1,
-                    name: "name",
-                    reseller: true,
-                    setupCost: 1.1,
-                    txCost: 1.1,
-                    txPercentCost: 1.1,
-                },
-            ],
-            billingInfo: {
-                achAccount: "123123123",
-                achRouting: "123123123",
-                billingAddress: "123 Walnut Street",
-                billingCity: "Johnson City",
-                billingCountry: "US",
-                billingState: "TN",
-                billingZip: "37615",
-            },
-            contacts: [
-                {
-                    contactEmail: "example@email.com",
-                    contactName: "Herman Martinez",
-                    contactPhone: "3055550000",
-                    contactTitle: "Owner",
-                },
-            ],
-            createdAt: "2022-07-01T15:00:01Z",
-            hasBilling: true,
-            hasResidual: true,
-            idOrg: 123,
-            isRoot: false,
-            orgAddress: "123 Walnut Street",
-            orgCity: "Johnson City",
-            orgCountry: "US",
-            orgEntryName: "pilgrim-planner",
-            orgId: "I-123",
-            orgLogo: {
-                fContent: "TXkgdGVzdCBmaWxlHJ==...",
-                filename: "my-doc.pdf",
-                ftype: "pdf",
-                furl: "https://mysite.com/my-doc.pdf",
-            },
-            orgName: "Pilgrim Planner",
-            orgParentId: 236,
-            orgParentName: "PropertyManager Pro",
-            orgState: "TN",
-            orgTimezone: -5,
-            orgType: 0,
-            orgWebsite: "www.pilgrimageplanner.com",
-            orgZip: "orgZip",
-            recipientEmailNotification: true,
-            replyToEmail: "example@email.com",
-            resumable: false,
-            summary: {
-                amountSubs: 1.1,
-                amountTx: 1.1,
-                childOrgs: 1,
-                childPaypoints: 1,
-                countSubs: 1,
-                countTx: 1,
-            },
-            users: [
-                {
-                    Access: [
-                        {
-                            roleValue: true,
-                        },
-                    ],
-                    AdditionalData: "AdditionalData",
-                    createdAt: "2022-07-01T15:00:01Z",
-                    Email: "example@email.com",
-                    language: "en",
-                    lastAccess: "2022-07-01T15:00:01Z",
-                    Name: "Sean Smith",
-                    Phone: "5555555555",
-                    Scope: [
-                        {
-                            orgType: 0,
-                        },
-                    ],
-                    snData: "snData",
-                    snIdentifier: "snIdentifier",
-                    snProvider: "google",
-                    timeZone: -5,
-                    userId: 1000000,
-                    UsrMFA: false,
-                    UsrMFAMode: 0,
-                    UsrStatus: 1,
-                },
-            ],
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("GetBasicOrganization (2)", async () => {
@@ -783,101 +676,7 @@ describe("OrganizationClient", () => {
             .build();
 
         const response = await client.organization.getBasicOrganizationById(123);
-        expect(response).toEqual({
-            services: [
-                {
-                    description: "description",
-                    enabled: true,
-                    monthlyCost: 1.1,
-                    name: "name",
-                    reseller: true,
-                    setupCost: 1.1,
-                    txCost: 1.1,
-                    txPercentCost: 1.1,
-                },
-            ],
-            billingInfo: {
-                achAccount: "123123123",
-                achRouting: "123123123",
-                billingAddress: "123 Walnut Street",
-                billingCity: "Johnson City",
-                billingCountry: "US",
-                billingState: "TN",
-                billingZip: "37615",
-            },
-            contacts: [
-                {
-                    contactEmail: "example@email.com",
-                    contactName: "Herman Martinez",
-                    contactPhone: "3055550000",
-                    contactTitle: "Owner",
-                },
-            ],
-            createdAt: "2022-07-01T15:00:01Z",
-            hasBilling: true,
-            hasResidual: true,
-            idOrg: 123,
-            isRoot: false,
-            orgAddress: "123 Walnut Street",
-            orgCity: "Johnson City",
-            orgCountry: "US",
-            orgEntryName: "pilgrim-planner",
-            orgId: "I-123",
-            orgLogo: {
-                fContent: "TXkgdGVzdCBmaWxlHJ==...",
-                filename: "my-doc.pdf",
-                ftype: "pdf",
-                furl: "https://mysite.com/my-doc.pdf",
-            },
-            orgName: "Pilgrim Planner",
-            orgParentId: 236,
-            orgParentName: "PropertyManager Pro",
-            orgState: "TN",
-            orgTimezone: -5,
-            orgType: 0,
-            orgWebsite: "www.pilgrimageplanner.com",
-            orgZip: "orgZip",
-            recipientEmailNotification: true,
-            replyToEmail: "example@email.com",
-            resumable: false,
-            summary: {
-                amountSubs: 1.1,
-                amountTx: 1.1,
-                childOrgs: 1,
-                childPaypoints: 1,
-                countSubs: 1,
-                countTx: 1,
-            },
-            users: [
-                {
-                    Access: [
-                        {
-                            roleValue: true,
-                        },
-                    ],
-                    AdditionalData: "AdditionalData",
-                    createdAt: "2022-07-01T15:00:01Z",
-                    Email: "example@email.com",
-                    language: "en",
-                    lastAccess: "2022-07-01T15:00:01Z",
-                    Name: "Sean Smith",
-                    Phone: "5555555555",
-                    Scope: [
-                        {
-                            orgType: 0,
-                        },
-                    ],
-                    snData: "snData",
-                    snIdentifier: "snIdentifier",
-                    snProvider: "google",
-                    timeZone: -5,
-                    userId: 1000000,
-                    UsrMFA: false,
-                    UsrMFAMode: 0,
-                    UsrStatus: 1,
-                },
-            ],
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("GetBasicOrganizationById (2)", async () => {
@@ -1050,101 +849,7 @@ describe("OrganizationClient", () => {
             .build();
 
         const response = await client.organization.getOrganization(123);
-        expect(response).toEqual({
-            services: [
-                {
-                    description: "description",
-                    enabled: true,
-                    monthlyCost: 1.1,
-                    name: "name",
-                    reseller: true,
-                    setupCost: 1.1,
-                    txCost: 1.1,
-                    txPercentCost: 1.1,
-                },
-            ],
-            billingInfo: {
-                achAccount: "123123123",
-                achRouting: "123123123",
-                billingAddress: "123 Walnut Street",
-                billingCity: "Johnson City",
-                billingCountry: "US",
-                billingState: "TN",
-                billingZip: "37615",
-            },
-            contacts: [
-                {
-                    contactEmail: "example@email.com",
-                    contactName: "Herman Martinez",
-                    contactPhone: "3055550000",
-                    contactTitle: "Owner",
-                },
-            ],
-            createdAt: "2022-07-01T15:00:01Z",
-            hasBilling: true,
-            hasResidual: true,
-            idOrg: 123,
-            isRoot: false,
-            orgAddress: "123 Walnut Street",
-            orgCity: "Johnson City",
-            orgCountry: "US",
-            orgEntryName: "pilgrim-planner",
-            orgId: "I-123",
-            orgLogo: {
-                fContent: "TXkgdGVzdCBmaWxlHJ==...",
-                filename: "my-doc.pdf",
-                ftype: "pdf",
-                furl: "https://mysite.com/my-doc.pdf",
-            },
-            orgName: "Pilgrim Planner",
-            orgParentId: 236,
-            orgParentName: "PropertyManager Pro",
-            orgState: "TN",
-            orgTimezone: -5,
-            orgType: 0,
-            orgWebsite: "www.pilgrimageplanner.com",
-            orgZip: "orgZip",
-            recipientEmailNotification: true,
-            replyToEmail: "example@email.com",
-            resumable: false,
-            summary: {
-                amountSubs: 1.1,
-                amountTx: 1.1,
-                childOrgs: 1,
-                childPaypoints: 1,
-                countSubs: 1,
-                countTx: 1,
-            },
-            users: [
-                {
-                    Access: [
-                        {
-                            roleValue: true,
-                        },
-                    ],
-                    AdditionalData: "AdditionalData",
-                    createdAt: "2022-07-01T15:00:01Z",
-                    Email: "example@email.com",
-                    language: "en",
-                    lastAccess: "2022-07-01T15:00:01Z",
-                    Name: "Sean Smith",
-                    Phone: "5555555555",
-                    Scope: [
-                        {
-                            orgType: 0,
-                        },
-                    ],
-                    snData: "snData",
-                    snIdentifier: "snIdentifier",
-                    snProvider: "google",
-                    timeZone: -5,
-                    userId: 1000000,
-                    UsrMFA: false,
-                    UsrMFAMode: 0,
-                    UsrStatus: 1,
-                },
-            ],
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("GetOrganization (2)", async () => {
@@ -1245,49 +950,6 @@ describe("OrganizationClient", () => {
             .build();
 
         const response = await client.organization.getSettingsOrganization(123);
-        expect(response).toEqual({
-            customFields: [
-                {
-                    key: "key",
-                    readOnly: false,
-                    value: "value",
-                },
-            ],
-            forInvoices: [
-                {
-                    key: "key",
-                    readOnly: false,
-                    value: "value",
-                },
-            ],
-            forPayOuts: [
-                {
-                    key: "key",
-                    readOnly: false,
-                    value: "value",
-                },
-            ],
-            forWallets: [
-                {
-                    key: "isGooglePayEnabled",
-                    readOnly: false,
-                    value: "true",
-                },
-            ],
-            general: [
-                {
-                    key: "key",
-                    readOnly: false,
-                    value: "value",
-                },
-            ],
-            identifiers: [
-                {
-                    key: "key",
-                    readOnly: false,
-                    value: "value",
-                },
-            ],
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 });

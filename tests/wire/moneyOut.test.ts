@@ -64,23 +64,7 @@ describe("MoneyOutClient", () => {
                 },
             },
         });
-        expect(response).toEqual({
-            responseCode: 1,
-            pageIdentifier: null,
-            roomId: 0,
-            isSuccess: true,
-            responseText: "Success",
-            responseData: {
-                authCode: null,
-                referenceId: "129-219",
-                resultCode: 1,
-                resultText: "Authorized",
-                avsResponseText: null,
-                cvvResponseText: null,
-                customerId: 0,
-                methodReferenceId: null,
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("AuthorizeOut (2)", async () => {
@@ -153,23 +137,7 @@ describe("MoneyOutClient", () => {
                 },
             },
         });
-        expect(response).toEqual({
-            responseCode: 1,
-            pageIdentifier: null,
-            roomId: 0,
-            isSuccess: true,
-            responseText: "Success",
-            responseData: {
-                authCode: null,
-                referenceId: "129-219",
-                resultCode: 1,
-                resultText: "Authorized",
-                avsResponseText: null,
-                cvvResponseText: null,
-                customerId: 0,
-                methodReferenceId: null,
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("AuthorizeOut (3)", async () => {
@@ -233,23 +201,7 @@ describe("MoneyOutClient", () => {
                 },
             },
         });
-        expect(response).toEqual({
-            responseCode: 1,
-            pageIdentifier: null,
-            roomId: 0,
-            isSuccess: true,
-            responseText: "Success",
-            responseData: {
-                authCode: null,
-                referenceId: "129-219",
-                resultCode: 1,
-                resultText: "Authorized",
-                avsResponseText: null,
-                cvvResponseText: null,
-                customerId: 0,
-                methodReferenceId: null,
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("AuthorizeOut (4)", async () => {
@@ -311,23 +263,7 @@ describe("MoneyOutClient", () => {
                 },
             },
         });
-        expect(response).toEqual({
-            responseCode: 1,
-            pageIdentifier: null,
-            roomId: 0,
-            isSuccess: true,
-            responseText: "Success",
-            responseData: {
-                authCode: null,
-                referenceId: "129-219",
-                resultCode: 1,
-                resultText: "Authorized",
-                avsResponseText: null,
-                cvvResponseText: null,
-                customerId: 0,
-                methodReferenceId: null,
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("AuthorizeOut (5)", async () => {
@@ -464,23 +400,7 @@ describe("MoneyOutClient", () => {
                 ],
             },
         });
-        expect(response).toEqual({
-            responseCode: 1,
-            pageIdentifier: null,
-            roomId: 0,
-            isSuccess: true,
-            responseText: "Success",
-            responseData: {
-                authCode: null,
-                referenceId: "129-220",
-                resultCode: 1,
-                resultText: "Authorized",
-                avsResponseText: null,
-                cvvResponseText: null,
-                customerId: 12345,
-                methodReferenceId: "12dea40cba9130s93s-12345",
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("AuthorizeOut (6)", async () => {
@@ -652,26 +572,7 @@ describe("MoneyOutClient", () => {
             .build();
 
         const response = await client.moneyOut.cancelAllOut(["2-29", "2-28", "2-27"]);
-        expect(response).toEqual({
-            isSuccess: true,
-            pageIdentifier: "null",
-            responseCode: 1,
-            responseData: [
-                {
-                    CustomerId: 1000000,
-                    ReferenceId: "129-230",
-                    ResultCode: 1,
-                    ResultText: "Cancelled",
-                },
-                {
-                    CustomerId: 1000000,
-                    ReferenceId: "129-219",
-                    ResultCode: 1,
-                    ResultText: "Cancelled",
-                },
-            ],
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("CancelAllOut (2)", async () => {
@@ -773,16 +674,7 @@ describe("MoneyOutClient", () => {
             .build();
 
         const response = await client.moneyOut.cancelOutGet("129-219");
-        expect(response).toEqual({
-            isSuccess: true,
-            responseText: "Success",
-            responseData: {
-                ReferenceId: "129-219",
-                ResultCode: 1,
-                ResultText: "Approved",
-                CustomerId: 0,
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("CancelOutGet (2)", async () => {
@@ -880,16 +772,7 @@ describe("MoneyOutClient", () => {
             .build();
 
         const response = await client.moneyOut.cancelOutDelete("129-219");
-        expect(response).toEqual({
-            isSuccess: true,
-            responseText: "Success",
-            responseData: {
-                ReferenceId: "129-219",
-                ResultCode: 1,
-                ResultText: "Approved",
-                CustomerId: 0,
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("CancelOutDelete (2)", async () => {
@@ -995,26 +878,7 @@ describe("MoneyOutClient", () => {
         const response = await client.moneyOut.captureAllOut({
             body: ["2-29", "2-28", "2-27"],
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            pageIdentifier: "null",
-            responseCode: 1,
-            responseData: [
-                {
-                    CustomerId: 1000000,
-                    ReferenceId: "129-230",
-                    ResultCode: 1,
-                    ResultText: "Captured",
-                },
-                {
-                    CustomerId: 1000000,
-                    ReferenceId: "129-219",
-                    ResultCode: 1,
-                    ResultText: "Captured",
-                },
-            ],
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("CaptureAllOut (2)", async () => {
@@ -1136,23 +1000,7 @@ describe("MoneyOutClient", () => {
             .build();
 
         const response = await client.moneyOut.captureOut("129-219");
-        expect(response).toEqual({
-            responseCode: 1,
-            pageIdentifier: null,
-            roomId: 0,
-            isSuccess: true,
-            responseText: "Success",
-            responseData: {
-                authCode: null,
-                referenceId: "129-219",
-                resultCode: 1,
-                resultText: "Authorized",
-                avsResponseText: null,
-                cvvResponseText: null,
-                customerId: 0,
-                methodReferenceId: null,
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("CaptureOut (2)", async () => {
@@ -1371,142 +1219,7 @@ describe("MoneyOutClient", () => {
             .build();
 
         const response = await client.moneyOut.payoutDetails("45-as456777hhhhhhhhhh77777777-324");
-        expect(response).toEqual({
-            Bills: [
-                {
-                    invoiceNumber: "123B",
-                    netAmount: "8800.00",
-                },
-            ],
-            Comments: "testing",
-            CreatedDate: "2022-07-01T15:00:01Z",
-            Events: [
-                {
-                    EventTime: "2023-04-24T09:17:49Z",
-                    TransEvent: "Authorized",
-                },
-            ],
-            FeeAmount: 0,
-            Gateway: "TSYS",
-            IdOut: 350,
-            LastUpdated: "2023-04-23T17:00:00Z",
-            NetAmount: 8800,
-            ParentOrgName: "PropertyManager Pro",
-            PaymentData: {
-                AccountType: "",
-                binData: {
-                    binMatchedLength: "6",
-                    binCardBrand: "Visa",
-                    binCardType: "Credit",
-                    binCardCategory: "PLATINUM",
-                    binCardIssuer: "Bank of Example",
-                    binCardIssuerCountry: "United States",
-                    binCardIssuerCountryCodeA2: "US",
-                    binCardIssuerCountryNumber: "840",
-                    binCardIsRegulated: "false",
-                    binCardUseCategory: "Consumer",
-                    binCardIssuerCountryCodeA3: "USA",
-                },
-                HolderName: "",
-                Initiator: "payor",
-                MaskedAccount: "",
-                Sequence: "subsequent",
-                SignatureData: "SignatureData",
-                StoredMethodUsageType: "subscription",
-            },
-            PaymentGroup: "2345667-ddd-fff",
-            PaymentId: "12345678910",
-            PaymentMethod: "managed",
-            PaymentStatus: "Authorized",
-            PaypointDbaname: "Sunshine Gutters",
-            PaypointLegalname: "Sunshine Services, LLC",
-            Source: "api",
-            Status: 11,
-            StatusText: "Captured",
-            TotalAmount: 8800,
-            Vendor: {
-                VendorNumber: "1234",
-                Name1: "Herman's Coatings",
-                Name2: "Herman's Coating Supply Company, LLC",
-                EIN: "123456789",
-                Phone: "2125551234",
-                Email: "example@email.com",
-                Address1: "123 Ocean Drive",
-                Address2: "Suite 400",
-                City: "Bristol",
-                State: "GA",
-                Zip: "31113",
-                Country: "US",
-                Mcc: "7777",
-                LocationCode: "LOC123",
-                Contacts: {
-                    ContactEmail: "eric@martinezcoatings.com",
-                    ContactName: "Eric Martinez",
-                    ContactPhone: "5555555555",
-                    ContactTitle: "Owner",
-                },
-                BillingData: {
-                    id: 123456,
-                    accountId: "bank-account-001",
-                    nickname: "Main Checking Account",
-                    bankName: "Example Bank",
-                    routingAccount: "123456789",
-                    accountNumber: "9876543210",
-                    typeAccount: "Checking",
-                    bankAccountHolderName: "John Doe",
-                    bankAccountHolderType: "Business",
-                    bankAccountFunction: 2,
-                    verified: true,
-                    status: 1,
-                    services: [],
-                    default: true,
-                },
-                VendorStatus: 1,
-                VendorId: 1,
-                Summary: {
-                    ActiveBills: 2,
-                    PendingBills: 4,
-                    InTransitBills: 3,
-                    PaidBills: 18,
-                    OverdueBills: 1,
-                    ApprovedBills: 5,
-                    DisapprovedBills: 1,
-                    TotalBills: 34,
-                    ActiveBillsAmount: 1250.75,
-                    PendingBillsAmount: 2890.5,
-                    InTransitBillsAmount: 1675.25,
-                    PaidBillsAmount: 15420.8,
-                    OverdueBillsAmount: 425,
-                    ApprovedBillsAmount: 3240.9,
-                    DisapprovedBillsAmount: 180,
-                    TotalBillsAmount: 25083.2,
-                },
-                PaypointLegalname: "Sunshine Services, LLC",
-                PaypointDbaname: "Sunshine Gutters",
-                PaypointEntryname: "d193cf9a46",
-                ParentOrgName: "PropertyManager Pro",
-                ParentOrgId: 1000,
-                CreatedDate: "2022-07-01T15:00:01Z",
-                LastUpdated: "2022-07-01T15:00:01Z",
-                remitAddress1: "123 Walnut Street",
-                remitAddress2: "Suite 900",
-                remitCity: "Miami",
-                remitState: "FL",
-                remitZip: "31113",
-                remitCountry: "US",
-                payeeName1: "payeeName1",
-                payeeName2: "payeeName2",
-                customField1: "",
-                customField2: "",
-                customerVendorAccount: "123-456",
-                InternalReferenceId: 1000000,
-                externalPaypointID: "Paypoint-100",
-                StoredMethods: [],
-            },
-            HasVcardTransactions: false,
-            IsSameDayACH: false,
-            RiskFlagged: false,
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("PayoutDetails (2)", async () => {
@@ -1752,248 +1465,7 @@ describe("MoneyOutClient", () => {
             .build();
 
         const response = await client.moneyOut.payoutDetails("45-as456777hhhhhhhhhh77777777-324");
-        expect(response).toEqual({
-            Bills: [
-                {
-                    invoiceNumber: "123B",
-                    netAmount: "8800.00",
-                },
-            ],
-            Comments: "testing",
-            CreatedDate: "2022-07-01T15:00:01Z",
-            Events: [
-                {
-                    EventTime: "2023-04-24T09:00:33Z",
-                    TransEvent: "Authorized",
-                },
-                {
-                    EventData: {
-                        custId: "PAYABLITST",
-                        dateCreated: "2023-04-24T16:14:28Z",
-                        dateModified: "2023-04-24T16:14:28Z",
-                        group: {
-                            approved: false,
-                            custId: "PAYABLITST",
-                            dateCreated: "2023-04-24T16:14:28Z",
-                            dateModified: "2023-04-24T16:14:28Z",
-                            id: "acd5ddd9-42be-4822-bc02-46e7c560d8a4",
-                            links: [
-                                {
-                                    href: "https://cert-api.cpayplus.com/payments/groups/acd5ddd9-42be-4822-bc02-46e7c560d8a4",
-                                    rel: "cancel",
-                                    type: "DELETE",
-                                },
-                                {
-                                    href: "https://cert-api.cpayplus.com/payments/groups/acd5ddd9-42be-4822-bc02-46e7c560d8a4/approve",
-                                    rel: "approve",
-                                    type: "POST",
-                                },
-                                {
-                                    href: "https://cert-api.cpayplus.com/payments/groups/acd5ddd9-42be-4822-bc02-46e7c560d8a4",
-                                    rel: "self",
-                                    type: "GET",
-                                },
-                            ],
-                            name: "187-20230424-PAYABLITST",
-                            status: "Waiting Funds",
-                            totalAmount: "8800.00",
-                        },
-                        id: "1ede3eb2-a564-43b5-b2d2-7195f6d9fded",
-                        invoices: [
-                            {
-                                invoiceNumber: "123B",
-                                netAmount: "8800.00",
-                            },
-                        ],
-                        links: [
-                            {
-                                href: "https://cert-api.cpayplus.com/payments/1ede3eb2-a564-43b5-b2d2-7195f6d9fded/resendRemit",
-                                rel: "resendRemit",
-                                type: "POST",
-                            },
-                            {
-                                href: "https://cert-api.cpayplus.com/payments/1ede3eb2-a564-43b5-b2d2-7195f6d9fded",
-                                rel: "cancel",
-                                type: "DELETE",
-                            },
-                            {
-                                href: "https://cert-api.cpayplus.com/payments/1ede3eb2-a564-43b5-b2d2-7195f6d9fded",
-                                rel: "self",
-                                type: "GET",
-                            },
-                            {
-                                href: "https://cert-api.cpayplus.com/payments/1ede3eb2-a564-43b5-b2d2-7195f6d9fded/reissue",
-                                rel: "reissue",
-                                type: "POST",
-                            },
-                        ],
-                        paymentNumber: "187-349",
-                        paymentStatus: "Awaiting Funds",
-                        paymentType: "VCard",
-                        remitAddress: {
-                            address1: "5724 daughtery downs Loop",
-                            address2: "",
-                            city: "Lakeland",
-                            countryCode: "US",
-                            state: "FL",
-                            zip: "33809",
-                        },
-                        vendor: {
-                            address: {
-                                address1: "5724 DAUGHTERY DOWNS LOOP",
-                                address2: "",
-                                city: "LAKELAND",
-                                countryCode: "US",
-                                state: "FL",
-                                zip: "33809",
-                            },
-                            contactEmail: "paul@payabli.com",
-                            custId: "PAYABLITST",
-                            dateCreated: "2023-04-07T15:10:13Z",
-                            dateModified: "2023-04-17T15:39:33Z",
-                            email: "paul@payabli.com",
-                            id: "d7d92fac-fd8a-4ce9-8f92-62ee979b43fe",
-                            links: [
-                                {
-                                    href: "https://cert-api.cpayplus.com/payments/d7d92fac-fd8a-4ce9-8f92-62ee979b43fe",
-                                    rel: "self",
-                                    type: "GET",
-                                },
-                            ],
-                            paymentType: "VCard",
-                            status: "Enrolled",
-                            statusReason: "Customer Enrolled",
-                            vendorName1: "PAUL'S",
-                            vendorNumber: "54321",
-                            vendorPhone: "19706188888",
-                            vendorTaxId: "123456789",
-                        },
-                    },
-                    EventTime: "2023-04-24T09:14:28Z",
-                    TransEvent: "Captured",
-                },
-            ],
-            FeeAmount: 0,
-            Gateway: "TSYS",
-            IdOut: 349,
-            LastUpdated: "2023-04-23T17:00:00Z",
-            NetAmount: 8800,
-            ParentOrgName: "PropertyManager Pro",
-            PaymentData: {
-                AccountType: "",
-                binData: {
-                    binMatchedLength: "6",
-                    binCardBrand: "Visa",
-                    binCardType: "Credit",
-                    binCardCategory: "PLATINUM",
-                    binCardIssuer: "Bank of Example",
-                    binCardIssuerCountry: "United States",
-                    binCardIssuerCountryCodeA2: "US",
-                    binCardIssuerCountryNumber: "840",
-                    binCardIsRegulated: "false",
-                    binCardUseCategory: "Consumer",
-                    binCardIssuerCountryCodeA3: "USA",
-                },
-                HolderName: "",
-                Initiator: "payor",
-                MaskedAccount: "",
-                Sequence: "subsequent",
-                SignatureData: "SignatureData",
-                StoredMethodUsageType: "subscription",
-            },
-            PaymentGroup: "2345667-ddd-fff",
-            PaymentId: "1234567890",
-            PaymentMethod: "managed",
-            PaymentStatus: "Captured",
-            PaypointDbaname: "Sunshine Gutters",
-            PaypointLegalname: "Sunshine Services, LLC",
-            Source: "api",
-            Status: 1,
-            StatusText: "Captured",
-            TotalAmount: 8800,
-            Vendor: {
-                VendorNumber: "1234",
-                Name1: "Herman's Coatings",
-                Name2: "Herman's Coating Supply Company, LLC",
-                EIN: "123456789",
-                Phone: "2125551234",
-                Email: "example@email.com",
-                Address1: "123 Ocean Drive",
-                Address2: "Suite 400",
-                City: "Bristol",
-                State: "GA",
-                Zip: "31113",
-                Country: "US",
-                Mcc: "7777",
-                LocationCode: "LOC123",
-                Contacts: {
-                    ContactEmail: "eric@martinezcoatings.com",
-                    ContactName: "Eric Martinez",
-                    ContactPhone: "5555555555",
-                    ContactTitle: "Owner",
-                },
-                BillingData: {
-                    id: 123456,
-                    accountId: "bank-account-001",
-                    nickname: "Main Checking Account",
-                    bankName: "Example Bank",
-                    routingAccount: "123456789",
-                    accountNumber: "9876543210",
-                    typeAccount: "Checking",
-                    bankAccountHolderName: "John Doe",
-                    bankAccountHolderType: "Business",
-                    bankAccountFunction: 2,
-                    verified: true,
-                    status: 1,
-                    services: [],
-                    default: true,
-                },
-                VendorStatus: 1,
-                VendorId: 1,
-                Summary: {
-                    ActiveBills: 2,
-                    PendingBills: 4,
-                    InTransitBills: 3,
-                    PaidBills: 18,
-                    OverdueBills: 1,
-                    ApprovedBills: 5,
-                    DisapprovedBills: 1,
-                    TotalBills: 34,
-                    ActiveBillsAmount: 1250.75,
-                    PendingBillsAmount: 2890.5,
-                    InTransitBillsAmount: 1675.25,
-                    PaidBillsAmount: 15420.8,
-                    OverdueBillsAmount: 425,
-                    ApprovedBillsAmount: 3240.9,
-                    DisapprovedBillsAmount: 180,
-                    TotalBillsAmount: 25083.2,
-                },
-                PaypointLegalname: "Sunshine Services, LLC",
-                PaypointDbaname: "Sunshine Gutters",
-                PaypointEntryname: "d193cf9a46",
-                ParentOrgName: "PropertyManager Pro",
-                ParentOrgId: 1000,
-                CreatedDate: "2022-07-01T15:00:01Z",
-                LastUpdated: "2022-07-01T15:00:01Z",
-                remitAddress1: "123 Walnut Street",
-                remitAddress2: "Suite 900",
-                remitCity: "Miami",
-                remitState: "FL",
-                remitZip: "31113",
-                remitCountry: "US",
-                payeeName1: "payeeName1",
-                payeeName2: "payeeName2",
-                customField1: "",
-                customField2: "",
-                customerVendorAccount: "123-456",
-                InternalReferenceId: 1000000,
-                externalPaypointID: "Paypoint-100",
-                StoredMethods: [],
-            },
-            HasVcardTransactions: false,
-            IsSameDayACH: false,
-            RiskFlagged: false,
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("PayoutDetails (3)", async () => {
@@ -2181,101 +1653,7 @@ describe("MoneyOutClient", () => {
             .build();
 
         const response = await client.moneyOut.vCardGet("20230403315245421165");
-        expect(response).toEqual({
-            vcardSent: false,
-            cardToken: "20231206142225226104",
-            cardNumber: "553232XXXXXX3179",
-            cvc: "XXX",
-            expirationDate: "2025-05-01",
-            amount: 120,
-            currentBalance: 120,
-            expenseLimit: 20,
-            maxNumberOfUses: 1,
-            currentNumberOfUses: 0,
-            exactAmount: true,
-            dateCreated: "2023-12-06T20:25:31.077",
-            dateModified: "2023-12-06T00:00:00",
-            associatedVendor: {
-                VendorNumber: "VENDOR123456",
-                Name1: "Smith Industries",
-                Name2: "John Smith",
-                EIN: "12-3456789",
-                Phone: "555-123-4567",
-                Email: "contact@smithindustries.com",
-                Address1: "1234 Main Street",
-                Address2: "Suite 200",
-                City: "New York",
-                State: "NY",
-                Zip: "10001",
-                Country: "USA",
-                Mcc: "5411",
-                Contacts: [
-                    {
-                        ContactName: "Herman Martinez",
-                        ContactEmail: "herman@hermanscoatings.com",
-                        ContactTitle: "Owner",
-                        ContactPhone: "3055550000",
-                    },
-                ],
-                BillingData: {
-                    id: 123,
-                    nickname: "Checking Account",
-                    bankName: "Chase Bank",
-                    routingAccount: "021000021",
-                    accountNumber: "3XXXXXX8888",
-                    typeAccount: "Checking",
-                    bankAccountHolderName: "Gruzya Adventure Outfitters LLC",
-                    bankAccountHolderType: "Business",
-                    bankAccountFunction: 0,
-                    verified: true,
-                    status: 1,
-                    services: [],
-                    default: true,
-                },
-                PaymentMethod: "vcard",
-                VendorStatus: 1,
-                VendorId: 339,
-                Summary: {
-                    ActiveBills: 1,
-                    ActiveBillsAmount: 1.1,
-                    ApprovedBills: 1,
-                    ApprovedBillsAmount: 1.1,
-                    DisapprovedBills: 1,
-                    DisapprovedBillsAmount: 1.1,
-                    InTransitBills: 0,
-                    InTransitBillsAmount: 0,
-                    OverdueBills: 1,
-                    OverdueBillsAmount: 100,
-                    PaidBills: 0,
-                    PaidBillsAmount: 0,
-                    PendingBills: 1,
-                    PendingBillsAmount: 100,
-                    TotalBills: 1,
-                    TotalBillsAmount: 100,
-                },
-                PaypointLegalname: "Athlete Factory LLC",
-                PaypointDbaname: "Athlete Factory LLC",
-                PaypointEntryname: "PaypointEntryname",
-                ParentOrgName: "HOA Manager Pro",
-                ParentOrgId: 1232,
-                CreatedDate: "2022-07-01T15:00:01Z",
-                LastUpdated: "2022-07-01T15:00:01Z",
-                remitAddress1: "123 Walnut Street",
-                remitAddress2: "Suite 900",
-                remitCity: "Miami",
-                remitState: "FL",
-                remitZip: "31113",
-                remitCountry: "US",
-                customField1: "customField1",
-                customField2: "customField2",
-                InternalReferenceId: 27,
-            },
-            ParentOrgName: "HOA Manager Pro",
-            PaypointDbaname: "Athlete Factory LLC",
-            PaypointLegalname: "Athlete Factory LLC",
-            PaypointEntryname: "47acde49",
-            paypointId: 12345,
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("VCardGet (2)", async () => {
@@ -2372,10 +1750,7 @@ describe("MoneyOutClient", () => {
         const response = await client.moneyOut.sendVCardLink({
             transId: "01K33Z6YQZ6GD5QVKZ856MJBSC",
         });
-        expect(response).toEqual({
-            message: "Successfully sent email to: vendor@vendor.com",
-            success: true,
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("SendVCardLink (2)", async () => {
@@ -2482,9 +1857,7 @@ describe("MoneyOutClient", () => {
             .build();
 
         const response = await client.moneyOut.getCheckImage("check133832686289732320_01JKBNZ5P32JPTZY8XXXX000000.pdf");
-        expect(response).toEqual(
-            '%PDF-1.7\n%\uFFFD\uFFFD\uFFFD\uFFFD\n123 0 obj\n<</Linearized 1/L 123456/O 125/E 78901/N 1/T 123450/H [ 800 200]>>\nendobj\n\n124 0 obj\n<</DecodeParms<</Columns 4/Predictor 12>>/Filter/FlateDecode/ID[<AB123C4567EF890123456789ABCDEF01><12345678ABCDEF9876543210FEDCBA98>]/Index[123 100]/Info 122 0 R/Length 128/Prev 123450/Root 125 0 R/Size 223/Type/XRef/W[1 3 1]>>stream\nh\uFFFDbbd```b``\uFFFD\n"x\uFFFDa7\uFFFDr\uFFFDH~\uFFFD\uFFFD\uFFFD\uFFFD\uFFFDA\uFFFDD\uFFFD\uFFFD\uFFFD2\uFFFD\uFFFD\uFFFD\uFFFDm\uFFFDf\uFFFD\uFFFDL`v6\uFFFDH\uFFFD\uFFFD\uFFFD\uFFFDD\uFFFD\uFFFD\uFFFDJ[@\uFFFD\uFFFD\uFFFD\uFFFDH8\uFFFDI\uFFFD\uFFFD)0\uFFFD\uFFFDq\uFFFD XD\uFFFD\uFFFD`\uFFFD\uFFFDa\uFFFD\uFFFD\uFFFDP\uFFFD`\uFFFD`\uFFFD\uFFFD"\uFFFDA$\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD\uFFFDr\uFFFD\uFFFD\uFFFDp\uFFFD$\uFFFDIp\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD\uFFFDa\uFFFD \uFFFD',
-        );
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("GetCheckImage (2)", async () => {
@@ -2584,13 +1957,7 @@ describe("MoneyOutClient", () => {
             .build();
 
         const response = await client.moneyOut.updateCheckPaymentStatus("TRANS123456", "5");
-        expect(response).toEqual({
-            responseCode: 1,
-            roomId: 0,
-            isSuccess: true,
-            responseText: "Success",
-            responseData: "TRANS123456",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("UpdateCheckPaymentStatus (2)", async () => {
@@ -2614,13 +1981,7 @@ describe("MoneyOutClient", () => {
             .build();
 
         const response = await client.moneyOut.updateCheckPaymentStatus("TRANS123456", "0");
-        expect(response).toEqual({
-            responseCode: 1,
-            roomId: 0,
-            isSuccess: true,
-            responseText: "Success",
-            responseData: "TRANS123456",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("UpdateCheckPaymentStatus (3)", async () => {
@@ -2741,16 +2102,7 @@ describe("MoneyOutClient", () => {
                 },
             },
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseCode: 1,
-            responseText: "Success",
-            responseData: {
-                transactionId: "130-220",
-                status: "Authorized",
-                originalTransactionId: "129-219",
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ReissueOut (2)", async () => {
@@ -2781,16 +2133,7 @@ describe("MoneyOutClient", () => {
                 },
             },
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseCode: 1,
-            responseText: "Success",
-            responseData: {
-                transactionId: "130-221",
-                status: "Authorized",
-                originalTransactionId: "129-219",
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ReissueOut (3)", async () => {
@@ -2821,16 +2164,7 @@ describe("MoneyOutClient", () => {
                 },
             },
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseCode: 1,
-            responseText: "Success",
-            responseData: {
-                transactionId: "130-222",
-                status: "Authorized",
-                originalTransactionId: "129-219",
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ReissueOut (4)", async () => {

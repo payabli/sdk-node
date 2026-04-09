@@ -93,55 +93,7 @@ describe("CustomerClient", () => {
                 timeZone: -5,
             },
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseData: {
-                customerId: 17264,
-                customerNumber: "12356ACB",
-                customerStatus: 0,
-                Firstname: "Irene",
-                Lastname: "Canizales",
-                Email: "irene@canizalesconcrete.com",
-                Address1: "123 Bishop's Trail",
-                City: "Mountain City",
-                State: "TN",
-                Zip: "37612",
-                Country: "US",
-                Balance: 0,
-                TimeZone: -5,
-                MFA: false,
-                MFAMode: 0,
-                LastUpdated: "2024-03-13T12:49:56Z",
-                Created: "2024-03-13T12:49:56Z",
-                AdditionalFields: {
-                    key: "value",
-                },
-                IdentifierFields: ["email"],
-                customerSummary: {
-                    numberofTransactions: 30,
-                    recentTransactions: [
-                        {
-                            EntrypageId: 0,
-                            FeeAmount: 1,
-                            PayorId: 1551,
-                            PaypointId: 226,
-                            SettlementStatus: 2,
-                            TotalAmount: 30.22,
-                            TransStatus: 1,
-                        },
-                    ],
-                    totalAmountTransactions: 1500,
-                    totalNetAmountTransactions: 1500,
-                },
-                PaypointLegalname: "Gruzya Adventure Outfitters, LLC",
-                PaypointDbaname: "Gruzya Adventure Outfitters",
-                ParentOrgName: "The Pilgrim Planner",
-                ParentOrgId: 123,
-                PaypointEntryname: "41035afaa7",
-                pageidentifier: "null",
-            },
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("AddCustomer (2)", async () => {
@@ -248,14 +200,7 @@ describe("CustomerClient", () => {
         server.mockEndpoint().delete("/Customer/998").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.customer.deleteCustomer(998);
-        expect(response).toEqual({
-            responseCode: 1,
-            isSuccess: true,
-            pageIdentifier: "null",
-            roomId: 0,
-            responseData: " ",
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("DeleteCustomer (2)", async () => {
@@ -435,141 +380,7 @@ describe("CustomerClient", () => {
         server.mockEndpoint().get("/Customer/998").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.customer.getCustomer(998);
-        expect(response).toEqual({
-            customerId: 4440,
-            customerNumber: "3456-7645A",
-            customerUsername: "myusername",
-            customerStatus: 1,
-            Company: "AA LLC",
-            Firstname: "John",
-            Lastname: "Smith",
-            Phone: "1234567890",
-            Email: "example@email.com",
-            Address: "3245 Main St",
-            Address1: "STE 900",
-            City: "Miami",
-            State: "FL",
-            Zip: "77777",
-            Country: "US",
-            ShippingAddress: "123 Walnut St",
-            ShippingAddress1: "STE 900",
-            ShippingCity: "Johnson City",
-            ShippingState: "TN",
-            ShippingZip: "37619",
-            ShippingCountry: "US",
-            Balance: 1.1,
-            TimeZone: -5,
-            MFA: false,
-            MFAMode: 0,
-            snProvider: "facebook",
-            snIdentifier: "6677fgttyudd999",
-            snData: "",
-            LastUpdated: "2021-06-16T05:00:00Z",
-            Created: "2021-06-10T05:00:00Z",
-            AdditionalFields: {
-                property1: "string",
-                property2: "string",
-            },
-            IdentifierFields: ["email"],
-            Subscriptions: [
-                {
-                    CreatedAt: "2022-07-01T15:00:01Z",
-                    EndDate: "2025-10-19T00:00:00Z",
-                    EntrypageId: 0,
-                    ExternalPaypointID: "Paypoint-100",
-                    FeeAmount: 3,
-                    Frequency: "monthly",
-                    IdSub: 396,
-                    LastRun: "2025-10-19T00:00:00Z",
-                    LastUpdated: "2022-07-01T15:00:01Z",
-                    LeftCycles: 15,
-                    Method: "card",
-                    NetAmount: 3762.87,
-                    NextDate: "2025-10-19T00:00:00Z",
-                    ParentOrgName: "PropertyManager Pro",
-                    PaymentData: {
-                        paymentDetails: {
-                            totalAmount: 100,
-                        },
-                    },
-                    PaypointDbaname: "Sunshine Gutters",
-                    PaypointEntryname: "d193cf9a46",
-                    PaypointId: 255,
-                    PaypointLegalname: "Sunshine Services, LLC",
-                    PlanId: 0,
-                    Source: "api",
-                    StartDate: "2025-10-19T00:00:00Z",
-                    SubEvents: [
-                        {
-                            description: "TransferCreated",
-                            eventTime: "2023-07-05T22:31:06Z",
-                        },
-                    ],
-                    SubStatus: 1,
-                    TotalAmount: 103,
-                    TotalCycles: 24,
-                    UntilCancelled: true,
-                },
-            ],
-            StoredMethods: [
-                {
-                    bin: "411111",
-                    binData: {
-                        binMatchedLength: "6",
-                        binCardBrand: "Visa",
-                        binCardType: "Credit",
-                        binCardCategory: "PLATINUM",
-                        binCardIssuer: "Bank of Example",
-                        binCardIssuerCountry: "United States",
-                        binCardIssuerCountryCodeA2: "US",
-                        binCardIssuerCountryNumber: "840",
-                        binCardIsRegulated: "false",
-                        binCardUseCategory: "Consumer",
-                        binCardIssuerCountryCodeA3: "USA",
-                    },
-                    descriptor: "visa",
-                    expDate: "1227",
-                    holderName: "Chad Mercia",
-                    idPmethod: "6edcbb56-9c0e-4003-b3d1-99abf149ba0e",
-                    lastUpdated: "2022-07-01T15:00:01Z",
-                    maskedAccount: "4XXXXXXXX1111",
-                    method: "card",
-                },
-            ],
-            customerSummary: {
-                numberofTransactions: 30,
-                recentTransactions: [
-                    {
-                        EntrypageId: 0,
-                        FeeAmount: 1,
-                        PayorId: 1551,
-                        PaypointId: 226,
-                        SettlementStatus: 2,
-                        TotalAmount: 30.22,
-                        TransStatus: 1,
-                    },
-                ],
-                totalAmountTransactions: 1500,
-                totalNetAmountTransactions: 1500,
-            },
-            PaypointLegalname: "Sunshine Services, LLC",
-            PaypointDbaname: "Sunshine Gutters",
-            ParentOrgName: "PropertyManager Pro",
-            ParentOrgId: 123,
-            PaypointEntryname: "d193cf9a46",
-            pageidentifier: "null",
-            externalPaypointID: "Paypoint-100",
-            customerConsent: {
-                eCommunication: {
-                    status: 1,
-                    updatedAt: "2022-07-01T15:00:01Z",
-                },
-                sms: {
-                    status: 1,
-                    updatedAt: "2022-07-01T15:00:01Z",
-                },
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("GetCustomer (2)", async () => {
@@ -646,14 +457,7 @@ describe("CustomerClient", () => {
             .build();
 
         const response = await client.customer.linkCustomerTransaction(998, "45-as456777hhhhhhhhhh77777777-324");
-        expect(response).toEqual({
-            responseCode: 1,
-            pageIdentifier: "null",
-            roomId: 0,
-            isSuccess: true,
-            responseText: "Success",
-            responseData: " ",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("LinkCustomerTransaction (2)", async () => {
@@ -753,13 +557,7 @@ describe("CustomerClient", () => {
             .build();
 
         const response = await client.customer.requestConsent(998);
-        expect(response).toEqual({
-            isSuccess: true,
-            pageIdentifier: "null",
-            responseCode: 1,
-            responseData: " ",
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("RequestConsent (2)", async () => {
@@ -870,12 +668,7 @@ describe("CustomerClient", () => {
             zip: "37612",
             country: "US",
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseCode: 1,
-            responseData: " ",
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("UpdateCustomer (2)", async () => {

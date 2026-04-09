@@ -21,10 +21,7 @@ describe("UserClient", () => {
             .build();
 
         const response = await client.user.addUser({});
-        expect(response).toEqual({
-            isSuccess: true,
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("AddUser (2)", async () => {
@@ -122,13 +119,7 @@ describe("UserClient", () => {
         server.mockEndpoint().post("/User/authrefresh").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.user.authRefreshUser();
-        expect(response).toEqual({
-            inactiveTokenTime: 31,
-            isSuccess: true,
-            remaining: 120,
-            responseData: "u.fPLVSzFv1gZpHl......",
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("AuthRefreshUser (2)", async () => {
@@ -199,10 +190,7 @@ describe("UserClient", () => {
             .build();
 
         const response = await client.user.authResetUser();
-        expect(response).toEqual({
-            isSuccess: true,
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("AuthResetUser (2)", async () => {
@@ -308,14 +296,7 @@ describe("UserClient", () => {
             .build();
 
         const response = await client.user.authUser("provider");
-        expect(response).toEqual({
-            isSuccess: true,
-            mfa: false,
-            mfaMode: "email",
-            mfaValidationCode: "50-2E-4A-16-93-0E-41-41-07-EE-22-B6-00-99-00-99",
-            responseData: "g**.com",
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("AuthUser (2)", async () => {
@@ -414,10 +395,7 @@ describe("UserClient", () => {
             .build();
 
         const response = await client.user.changePswUser();
-        expect(response).toEqual({
-            isSuccess: true,
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ChangePswUser (2)", async () => {
@@ -509,9 +487,7 @@ describe("UserClient", () => {
         server.mockEndpoint().delete("/User/1000000").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.user.deleteUser(1000000);
-        expect(response).toEqual({
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("DeleteUser (2)", async () => {
@@ -582,10 +558,7 @@ describe("UserClient", () => {
             .build();
 
         const response = await client.user.editMfaUser(1000000, {});
-        expect(response).toEqual({
-            isSuccess: true,
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("EditMfaUser (2)", async () => {
@@ -684,10 +657,7 @@ describe("UserClient", () => {
             .build();
 
         const response = await client.user.editUser(1000000, {});
-        expect(response).toEqual({
-            isSuccess: true,
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("EditUser (2)", async () => {
@@ -799,36 +769,7 @@ describe("UserClient", () => {
         const response = await client.user.getUser(1000000, {
             entry: "478ae1234",
         });
-        expect(response).toEqual({
-            Access: [
-                {
-                    roleLabel: "customers",
-                    roleValue: true,
-                },
-            ],
-            AdditionalData: "AdditionalData",
-            createdAt: "2022-07-01T15:00:01Z",
-            Email: "example@email.com",
-            language: "en",
-            lastAccess: "2022-07-01T15:00:01Z",
-            Name: "Sean Smith",
-            Phone: "5555555555",
-            Scope: [
-                {
-                    orgEntry: "pilgrim-planner",
-                    orgId: 123,
-                    orgType: 0,
-                },
-            ],
-            snData: "snData",
-            snIdentifier: "snIdentifier",
-            snProvider: "google",
-            timeZone: -5,
-            userId: 1000000,
-            UsrMFA: false,
-            UsrMFAMode: 0,
-            UsrStatus: 1,
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("GetUser (2)", async () => {
@@ -892,10 +833,7 @@ describe("UserClient", () => {
         server.mockEndpoint().get("/User/authlogout").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.user.logoutUser();
-        expect(response).toEqual({
-            isSuccess: true,
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("LogoutUser (2)", async () => {
@@ -972,14 +910,7 @@ describe("UserClient", () => {
             .build();
 
         const response = await client.user.resendMfaCode("usrname", "Entry", 1);
-        expect(response).toEqual({
-            isSuccess: true,
-            mfa: false,
-            mfaMode: "email",
-            mfaValidationCode: "50-2E-4A-16-93-0E-41-41-07-EE-22-B6-00-99-00-99",
-            responseData: "g**.com",
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ResendMFACode (2)", async () => {
@@ -1080,12 +1011,6 @@ describe("UserClient", () => {
             .build();
 
         const response = await client.user.validateMfaUser();
-        expect(response).toEqual({
-            inactiveTokenTime: 31,
-            isSuccess: true,
-            remaining: 120,
-            responseData: "u.fPLVSzFv1gZpHl......",
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 });

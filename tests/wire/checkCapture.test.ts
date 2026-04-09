@@ -53,29 +53,7 @@ describe("CheckCaptureClient", () => {
             rearImage: "/9j/4AAQSkZJRgABAQEASABIAAD...",
             checkAmount: 12550,
         });
-        expect(response).toEqual({
-            id: "txn_abc123def456",
-            success: true,
-            processDate: "2025-04-10T04:17:09.875Z",
-            ocrMicr: "\u2446123456789\u2446 \u2448123456\u2448 0123",
-            ocrMicrStatus: "SUCCESS",
-            ocrMicrConfidence: "95",
-            ocrAccountNumber: "123456",
-            ocrRoutingNumber: "123456789",
-            ocrCheckNumber: "0123",
-            ocrCheckTranCode: "",
-            ocrAmount: "125.50",
-            ocrAmountStatus: "SUCCESS",
-            ocrAmountConfidence: "98",
-            amountDiscrepancyDetected: false,
-            endorsementDetected: true,
-            errors: [],
-            messages: ["Check processed successfully"],
-            carLarMatchConfidence: "97",
-            carLarMatchStatus: "MATCH",
-            checkType: 1,
-            referenceNumber: "REF_XYZ789",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("CheckProcessing (2)", async () => {

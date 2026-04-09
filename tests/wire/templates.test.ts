@@ -14,12 +14,7 @@ describe("TemplatesClient", () => {
         server.mockEndpoint().delete("/Templates/80").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.templates.deleteTemplate(80);
-        expect(response).toEqual({
-            isSuccess: true,
-            responseCode: 1,
-            responseData: 3625,
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("DeleteTemplate (2)", async () => {
@@ -89,10 +84,7 @@ describe("TemplatesClient", () => {
             .build();
 
         const response = await client.templates.getlinkTemplate(80, true);
-        expect(response).toEqual({
-            responseData: "34",
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("getlinkTemplate (2)", async () => {
@@ -227,70 +219,7 @@ describe("TemplatesClient", () => {
         server.mockEndpoint().get("/Templates/get/80").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.templates.getTemplate(80);
-        expect(response).toEqual({
-            addPrice: true,
-            boardingLinks: [
-                {
-                    acceptOauth: false,
-                    acceptRegister: false,
-                    entryAttributes: "entryAttributes",
-                    id: 91,
-                    lastUpdated: "2022-07-01T15:00:01Z",
-                    orgParentName: "PropertyManager Pro",
-                    referenceName: "payabli-00710",
-                    referenceTemplateId: 1830,
-                    templateCode: "templateCode",
-                    templateName: "SMB",
-                },
-            ],
-            createdAt: "2022-07-01T15:00:01Z",
-            idTemplate: 1000000,
-            isRoot: false,
-            orgParentName: "PropertyManager Pro",
-            recipientEmailNotification: true,
-            resumable: false,
-            templateCode: "templateCode",
-            templateContent: {
-                businessData: {
-                    visible: true,
-                },
-                documentsData: {
-                    minimumDocuments: 1,
-                    subFooter: "subFooter",
-                    subHeader: "subHeader",
-                    uploadDocuments: true,
-                    visible: true,
-                },
-                ownershipData: {
-                    multipleContacts: true,
-                    multipleOwners: true,
-                    subFooter: "subFooter",
-                    subHeader: "subHeader",
-                    visible: true,
-                },
-                processingData: {
-                    subFooter: "subFooter",
-                    subHeader: "subHeader",
-                    visible: true,
-                },
-                salesData: {
-                    salesCode: "salesCode",
-                    salesCRM: "salesCRM",
-                },
-                servicesData: {
-                    subFooter: "subFooter",
-                    subHeader: "subHeader",
-                    visible: true,
-                },
-                underwritingData: {
-                    method: "automatic",
-                    policyId: "J-itEyD6A7y5S5yYFjxOrb",
-                },
-            },
-            templateDescription: "templateDescription",
-            templateTitle: "templateTitle",
-            usedBy: 1,
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("getTemplate (2)", async () => {
@@ -389,35 +318,6 @@ describe("TemplatesClient", () => {
             limitRecord: 0,
             sortBy: "desc(field_name)",
         });
-        expect(response).toEqual({
-            records: [
-                {
-                    addPrice: true,
-                    boardingLinks: [
-                        {
-                            id: 91,
-                        },
-                    ],
-                    createdAt: "2022-07-01T15:00:01Z",
-                    idTemplate: 1000000,
-                    isRoot: false,
-                    orgParentName: "PropertyManager Pro",
-                    recipientEmailNotification: true,
-                    resumable: false,
-                    templateCode: "templateCode",
-                    templateDescription: "templateDescription",
-                    templateTitle: "templateTitle",
-                    usedBy: 1,
-                },
-            ],
-            summary: {
-                pageIdentifier: "null",
-                pageSize: 20,
-                totalAmount: 77.22,
-                totalNetAmount: 77.22,
-                totalPages: 2,
-                totalRecords: 2,
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 });

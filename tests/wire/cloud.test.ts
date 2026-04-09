@@ -28,11 +28,7 @@ describe("CloudClient", () => {
             registrationCode: "YS7DS5",
             description: "Front Desk POS",
         });
-        expect(response).toEqual({
-            isSuccess: true,
-            responseData: "6c361c7d-674c-44cc-b790-382b75d1xxx",
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("addDevice (2)", async () => {
@@ -145,22 +141,7 @@ describe("CloudClient", () => {
             .build();
 
         const response = await client.cloud.historyDevice("8cfec329267", "WXGDWB");
-        expect(response).toEqual({
-            isSuccess: true,
-            responseList: [
-                {
-                    connected: true,
-                    dateRegistered: "2024-03-05T15:56:04Z",
-                    deviceId: "36103e24-41d8-47c9-b5f7-119f0000000",
-                    deviceNickName: "Front Desk POS",
-                    make: "ingenico",
-                    model: "LK2500",
-                    registered: true,
-                    serialNumber: "312345692080000000",
-                },
-            ],
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("HistoryDevice (2)", async () => {
@@ -269,22 +250,7 @@ describe("CloudClient", () => {
             .build();
 
         const response = await client.cloud.listDevice("8cfec329267");
-        expect(response).toEqual({
-            isSuccess: true,
-            responseList: [
-                {
-                    connected: true,
-                    dateRegistered: "2024-03-05T15:56:04Z",
-                    deviceId: "36103e24-41d8-47c9-b5f7-119f0000000",
-                    deviceNickName: "Front Desk POS",
-                    make: "ingenico",
-                    model: "LK2500",
-                    registered: true,
-                    serialNumber: "312345692080000000",
-                },
-            ],
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("ListDevice (2)", async () => {
@@ -358,11 +324,7 @@ describe("CloudClient", () => {
             .build();
 
         const response = await client.cloud.removeDevice("8cfec329267", "6c361c7d-674c-44cc-b790-382b75d1xxx");
-        expect(response).toEqual({
-            isSuccess: true,
-            responseData: "6c361c7d-674c-44cc-b790-382b75d1xxx",
-            responseText: "Success",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("RemoveDevice (2)", async () => {
