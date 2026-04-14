@@ -83,5 +83,6 @@ export * from "./v2MoneyInTypes/errors/index.js";
 export * as v2MoneyInTypes from "./v2MoneyInTypes/index.js";
 export * from "./v2MoneyInTypes/types/index.js";
 export * as vendor from "./vendor/index.js";
+export * from "./vendor/types/index.js";
 export * from "./wallet/client/requests/index.js";
 export * as wallet from "./wallet/index.js";

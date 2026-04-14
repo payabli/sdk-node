@@ -10,6 +10,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             entryPoint: "48acde49",
+            autoCapture: true,
             invoiceData: [{ billId: 54323 }],
             orderDescription: "Window Painting",
             paymentDetails: { totalAmount: 47, unbundled: false },
@@ -46,6 +47,7 @@ describe("MoneyOutClient", () => {
         const response = await client.moneyOut.authorizeOut({
             body: {
                 entryPoint: "48acde49",
+                autoCapture: true,
                 invoiceData: [
                     {
                         billId: 54323,
@@ -72,6 +74,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             entryPoint: "48acde49",
+            autoCapture: true,
             invoiceData: [
                 {
                     billId: 123,
@@ -113,6 +116,7 @@ describe("MoneyOutClient", () => {
         const response = await client.moneyOut.authorizeOut({
             body: {
                 entryPoint: "48acde49",
+                autoCapture: true,
                 invoiceData: [
                     {
                         billId: 123,
@@ -145,6 +149,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             entryPoint: "48acde49",
+            autoCapture: true,
             source: "api",
             invoiceData: [{ billId: 54323 }],
             orderDescription: "Window Painting",
@@ -182,6 +187,7 @@ describe("MoneyOutClient", () => {
         const response = await client.moneyOut.authorizeOut({
             body: {
                 entryPoint: "48acde49",
+                autoCapture: true,
                 source: "api",
                 invoiceData: [
                     {
@@ -1202,6 +1208,13 @@ describe("MoneyOutClient", () => {
                 customField2: "",
                 customerVendorAccount: "123-456",
                 InternalReferenceId: 1000000,
+                PaymentPortalUrl: "https://greenfield-landscaping.com/pay",
+                CardAccepted: "yes",
+                AchAccepted: "unable to determine",
+                EnrichmentStatus: "fully_enriched",
+                EnrichedBy: "web_search",
+                EnrichedAt: "2026-03-05T14:22:10Z",
+                EnrichmentId: "enrich-3890-a1b2c3d4",
                 externalPaypointID: "Paypoint-100",
                 StoredMethods: [],
             },
@@ -1448,6 +1461,13 @@ describe("MoneyOutClient", () => {
                 customField2: "",
                 customerVendorAccount: "123-456",
                 InternalReferenceId: 1000000,
+                PaymentPortalUrl: "https://greenfield-landscaping.com/pay",
+                CardAccepted: "yes",
+                AchAccepted: "unable to determine",
+                EnrichmentStatus: "fully_enriched",
+                EnrichedBy: "web_search",
+                EnrichedAt: "2026-03-05T14:22:10Z",
+                EnrichmentId: "enrich-3890-a1b2c3d4",
                 externalPaypointID: "Paypoint-100",
                 StoredMethods: [],
             },

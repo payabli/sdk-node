@@ -439,6 +439,13 @@ describe("VendorClient", () => {
             customField2: "",
             customerVendorAccount: "123-456",
             InternalReferenceId: 1000000,
+            PaymentPortalUrl: "https://greenfield-landscaping.com/pay",
+            CardAccepted: "yes",
+            AchAccepted: "unable to determine",
+            EnrichmentStatus: "fully_enriched",
+            EnrichedBy: "web_search",
+            EnrichedAt: "2026-03-05T14:22:10Z",
+            EnrichmentId: "enrich-3890-a1b2c3d4",
             externalPaypointID: "Paypoint-100",
             StoredMethods: [],
         };
@@ -447,5 +454,271 @@ describe("VendorClient", () => {
 
         const response = await client.vendor.getVendor(1);
         expect(response).toEqual(rawResponseBody);
+    });
+
+    test("EnrichVendor (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            vendorId: 3890,
+            scope: ["invoice_scan"],
+            applyEnrichmentData: false,
+            fallbackMethod: "check",
+            invoiceFile: { ftype: "pdf", filename: "invoice-2026-001.pdf", fContent: "<base64-encoded-pdf>" },
+        };
+        const rawResponseBody = {
+            isSuccess: true,
+            responseCode: 1,
+            responseText: "Success",
+            responseData: {
+                enrichmentId: "enrich-3890-a1b2c3d4",
+                status: "insufficient",
+                stagesTriggered: ["invoice_scan"],
+                vendorPayoutReady: false,
+                enrichmentData: {
+                    invoiceScan: {
+                        vendorName: "Greenfield Landscaping",
+                        street: "456 Commerce Blvd",
+                        city: "Indianapolis",
+                        state: "IN",
+                        zipCode: "46201",
+                        country: "US",
+                        phone: "5555550100",
+                        cardAccepted: "unable to determine",
+                        achAccepted: "unable to determine",
+                        checkAccepted: "yes",
+                        invoiceNumber: "INV-70683",
+                        amountDue: 390.5,
+                        dueDate: "2026-01-31",
+                    },
+                },
+            },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/Vendor/enrich/8cfec329267")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.vendor.enrichVendor("8cfec329267", {
+            vendorId: 3890,
+            scope: ["invoice_scan"],
+            applyEnrichmentData: false,
+            fallbackMethod: "check",
+            invoiceFile: {
+                ftype: "pdf",
+                filename: "invoice-2026-001.pdf",
+                fContent: "<base64-encoded-pdf>",
+            },
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("EnrichVendor (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            vendorId: 3891,
+            scope: ["web_search"],
+            applyEnrichmentData: false,
+            fallbackMethod: "check",
+        };
+        const rawResponseBody = {
+            isSuccess: true,
+            responseCode: 1,
+            responseText: "Success",
+            responseData: {
+                enrichmentId: "enrich-3891-e5f6a7b8",
+                status: "completed",
+                stagesTriggered: ["web_search"],
+                vendorPayoutReady: true,
+                enrichmentData: {
+                    webSearch: {
+                        phone: "5555550200",
+                        phoneType: "main",
+                        email: "ap@greenfield-landscaping.com",
+                        emailType: "billing",
+                        street: "456 Commerce Blvd",
+                        city: "Indianapolis",
+                        state: "IN",
+                        zipCode: "46201",
+                        country: "US",
+                        addressType: "business",
+                        paymentLink: "https://greenfield-landscaping.com/pay",
+                        paymentLinkType: "payment_portal",
+                        cardAccepted: "yes",
+                        achAccepted: "unable to determine",
+                        checkAccepted: "yes",
+                    },
+                },
+            },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/Vendor/enrich/8cfec329267")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.vendor.enrichVendor("8cfec329267", {
+            vendorId: 3891,
+            scope: ["web_search"],
+            applyEnrichmentData: false,
+            fallbackMethod: "check",
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("EnrichVendor (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            vendorId: 3891,
+            scope: ["web_search"],
+            applyEnrichmentData: true,
+            fallbackMethod: "check",
+        };
+        const rawResponseBody = {
+            isSuccess: true,
+            responseCode: 1,
+            responseText: "Success",
+            responseData: {
+                enrichmentId: "enrich-3891-c9d0e1f2",
+                status: "completed",
+                stagesTriggered: ["web_search"],
+                vendorPayoutReady: true,
+                enrichmentData: {
+                    webSearch: {
+                        phone: "5555550200",
+                        phoneType: "main",
+                        email: "ap@greenfield-landscaping.com",
+                        emailType: "billing",
+                        street: "456 Commerce Blvd",
+                        city: "Indianapolis",
+                        state: "IN",
+                        zipCode: "46201",
+                        country: "US",
+                        addressType: "business",
+                        paymentLink: "https://greenfield-landscaping.com/pay",
+                        paymentLinkType: "payment_portal",
+                        cardAccepted: "yes",
+                        achAccepted: "unable to determine",
+                        checkAccepted: "yes",
+                    },
+                },
+            },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/Vendor/enrich/8cfec329267")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.vendor.enrichVendor("8cfec329267", {
+            vendorId: 3891,
+            scope: ["web_search"],
+            applyEnrichmentData: true,
+            fallbackMethod: "check",
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("EnrichVendor (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { vendorId: 1000000 };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/Vendor/enrich/entry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.vendor.enrichVendor("entry", {
+                vendorId: 1000000,
+            });
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("EnrichVendor (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { vendorId: 1000000 };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/Vendor/enrich/entry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.vendor.enrichVendor("entry", {
+                vendorId: 1000000,
+            });
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("EnrichVendor (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { vendorId: 1000000 };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/Vendor/enrich/entry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.vendor.enrichVendor("entry", {
+                vendorId: 1000000,
+            });
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("EnrichVendor (7)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { vendorId: 1000000 };
+        const rawResponseBody = { responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .post("/Vendor/enrich/entry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.vendor.enrichVendor("entry", {
+                vendorId: 1000000,
+            });
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 });

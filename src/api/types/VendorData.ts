@@ -48,4 +48,16 @@ export interface VendorData {
     vendorStatus?: Payabli.Vendorstatus | undefined;
     /** Vendor's ZIP or postal code. Required if any address field is provided. For US addresses, use five digits (`12345`) or ZIP+4 format (`12345-6789`). */
     zip?: string | undefined;
+    /** Identifier for the vendor's default stored payment method. */
+    defaultMethodId?: string | undefined;
+    /**
+     * PDF invoice attachment for AI-powered vendor enrichment.
+     * When this feature is enabled and you include an attachment, the invoice is scanned and extracted vendor information is merged into the request.
+     * Fields in the request body take precedence over extracted data.
+     * If the scan fails, vendor creation proceeds with the original request data.
+     *
+     * See the [vendor enrichment guide](/guides/pay-out-vendor-enrichment-overview) for details.
+     * Contact Payabli to enable this feature.
+     */
+    attachment?: Payabli.FileContent | undefined;
 }

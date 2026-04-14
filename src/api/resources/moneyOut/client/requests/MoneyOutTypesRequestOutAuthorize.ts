@@ -7,6 +7,7 @@ import type * as Payabli from "../../../../index.js";
  *     {
  *         body: {
  *             entryPoint: "48acde49",
+ *             autoCapture: true,
  *             invoiceData: [{
  *                     billId: 54323
  *                 }],
@@ -28,6 +29,7 @@ import type * as Payabli from "../../../../index.js";
  *     {
  *         body: {
  *             entryPoint: "48acde49",
+ *             autoCapture: true,
  *             invoiceData: [{
  *                     billId: 123,
  *                     attachments: [{
@@ -53,6 +55,7 @@ import type * as Payabli from "../../../../index.js";
  *     {
  *         body: {
  *             entryPoint: "48acde49",
+ *             autoCapture: true,
  *             source: "api",
  *             invoiceData: [{
  *                     billId: 54323

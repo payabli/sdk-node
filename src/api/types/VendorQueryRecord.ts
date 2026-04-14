@@ -80,6 +80,13 @@ import type * as Payabli from "../index.js";
  *         customField2: "",
  *         customerVendorAccount: "123-456",
  *         InternalReferenceId: 1000000,
+ *         PaymentPortalUrl: "https://greenfield-landscaping.com/pay",
+ *         CardAccepted: "yes",
+ *         AchAccepted: "unable to determine",
+ *         EnrichmentStatus: "fully_enriched",
+ *         EnrichedBy: "web_search",
+ *         EnrichedAt: "2026-03-05T14:22:10Z",
+ *         EnrichmentId: "enrich-3890-a1b2c3d4",
  *         externalPaypointID: "Paypoint-100",
  *         StoredMethods: []
  *     }
@@ -129,4 +136,18 @@ export interface VendorQueryRecord {
     VendorNumber?: Payabli.VendorNumber | undefined;
     VendorStatus?: Payabli.Vendorstatus | undefined;
     Zip?: Payabli.Zip | undefined;
+    /** URL for the vendor's online payment portal, if known. Populated by the vendor enrichment pipeline. */
+    PaymentPortalUrl?: string | undefined;
+    /** Whether the vendor accepts card payments. Values are `yes`, `no`, or `unable to determine`. Populated by the vendor enrichment pipeline. */
+    CardAccepted?: string | undefined;
+    /** Whether the vendor accepts ACH payments. Values are `yes`, `no`, or `unable to determine`. Populated by the vendor enrichment pipeline. */
+    AchAccepted?: string | undefined;
+    /** Current enrichment state of the vendor. Values are `not_enriched`, `partially_enriched`, `fully_enriched`, or `fallback_applied`. */
+    EnrichmentStatus?: string | undefined;
+    /** Which enrichment method resolved the vendor's payment acceptance info. Values are `invoice_scan`, `web_search`, `vendor_network`, or `manual`. */
+    EnrichedBy?: string | undefined;
+    /** When the vendor was last enriched (UTC). */
+    EnrichedAt?: string | undefined;
+    /** Identifier for the enrichment request that last updated this vendor. */
+    EnrichmentId?: string | undefined;
 }

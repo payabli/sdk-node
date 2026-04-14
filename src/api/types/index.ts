@@ -55,6 +55,7 @@ export * from "./AssociatedVendor.js";
 export * from "./Attachments.js";
 export * from "./AttestationDate.js";
 export * from "./Authcode.js";
+export * from "./AutoCapture.js";
 export * from "./AutoElement.js";
 export * from "./Avgmonthly.js";
 export * from "./Avgticketamt.js";

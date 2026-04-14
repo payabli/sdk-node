@@ -23,7 +23,7 @@ export class MoneyOutClient {
     }
 
     /**
-     * Authorizes transaction for payout. Authorized transactions aren't flagged for settlement until captured. Use `referenceId` returned in the response to capture the transaction.
+     * Authorizes transaction for payout.  If you don't pass the `autoCapture` field with a value of `true`, authorized transactions aren't flagged for settlement until captured.  Use `referenceId` returned in the response to capture the transaction.
      *
      * @param {Payabli.MoneyOutTypesRequestOutAuthorize} request
      * @param {MoneyOutClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -37,6 +37,7 @@ export class MoneyOutClient {
      *     await client.moneyOut.authorizeOut({
      *         body: {
      *             entryPoint: "48acde49",
+     *             autoCapture: true,
      *             invoiceData: [{
      *                     billId: 54323
      *                 }],
@@ -58,6 +59,7 @@ export class MoneyOutClient {
      *     await client.moneyOut.authorizeOut({
      *         body: {
      *             entryPoint: "48acde49",
+     *             autoCapture: true,
      *             invoiceData: [{
      *                     billId: 123,
      *                     attachments: [{
@@ -83,6 +85,7 @@ export class MoneyOutClient {
      *     await client.moneyOut.authorizeOut({
      *         body: {
      *             entryPoint: "48acde49",
+     *             autoCapture: true,
      *             source: "api",
      *             invoiceData: [{
      *                     billId: 54323
@@ -573,7 +576,7 @@ export class MoneyOutClient {
     }
 
     /**
-     * Captures a single authorized payout transaction by ID.
+     * Captures a single authorized payout transaction by ID. If the transaction was authorized with `autoCapture` set to `true`,  you don't need to call this endpoint to capture the transaction for processing.
      *
      * @param {string} referenceId - The ID for the payout transaction.
      * @param {Payabli.CaptureOutRequest} request

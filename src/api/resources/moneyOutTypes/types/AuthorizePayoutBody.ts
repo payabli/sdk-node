@@ -17,6 +17,7 @@ export interface AuthorizePayoutBody {
     accountId?: Payabli.AccountId | undefined;
     subdomain?: Payabli.Subdomain | undefined;
     subscriptionId?: Payabli.Subscriptionid | undefined;
+    autoCapture?: Payabli.AutoCapture | undefined;
 }
 
 export namespace AuthorizePayoutBody {

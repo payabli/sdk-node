@@ -308,7 +308,7 @@ export class VendorClient {
     }
 
     /**
-     * Retrieves a vendor's details.
+     * Retrieves a vendor's details, including enrichment status and payment acceptance info when available.
      *
      * @param {number} idVendor - Vendor ID.
      * @param {VendorClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -362,5 +362,113 @@ export class VendorClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/Vendor/{idVendor}");
+    }
+
+    /**
+     * Triggers AI-powered vendor enrichment for an existing vendor. Runs one or more enrichment stages (invoice scan, web search) based on the `scope` parameter. Can automatically apply extracted payment acceptance info and vendor contact information to the vendor record, or return raw results for manual review. Contact Payabli to enable this feature.
+     *
+     * @param {string} entry - Entrypoint identifier.
+     * @param {Payabli.VendorEnrichRequest} request
+     * @param {VendorClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.vendor.enrichVendor("8cfec329267", {
+     *         vendorId: 3890,
+     *         scope: ["invoice_scan"],
+     *         applyEnrichmentData: false,
+     *         fallbackMethod: "check",
+     *         invoiceFile: {
+     *             ftype: "pdf",
+     *             filename: "invoice-2026-001.pdf",
+     *             fContent: "<base64-encoded-pdf>"
+     *         }
+     *     })
+     *
+     * @example
+     *     await client.vendor.enrichVendor("8cfec329267", {
+     *         vendorId: 3891,
+     *         scope: ["web_search"],
+     *         applyEnrichmentData: false,
+     *         fallbackMethod: "check"
+     *     })
+     *
+     * @example
+     *     await client.vendor.enrichVendor("8cfec329267", {
+     *         vendorId: 3891,
+     *         scope: ["web_search"],
+     *         applyEnrichmentData: true,
+     *         fallbackMethod: "check"
+     *     })
+     */
+    public enrichVendor(
+        entry: string,
+        request: Payabli.VendorEnrichRequest,
+        requestOptions?: VendorClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.VendorEnrichResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__enrichVendor(entry, request, requestOptions));
+    }
+
+    private async __enrichVendor(
+        entry: string,
+        request: Payabli.VendorEnrichRequest,
+        requestOptions?: VendorClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.VendorEnrichResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `Vendor/enrich/${core.url.encodePathParam(entry)}`,
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
+            requestType: "json",
+            body: request,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.VendorEnrichResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/Vendor/enrich/{entry}");
     }
 }
