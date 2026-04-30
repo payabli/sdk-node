@@ -48,7 +48,10 @@ export interface BinData {
      * Discover.
      */
     binCardBrand?: string | undefined;
-    /** The type of card: Credit or Debit. */
+    /**
+     * The type of card: `Credit` or `Debit`. Case can vary between
+     * processors, so compare this value case-insensitively.
+     */
     binCardType?: string | undefined;
     /** The category of the card, which indicates the card product. For example: Standard, Gold, Platinum, etc. The binCardCategory for prepaid cards is marked `PREPAID`. */
     binCardCategory?: string | undefined;

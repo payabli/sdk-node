@@ -50,6 +50,7 @@ export interface ListVcardsRequest {
      *   - `orgName` (ne, eq, ct, nct)
      *   - `externalPaypointId` (ct, nct, eq, ne)
      *   - `paypointId` (in, nin, eq, ne)
+     *   - `cardType` (eq)
      *
      * List of comparison accepted - enclosed between parentheses:
      *

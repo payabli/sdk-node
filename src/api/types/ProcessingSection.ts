@@ -18,4 +18,9 @@ export interface ProcessingSection {
     whenDelivered?: Payabli.TemplateElement | undefined;
     whenProvided?: Payabli.TemplateElement | undefined;
     whenRefunded?: Payabli.TemplateElement | undefined;
+    CombinedBatches?: Payabli.TemplateElement | undefined;
+    payoutAverageMonthlyVolume?: Payabli.TemplateElement | undefined;
+    payoutHighTicketAmount?: Payabli.TemplateElement | undefined;
+    payoutAverageTicketAmount?: Payabli.TemplateElement | undefined;
+    payoutCreditLimit?: Payabli.TemplateElement | undefined;
 }

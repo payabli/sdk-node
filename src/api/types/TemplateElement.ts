@@ -8,4 +8,5 @@ export interface TemplateElement {
     readOnly?: Payabli.ReadOnly | undefined;
     value?: Payabli.ValueTemplates | undefined;
     visible?: Payabli.Visible | undefined;
+    required?: Payabli.RequiredElement | undefined;
 }

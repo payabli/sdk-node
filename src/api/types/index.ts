@@ -562,6 +562,7 @@ export * from "./UserQueryRecord.js";
 export * from "./UsrAccess.js";
 export * from "./UsrStatus.js";
 export * from "./ValueTemplates.js";
+export * from "./VCardCardType.js";
 export * from "./VCardQueryResponse.js";
 export * from "./VCardRecord.js";
 export * from "./VCardSummary.js";

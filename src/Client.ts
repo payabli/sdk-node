@@ -12,6 +12,7 @@ import { HostedPaymentPagesClient } from "./api/resources/hostedPaymentPages/cli
 import { ImportClient } from "./api/resources/import/client/Client.js";
 import { InvoiceClient } from "./api/resources/invoice/client/Client.js";
 import { LineItemClient } from "./api/resources/lineItem/client/Client.js";
+import { ManagementClient } from "./api/resources/management/client/Client.js";
 import { MoneyInClient } from "./api/resources/moneyIn/client/Client.js";
 import { MoneyOutClient } from "./api/resources/moneyOut/client/Client.js";
 import { NotificationClient } from "./api/resources/notification/client/Client.js";
@@ -54,6 +55,7 @@ export class PayabliClient {
     protected _import: ImportClient | undefined;
     protected _invoice: InvoiceClient | undefined;
     protected _lineItem: LineItemClient | undefined;
+    protected _management: ManagementClient | undefined;
     protected _moneyIn: MoneyInClient | undefined;
     protected _moneyOut: MoneyOutClient | undefined;
     protected _notification: NotificationClient | undefined;
@@ -123,6 +125,10 @@ export class PayabliClient {
 
     public get lineItem(): LineItemClient {
         return (this._lineItem ??= new LineItemClient(this._options));
+    }
+
+    public get management(): ManagementClient {
+        return (this._management ??= new ManagementClient(this._options));
     }
 
     public get moneyIn(): MoneyInClient {

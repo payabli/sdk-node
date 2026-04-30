@@ -56,7 +56,16 @@ export namespace QueryChargebacksResponse {
             Responses?: string | undefined;
             /** Reference for any scheduled transactions. */
             ScheduleReference?: number | undefined;
-            /** Status of the transaction. */
+            /**
+             * Status of the chargeback or ACH return.
+             *
+             * - 0: Open (chargebacks only)
+             * - 1: Pending (chargebacks only)
+             * - 2: ClosedWon (chargebacks only)
+             * - 3: ClosedLost (chargebacks only)
+             * - 4: ACH return (any Nacha return code except R29)
+             * - 5: AchDispute (R29 only — debit block)
+             */
             Status?: number | undefined;
             Transaction?: Payabli.TransactionQueryRecords | undefined;
             TransactionTime?: Payabli.TransactionTime | undefined;

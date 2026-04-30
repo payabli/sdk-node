@@ -1940,6 +1940,262 @@ describe("QueryClient", () => {
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
+    test("ListDevices (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            Summary: { pageSize: 20, totalAmount: 0, totalNetAmount: 0, totalPages: 2, totalRecords: 28 },
+            Records: [
+                {
+                    deviceId: "DEV-A1B2C3D4",
+                    idCloud: 142,
+                    description: "Front Counter Terminal",
+                    serialNumber: "SN-90210-XR",
+                    friendlyName: "Front Counter Terminal",
+                    make: "Ingenico",
+                    model: "LK2500",
+                    deviceType: 1,
+                    deviceStatus: 1,
+                    deviceOs: null,
+                    macAddress: "1A2B3C4D5E6F",
+                    lastHealthCheck: "2026-04-09T14:49:42Z",
+                    registrationCode: "REG-A1B2C3D4",
+                    activationAttempts: 0,
+                    activationCodeExpiry: "2026-04-09T14:49:42Z",
+                    createdAt: "2026-04-09T01:14:37Z",
+                    updatedAt: "2026-04-09T14:49:42Z",
+                    paypointId: 12345,
+                    paypointDba: "Gruzya Adventure Outfitters",
+                    paypointLegal: "Gruzya Adventure Outfitters, LLC",
+                    paypointEntry: "8cfec329267",
+                    externalPaypointId: "GRUZYA-01",
+                    parentOrgId: 100,
+                    parentOrgName: "Example Corp",
+                },
+            ],
+        };
+
+        server
+            .mockEndpoint()
+            .get("/Query/devices/8cfec329267")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.query.listDevices("8cfec329267", {
+            fromRecord: 0,
+            limitRecord: 20,
+            sortBy: "desc(createdAt)",
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("ListDevices (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/devices/entry")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listDevices("entry");
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("ListDevices (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/devices/entry")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listDevices("entry");
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("ListDevices (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/devices/entry")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listDevices("entry");
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("ListDevices (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/devices/entry")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listDevices("entry");
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("ListDevicesOrg (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            Summary: { pageSize: 20, totalAmount: 0, totalNetAmount: 0, totalPages: 2, totalRecords: 28 },
+            Records: [
+                {
+                    deviceId: "DEV-A1B2C3D4",
+                    idCloud: 142,
+                    description: "Front Counter Terminal",
+                    serialNumber: "SN-90210-XR",
+                    friendlyName: "Front Counter Terminal",
+                    make: "Ingenico",
+                    model: "LK2500",
+                    deviceType: 1,
+                    deviceStatus: 1,
+                    deviceOs: null,
+                    macAddress: "1A2B3C4D5E6F",
+                    lastHealthCheck: "2026-04-09T14:49:42Z",
+                    registrationCode: "REG-A1B2C3D4",
+                    activationAttempts: 0,
+                    activationCodeExpiry: "2026-04-09T14:49:42Z",
+                    createdAt: "2026-04-09T01:14:37Z",
+                    updatedAt: "2026-04-09T14:49:42Z",
+                    paypointId: 12345,
+                    paypointDba: "Gruzya Adventure Outfitters",
+                    paypointLegal: "Gruzya Adventure Outfitters, LLC",
+                    paypointEntry: "8cfec329267",
+                    externalPaypointId: "GRUZYA-01",
+                    parentOrgId: 100,
+                    parentOrgName: "Example Corp",
+                },
+            ],
+        };
+
+        server
+            .mockEndpoint()
+            .get("/Query/devices/org/100")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.query.listDevicesOrg(100, {
+            fromRecord: 0,
+            limitRecord: 20,
+            sortBy: "desc(createdAt)",
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("ListDevicesOrg (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/devices/org/1")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listDevicesOrg(1);
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("ListDevicesOrg (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/devices/org/1")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listDevicesOrg(1);
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("ListDevicesOrg (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/devices/org/1")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listDevicesOrg(1);
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("ListDevicesOrg (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/devices/org/1")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listDevicesOrg(1);
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
     test("ListNotificationReports (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -6616,6 +6872,7 @@ describe("QueryClient", () => {
             Records: [
                 {
                     vcardSent: true,
+                    cardType: 0,
                     cardToken: "vcrd_5Ty8NrBzXjKuqHm9DwElfP",
                     cardNumber: "44XX XXXX XXXX 1234",
                     cvc: "XXX",
@@ -6762,6 +7019,7 @@ describe("QueryClient", () => {
             Records: [
                 {
                     vcardSent: true,
+                    cardType: 0,
                     cardToken: "vcrd_5Ty8NrBzXjKuqHm9DwElfP",
                     cardNumber: "44XX XXXX XXXX 1234",
                     cvc: "XXX",

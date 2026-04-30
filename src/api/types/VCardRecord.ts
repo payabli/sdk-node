@@ -6,6 +6,7 @@ import type * as Payabli from "../index.js";
  * @example
  *     {
  *         vcardSent: true,
+ *         cardType: 0,
  *         cardToken: "vcrd_5Ty8NrBzXjKuqHm9DwElfP",
  *         cardNumber: "44XX XXXX XXXX 1234",
  *         cvc: "XXX",
@@ -46,6 +47,7 @@ import type * as Payabli from "../index.js";
 export interface VCardRecord {
     /** When `true`, the vCard has been sent. */
     vcardSent?: boolean | undefined;
+    cardType?: Payabli.VCardCardType | undefined;
     cardToken?: string | undefined;
     /** The vCard number. */
     cardNumber?: string | undefined;

@@ -945,6 +945,188 @@ export class QueryClient {
     }
 
     /**
+     * Returns a list of cloud devices for a single paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
+     *
+     * @param {Payabli.Entry} entry
+     * @param {Payabli.ListDevicesRequest} request
+     * @param {QueryClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.query.listDevices("8cfec329267", {
+     *         fromRecord: 0,
+     *         limitRecord: 20,
+     *         sortBy: "desc(createdAt)"
+     *     })
+     */
+    public listDevices(
+        entry: Payabli.Entry,
+        request: Payabli.ListDevicesRequest = {},
+        requestOptions?: QueryClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.QueryDeviceResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__listDevices(entry, request, requestOptions));
+    }
+
+    private async __listDevices(
+        entry: Payabli.Entry,
+        request: Payabli.ListDevicesRequest = {},
+        requestOptions?: QueryClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.QueryDeviceResponse>> {
+        const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `Query/devices/${core.url.encodePathParam(entry)}`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.QueryDeviceResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/Query/devices/{entry}");
+    }
+
+    /**
+     * Returns a list of cloud devices for a single organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
+     *
+     * @param {number} orgId - The numeric identifier for organization, assigned by Payabli.
+     * @param {Payabli.ListDevicesOrgRequest} request
+     * @param {QueryClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.query.listDevicesOrg(100, {
+     *         fromRecord: 0,
+     *         limitRecord: 20,
+     *         sortBy: "desc(createdAt)"
+     *     })
+     */
+    public listDevicesOrg(
+        orgId: number,
+        request: Payabli.ListDevicesOrgRequest = {},
+        requestOptions?: QueryClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.QueryDeviceResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__listDevicesOrg(orgId, request, requestOptions));
+    }
+
+    private async __listDevicesOrg(
+        orgId: number,
+        request: Payabli.ListDevicesOrgRequest = {},
+        requestOptions?: QueryClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.QueryDeviceResponse>> {
+        const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
+        const _queryParams: Record<string, unknown> = {
+            exportFormat: exportFormat != null ? exportFormat : undefined,
+            fromRecord,
+            limitRecord,
+            parameters: parameters != null ? toJson(parameters) : undefined,
+            sortBy,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `Query/devices/org/${core.url.encodePathParam(orgId)}`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.QueryDeviceResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/Query/devices/org/{orgId}");
+    }
+
+    /**
      * Returns a list of all reports generated in the last 60 days for a single entrypoint. Use filters to limit results.
      *
      * @param {Payabli.Entry} entry

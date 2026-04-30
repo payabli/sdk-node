@@ -2179,6 +2179,8 @@ await client.cloud.historyDevice("8cfec329267", "WXGDWB");
 <dl>
 <dd>
 
+Use [List devices by paypoint](/developers/api-reference/cloud/get-list-of-devices-for-a-paypoint) instead, which supports filters, sorting, and pagination.
+
 Get a list of cloud devices registered to an entrypoint.
 </dd>
 </dl>
@@ -6956,6 +6958,89 @@ await client.lineItem.updateItem(700, {
 </dl>
 </details>
 
+## Management
+<details><summary><code>client.management.<a href="/src/api/resources/management/client/Client.ts">verifyAccountDetails</a>(entry, { ...params }) -> Payabli.VerifyAccountDetailsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Verifies a bank account and returns detailed verification results from the verification network, including bank name, account status, and response codes. Unlike a pass/fail verification, this endpoint returns granular data to support decision-making and troubleshooting.
+
+When bank authentication is enabled for the paypoint's organization, the endpoint performs an identity verification check on the account holder. Otherwise, it performs an account existence check. When bank authentication is enabled, the `accountHolderType` and `holderName` fields are required.
+
+Requires `inboundpayments_create` or `outboundpayments_create` permission.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.management.verifyAccountDetails("entry752", {
+    routingNumber: "122105278",
+    accountNumber: "0000000016",
+    accountType: "Checking",
+    country: "US",
+    accountHolderType: "personal",
+    holderName: "Jane Doe"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**entry:** `string` — The paypoint's entry name identifier.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.VerifyAccountDetailsRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ManagementClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## MoneyIn
 <details><summary><code>client.moneyIn.<a href="/src/api/resources/moneyIn/client/Client.ts">authorize</a>({ ...params }) -> Payabli.AuthResponse</code></summary>
 <dl>
@@ -7449,7 +7534,7 @@ await client.moneyIn.getpaid({
 <dl>
 <dd>
 
-A reversal either refunds or voids a transaction independent of the transaction's settlement status. Send a reversal request for a transaction, and Payabli automatically determines whether it's a refund or void. You don't need to know whether the transaction is settled or not.
+A reversal either refunds or voids a transaction independent of the transaction's settlement status. Send a reversal request for a transaction, and Payabli automatically determines whether it's a refund or void. You don't need to know whether the transaction is settled or not. This endpoint only works on transactions made with the v1 API. For v2 transactions, check the transaction's settlement status and call v2 void or v2 refund based on the result.
 </dd>
 </dl>
 </dd>
@@ -13634,6 +13719,156 @@ await client.query.listCustomersOrg(123, {
 <dd>
 
 **request:** `Payabli.ListCustomersOrgRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.query.<a href="/src/api/resources/query/client/Client.ts">listDevices</a>(entry, { ...params }) -> Payabli.QueryDeviceResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of cloud devices for a single paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.query.listDevices("8cfec329267", {
+    fromRecord: 0,
+    limitRecord: 20,
+    sortBy: "desc(createdAt)"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**entry:** `Payabli.Entry` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.ListDevicesRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.query.<a href="/src/api/resources/query/client/Client.ts">listDevicesOrg</a>(orgId, { ...params }) -> Payabli.QueryDeviceResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of cloud devices for a single organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.query.listDevicesOrg(100, {
+    fromRecord: 0,
+    limitRecord: 20,
+    sortBy: "desc(createdAt)"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.ListDevicesOrgRequest` 
     
 </dd>
 </dl>

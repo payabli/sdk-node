@@ -8,6 +8,8 @@ export type { ListChargebacksOrgRequest } from "./ListChargebacksOrgRequest.js";
 export type { ListChargebacksRequest } from "./ListChargebacksRequest.js";
 export type { ListCustomersOrgRequest } from "./ListCustomersOrgRequest.js";
 export type { ListCustomersRequest } from "./ListCustomersRequest.js";
+export type { ListDevicesOrgRequest } from "./ListDevicesOrgRequest.js";
+export type { ListDevicesRequest } from "./ListDevicesRequest.js";
 export type { ListNotificationReportsOrgRequest } from "./ListNotificationReportsOrgRequest.js";
 export type { ListNotificationReportsRequest } from "./ListNotificationReportsRequest.js";
 export type { ListNotificationsOrgRequest } from "./ListNotificationsOrgRequest.js";
