@@ -979,7 +979,7 @@ export interface V2TransactionDetails {
     transAdditionalData: unknown | null;
     invoiceData: Payabli.TransactionDetailInvoiceData;
     entrypageId: Payabli.EntrypageId;
-    externalPaypointID: Payabli.ExternalPaypointId;
+    externalPaypointID: Payabli.ExternalPaypointId | null;
     /** Indicates if ACH account was validated in real-time. */
     isValidatedACH: boolean;
     /** Timestamp when transaction was created. */

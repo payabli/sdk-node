@@ -6,10 +6,10 @@
         "namespaceExport": "Payabli",
         "noSerdeLayer": true
     },
-    "originGitCommit": "a59c2b2d6ccbf2e800fba96cc3ea9476df69b7b0",
+    "originGitCommit": "0f665390a3f1683396943781707e30c613db2f3d",
     "originGitCommitIsDirty": true,
     "invokedBy": "ci",
-    "requestedVersion": "0.0.142",
+    "requestedVersion": "0.0.143",
     "ciProvider": "github",
-    "sdkVersion": "0.0.142"
+    "sdkVersion": "0.0.143"
 }
