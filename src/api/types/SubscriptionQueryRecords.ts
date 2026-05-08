@@ -16,7 +16,7 @@ export interface SubscriptionQueryRecords {
     Frequency?: string | undefined;
     /** The subscription's ID. */
     IdSub?: number | undefined;
-    InvoiceData?: Payabli.BillData | undefined;
+    invoiceData?: Payabli.BillData | undefined;
     /** The last time the subscription was processed. */
     LastRun: string | null;
     /** The last date and time the subscription was updated. */

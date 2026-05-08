@@ -100,8 +100,8 @@ import type * as Payabli from "../index.js";
  *                 method: "card"
  *             }],
  *         customerSummary: {
- *             numberofTransactions: 30,
- *             recentTransactions: [{
+ *             NumberofTransactions: 30,
+ *             RecentTransactions: [{
  *                     EntrypageId: 0,
  *                     FeeAmount: 1,
  *                     PayorId: 1551,
@@ -110,8 +110,8 @@ import type * as Payabli from "../index.js";
  *                     TotalAmount: 30.22,
  *                     TransStatus: 1
  *                 }],
- *             totalAmountTransactions: 1500,
- *             totalNetAmountTransactions: 1500
+ *             TotalAmountTransactions: 1500,
+ *             TotalNetAmountTransactions: 1500
  *         },
  *         PaypointLegalname: "Sunshine Services, LLC",
  *         PaypointDbaname: "Sunshine Gutters",
@@ -156,8 +156,8 @@ import type * as Payabli from "../index.js";
  *         },
  *         IdentifierFields: ["email"],
  *         customerSummary: {
- *             numberofTransactions: 30,
- *             recentTransactions: [{
+ *             NumberofTransactions: 30,
+ *             RecentTransactions: [{
  *                     EntrypageId: 0,
  *                     FeeAmount: 1,
  *                     PayorId: 1551,
@@ -166,8 +166,8 @@ import type * as Payabli from "../index.js";
  *                     TotalAmount: 30.22,
  *                     TransStatus: 1
  *                 }],
- *             totalAmountTransactions: 1500,
- *             totalNetAmountTransactions: 1500
+ *             TotalAmountTransactions: 1500,
+ *             TotalNetAmountTransactions: 1500
  *         },
  *         PaypointLegalname: "Gruzya Adventure Outfitters, LLC",
  *         PaypointDbaname: "Gruzya Adventure Outfitters",

@@ -4,11 +4,11 @@ import type * as Payabli from "../index.js";
 
 export interface CustomerSummaryRecord {
     /** Number total of transactions or payments */
-    numberofTransactions?: number | undefined;
+    NumberofTransactions?: number | undefined;
     /** List of more recent 5 transactions belonging to the customer */
-    recentTransactions?: Payabli.TransactionQueryRecords[] | undefined;
+    RecentTransactions?: Payabli.TransactionQueryRecords[] | undefined;
     /** Total amount in transactions */
-    totalAmountTransactions?: number | undefined;
+    TotalAmountTransactions?: number | undefined;
     /** Total net amount in transactions */
-    totalNetAmountTransactions?: number | undefined;
+    TotalNetAmountTransactions?: number | undefined;
 }

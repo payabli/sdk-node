@@ -44,8 +44,8 @@ describe("CustomerClient", () => {
                 AdditionalFields: { key: "value" },
                 IdentifierFields: ["email"],
                 customerSummary: {
-                    numberofTransactions: 30,
-                    recentTransactions: [
+                    NumberofTransactions: 30,
+                    RecentTransactions: [
                         {
                             EntrypageId: 0,
                             FeeAmount: 1,
@@ -56,8 +56,8 @@ describe("CustomerClient", () => {
                             TransStatus: 1,
                         },
                     ],
-                    totalAmountTransactions: 1500,
-                    totalNetAmountTransactions: 1500,
+                    TotalAmountTransactions: 1500,
+                    TotalNetAmountTransactions: 1500,
                 },
                 PaypointLegalname: "Gruzya Adventure Outfitters, LLC",
                 PaypointDbaname: "Gruzya Adventure Outfitters",
@@ -349,8 +349,8 @@ describe("CustomerClient", () => {
                 },
             ],
             customerSummary: {
-                numberofTransactions: 30,
-                recentTransactions: [
+                NumberofTransactions: 30,
+                RecentTransactions: [
                     {
                         EntrypageId: 0,
                         FeeAmount: 1,
@@ -361,8 +361,8 @@ describe("CustomerClient", () => {
                         TransStatus: 1,
                     },
                 ],
-                totalAmountTransactions: 1500,
-                totalNetAmountTransactions: 1500,
+                TotalAmountTransactions: 1500,
+                TotalNetAmountTransactions: 1500,
             },
             PaypointLegalname: "Sunshine Services, LLC",
             PaypointDbaname: "Sunshine Gutters",

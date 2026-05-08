@@ -2795,4 +2795,270 @@ describe("BoardingClient", () => {
             return await client.boarding.updateApplication(1, {});
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
+
+    test("AddServiceToPaypointFromApp (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            paypointId: 123,
+            templateId: 456,
+            recipientEmail: "merchant@example.com",
+            returnBoardingAccessInfoInLine: true,
+            onCreate: ["submitApplication"],
+        };
+        const rawResponseBody = {
+            responseCode: 1,
+            roomId: 66594,
+            isSuccess: true,
+            responseText: "Success",
+            responseData: {
+                appId: 66594,
+                boardingLink:
+                    "https://boarding-sandbox.payabli.com/boarding/externalapp/load/10422?mode=25&email=merchant@example.com&referenceId=YpYNRPDOcGsm",
+            },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/Boarding/applications")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.boarding.addServiceToPaypointFromApp({
+            paypointId: 123,
+            templateId: 456,
+            recipientEmail: "merchant@example.com",
+            returnBoardingAccessInfoInLine: true,
+            onCreate: ["submitApplication"],
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("AddServiceToPaypointFromApp (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { paypointId: 1000000, templateId: 1000000, recipientEmail: "recipientEmail" };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/Boarding/applications")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.boarding.addServiceToPaypointFromApp({
+                paypointId: 1000000,
+                templateId: 1000000,
+                recipientEmail: "recipientEmail",
+            });
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("AddServiceToPaypointFromApp (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { paypointId: 1000000, templateId: 1000000, recipientEmail: "recipientEmail" };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/Boarding/applications")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.boarding.addServiceToPaypointFromApp({
+                paypointId: 1000000,
+                templateId: 1000000,
+                recipientEmail: "recipientEmail",
+            });
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("AddServiceToPaypointFromApp (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { paypointId: 1000000, templateId: 1000000, recipientEmail: "recipientEmail" };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/Boarding/applications")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.boarding.addServiceToPaypointFromApp({
+                paypointId: 1000000,
+                templateId: 1000000,
+                recipientEmail: "recipientEmail",
+            });
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("AddServiceToPaypointFromApp (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { paypointId: 1000000, templateId: 1000000, recipientEmail: "recipientEmail" };
+        const rawResponseBody = { responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .post("/Boarding/applications")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.boarding.addServiceToPaypointFromApp({
+                paypointId: 1000000,
+                templateId: 1000000,
+                recipientEmail: "recipientEmail",
+            });
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("GetApplicationsByPaypointId (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            Records: [
+                {
+                    idApplication: 68388,
+                    orgId: 3125,
+                    dbaName: "Meadowbrook Phase II HOA A",
+                    legalName: "Meadowbrook Phase II HOA B",
+                    ein: "601907058",
+                    boardingStatus: 7,
+                    boardingSubStatus: 0,
+                    templateId: 8233,
+                    boardingLinkId: 6344,
+                    contactData: [
+                        {
+                            contactName: "Gary Heaney",
+                            contactEmail: "hello@meadowbrookphaseii.com",
+                            contactTitle: "Human Group Designer",
+                            contactPhone: "7863078875",
+                        },
+                    ],
+                    generalEvents: [
+                        { description: "Created", eventTime: "2026-03-17T18:56:39.8854072Z" },
+                        { description: "Linked to paypoint 6257", eventTime: "2026-03-17T18:56:39.885413Z" },
+                        { description: "Updated Status: 7, 0", eventTime: "2026-03-18T19:32:39.4012114Z" },
+                    ],
+                },
+            ],
+            Summary: {
+                pageIdentifier: "null",
+                pageSize: 0,
+                totalAmount: 0,
+                totalNetAmount: 0,
+                totalPages: 0,
+                totalRecords: 1,
+            },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/Boarding/applications/12345")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.boarding.getApplicationsByPaypointId(12345);
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("GetApplicationsByPaypointId (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Boarding/applications/1000000")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.boarding.getApplicationsByPaypointId(1000000);
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("GetApplicationsByPaypointId (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Boarding/applications/1000000")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.boarding.getApplicationsByPaypointId(1000000);
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("GetApplicationsByPaypointId (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Boarding/applications/1000000")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.boarding.getApplicationsByPaypointId(1000000);
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("GetApplicationsByPaypointId (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .get("/Boarding/applications/1000000")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.boarding.getApplicationsByPaypointId(1000000);
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
 });

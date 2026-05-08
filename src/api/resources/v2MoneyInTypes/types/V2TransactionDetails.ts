@@ -997,7 +997,7 @@ export interface V2TransactionDetails {
     riskActionCode?: Payabli.RiskActionCode | undefined;
     deviceId: Payabli.Device;
     achSecCode: Payabli.AchSecCode;
-    achHolderType: Payabli.AchHolderType;
+    achHolderType: Payabli.AchHolderType | null;
     ipAddress: Payabli.IpAddress;
     /** Indicates if ACH transaction uses same-day processing. */
     isSameDayACH: boolean;

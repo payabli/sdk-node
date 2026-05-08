@@ -1662,9 +1662,9 @@ describe("QueryClient", () => {
                     customerNumber: "425436530000",
                     customerStatus: 0,
                     customerSummary: {
-                        numberofTransactions: 30,
-                        totalAmountTransactions: 1500,
-                        totalNetAmountTransactions: 1500,
+                        NumberofTransactions: 30,
+                        TotalAmountTransactions: 1500,
+                        TotalNetAmountTransactions: 1500,
                     },
                     Email: "thibodeaux.hebert@bayoumail.com",
                     externalPaypointID: "pay-10",
@@ -1810,9 +1810,9 @@ describe("QueryClient", () => {
                     customerNumber: "425436530000",
                     customerStatus: 0,
                     customerSummary: {
-                        numberofTransactions: 30,
-                        totalAmountTransactions: 1500,
-                        totalNetAmountTransactions: 1500,
+                        NumberofTransactions: 30,
+                        TotalAmountTransactions: 1500,
+                        TotalNetAmountTransactions: 1500,
                     },
                     Email: "thibodeaux.hebert@bayoumail.com",
                     externalPaypointID: "pay-10",
@@ -3766,7 +3766,7 @@ describe("QueryClient", () => {
                     FeeAmount: 0,
                     Frequency: "monthly",
                     IdSub: 580,
-                    InvoiceData: {
+                    invoiceData: {
                         frequency: "onetime",
                         invoiceAmount: 100,
                         invoiceNumber: "QA-1702561870",
@@ -3985,7 +3985,7 @@ describe("QueryClient", () => {
                     FeeAmount: 0,
                     Frequency: "monthly",
                     IdSub: 580,
-                    InvoiceData: {
+                    invoiceData: {
                         frequency: "onetime",
                         invoiceAmount: 100,
                         invoiceNumber: "QA-1702561870",
@@ -4713,7 +4713,7 @@ describe("QueryClient", () => {
                     ExternalProcessorInformation: " ",
                     FeeAmount: 10.25,
                     GatewayTransId: "string",
-                    InvoiceData: {
+                    invoiceData: {
                         attachments: [
                             {
                                 fContent: "TXkgdGVzdCBmaWxlHJ==...",

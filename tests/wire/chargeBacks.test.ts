@@ -237,7 +237,7 @@ describe("ChargeBacksClient", () => {
                 ExternalProcessorInformation: "[MER_xxxxxxxxxxxxxx]/[NNNNNNNNN]",
                 FeeAmount: 1,
                 GatewayTransId: "TRN_xwCAjQorWAYX1nAhAoHZVfN8iYHbI0",
-                InvoiceData: {
+                invoiceData: {
                     attachments: [{}],
                     company: "ACME, INC",
                     discount: 10,

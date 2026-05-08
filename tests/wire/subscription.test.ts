@@ -40,7 +40,7 @@ describe("SubscriptionClient", () => {
             FeeAmount: 3,
             Frequency: "monthly",
             IdSub: 396,
-            InvoiceData: {
+            invoiceData: {
                 attachments: [{}],
                 company: "ACME, INC",
                 discount: 10,

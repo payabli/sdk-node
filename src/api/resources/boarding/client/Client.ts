@@ -1457,4 +1457,176 @@ export class BoardingClient {
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/Boarding/app/{appId}");
     }
+
+    /**
+     * Creates a new boarding application linked to an existing paypoint as part of the multi-product boarding flow. Use this endpoint to add new services to a paypoint without creating a duplicate record. The system copies eligible business, contact, banking, and address data from the paypoint to the new application based on 1:1 field matching. The merchant only needs to provide fields that are specific to the new service. See the [Multi-product boarding](/guides/pay-ops-developer-boarding-multi-product) guide for the full flow.
+     *
+     * @param {Payabli.CreateApplicationFromPaypointRequest} request
+     * @param {BoardingClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.boarding.addServiceToPaypointFromApp({
+     *         paypointId: 123,
+     *         templateId: 456,
+     *         recipientEmail: "merchant@example.com",
+     *         returnBoardingAccessInfoInLine: true,
+     *         onCreate: ["submitApplication"]
+     *     })
+     */
+    public addServiceToPaypointFromApp(
+        request: Payabli.CreateApplicationFromPaypointRequest,
+        requestOptions?: BoardingClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.CreateApplicationFromPaypointResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__addServiceToPaypointFromApp(request, requestOptions));
+    }
+
+    private async __addServiceToPaypointFromApp(
+        request: Payabli.CreateApplicationFromPaypointRequest,
+        requestOptions?: BoardingClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.CreateApplicationFromPaypointResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                "Boarding/applications",
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
+            requestType: "json",
+            body: request,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as Payabli.CreateApplicationFromPaypointResponse,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/Boarding/applications");
+    }
+
+    /**
+     * Returns all boarding applications associated with a specific paypoint, including those created through the multi-product boarding flow. Use this endpoint to track underwriting progress across multiple service additions or to build reporting views. See the [Multi-product boarding](/guides/pay-ops-developer-boarding-multi-product) guide for the full flow.
+     *
+     * @param {number} paypointId - ID of the paypoint to retrieve applications for.
+     * @param {BoardingClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.boarding.getApplicationsByPaypointId(12345)
+     */
+    public getApplicationsByPaypointId(
+        paypointId: number,
+        requestOptions?: BoardingClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.QueryBoardingAppsListResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getApplicationsByPaypointId(paypointId, requestOptions));
+    }
+
+    private async __getApplicationsByPaypointId(
+        paypointId: number,
+        requestOptions?: BoardingClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.QueryBoardingAppsListResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `Boarding/applications/${core.url.encodePathParam(paypointId)}`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: requestOptions?.queryParams,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as Payabli.QueryBoardingAppsListResponse,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/Boarding/applications/{paypointId}",
+        );
+    }
 }

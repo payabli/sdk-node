@@ -19,7 +19,7 @@ export interface TransactionQueryRecords {
     FeeAmount?: Payabli.FeeAmount | undefined;
     /** Internal identifier used for processing. */
     GatewayTransId?: string | undefined;
-    InvoiceData?: Payabli.BillData | undefined;
+    invoiceData?: Payabli.BillData | undefined;
     /** Payment method used: card, ach, or wallet. */
     Method?: string | undefined;
     /** Net amount paid. */
