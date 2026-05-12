@@ -16068,6 +16068,156 @@ await client.query.listVcards("8cfec329267", {
 </dl>
 </details>
 
+<details><summary><code>client.query.<a href="/src/api/resources/query/client/Client.ts">listVcardsTransactions</a>(entry, { ...params }) -> Payabli.VCardTransactionQueryResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve a list of virtual card transactions for an entrypoint. Use filters to limit results.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.query.listVcardsTransactions("8cfec329267", {
+    fromRecord: 0,
+    limitRecord: 20,
+    sortBy: "desc(CreatedOn)"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**entry:** `Payabli.Entry` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.ListVcardsTransactionsRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.query.<a href="/src/api/resources/query/client/Client.ts">listVcardsTransactionsOrg</a>(orgId, { ...params }) -> Payabli.VCardTransactionQueryResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve a list of virtual card transactions for an organization. Use filters to limit results.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.query.listVcardsTransactionsOrg(123, {
+    fromRecord: 0,
+    limitRecord: 20,
+    sortBy: "desc(CreatedOn)"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orgId:** `number` — The numeric identifier for organization, assigned by Payabli.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.ListVcardsTransactionsOrgRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `QueryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.query.<a href="/src/api/resources/query/client/Client.ts">listVcardsOrg</a>(orgId, { ...params }) -> Payabli.VCardQueryResponse</code></summary>
 <dl>
 <dd>

@@ -1381,6 +1381,7 @@ describe("QueryClient", () => {
                         ScheduleReference: 0,
                         SettlementStatus: 0,
                         Source: "api",
+                        splitCount: 0,
                         TotalAmount: 1.56,
                         TransactionEvents: [
                             { EventTime: "2023-02-20T15:36:47Z", TransEvent: "created" },
@@ -1536,6 +1537,7 @@ describe("QueryClient", () => {
                         PayorId: 1551,
                         PaypointId: 226,
                         SettlementStatus: 2,
+                        splitCount: 0,
                         TotalAmount: 30.22,
                         TransStatus: 1,
                     },
@@ -3801,7 +3803,7 @@ describe("QueryClient", () => {
                     PaymentData: {
                         AccountExp: "0924",
                         AccountType: "unknown",
-                        AccountZip: "90210",
+                        AccountZip: "37612",
                         binData: {
                             binMatchedLength: "6",
                             binCardBrand: "Visa",
@@ -3815,7 +3817,7 @@ describe("QueryClient", () => {
                             binCardUseCategory: "Consumer",
                             binCardIssuerCountryCodeA3: "USA",
                         },
-                        HolderName: "Mr. Michael Abernathy",
+                        HolderName: "Lisandra Smitch",
                         Initiator: "payor",
                         MaskedAccount: "2222 4XXXXXX0010",
                         paymentDetails: { currency: "USD", serviceFee: 0, totalAmount: 100 },
@@ -3828,6 +3830,36 @@ describe("QueryClient", () => {
                     PaypointLegalname: "Athlete Factory LLC",
                     PlanId: 1,
                     StartDate: "2024-07-20T00:00:00Z",
+                    StoredMethod: {
+                        IdPmethod: "6edcbb56-9c0e-4003-b3d1-99abf149ba0e",
+                        Method: "card",
+                        Descriptor: "Visa for subscriptions",
+                        MaskedAccount: "4XXXXXXX0010",
+                        ExpDate: "0924",
+                        HolderName: "Lisandra Smitch",
+                        AchSecCode: null,
+                        AchHolderType: null,
+                        IsValidatedACH: false,
+                        BIN: "",
+                        binData: {
+                            binMatchedLength: "6",
+                            binCardBrand: "Visa",
+                            binCardType: "Credit",
+                            binCardCategory: "PLATINUM",
+                            binCardIssuer: "Bank of Example",
+                            binCardIssuerCountry: "United States",
+                            binCardIssuerCountryCodeA2: "US",
+                            binCardIssuerCountryNumber: "840",
+                            binCardIsRegulated: "false",
+                            binCardUseCategory: "Consumer",
+                            binCardIssuerCountryCodeA3: "USA",
+                        },
+                        ABA: "",
+                        PostalCode: "37612",
+                        MethodType: "Single Merchant",
+                        LastUpdated: "2023-12-14T08:51:10Z",
+                        CardUpdatedOn: null,
+                    },
                     SubEvents: [
                         {
                             description: "created",
@@ -4020,7 +4052,7 @@ describe("QueryClient", () => {
                     PaymentData: {
                         AccountExp: "0924",
                         AccountType: "unknow",
-                        AccountZip: "90210",
+                        AccountZip: "37612",
                         binData: {
                             binMatchedLength: "6",
                             binCardBrand: "Visa",
@@ -4034,7 +4066,7 @@ describe("QueryClient", () => {
                             binCardUseCategory: "Consumer",
                             binCardIssuerCountryCodeA3: "USA",
                         },
-                        HolderName: "Mr. Michael Abernathy",
+                        HolderName: "Lisandra Smitch",
                         Initiator: "payor",
                         MaskedAccount: "2222 4XXXXXX0010",
                         paymentDetails: { currency: "USD", serviceFee: 0, totalAmount: 100 },
@@ -4047,6 +4079,36 @@ describe("QueryClient", () => {
                     PaypointLegalname: "Athlete Factory LLC",
                     PlanId: 1,
                     StartDate: "2024-07-20T00:00:00Z",
+                    StoredMethod: {
+                        IdPmethod: "6edcbb56-9c0e-4003-b3d1-99abf149ba0e",
+                        Method: "card",
+                        Descriptor: "Visa for subscriptions",
+                        MaskedAccount: "4XXXXXXX0010",
+                        ExpDate: "0924",
+                        HolderName: "Lisandra Smitch",
+                        AchSecCode: null,
+                        AchHolderType: null,
+                        IsValidatedACH: false,
+                        BIN: "",
+                        binData: {
+                            binMatchedLength: "6",
+                            binCardBrand: "Visa",
+                            binCardType: "Credit",
+                            binCardCategory: "PLATINUM",
+                            binCardIssuer: "Bank of Example",
+                            binCardIssuerCountry: "United States",
+                            binCardIssuerCountryCodeA2: "US",
+                            binCardIssuerCountryNumber: "840",
+                            binCardIsRegulated: "false",
+                            binCardUseCategory: "Consumer",
+                            binCardIssuerCountryCodeA3: "USA",
+                        },
+                        ABA: "",
+                        PostalCode: "37612",
+                        MethodType: "Single Merchant",
+                        LastUpdated: "2023-12-14T08:51:10Z",
+                        CardUpdatedOn: null,
+                    },
                     SubEvents: [
                         {
                             description: "created",
@@ -4826,6 +4888,7 @@ describe("QueryClient", () => {
                     SettlementStatus: 0,
                     Source: "vterminal",
                     splitFundingInstructions: [{}],
+                    splitCount: 1,
                     TotalAmount: 110.25,
                     TransactionEvents: [{}],
                     TransactionTime: "2019-08-24T14:15:22Z",
@@ -4862,6 +4925,94 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
+        const rawResponseBody = {
+            Records: [
+                {
+                    ParentOrgName: "RealistRoofing",
+                    PaypointDbaname: "Eagle-Pointe",
+                    PaypointLegalname: "Eagle-Pointe",
+                    PaypointEntryname: "entry399",
+                    PaymentTransId: "399-8e7e5fc7-f483-43cc-9e78-d8a36ac857bf",
+                    ConnectorName: "GP",
+                    Method: "card",
+                    PayorId: 155974,
+                    PaymentData: {
+                        MaskedAccount: "5XXXXXXXXXXX4415",
+                        AccountExp: "12/29",
+                        HolderName: "RENEE DESCARTES",
+                        binData: {
+                            binMatchedLength: "9",
+                            binCardBrand: "MASTERCARD",
+                            binCardType: "CREDIT",
+                            binCardCategory: "MIXED PRODUCT",
+                            binCardIssuer: "ALLIED IRISH BANKS, PLC",
+                            binCardIssuerCountry: "IRELAND",
+                            binCardIsRegulated: "False",
+                            binCardUseCategory: "PERSONAL",
+                        },
+                        paymentDetails: { totalAmount: 6.79, serviceFee: 0, currency: "USD" },
+                    },
+                    TransStatus: -4,
+                    PaypointId: 399,
+                    splitFundingInstructions: [{}],
+                    splitCount: 1,
+                    TotalAmount: -6.79,
+                    NetAmount: -6.79,
+                    FeeAmount: 0,
+                    SettlementStatus: 0,
+                    Operation: "Reject",
+                    Source: "api",
+                    OrgId: 39,
+                    TransactionTime: "2026-03-02T18:56:23.109188",
+                    Customer: {
+                        FirstName: "Blaise",
+                        LastName: "Pascal",
+                        CompanyName: "Pensees LLC",
+                        BillingAddress1: "49912 Aufengrupt Pointe",
+                        BillingAddress2: "apt 6",
+                        BillingCity: "South Litzy",
+                        BillingState: "FL",
+                        BillingZip: "33000",
+                        BillingCountry: "US",
+                        BillingPhone: "+18955791994",
+                        BillingEmail: "blaise.pascal@gmail.com",
+                        CustomerNumber: "o99t",
+                        customerId: 155974,
+                        customerStatus: 1,
+                    },
+                    TransactionEvents: [
+                        {
+                            TransEvent: "Created",
+                            EventData: "Card Reject - CTDR Id: 1379241",
+                            EventTime: "2026-03-02T18:56:23.352035",
+                        },
+                    ],
+                },
+            ],
+            Summary: { totalRecords: 14, totalAmount: -79.48, totalNetAmount: -74.41, totalPages: 14, pageSize: 1 },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/Query/transactions/8cfec329267")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.query.listTransactions("8cfec329267", {
+            limitRecord: 1,
+            parameters: {
+                "operation(eq)": "Reject",
+            },
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("ListTransactions (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
         const rawResponseBody = { key: "value" };
 
         server
@@ -4877,7 +5028,7 @@ describe("QueryClient", () => {
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
-    test("ListTransactions (3)", async () => {
+    test("ListTransactions (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -4896,7 +5047,7 @@ describe("QueryClient", () => {
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
-    test("ListTransactions (4)", async () => {
+    test("ListTransactions (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -4915,7 +5066,7 @@ describe("QueryClient", () => {
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
-    test("ListTransactions (5)", async () => {
+    test("ListTransactions (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -4987,6 +5138,7 @@ describe("QueryClient", () => {
                     SettlementStatus: 2,
                     Source: "api",
                     splitFundingInstructions: [{}],
+                    splitCount: 1,
                     TotalAmount: 30.22,
                     TransactionEvents: [{}],
                     TransactionTime: "2025-10-19T00:00:00Z",
@@ -5024,6 +5176,94 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
+        const rawResponseBody = {
+            Records: [
+                {
+                    ParentOrgName: "RealistRoofing",
+                    PaypointDbaname: "Eagle-Pointe",
+                    PaypointLegalname: "Eagle-Pointe",
+                    PaypointEntryname: "entry399",
+                    PaymentTransId: "399-8e7e5fc7-f483-43cc-9e78-d8a36ac857bf",
+                    ConnectorName: "GP",
+                    Method: "card",
+                    PayorId: 155974,
+                    PaymentData: {
+                        MaskedAccount: "5XXXXXXXXXXX4415",
+                        AccountExp: "12/29",
+                        HolderName: "RENEE DESCARTES",
+                        binData: {
+                            binMatchedLength: "9",
+                            binCardBrand: "MASTERCARD",
+                            binCardType: "CREDIT",
+                            binCardCategory: "MIXED PRODUCT",
+                            binCardIssuer: "ALLIED IRISH BANKS, PLC",
+                            binCardIssuerCountry: "IRELAND",
+                            binCardIsRegulated: "False",
+                            binCardUseCategory: "PERSONAL",
+                        },
+                        paymentDetails: { totalAmount: 6.79, serviceFee: 0, currency: "USD" },
+                    },
+                    TransStatus: -4,
+                    PaypointId: 399,
+                    splitFundingInstructions: [{}],
+                    splitCount: 1,
+                    TotalAmount: -6.79,
+                    NetAmount: -6.79,
+                    FeeAmount: 0,
+                    SettlementStatus: 0,
+                    Operation: "Reject",
+                    Source: "api",
+                    OrgId: 39,
+                    TransactionTime: "2026-03-02T18:56:23.109188",
+                    Customer: {
+                        FirstName: "Blaise",
+                        LastName: "Pascal",
+                        CompanyName: "Pensees LLC",
+                        BillingAddress1: "49912 Aufengrupt Pointe",
+                        BillingAddress2: "apt 6",
+                        BillingCity: "South Litzy",
+                        BillingState: "FL",
+                        BillingZip: "33000",
+                        BillingCountry: "US",
+                        BillingPhone: "+18955791994",
+                        BillingEmail: "blaise.pascal@gmail.com",
+                        CustomerNumber: "o99t",
+                        customerId: 155974,
+                        customerStatus: 1,
+                    },
+                    TransactionEvents: [
+                        {
+                            TransEvent: "Created",
+                            EventData: "Card Reject - CTDR Id: 1379241",
+                            EventTime: "2026-03-02T18:56:23.352035",
+                        },
+                    ],
+                },
+            ],
+            Summary: { totalRecords: 14, totalAmount: -79.48, totalNetAmount: -74.41, totalPages: 14, pageSize: 1 },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/Query/transactions/org/123")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.query.listTransactionsOrg(123, {
+            limitRecord: 1,
+            parameters: {
+                "operation(eq)": "Reject",
+            },
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("ListTransactionsOrg (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
         const rawResponseBody = { key: "value" };
 
         server
@@ -5039,7 +5279,7 @@ describe("QueryClient", () => {
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
-    test("ListTransactionsOrg (3)", async () => {
+    test("ListTransactionsOrg (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -5058,7 +5298,7 @@ describe("QueryClient", () => {
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
-    test("ListTransactionsOrg (4)", async () => {
+    test("ListTransactionsOrg (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -5077,7 +5317,7 @@ describe("QueryClient", () => {
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
-    test("ListTransactionsOrg (5)", async () => {
+    test("ListTransactionsOrg (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -6908,11 +7148,12 @@ describe("QueryClient", () => {
                 },
             ],
             Summary: {
-                pageIdentifier: "XXXXXXXXXXXXXX",
+                pageidentifier: "XXXXXXXXXXXXXX",
                 pageSize: 20,
                 totalAmount: 2500,
+                totalNetAmount: 0,
                 totalactive: 5,
-                totalamounteactive: 2500,
+                totalamountactive: 2500,
                 totalbalanceactive: 1875.25,
                 totalPages: 1,
                 totalRecords: 5,
@@ -7011,6 +7252,282 @@ describe("QueryClient", () => {
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
+    test("ListVcardsTransactions (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            Summary: {
+                totalPages: 20,
+                totalRecords: 393,
+                totalAmount: 231.58,
+                totalactive: 388,
+                totalamountactive: 219.58,
+                totalbalanceactive: -213.83,
+            },
+            Records: [
+                {
+                    Identifier: "7HQ2P9B4XD",
+                    CardToken: "5RJ8MN2KC4",
+                    LastFour: "1234",
+                    ExpirationDate: "06-30-2029",
+                    Mcc: "5943",
+                    PayoutId: 84210,
+                    CustomerId: 1542,
+                    VendorId: 9821,
+                    MiscData1: "Invoice #12345",
+                    MiscData2: "Project: Office Supplies",
+                    CurrentUses: 1,
+                    Amount: 500,
+                    Balance: 425.5,
+                    PaypointId: 236,
+                    PaypointLegal: "Global Factory LLC",
+                    PaypointDba: "Global Factory",
+                    ExternalPaypointID: "pay-10",
+                    OrgName: "SupplyPro",
+                    Type: "AUTHORIZATION",
+                    Status: "AUTHORIZATION",
+                    CreatedOn: "2026-05-05 03:28:53.082830",
+                    TransactionAmount: "74.500",
+                    PostedAmount: "0.000",
+                    PostedOn: null,
+                    MerchantName: "Office Supply Co.",
+                    AuthorizationStatus: "AUTHORIZATION",
+                    ReasonToDecline: null,
+                },
+            ],
+        };
+
+        server
+            .mockEndpoint()
+            .get("/Query/vcardsTransactions/8cfec329267")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.query.listVcardsTransactions("8cfec329267", {
+            fromRecord: 0,
+            limitRecord: 20,
+            sortBy: "desc(CreatedOn)",
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("ListVcardsTransactions (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/vcardsTransactions/entry")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listVcardsTransactions("entry");
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("ListVcardsTransactions (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/vcardsTransactions/entry")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listVcardsTransactions("entry");
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("ListVcardsTransactions (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/vcardsTransactions/entry")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listVcardsTransactions("entry");
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("ListVcardsTransactions (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/vcardsTransactions/entry")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listVcardsTransactions("entry");
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("ListVcardsTransactionsOrg (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            Summary: {
+                totalPages: 20,
+                totalRecords: 393,
+                totalAmount: 231.58,
+                totalactive: 388,
+                totalamountactive: 219.58,
+                totalbalanceactive: -213.83,
+            },
+            Records: [
+                {
+                    Identifier: "7HQ2P9B4XD",
+                    CardToken: "5RJ8MN2KC4",
+                    LastFour: "1234",
+                    ExpirationDate: "06-30-2029",
+                    Mcc: "5943",
+                    PayoutId: 84210,
+                    CustomerId: 1542,
+                    VendorId: 9821,
+                    MiscData1: "Invoice #12345",
+                    MiscData2: "Project: Office Supplies",
+                    CurrentUses: 1,
+                    Amount: 500,
+                    Balance: 425.5,
+                    PaypointId: 236,
+                    PaypointLegal: "Global Factory LLC",
+                    PaypointDba: "Global Factory",
+                    ExternalPaypointID: "pay-10",
+                    OrgName: "SupplyPro",
+                    Type: "AUTHORIZATION",
+                    Status: "AUTHORIZATION",
+                    CreatedOn: "2026-05-05 03:28:53.082830",
+                    TransactionAmount: "74.500",
+                    PostedAmount: "0.000",
+                    PostedOn: null,
+                    MerchantName: "Office Supply Co.",
+                    AuthorizationStatus: "AUTHORIZATION",
+                    ReasonToDecline: null,
+                },
+            ],
+        };
+
+        server
+            .mockEndpoint()
+            .get("/Query/vcardsTransactions/org/123")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.query.listVcardsTransactionsOrg(123, {
+            fromRecord: 0,
+            limitRecord: 20,
+            sortBy: "desc(CreatedOn)",
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("ListVcardsTransactionsOrg (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/vcardsTransactions/org/1")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listVcardsTransactionsOrg(1);
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("ListVcardsTransactionsOrg (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/vcardsTransactions/org/1")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listVcardsTransactionsOrg(1);
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("ListVcardsTransactionsOrg (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/vcardsTransactions/org/1")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listVcardsTransactionsOrg(1);
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("ListVcardsTransactionsOrg (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .get("/Query/vcardsTransactions/org/1")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.query.listVcardsTransactionsOrg(1);
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
     test("ListVcardsOrg", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -7055,11 +7572,12 @@ describe("QueryClient", () => {
                 },
             ],
             Summary: {
-                pageIdentifier: "XXXXXXXXXXXXXX",
+                pageidentifier: "XXXXXXXXXXXXXX",
                 pageSize: 20,
                 totalAmount: 2500,
+                totalNetAmount: 0,
                 totalactive: 5,
-                totalamounteactive: 2500,
+                totalamountactive: 2500,
                 totalbalanceactive: 1875.25,
                 totalPages: 1,
                 totalRecords: 5,

@@ -24,3 +24,5 @@ export * from "./TransferOutMessageProperties.js";
 export * from "./TransferOutQueryResponse.js";
 export * from "./TransferOutRecord.js";
 export * from "./TransferOutSummary.js";
+export * from "./VCardTransactionQueryResponse.js";
+export * from "./VCardTransactionRecord.js";

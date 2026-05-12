@@ -34,6 +34,8 @@ export interface QueryTransferSummary {
     refunds: number | null;
     /** Funds being held for fraud or risk concerns. */
     heldAmount: number | null;
+    /** Total amount rejected by card networks or issuing banks after authorization or settling. This value is the sum of all rejected amounts for transactions in the transfer. */
+    cardRejectedAmount: number | null;
     /** Number of records in the response. */
     totalRecords: Payabli.Totalrecords | null;
     /** The total sum of the transfers in the response. */

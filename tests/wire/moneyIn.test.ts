@@ -954,6 +954,7 @@ describe("MoneyInClient", () => {
             ScheduleReference: 0,
             SettlementStatus: 1,
             Source: "web",
+            splitCount: 0,
             TotalAmount: 1000.5,
             TransactionEvents: [
                 { EventTime: "2024-01-23T00:46:05Z", TransEvent: "Created" },

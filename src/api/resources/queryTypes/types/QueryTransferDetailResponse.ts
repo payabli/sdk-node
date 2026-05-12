@@ -48,6 +48,8 @@ export namespace QueryTransferDetailResponse {
             netTransferAmount: number | null;
             /** Total amount directed to split funding destinations */
             splitFundingAmount: number | null;
+            /** Total amount rejected by card networks or issuing banks after authorization or settling in this transaction */
+            cardRejectedAmount: number | null;
             billingFeesDetails: Payabli.BillingFeeDetail[] | null;
             ParentOrgName: Payabli.OrgParentName | null;
             PaypointDbaname: Payabli.Dbaname | null;

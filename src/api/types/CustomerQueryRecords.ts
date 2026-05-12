@@ -107,6 +107,7 @@ import type * as Payabli from "../index.js";
  *                     PayorId: 1551,
  *                     PaypointId: 226,
  *                     SettlementStatus: 2,
+ *                     splitCount: 0,
  *                     TotalAmount: 30.22,
  *                     TransStatus: 1
  *                 }],
@@ -163,6 +164,7 @@ import type * as Payabli from "../index.js";
  *                     PayorId: 1551,
  *                     PaypointId: 226,
  *                     SettlementStatus: 2,
+ *                     splitCount: 0,
  *                     TotalAmount: 30.22,
  *                     TransStatus: 1
  *                 }],

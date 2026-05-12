@@ -332,6 +332,7 @@ describe("ChargeBacksClient", () => {
                 SettlementStatus: 2,
                 Source: "api",
                 splitFundingInstructions: [{}],
+                splitCount: 0,
                 TotalAmount: 30.22,
                 TransactionEvents: [{}],
                 TransactionTime: "2025-10-19T00:00:00Z",

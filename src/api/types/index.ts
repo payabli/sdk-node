@@ -503,6 +503,7 @@ export * from "./SignerSsn.js";
 export * from "./SignerState.js";
 export * from "./SignerZip.js";
 export * from "./Source.js";
+export * from "./SplitCount.js";
 export * from "./SplitFunding.js";
 export * from "./SplitFundingContent.js";
 export * from "./SplitFundingRefundContent.js";

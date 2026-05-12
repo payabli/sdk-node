@@ -9,6 +9,14 @@ import type * as Payabli from "../../../../index.js";
  *         limitRecord: 0,
  *         sortBy: "desc(field_name)"
  *     }
+ *
+ * @example
+ *     {
+ *         limitRecord: 1,
+ *         parameters: {
+ *             "operation(eq)": "Reject"
+ *         }
+ *     }
  */
 export interface ListTransactionsOrgRequest {
     exportFormat?: Payabli.ExportFormat;
@@ -42,6 +50,7 @@ export interface ListTransactionsOrgRequest {
      * - `scheduleId` (ne, eq)
      * - `returnId` (ne, eq)
      * - `refundId` (ne, eq)
+     * - `rejectId` (ne, eq)
      * - `idTrans` (ne, eq)
      * - `orgId` (ne, eq)
      * - `paypointId` (ne, eq)

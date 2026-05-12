@@ -43,6 +43,16 @@ export interface SubscriptionQueryRecords {
     Source?: Payabli.Source | undefined;
     /** The subscription start date. */
     StartDate: string | null;
+    /**
+     * The full stored payment method record linked to the subscription
+     * and charged on each billing cycle. Returned as `null` for legacy
+     * subscriptions that don't have a linked stored method.
+     *
+     * The shape is the same across payment vehicles (card, ACH, check).
+     * Only the populated fields differ. For example, `ABA` is populated
+     * for ACH, while `ExpDate` and `binData` are populated for card.
+     */
+    StoredMethod: Payabli.VendorResponseStoredMethod | null;
     /** Events associated with the subscription. */
     SubEvents?: Payabli.GeneralEvents[] | undefined;
     /**

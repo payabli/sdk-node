@@ -7,12 +7,14 @@ export interface VCardSummary {
     totalRecords: Payabli.Totalrecords;
     /** Total amount for the records. */
     totalAmount: number;
+    /** Total net amount for the records. */
+    totalNetAmount?: number | undefined;
     /** Total number of active vCards. */
     totalactive: number;
     /** Total amount of active vCards. */
-    totalamounteactive: number;
+    totalamountactive: number;
     /** Total balance of active vCards. */
     totalbalanceactive: number;
-    pageIdentifier?: Payabli.PageIdentifier | undefined;
+    pageidentifier?: Payabli.PageIdentifier | undefined;
     pageSize?: Payabli.Pagesize | undefined;
 }

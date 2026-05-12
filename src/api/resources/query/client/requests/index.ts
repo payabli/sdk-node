@@ -36,5 +36,7 @@ export type { ListUsersOrgRequest } from "./ListUsersOrgRequest.js";
 export type { ListUsersPaypointRequest } from "./ListUsersPaypointRequest.js";
 export type { ListVcardsOrgRequest } from "./ListVcardsOrgRequest.js";
 export type { ListVcardsRequest } from "./ListVcardsRequest.js";
+export type { ListVcardsTransactionsOrgRequest } from "./ListVcardsTransactionsOrgRequest.js";
+export type { ListVcardsTransactionsRequest } from "./ListVcardsTransactionsRequest.js";
 export type { ListVendorsOrgRequest } from "./ListVendorsOrgRequest.js";
 export type { ListVendorsRequest } from "./ListVendorsRequest.js";

@@ -51,6 +51,7 @@ export interface TransactionQueryRecords {
     SettlementStatus?: number | undefined;
     Source?: Payabli.Source | undefined;
     splitFundingInstructions?: Payabli.SplitFunding | undefined;
+    splitCount: Payabli.SplitCount;
     /** Transaction total amount (including service fee or sub-charge) */
     TotalAmount?: number | undefined;
     /** Events associated with this transaction. */
