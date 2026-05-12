@@ -21,13 +21,7 @@ export declare namespace Fetcher {
         method: string;
         contentType?: string;
         headers?: Record<string, unknown>;
-        /**
-         * @deprecated Prefer `queryString` (produced by `core.url.queryBuilder()`).
-         * Retained for backwards compatibility with custom fetchers and callers that
-         * still construct request args with a query-parameter object.
-         */
         queryParameters?: Record<string, unknown>;
-        queryString?: string;
         body?: unknown;
         timeoutMs?: number;
         maxRetries?: number;
@@ -124,15 +118,17 @@ const SENSITIVE_QUERY_PARAMS = new Set([
     "session-id",
 ]);
 
-function redactQueryParameters(
-    queryParameters: Record<string, unknown> | undefined,
-): Record<string, unknown> | undefined {
+function redactQueryParameters(queryParameters?: Record<string, unknown>): Record<string, unknown> | undefined {
     if (queryParameters == null) {
-        return undefined;
+        return queryParameters;
     }
     const redacted: Record<string, unknown> = {};
     for (const [key, value] of Object.entries(queryParameters)) {
-        redacted[key] = SENSITIVE_QUERY_PARAMS.has(key.toLowerCase()) ? "[REDACTED]" : value;
+        if (SENSITIVE_QUERY_PARAMS.has(key.toLowerCase())) {
+            redacted[key] = "[REDACTED]";
+        } else {
+            redacted[key] = value;
+        }
     }
     return redacted;
 }
@@ -255,12 +251,7 @@ async function getHeaders(args: Fetcher.Args): Promise<Headers> {
 }
 
 export async function fetcherImpl<R = unknown>(args: Fetcher.Args): Promise<APIResponse<R, Fetcher.Error>> {
-    let url = args.url;
-    if (args.queryString != null && args.queryString.length > 0) {
-        url = `${url}?${args.queryString}`;
-    } else {
-        url = createRequestUrl(args.url, args.queryParameters);
-    }
+    const url = createRequestUrl(args.url, args.queryParameters);
     const requestBody: BodyInit | undefined = await getRequestBody({
         body: args.body,
         type: args.requestType ?? "other",
