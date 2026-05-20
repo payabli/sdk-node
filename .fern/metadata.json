@@ -1,15 +1,15 @@
 {
     "cliVersion": "5.7.9",
     "generatorName": "fernapi/fern-typescript-node-sdk",
-    "generatorVersion": "3.63.3",
+    "generatorVersion": "3.69.0",
     "generatorConfig": {
         "namespaceExport": "Payabli",
         "noSerdeLayer": true
     },
-    "originGitCommit": "d69946f7f37797d4fdc34de0c29dc377dbc94fc5",
+    "originGitCommit": "7082e1f2f215e55d567b769dcf0f9732ab232c4d",
     "originGitCommitIsDirty": true,
     "invokedBy": "ci",
-    "requestedVersion": "0.0.146",
+    "requestedVersion": "0.0.147",
     "ciProvider": "github",
-    "sdkVersion": "0.0.146"
+    "sdkVersion": "0.0.147"
 }

@@ -127,7 +127,6 @@ describe("SubscriptionClient", () => {
                 {
                     description: "TransferCreated",
                     eventTime: "2023-07-05T22:31:06Z",
-                    extraData: { key: "value" },
                     refData: "refData",
                     source: "api",
                 },

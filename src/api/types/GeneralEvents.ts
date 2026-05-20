@@ -8,7 +8,7 @@ export interface GeneralEvents {
     /** Event timestamp, in UTC. */
     eventTime?: string | undefined;
     /** Extra data. */
-    extraData?: Record<string, unknown> | undefined;
+    extraData?: string | undefined;
     /** Reference data. */
     refData?: string | undefined;
     /** The event source. */

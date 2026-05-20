@@ -10,9 +10,6 @@ import type * as Payabli from "../../../index.js";
  *         events: [{
  *                 description: "TransferCreated",
  *                 eventTime: "2025-09-01T06:00:00Z",
- *                 extraData: {
- *                     "key": "value"
- *                 },
  *                 refData: "refData",
  *                 source: "api"
  *             }],
