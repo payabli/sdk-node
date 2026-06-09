@@ -3,8 +3,7 @@
 /**
  * Business start date. Accepted formats:
  *
- *   - YYYY-MM-DD
- *
- *   - MM/DD/YYYY
+ * - YYYY-MM-DD
+ * - MM/DD/YYYY
  */
 export type Busstartdate = string;

@@ -87,5 +87,5 @@ export interface ExportSettlementsOrgRequest {
      *
      * Example: `settledAmount(gt)=20` returns all records with a `settledAmount` greater than 20.00
      */
-    parameters?: Record<string, string>;
+    parameters?: Record<string, string | null>;
 }

@@ -9,13 +9,13 @@ describe("MoneyOutClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            entryPoint: "48acde49",
+            entryPoint: "8cfec329267",
             autoCapture: true,
             invoiceData: [{ billId: 54323 }],
             orderDescription: "Window Painting",
             paymentDetails: { totalAmount: 47, unbundled: false },
             paymentMethod: { method: "managed" },
-            vendorData: { vendorNumber: "7895433" },
+            vendorData: { vendorNumber: "VEN-123" },
         };
         const rawResponseBody = {
             responseCode: 1,
@@ -30,7 +30,7 @@ describe("MoneyOutClient", () => {
                 resultText: "Authorized",
                 avsResponseText: null,
                 cvvResponseText: null,
-                customerId: 0,
+                customerId: 4440,
                 methodReferenceId: null,
             },
         };
@@ -45,25 +45,23 @@ describe("MoneyOutClient", () => {
             .build();
 
         const response = await client.moneyOut.authorizeOut({
-            body: {
-                entryPoint: "48acde49",
-                autoCapture: true,
-                invoiceData: [
-                    {
-                        billId: 54323,
-                    },
-                ],
-                orderDescription: "Window Painting",
-                paymentDetails: {
-                    totalAmount: 47,
-                    unbundled: false,
+            entryPoint: "8cfec329267",
+            autoCapture: true,
+            invoiceData: [
+                {
+                    billId: 54323,
                 },
-                paymentMethod: {
-                    method: "managed",
-                },
-                vendorData: {
-                    vendorNumber: "7895433",
-                },
+            ],
+            orderDescription: "Window Painting",
+            paymentDetails: {
+                totalAmount: 47,
+                unbundled: false,
+            },
+            paymentMethod: {
+                method: "managed",
+            },
+            vendorData: {
+                vendorNumber: "VEN-123",
             },
         });
         expect(response).toEqual(rawResponseBody);
@@ -73,18 +71,18 @@ describe("MoneyOutClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            entryPoint: "48acde49",
+            entryPoint: "8cfec329267",
             autoCapture: true,
             invoiceData: [
                 {
-                    billId: 123,
+                    billId: 54323,
                     attachments: [{ filename: "bill.pdf", ftype: "pdf", furl: "https://example.com/bill.pdf" }],
                 },
             ],
             orderDescription: "Window Painting",
             paymentDetails: { totalAmount: 47 },
             paymentMethod: { method: "managed" },
-            vendorData: { vendorNumber: "7895433" },
+            vendorData: { vendorNumber: "VEN-123" },
         };
         const rawResponseBody = {
             responseCode: 1,
@@ -99,7 +97,7 @@ describe("MoneyOutClient", () => {
                 resultText: "Authorized",
                 avsResponseText: null,
                 cvvResponseText: null,
-                customerId: 0,
+                customerId: 4440,
                 methodReferenceId: null,
             },
         };
@@ -114,31 +112,29 @@ describe("MoneyOutClient", () => {
             .build();
 
         const response = await client.moneyOut.authorizeOut({
-            body: {
-                entryPoint: "48acde49",
-                autoCapture: true,
-                invoiceData: [
-                    {
-                        billId: 123,
-                        attachments: [
-                            {
-                                filename: "bill.pdf",
-                                ftype: "pdf",
-                                furl: "https://example.com/bill.pdf",
-                            },
-                        ],
-                    },
-                ],
-                orderDescription: "Window Painting",
-                paymentDetails: {
-                    totalAmount: 47,
+            entryPoint: "8cfec329267",
+            autoCapture: true,
+            invoiceData: [
+                {
+                    billId: 54323,
+                    attachments: [
+                        {
+                            filename: "bill.pdf",
+                            ftype: "pdf",
+                            furl: "https://example.com/bill.pdf",
+                        },
+                    ],
                 },
-                paymentMethod: {
-                    method: "managed",
-                },
-                vendorData: {
-                    vendorNumber: "7895433",
-                },
+            ],
+            orderDescription: "Window Painting",
+            paymentDetails: {
+                totalAmount: 47,
+            },
+            paymentMethod: {
+                method: "managed",
+            },
+            vendorData: {
+                vendorNumber: "VEN-123",
             },
         });
         expect(response).toEqual(rawResponseBody);
@@ -148,14 +144,14 @@ describe("MoneyOutClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            entryPoint: "48acde49",
+            entryPoint: "8cfec329267",
             autoCapture: true,
             source: "api",
             invoiceData: [{ billId: 54323 }],
             orderDescription: "Window Painting",
-            paymentMethod: { method: "ach", storedMethodId: "4c6a4b78-72de-4bdd-9455-b9d30f991001-XXXX" },
+            paymentMethod: { method: "ach", storedMethodId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440" },
             paymentDetails: { totalAmount: 47 },
-            vendorData: { vendorNumber: "7895433" },
+            vendorData: { vendorNumber: "VEN-123" },
         };
         const rawResponseBody = {
             responseCode: 1,
@@ -170,7 +166,7 @@ describe("MoneyOutClient", () => {
                 resultText: "Authorized",
                 avsResponseText: null,
                 cvvResponseText: null,
-                customerId: 0,
+                customerId: 4440,
                 methodReferenceId: null,
             },
         };
@@ -185,26 +181,24 @@ describe("MoneyOutClient", () => {
             .build();
 
         const response = await client.moneyOut.authorizeOut({
-            body: {
-                entryPoint: "48acde49",
-                autoCapture: true,
-                source: "api",
-                invoiceData: [
-                    {
-                        billId: 54323,
-                    },
-                ],
-                orderDescription: "Window Painting",
-                paymentMethod: {
-                    method: "ach",
-                    storedMethodId: "4c6a4b78-72de-4bdd-9455-b9d30f991001-XXXX",
+            entryPoint: "8cfec329267",
+            autoCapture: true,
+            source: "api",
+            invoiceData: [
+                {
+                    billId: 54323,
                 },
-                paymentDetails: {
-                    totalAmount: 47,
-                },
-                vendorData: {
-                    vendorNumber: "7895433",
-                },
+            ],
+            orderDescription: "Window Painting",
+            paymentMethod: {
+                method: "ach",
+                storedMethodId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+            },
+            paymentDetails: {
+                totalAmount: 47,
+            },
+            vendorData: {
+                vendorNumber: "VEN-123",
             },
         });
         expect(response).toEqual(rawResponseBody);
@@ -214,12 +208,12 @@ describe("MoneyOutClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            entryPoint: "48acde49",
+            entryPoint: "8cfec329267",
             invoiceData: [{ billId: 54323 }],
             orderDescription: "Office Supplies",
             paymentDetails: { totalAmount: 1500, checkNumber: "10001" },
             paymentMethod: { method: "check" },
-            vendorData: { vendorNumber: "7895433" },
+            vendorData: { vendorNumber: "VEN-123" },
         };
         const rawResponseBody = {
             responseCode: 1,
@@ -234,7 +228,7 @@ describe("MoneyOutClient", () => {
                 resultText: "Authorized",
                 avsResponseText: null,
                 cvvResponseText: null,
-                customerId: 0,
+                customerId: 4440,
                 methodReferenceId: null,
             },
         };
@@ -249,24 +243,22 @@ describe("MoneyOutClient", () => {
             .build();
 
         const response = await client.moneyOut.authorizeOut({
-            body: {
-                entryPoint: "48acde49",
-                invoiceData: [
-                    {
-                        billId: 54323,
-                    },
-                ],
-                orderDescription: "Office Supplies",
-                paymentDetails: {
-                    totalAmount: 1500,
-                    checkNumber: "10001",
+            entryPoint: "8cfec329267",
+            invoiceData: [
+                {
+                    billId: 54323,
                 },
-                paymentMethod: {
-                    method: "check",
-                },
-                vendorData: {
-                    vendorNumber: "7895433",
-                },
+            ],
+            orderDescription: "Office Supplies",
+            paymentDetails: {
+                totalAmount: 1500,
+                checkNumber: "10001",
+            },
+            paymentMethod: {
+                method: "check",
+            },
+            vendorData: {
+                vendorNumber: "VEN-123",
             },
         });
         expect(response).toEqual(rawResponseBody);
@@ -276,7 +268,7 @@ describe("MoneyOutClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            entryPoint: "47ced57b",
+            entryPoint: "8cfec329267",
             paymentMethod: {
                 method: "ach",
                 achHolder: "John Doe",
@@ -287,7 +279,7 @@ describe("MoneyOutClient", () => {
             },
             paymentDetails: { totalAmount: 978.32 },
             vendorData: {
-                vendorNumber: "Vendor3800638299609471",
+                vendorNumber: "VEN-123",
                 name1: "Heritage Pro Company",
                 name2: "",
                 ein: "473771889",
@@ -317,7 +309,7 @@ describe("MoneyOutClient", () => {
             },
             invoiceData: [
                 {
-                    invoiceNumber: "VI3BvwTG",
+                    invoiceNumber: "INV-2345",
                     netAmount: "1",
                     invoiceDate: "2026-09-03",
                     dueDate: "2026-11-04",
@@ -333,13 +325,13 @@ describe("MoneyOutClient", () => {
             responseText: "Success",
             responseData: {
                 authCode: null,
-                referenceId: "129-220",
+                referenceId: "129-219",
                 resultCode: 1,
                 resultText: "Authorized",
                 avsResponseText: null,
                 cvvResponseText: null,
-                customerId: 12345,
-                methodReferenceId: "12dea40cba9130s93s-12345",
+                customerId: 4440,
+                methodReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
             },
         };
 
@@ -353,58 +345,56 @@ describe("MoneyOutClient", () => {
             .build();
 
         const response = await client.moneyOut.authorizeOut({
-            body: {
-                entryPoint: "47ced57b",
-                paymentMethod: {
-                    method: "ach",
-                    achHolder: "John Doe",
-                    achRouting: "011401533",
-                    achAccount: "123456789",
-                    achAccountType: "checking",
-                    achHolderType: "business",
-                },
-                paymentDetails: {
-                    totalAmount: 978.32,
-                },
-                vendorData: {
-                    vendorNumber: "Vendor3800638299609471",
-                    name1: "Heritage Pro Company",
-                    name2: "",
-                    ein: "473771889",
-                    phone: "7868342364",
-                    email: "contact570@heritagepro.com",
-                    address1: "478 Mittie Roads",
-                    city: "Jakubowskifield",
-                    state: "WI",
-                    zip: "45993",
-                    country: "US",
-                    mcc: "0763",
-                    locationCode: "tpa",
-                    contacts: [
-                        {
-                            contactName: "Dax",
-                            contactEmail: "Mandy65@heritagepro.com",
-                            contactPhone: "996-325-5420 x31028",
-                        },
-                    ],
-                    vendorStatus: 1,
-                    remitAddress1: "727 Terrell Streets",
-                    remitAddress2: "Apt. 773",
-                    remitCity: "South Nicholeside",
-                    remitState: "ID",
-                    remitZip: "72951-9790",
-                    remitCountry: "US",
-                },
-                invoiceData: [
+            entryPoint: "8cfec329267",
+            paymentMethod: {
+                method: "ach",
+                achHolder: "John Doe",
+                achRouting: "011401533",
+                achAccount: "123456789",
+                achAccountType: "checking",
+                achHolderType: "business",
+            },
+            paymentDetails: {
+                totalAmount: 978.32,
+            },
+            vendorData: {
+                vendorNumber: "VEN-123",
+                name1: "Heritage Pro Company",
+                name2: "",
+                ein: "473771889",
+                phone: "7868342364",
+                email: "contact570@heritagepro.com",
+                address1: "478 Mittie Roads",
+                city: "Jakubowskifield",
+                state: "WI",
+                zip: "45993",
+                country: "US",
+                mcc: "0763",
+                locationCode: "tpa",
+                contacts: [
                     {
-                        invoiceNumber: "VI3BvwTG",
-                        netAmount: "1",
-                        invoiceDate: "2026-09-03",
-                        dueDate: "2026-11-04",
-                        comments: "Building Repairs - Community event setup (System updates)",
+                        contactName: "Dax",
+                        contactEmail: "Mandy65@heritagepro.com",
+                        contactPhone: "996-325-5420 x31028",
                     },
                 ],
+                vendorStatus: 1,
+                remitAddress1: "727 Terrell Streets",
+                remitAddress2: "Apt. 773",
+                remitCity: "South Nicholeside",
+                remitState: "ID",
+                remitZip: "72951-9790",
+                remitCountry: "US",
             },
+            invoiceData: [
+                {
+                    invoiceNumber: "INV-2345",
+                    netAmount: "1",
+                    invoiceDate: "2026-09-03",
+                    dueDate: "2026-11-04",
+                    comments: "Building Repairs - Community event setup (System updates)",
+                },
+            ],
         });
         expect(response).toEqual(rawResponseBody);
     });
@@ -432,15 +422,13 @@ describe("MoneyOutClient", () => {
 
         await expect(async () => {
             return await client.moneyOut.authorizeOut({
-                body: {
-                    entryPoint: "entryPoint",
-                    paymentMethod: {
-                        method: "method",
-                    },
-                    paymentDetails: {},
-                    vendorData: {},
-                    invoiceData: [{}, {}],
+                entryPoint: "entryPoint",
+                paymentMethod: {
+                    method: "method",
                 },
+                paymentDetails: {},
+                vendorData: {},
+                invoiceData: [{}, {}],
             });
         }).rejects.toThrow(Payabli.BadRequestError);
     });
@@ -455,7 +443,7 @@ describe("MoneyOutClient", () => {
             vendorData: {},
             invoiceData: [{}, {}],
         };
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -468,15 +456,13 @@ describe("MoneyOutClient", () => {
 
         await expect(async () => {
             return await client.moneyOut.authorizeOut({
-                body: {
-                    entryPoint: "entryPoint",
-                    paymentMethod: {
-                        method: "method",
-                    },
-                    paymentDetails: {},
-                    vendorData: {},
-                    invoiceData: [{}, {}],
+                entryPoint: "entryPoint",
+                paymentMethod: {
+                    method: "method",
                 },
+                paymentDetails: {},
+                vendorData: {},
+                invoiceData: [{}, {}],
             });
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
@@ -504,15 +490,13 @@ describe("MoneyOutClient", () => {
 
         await expect(async () => {
             return await client.moneyOut.authorizeOut({
-                body: {
-                    entryPoint: "entryPoint",
-                    paymentMethod: {
-                        method: "method",
-                    },
-                    paymentDetails: {},
-                    vendorData: {},
-                    invoiceData: [{}, {}],
+                entryPoint: "entryPoint",
+                paymentMethod: {
+                    method: "method",
                 },
+                paymentDetails: {},
+                vendorData: {},
+                invoiceData: [{}, {}],
             });
         }).rejects.toThrow(Payabli.InternalServerError);
     });
@@ -527,7 +511,7 @@ describe("MoneyOutClient", () => {
             vendorData: {},
             invoiceData: [{}, {}],
         };
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -540,15 +524,13 @@ describe("MoneyOutClient", () => {
 
         await expect(async () => {
             return await client.moneyOut.authorizeOut({
-                body: {
-                    entryPoint: "entryPoint",
-                    paymentMethod: {
-                        method: "method",
-                    },
-                    paymentDetails: {},
-                    vendorData: {},
-                    invoiceData: [{}, {}],
+                entryPoint: "entryPoint",
+                paymentMethod: {
+                    method: "method",
                 },
+                paymentDetails: {},
+                vendorData: {},
+                invoiceData: [{}, {}],
             });
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
@@ -559,11 +541,10 @@ describe("MoneyOutClient", () => {
         const rawRequestBody = ["2-29", "2-28", "2-27"];
         const rawResponseBody = {
             isSuccess: true,
-            pageIdentifier: "null",
             responseCode: 1,
             responseData: [
-                { CustomerId: 1000000, ReferenceId: "129-230", ResultCode: 1, ResultText: "Cancelled" },
-                { CustomerId: 1000000, ReferenceId: "129-219", ResultCode: 1, ResultText: "Cancelled" },
+                { CustomerId: 4440, ReferenceId: "129-230", ResultCode: 1, ResultText: "Cancelled" },
+                { CustomerId: 4440, ReferenceId: "129-219", ResultCode: 1, ResultText: "Cancelled" },
             ],
             responseText: "Success",
         };
@@ -605,7 +586,7 @@ describe("MoneyOutClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -645,7 +626,7 @@ describe("MoneyOutClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -668,7 +649,7 @@ describe("MoneyOutClient", () => {
         const rawResponseBody = {
             isSuccess: true,
             responseText: "Success",
-            responseData: { ReferenceId: "129-219", ResultCode: 1, ResultText: "Approved", CustomerId: 0 },
+            responseData: { ReferenceId: "129-219", ResultCode: 1, ResultText: "Approved", CustomerId: 4440 },
         };
 
         server
@@ -706,7 +687,7 @@ describe("MoneyOutClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -744,7 +725,7 @@ describe("MoneyOutClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -766,7 +747,7 @@ describe("MoneyOutClient", () => {
         const rawResponseBody = {
             isSuccess: true,
             responseText: "Success",
-            responseData: { ReferenceId: "129-219", ResultCode: 1, ResultText: "Approved", CustomerId: 0 },
+            responseData: { ReferenceId: "129-219", ResultCode: 1, ResultText: "Approved", CustomerId: 4440 },
         };
 
         server
@@ -804,7 +785,7 @@ describe("MoneyOutClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -842,7 +823,7 @@ describe("MoneyOutClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -863,11 +844,10 @@ describe("MoneyOutClient", () => {
         const rawRequestBody = ["2-29", "2-28", "2-27"];
         const rawResponseBody = {
             isSuccess: true,
-            pageIdentifier: "null",
             responseCode: 1,
             responseData: [
-                { CustomerId: 1000000, ReferenceId: "129-230", ResultCode: 1, ResultText: "Captured" },
-                { CustomerId: 1000000, ReferenceId: "129-219", ResultCode: 1, ResultText: "Captured" },
+                { CustomerId: 4440, ReferenceId: "129-230", ResultCode: 1, ResultText: "Captured" },
+                { CustomerId: 4440, ReferenceId: "129-219", ResultCode: 1, ResultText: "Captured" },
             ],
             responseText: "Success",
         };
@@ -913,7 +893,7 @@ describe("MoneyOutClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -957,7 +937,7 @@ describe("MoneyOutClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = ["string", "string"];
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -992,7 +972,7 @@ describe("MoneyOutClient", () => {
                 resultText: "Authorized",
                 avsResponseText: null,
                 cvvResponseText: null,
-                customerId: 0,
+                customerId: 4440,
                 methodReferenceId: null,
             },
         };
@@ -1032,7 +1012,7 @@ describe("MoneyOutClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1070,7 +1050,7 @@ describe("MoneyOutClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1090,7 +1070,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            Bills: [{ invoiceNumber: "123B", netAmount: "8800.00" }],
+            Bills: [{ invoiceNumber: "INV-2345", netAmount: "8800.00" }],
             Comments: "testing",
             CreatedDate: "2022-07-01T15:00:01Z",
             Events: [{ EventTime: "2023-04-24T09:17:49Z", TransEvent: "Authorized" }],
@@ -1133,7 +1113,7 @@ describe("MoneyOutClient", () => {
             StatusText: "Captured",
             TotalAmount: 8800,
             Vendor: {
-                VendorNumber: "1234",
+                VendorNumber: "VEN-123",
                 Name1: "Herman's Coatings",
                 Name2: "Herman's Coating Supply Company, LLC",
                 EIN: "123456789",
@@ -1170,7 +1150,7 @@ describe("MoneyOutClient", () => {
                     default: true,
                 },
                 VendorStatus: 1,
-                VendorId: 1,
+                VendorId: 456,
                 Summary: {
                     ActiveBills: 2,
                     PendingBills: 4,
@@ -1240,7 +1220,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            Bills: [{ invoiceNumber: "123B", netAmount: "8800.00" }],
+            Bills: [{ invoiceNumber: "INV-2345", netAmount: "8800.00" }],
             Comments: "testing",
             CreatedDate: "2022-07-01T15:00:01Z",
             Events: [
@@ -1278,7 +1258,7 @@ describe("MoneyOutClient", () => {
                             totalAmount: "8800.00",
                         },
                         id: "1ede3eb2-a564-43b5-b2d2-7195f6d9fded",
-                        invoices: [{ invoiceNumber: "123B", netAmount: "8800.00" }],
+                        invoices: [{ invoiceNumber: "INV-2345", netAmount: "8800.00" }],
                         links: [
                             {
                                 href: "https://cert-api.cpayplus.com/payments/1ede3eb2-a564-43b5-b2d2-7195f6d9fded/resendRemit",
@@ -1338,7 +1318,7 @@ describe("MoneyOutClient", () => {
                             status: "Enrolled",
                             statusReason: "Customer Enrolled",
                             vendorName1: "PAUL'S",
-                            vendorNumber: "54321",
+                            vendorNumber: "VEN-123",
                             vendorPhone: "19706188888",
                             vendorTaxId: "123456789",
                         },
@@ -1386,7 +1366,7 @@ describe("MoneyOutClient", () => {
             StatusText: "Captured",
             TotalAmount: 8800,
             Vendor: {
-                VendorNumber: "1234",
+                VendorNumber: "VEN-123",
                 Name1: "Herman's Coatings",
                 Name2: "Herman's Coating Supply Company, LLC",
                 EIN: "123456789",
@@ -1423,7 +1403,7 @@ describe("MoneyOutClient", () => {
                     default: true,
                 },
                 VendorStatus: 1,
-                VendorId: 1,
+                VendorId: 456,
                 Summary: {
                     ActiveBills: 2,
                     PendingBills: 4,
@@ -1511,7 +1491,7 @@ describe("MoneyOutClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1549,7 +1529,7 @@ describe("MoneyOutClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1583,7 +1563,7 @@ describe("MoneyOutClient", () => {
             dateCreated: "2023-12-06T20:25:31.077",
             dateModified: "2023-12-06T00:00:00",
             associatedVendor: {
-                VendorNumber: "VENDOR123456",
+                VendorNumber: "VEN-123",
                 Name1: "Smith Industries",
                 Name2: "John Smith",
                 EIN: "12-3456789",
@@ -1621,7 +1601,7 @@ describe("MoneyOutClient", () => {
                 },
                 PaymentMethod: "vcard",
                 VendorStatus: 1,
-                VendorId: 339,
+                VendorId: 456,
                 Summary: {
                     ActiveBills: 1,
                     ActiveBillsAmount: 1.1,
@@ -1661,7 +1641,7 @@ describe("MoneyOutClient", () => {
             PaypointDbaname: "Athlete Factory LLC",
             PaypointLegalname: "Athlete Factory LLC",
             PaypointEntryname: "47acde49",
-            paypointId: 12345,
+            paypointId: 3040,
         };
 
         server
@@ -1699,7 +1679,7 @@ describe("MoneyOutClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1737,7 +1717,7 @@ describe("MoneyOutClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1799,7 +1779,7 @@ describe("MoneyOutClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { transId: "transId" };
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1843,7 +1823,7 @@ describe("MoneyOutClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { transId: "transId" };
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1866,7 +1846,7 @@ describe("MoneyOutClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody =
-            '%PDF-1.7\n%����\n123 0 obj\n<</Linearized 1/L 123456/O 125/E 78901/N 1/T 123450/H [ 800 200]>>\nendobj\n\n124 0 obj\n<</DecodeParms<</Columns 4/Predictor 12>>/Filter/FlateDecode/ID[<AB123C4567EF890123456789ABCDEF01><12345678ABCDEF9876543210FEDCBA98>]/Index[123 100]/Info 122 0 R/Length 128/Prev 123450/Root 125 0 R/Size 223/Type/XRef/W[1 3 1]>>stream\nh�bbd```b``�\n"x�a7�r�H~�����A�D���2����m�f��L`v6�H����D���J[@����H8�I��)0��q� XD��`��a���P�`�`��"�A$������r���p�$�Ip������a� �';
+            "JVBERi0xLjcKJeLjz9MKMTIzIDAgb2JqCjwvTGluZWFyaXplZCAxL0wgMTIzNDU2L08gMTI1L0UgNzg5MDEvTiAxL1QgMTIzNDUwL0ggWyA4MDAgMjAwXT4+CmVuZG9iagouLi4=";
 
         server
             .mockEndpoint()
@@ -1903,7 +1883,7 @@ describe("MoneyOutClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1941,7 +1921,7 @@ describe("MoneyOutClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2027,7 +2007,7 @@ describe("MoneyOutClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2065,7 +2045,7 @@ describe("MoneyOutClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2111,15 +2091,13 @@ describe("MoneyOutClient", () => {
 
         const response = await client.moneyOut.reissueOut({
             transId: "129-219",
-            body: {
-                paymentMethod: {
-                    method: "ach",
-                    achAccount: "9876543210",
-                    achAccountType: "savings",
-                    achRouting: "021000021",
-                    achHolder: "Acme Corp",
-                    achHolderType: "business",
-                },
+            paymentMethod: {
+                method: "ach",
+                achAccount: "9876543210",
+                achAccountType: "savings",
+                achRouting: "021000021",
+                achHolder: "Acme Corp",
+                achHolderType: "business",
             },
         });
         expect(response).toEqual(rawResponseBody);
@@ -2147,10 +2125,8 @@ describe("MoneyOutClient", () => {
 
         const response = await client.moneyOut.reissueOut({
             transId: "129-219",
-            body: {
-                paymentMethod: {
-                    method: "check",
-                },
+            paymentMethod: {
+                method: "check",
             },
         });
         expect(response).toEqual(rawResponseBody);
@@ -2178,10 +2154,8 @@ describe("MoneyOutClient", () => {
 
         const response = await client.moneyOut.reissueOut({
             transId: "129-219",
-            body: {
-                paymentMethod: {
-                    method: "vcard",
-                },
+            paymentMethod: {
+                method: "vcard",
             },
         });
         expect(response).toEqual(rawResponseBody);
@@ -2205,10 +2179,8 @@ describe("MoneyOutClient", () => {
         await expect(async () => {
             return await client.moneyOut.reissueOut({
                 transId: "transId",
-                body: {
-                    paymentMethod: {
-                        method: "method",
-                    },
+                paymentMethod: {
+                    method: "method",
                 },
             });
         }).rejects.toThrow(Payabli.BadRequestError);
@@ -2218,7 +2190,7 @@ describe("MoneyOutClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { paymentMethod: { method: "method" } };
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2232,10 +2204,8 @@ describe("MoneyOutClient", () => {
         await expect(async () => {
             return await client.moneyOut.reissueOut({
                 transId: "transId",
-                body: {
-                    paymentMethod: {
-                        method: "method",
-                    },
+                paymentMethod: {
+                    method: "method",
                 },
             });
         }).rejects.toThrow(Payabli.UnauthorizedError);
@@ -2245,13 +2215,7 @@ describe("MoneyOutClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { paymentMethod: { method: "method" } };
-        const rawResponseBody = {
-            isSuccess: true,
-            pageIdentifier: null,
-            responseCode: 1,
-            responseData: { responseData: { key: "value" } },
-            responseText: "responseText",
-        };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2265,10 +2229,8 @@ describe("MoneyOutClient", () => {
         await expect(async () => {
             return await client.moneyOut.reissueOut({
                 transId: "transId",
-                body: {
-                    paymentMethod: {
-                        method: "method",
-                    },
+                paymentMethod: {
+                    method: "method",
                 },
             });
         }).rejects.toThrow(Payabli.ForbiddenError);
@@ -2292,10 +2254,8 @@ describe("MoneyOutClient", () => {
         await expect(async () => {
             return await client.moneyOut.reissueOut({
                 transId: "transId",
-                body: {
-                    paymentMethod: {
-                        method: "method",
-                    },
+                paymentMethod: {
+                    method: "method",
                 },
             });
         }).rejects.toThrow(Payabli.InternalServerError);
@@ -2305,7 +2265,7 @@ describe("MoneyOutClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { paymentMethod: { method: "method" } };
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2319,10 +2279,8 @@ describe("MoneyOutClient", () => {
         await expect(async () => {
             return await client.moneyOut.reissueOut({
                 transId: "transId",
-                body: {
-                    paymentMethod: {
-                        method: "method",
-                    },
+                paymentMethod: {
+                    method: "method",
                 },
             });
         }).rejects.toThrow(Payabli.ServiceUnavailableError);

@@ -10,7 +10,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             customerData: { customerId: 4440 },
-            entryPoint: "f743aed24a",
+            entryPoint: "8cfec329267",
             ipaddress: "255.255.255.255",
             paymentDetails: { serviceFee: 0, totalAmount: 100 },
             paymentMethod: {
@@ -28,7 +28,7 @@ describe("MoneyInClient", () => {
             isSuccess: true,
             responseData: {
                 authCode: "123456",
-                referenceId: "10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13",
+                referenceId: "129-219",
                 resultCode: 1,
                 resultText: "Authorized",
                 avsResponseText: "No address or ZIP match only",
@@ -47,25 +47,23 @@ describe("MoneyInClient", () => {
             .build();
 
         const response = await client.moneyIn.authorize({
-            body: {
-                customerData: {
-                    customerId: 4440,
-                },
-                entryPoint: "f743aed24a",
-                ipaddress: "255.255.255.255",
-                paymentDetails: {
-                    serviceFee: 0,
-                    totalAmount: 100,
-                },
-                paymentMethod: {
-                    cardcvv: "999",
-                    cardexp: "02/27",
-                    cardHolder: "John Cassian",
-                    cardnumber: "4111111111111111",
-                    cardzip: "12345",
-                    initiator: "payor",
-                    method: "card",
-                },
+            customerData: {
+                customerId: 4440,
+            },
+            entryPoint: "8cfec329267",
+            ipaddress: "255.255.255.255",
+            paymentDetails: {
+                serviceFee: 0,
+                totalAmount: 100,
+            },
+            paymentMethod: {
+                cardcvv: "999",
+                cardexp: "02/27",
+                cardHolder: "John Cassian",
+                cardnumber: "4111111111111111",
+                cardzip: "12345",
+                initiator: "payor",
+                method: "card",
             },
         });
         expect(response).toEqual(rawResponseBody);
@@ -91,15 +89,13 @@ describe("MoneyInClient", () => {
 
         await expect(async () => {
             return await client.moneyIn.authorize({
-                body: {
-                    paymentDetails: {
-                        totalAmount: 1.1,
-                    },
-                    paymentMethod: {
-                        cardexp: "alpha",
-                        cardnumber: "cardnumber",
-                        method: "card",
-                    },
+                paymentDetails: {
+                    totalAmount: 1.1,
+                },
+                paymentMethod: {
+                    cardexp: "alpha",
+                    cardnumber: "cardnumber",
+                    method: "card",
                 },
             });
         }).rejects.toThrow(Payabli.BadRequestError);
@@ -112,7 +108,7 @@ describe("MoneyInClient", () => {
             paymentDetails: { totalAmount: 1.1 },
             paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
         };
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -125,15 +121,13 @@ describe("MoneyInClient", () => {
 
         await expect(async () => {
             return await client.moneyIn.authorize({
-                body: {
-                    paymentDetails: {
-                        totalAmount: 1.1,
-                    },
-                    paymentMethod: {
-                        cardexp: "alpha",
-                        cardnumber: "cardnumber",
-                        method: "card",
-                    },
+                paymentDetails: {
+                    totalAmount: 1.1,
+                },
+                paymentMethod: {
+                    cardexp: "alpha",
+                    cardnumber: "cardnumber",
+                    method: "card",
                 },
             });
         }).rejects.toThrow(Payabli.UnauthorizedError);
@@ -159,15 +153,13 @@ describe("MoneyInClient", () => {
 
         await expect(async () => {
             return await client.moneyIn.authorize({
-                body: {
-                    paymentDetails: {
-                        totalAmount: 1.1,
-                    },
-                    paymentMethod: {
-                        cardexp: "alpha",
-                        cardnumber: "cardnumber",
-                        method: "card",
-                    },
+                paymentDetails: {
+                    totalAmount: 1.1,
+                },
+                paymentMethod: {
+                    cardexp: "alpha",
+                    cardnumber: "cardnumber",
+                    method: "card",
                 },
             });
         }).rejects.toThrow(Payabli.InternalServerError);
@@ -180,7 +172,7 @@ describe("MoneyInClient", () => {
             paymentDetails: { totalAmount: 1.1 },
             paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
         };
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -193,15 +185,13 @@ describe("MoneyInClient", () => {
 
         await expect(async () => {
             return await client.moneyIn.authorize({
-                body: {
-                    paymentDetails: {
-                        totalAmount: 1.1,
-                    },
-                    paymentMethod: {
-                        cardexp: "alpha",
-                        cardnumber: "cardnumber",
-                        method: "card",
-                    },
+                paymentDetails: {
+                    totalAmount: 1.1,
+                },
+                paymentMethod: {
+                    cardexp: "alpha",
+                    cardnumber: "cardnumber",
+                    method: "card",
                 },
             });
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
@@ -219,7 +209,7 @@ describe("MoneyInClient", () => {
             responseText: "Success",
             responseData: {
                 authCode: "123456",
-                referenceId: "10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13",
+                referenceId: "129-219",
                 resultCode: 1,
                 resultText: "SUCCESS",
                 avsResponseText: null,
@@ -264,7 +254,7 @@ describe("MoneyInClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -302,7 +292,7 @@ describe("MoneyInClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -329,7 +319,7 @@ describe("MoneyInClient", () => {
             responseText: "Success",
             responseData: {
                 authCode: "123456",
-                referenceId: "10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13",
+                referenceId: "129-219",
                 resultCode: 1,
                 resultText: "SUCCESS",
                 avsResponseText: null,
@@ -369,7 +359,7 @@ describe("MoneyInClient", () => {
             responseText: "Success",
             responseData: {
                 authCode: "123456",
-                referenceId: "10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13",
+                referenceId: "129-219",
                 resultCode: 1,
                 resultText: "SUCCESS",
                 avsResponseText: null,
@@ -409,7 +399,7 @@ describe("MoneyInClient", () => {
             responseText: "Success",
             responseData: {
                 authCode: "123456",
-                referenceId: "10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13",
+                referenceId: "129-219",
                 resultCode: 1,
                 resultText: "SUCCESS",
                 avsResponseText: null,
@@ -464,7 +454,7 @@ describe("MoneyInClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { paymentDetails: { totalAmount: 1.1 } };
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -512,7 +502,7 @@ describe("MoneyInClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { paymentDetails: { totalAmount: 1.1 } };
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -536,8 +526,8 @@ describe("MoneyInClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            customerData: { billingAddress1: "5127 Linkwood ave", customerNumber: "100" },
-            entrypoint: "my-entrypoint",
+            customerData: { billingAddress1: "5127 Linkwood ave", customerNumber: "C-90010" },
+            entrypoint: "8cfec329267",
             paymentDetails: { serviceFee: 0, totalAmount: 1 },
             paymentMethod: {
                 achAccount: "88354454",
@@ -553,7 +543,7 @@ describe("MoneyInClient", () => {
             responseData: {
                 AuthCode: "AuthCode",
                 CustomerId: 4440,
-                ReferenceId: "45-erre-324",
+                ReferenceId: "129-219",
                 ResultCode: 1,
                 ResultText: "Approved",
             },
@@ -574,9 +564,9 @@ describe("MoneyInClient", () => {
             idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA",
             customerData: {
                 billingAddress1: "5127 Linkwood ave",
-                customerNumber: "100",
+                customerNumber: "C-90010",
             },
-            entrypoint: "my-entrypoint",
+            entrypoint: "8cfec329267",
             paymentDetails: {
                 serviceFee: 0,
                 totalAmount: 1,
@@ -601,11 +591,11 @@ describe("MoneyInClient", () => {
                 billingCity: "Kingsport",
                 billingEmail: "johnnyp@email.com",
                 company: "Acme, Inc",
-                customerNumber: "100",
+                customerNumber: "C-90010",
                 firstName: "Johnny",
                 lastName: "Poulsbo",
             },
-            entrypoint: "my-entrypoint",
+            entrypoint: "8cfec329267",
             paymentDetails: { serviceFee: 0, totalAmount: 1 },
             paymentMethod: {
                 achAccount: "88354554",
@@ -621,7 +611,7 @@ describe("MoneyInClient", () => {
             responseData: {
                 AuthCode: "AuthCode",
                 CustomerId: 4440,
-                ReferenceId: "45-erre-324",
+                ReferenceId: "129-219",
                 ResultCode: 1,
                 ResultText: "Approved",
             },
@@ -645,11 +635,11 @@ describe("MoneyInClient", () => {
                 billingCity: "Kingsport",
                 billingEmail: "johnnyp@email.com",
                 company: "Acme, Inc",
-                customerNumber: "100",
+                customerNumber: "C-90010",
                 firstName: "Johnny",
                 lastName: "Poulsbo",
             },
-            entrypoint: "my-entrypoint",
+            entrypoint: "8cfec329267",
             paymentDetails: {
                 serviceFee: 0,
                 totalAmount: 1,
@@ -705,7 +695,7 @@ describe("MoneyInClient", () => {
             paymentDetails: { totalAmount: 1.1 },
             paymentMethod: { method: "ach" },
         };
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -769,7 +759,7 @@ describe("MoneyInClient", () => {
             paymentDetails: { totalAmount: 1.1 },
             paymentMethod: { method: "ach" },
         };
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -823,7 +813,7 @@ describe("MoneyInClient", () => {
                 BillingState: "CA",
                 BillingZip: "93927",
                 customerId: 4440,
-                CustomerNumber: "CUST12345",
+                CustomerNumber: "C-90010",
                 customerStatus: 1,
                 FirstName: "Elizabeta",
                 Identifiers: ['\\"firstname\\"', '\\"lastname\\"', '\\"email\\"', '\\"customId\\"'],
@@ -850,7 +840,7 @@ describe("MoneyInClient", () => {
                 invoiceDate: "2025-02-15",
                 invoiceDueDate: "2025-03-15",
                 invoiceEndDate: "2025-04-15",
-                invoiceNumber: "INV-20242401",
+                invoiceNumber: "INV-2345",
                 invoiceStatus: 1,
                 invoiceType: 1,
                 items: [
@@ -890,7 +880,7 @@ describe("MoneyInClient", () => {
             NetAmount: 995.5,
             Operation: "Sale",
             OrderId: "DUES-123",
-            OrgId: 500,
+            OrgId: 123,
             ParentOrgName: "HOAManager Pro",
             PaymentData: {
                 AccountExp: "11/29",
@@ -931,7 +921,7 @@ describe("MoneyInClient", () => {
             PayorId: 98765,
             PaypointDbaname: "Wind in the Willows",
             PaypointEntryname: "72aeon12",
-            PaypointId: 12345,
+            PaypointId: 3040,
             PaypointLegalname: "Wind in the Willows Neighborhood Association, LLC",
             PendingFeeAmount: 0,
             RefundId: 0,
@@ -1027,7 +1017,7 @@ describe("MoneyInClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1065,7 +1055,7 @@ describe("MoneyInClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1085,7 +1075,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             customerData: { customerId: 4440 },
-            entryPoint: "f743aed24a",
+            entryPoint: "8cfec329267",
             ipaddress: "255.255.255.255",
             paymentDetails: { serviceFee: 0, totalAmount: 100 },
             paymentMethod: {
@@ -1103,13 +1093,13 @@ describe("MoneyInClient", () => {
             isSuccess: true,
             responseData: {
                 authCode: "VTLMC1",
-                referenceId: "575-c490247af7ed403d86ba583507be61b0",
+                referenceId: "129-219",
                 resultCode: 1,
                 resultText: "Approved",
                 avsResponseText: "Exact match, Street address and 5-digit ZIP code both match",
                 cvvResponseText:
                     "Not processed. Indicates that the expiration date was not provided with the request, or that the card does not have a valid CVV2 code. If the expiration date was not included with the request, resubmit the request with the expiration date.",
-                customerId: 41892,
+                customerId: 4440,
             },
         };
 
@@ -1123,25 +1113,23 @@ describe("MoneyInClient", () => {
             .build();
 
         const response = await client.moneyIn.getpaid({
-            body: {
-                customerData: {
-                    customerId: 4440,
-                },
-                entryPoint: "f743aed24a",
-                ipaddress: "255.255.255.255",
-                paymentDetails: {
-                    serviceFee: 0,
-                    totalAmount: 100,
-                },
-                paymentMethod: {
-                    cardcvv: "999",
-                    cardexp: "02/27",
-                    cardHolder: "John Cassian",
-                    cardnumber: "4111111111111111",
-                    cardzip: "12345",
-                    initiator: "payor",
-                    method: "card",
-                },
+            customerData: {
+                customerId: 4440,
+            },
+            entryPoint: "8cfec329267",
+            ipaddress: "255.255.255.255",
+            paymentDetails: {
+                serviceFee: 0,
+                totalAmount: 100,
+            },
+            paymentMethod: {
+                cardcvv: "999",
+                cardexp: "02/27",
+                cardHolder: "John Cassian",
+                cardnumber: "4111111111111111",
+                cardzip: "12345",
+                initiator: "payor",
+                method: "card",
             },
         });
         expect(response).toEqual(rawResponseBody);
@@ -1152,7 +1140,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             customerData: { customerId: 4440 },
-            entryPoint: "f743aed24a",
+            entryPoint: "8cfec329267",
             ipaddress: "255.255.255.255",
             paymentDetails: { serviceFee: 0, totalAmount: 100 },
             paymentMethod: {
@@ -1167,13 +1155,13 @@ describe("MoneyInClient", () => {
             isSuccess: true,
             responseData: {
                 authCode: "AuthCode",
-                referenceId: "45-erre-324",
+                referenceId: "129-219",
                 resultCode: 1,
                 resultText: "Approved",
                 avsResponseText: "No address or ZIP match only",
                 cvvResponseText: "CVV2/CVC2 no match",
                 customerId: 4440,
-                methodReferenceId: "1ed73d3c67-4076-8f8c-9f26317762ef",
+                methodReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
             },
         };
 
@@ -1187,22 +1175,20 @@ describe("MoneyInClient", () => {
             .build();
 
         const response = await client.moneyIn.getpaid({
-            body: {
-                customerData: {
-                    customerId: 4440,
-                },
-                entryPoint: "f743aed24a",
-                ipaddress: "255.255.255.255",
-                paymentDetails: {
-                    serviceFee: 0,
-                    totalAmount: 100,
-                },
-                paymentMethod: {
-                    initiator: "payor",
-                    method: "card",
-                    storedMethodId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                    storedMethodUsageType: "unscheduled",
-                },
+            customerData: {
+                customerId: 4440,
+            },
+            entryPoint: "8cfec329267",
+            ipaddress: "255.255.255.255",
+            paymentDetails: {
+                serviceFee: 0,
+                totalAmount: 100,
+            },
+            paymentMethod: {
+                initiator: "payor",
+                method: "card",
+                storedMethodId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+                storedMethodUsageType: "unscheduled",
             },
         });
         expect(response).toEqual(rawResponseBody);
@@ -1213,7 +1199,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             customerData: { customerId: 4440 },
-            entryPoint: "f743aed24a",
+            entryPoint: "8cfec329267",
             ipaddress: "255.255.255.255",
             paymentDetails: { serviceFee: 0, totalAmount: 100 },
             paymentMethod: { device: "6c361c7d-674c-44cc-b790-382b75d1xxx", method: "cloud", saveIfSuccess: true },
@@ -1223,7 +1209,7 @@ describe("MoneyInClient", () => {
             isSuccess: true,
             responseData: {
                 authCode: "AuthCode",
-                referenceId: "45-erre-324",
+                referenceId: "129-219",
                 resultCode: 1,
                 resultText: "Approved",
                 avsResponseText: "No address or ZIP match only",
@@ -1242,21 +1228,19 @@ describe("MoneyInClient", () => {
             .build();
 
         const response = await client.moneyIn.getpaid({
-            body: {
-                customerData: {
-                    customerId: 4440,
-                },
-                entryPoint: "f743aed24a",
-                ipaddress: "255.255.255.255",
-                paymentDetails: {
-                    serviceFee: 0,
-                    totalAmount: 100,
-                },
-                paymentMethod: {
-                    device: "6c361c7d-674c-44cc-b790-382b75d1xxx",
-                    method: "cloud",
-                    saveIfSuccess: true,
-                },
+            customerData: {
+                customerId: 4440,
+            },
+            entryPoint: "8cfec329267",
+            ipaddress: "255.255.255.255",
+            paymentDetails: {
+                serviceFee: 0,
+                totalAmount: 100,
+            },
+            paymentMethod: {
+                device: "6c361c7d-674c-44cc-b790-382b75d1xxx",
+                method: "cloud",
+                saveIfSuccess: true,
             },
         });
         expect(response).toEqual(rawResponseBody);
@@ -1267,7 +1251,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             customerData: { customerId: 4440 },
-            entryPoint: "f743aed24a",
+            entryPoint: "8cfec329267",
             ipaddress: "255.255.255.255",
             paymentDetails: { serviceFee: 0, totalAmount: 100 },
             paymentMethod: {
@@ -1285,72 +1269,7 @@ describe("MoneyInClient", () => {
             isSuccess: true,
             responseData: {
                 authCode: "123456",
-                referenceId: "132-d9719a411918429cb7ca465927969900",
-                resultCode: 1,
-                resultText: "Approved",
-                avsResponseText: "",
-                cvvResponseText: "",
-                customerId: 545,
-            },
-        };
-
-        server
-            .mockEndpoint()
-            .post("/MoneyIn/getpaid")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.moneyIn.getpaid({
-            body: {
-                customerData: {
-                    customerId: 4440,
-                },
-                entryPoint: "f743aed24a",
-                ipaddress: "255.255.255.255",
-                paymentDetails: {
-                    serviceFee: 0,
-                    totalAmount: 100,
-                },
-                paymentMethod: {
-                    achAccount: "123123123",
-                    achAccountType: "Checking",
-                    achCode: "WEB",
-                    achHolder: "John Cassian",
-                    achHolderType: "personal",
-                    achRouting: "123123123",
-                    method: "ach",
-                },
-            },
-        });
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("getpaid (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            customerData: { customerId: 4440 },
-            entryPoint: "f743aed24a",
-            ipaddress: "255.255.255.255",
-            paymentDetails: { checkUniqueId: "abc123def456", serviceFee: 0, totalAmount: 125.5 },
-            paymentMethod: {
-                achAccount: "123456",
-                achAccountType: "Checking",
-                achCode: "BOC",
-                achHolder: "John Doe",
-                achRouting: "123456789",
-                method: "ach",
-            },
-        };
-        const rawResponseBody = {
-            responseText: "Success",
-            isSuccess: true,
-            responseData: {
-                authCode: "123456",
-                referenceId: "132-d9719a411918429cb7ca465927969900",
+                referenceId: "129-219",
                 resultCode: 1,
                 resultText: "Approved",
                 avsResponseText: "",
@@ -1369,25 +1288,86 @@ describe("MoneyInClient", () => {
             .build();
 
         const response = await client.moneyIn.getpaid({
-            body: {
-                customerData: {
-                    customerId: 4440,
-                },
-                entryPoint: "f743aed24a",
-                ipaddress: "255.255.255.255",
-                paymentDetails: {
-                    checkUniqueId: "abc123def456",
-                    serviceFee: 0,
-                    totalAmount: 125.5,
-                },
-                paymentMethod: {
-                    achAccount: "123456",
-                    achAccountType: "Checking",
-                    achCode: "BOC",
-                    achHolder: "John Doe",
-                    achRouting: "123456789",
-                    method: "ach",
-                },
+            customerData: {
+                customerId: 4440,
+            },
+            entryPoint: "8cfec329267",
+            ipaddress: "255.255.255.255",
+            paymentDetails: {
+                serviceFee: 0,
+                totalAmount: 100,
+            },
+            paymentMethod: {
+                achAccount: "123123123",
+                achAccountType: "Checking",
+                achCode: "WEB",
+                achHolder: "John Cassian",
+                achHolderType: "personal",
+                achRouting: "123123123",
+                method: "ach",
+            },
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("getpaid (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            customerData: { customerId: 4440 },
+            entryPoint: "8cfec329267",
+            ipaddress: "255.255.255.255",
+            paymentDetails: { checkUniqueId: "abc123def456", serviceFee: 0, totalAmount: 125.5 },
+            paymentMethod: {
+                achAccount: "123456",
+                achAccountType: "Checking",
+                achCode: "BOC",
+                achHolder: "John Doe",
+                achRouting: "123456789",
+                method: "ach",
+            },
+        };
+        const rawResponseBody = {
+            responseText: "Success",
+            isSuccess: true,
+            responseData: {
+                authCode: "123456",
+                referenceId: "129-219",
+                resultCode: 1,
+                resultText: "Approved",
+                avsResponseText: "",
+                cvvResponseText: "",
+                customerId: 4440,
+            },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/MoneyIn/getpaid")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.moneyIn.getpaid({
+            customerData: {
+                customerId: 4440,
+            },
+            entryPoint: "8cfec329267",
+            ipaddress: "255.255.255.255",
+            paymentDetails: {
+                checkUniqueId: "abc123def456",
+                serviceFee: 0,
+                totalAmount: 125.5,
+            },
+            paymentMethod: {
+                achAccount: "123456",
+                achAccountType: "Checking",
+                achCode: "BOC",
+                achHolder: "John Doe",
+                achRouting: "123456789",
+                method: "ach",
             },
         });
         expect(response).toEqual(rawResponseBody);
@@ -1405,11 +1385,11 @@ describe("MoneyInClient", () => {
                 billingPhone: "1234567890",
                 billingState: "Johnson City",
                 billingZip: "37615",
-                customerNumber: "3456-7645A",
+                customerNumber: "C-90010",
                 firstName: "John",
                 lastName: "Cassian",
             },
-            entryPoint: "f743aed24a",
+            entryPoint: "8cfec329267",
             ipaddress: "255.255.255.255",
             orderDescription: "New customer package",
             orderId: "982-102",
@@ -1431,13 +1411,13 @@ describe("MoneyInClient", () => {
             isSuccess: true,
             responseData: {
                 authCode: "AuthCode",
-                referenceId: "45-erre-324",
+                referenceId: "129-219",
                 resultCode: 1,
                 resultText: "Approved",
                 avsResponseText: "Exact match, Street address and 5-digit ZIP code both match",
                 cvvResponseText: "CVV2/CVC2 match",
                 customerId: 4440,
-                methodReferenceId: "1ed73d3c67-4076-8f8c-9f26317762ef",
+                methodReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
             },
         };
 
@@ -1451,39 +1431,37 @@ describe("MoneyInClient", () => {
             .build();
 
         const response = await client.moneyIn.getpaid({
-            body: {
-                customerData: {
-                    billingAddress1: "123 Walnut Street",
-                    billingCity: "Johnson City",
-                    billingCountry: "US",
-                    billingEmail: "john@email.com",
-                    billingPhone: "1234567890",
-                    billingState: "Johnson City",
-                    billingZip: "37615",
-                    customerNumber: "3456-7645A",
-                    firstName: "John",
-                    lastName: "Cassian",
-                },
-                entryPoint: "f743aed24a",
-                ipaddress: "255.255.255.255",
-                orderDescription: "New customer package",
-                orderId: "982-102",
-                paymentDetails: {
-                    serviceFee: 0,
-                    totalAmount: 1000,
-                },
-                paymentMethod: {
-                    cardcvv: "123",
-                    cardexp: "02/25",
-                    cardHolder: "John Cassian",
-                    cardnumber: "4111111111111111",
-                    cardzip: "12345",
-                    initiator: "payor",
-                    method: "card",
-                    saveIfSuccess: true,
-                },
-                source: "web",
+            customerData: {
+                billingAddress1: "123 Walnut Street",
+                billingCity: "Johnson City",
+                billingCountry: "US",
+                billingEmail: "john@email.com",
+                billingPhone: "1234567890",
+                billingState: "Johnson City",
+                billingZip: "37615",
+                customerNumber: "C-90010",
+                firstName: "John",
+                lastName: "Cassian",
             },
+            entryPoint: "8cfec329267",
+            ipaddress: "255.255.255.255",
+            orderDescription: "New customer package",
+            orderId: "982-102",
+            paymentDetails: {
+                serviceFee: 0,
+                totalAmount: 1000,
+            },
+            paymentMethod: {
+                cardcvv: "123",
+                cardexp: "02/25",
+                cardHolder: "John Cassian",
+                cardnumber: "4111111111111111",
+                cardzip: "12345",
+                initiator: "payor",
+                method: "card",
+                saveIfSuccess: true,
+            },
+            source: "web",
         });
         expect(response).toEqual(rawResponseBody);
     });
@@ -1493,7 +1471,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             customerData: { customerId: 4440 },
-            entryPoint: "f743aed24a",
+            entryPoint: "8cfec329267",
             ipaddress: "255.255.255.255",
             paymentDetails: { serviceFee: 0, totalAmount: 100, currency: "CAD" },
             paymentMethod: {
@@ -1511,12 +1489,12 @@ describe("MoneyInClient", () => {
             isSuccess: true,
             responseData: {
                 authCode: "VTLMC1",
-                referenceId: "575-c490247af7ed403d86ba583507be61b0",
+                referenceId: "129-219",
                 resultCode: 1,
                 resultText: "Approved",
                 avsResponseText: " ",
                 cvvResponseText: "CVV2/CVC2 match",
-                customerId: 41892,
+                customerId: 4440,
             },
         };
 
@@ -1530,26 +1508,24 @@ describe("MoneyInClient", () => {
             .build();
 
         const response = await client.moneyIn.getpaid({
-            body: {
-                customerData: {
-                    customerId: 4440,
-                },
-                entryPoint: "f743aed24a",
-                ipaddress: "255.255.255.255",
-                paymentDetails: {
-                    serviceFee: 0,
-                    totalAmount: 100,
-                    currency: "CAD",
-                },
-                paymentMethod: {
-                    cardcvv: "999",
-                    cardexp: "02/27",
-                    cardHolder: "John Cassian",
-                    cardnumber: "4111111111111111",
-                    cardzip: "12345",
-                    initiator: "payor",
-                    method: "card",
-                },
+            customerData: {
+                customerId: 4440,
+            },
+            entryPoint: "8cfec329267",
+            ipaddress: "255.255.255.255",
+            paymentDetails: {
+                serviceFee: 0,
+                totalAmount: 100,
+                currency: "CAD",
+            },
+            paymentMethod: {
+                cardcvv: "999",
+                cardexp: "02/27",
+                cardHolder: "John Cassian",
+                cardnumber: "4111111111111111",
+                cardzip: "12345",
+                initiator: "payor",
+                method: "card",
             },
         });
         expect(response).toEqual(rawResponseBody);
@@ -1560,7 +1536,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             customerData: { customerId: 4440 },
-            entryPoint: "f743aed24a",
+            entryPoint: "8cfec329267",
             ipaddress: "255.255.255.255",
             paymentDetails: { serviceFee: 0, totalAmount: 100 },
             paymentMethod: {
@@ -1578,7 +1554,7 @@ describe("MoneyInClient", () => {
             isSuccess: false,
             responseData: {
                 authCode: null,
-                referenceId: "45-erre-324",
+                referenceId: "129-219",
                 resultCode: 1,
                 resultText: "200: Transaction was declined by processor.. DECLINE",
                 avsResponseText: "No address or ZIP match only",
@@ -1597,25 +1573,23 @@ describe("MoneyInClient", () => {
             .build();
 
         const response = await client.moneyIn.getpaid({
-            body: {
-                customerData: {
-                    customerId: 4440,
-                },
-                entryPoint: "f743aed24a",
-                ipaddress: "255.255.255.255",
-                paymentDetails: {
-                    serviceFee: 0,
-                    totalAmount: 100,
-                },
-                paymentMethod: {
-                    cardcvv: "999",
-                    cardexp: "02/27",
-                    cardHolder: "John Cassian",
-                    cardnumber: "4111111111111111",
-                    cardzip: "12345",
-                    initiator: "payor",
-                    method: "card",
-                },
+            customerData: {
+                customerId: 4440,
+            },
+            entryPoint: "8cfec329267",
+            ipaddress: "255.255.255.255",
+            paymentDetails: {
+                serviceFee: 0,
+                totalAmount: 100,
+            },
+            paymentMethod: {
+                cardcvv: "999",
+                cardexp: "02/27",
+                cardHolder: "John Cassian",
+                cardnumber: "4111111111111111",
+                cardzip: "12345",
+                initiator: "payor",
+                method: "card",
             },
         });
         expect(response).toEqual(rawResponseBody);
@@ -1641,15 +1615,13 @@ describe("MoneyInClient", () => {
 
         await expect(async () => {
             return await client.moneyIn.getpaid({
-                body: {
-                    paymentDetails: {
-                        totalAmount: 1.1,
-                    },
-                    paymentMethod: {
-                        cardexp: "alpha",
-                        cardnumber: "cardnumber",
-                        method: "card",
-                    },
+                paymentDetails: {
+                    totalAmount: 1.1,
+                },
+                paymentMethod: {
+                    cardexp: "alpha",
+                    cardnumber: "cardnumber",
+                    method: "card",
                 },
             });
         }).rejects.toThrow(Payabli.BadRequestError);
@@ -1662,7 +1634,7 @@ describe("MoneyInClient", () => {
             paymentDetails: { totalAmount: 1.1 },
             paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
         };
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1675,15 +1647,13 @@ describe("MoneyInClient", () => {
 
         await expect(async () => {
             return await client.moneyIn.getpaid({
-                body: {
-                    paymentDetails: {
-                        totalAmount: 1.1,
-                    },
-                    paymentMethod: {
-                        cardexp: "alpha",
-                        cardnumber: "cardnumber",
-                        method: "card",
-                    },
+                paymentDetails: {
+                    totalAmount: 1.1,
+                },
+                paymentMethod: {
+                    cardexp: "alpha",
+                    cardnumber: "cardnumber",
+                    method: "card",
                 },
             });
         }).rejects.toThrow(Payabli.UnauthorizedError);
@@ -1709,15 +1679,13 @@ describe("MoneyInClient", () => {
 
         await expect(async () => {
             return await client.moneyIn.getpaid({
-                body: {
-                    paymentDetails: {
-                        totalAmount: 1.1,
-                    },
-                    paymentMethod: {
-                        cardexp: "alpha",
-                        cardnumber: "cardnumber",
-                        method: "card",
-                    },
+                paymentDetails: {
+                    totalAmount: 1.1,
+                },
+                paymentMethod: {
+                    cardexp: "alpha",
+                    cardnumber: "cardnumber",
+                    method: "card",
                 },
             });
         }).rejects.toThrow(Payabli.InternalServerError);
@@ -1730,7 +1698,7 @@ describe("MoneyInClient", () => {
             paymentDetails: { totalAmount: 1.1 },
             paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
         };
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1743,15 +1711,13 @@ describe("MoneyInClient", () => {
 
         await expect(async () => {
             return await client.moneyIn.getpaid({
-                body: {
-                    paymentDetails: {
-                        totalAmount: 1.1,
-                    },
-                    paymentMethod: {
-                        cardexp: "alpha",
-                        cardnumber: "cardnumber",
-                        method: "card",
-                    },
+                paymentDetails: {
+                    totalAmount: 1.1,
+                },
+                paymentMethod: {
+                    cardexp: "alpha",
+                    cardnumber: "cardnumber",
+                    method: "card",
                 },
             });
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
@@ -1768,7 +1734,7 @@ describe("MoneyInClient", () => {
             responseText: "Success",
             responseData: {
                 authCode: "A0000",
-                referenceId: "255-fb61db4171334aa79224b019f090e4c5",
+                referenceId: "129-219",
                 resultCode: 1,
                 resultText: "REVERSED",
                 cvvResponseText: null,
@@ -1800,7 +1766,7 @@ describe("MoneyInClient", () => {
             responseText: "Success",
             responseData: {
                 authCode: "A0000",
-                referenceId: "255-fb61db4171334aa79224b019f090e4c5",
+                referenceId: "129-219",
                 resultCode: 10,
                 resultText: "INITIATED",
                 cvvResponseText: null,
@@ -1844,7 +1810,7 @@ describe("MoneyInClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1882,7 +1848,7 @@ describe("MoneyInClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1906,8 +1872,8 @@ describe("MoneyInClient", () => {
             isSuccess: true,
             responseData: {
                 authCode: "A0000",
-                expectedProcessingDateTime: "2025-02-15T10:30:00Z",
-                referenceId: "10-3ffa27df-b171-44e0-b251-e95fbfc7a723",
+                expectedProcessingDateTime: "2025-02-15 10:30:00+00:00",
+                referenceId: "129-219",
                 resultCode: 10,
                 resultText: "INITIATED",
                 cvvResponseText: null,
@@ -1937,7 +1903,7 @@ describe("MoneyInClient", () => {
             isSuccess: true,
             responseData: {
                 authCode: "A0000",
-                referenceId: "10-3ffa27df-b171-44e0-b251-e95fbfc7a723",
+                referenceId: "129-219",
                 resultCode: 1,
                 resultText: "CAPTURED",
                 cvvResponseText: null,
@@ -1981,7 +1947,7 @@ describe("MoneyInClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2019,7 +1985,7 @@ describe("MoneyInClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2063,7 +2029,7 @@ describe("MoneyInClient", () => {
             isSuccess: true,
             responseData: {
                 authCode: "",
-                referenceId: "288-a1192b75-99e9-4d43-8af1-7ae9ab7da4f4",
+                referenceId: "129-219",
                 resultCode: 1,
                 resultText: "CAPTURED",
                 cvvResponseText: null,
@@ -2136,7 +2102,7 @@ describe("MoneyInClient", () => {
             isSuccess: true,
             responseData: {
                 authCode: "",
-                referenceId: "288-a1192b75-99e9-4d43-8af1-7ae9ab7da4f4",
+                referenceId: "129-219",
                 resultCode: 1,
                 resultText: "CAPTURED",
                 cvvResponseText: null,
@@ -2204,7 +2170,7 @@ describe("MoneyInClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2244,7 +2210,7 @@ describe("MoneyInClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2271,7 +2237,7 @@ describe("MoneyInClient", () => {
                 avsResponseText: null,
                 customerId: 4440,
                 cvvResponseText: null,
-                referenceId: "148-7e1528b9b7ab56d0bf3b837237b84479",
+                referenceId: "129-219",
                 resultCode: 1,
                 resultText: "transaction processed.",
             },
@@ -2313,7 +2279,7 @@ describe("MoneyInClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2351,7 +2317,7 @@ describe("MoneyInClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2409,7 +2375,7 @@ describe("MoneyInClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2447,7 +2413,7 @@ describe("MoneyInClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2466,7 +2432,7 @@ describe("MoneyInClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            entryPoint: "entry132",
+            entryPoint: "8cfec329267",
             paymentMethod: {
                 method: "card",
                 cardnumber: "4360000001000005",
@@ -2484,7 +2450,7 @@ describe("MoneyInClient", () => {
                 resultText: "Validated",
                 avsResponseText: "Zip code provided",
                 cvvResponseText: "",
-                customerId: 0,
+                customerId: 4440,
             },
             responseText: "Success",
         };
@@ -2501,7 +2467,7 @@ describe("MoneyInClient", () => {
 
         const response = await client.moneyIn.validate({
             idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA",
-            entryPoint: "entry132",
+            entryPoint: "8cfec329267",
             paymentMethod: {
                 method: "card",
                 cardnumber: "4360000001000005",
@@ -2564,7 +2530,7 @@ describe("MoneyInClient", () => {
                 cardHolder: "cardHolder",
             },
         };
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2640,7 +2606,7 @@ describe("MoneyInClient", () => {
                 cardHolder: "cardHolder",
             },
         };
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2676,7 +2642,7 @@ describe("MoneyInClient", () => {
             responseText: "Success",
             responseData: {
                 authCode: "123456",
-                referenceId: "132-9eab3dfe958146639944aebcab3e9e28",
+                referenceId: "129-219",
                 resultCode: 1,
                 resultText: "Transaction Void Successful",
             },
@@ -2717,7 +2683,7 @@ describe("MoneyInClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2755,7 +2721,7 @@ describe("MoneyInClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2775,7 +2741,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             customerData: { customerId: 4440 },
-            entryPoint: "f743aed24a",
+            entryPoint: "8cfec329267",
             ipaddress: "255.255.255.255",
             paymentDetails: { serviceFee: 0, totalAmount: 100 },
             paymentMethod: {
@@ -2878,7 +2844,7 @@ describe("MoneyInClient", () => {
                 },
                 source: "api",
                 scheduleReference: 0,
-                orgId: 17448,
+                orgId: 123,
                 refundId: 0,
                 returnedId: 0,
                 chargebackId: 0,
@@ -2998,25 +2964,23 @@ describe("MoneyInClient", () => {
             .build();
 
         const response = await client.moneyIn.getpaidv2({
-            body: {
-                customerData: {
-                    customerId: 4440,
-                },
-                entryPoint: "f743aed24a",
-                ipaddress: "255.255.255.255",
-                paymentDetails: {
-                    serviceFee: 0,
-                    totalAmount: 100,
-                },
-                paymentMethod: {
-                    cardcvv: "999",
-                    cardexp: "02/27",
-                    cardHolder: "John Cassian",
-                    cardnumber: "4111111111111111",
-                    cardzip: "12345",
-                    initiator: "payor",
-                    method: "card",
-                },
+            customerData: {
+                customerId: 4440,
+            },
+            entryPoint: "8cfec329267",
+            ipaddress: "255.255.255.255",
+            paymentDetails: {
+                serviceFee: 0,
+                totalAmount: 100,
+            },
+            paymentMethod: {
+                cardcvv: "999",
+                cardexp: "02/27",
+                cardHolder: "John Cassian",
+                cardnumber: "4111111111111111",
+                cardzip: "12345",
+                initiator: "payor",
+                method: "card",
             },
         });
         expect(response).toEqual(rawResponseBody);
@@ -3027,7 +2991,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             customerData: { customerId: 4440 },
-            entryPoint: "f743aed24a",
+            entryPoint: "8cfec329267",
             ipaddress: "255.255.255.255",
             paymentDetails: { serviceFee: 0, totalAmount: 100 },
             paymentMethod: {
@@ -3127,7 +3091,7 @@ describe("MoneyInClient", () => {
                 },
                 source: "api",
                 scheduleReference: 0,
-                orgId: 17448,
+                orgId: 123,
                 refundId: 0,
                 returnedId: 0,
                 chargebackId: 0,
@@ -3247,22 +3211,20 @@ describe("MoneyInClient", () => {
             .build();
 
         const response = await client.moneyIn.getpaidv2({
-            body: {
-                customerData: {
-                    customerId: 4440,
-                },
-                entryPoint: "f743aed24a",
-                ipaddress: "255.255.255.255",
-                paymentDetails: {
-                    serviceFee: 0,
-                    totalAmount: 100,
-                },
-                paymentMethod: {
-                    initiator: "payor",
-                    method: "card",
-                    storedMethodId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                    storedMethodUsageType: "unscheduled",
-                },
+            customerData: {
+                customerId: 4440,
+            },
+            entryPoint: "8cfec329267",
+            ipaddress: "255.255.255.255",
+            paymentDetails: {
+                serviceFee: 0,
+                totalAmount: 100,
+            },
+            paymentMethod: {
+                initiator: "payor",
+                method: "card",
+                storedMethodId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+                storedMethodUsageType: "unscheduled",
             },
         });
         expect(response).toEqual(rawResponseBody);
@@ -3273,7 +3235,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             customerData: { customerId: 4440 },
-            entryPoint: "f743aed24a",
+            entryPoint: "8cfec329267",
             ipaddress: "255.255.255.255",
             paymentDetails: { serviceFee: 0, totalAmount: 100 },
             paymentMethod: {
@@ -3338,7 +3300,7 @@ describe("MoneyInClient", () => {
                     },
                 },
                 transStatus: 1,
-                paypointId: 2145,
+                paypointId: 3040,
                 totalAmount: 105,
                 netAmount: 100,
                 feeAmount: 5,
@@ -3364,7 +3326,7 @@ describe("MoneyInClient", () => {
                 },
                 source: "api",
                 scheduleReference: 0,
-                orgId: 14267,
+                orgId: 123,
                 refundId: 0,
                 returnedId: 0,
                 chargebackId: 0,
@@ -3421,14 +3383,14 @@ describe("MoneyInClient", () => {
                     billingCountry: "US",
                     billingPhone: "+15035551234",
                     billingEmail: "sarah.martinez@example.com",
-                    customerNumber: "C-80245",
+                    customerNumber: "C-90010",
                     shippingAddress1: "456 Oak Avenue",
                     shippingAddress2: "Suite 201",
                     shippingCity: "Portland",
                     shippingState: "OR",
                     shippingZip: "97201",
                     shippingCountry: "US",
-                    customerId: 38267,
+                    customerId: 4440,
                     customerStatus: 0,
                     additionalData: null,
                 },
@@ -3484,25 +3446,23 @@ describe("MoneyInClient", () => {
             .build();
 
         const response = await client.moneyIn.getpaidv2({
-            body: {
-                customerData: {
-                    customerId: 4440,
-                },
-                entryPoint: "f743aed24a",
-                ipaddress: "255.255.255.255",
-                paymentDetails: {
-                    serviceFee: 0,
-                    totalAmount: 100,
-                },
-                paymentMethod: {
-                    achAccount: "123123123",
-                    achAccountType: "Checking",
-                    achCode: "WEB",
-                    achHolder: "John Cassian",
-                    achHolderType: "personal",
-                    achRouting: "123123123",
-                    method: "ach",
-                },
+            customerData: {
+                customerId: 4440,
+            },
+            entryPoint: "8cfec329267",
+            ipaddress: "255.255.255.255",
+            paymentDetails: {
+                serviceFee: 0,
+                totalAmount: 100,
+            },
+            paymentMethod: {
+                achAccount: "123123123",
+                achAccountType: "Checking",
+                achCode: "WEB",
+                achHolder: "John Cassian",
+                achHolderType: "personal",
+                achRouting: "123123123",
+                method: "ach",
             },
         });
         expect(response).toEqual(rawResponseBody);
@@ -3513,7 +3473,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             customerData: { customerId: 4440 },
-            entryPoint: "f743aed24a",
+            entryPoint: "8cfec329267",
             ipaddress: "255.255.255.255",
             paymentDetails: { serviceFee: 0, totalAmount: 100 },
             paymentMethod: { device: "6c361c7d-674c-44cc-b790-382b75d1xxx", method: "cloud", saveIfSuccess: true },
@@ -3608,7 +3568,7 @@ describe("MoneyInClient", () => {
                 },
                 source: "api",
                 scheduleReference: 0,
-                orgId: 17448,
+                orgId: 123,
                 refundId: 0,
                 returnedId: 0,
                 chargebackId: 0,
@@ -3728,75 +3688,25 @@ describe("MoneyInClient", () => {
             .build();
 
         const response = await client.moneyIn.getpaidv2({
-            body: {
-                customerData: {
-                    customerId: 4440,
-                },
-                entryPoint: "f743aed24a",
-                ipaddress: "255.255.255.255",
-                paymentDetails: {
-                    serviceFee: 0,
-                    totalAmount: 100,
-                },
-                paymentMethod: {
-                    device: "6c361c7d-674c-44cc-b790-382b75d1xxx",
-                    method: "cloud",
-                    saveIfSuccess: true,
-                },
+            customerData: {
+                customerId: 4440,
+            },
+            entryPoint: "8cfec329267",
+            ipaddress: "255.255.255.255",
+            paymentDetails: {
+                serviceFee: 0,
+                totalAmount: 100,
+            },
+            paymentMethod: {
+                device: "6c361c7d-674c-44cc-b790-382b75d1xxx",
+                method: "cloud",
+                saveIfSuccess: true,
             },
         });
         expect(response).toEqual(rawResponseBody);
     });
 
     test("getpaidv2 (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            paymentDetails: { totalAmount: 1.1 },
-            paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
-        };
-        const rawResponseBody = {
-            type: "type",
-            title: "title",
-            status: 1,
-            detail: "detail",
-            instance: "instance",
-            code: "code",
-            errors: {
-                errors: [
-                    { message: "message", suggestion: "suggestion" },
-                    { message: "message", suggestion: "suggestion" },
-                ],
-            },
-            token: null,
-        };
-
-        server
-            .mockEndpoint()
-            .post("/v2/MoneyIn/getpaid")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.moneyIn.getpaidv2({
-                body: {
-                    paymentDetails: {
-                        totalAmount: 1.1,
-                    },
-                    paymentMethod: {
-                        cardexp: "alpha",
-                        cardnumber: "cardnumber",
-                        method: "card",
-                    },
-                },
-            });
-        }).rejects.toThrow(Payabli.BadRequestAuthResponseErrorV2);
-    });
-
-    test("getpaidv2 (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -3810,21 +3720,51 @@ describe("MoneyInClient", () => {
             .post("/v2/MoneyIn/getpaid")
             .jsonBody(rawRequestBody)
             .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.moneyIn.getpaidv2({
+                paymentDetails: {
+                    totalAmount: 1.1,
+                },
+                paymentMethod: {
+                    cardexp: "alpha",
+                    cardnumber: "cardnumber",
+                    method: "card",
+                },
+            });
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("getpaidv2 (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            paymentDetails: { totalAmount: 1.1 },
+            paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
+        };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .post("/v2/MoneyIn/getpaid")
+            .jsonBody(rawRequestBody)
+            .respondWith()
             .statusCode(401)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
             return await client.moneyIn.getpaidv2({
-                body: {
-                    paymentDetails: {
-                        totalAmount: 1.1,
-                    },
-                    paymentMethod: {
-                        cardexp: "alpha",
-                        cardnumber: "cardnumber",
-                        method: "card",
-                    },
+                paymentDetails: {
+                    totalAmount: 1.1,
+                },
+                paymentMethod: {
+                    cardexp: "alpha",
+                    cardnumber: "cardnumber",
+                    method: "card",
                 },
             });
         }).rejects.toThrow(Payabli.UnauthorizedError);
@@ -4013,18 +3953,16 @@ describe("MoneyInClient", () => {
 
         await expect(async () => {
             return await client.moneyIn.getpaidv2({
-                body: {
-                    paymentDetails: {
-                        totalAmount: 1.1,
-                    },
-                    paymentMethod: {
-                        cardexp: "alpha",
-                        cardnumber: "cardnumber",
-                        method: "card",
-                    },
+                paymentDetails: {
+                    totalAmount: 1.1,
+                },
+                paymentMethod: {
+                    cardexp: "alpha",
+                    cardnumber: "cardnumber",
+                    method: "card",
                 },
             });
-        }).rejects.toThrow(Payabli.DeclinedAuthResponseErrorV2);
+        }).rejects.toThrow(Payabli.PaymentRequiredError);
     });
 
     test("getpaidv2 (8)", async () => {
@@ -4034,7 +3972,7 @@ describe("MoneyInClient", () => {
             paymentDetails: { totalAmount: 1.1 },
             paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
         };
-        const rawResponseBody = { title: "title", status: 1, detail: "detail", instance: "instance" };
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -4047,18 +3985,16 @@ describe("MoneyInClient", () => {
 
         await expect(async () => {
             return await client.moneyIn.getpaidv2({
-                body: {
-                    paymentDetails: {
-                        totalAmount: 1.1,
-                    },
-                    paymentMethod: {
-                        cardexp: "alpha",
-                        cardnumber: "cardnumber",
-                        method: "card",
-                    },
+                paymentDetails: {
+                    totalAmount: 1.1,
+                },
+                paymentMethod: {
+                    cardexp: "alpha",
+                    cardnumber: "cardnumber",
+                    method: "card",
                 },
             });
-        }).rejects.toThrow(Payabli.InternalServerResponseErrorV2);
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
 
     test("authorizev2 (1)", async () => {
@@ -4066,7 +4002,7 @@ describe("MoneyInClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             customerData: { customerId: 4440 },
-            entryPoint: "f743aed24a",
+            entryPoint: "8cfec329267",
             ipaddress: "255.255.255.255",
             paymentDetails: { serviceFee: 0, totalAmount: 100 },
             paymentMethod: {
@@ -4169,7 +4105,7 @@ describe("MoneyInClient", () => {
                 },
                 source: "api",
                 scheduleReference: 0,
-                orgId: 17448,
+                orgId: 123,
                 refundId: 0,
                 returnedId: 0,
                 chargebackId: 0,
@@ -4289,79 +4225,29 @@ describe("MoneyInClient", () => {
             .build();
 
         const response = await client.moneyIn.authorizev2({
-            body: {
-                customerData: {
-                    customerId: 4440,
-                },
-                entryPoint: "f743aed24a",
-                ipaddress: "255.255.255.255",
-                paymentDetails: {
-                    serviceFee: 0,
-                    totalAmount: 100,
-                },
-                paymentMethod: {
-                    cardcvv: "999",
-                    cardexp: "02/27",
-                    cardHolder: "John Cassian",
-                    cardnumber: "4111111111111111",
-                    cardzip: "12345",
-                    initiator: "payor",
-                    method: "card",
-                },
+            customerData: {
+                customerId: 4440,
+            },
+            entryPoint: "8cfec329267",
+            ipaddress: "255.255.255.255",
+            paymentDetails: {
+                serviceFee: 0,
+                totalAmount: 100,
+            },
+            paymentMethod: {
+                cardcvv: "999",
+                cardexp: "02/27",
+                cardHolder: "John Cassian",
+                cardnumber: "4111111111111111",
+                cardzip: "12345",
+                initiator: "payor",
+                method: "card",
             },
         });
         expect(response).toEqual(rawResponseBody);
     });
 
     test("authorizev2 (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            paymentDetails: { totalAmount: 1.1 },
-            paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
-        };
-        const rawResponseBody = {
-            type: "type",
-            title: "title",
-            status: 1,
-            detail: "detail",
-            instance: "instance",
-            code: "code",
-            errors: {
-                errors: [
-                    { message: "message", suggestion: "suggestion" },
-                    { message: "message", suggestion: "suggestion" },
-                ],
-            },
-            token: null,
-        };
-
-        server
-            .mockEndpoint()
-            .post("/v2/MoneyIn/authorize")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.moneyIn.authorizev2({
-                body: {
-                    paymentDetails: {
-                        totalAmount: 1.1,
-                    },
-                    paymentMethod: {
-                        cardexp: "alpha",
-                        cardnumber: "cardnumber",
-                        method: "card",
-                    },
-                },
-            });
-        }).rejects.toThrow(Payabli.BadRequestAuthResponseErrorV2);
-    });
-
-    test("authorizev2 (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -4375,21 +4261,51 @@ describe("MoneyInClient", () => {
             .post("/v2/MoneyIn/authorize")
             .jsonBody(rawRequestBody)
             .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.moneyIn.authorizev2({
+                paymentDetails: {
+                    totalAmount: 1.1,
+                },
+                paymentMethod: {
+                    cardexp: "alpha",
+                    cardnumber: "cardnumber",
+                    method: "card",
+                },
+            });
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("authorizev2 (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            paymentDetails: { totalAmount: 1.1 },
+            paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
+        };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .post("/v2/MoneyIn/authorize")
+            .jsonBody(rawRequestBody)
+            .respondWith()
             .statusCode(401)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
             return await client.moneyIn.authorizev2({
-                body: {
-                    paymentDetails: {
-                        totalAmount: 1.1,
-                    },
-                    paymentMethod: {
-                        cardexp: "alpha",
-                        cardnumber: "cardnumber",
-                        method: "card",
-                    },
+                paymentDetails: {
+                    totalAmount: 1.1,
+                },
+                paymentMethod: {
+                    cardexp: "alpha",
+                    cardnumber: "cardnumber",
+                    method: "card",
                 },
             });
         }).rejects.toThrow(Payabli.UnauthorizedError);
@@ -4578,18 +4494,16 @@ describe("MoneyInClient", () => {
 
         await expect(async () => {
             return await client.moneyIn.authorizev2({
-                body: {
-                    paymentDetails: {
-                        totalAmount: 1.1,
-                    },
-                    paymentMethod: {
-                        cardexp: "alpha",
-                        cardnumber: "cardnumber",
-                        method: "card",
-                    },
+                paymentDetails: {
+                    totalAmount: 1.1,
+                },
+                paymentMethod: {
+                    cardexp: "alpha",
+                    cardnumber: "cardnumber",
+                    method: "card",
                 },
             });
-        }).rejects.toThrow(Payabli.DeclinedAuthResponseErrorV2);
+        }).rejects.toThrow(Payabli.PaymentRequiredError);
     });
 
     test("authorizev2 (5)", async () => {
@@ -4599,7 +4513,7 @@ describe("MoneyInClient", () => {
             paymentDetails: { totalAmount: 1.1 },
             paymentMethod: { cardexp: "alpha", cardnumber: "cardnumber", method: "card" },
         };
-        const rawResponseBody = { title: "title", status: 1, detail: "detail", instance: "instance" };
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -4612,18 +4526,16 @@ describe("MoneyInClient", () => {
 
         await expect(async () => {
             return await client.moneyIn.authorizev2({
-                body: {
-                    paymentDetails: {
-                        totalAmount: 1.1,
-                    },
-                    paymentMethod: {
-                        cardexp: "alpha",
-                        cardnumber: "cardnumber",
-                        method: "card",
-                    },
+                paymentDetails: {
+                    totalAmount: 1.1,
+                },
+                paymentMethod: {
+                    cardexp: "alpha",
+                    cardnumber: "cardnumber",
+                    method: "card",
                 },
             });
-        }).rejects.toThrow(Payabli.InternalServerResponseErrorV2);
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
 
     test("capturev2 (1)", async () => {
@@ -4720,7 +4632,7 @@ describe("MoneyInClient", () => {
                 },
                 source: "api",
                 scheduleReference: 0,
-                orgId: 17448,
+                orgId: 123,
                 refundId: 0,
                 returnedId: 0,
                 chargebackId: 0,
@@ -4942,7 +4854,7 @@ describe("MoneyInClient", () => {
                 },
                 source: "api",
                 scheduleReference: 0,
-                orgId: 17448,
+                orgId: 123,
                 refundId: 0,
                 returnedId: 0,
                 chargebackId: 0,
@@ -5074,21 +4986,7 @@ describe("MoneyInClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { paymentDetails: { totalAmount: 1.1 } };
-        const rawResponseBody = {
-            type: "type",
-            title: "title",
-            status: 1,
-            detail: "detail",
-            instance: "instance",
-            code: "code",
-            errors: {
-                errors: [
-                    { message: "message", suggestion: "suggestion" },
-                    { message: "message", suggestion: "suggestion" },
-                ],
-            },
-            token: null,
-        };
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -5105,14 +5003,14 @@ describe("MoneyInClient", () => {
                     totalAmount: 1.1,
                 },
             });
-        }).rejects.toThrow(Payabli.BadRequestCaptureResponseErrorV2);
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
 
     test("capturev2 (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { paymentDetails: { totalAmount: 1.1 } };
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -5316,14 +5214,14 @@ describe("MoneyInClient", () => {
                     totalAmount: 1.1,
                 },
             });
-        }).rejects.toThrow(Payabli.DeclinedCaptureResponseErrorV2);
+        }).rejects.toThrow(Payabli.PaymentRequiredError);
     });
 
     test("capturev2 (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { paymentDetails: { totalAmount: 1.1 } };
-        const rawResponseBody = { title: "title", status: 1, detail: "detail", instance: "instance" };
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -5340,7 +5238,7 @@ describe("MoneyInClient", () => {
                     totalAmount: 1.1,
                 },
             });
-        }).rejects.toThrow(Payabli.InternalServerResponseErrorV2);
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
 
     test("refundv2 (1)", async () => {
@@ -5437,7 +5335,7 @@ describe("MoneyInClient", () => {
                 },
                 source: "api",
                 scheduleReference: 0,
-                orgId: 17448,
+                orgId: 123,
                 refundId: 0,
                 returnedId: 0,
                 chargebackId: 0,
@@ -5563,21 +5461,7 @@ describe("MoneyInClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = {
-            type: "type",
-            title: "title",
-            status: 1,
-            detail: "detail",
-            instance: "instance",
-            code: "code",
-            errors: {
-                errors: [
-                    { message: "message", suggestion: "suggestion" },
-                    { message: "message", suggestion: "suggestion" },
-                ],
-            },
-            token: null,
-        };
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -5589,14 +5473,14 @@ describe("MoneyInClient", () => {
 
         await expect(async () => {
             return await client.moneyIn.refundv2("transId");
-        }).rejects.toThrow(Payabli.BadRequestRefundResponseErrorV2);
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
 
     test("refundv2 (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -5790,14 +5674,14 @@ describe("MoneyInClient", () => {
 
         await expect(async () => {
             return await client.moneyIn.refundv2("transId");
-        }).rejects.toThrow(Payabli.DeclinedRefundResponseErrorV2);
+        }).rejects.toThrow(Payabli.PaymentRequiredError);
     });
 
     test("refundv2 (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { title: "title", status: 1, detail: "detail", instance: "instance" };
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -5809,7 +5693,7 @@ describe("MoneyInClient", () => {
 
         await expect(async () => {
             return await client.moneyIn.refundv2("transId");
-        }).rejects.toThrow(Payabli.InternalServerResponseErrorV2);
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
 
     test("refundv2amount (1)", async () => {
@@ -5906,7 +5790,7 @@ describe("MoneyInClient", () => {
                 },
                 source: "api",
                 scheduleReference: 0,
-                orgId: 17448,
+                orgId: 123,
                 refundId: 0,
                 returnedId: 0,
                 chargebackId: 0,
@@ -6122,7 +6006,7 @@ describe("MoneyInClient", () => {
                 },
                 source: "api",
                 scheduleReference: 0,
-                orgId: 17448,
+                orgId: 123,
                 refundId: 0,
                 returnedId: 0,
                 chargebackId: 0,
@@ -6248,21 +6132,7 @@ describe("MoneyInClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = {
-            type: "type",
-            title: "title",
-            status: 1,
-            detail: "detail",
-            instance: "instance",
-            code: "code",
-            errors: {
-                errors: [
-                    { message: "message", suggestion: "suggestion" },
-                    { message: "message", suggestion: "suggestion" },
-                ],
-            },
-            token: null,
-        };
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -6274,14 +6144,14 @@ describe("MoneyInClient", () => {
 
         await expect(async () => {
             return await client.moneyIn.refundv2Amount("transId", 1.1);
-        }).rejects.toThrow(Payabli.BadRequestRefundResponseErrorV2);
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
 
     test("refundv2amount (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -6475,14 +6345,14 @@ describe("MoneyInClient", () => {
 
         await expect(async () => {
             return await client.moneyIn.refundv2Amount("transId", 1.1);
-        }).rejects.toThrow(Payabli.DeclinedRefundResponseErrorV2);
+        }).rejects.toThrow(Payabli.PaymentRequiredError);
     });
 
     test("refundv2amount (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { title: "title", status: 1, detail: "detail", instance: "instance" };
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -6494,7 +6364,7 @@ describe("MoneyInClient", () => {
 
         await expect(async () => {
             return await client.moneyIn.refundv2Amount("transId", 1.1);
-        }).rejects.toThrow(Payabli.InternalServerResponseErrorV2);
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
 
     test("voidv2 (1)", async () => {
@@ -6591,7 +6461,7 @@ describe("MoneyInClient", () => {
                 },
                 source: "api",
                 scheduleReference: 0,
-                orgId: 17448,
+                orgId: 123,
                 refundId: 0,
                 returnedId: 0,
                 chargebackId: 0,
@@ -6717,21 +6587,7 @@ describe("MoneyInClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = {
-            type: "type",
-            title: "title",
-            status: 1,
-            detail: "detail",
-            instance: "instance",
-            code: "code",
-            errors: {
-                errors: [
-                    { message: "message", suggestion: "suggestion" },
-                    { message: "message", suggestion: "suggestion" },
-                ],
-            },
-            token: null,
-        };
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -6743,14 +6599,14 @@ describe("MoneyInClient", () => {
 
         await expect(async () => {
             return await client.moneyIn.voidv2("transId");
-        }).rejects.toThrow(Payabli.BadRequestVoidResponseErrorV2);
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
 
     test("voidv2 (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -6944,14 +6800,14 @@ describe("MoneyInClient", () => {
 
         await expect(async () => {
             return await client.moneyIn.voidv2("transId");
-        }).rejects.toThrow(Payabli.DeclinedVoidResponseErrorV2);
+        }).rejects.toThrow(Payabli.PaymentRequiredError);
     });
 
     test("voidv2 (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { title: "title", status: 1, detail: "detail", instance: "instance" };
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -6963,6 +6819,6 @@ describe("MoneyInClient", () => {
 
         await expect(async () => {
             return await client.moneyIn.voidv2("transId");
-        }).rejects.toThrow(Payabli.InternalServerResponseErrorV2);
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
 });

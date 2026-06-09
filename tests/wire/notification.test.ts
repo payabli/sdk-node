@@ -155,7 +155,7 @@ describe("NotificationClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { frequency: "one-time", method: "email", ownerType: 1, target: "target" };
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -205,7 +205,7 @@ describe("NotificationClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { frequency: "one-time", method: "email", ownerType: 1, target: "target" };
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -223,100 +223,6 @@ describe("NotificationClient", () => {
                 ownerType: 1,
                 target: "target",
             });
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
-    });
-
-    test("DeleteNotification (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 1717, responseText: "Success" };
-
-        server
-            .mockEndpoint()
-            .delete("/Notification/1717")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.notification.deleteNotification("1717");
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("DeleteNotification (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .delete("/Notification/nId")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.notification.deleteNotification("nId");
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("DeleteNotification (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .delete("/Notification/nId")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.notification.deleteNotification("nId");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("DeleteNotification (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .delete("/Notification/nId")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.notification.deleteNotification("nId");
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("DeleteNotification (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { responseText: "responseText" };
-
-        server
-            .mockEndpoint()
-            .delete("/Notification/nId")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.notification.deleteNotification("nId");
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
@@ -361,7 +267,7 @@ describe("NotificationClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server.mockEndpoint().get("/Notification/nId").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
@@ -387,7 +293,7 @@ describe("NotificationClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server.mockEndpoint().get("/Notification/nId").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
@@ -462,7 +368,7 @@ describe("NotificationClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { frequency: "one-time", method: "email", ownerType: 1, target: "target" };
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -512,7 +418,7 @@ describe("NotificationClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { frequency: "one-time", method: "email", ownerType: 1, target: "target" };
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -530,6 +436,100 @@ describe("NotificationClient", () => {
                 ownerType: 1,
                 target: "target",
             });
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("DeleteNotification (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 1717, responseText: "Success" };
+
+        server
+            .mockEndpoint()
+            .delete("/Notification/1717")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.notification.deleteNotification("1717");
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("DeleteNotification (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .delete("/Notification/nId")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.notification.deleteNotification("nId");
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("DeleteNotification (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .delete("/Notification/nId")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.notification.deleteNotification("nId");
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("DeleteNotification (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .delete("/Notification/nId")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.notification.deleteNotification("nId");
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("DeleteNotification (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .delete("/Notification/nId")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.notification.deleteNotification("nId");
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 

@@ -6,7 +6,7 @@ import type * as Payabli from "../../../../index.js";
  * @example
  *     {
  *         email: "admin@email.com",
- *         referenceId: "n6UCd1f1ygG7"
+ *         referenceId: "129-219"
  *     }
  */
 export interface RequestAppByAuth {

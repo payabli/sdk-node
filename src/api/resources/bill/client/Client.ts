@@ -16,10 +16,13 @@ export declare namespace BillClient {
     export interface RequestOptions extends BaseRequestOptions {}
 }
 
+/**
+ * The Bill service provides complete accounts payable management for tracking and paying vendor bills. It enables creation, modification, and deletion of bills with support for both one-time and scheduled recurring bills. The service handles bill attachments and document management, approval workflows with multi-user approval chains, and bill status tracking throughout the payment lifecycle. Bills can be linked to transactions, contain detailed line items with tax and discount calculations, and support various payment terms. The service integrates with vendor management and can automatically create bills from payout transactions or manage them independently.
+ */
 export class BillClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<BillClient.Options>;
 
-    constructor(options: BillClient.Options = {}) {
+    constructor(options: BillClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -37,41 +40,39 @@ export class BillClient {
      *
      * @example
      *     await client.bill.addBill("8cfec329267", {
-     *         body: {
-     *             billNumber: "ABC-123",
-     *             netAmount: 3762.87,
-     *             billDate: "2024-07-01",
-     *             dueDate: "2024-07-01",
-     *             comments: "Deposit for materials",
-     *             billItems: [{
-     *                     itemProductCode: "M-DEPOSIT",
-     *                     itemProductName: "Materials deposit",
-     *                     itemDescription: "Deposit for materials",
-     *                     itemCommodityCode: "010",
-     *                     itemUnitOfMeasure: "SqFt",
-     *                     itemCost: 5,
-     *                     itemQty: 1,
-     *                     itemMode: 0,
-     *                     itemCategories: ["deposits"],
-     *                     itemTotalAmount: 123,
-     *                     itemTaxAmount: 7,
-     *                     itemTaxRate: 0.075
-     *                 }],
-     *             mode: 0,
-     *             accountingField1: "MyInternalId",
-     *             vendor: {
-     *                 vendorNumber: "1234-A"
-     *             },
-     *             endDate: "2024-07-01",
-     *             frequency: "monthly",
-     *             terms: "NET30",
-     *             status: -99,
-     *             attachments: [{
-     *                     ftype: "pdf",
-     *                     filename: "my-doc.pdf",
-     *                     furl: "https://mysite.com/my-doc.pdf"
-     *                 }]
-     *         }
+     *         billNumber: "ABC-123",
+     *         netAmount: 3762.87,
+     *         billDate: "2024-07-01",
+     *         dueDate: "2024-07-01",
+     *         comments: "Deposit for materials",
+     *         billItems: [{
+     *                 itemProductCode: "M-DEPOSIT",
+     *                 itemProductName: "Materials deposit",
+     *                 itemDescription: "Deposit for materials",
+     *                 itemCommodityCode: "010",
+     *                 itemUnitOfMeasure: "SqFt",
+     *                 itemCost: 5,
+     *                 itemQty: 1,
+     *                 itemMode: 0,
+     *                 itemCategories: ["deposits"],
+     *                 itemTotalAmount: 123,
+     *                 itemTaxAmount: 7,
+     *                 itemTaxRate: 0.075
+     *             }],
+     *         mode: 0,
+     *         accountingField1: "MyInternalId",
+     *         vendor: {
+     *             vendorNumber: "VEN-123"
+     *         },
+     *         endDate: "2024-07-01",
+     *         frequency: "monthly",
+     *         terms: "NET30",
+     *         status: 1,
+     *         attachments: [{
+     *                 ftype: "pdf",
+     *                 filename: "my-doc.pdf",
+     *                 furl: "https://mysite.com/my-doc.pdf"
+     *             }]
      *     })
      */
     public addBill(
@@ -87,7 +88,7 @@ export class BillClient {
         request: Payabli.AddBillRequest,
         requestOptions?: BillClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.BillResponse>> {
-        const { idempotencyKey, body: _body } = request;
+        const { idempotencyKey, ..._body } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -123,12 +124,15 @@ export class BillClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -144,119 +148,7 @@ export class BillClient {
     }
 
     /**
-     * Delete a file attached to a bill.
-     *
-     * @param {number} idBill - Payabli ID for the bill. Get this ID by querying `/api/Query/bills/` for the entrypoint or the organization.
-     * @param {string} filename - The filename in Payabli. Filename is `zipName` in response to a
-     *                            request to `/api/Invoice/{idInvoice}`. Here, the filename is
-     *                            `0_Bill.pdf`.
-     *
-     *                            ```json
-     *                              "DocumentsRef": {
-     *                                "zipfile": "inva_269.zip",
-     *                                "filelist": [
-     *                                  {
-     *                                    "originalName": "Bill.pdf",
-     *                                    "zipName": "0_Bill.pdf",
-     *                                    "descriptor": null
-     *                                  }
-     *                                ]
-     *                              }
-     *                              ```
-     * @param {Payabli.DeleteAttachedFromBillRequest} request
-     * @param {BillClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.InternalServerError}
-     * @throws {@link Payabli.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.bill.deleteAttachedFromBill(285, "0_Bill.pdf")
-     */
-    public deleteAttachedFromBill(
-        idBill: number,
-        filename: string,
-        request: Payabli.DeleteAttachedFromBillRequest = {},
-        requestOptions?: BillClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.BillResponse> {
-        return core.HttpResponsePromise.fromPromise(
-            this.__deleteAttachedFromBill(idBill, filename, request, requestOptions),
-        );
-    }
-
-    private async __deleteAttachedFromBill(
-        idBill: number,
-        filename: string,
-        request: Payabli.DeleteAttachedFromBillRequest = {},
-        requestOptions?: BillClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.BillResponse>> {
-        const { returnObject } = request;
-        const _queryParams: Record<string, unknown> = {
-            returnObject,
-        };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await core.fetcher({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.PayabliEnvironment.Sandbox,
-                `Bill/attachedFileFromBill/${core.url.encodePathParam(idBill)}/${core.url.encodePathParam(filename)}`,
-            ),
-            method: "DELETE",
-            headers: _headers,
-            queryString: core.url
-                .queryBuilder()
-                .addMany(_queryParams)
-                .mergeAdditional(requestOptions?.queryParams)
-                .build(),
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return { data: _response.body as Payabli.BillResponse, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
-                case 500:
-                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
-                case 503:
-                    throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.PayabliError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(
-            _response.error,
-            _response.rawResponse,
-            "DELETE",
-            "/Bill/attachedFileFromBill/{idBill}/{filename}",
-        );
-    }
-
-    /**
-     * Deletes a bill by ID.
+     * Retrieves a bill by ID from an entrypoint.
      *
      * @param {number} idBill - Payabli ID for the bill. Get this ID by querying `/api/Query/bills/` for the entrypoint or the organization.
      * @param {BillClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -267,19 +159,19 @@ export class BillClient {
      * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
-     *     await client.bill.deleteBill(285)
+     *     await client.bill.getBill(285)
      */
-    public deleteBill(
+    public getBill(
         idBill: number,
         requestOptions?: BillClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.BillResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__deleteBill(idBill, requestOptions));
+    ): core.HttpResponsePromise<Payabli.GetBillResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getBill(idBill, requestOptions));
     }
 
-    private async __deleteBill(
+    private async __getBill(
         idBill: number,
         requestOptions?: BillClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.BillResponse>> {
+    ): Promise<core.WithRawResponse<Payabli.GetBillResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -293,7 +185,7 @@ export class BillClient {
                     environments.PayabliEnvironment.Sandbox,
                 `Bill/${core.url.encodePathParam(idBill)}`,
             ),
-            method: "DELETE",
+            method: "GET",
             headers: _headers,
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
@@ -303,7 +195,7 @@ export class BillClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Payabli.BillResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as Payabli.GetBillResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -311,12 +203,15 @@ export class BillClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -328,7 +223,7 @@ export class BillClient {
             }
         }
 
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/Bill/{idBill}");
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/Bill/{idBill}");
     }
 
     /**
@@ -396,12 +291,15 @@ export class BillClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -417,20 +315,91 @@ export class BillClient {
     }
 
     /**
+     * Deletes a bill by ID.
+     *
+     * @param {number} idBill - Payabli ID for the bill. Get this ID by querying `/api/Query/bills/` for the entrypoint or the organization.
+     * @param {BillClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.bill.deleteBill(285)
+     */
+    public deleteBill(
+        idBill: number,
+        requestOptions?: BillClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.BillResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__deleteBill(idBill, requestOptions));
+    }
+
+    private async __deleteBill(
+        idBill: number,
+        requestOptions?: BillClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.BillResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `Bill/${core.url.encodePathParam(idBill)}`,
+            ),
+            method: "DELETE",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.BillResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/Bill/{idBill}");
+    }
+
+    /**
      * Retrieves a file attached to a bill, either as a binary file or as a Base64-encoded string.
      *
      * @param {number} idBill - Payabli ID for the bill. Get this ID by querying `/api/Query/bills/` for the entrypoint or the organization.
-     * @param {string} filename - The filename in Payabli. Filename is `zipName` in response to a request to `/api/Invoice/{idInvoice}`. Here, the filename is `0_Bill.pdf``.
-     *                            "DocumentsRef": {
-     *                              "zipfile": "inva_269.zip",
-     *                              "filelist": [
-     *                                {
-     *                                  "originalName": "Bill.pdf",
-     *                                  "zipName": "0_Bill.pdf",
-     *                                  "descriptor": null
-     *                                }
-     *                              ]
-     *                            }
+     * @param {string} filename - The filename in Payabli. Get this from the `zipName` field
+     *                            in the `DocumentsRef.filelist` array returned by
+     *                            `/api/Bill/{idBill}`. Example: `0_Bill.pdf`.
      * @param {Payabli.GetAttachedFromBillRequest} request
      * @param {BillClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -500,12 +469,15 @@ export class BillClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -526,9 +498,13 @@ export class BillClient {
     }
 
     /**
-     * Retrieves a bill by ID from an entrypoint.
+     * Delete a file attached to a bill.
      *
      * @param {number} idBill - Payabli ID for the bill. Get this ID by querying `/api/Query/bills/` for the entrypoint or the organization.
+     * @param {string} filename - The filename in Payabli. Get this from the `zipName` field
+     *                            in the `DocumentsRef.filelist` array returned by
+     *                            `/api/Bill/{idBill}`. Example: `0_Bill.pdf`.
+     * @param {Payabli.DeleteAttachedFromBillRequest} request
      * @param {BillClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Payabli.BadRequestError}
@@ -537,19 +513,29 @@ export class BillClient {
      * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
-     *     await client.bill.getBill(285)
+     *     await client.bill.deleteAttachedFromBill(285, "0_Bill.pdf")
      */
-    public getBill(
+    public deleteAttachedFromBill(
         idBill: number,
+        filename: string,
+        request: Payabli.DeleteAttachedFromBillRequest = {},
         requestOptions?: BillClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.GetBillResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__getBill(idBill, requestOptions));
+    ): core.HttpResponsePromise<Payabli.BillResponse> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__deleteAttachedFromBill(idBill, filename, request, requestOptions),
+        );
     }
 
-    private async __getBill(
+    private async __deleteAttachedFromBill(
         idBill: number,
+        filename: string,
+        request: Payabli.DeleteAttachedFromBillRequest = {},
         requestOptions?: BillClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.GetBillResponse>> {
+    ): Promise<core.WithRawResponse<Payabli.BillResponse>> {
+        const { returnObject } = request;
+        const _queryParams: Record<string, unknown> = {
+            returnObject,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -561,11 +547,15 @@ export class BillClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.PayabliEnvironment.Sandbox,
-                `Bill/${core.url.encodePathParam(idBill)}`,
+                `Bill/attachedFileFromBill/${core.url.encodePathParam(idBill)}/${core.url.encodePathParam(filename)}`,
             ),
-            method: "GET",
+            method: "DELETE",
             headers: _headers,
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -573,7 +563,7 @@ export class BillClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Payabli.GetBillResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as Payabli.BillResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -581,12 +571,15 @@ export class BillClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -598,7 +591,292 @@ export class BillClient {
             }
         }
 
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/Bill/{idBill}");
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "DELETE",
+            "/Bill/attachedFileFromBill/{idBill}/{filename}",
+        );
+    }
+
+    /**
+     * Send a bill to a user or list of users to approve.
+     *
+     * @param {number} idBill - Payabli ID for the bill. Get this ID by querying `/api/Query/bills/` for the entrypoint or the organization.
+     * @param {Payabli.SendToApprovalBillRequest} request
+     * @param {BillClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.bill.sendToApprovalBill(285, {
+     *         idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA",
+     *         body: ["approver@example.com"]
+     *     })
+     */
+    public sendToApprovalBill(
+        idBill: number,
+        request: Payabli.SendToApprovalBillRequest,
+        requestOptions?: BillClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.BillResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__sendToApprovalBill(idBill, request, requestOptions));
+    }
+
+    private async __sendToApprovalBill(
+        idBill: number,
+        request: Payabli.SendToApprovalBillRequest,
+        requestOptions?: BillClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.BillResponse>> {
+        const { autocreateUser, idempotencyKey, ..._body } = request;
+        const _queryParams: Record<string, unknown> = {
+            autocreateUser,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey }),
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `Bill/approval/${core.url.encodePathParam(idBill)}`,
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
+            requestType: "json",
+            body: _body,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.BillResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/Bill/approval/{idBill}");
+    }
+
+    /**
+     * Modify the list of users the bill is sent to for approval.
+     *
+     * @param {number} idBill - Payabli ID for the bill. Get this ID by querying `/api/Query/bills/` for the entrypoint or the organization.
+     * @param {string[]} request
+     * @param {BillClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.bill.modifyApprovalBill(285, ["approver1@example.com", "approver2@example.com"])
+     */
+    public modifyApprovalBill(
+        idBill: number,
+        request: string[],
+        requestOptions?: BillClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.ModifyApprovalBillResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__modifyApprovalBill(idBill, request, requestOptions));
+    }
+
+    private async __modifyApprovalBill(
+        idBill: number,
+        request: string[],
+        requestOptions?: BillClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.ModifyApprovalBillResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `Bill/approval/${core.url.encodePathParam(idBill)}`,
+            ),
+            method: "PUT",
+            headers: _headers,
+            contentType: "application/json",
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            requestType: "json",
+            body: request,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.ModifyApprovalBillResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/Bill/approval/{idBill}");
+    }
+
+    /**
+     * Approve or disapprove a bill by ID.
+     *
+     * @param {number} idBill - Payabli ID for the bill. Get this ID by querying `/api/Query/bills/` for the entrypoint or the organization.
+     * @param {string} approved - String representing the approved status. Accepted values: 'true' or 'false'.
+     * @param {Payabli.SetApprovedBillRequest} request
+     * @param {BillClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.bill.setApprovedBill(285, "true")
+     */
+    public setApprovedBill(
+        idBill: number,
+        approved: string,
+        request: Payabli.SetApprovedBillRequest = {},
+        requestOptions?: BillClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.SetApprovedBillResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__setApprovedBill(idBill, approved, request, requestOptions));
+    }
+
+    private async __setApprovedBill(
+        idBill: number,
+        approved: string,
+        request: Payabli.SetApprovedBillRequest = {},
+        requestOptions?: BillClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.SetApprovedBillResponse>> {
+        const { email } = request;
+        const _queryParams: Record<string, unknown> = {
+            email,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `Bill/approval/${core.url.encodePathParam(idBill)}/${core.url.encodePathParam(approved)}`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.SetApprovedBillResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/Bill/approval/{idBill}/{approved}",
+        );
     }
 
     /**
@@ -676,12 +954,15 @@ export class BillClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -771,12 +1052,15 @@ export class BillClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -789,276 +1073,5 @@ export class BillClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/Query/bills/org/{orgId}");
-    }
-
-    /**
-     * Modify the list of users the bill is sent to for approval.
-     *
-     * @param {number} idBill - Payabli ID for the bill. Get this ID by querying `/api/Query/bills/` for the entrypoint or the organization.
-     * @param {string[]} request
-     * @param {BillClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.InternalServerError}
-     * @throws {@link Payabli.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.bill.modifyApprovalBill(285, ["string"])
-     */
-    public modifyApprovalBill(
-        idBill: number,
-        request: string[],
-        requestOptions?: BillClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.ModifyApprovalBillResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__modifyApprovalBill(idBill, request, requestOptions));
-    }
-
-    private async __modifyApprovalBill(
-        idBill: number,
-        request: string[],
-        requestOptions?: BillClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.ModifyApprovalBillResponse>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await core.fetcher({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.PayabliEnvironment.Sandbox,
-                `Bill/approval/${core.url.encodePathParam(idBill)}`,
-            ),
-            method: "PUT",
-            headers: _headers,
-            contentType: "application/json",
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            requestType: "json",
-            body: request,
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return { data: _response.body as Payabli.ModifyApprovalBillResponse, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
-                case 500:
-                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
-                case 503:
-                    throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.PayabliError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/Bill/approval/{idBill}");
-    }
-
-    /**
-     * Send a bill to a user or list of users to approve.
-     *
-     * @param {number} idBill - Payabli ID for the bill. Get this ID by querying `/api/Query/bills/` for the entrypoint or the organization.
-     * @param {Payabli.SendToApprovalBillRequest} request
-     * @param {BillClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.InternalServerError}
-     * @throws {@link Payabli.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.bill.sendToApprovalBill(285, {
-     *         idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA",
-     *         body: ["string"]
-     *     })
-     */
-    public sendToApprovalBill(
-        idBill: number,
-        request: Payabli.SendToApprovalBillRequest,
-        requestOptions?: BillClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.BillResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__sendToApprovalBill(idBill, request, requestOptions));
-    }
-
-    private async __sendToApprovalBill(
-        idBill: number,
-        request: Payabli.SendToApprovalBillRequest,
-        requestOptions?: BillClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.BillResponse>> {
-        const { autocreateUser, idempotencyKey, body: _body } = request;
-        const _queryParams: Record<string, unknown> = {
-            autocreateUser,
-        };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey }),
-            requestOptions?.headers,
-        );
-        const _response = await core.fetcher({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.PayabliEnvironment.Sandbox,
-                `Bill/approval/${core.url.encodePathParam(idBill)}`,
-            ),
-            method: "POST",
-            headers: _headers,
-            contentType: "application/json",
-            queryString: core.url
-                .queryBuilder()
-                .addMany(_queryParams)
-                .mergeAdditional(requestOptions?.queryParams)
-                .build(),
-            requestType: "json",
-            body: _body,
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return { data: _response.body as Payabli.BillResponse, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
-                case 500:
-                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
-                case 503:
-                    throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.PayabliError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/Bill/approval/{idBill}");
-    }
-
-    /**
-     * Approve or disapprove a bill by ID.
-     *
-     * @param {number} idBill - Payabli ID for the bill. Get this ID by querying `/api/Query/bills/` for the entrypoint or the organization.
-     * @param {string} approved - String representing the approved status. Accepted values: 'true' or 'false'.
-     * @param {Payabli.SetApprovedBillRequest} request
-     * @param {BillClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.InternalServerError}
-     * @throws {@link Payabli.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.bill.setApprovedBill(285, "true")
-     */
-    public setApprovedBill(
-        idBill: number,
-        approved: string,
-        request: Payabli.SetApprovedBillRequest = {},
-        requestOptions?: BillClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.SetApprovedBillResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__setApprovedBill(idBill, approved, request, requestOptions));
-    }
-
-    private async __setApprovedBill(
-        idBill: number,
-        approved: string,
-        request: Payabli.SetApprovedBillRequest = {},
-        requestOptions?: BillClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.SetApprovedBillResponse>> {
-        const { email } = request;
-        const _queryParams: Record<string, unknown> = {
-            email,
-        };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await core.fetcher({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.PayabliEnvironment.Sandbox,
-                `Bill/approval/${core.url.encodePathParam(idBill)}/${core.url.encodePathParam(approved)}`,
-            ),
-            method: "GET",
-            headers: _headers,
-            queryString: core.url
-                .queryBuilder()
-                .addMany(_queryParams)
-                .mergeAdditional(requestOptions?.queryParams)
-                .build(),
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return { data: _response.body as Payabli.SetApprovedBillResponse, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
-                case 500:
-                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
-                case 503:
-                    throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.PayabliError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(
-            _response.error,
-            _response.rawResponse,
-            "GET",
-            "/Bill/approval/{idBill}/{approved}",
-        );
     }
 }

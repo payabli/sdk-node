@@ -15,10 +15,13 @@ export declare namespace UserClient {
     export interface RequestOptions extends BaseRequestOptions {}
 }
 
+/**
+ * The User service provides user account management, authentication, and access control across the platform. It handles user creation, profile management, password resets, and multi-factor authentication configuration for enhanced security. The service manages role-based access control with granular permissions for different organizational functions, supports user assignment to organizations and paypoints with appropriate scope restrictions, and tracks user activity including login history and access patterns. It enables user preference management for notifications, timezone settings, and language localization while maintaining comprehensive audit logs of user actions for compliance and security monitoring.
+ */
 export class UserClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<UserClient.Options>;
 
-    constructor(options: UserClient.Options = {}) {
+    constructor(options: UserClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -81,12 +84,15 @@ export class UserClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -99,6 +105,348 @@ export class UserClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/User");
+    }
+
+    /**
+     * Use this endpoint to retrieve information about a specific user within an organization.
+     *
+     * @param {number} userId - The Payabli-generated `userId` value.
+     * @param {Payabli.GetUserRequest} request
+     * @param {UserClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.user.getUser(1000000, {
+     *         entry: "8cfec329267"
+     *     })
+     */
+    public getUser(
+        userId: number,
+        request: Payabli.GetUserRequest = {},
+        requestOptions?: UserClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.UserQueryRecord> {
+        return core.HttpResponsePromise.fromPromise(this.__getUser(userId, request, requestOptions));
+    }
+
+    private async __getUser(
+        userId: number,
+        request: Payabli.GetUserRequest = {},
+        requestOptions?: UserClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.UserQueryRecord>> {
+        const { entry, level } = request;
+        const _queryParams: Record<string, unknown> = {
+            entry,
+            level,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `User/${core.url.encodePathParam(userId)}`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.UserQueryRecord, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/User/{userId}");
+    }
+
+    /**
+     * Use this endpoint to modify the details of a specific user within an organization.
+     *
+     * @param {number} userId - User Identifier
+     * @param {Payabli.UserData} request
+     * @param {UserClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.user.editUser(1000000, {})
+     */
+    public editUser(
+        userId: number,
+        request: Payabli.UserData,
+        requestOptions?: UserClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.PayabliApiResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__editUser(userId, request, requestOptions));
+    }
+
+    private async __editUser(
+        userId: number,
+        request: Payabli.UserData,
+        requestOptions?: UserClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.PayabliApiResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `User/${core.url.encodePathParam(userId)}`,
+            ),
+            method: "PUT",
+            headers: _headers,
+            contentType: "application/json",
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            requestType: "json",
+            body: request,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.PayabliApiResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/User/{userId}");
+    }
+
+    /**
+     * Use this endpoint to delete a specific user within an organization.
+     *
+     * @param {number} userId - The Payabli-generated `userId` value.
+     * @param {UserClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.user.deleteUser(1000000)
+     */
+    public deleteUser(
+        userId: number,
+        requestOptions?: UserClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.DeleteUserResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__deleteUser(userId, requestOptions));
+    }
+
+    private async __deleteUser(
+        userId: number,
+        requestOptions?: UserClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.DeleteUserResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `User/${core.url.encodePathParam(userId)}`,
+            ),
+            method: "DELETE",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.DeleteUserResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/User/{userId}");
+    }
+
+    /**
+     * This endpoint requires an application API token.
+     *
+     * @param {string} provider - Auth provider. Pass `null` to use the built-in provider.
+     * @param {Payabli.UserAuthRequest} request
+     * @param {UserClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.user.authUser("provider")
+     */
+    public authUser(
+        provider: string,
+        request: Payabli.UserAuthRequest = {},
+        requestOptions?: UserClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.PayabliApiResponseMfaBasic> {
+        return core.HttpResponsePromise.fromPromise(this.__authUser(provider, request, requestOptions));
+    }
+
+    private async __authUser(
+        provider: string,
+        request: Payabli.UserAuthRequest = {},
+        requestOptions?: UserClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.PayabliApiResponseMfaBasic>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `User/auth/${core.url.encodePathParam(provider)}`,
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            requestType: "json",
+            body: request,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.PayabliApiResponseMfaBasic, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/User/auth/{provider}");
     }
 
     /**
@@ -154,12 +502,15 @@ export class UserClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -233,12 +584,15 @@ export class UserClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -251,88 +605,6 @@ export class UserClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/User/authreset");
-    }
-
-    /**
-     * This endpoint requires an application API token.
-     *
-     * @param {string} provider - Auth provider. This fields is optional and defaults to null for the built-in provider.
-     * @param {Payabli.UserAuthRequest} request
-     * @param {UserClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.InternalServerError}
-     * @throws {@link Payabli.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.user.authUser("provider")
-     */
-    public authUser(
-        provider: string,
-        request: Payabli.UserAuthRequest = {},
-        requestOptions?: UserClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.PayabliApiResponseMfaBasic> {
-        return core.HttpResponsePromise.fromPromise(this.__authUser(provider, request, requestOptions));
-    }
-
-    private async __authUser(
-        provider: string,
-        request: Payabli.UserAuthRequest = {},
-        requestOptions?: UserClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.PayabliApiResponseMfaBasic>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await core.fetcher({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.PayabliEnvironment.Sandbox,
-                `User/auth/${core.url.encodePathParam(provider)}`,
-            ),
-            method: "POST",
-            headers: _headers,
-            contentType: "application/json",
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            requestType: "json",
-            body: request,
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return { data: _response.body as Payabli.PayabliApiResponseMfaBasic, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
-                case 500:
-                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
-                case 503:
-                    throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.PayabliError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/User/auth/{provider}");
     }
 
     /**
@@ -394,12 +666,15 @@ export class UserClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -415,9 +690,8 @@ export class UserClient {
     }
 
     /**
-     * Use this endpoint to delete a specific user within an organization.
+     * Use this endpoint to log a user out from the system.
      *
-     * @param {number} userId - The Payabli-generated `userId` value.
      * @param {UserClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Payabli.BadRequestError}
@@ -426,19 +700,17 @@ export class UserClient {
      * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
-     *     await client.user.deleteUser(1000000)
+     *     await client.user.logoutUser()
      */
-    public deleteUser(
-        userId: number,
+    public logoutUser(
         requestOptions?: UserClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.DeleteUserResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__deleteUser(userId, requestOptions));
+    ): core.HttpResponsePromise<Payabli.LogoutUserResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__logoutUser(requestOptions));
     }
 
-    private async __deleteUser(
-        userId: number,
+    private async __logoutUser(
         requestOptions?: UserClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.DeleteUserResponse>> {
+    ): Promise<core.WithRawResponse<Payabli.LogoutUserResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -450,9 +722,9 @@ export class UserClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.PayabliEnvironment.Sandbox,
-                `User/${core.url.encodePathParam(userId)}`,
+                "User/authlogout",
             ),
-            method: "DELETE",
+            method: "GET",
             headers: _headers,
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
@@ -462,7 +734,7 @@ export class UserClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Payabli.DeleteUserResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as Payabli.LogoutUserResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -470,12 +742,15 @@ export class UserClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -487,7 +762,67 @@ export class UserClient {
             }
         }
 
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/User/{userId}");
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/User/authlogout");
+    }
+
+    /**
+     * Use this endpoint to validate the multi-factor authentication (MFA) code for a user within an organization.
+     *
+     * @param {Payabli.MfaValidationData} request
+     * @param {UserClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.user.validateMfaUser()
+     */
+    public validateMfaUser(
+        request: Payabli.MfaValidationData = {},
+        requestOptions?: UserClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.PayabliApiResponseUserMfa> {
+        return core.HttpResponsePromise.fromPromise(this.__validateMfaUser(request, requestOptions));
+    }
+
+    private async __validateMfaUser(
+        request: Payabli.MfaValidationData = {},
+        requestOptions?: UserClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.PayabliApiResponseUserMfa>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                "User/mfa",
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            requestType: "json",
+            body: request,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.PayabliApiResponseUserMfa, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.PayabliError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/User/mfa");
     }
 
     /**
@@ -552,12 +887,15 @@ export class UserClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -573,256 +911,11 @@ export class UserClient {
     }
 
     /**
-     * Use this endpoint to modify the details of a specific user within an organization.
-     *
-     * @param {number} userId - User Identifier
-     * @param {Payabli.UserData} request
-     * @param {UserClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.InternalServerError}
-     * @throws {@link Payabli.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.user.editUser(1000000, {})
-     */
-    public editUser(
-        userId: number,
-        request: Payabli.UserData,
-        requestOptions?: UserClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.PayabliApiResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__editUser(userId, request, requestOptions));
-    }
-
-    private async __editUser(
-        userId: number,
-        request: Payabli.UserData,
-        requestOptions?: UserClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.PayabliApiResponse>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await core.fetcher({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.PayabliEnvironment.Sandbox,
-                `User/${core.url.encodePathParam(userId)}`,
-            ),
-            method: "PUT",
-            headers: _headers,
-            contentType: "application/json",
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            requestType: "json",
-            body: request,
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return { data: _response.body as Payabli.PayabliApiResponse, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
-                case 500:
-                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
-                case 503:
-                    throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.PayabliError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/User/{userId}");
-    }
-
-    /**
-     * Use this endpoint to retrieve information about a specific user within an organization.
-     *
-     * @param {number} userId - The Payabli-generated `userId` value.
-     * @param {Payabli.GetUserRequest} request
-     * @param {UserClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.InternalServerError}
-     * @throws {@link Payabli.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.user.getUser(1000000, {
-     *         entry: "478ae1234"
-     *     })
-     */
-    public getUser(
-        userId: number,
-        request: Payabli.GetUserRequest = {},
-        requestOptions?: UserClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.UserQueryRecord> {
-        return core.HttpResponsePromise.fromPromise(this.__getUser(userId, request, requestOptions));
-    }
-
-    private async __getUser(
-        userId: number,
-        request: Payabli.GetUserRequest = {},
-        requestOptions?: UserClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.UserQueryRecord>> {
-        const { entry, level } = request;
-        const _queryParams: Record<string, unknown> = {
-            entry,
-            level,
-        };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await core.fetcher({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.PayabliEnvironment.Sandbox,
-                `User/${core.url.encodePathParam(userId)}`,
-            ),
-            method: "GET",
-            headers: _headers,
-            queryString: core.url
-                .queryBuilder()
-                .addMany(_queryParams)
-                .mergeAdditional(requestOptions?.queryParams)
-                .build(),
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return { data: _response.body as Payabli.UserQueryRecord, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
-                case 500:
-                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
-                case 503:
-                    throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.PayabliError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/User/{userId}");
-    }
-
-    /**
-     * Use this endpoint to log a user out from the system.
-     *
-     * @param {UserClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.InternalServerError}
-     * @throws {@link Payabli.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.user.logoutUser()
-     */
-    public logoutUser(
-        requestOptions?: UserClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.LogoutUserResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__logoutUser(requestOptions));
-    }
-
-    private async __logoutUser(
-        requestOptions?: UserClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.LogoutUserResponse>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await core.fetcher({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.PayabliEnvironment.Sandbox,
-                "User/authlogout",
-            ),
-            method: "GET",
-            headers: _headers,
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return { data: _response.body as Payabli.LogoutUserResponse, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
-                case 500:
-                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
-                case 503:
-                    throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.PayabliError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/User/authlogout");
-    }
-
-    /**
      * Resends the MFA code to the user via the selected MFA mode (email or SMS).
      *
-     * @param {string} usrname -
-     * @param {string} Entry -
-     * @param {number} EntryType -
+     * @param {string} usrname
+     * @param {string} Entry
+     * @param {number} EntryType
      * @param {UserClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Payabli.BadRequestError}
@@ -831,7 +924,7 @@ export class UserClient {
      * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
-     *     await client.user.resendMfaCode("usrname", "Entry", 1)
+     *     await client.user.resendMfaCode("usrname", "8cfec329267", 1)
      */
     public resendMfaCode(
         usrname: string,
@@ -879,12 +972,15 @@ export class UserClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -902,65 +998,5 @@ export class UserClient {
             "POST",
             "/User/resendmfa/{usrname}/{Entry}/{EntryType}",
         );
-    }
-
-    /**
-     * Use this endpoint to validate the multi-factor authentication (MFA) code for a user within an organization.
-     *
-     * @param {Payabli.MfaValidationData} request
-     * @param {UserClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @example
-     *     await client.user.validateMfaUser()
-     */
-    public validateMfaUser(
-        request: Payabli.MfaValidationData = {},
-        requestOptions?: UserClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.PayabliApiResponseUserMfa> {
-        return core.HttpResponsePromise.fromPromise(this.__validateMfaUser(request, requestOptions));
-    }
-
-    private async __validateMfaUser(
-        request: Payabli.MfaValidationData = {},
-        requestOptions?: UserClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.PayabliApiResponseUserMfa>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await core.fetcher({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.PayabliEnvironment.Sandbox,
-                "User/mfa",
-            ),
-            method: "POST",
-            headers: _headers,
-            contentType: "application/json",
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            requestType: "json",
-            body: request,
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return { data: _response.body as Payabli.PayabliApiResponseUserMfa, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.PayabliError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/User/mfa");
     }
 }

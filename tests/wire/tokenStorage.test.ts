@@ -10,7 +10,7 @@ describe("TokenStorageClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             customerData: { customerId: 4440 },
-            entryPoint: "f743aed24a",
+            entryPoint: "8cfec329267",
             fallbackAuth: true,
             fallbackAuthAmount: 100,
             methodDescription: "Primary Visa card",
@@ -27,9 +27,9 @@ describe("TokenStorageClient", () => {
         const rawResponseBody = {
             isSuccess: true,
             responseData: {
-                customerId: 4400,
+                customerId: 4440,
                 methodReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                referenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+                referenceId: "129-219",
                 resultCode: 1,
                 resultText: "Approved",
             },
@@ -46,24 +46,22 @@ describe("TokenStorageClient", () => {
             .build();
 
         const response = await client.tokenStorage.addMethod({
-            body: {
-                customerData: {
-                    customerId: 4440,
-                },
-                entryPoint: "f743aed24a",
-                fallbackAuth: true,
-                fallbackAuthAmount: 100,
-                methodDescription: "Primary Visa card",
-                paymentMethod: {
-                    cardcvv: "123",
-                    cardexp: "02/25",
-                    cardHolder: "John Doe",
-                    cardnumber: "4111111111111111",
-                    cardzip: "12345",
-                    method: "card",
-                },
-                source: "api",
+            customerData: {
+                customerId: 4440,
             },
+            entryPoint: "8cfec329267",
+            fallbackAuth: true,
+            fallbackAuthAmount: 100,
+            methodDescription: "Primary Visa card",
+            paymentMethod: {
+                cardcvv: "123",
+                cardexp: "02/25",
+                cardHolder: "John Doe",
+                cardnumber: "4111111111111111",
+                cardzip: "12345",
+                method: "card",
+            },
+            source: "api",
         });
         expect(response).toEqual(rawResponseBody);
     });
@@ -72,7 +70,7 @@ describe("TokenStorageClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            entryPoint: "f743aed24a",
+            entryPoint: "8cfec329267",
             fallbackAuth: true,
             paymentMethod: {
                 cardcvv: "123",
@@ -87,7 +85,7 @@ describe("TokenStorageClient", () => {
             isSuccess: true,
             responseData: {
                 methodReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                referenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+                referenceId: "129-219",
                 resultCode: 1,
                 resultText: "Approved",
             },
@@ -105,17 +103,15 @@ describe("TokenStorageClient", () => {
 
         const response = await client.tokenStorage.addMethod({
             createAnonymous: true,
-            body: {
-                entryPoint: "f743aed24a",
-                fallbackAuth: true,
-                paymentMethod: {
-                    cardcvv: "123",
-                    cardexp: "02/25",
-                    cardHolder: "John Doe",
-                    cardnumber: "4111111111111111",
-                    cardzip: "12345",
-                    method: "card",
-                },
+            entryPoint: "8cfec329267",
+            fallbackAuth: true,
+            paymentMethod: {
+                cardcvv: "123",
+                cardexp: "02/25",
+                cardHolder: "John Doe",
+                cardnumber: "4111111111111111",
+                cardzip: "12345",
+                method: "card",
             },
         });
         expect(response).toEqual(rawResponseBody);
@@ -126,7 +122,7 @@ describe("TokenStorageClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             customerData: { customerId: 4440 },
-            entryPoint: "f743aed24a",
+            entryPoint: "8cfec329267",
             fallbackAuth: true,
             methodDescription: "Main card",
             paymentMethod: { method: "card", tokenId: "c9700e93-b2ed-4b75-b1e4-ca4fb04fbe45-224" },
@@ -136,7 +132,7 @@ describe("TokenStorageClient", () => {
             responseData: {
                 customerId: 4440,
                 methodReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                referenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+                referenceId: "129-219",
                 resultCode: 1,
                 resultText: "Approved",
             },
@@ -153,17 +149,15 @@ describe("TokenStorageClient", () => {
             .build();
 
         const response = await client.tokenStorage.addMethod({
-            body: {
-                customerData: {
-                    customerId: 4440,
-                },
-                entryPoint: "f743aed24a",
-                fallbackAuth: true,
-                methodDescription: "Main card",
-                paymentMethod: {
-                    method: "card",
-                    tokenId: "c9700e93-b2ed-4b75-b1e4-ca4fb04fbe45-224",
-                },
+            customerData: {
+                customerId: 4440,
+            },
+            entryPoint: "8cfec329267",
+            fallbackAuth: true,
+            methodDescription: "Main card",
+            paymentMethod: {
+                method: "card",
+                tokenId: "c9700e93-b2ed-4b75-b1e4-ca4fb04fbe45-224",
             },
         });
         expect(response).toEqual(rawResponseBody);
@@ -174,7 +168,7 @@ describe("TokenStorageClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             customerData: { customerId: 4440 },
-            entryPoint: "f743aed24a",
+            entryPoint: "8cfec329267",
             paymentMethod: {
                 achAccount: "1111111111111",
                 achAccountType: "Checking",
@@ -190,7 +184,7 @@ describe("TokenStorageClient", () => {
             responseData: {
                 customerId: 4440,
                 methodReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                referenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+                referenceId: "129-219",
                 resultCode: 1,
                 resultText: "Approved",
             },
@@ -208,20 +202,18 @@ describe("TokenStorageClient", () => {
 
         const response = await client.tokenStorage.addMethod({
             achValidation: true,
-            body: {
-                customerData: {
-                    customerId: 4440,
-                },
-                entryPoint: "f743aed24a",
-                paymentMethod: {
-                    achAccount: "1111111111111",
-                    achAccountType: "Checking",
-                    achCode: "WEB",
-                    achHolder: "John Doe",
-                    achHolderType: "personal",
-                    achRouting: "123456780",
-                    method: "ach",
-                },
+            customerData: {
+                customerId: 4440,
+            },
+            entryPoint: "8cfec329267",
+            paymentMethod: {
+                achAccount: "1111111111111",
+                achAccountType: "Checking",
+                achCode: "WEB",
+                achHolder: "John Doe",
+                achHolderType: "personal",
+                achRouting: "123456780",
+                method: "ach",
             },
         });
         expect(response).toEqual(rawResponseBody);
@@ -231,7 +223,7 @@ describe("TokenStorageClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            entryPoint: "f743aed24a",
+            entryPoint: "8cfec329267",
             paymentMethod: {
                 achAccount: "1111111111111",
                 achAccountType: "Checking",
@@ -241,14 +233,14 @@ describe("TokenStorageClient", () => {
                 achRouting: "123456780",
                 method: "ach",
             },
-            vendorData: { vendorId: 7890 },
+            vendorData: { vendorId: 456 },
         };
         const rawResponseBody = {
             isSuccess: true,
             responseData: {
                 customerId: 4440,
                 methodReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                referenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+                referenceId: "129-219",
                 resultCode: 1,
                 resultText: "Approved",
             },
@@ -266,20 +258,18 @@ describe("TokenStorageClient", () => {
 
         const response = await client.tokenStorage.addMethod({
             achValidation: true,
-            body: {
-                entryPoint: "f743aed24a",
-                paymentMethod: {
-                    achAccount: "1111111111111",
-                    achAccountType: "Checking",
-                    achCode: "WEB",
-                    achHolder: "John Doe",
-                    achHolderType: "personal",
-                    achRouting: "123456780",
-                    method: "ach",
-                },
-                vendorData: {
-                    vendorId: 7890,
-                },
+            entryPoint: "8cfec329267",
+            paymentMethod: {
+                achAccount: "1111111111111",
+                achAccountType: "Checking",
+                achCode: "WEB",
+                achHolder: "John Doe",
+                achHolderType: "personal",
+                achRouting: "123456780",
+                method: "ach",
+            },
+            vendorData: {
+                vendorId: 456,
             },
         });
         expect(response).toEqual(rawResponseBody);
@@ -301,9 +291,7 @@ describe("TokenStorageClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.tokenStorage.addMethod({
-                body: {},
-            });
+            return await client.tokenStorage.addMethod({});
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
@@ -311,7 +299,7 @@ describe("TokenStorageClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -323,9 +311,7 @@ describe("TokenStorageClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.tokenStorage.addMethod({
-                body: {},
-            });
+            return await client.tokenStorage.addMethod({});
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
@@ -345,9 +331,7 @@ describe("TokenStorageClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.tokenStorage.addMethod({
-                body: {},
-            });
+            return await client.tokenStorage.addMethod({});
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
@@ -355,7 +339,7 @@ describe("TokenStorageClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -367,9 +351,7 @@ describe("TokenStorageClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.tokenStorage.addMethod({
-                body: {},
-            });
+            return await client.tokenStorage.addMethod({});
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
@@ -404,8 +386,8 @@ describe("TokenStorageClient", () => {
                         billingPhone: "1234567890",
                         company: "Bluesky Tech Inc",
                         created: "2023-06-01T14:30:00Z",
-                        customerId: 1456,
-                        customerNumber: "CS789",
+                        customerId: 4440,
+                        customerNumber: "C-90010",
                         customerStatus: 1,
                         customerUsername: "Marcus",
                         identifierFields: ["firstname", "email"],
@@ -471,8 +453,8 @@ describe("TokenStorageClient", () => {
                         billingPhone: "1234567890",
                         company: "Bluesky Tech Inc",
                         created: "2023-06-01T14:30:00Z",
-                        customerId: 1456,
-                        customerNumber: "CS789",
+                        customerId: 4440,
+                        customerNumber: "C-90010",
                         customerStatus: 1,
                         customerUsername: "Marcus",
                         identifierFields: ["firstname", "email"],
@@ -546,7 +528,7 @@ describe("TokenStorageClient", () => {
                 postalCode: "",
                 vendors: [
                     {
-                        vendorNumber: "V-3037-2",
+                        vendorNumber: "VEN-123",
                         name1: "Connie's Concrete",
                         name2: "",
                         ein: "XXXXX4789",
@@ -570,9 +552,9 @@ describe("TokenStorageClient", () => {
                         ],
                         paymentMethod: "ach",
                         vendorStatus: 1,
-                        vendorId: 7890,
+                        vendorId: 456,
                         paypointLegalname: "Gruzya Adventure Outfitters LLC",
-                        paypointId: "123",
+                        paypointId: "3040",
                         paypointDbaname: "Gruzya Adventure Outfitters LLC",
                         paypointEntryname: "47ac12de2",
                         parentOrgName: "Payabli",
@@ -595,13 +577,13 @@ describe("TokenStorageClient", () => {
 
         server
             .mockEndpoint()
-            .get("/TokenStorage/749e236c-59a3-49c7-ab47-73e06f9e94aa-199689")
+            .get("/TokenStorage/32-8877drt00045632-678")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.tokenStorage.getMethod("749e236c-59a3-49c7-ab47-73e06f9e94aa-199689", {
+        const response = await client.tokenStorage.getMethod("32-8877drt00045632-678", {
             cardExpirationFormat: 1,
             includeTemporary: false,
         });
@@ -631,7 +613,7 @@ describe("TokenStorageClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -669,7 +651,7 @@ describe("TokenStorageClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -684,13 +666,164 @@ describe("TokenStorageClient", () => {
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
+    test("UpdateMethod (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            customerData: { customerId: 4440 },
+            entryPoint: "8cfec329267",
+            fallbackAuth: true,
+            paymentMethod: {
+                cardcvv: "123",
+                cardexp: "02/25",
+                cardHolder: "John Doe",
+                cardnumber: "4111111111111111",
+                cardzip: "12345",
+                method: "card",
+            },
+        };
+        const rawResponseBody = {
+            isSuccess: true,
+            responseData: { referenceId: "129-219", resultCode: 1, resultText: "Updated" },
+            responseText: "Success",
+        };
+
+        server
+            .mockEndpoint()
+            .put("/TokenStorage/32-8877drt00045632-678")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.tokenStorage.updateMethod("32-8877drt00045632-678", {
+            customerData: {
+                customerId: 4440,
+            },
+            entryPoint: "8cfec329267",
+            fallbackAuth: true,
+            paymentMethod: {
+                cardcvv: "123",
+                cardexp: "02/25",
+                cardHolder: "John Doe",
+                cardnumber: "4111111111111111",
+                cardzip: "12345",
+                method: "card",
+            },
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("UpdateMethod (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            customerData: { customerId: 4440 },
+            entryPoint: "8cfec329267",
+            paymentMethod: {
+                achAccount: "1111111111111",
+                achAccountType: "Checking",
+                achCode: "WEB",
+                achHolder: "John Doe",
+                achHolderType: "personal",
+                achRouting: "123456780",
+                method: "ach",
+            },
+        };
+        const rawResponseBody = {
+            isSuccess: true,
+            responseData: { referenceId: "129-219", resultCode: 1, resultText: "Updated" },
+            responseText: "Success",
+        };
+
+        server
+            .mockEndpoint()
+            .put("/TokenStorage/32-8877drt00045632-678")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.tokenStorage.updateMethod("32-8877drt00045632-678", {
+            customerData: {
+                customerId: 4440,
+            },
+            entryPoint: "8cfec329267",
+            paymentMethod: {
+                achAccount: "1111111111111",
+                achAccountType: "Checking",
+                achCode: "WEB",
+                achHolder: "John Doe",
+                achHolderType: "personal",
+                achRouting: "123456780",
+                method: "ach",
+            },
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("UpdateMethod (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            customerData: { customerId: 4440 },
+            entryPoint: "8cfec329267",
+            paymentMethod: {
+                achAccount: "1111111111111",
+                achAccountType: "Checking",
+                achCode: "WEB",
+                achHolder: "John Doe",
+                achHolderType: "personal",
+                achRouting: "123456780",
+                method: "ach",
+            },
+            vendorData: { vendorId: 456 },
+        };
+        const rawResponseBody = {
+            isSuccess: true,
+            responseData: { referenceId: "129-219", resultCode: 1, resultText: "Updated" },
+            responseText: "Success",
+        };
+
+        server
+            .mockEndpoint()
+            .put("/TokenStorage/32-8877drt00045632-678")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.tokenStorage.updateMethod("32-8877drt00045632-678", {
+            customerData: {
+                customerId: 4440,
+            },
+            entryPoint: "8cfec329267",
+            paymentMethod: {
+                achAccount: "1111111111111",
+                achAccountType: "Checking",
+                achCode: "WEB",
+                achHolder: "John Doe",
+                achHolderType: "personal",
+                achRouting: "123456780",
+                method: "ach",
+            },
+            vendorData: {
+                vendorId: 456,
+            },
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
     test("RemoveMethod (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             isSuccess: true,
-            responseData: { referenceId: "32-8877drt65345632-678", resultCode: 1, resultText: "Removed" },
+            responseData: { referenceId: "129-219", resultCode: 1, resultText: "Removed" },
             responseText: "Success",
         };
 
@@ -729,7 +862,7 @@ describe("TokenStorageClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -767,7 +900,7 @@ describe("TokenStorageClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -780,174 +913,5 @@ describe("TokenStorageClient", () => {
         await expect(async () => {
             return await client.tokenStorage.removeMethod("methodId");
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
-    });
-
-    test("UpdateMethod (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            customerData: { customerId: 4440 },
-            entryPoint: "f743aed24a",
-            fallbackAuth: true,
-            paymentMethod: {
-                cardcvv: "123",
-                cardexp: "02/25",
-                cardHolder: "John Doe",
-                cardnumber: "4111111111111111",
-                cardzip: "12345",
-                method: "card",
-            },
-        };
-        const rawResponseBody = {
-            isSuccess: true,
-            responseData: {
-                referenceId: "1b502b79-e319-4159-8c29-a9f8d9f105c8-1323",
-                resultCode: 1,
-                resultText: "Updated",
-            },
-            responseText: "Success",
-        };
-
-        server
-            .mockEndpoint()
-            .put("/TokenStorage/32-8877drt00045632-678")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.tokenStorage.updateMethod("32-8877drt00045632-678", {
-            body: {
-                customerData: {
-                    customerId: 4440,
-                },
-                entryPoint: "f743aed24a",
-                fallbackAuth: true,
-                paymentMethod: {
-                    cardcvv: "123",
-                    cardexp: "02/25",
-                    cardHolder: "John Doe",
-                    cardnumber: "4111111111111111",
-                    cardzip: "12345",
-                    method: "card",
-                },
-            },
-        });
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("UpdateMethod (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            customerData: { customerId: 4440 },
-            entryPoint: "f743aed24a",
-            paymentMethod: {
-                achAccount: "1111111111111",
-                achAccountType: "Checking",
-                achCode: "WEB",
-                achHolder: "John Doe",
-                achHolderType: "personal",
-                achRouting: "123456780",
-                method: "ach",
-            },
-        };
-        const rawResponseBody = {
-            isSuccess: true,
-            responseData: {
-                referenceId: "1b502b79-e319-4159-8c29-a9f8d9f105c8-1323",
-                resultCode: 1,
-                resultText: "Updated",
-            },
-            responseText: "Success",
-        };
-
-        server
-            .mockEndpoint()
-            .put("/TokenStorage/32-8877drt00045632-678")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.tokenStorage.updateMethod("32-8877drt00045632-678", {
-            body: {
-                customerData: {
-                    customerId: 4440,
-                },
-                entryPoint: "f743aed24a",
-                paymentMethod: {
-                    achAccount: "1111111111111",
-                    achAccountType: "Checking",
-                    achCode: "WEB",
-                    achHolder: "John Doe",
-                    achHolderType: "personal",
-                    achRouting: "123456780",
-                    method: "ach",
-                },
-            },
-        });
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("UpdateMethod (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            customerData: { customerId: 4440 },
-            entryPoint: "f743aed24a",
-            paymentMethod: {
-                achAccount: "1111111111111",
-                achAccountType: "Checking",
-                achCode: "WEB",
-                achHolder: "John Doe",
-                achHolderType: "personal",
-                achRouting: "123456780",
-                method: "ach",
-            },
-            vendorData: { vendorId: 7890 },
-        };
-        const rawResponseBody = {
-            isSuccess: true,
-            responseData: {
-                referenceId: "1b502b79-e319-4159-8c29-a9f8d9f105c8-1323",
-                resultCode: 1,
-                resultText: "Updated",
-            },
-            responseText: "Success",
-        };
-
-        server
-            .mockEndpoint()
-            .put("/TokenStorage/32-8877drt00045632-678")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.tokenStorage.updateMethod("32-8877drt00045632-678", {
-            body: {
-                customerData: {
-                    customerId: 4440,
-                },
-                entryPoint: "f743aed24a",
-                paymentMethod: {
-                    achAccount: "1111111111111",
-                    achAccountType: "Checking",
-                    achCode: "WEB",
-                    achHolder: "John Doe",
-                    achHolderType: "personal",
-                    achRouting: "123456780",
-                    method: "ach",
-                },
-                vendorData: {
-                    vendorId: 7890,
-                },
-            },
-        });
-        expect(response).toEqual(rawResponseBody);
     });
 });

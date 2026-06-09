@@ -68,7 +68,7 @@ export interface ListVcardsTransactionsOrgRequest {
      *   - in => inside array separated by "|"
      *   - nin => not inside array separated by "|"
      */
-    parameters?: Record<string, string>;
+    parameters?: Record<string, string | null>;
     /** The field name to use for sorting results. Use `desc(field_name)` to sort descending by `field_name`, and use `asc(field_name)` to sort ascending by `field_name`. */
     sortBy?: string;
 }

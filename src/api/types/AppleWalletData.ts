@@ -13,7 +13,7 @@ export interface AppleWalletData {
     domainNames?: Payabli.DomainName[] | undefined;
     paypointName?: Payabli.PaypointName | undefined;
     /** The paypoint URL. */
-    paypointUrl?: string | undefined;
+    paypointUrl?: (string | null) | undefined;
     /** The date and time a paypoint's Apple Pay registration was scheduled for deletion. The paypoint will be unregistered from Apple Pay permanently 30 days from this value. */
     markedForDeletionAt?: string | undefined;
     createdAt?: Payabli.CreatedAt | undefined;

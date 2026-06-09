@@ -16,10 +16,13 @@ export declare namespace BoardingClient {
     export interface RequestOptions extends BaseRequestOptions {}
 }
 
+/**
+ * The Boarding service handles merchant application and onboarding workflows for setting up new payment processing accounts. It manages the complete application lifecycle from submission through approval, supporting multiple processing types including Pay In, Managed Payout, and On-Demand Payout services. The service handles complex application data including business information, ownership details, banking setup, and service configuration. It supports resumable applications allowing merchants to save progress, document attachment management, and configurable boarding templates. The service includes boarding link generation for merchant self-service onboarding, application status tracking, and integration with underwriting workflows.
+ */
 export class BoardingClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<BoardingClient.Options>;
 
-    constructor(options: BoardingClient.Options = {}) {
+    constructor(options: BoardingClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -52,25 +55,25 @@ export class BoardingClient {
      *         baddress: "123 Walnut Street",
      *         baddress1: "Suite 103",
      *         bankData: [{
-     *                 accountNumber: "123123123",
+     *                 accountNumber: "123123100",
      *                 bankAccountFunction: 1,
      *                 bankAccountHolderName: "Gruzya Adventure Outfitters LLC",
      *                 bankAccountHolderType: "Business",
-     *                 bankName: "Test Bank",
+     *                 bankName: "Test Bank 1",
      *                 nickname: "Withdrawal Account",
      *                 routingAccount: "123123123",
      *                 typeAccount: "Checking",
      *                 accountId: "123-456"
      *             }, {
-     *                 accountNumber: "123123123",
+     *                 accountNumber: "123123200",
      *                 bankAccountFunction: 0,
      *                 bankAccountHolderName: "Gruzya Adventure Outfitters LLC",
      *                 bankAccountHolderType: "Business",
-     *                 bankName: "Test Bank",
+     *                 bankName: "Test Bank 2",
      *                 nickname: "Deposit Account",
-     *                 routingAccount: "123123123",
+     *                 routingAccount: "321321321",
      *                 typeAccount: "Checking",
-     *                 accountId: "123-456"
+     *                 accountId: "123-789"
      *             }],
      *         bcity: "New Vegas",
      *         bcountry: "US",
@@ -593,12 +596,15 @@ export class BoardingClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -611,6 +617,94 @@ export class BoardingClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/Boarding/app");
+    }
+
+    /**
+     * Updates a boarding application by ID. This endpoint requires an application API token.
+     *
+     * @param {number} appId - Boarding application ID.
+     * @param {Payabli.ApplicationData} request
+     * @param {BoardingClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.boarding.updateApplication(352, {})
+     */
+    public updateApplication(
+        appId: number,
+        request: Payabli.ApplicationData,
+        requestOptions?: BoardingClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.PayabliApiResponse00Responsedatanonobject> {
+        return core.HttpResponsePromise.fromPromise(this.__updateApplication(appId, request, requestOptions));
+    }
+
+    private async __updateApplication(
+        appId: number,
+        request: Payabli.ApplicationData,
+        requestOptions?: BoardingClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.PayabliApiResponse00Responsedatanonobject>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `Boarding/app/${core.url.encodePathParam(appId)}`,
+            ),
+            method: "PUT",
+            headers: _headers,
+            contentType: "application/json",
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            requestType: "json",
+            body: request,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as Payabli.PayabliApiResponse00Responsedatanonobject,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/Boarding/app/{appId}");
     }
 
     /**
@@ -672,12 +766,15 @@ export class BoardingClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -748,12 +845,15 @@ export class BoardingClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -783,7 +883,7 @@ export class BoardingClient {
      * @example
      *     await client.boarding.getApplicationByAuth("17E", {
      *         email: "admin@email.com",
-     *         referenceId: "n6UCd1f1ygG7"
+     *         referenceId: "129-219"
      *     })
      */
     public getApplicationByAuth(
@@ -833,12 +933,15 @@ export class BoardingClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -909,12 +1012,15 @@ export class BoardingClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -990,12 +1096,15 @@ export class BoardingClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -1087,12 +1196,15 @@ export class BoardingClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -1168,12 +1280,15 @@ export class BoardingClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -1271,12 +1386,15 @@ export class BoardingClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -1365,12 +1483,15 @@ export class BoardingClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -1386,91 +1507,6 @@ export class BoardingClient {
     }
 
     /**
-     * Updates a boarding application by ID. This endpoint requires an application API token.
-     *
-     * @param {number} appId - Boarding application ID.
-     * @param {Payabli.ApplicationData} request
-     * @param {BoardingClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.InternalServerError}
-     * @throws {@link Payabli.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.boarding.updateApplication(352, {})
-     */
-    public updateApplication(
-        appId: number,
-        request: Payabli.ApplicationData,
-        requestOptions?: BoardingClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.PayabliApiResponse00Responsedatanonobject> {
-        return core.HttpResponsePromise.fromPromise(this.__updateApplication(appId, request, requestOptions));
-    }
-
-    private async __updateApplication(
-        appId: number,
-        request: Payabli.ApplicationData,
-        requestOptions?: BoardingClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.PayabliApiResponse00Responsedatanonobject>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await core.fetcher({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.PayabliEnvironment.Sandbox,
-                `Boarding/app/${core.url.encodePathParam(appId)}`,
-            ),
-            method: "PUT",
-            headers: _headers,
-            contentType: "application/json",
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            requestType: "json",
-            body: request,
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return {
-                data: _response.body as Payabli.PayabliApiResponse00Responsedatanonobject,
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
-                case 500:
-                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
-                case 503:
-                    throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.PayabliError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/Boarding/app/{appId}");
-    }
-
-    /**
      * Creates a new boarding application linked to an existing paypoint as part of the multi-product boarding flow. Use this endpoint to add new services to a paypoint without creating a duplicate record. The system copies eligible business, contact, banking, and address data from the paypoint to the new application based on 1:1 field matching. The merchant only needs to provide fields that are specific to the new service. See the [Multi-product boarding](/guides/pay-ops-developer-boarding-multi-product) guide for the full flow.
      *
      * @param {Payabli.CreateApplicationFromPaypointRequest} request
@@ -1483,7 +1519,7 @@ export class BoardingClient {
      *
      * @example
      *     await client.boarding.addServiceToPaypointFromApp({
-     *         paypointId: 123,
+     *         paypointId: 3040,
      *         templateId: 456,
      *         recipientEmail: "merchant@example.com",
      *         returnBoardingAccessInfoInLine: true,
@@ -1538,12 +1574,15 @@ export class BoardingClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -1570,7 +1609,7 @@ export class BoardingClient {
      * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
-     *     await client.boarding.getApplicationsByPaypointId(12345)
+     *     await client.boarding.getApplicationsByPaypointId(3040)
      */
     public getApplicationsByPaypointId(
         paypointId: number,
@@ -1617,12 +1656,15 @@ export class BoardingClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:

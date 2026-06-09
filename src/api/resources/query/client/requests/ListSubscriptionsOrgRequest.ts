@@ -11,6 +11,7 @@ import type * as Payabli from "../../../../index.js";
  *     }
  */
 export interface ListSubscriptionsOrgRequest {
+    /** Export format for file downloads. When specified, returns data as a file instead of JSON. */
     exportFormat?: Payabli.ExportFormat;
     /** The number of records to skip before starting to collect the result set. */
     fromRecord?: number;
@@ -45,6 +46,7 @@ export interface ListSubscriptionsOrgRequest {
      * - `feeAmount` (gt, ge, lt, le, eq, ne)
      * - `status` (in, nin, eq, ne)
      * - `untilcancelled` (eq, ne)
+     * - `subscriptionType` (eq, ne, in, nin). Filters by subscription type. Accepts `Regular` or `BalanceDriven`. Case-insensitive. Example: `subscriptionType(in)=Regular|BalanceDriven`.
      * - `payaccountLastfour` (nct, ct)
      * - `payaccountType` (ne, eq, in, nin)
      * - `payaccountCurrency` (ne, eq, in, nin)
@@ -94,7 +96,7 @@ export interface ListSubscriptionsOrgRequest {
      * - `in` => inside array
      * - `nin` => not inside array
      */
-    parameters?: Record<string, string>;
+    parameters?: Record<string, string | null>;
     /** The field name to use for sorting results. Use `desc(field_name)` to sort descending by `field_name`, and use `asc(field_name)` to sort ascending by `field_name`. */
     sortBy?: string;
 }

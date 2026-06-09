@@ -16,17 +16,20 @@ export declare namespace TemplatesClient {
     export interface RequestOptions extends BaseRequestOptions {}
 }
 
+/**
+ * The Templates service manages customizable document and communication templates for invoices, receipts, emails, and boarding forms. It provides template creation, versioning, and management with support for dynamic field insertion, conditional content, and branding elements. Templates can be configured at organization or paypoint levels with inheritance and override capabilities. The service supports multiple template types including HTML email templates, PDF invoice templates, and boarding application layouts with customizable form fields. It enables consistent branding across customer communications while allowing flexibility for different business units or use cases through template variants.
+ */
 export class TemplatesClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<TemplatesClient.Options>;
 
-    constructor(options: TemplatesClient.Options = {}) {
+    constructor(options: TemplatesClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
     /**
      * Deletes a template by ID.
      *
-     * @param {number} templateId - The boarding template ID. Can be found at the end of the boarding template URL in PartnerHub. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
+     * @param {number} templateId - The boarding template ID. You can find this at the end of the boarding template URL in PartnerHub. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
      * @param {TemplatesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Payabli.BadRequestError}
@@ -79,12 +82,15 @@ export class TemplatesClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -102,8 +108,8 @@ export class TemplatesClient {
     /**
      * Generates a boarding link from a boarding template.
      *
-     * @param {number} templateId - The boarding template ID. Can be found at the end of the boarding template URL in PartnerHub. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
-     * @param {boolean} ignoreEmpty - Ignore read-only and empty fields Default is `false`. If `ignoreEmpty` = `false` and any field is empty, then the request returns a failure response. If `ignoreEmpty` = `true`, the request returns the boarding link name regardless of whether fields are empty.
+     * @param {number} templateId - The boarding template ID. You can find this at the end of the boarding template URL in PartnerHub. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
+     * @param {boolean} ignoreEmpty - Ignore read-only and empty fields. Default is `false`. If `ignoreEmpty` = `false` and any field is empty, then the request returns a failure response. If `ignoreEmpty` = `true`, the request returns the boarding link name regardless of whether fields are empty.
      * @param {TemplatesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Payabli.BadRequestError}
@@ -158,12 +164,15 @@ export class TemplatesClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -186,7 +195,7 @@ export class TemplatesClient {
     /**
      * Retrieves a boarding template's details by ID.
      *
-     * @param {number} templateId - The boarding template ID. Can be found at the end of the boarding template URL in PartnerHub. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
+     * @param {number} templateId - The boarding template ID. You can find this at the end of the boarding template URL in PartnerHub. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
      * @param {TemplatesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Payabli.BadRequestError}
@@ -239,12 +248,15 @@ export class TemplatesClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -265,6 +277,11 @@ export class TemplatesClient {
      * @param {number} orgId - The numeric identifier for organization, assigned by Payabli.
      * @param {Payabli.ListTemplatesRequest} request
      * @param {TemplatesClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
      *     await client.templates.listTemplates(123, {
@@ -324,11 +341,28 @@ export class TemplatesClient {
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.PayabliError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/Query/templates/{orgId}");

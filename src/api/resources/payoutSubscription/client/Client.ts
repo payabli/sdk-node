@@ -18,7 +18,7 @@ export declare namespace PayoutSubscriptionClient {
 export class PayoutSubscriptionClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<PayoutSubscriptionClient.Options>;
 
-    constructor(options: PayoutSubscriptionClient.Options = {}) {
+    constructor(options: PayoutSubscriptionClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -35,62 +35,58 @@ export class PayoutSubscriptionClient {
      *
      * @example
      *     await client.payoutSubscription.createPayoutSubscription({
-     *         body: {
-     *             entryPoint: "d193cf9a46",
-     *             paymentMethod: {
-     *                 method: "ach",
-     *                 achHolder: "Herman Coatings",
-     *                 achRouting: "021000021",
-     *                 achAccount: "3453445666",
-     *                 achAccountType: "checking"
-     *             },
-     *             paymentDetails: {
-     *                 totalAmount: 500,
-     *                 serviceFee: 0,
-     *                 currency: "USD"
-     *             },
-     *             vendorData: {
-     *                 vendorId: 1501
-     *             },
-     *             billData: [{
-     *                     invoiceNumber: "INV-5001",
-     *                     netAmount: "500",
-     *                     invoiceDate: "2025-08-01",
-     *                     dueDate: "2025-08-15"
-     *                 }],
-     *             scheduleDetails: {
-     *                 startDate: "09/01/2025",
-     *                 endDate: "09/01/2026",
-     *                 frequency: "monthly"
-     *             }
+     *         entryPoint: "8cfec329267",
+     *         paymentMethod: {
+     *             method: "ach",
+     *             achHolder: "Herman Coatings",
+     *             achRouting: "021000021",
+     *             achAccount: "3453445666",
+     *             achAccountType: "checking"
+     *         },
+     *         paymentDetails: {
+     *             totalAmount: 500,
+     *             serviceFee: 0,
+     *             currency: "USD"
+     *         },
+     *         vendorData: {
+     *             vendorId: 456
+     *         },
+     *         billData: [{
+     *                 invoiceNumber: "INV-2345",
+     *                 netAmount: "500",
+     *                 invoiceDate: "2025-08-01",
+     *                 dueDate: "2025-08-15"
+     *             }],
+     *         scheduleDetails: {
+     *             startDate: "09/01/2027",
+     *             endDate: "09/01/2026",
+     *             frequency: "monthly"
      *         }
      *     })
      *
      * @example
      *     await client.payoutSubscription.createPayoutSubscription({
-     *         body: {
-     *             entryPoint: "d193cf9a46",
-     *             paymentMethod: {
-     *                 method: "vcard"
-     *             },
-     *             paymentDetails: {
-     *                 totalAmount: 250,
-     *                 serviceFee: 0
-     *             },
-     *             vendorData: {
-     *                 vendorId: 1501
-     *             },
-     *             billData: [{
-     *                     invoiceNumber: "INV-7820",
-     *                     netAmount: "250",
-     *                     invoiceDate: "2025-08-15",
-     *                     dueDate: "2025-09-01"
-     *                 }],
-     *             scheduleDetails: {
-     *                 startDate: "09/01/2025",
-     *                 frequency: "weekly",
-     *                 endDate: "untilcancelled"
-     *             }
+     *         entryPoint: "8cfec329267",
+     *         paymentMethod: {
+     *             method: "vcard"
+     *         },
+     *         paymentDetails: {
+     *             totalAmount: 250,
+     *             serviceFee: 0
+     *         },
+     *         vendorData: {
+     *             vendorId: 456
+     *         },
+     *         billData: [{
+     *                 invoiceNumber: "INV-2345",
+     *                 netAmount: "250",
+     *                 invoiceDate: "2025-08-15",
+     *                 dueDate: "2025-09-01"
+     *             }],
+     *         scheduleDetails: {
+     *             startDate: "09/01/2027",
+     *             frequency: "weekly",
+     *             endDate: "untilcancelled"
      *         }
      *     })
      */
@@ -105,7 +101,7 @@ export class PayoutSubscriptionClient {
         request: Payabli.RequestPayoutSchedule,
         requestOptions?: PayoutSubscriptionClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.AddPayoutSubscriptionResponse>> {
-        const { idempotencyKey, body: _body } = request;
+        const { idempotencyKey, ..._body } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -144,12 +140,15 @@ export class PayoutSubscriptionClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -223,12 +222,15 @@ export class PayoutSubscriptionClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -272,15 +274,15 @@ export class PayoutSubscriptionClient {
      *             totalAmount: 750
      *         },
      *         scheduleDetails: {
-     *             endDate: "12/31/2026",
+     *             endDate: "12/31/2027",
      *             frequency: "monthly",
-     *             startDate: "01/01/2026"
+     *             startDate: "01/01/2027"
      *         }
      *     })
      */
     public updatePayoutSubscription(
         id: number,
-        request: Payabli.UpdatePayoutSubscriptionBody,
+        request: Payabli.UpdatePayoutSubscriptionBody = {},
         requestOptions?: PayoutSubscriptionClient.RequestOptions,
     ): core.HttpResponsePromise<Payabli.UpdatePayoutSubscriptionResponse> {
         return core.HttpResponsePromise.fromPromise(this.__updatePayoutSubscription(id, request, requestOptions));
@@ -288,7 +290,7 @@ export class PayoutSubscriptionClient {
 
     private async __updatePayoutSubscription(
         id: number,
-        request: Payabli.UpdatePayoutSubscriptionBody,
+        request: Payabli.UpdatePayoutSubscriptionBody = {},
         requestOptions?: PayoutSubscriptionClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.UpdatePayoutSubscriptionResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
@@ -328,12 +330,15 @@ export class PayoutSubscriptionClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -407,12 +412,15 @@ export class PayoutSubscriptionClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:

@@ -18,7 +18,7 @@ export interface ApplicationDataManaged {
     btype?: Payabli.OwnType | undefined;
     bzip?: Payabli.Bzip | undefined;
     /** List of contacts for the business. */
-    contacts?: ApplicationDataManaged.Contacts.Item[] | undefined;
+    contacts?: Payabli.ApplicationDataManagedContactsItem[] | undefined;
     dbaname?: Payabli.Dbaname | undefined;
     ein?: Payabli.Ein | undefined;
     faxnumber?: Payabli.BoardingBusinessFax | undefined;
@@ -34,7 +34,7 @@ export interface ApplicationDataManaged {
     mzip?: Payabli.Mzip | undefined;
     orgId?: Payabli.Orgid | undefined;
     /** List of Owners with at least a 25% ownership. */
-    ownership?: ApplicationDataManaged.Ownership.Item[] | undefined;
+    ownership?: Payabli.ApplicationDataManagedOwnershipItem[] | undefined;
     phonenumber?: Payabli.BoardingBusinessPhone | undefined;
     /** Email address for the applicant. This is used to send the applicant a boarding link. */
     recipientEmail?: Payabli.Email | undefined;
@@ -50,18 +50,4 @@ export interface ApplicationDataManaged {
     RepName?: Payabli.RepName | undefined;
     RepOffice?: Payabli.RepOffice | undefined;
     onCreate?: Payabli.OnCreate | undefined;
-}
-
-export namespace ApplicationDataManaged {
-    export type Contacts = Contacts.Item[];
-
-    export namespace Contacts {
-        export interface Item extends Payabli.Contacts {}
-    }
-
-    export type Ownership = Ownership.Item[];
-
-    export namespace Ownership {
-        export interface Item extends Payabli.Owners {}
-    }
 }

@@ -8,19 +8,6 @@ import type * as Payabli from "../index.js";
 export interface PayabliApiResponse0 {
     isSuccess?: Payabli.IsSuccess | undefined;
     pageIdentifier?: Payabli.PageIdentifier | undefined;
-    responseData?: PayabliApiResponse0.ResponseData | undefined;
+    responseData?: Payabli.PayabliApiResponse0ResponseData | undefined;
     responseText: Payabli.ResponseText;
-}
-
-export namespace PayabliApiResponse0 {
-    export interface ResponseData {
-        AuthCode?: Payabli.Authcode | undefined;
-        avsResponseText?: Payabli.AvsResponseText | undefined;
-        CustomerId?: Payabli.Customeridtrans | undefined;
-        cvvResponseText?: Payabli.CvvResponseText | undefined;
-        methodReferenceId?: Payabli.MethodReferenceId | undefined;
-        ReferenceId?: Payabli.Referenceidtrans | undefined;
-        ResultCode?: Payabli.ResultCode | undefined;
-        ResultText?: Payabli.Resulttext | undefined;
-    }
 }

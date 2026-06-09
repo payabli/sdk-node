@@ -2,16 +2,6 @@
 
 import type * as Payabli from "../index.js";
 
-/**
- * @example
- *     {
- *         pageSize: 20,
- *         totalAmount: 0,
- *         totalNetAmount: 0,
- *         totalPages: 411,
- *         totalRecords: 8203
- *     }
- */
 export interface BatchSummary {
     pageidentifier?: Payabli.PageIdentifier | undefined;
     /** Number of records on each response page. */

@@ -10,18 +10,5 @@ export interface PayabliApiResponse0000 {
     responseText: Payabli.ResponseText;
     pageIdentifier?: Payabli.PageIdentifier | undefined;
     responseCode?: Payabli.Responsecode | undefined;
-    responseData?: PayabliApiResponse0000.ResponseData | undefined;
-}
-
-export namespace PayabliApiResponse0000 {
-    export interface ResponseData {
-        AuthCode?: Payabli.Authcode | undefined;
-        avsResponseText?: Payabli.AvsResponseText | undefined;
-        CustomerId?: Payabli.Customeridtrans | undefined;
-        cvvResponseText?: Payabli.CvvResponseText | undefined;
-        methodReferenceId?: Payabli.MethodReferenceId | undefined;
-        ReferenceId?: Payabli.Referenceidtrans | undefined;
-        ResultCode?: Payabli.ResultCode | undefined;
-        ResultText?: Payabli.Resulttext | undefined;
-    }
+    responseData?: Payabli.PayabliApiResponse0ResponseData | undefined;
 }

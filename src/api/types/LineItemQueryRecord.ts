@@ -8,7 +8,7 @@ export interface LineItemQueryRecord {
     /** Identifier of line item. */
     id?: number | undefined;
     /** Array of tags classifying item or product. */
-    itemCategories?: (string | undefined)[] | undefined;
+    itemCategories?: string[] | undefined;
     itemCommodityCode?: Payabli.ItemCommodityCode | undefined;
     /** Item or product price per unit. */
     itemCost: number;

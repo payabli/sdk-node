@@ -15,10 +15,13 @@ export declare namespace SubscriptionClient {
     export interface RequestOptions extends BaseRequestOptions {}
 }
 
+/**
+ * The Subscription service manages recurring payment schedules and automatic billing operations. It provides comprehensive subscription lifecycle management including creation, modification, pausing, resuming, and cancellation of recurring payment plans. The service supports multiple frequency options from daily to yearly billing, flexible start dates and end dates, and customizable billing amounts that can include service fees. Subscriptions are linked to customers and stored payment methods, with automatic retry logic for failed payments. The service tracks subscription history, payment success rates, and provides detailed subscription status information including next billing dates and payment histories.
+ */
 export class SubscriptionClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<SubscriptionClient.Options>;
 
-    constructor(options: SubscriptionClient.Options = {}) {
+    constructor(options: SubscriptionClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -34,7 +37,7 @@ export class SubscriptionClient {
      * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
-     *     await client.subscription.getSubscription(263)
+     *     await client.subscription.getSubscription(231)
      */
     public getSubscription(
         subId: number,
@@ -78,12 +81,15 @@ export class SubscriptionClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -96,250 +102,6 @@ export class SubscriptionClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/Subscription/{subId}");
-    }
-
-    /**
-     * Creates a subscription or scheduled payment to run at a specified time and frequency.
-     *
-     * @param {Payabli.RequestSchedule} request
-     * @param {SubscriptionClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.InternalServerError}
-     * @throws {@link Payabli.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.subscription.newSubscription({
-     *         body: {
-     *             customerData: {
-     *                 customerId: 4440
-     *             },
-     *             entryPoint: "f743aed24a",
-     *             paymentDetails: {
-     *                 serviceFee: 0,
-     *                 totalAmount: 100
-     *             },
-     *             paymentMethod: {
-     *                 cardcvv: "123",
-     *                 cardexp: "02/25",
-     *                 cardHolder: "John Cassian",
-     *                 cardnumber: "4111111111111111",
-     *                 cardzip: "37615",
-     *                 initiator: "payor",
-     *                 method: "card"
-     *             },
-     *             scheduleDetails: {
-     *                 endDate: "03-20-2025",
-     *                 frequency: "weekly",
-     *                 planId: 1,
-     *                 startDate: "09-20-2024"
-     *             }
-     *         }
-     *     })
-     *
-     * @example
-     *     await client.subscription.newSubscription({
-     *         body: {
-     *             customerData: {
-     *                 customerId: 4440
-     *             },
-     *             entryPoint: "f743aed24a",
-     *             paymentDetails: {
-     *                 serviceFee: 0,
-     *                 totalAmount: 100
-     *             },
-     *             paymentMethod: {
-     *                 achAccount: "3453445666",
-     *                 achAccountType: "Checking",
-     *                 achCode: "PPD",
-     *                 achHolder: "John Cassian",
-     *                 achHolderType: "personal",
-     *                 achRouting: "021000021",
-     *                 method: "ach"
-     *             },
-     *             scheduleDetails: {
-     *                 endDate: "03-20-2025",
-     *                 frequency: "weekly",
-     *                 planId: 1,
-     *                 startDate: "09-20-2024"
-     *             }
-     *         }
-     *     })
-     *
-     * @example
-     *     await client.subscription.newSubscription({
-     *         body: {
-     *             customerData: {
-     *                 customerId: 4440
-     *             },
-     *             entryPoint: "f743aed24a",
-     *             paymentDetails: {
-     *                 serviceFee: 0,
-     *                 totalAmount: 100
-     *             },
-     *             paymentMethod: {
-     *                 initiator: "merchant",
-     *                 storedMethodId: "4000e8c6-3add-4200-8ac2-9b8a4f8b1639-1323",
-     *                 storedMethodUsageType: "recurring"
-     *             },
-     *             scheduleDetails: {
-     *                 endDate: "03-20-2025",
-     *                 frequency: "weekly",
-     *                 planId: 1,
-     *                 startDate: "09-20-2024"
-     *             }
-     *         }
-     *     })
-     */
-    public newSubscription(
-        request: Payabli.RequestSchedule,
-        requestOptions?: SubscriptionClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.AddSubscriptionResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__newSubscription(request, requestOptions));
-    }
-
-    private async __newSubscription(
-        request: Payabli.RequestSchedule,
-        requestOptions?: SubscriptionClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.AddSubscriptionResponse>> {
-        const { forceCustomerCreation, idempotencyKey, body: _body } = request;
-        const _queryParams: Record<string, unknown> = {
-            forceCustomerCreation,
-        };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey }),
-            requestOptions?.headers,
-        );
-        const _response = await core.fetcher({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.PayabliEnvironment.Sandbox,
-                "Subscription/add",
-            ),
-            method: "POST",
-            headers: _headers,
-            contentType: "application/json",
-            queryString: core.url
-                .queryBuilder()
-                .addMany(_queryParams)
-                .mergeAdditional(requestOptions?.queryParams)
-                .build(),
-            requestType: "json",
-            body: _body,
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return { data: _response.body as Payabli.AddSubscriptionResponse, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
-                case 500:
-                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
-                case 503:
-                    throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.PayabliError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/Subscription/add");
-    }
-
-    /**
-     * Deletes a subscription, autopay, or recurring payment and prevents future charges.
-     *
-     * @param {number} subId - The subscription ID.
-     * @param {SubscriptionClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.InternalServerError}
-     * @throws {@link Payabli.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.subscription.removeSubscription(396)
-     */
-    public removeSubscription(
-        subId: number,
-        requestOptions?: SubscriptionClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.RemoveSubscriptionResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__removeSubscription(subId, requestOptions));
-    }
-
-    private async __removeSubscription(
-        subId: number,
-        requestOptions?: SubscriptionClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.RemoveSubscriptionResponse>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await core.fetcher({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.PayabliEnvironment.Sandbox,
-                `Subscription/${core.url.encodePathParam(subId)}`,
-            ),
-            method: "DELETE",
-            headers: _headers,
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return { data: _response.body as Payabli.RemoveSubscriptionResponse, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
-                case 500:
-                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
-                case 503:
-                    throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.PayabliError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/Subscription/{subId}");
     }
 
     /**
@@ -366,10 +128,10 @@ export class SubscriptionClient {
      *             totalAmount: 100
      *         },
      *         scheduleDetails: {
-     *             endDate: "03-20-2025",
+     *             endDate: "2025-03-20",
      *             frequency: "weekly",
      *             planId: 1,
-     *             startDate: "09-20-2024"
+     *             startDate: "2024-09-20"
      *         }
      *     })
      */
@@ -424,5 +186,274 @@ export class SubscriptionClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/Subscription/{subId}");
+    }
+
+    /**
+     * Deletes a subscription, autopay, or recurring payment and prevents future charges.
+     *
+     * @param {number} subId - The subscription ID.
+     * @param {SubscriptionClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.subscription.removeSubscription(231)
+     */
+    public removeSubscription(
+        subId: number,
+        requestOptions?: SubscriptionClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.RemoveSubscriptionResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__removeSubscription(subId, requestOptions));
+    }
+
+    private async __removeSubscription(
+        subId: number,
+        requestOptions?: SubscriptionClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.RemoveSubscriptionResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `Subscription/${core.url.encodePathParam(subId)}`,
+            ),
+            method: "DELETE",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.RemoveSubscriptionResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/Subscription/{subId}");
+    }
+
+    /**
+     * Creates a subscription or scheduled payment to run at a specified time and frequency. You can use stored payment method tokens for card, ACH, and digital wallets by passing them into the `paymentMethod.storedMethodId` field.
+     *
+     * @param {Payabli.RequestSchedule} request
+     * @param {SubscriptionClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.subscription.newSubscription({
+     *         customerData: {
+     *             customerId: 4440
+     *         },
+     *         entryPoint: "8cfec329267",
+     *         paymentDetails: {
+     *             serviceFee: 0,
+     *             totalAmount: 100
+     *         },
+     *         paymentMethod: {
+     *             cardcvv: "123",
+     *             cardexp: "02/25",
+     *             cardHolder: "John Cassian",
+     *             cardnumber: "4111111111111111",
+     *             cardzip: "37615",
+     *             initiator: "payor",
+     *             method: "card"
+     *         },
+     *         scheduleDetails: {
+     *             endDate: "2025-03-20",
+     *             frequency: "weekly",
+     *             planId: 1,
+     *             startDate: "2024-09-20"
+     *         }
+     *     })
+     *
+     * @example
+     *     await client.subscription.newSubscription({
+     *         customerData: {
+     *             customerId: 4440
+     *         },
+     *         entryPoint: "8cfec329267",
+     *         paymentDetails: {
+     *             serviceFee: 0,
+     *             totalAmount: 100
+     *         },
+     *         paymentMethod: {
+     *             achAccount: "3453445666",
+     *             achAccountType: "Checking",
+     *             achCode: "PPD",
+     *             achHolder: "John Cassian",
+     *             achHolderType: "personal",
+     *             achRouting: "021000021",
+     *             method: "ach"
+     *         },
+     *         scheduleDetails: {
+     *             endDate: "2025-03-20",
+     *             frequency: "weekly",
+     *             planId: 1,
+     *             startDate: "2024-09-20"
+     *         }
+     *     })
+     *
+     * @example
+     *     await client.subscription.newSubscription({
+     *         customerData: {
+     *             customerId: 4440
+     *         },
+     *         entryPoint: "8cfec329267",
+     *         paymentDetails: {
+     *             serviceFee: 0,
+     *             totalAmount: 100
+     *         },
+     *         paymentMethod: {
+     *             initiator: "merchant",
+     *             storedMethodId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+     *             storedMethodUsageType: "recurring"
+     *         },
+     *         scheduleDetails: {
+     *             endDate: "2025-03-20",
+     *             frequency: "weekly",
+     *             planId: 1,
+     *             startDate: "2024-09-20"
+     *         }
+     *     })
+     *
+     * @example
+     *     await client.subscription.newSubscription({
+     *         customerData: {
+     *             customerId: 4440
+     *         },
+     *         entryPoint: "8cfec329267",
+     *         subscriptionType: "BalanceDriven",
+     *         paymentDetails: {
+     *             serviceFee: 0,
+     *             totalAmount: 100
+     *         },
+     *         paymentMethod: {
+     *             cardcvv: "123",
+     *             cardexp: "02/25",
+     *             cardHolder: "John Cassian",
+     *             cardnumber: "4111111111111111",
+     *             cardzip: "37615",
+     *             initiator: "payor",
+     *             method: "card"
+     *         },
+     *         scheduleDetails: {
+     *             frequency: "endofmonth"
+     *         }
+     *     })
+     */
+    public newSubscription(
+        request: Payabli.RequestSchedule = {},
+        requestOptions?: SubscriptionClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.AddSubscriptionResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__newSubscription(request, requestOptions));
+    }
+
+    private async __newSubscription(
+        request: Payabli.RequestSchedule = {},
+        requestOptions?: SubscriptionClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.AddSubscriptionResponse>> {
+        const { forceCustomerCreation, idempotencyKey, ..._body } = request;
+        const _queryParams: Record<string, unknown> = {
+            forceCustomerCreation,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey }),
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                "Subscription/add",
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
+            requestType: "json",
+            body: _body,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.AddSubscriptionResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/Subscription/add");
     }
 }

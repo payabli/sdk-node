@@ -11,15 +11,15 @@ describe("NotificationlogsClient", () => {
         const rawRequestBody = {
             startDate: "2024-01-01T00:00:00Z",
             endDate: "2024-01-31T23:59:59Z",
-            orgId: 12345,
+            orgId: 123,
             notificationEvent: "ActivatedMerchant",
             succeeded: true,
         };
         const rawResponseBody = [
             {
                 id: "550e8400-e29b-41d4-a716-446655440000",
-                orgId: 12345,
-                paypointId: 67890,
+                orgId: 123,
+                paypointId: 3040,
                 notificationEvent: "ActivatedMerchant",
                 target: "https://webhook.example.com/payments",
                 responseStatus: "200",
@@ -43,13 +43,11 @@ describe("NotificationlogsClient", () => {
 
         const response = await client.notificationlogs.searchNotificationLogs({
             PageSize: 20,
-            body: {
-                startDate: "2024-01-01T00:00:00Z",
-                endDate: "2024-01-31T23:59:59Z",
-                orgId: 12345,
-                notificationEvent: "ActivatedMerchant",
-                succeeded: true,
-            },
+            startDate: "2024-01-01T00:00:00Z",
+            endDate: "2024-01-31T23:59:59Z",
+            orgId: 123,
+            notificationEvent: "ActivatedMerchant",
+            succeeded: true,
         });
         expect(response).toEqual(rawResponseBody);
     });
@@ -71,10 +69,8 @@ describe("NotificationlogsClient", () => {
 
         await expect(async () => {
             return await client.notificationlogs.searchNotificationLogs({
-                body: {
-                    startDate: "2024-01-15T09:30:00Z",
-                    endDate: "2024-01-15T09:30:00Z",
-                },
+                startDate: "2024-01-15T09:30:00Z",
+                endDate: "2024-01-15T09:30:00Z",
             });
         }).rejects.toThrow(Payabli.BadRequestError);
     });
@@ -83,7 +79,7 @@ describe("NotificationlogsClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { startDate: "2024-01-15T09:30:00Z", endDate: "2024-01-15T09:30:00Z" };
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -96,10 +92,8 @@ describe("NotificationlogsClient", () => {
 
         await expect(async () => {
             return await client.notificationlogs.searchNotificationLogs({
-                body: {
-                    startDate: "2024-01-15T09:30:00Z",
-                    endDate: "2024-01-15T09:30:00Z",
-                },
+                startDate: "2024-01-15T09:30:00Z",
+                endDate: "2024-01-15T09:30:00Z",
             });
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
@@ -121,10 +115,8 @@ describe("NotificationlogsClient", () => {
 
         await expect(async () => {
             return await client.notificationlogs.searchNotificationLogs({
-                body: {
-                    startDate: "2024-01-15T09:30:00Z",
-                    endDate: "2024-01-15T09:30:00Z",
-                },
+                startDate: "2024-01-15T09:30:00Z",
+                endDate: "2024-01-15T09:30:00Z",
             });
         }).rejects.toThrow(Payabli.InternalServerError);
     });
@@ -133,7 +125,7 @@ describe("NotificationlogsClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { startDate: "2024-01-15T09:30:00Z", endDate: "2024-01-15T09:30:00Z" };
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -146,10 +138,8 @@ describe("NotificationlogsClient", () => {
 
         await expect(async () => {
             return await client.notificationlogs.searchNotificationLogs({
-                body: {
-                    startDate: "2024-01-15T09:30:00Z",
-                    endDate: "2024-01-15T09:30:00Z",
-                },
+                startDate: "2024-01-15T09:30:00Z",
+                endDate: "2024-01-15T09:30:00Z",
             });
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
@@ -160,8 +150,8 @@ describe("NotificationlogsClient", () => {
 
         const rawResponseBody = {
             id: "550e8400-e29b-41d4-a716-446655440000",
-            orgId: 12345,
-            paypointId: 67890,
+            orgId: 123,
+            paypointId: 3040,
             notificationEvent: "ActivatedMerchant",
             target: "https://webhook.example.com/payments",
             responseStatus: "200",
@@ -202,14 +192,14 @@ describe("NotificationlogsClient", () => {
 
         server
             .mockEndpoint()
-            .get("/v2/notificationlogs/d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32")
+            .get("/v2/notificationlogs/uuid")
             .respondWith()
             .statusCode(400)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
-            return await client.notificationlogs.getNotificationLog("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+            return await client.notificationlogs.getNotificationLog("uuid");
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
@@ -217,18 +207,18 @@ describe("NotificationlogsClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
-            .get("/v2/notificationlogs/d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32")
+            .get("/v2/notificationlogs/uuid")
             .respondWith()
             .statusCode(401)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
-            return await client.notificationlogs.getNotificationLog("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+            return await client.notificationlogs.getNotificationLog("uuid");
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
@@ -240,14 +230,14 @@ describe("NotificationlogsClient", () => {
 
         server
             .mockEndpoint()
-            .get("/v2/notificationlogs/d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32")
+            .get("/v2/notificationlogs/uuid")
             .respondWith()
             .statusCode(500)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
-            return await client.notificationlogs.getNotificationLog("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+            return await client.notificationlogs.getNotificationLog("uuid");
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
@@ -255,18 +245,18 @@ describe("NotificationlogsClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
-            .get("/v2/notificationlogs/d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32")
+            .get("/v2/notificationlogs/uuid")
             .respondWith()
             .statusCode(503)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
-            return await client.notificationlogs.getNotificationLog("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+            return await client.notificationlogs.getNotificationLog("uuid");
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
@@ -276,8 +266,8 @@ describe("NotificationlogsClient", () => {
 
         const rawResponseBody = {
             id: "550e8400-e29b-41d4-a716-446655440000",
-            orgId: 12345,
-            paypointId: 67890,
+            orgId: 123,
+            paypointId: 3040,
             notificationEvent: "ActivatedMerchant",
             target: "https://webhook.example.com/payments",
             responseStatus: "200",
@@ -312,14 +302,14 @@ describe("NotificationlogsClient", () => {
 
         server
             .mockEndpoint()
-            .get("/v2/notificationlogs/d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32/retry")
+            .get("/v2/notificationlogs/uuid/retry")
             .respondWith()
             .statusCode(400)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
-            return await client.notificationlogs.retryNotificationLog("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+            return await client.notificationlogs.retryNotificationLog("uuid");
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
@@ -327,18 +317,18 @@ describe("NotificationlogsClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
-            .get("/v2/notificationlogs/d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32/retry")
+            .get("/v2/notificationlogs/uuid/retry")
             .respondWith()
             .statusCode(401)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
-            return await client.notificationlogs.retryNotificationLog("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+            return await client.notificationlogs.retryNotificationLog("uuid");
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
@@ -350,14 +340,14 @@ describe("NotificationlogsClient", () => {
 
         server
             .mockEndpoint()
-            .get("/v2/notificationlogs/d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32/retry")
+            .get("/v2/notificationlogs/uuid/retry")
             .respondWith()
             .statusCode(500)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
-            return await client.notificationlogs.retryNotificationLog("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+            return await client.notificationlogs.retryNotificationLog("uuid");
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
@@ -365,18 +355,18 @@ describe("NotificationlogsClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
-            .get("/v2/notificationlogs/d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32/retry")
+            .get("/v2/notificationlogs/uuid/retry")
             .respondWith()
             .statusCode(503)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
-            return await client.notificationlogs.retryNotificationLog("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+            return await client.notificationlogs.retryNotificationLog("uuid");
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 

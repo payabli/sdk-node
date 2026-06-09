@@ -2,15 +2,6 @@
 
 import type * as Payabli from "../index.js";
 
-/**
- * @example
- *     {
- *         ContactEmail: "eric@martinezcoatings.com",
- *         ContactName: "Eric Martinez",
- *         ContactPhone: "5555555555",
- *         ContactTitle: "Owner"
- *     }
- */
 export interface ContactsResponse {
     /** Contact email address. */
     ContactEmail?: Payabli.Email | undefined;

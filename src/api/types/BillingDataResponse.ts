@@ -2,25 +2,6 @@
 
 import type * as Payabli from "../index.js";
 
-/**
- * @example
- *     {
- *         id: 123456,
- *         accountId: "bank-account-001",
- *         nickname: "Main Checking Account",
- *         bankName: "Example Bank",
- *         routingAccount: "123456789",
- *         accountNumber: "9876543210",
- *         typeAccount: Payabli.TypeAccount.Checking,
- *         bankAccountHolderName: "John Doe",
- *         bankAccountHolderType: Payabli.BankAccountHolderType.Business,
- *         bankAccountFunction: 2,
- *         verified: true,
- *         status: 1,
- *         services: [],
- *         "default": true
- *     }
- */
 export interface BillingDataResponse {
     /** The bank's ID in Payabli. */
     id: number;

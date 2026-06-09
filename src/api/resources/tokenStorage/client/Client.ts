@@ -15,10 +15,13 @@ export declare namespace TokenStorageClient {
     export interface RequestOptions extends BaseRequestOptions {}
 }
 
+/**
+ * The TokenStorage service provides secure payment method tokenization and vault management for storing sensitive payment data. It handles tokenization of both card and ACH payment methods, converting sensitive data into secure tokens for future use. The service supports both permanent token creation for recurring payments and temporary tokens for single-use scenarios, with automatic expiration. It includes features like anonymous tokenization, token-to-permanent conversion, fallback authorization for card verification, and ACH account validation. Stored tokens can be retrieved, updated, or removed, and are automatically linked to customer records for organized payment method management across all customer touchpoints.
+ */
 export class TokenStorageClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<TokenStorageClient.Options>;
 
-    constructor(options: TokenStorageClient.Options = {}) {
+    constructor(options: TokenStorageClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -35,96 +38,86 @@ export class TokenStorageClient {
      *
      * @example
      *     await client.tokenStorage.addMethod({
-     *         body: {
-     *             customerData: {
-     *                 customerId: 4440
-     *             },
-     *             entryPoint: "f743aed24a",
-     *             fallbackAuth: true,
-     *             fallbackAuthAmount: 100,
-     *             methodDescription: "Primary Visa card",
-     *             paymentMethod: {
-     *                 cardcvv: "123",
-     *                 cardexp: "02/25",
-     *                 cardHolder: "John Doe",
-     *                 cardnumber: "4111111111111111",
-     *                 cardzip: "12345",
-     *                 method: "card"
-     *             },
-     *             source: "api"
-     *         }
+     *         customerData: {
+     *             customerId: 4440
+     *         },
+     *         entryPoint: "8cfec329267",
+     *         fallbackAuth: true,
+     *         fallbackAuthAmount: 100,
+     *         methodDescription: "Primary Visa card",
+     *         paymentMethod: {
+     *             cardcvv: "123",
+     *             cardexp: "02/25",
+     *             cardHolder: "John Doe",
+     *             cardnumber: "4111111111111111",
+     *             cardzip: "12345",
+     *             method: "card"
+     *         },
+     *         source: "api"
      *     })
      *
      * @example
      *     await client.tokenStorage.addMethod({
      *         createAnonymous: true,
-     *         body: {
-     *             entryPoint: "f743aed24a",
-     *             fallbackAuth: true,
-     *             paymentMethod: {
-     *                 cardcvv: "123",
-     *                 cardexp: "02/25",
-     *                 cardHolder: "John Doe",
-     *                 cardnumber: "4111111111111111",
-     *                 cardzip: "12345",
-     *                 method: "card"
-     *             }
+     *         entryPoint: "8cfec329267",
+     *         fallbackAuth: true,
+     *         paymentMethod: {
+     *             cardcvv: "123",
+     *             cardexp: "02/25",
+     *             cardHolder: "John Doe",
+     *             cardnumber: "4111111111111111",
+     *             cardzip: "12345",
+     *             method: "card"
      *         }
      *     })
      *
      * @example
      *     await client.tokenStorage.addMethod({
-     *         body: {
-     *             customerData: {
-     *                 customerId: 4440
-     *             },
-     *             entryPoint: "f743aed24a",
-     *             fallbackAuth: true,
-     *             methodDescription: "Main card",
-     *             paymentMethod: {
-     *                 method: "card",
-     *                 tokenId: "c9700e93-b2ed-4b75-b1e4-ca4fb04fbe45-224"
-     *             }
-     *         }
-     *     })
-     *
-     * @example
-     *     await client.tokenStorage.addMethod({
-     *         achValidation: true,
-     *         body: {
-     *             customerData: {
-     *                 customerId: 4440
-     *             },
-     *             entryPoint: "f743aed24a",
-     *             paymentMethod: {
-     *                 achAccount: "1111111111111",
-     *                 achAccountType: "Checking",
-     *                 achCode: "WEB",
-     *                 achHolder: "John Doe",
-     *                 achHolderType: "personal",
-     *                 achRouting: "123456780",
-     *                 method: "ach"
-     *             }
+     *         customerData: {
+     *             customerId: 4440
+     *         },
+     *         entryPoint: "8cfec329267",
+     *         fallbackAuth: true,
+     *         methodDescription: "Main card",
+     *         paymentMethod: {
+     *             method: "card",
+     *             tokenId: "c9700e93-b2ed-4b75-b1e4-ca4fb04fbe45-224"
      *         }
      *     })
      *
      * @example
      *     await client.tokenStorage.addMethod({
      *         achValidation: true,
-     *         body: {
-     *             entryPoint: "f743aed24a",
-     *             paymentMethod: {
-     *                 achAccount: "1111111111111",
-     *                 achAccountType: "Checking",
-     *                 achCode: "WEB",
-     *                 achHolder: "John Doe",
-     *                 achHolderType: "personal",
-     *                 achRouting: "123456780",
-     *                 method: "ach"
-     *             },
-     *             vendorData: {
-     *                 vendorId: 7890
-     *             }
+     *         customerData: {
+     *             customerId: 4440
+     *         },
+     *         entryPoint: "8cfec329267",
+     *         paymentMethod: {
+     *             achAccount: "1111111111111",
+     *             achAccountType: "Checking",
+     *             achCode: "WEB",
+     *             achHolder: "John Doe",
+     *             achHolderType: "personal",
+     *             achRouting: "123456780",
+     *             method: "ach"
+     *         }
+     *     })
+     *
+     * @example
+     *     await client.tokenStorage.addMethod({
+     *         achValidation: true,
+     *         entryPoint: "8cfec329267",
+     *         paymentMethod: {
+     *             achAccount: "1111111111111",
+     *             achAccountType: "Checking",
+     *             achCode: "WEB",
+     *             achHolder: "John Doe",
+     *             achHolderType: "personal",
+     *             achRouting: "123456780",
+     *             method: "ach"
+     *         },
+     *         vendorData: {
+     *             vendorId: 456
      *         }
      *     })
      */
@@ -139,14 +132,7 @@ export class TokenStorageClient {
         request: Payabli.AddMethodRequest,
         requestOptions?: TokenStorageClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.AddMethodResponse>> {
-        const {
-            achValidation,
-            createAnonymous,
-            forceCustomerCreation,
-            temporary,
-            idempotencyKey,
-            body: _body,
-        } = request;
+        const { achValidation, createAnonymous, forceCustomerCreation, temporary, idempotencyKey, ..._body } = request;
         const _queryParams: Record<string, unknown> = {
             achValidation,
             createAnonymous,
@@ -192,12 +178,15 @@ export class TokenStorageClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -226,12 +215,6 @@ export class TokenStorageClient {
      *
      * @example
      *     await client.tokenStorage.getMethod("32-8877drt00045632-678", {
-     *         cardExpirationFormat: 1,
-     *         includeTemporary: false
-     *     })
-     *
-     * @example
-     *     await client.tokenStorage.getMethod("749e236c-59a3-49c7-ab47-73e06f9e94aa-199689", {
      *         cardExpirationFormat: 1,
      *         includeTemporary: false
      *     })
@@ -289,12 +272,15 @@ export class TokenStorageClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -307,6 +293,131 @@ export class TokenStorageClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/TokenStorage/{methodId}");
+    }
+
+    /**
+     * Updates a saved payment method.
+     *
+     * @param {string} methodId - The saved payment method ID.
+     * @param {Payabli.UpdateMethodRequest} request
+     * @param {TokenStorageClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.tokenStorage.updateMethod("32-8877drt00045632-678", {
+     *         customerData: {
+     *             customerId: 4440
+     *         },
+     *         entryPoint: "8cfec329267",
+     *         fallbackAuth: true,
+     *         paymentMethod: {
+     *             cardcvv: "123",
+     *             cardexp: "02/25",
+     *             cardHolder: "John Doe",
+     *             cardnumber: "4111111111111111",
+     *             cardzip: "12345",
+     *             method: "card"
+     *         }
+     *     })
+     *
+     * @example
+     *     await client.tokenStorage.updateMethod("32-8877drt00045632-678", {
+     *         customerData: {
+     *             customerId: 4440
+     *         },
+     *         entryPoint: "8cfec329267",
+     *         paymentMethod: {
+     *             achAccount: "1111111111111",
+     *             achAccountType: "Checking",
+     *             achCode: "WEB",
+     *             achHolder: "John Doe",
+     *             achHolderType: "personal",
+     *             achRouting: "123456780",
+     *             method: "ach"
+     *         }
+     *     })
+     *
+     * @example
+     *     await client.tokenStorage.updateMethod("32-8877drt00045632-678", {
+     *         customerData: {
+     *             customerId: 4440
+     *         },
+     *         entryPoint: "8cfec329267",
+     *         paymentMethod: {
+     *             achAccount: "1111111111111",
+     *             achAccountType: "Checking",
+     *             achCode: "WEB",
+     *             achHolder: "John Doe",
+     *             achHolderType: "personal",
+     *             achRouting: "123456780",
+     *             method: "ach"
+     *         },
+     *         vendorData: {
+     *             vendorId: 456
+     *         }
+     *     })
+     */
+    public updateMethod(
+        methodId: string,
+        request: Payabli.UpdateMethodRequest,
+        requestOptions?: TokenStorageClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.PayabliApiResponsePaymethodDelete> {
+        return core.HttpResponsePromise.fromPromise(this.__updateMethod(methodId, request, requestOptions));
+    }
+
+    private async __updateMethod(
+        methodId: string,
+        request: Payabli.UpdateMethodRequest,
+        requestOptions?: TokenStorageClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.PayabliApiResponsePaymethodDelete>> {
+        const { achValidation, ..._body } = request;
+        const _queryParams: Record<string, unknown> = {
+            achValidation,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `TokenStorage/${core.url.encodePathParam(methodId)}`,
+            ),
+            method: "PUT",
+            headers: _headers,
+            contentType: "application/json",
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
+            requestType: "json",
+            body: _body,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as Payabli.PayabliApiResponsePaymethodDelete,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.PayabliError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/TokenStorage/{methodId}");
     }
 
     /**
@@ -368,12 +479,15 @@ export class TokenStorageClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -386,136 +500,5 @@ export class TokenStorageClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/TokenStorage/{methodId}");
-    }
-
-    /**
-     * Updates a saved payment method.
-     *
-     * @param {string} methodId - The saved payment method ID.
-     * @param {Payabli.UpdateMethodRequest} request
-     * @param {TokenStorageClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @example
-     *     await client.tokenStorage.updateMethod("32-8877drt00045632-678", {
-     *         body: {
-     *             customerData: {
-     *                 customerId: 4440
-     *             },
-     *             entryPoint: "f743aed24a",
-     *             fallbackAuth: true,
-     *             paymentMethod: {
-     *                 cardcvv: "123",
-     *                 cardexp: "02/25",
-     *                 cardHolder: "John Doe",
-     *                 cardnumber: "4111111111111111",
-     *                 cardzip: "12345",
-     *                 method: "card"
-     *             }
-     *         }
-     *     })
-     *
-     * @example
-     *     await client.tokenStorage.updateMethod("32-8877drt00045632-678", {
-     *         body: {
-     *             customerData: {
-     *                 customerId: 4440
-     *             },
-     *             entryPoint: "f743aed24a",
-     *             paymentMethod: {
-     *                 achAccount: "1111111111111",
-     *                 achAccountType: "Checking",
-     *                 achCode: "WEB",
-     *                 achHolder: "John Doe",
-     *                 achHolderType: "personal",
-     *                 achRouting: "123456780",
-     *                 method: "ach"
-     *             }
-     *         }
-     *     })
-     *
-     * @example
-     *     await client.tokenStorage.updateMethod("32-8877drt00045632-678", {
-     *         body: {
-     *             customerData: {
-     *                 customerId: 4440
-     *             },
-     *             entryPoint: "f743aed24a",
-     *             paymentMethod: {
-     *                 achAccount: "1111111111111",
-     *                 achAccountType: "Checking",
-     *                 achCode: "WEB",
-     *                 achHolder: "John Doe",
-     *                 achHolderType: "personal",
-     *                 achRouting: "123456780",
-     *                 method: "ach"
-     *             },
-     *             vendorData: {
-     *                 vendorId: 7890
-     *             }
-     *         }
-     *     })
-     */
-    public updateMethod(
-        methodId: string,
-        request: Payabli.UpdateMethodRequest,
-        requestOptions?: TokenStorageClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.PayabliApiResponsePaymethodDelete> {
-        return core.HttpResponsePromise.fromPromise(this.__updateMethod(methodId, request, requestOptions));
-    }
-
-    private async __updateMethod(
-        methodId: string,
-        request: Payabli.UpdateMethodRequest,
-        requestOptions?: TokenStorageClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.PayabliApiResponsePaymethodDelete>> {
-        const { achValidation, body: _body } = request;
-        const _queryParams: Record<string, unknown> = {
-            achValidation,
-        };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await core.fetcher({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.PayabliEnvironment.Sandbox,
-                `TokenStorage/${core.url.encodePathParam(methodId)}`,
-            ),
-            method: "PUT",
-            headers: _headers,
-            contentType: "application/json",
-            queryString: core.url
-                .queryBuilder()
-                .addMany(_queryParams)
-                .mergeAdditional(requestOptions?.queryParams)
-                .build(),
-            requestType: "json",
-            body: _body,
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return {
-                data: _response.body as Payabli.PayabliApiResponsePaymethodDelete,
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.PayabliError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/TokenStorage/{methodId}");
     }
 }

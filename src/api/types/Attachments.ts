@@ -3,6 +3,7 @@
 import type * as Payabli from "../index.js";
 
 /**
- * Array of `fileContent` objects with attached documents. Max upload size is 30 MB.
+ * Array of `fileContent` objects with attached documents. Max upload size is
+ * 30 MB.
  */
 export type Attachments = Payabli.FileContent[];

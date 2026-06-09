@@ -67,5 +67,5 @@ export interface ExportPaypointsRequest {
      *
      * Example: `dbaname(ct)=hoa` returns all records with `dbaname` containing "hoa"
      */
-    parameters?: Record<string, string>;
+    parameters?: Record<string, string | null>;
 }

@@ -16,10 +16,13 @@ export declare namespace LineItemClient {
     export interface RequestOptions extends BaseRequestOptions {}
 }
 
+/**
+ * The LineItem service manages detailed line item data for invoices and bills including products, services, quantities, and pricing. It provides line item creation, modification, and deletion with support for complex pricing structures including unit costs, quantities, tax calculations, and discounts. Line items can include product codes, descriptions, commodity codes for Level 2/3 processing, and custom categories for reporting. The service calculates line totals and maintains consistency with document-level amounts, supports tax rate application, and enables detailed itemization for transparent billing. Line items integrate with inventory management and can include custom fields for specialized business requirements.
+ */
 export class LineItemClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<LineItemClient.Options>;
 
-    constructor(options: LineItemClient.Options = {}) {
+    constructor(options: LineItemClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -36,17 +39,15 @@ export class LineItemClient {
      * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
-     *     await client.lineItem.addItem("47cae3d74", {
-     *         body: {
-     *             itemProductCode: "M-DEPOSIT",
-     *             itemProductName: "Materials deposit",
-     *             itemDescription: "Deposit for materials",
-     *             itemCommodityCode: "010",
-     *             itemUnitOfMeasure: "SqFt",
-     *             itemCost: 12.45,
-     *             itemQty: 1,
-     *             itemMode: 0
-     *         }
+     *     await client.lineItem.addItem("8cfec329267", {
+     *         itemProductCode: "M-DEPOSIT",
+     *         itemProductName: "Materials deposit",
+     *         itemDescription: "Deposit for materials",
+     *         itemCommodityCode: "010",
+     *         itemUnitOfMeasure: "SqFt",
+     *         itemCost: 12.45,
+     *         itemQty: 1,
+     *         itemMode: 0
      *     })
      */
     public addItem(
@@ -62,7 +63,7 @@ export class LineItemClient {
         request: Payabli.AddItemRequest,
         requestOptions?: LineItemClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.PayabliApiResponse6>> {
-        const { idempotencyKey, body: _body } = request;
+        const { idempotencyKey, ..._body } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -98,12 +99,15 @@ export class LineItemClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -116,82 +120,6 @@ export class LineItemClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/LineItem/{entry}");
-    }
-
-    /**
-     * Deletes an item.
-     *
-     * @param {number} lineItemId - ID for the line item (also known as a product, service, or item).
-     * @param {LineItemClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.InternalServerError}
-     * @throws {@link Payabli.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.lineItem.deleteItem(700)
-     */
-    public deleteItem(
-        lineItemId: number,
-        requestOptions?: LineItemClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.DeleteItemResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__deleteItem(lineItemId, requestOptions));
-    }
-
-    private async __deleteItem(
-        lineItemId: number,
-        requestOptions?: LineItemClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.DeleteItemResponse>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await core.fetcher({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.PayabliEnvironment.Sandbox,
-                `LineItem/${core.url.encodePathParam(lineItemId)}`,
-            ),
-            method: "DELETE",
-            headers: _headers,
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return { data: _response.body as Payabli.DeleteItemResponse, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
-                case 500:
-                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
-                case 503:
-                    throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.PayabliError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/LineItem/{lineItemId}");
     }
 
     /**
@@ -250,12 +178,15 @@ export class LineItemClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -268,6 +199,173 @@ export class LineItemClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/LineItem/{lineItemId}");
+    }
+
+    /**
+     * Updates an item.
+     *
+     * @param {number} lineItemId - ID for the line item (also known as a product, service, or item).
+     * @param {Payabli.LineItem} request
+     * @param {LineItemClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.lineItem.updateItem(700, {
+     *         itemCost: 12.45,
+     *         itemQty: 1
+     *     })
+     */
+    public updateItem(
+        lineItemId: number,
+        request: Payabli.LineItem,
+        requestOptions?: LineItemClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.PayabliApiResponse6> {
+        return core.HttpResponsePromise.fromPromise(this.__updateItem(lineItemId, request, requestOptions));
+    }
+
+    private async __updateItem(
+        lineItemId: number,
+        request: Payabli.LineItem,
+        requestOptions?: LineItemClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.PayabliApiResponse6>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `LineItem/${core.url.encodePathParam(lineItemId)}`,
+            ),
+            method: "PUT",
+            headers: _headers,
+            contentType: "application/json",
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            requestType: "json",
+            body: request,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.PayabliApiResponse6, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/LineItem/{lineItemId}");
+    }
+
+    /**
+     * Deletes an item.
+     *
+     * @param {number} lineItemId - ID for the line item (also known as a product, service, or item).
+     * @param {LineItemClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.lineItem.deleteItem(700)
+     */
+    public deleteItem(
+        lineItemId: number,
+        requestOptions?: LineItemClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.DeleteItemResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__deleteItem(lineItemId, requestOptions));
+    }
+
+    private async __deleteItem(
+        lineItemId: number,
+        requestOptions?: LineItemClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.DeleteItemResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `LineItem/${core.url.encodePathParam(lineItemId)}`,
+            ),
+            method: "DELETE",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.DeleteItemResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/LineItem/{lineItemId}");
     }
 
     /**
@@ -344,12 +442,15 @@ export class LineItemClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -362,71 +463,5 @@ export class LineItemClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/Query/lineitems/{entry}");
-    }
-
-    /**
-     * Updates an item.
-     *
-     * @param {number} lineItemId - ID for the line item (also known as a product, service, or item).
-     * @param {Payabli.LineItem} request
-     * @param {LineItemClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @example
-     *     await client.lineItem.updateItem(700, {
-     *         itemCost: 12.45,
-     *         itemQty: 1
-     *     })
-     */
-    public updateItem(
-        lineItemId: number,
-        request: Payabli.LineItem,
-        requestOptions?: LineItemClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.PayabliApiResponse6> {
-        return core.HttpResponsePromise.fromPromise(this.__updateItem(lineItemId, request, requestOptions));
-    }
-
-    private async __updateItem(
-        lineItemId: number,
-        request: Payabli.LineItem,
-        requestOptions?: LineItemClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.PayabliApiResponse6>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await core.fetcher({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.PayabliEnvironment.Sandbox,
-                `LineItem/${core.url.encodePathParam(lineItemId)}`,
-            ),
-            method: "PUT",
-            headers: _headers,
-            contentType: "application/json",
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            requestType: "json",
-            body: request,
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return { data: _response.body as Payabli.PayabliApiResponse6, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.PayabliError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/LineItem/{lineItemId}");
     }
 }

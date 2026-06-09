@@ -79,5 +79,5 @@ export interface ExportBatchDetailsOrgRequest {
      *
      * Example: `amount(gt)=20` return all records with amount greater than 20.00
      */
-    parameters?: Record<string, string>;
+    parameters?: Record<string, string | null>;
 }

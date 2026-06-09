@@ -13,39 +13,39 @@ describe("PaypointClient", () => {
             isSuccess: true,
             responseCode: 1,
             responseData: {
-                EntryName: "abc123def",
+                EntryName: "8cfec329267",
                 EntryPages: [
                     { AdditionalData: { key1: { key: "value" }, key2: { key: "value" }, key3: { key: "value" } } },
                 ],
                 IdEntry: 11111,
                 Paypoint: {
-                    address1: "123 Ocean Drive",
-                    address2: "Suite 400",
-                    bankData: [
+                    Address1: "123 Ocean Drive",
+                    Address2: "Suite 400",
+                    BankData: [
                         {
                             bankAccountFunction: 0,
                             bankAccountHolderName: "Gruzya Adventure Outfitters LLC",
                             nickname: "Business Checking 1234",
                         },
                     ],
-                    boardingId: 340,
-                    city: "Bristol",
-                    contacts: [{}],
-                    country: "US",
-                    credentials: [{}],
-                    dbaName: "Sunshine Gutters",
+                    BoardingId: 340,
+                    City: "Bristol",
+                    Contacts: [{}],
+                    Country: "US",
+                    Credentials: [{}],
+                    DbaName: "Sunshine Gutters",
                     externalPaypointID: "",
-                    fax: "5555555555",
-                    idPaypoint: 1000000,
-                    legalName: "Sunshine Services, LLC",
-                    parentOrg: { orgName: "Pilgrim Planner", orgStatus: 1, orgType: 0 },
-                    paypointStatus: 1,
-                    phone: "5555555555",
-                    state: "GA",
+                    Fax: "5555555555",
+                    IdPaypoint: 1000000,
+                    LegalName: "Sunshine Services, LLC",
+                    ParentOrg: { orgName: "Pilgrim Planner", orgStatus: 1, orgType: 0 },
+                    PaypointStatus: 1,
+                    Phone: "5555555555",
+                    State: "GA",
                     summary: { amountSubs: 0, amountTx: 0, countSubs: 0, countTx: 0, customers: 1 },
-                    timeZone: -5,
-                    websiteAddress: "www.example.com",
-                    zip: "31113",
+                    TimeZone: -5,
+                    WebsiteAddress: "www.example.com",
+                    Zip: "31113",
                 },
             },
             responseText: "Success",
@@ -86,7 +86,7 @@ describe("PaypointClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -124,7 +124,7 @@ describe("PaypointClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -147,39 +147,39 @@ describe("PaypointClient", () => {
             isSuccess: true,
             responseCode: 1,
             responseData: {
-                EntryName: "abc123def",
+                EntryName: "8cfec329267",
                 EntryPages: [
                     { AdditionalData: { key1: { key: "value" }, key2: { key: "value" }, key3: { key: "value" } } },
                 ],
                 IdEntry: 11111,
                 Paypoint: {
-                    address1: "123 Ocean Drive",
-                    address2: "Suite 400",
-                    bankData: [
+                    Address1: "123 Ocean Drive",
+                    Address2: "Suite 400",
+                    BankData: [
                         {
                             bankAccountFunction: 0,
                             bankAccountHolderName: "Gruzya Adventure Outfitters LLC",
                             nickname: "Business Checking 1234",
                         },
                     ],
-                    boardingId: 340,
-                    city: "Bristol",
-                    contacts: [{}],
-                    country: "US",
-                    credentials: [{}],
-                    dbaName: "Sunshine Gutters",
+                    BoardingId: 340,
+                    City: "Bristol",
+                    Contacts: [{}],
+                    Country: "US",
+                    Credentials: [{}],
+                    DbaName: "Sunshine Gutters",
                     externalPaypointID: "",
-                    fax: "5555555555",
-                    idPaypoint: 1000000,
-                    legalName: "Sunshine Services, LLC",
-                    parentOrg: { orgName: "Pilgrim Planner", orgStatus: 1, orgType: 0 },
-                    paypointStatus: 1,
-                    phone: "5555555555",
-                    state: "GA",
+                    Fax: "5555555555",
+                    IdPaypoint: 1000000,
+                    LegalName: "Sunshine Services, LLC",
+                    ParentOrg: { orgName: "Pilgrim Planner", orgStatus: 1, orgType: 0 },
+                    PaypointStatus: 1,
+                    Phone: "5555555555",
+                    State: "GA",
                     summary: { amountSubs: 0, amountTx: 0, countSubs: 0, countTx: 0, customers: 1 },
-                    timeZone: -5,
-                    websiteAddress: "www.example.com",
-                    zip: "31113",
+                    TimeZone: -5,
+                    WebsiteAddress: "www.example.com",
+                    Zip: "31113",
                 },
             },
             responseText: "Success",
@@ -220,7 +220,7 @@ describe("PaypointClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -258,7 +258,7 @@ describe("PaypointClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -270,403 +270,6 @@ describe("PaypointClient", () => {
 
         await expect(async () => {
             return await client.paypoint.getBasicEntryById("IdPaypoint");
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
-    });
-
-    test("getEntryConfig (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            isSuccess: true,
-            responseCode: 1,
-            responseData: {
-                EntryName: "abc123def",
-                EntryPages: [
-                    { AdditionalData: { key1: { key: "value" }, key2: { key: "value" }, key3: { key: "value" } } },
-                ],
-                IdEntry: 11111,
-                Paypoint: {
-                    address1: "123 Ocean Drive",
-                    address2: "Suite 400",
-                    bankData: [
-                        {
-                            bankAccountFunction: 0,
-                            bankAccountHolderName: "Gruzya Adventure Outfitters LLC",
-                            nickname: "Business Checking 1234",
-                        },
-                    ],
-                    boardingId: 340,
-                    city: "Bristol",
-                    contacts: [{}],
-                    country: "US",
-                    credentials: [{}],
-                    dbaName: "Sunshine Gutters",
-                    externalPaypointID: "",
-                    fax: "5555555555",
-                    idPaypoint: 1000000,
-                    legalName: "Sunshine Services, LLC",
-                    parentOrg: { orgName: "Pilgrim Planner", orgStatus: 1, orgType: 0 },
-                    paypointStatus: 1,
-                    phone: "5555555555",
-                    state: "GA",
-                    summary: { amountSubs: 0, amountTx: 0, countSubs: 0, countTx: 0, customers: 1 },
-                    timeZone: -5,
-                    websiteAddress: "www.example.com",
-                    zip: "31113",
-                    statementEmail: { sender: "acme-partners@payabli.com", recipients: ["billing@example.com"] },
-                },
-            },
-            responseText: "Success",
-        };
-
-        server
-            .mockEndpoint()
-            .get("/Paypoint/8cfec329267")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.paypoint.getEntryConfig("8cfec329267");
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("getEntryConfig (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server.mockEndpoint().get("/Paypoint/entry").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.paypoint.getEntryConfig("entry");
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("getEntryConfig (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server.mockEndpoint().get("/Paypoint/entry").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.paypoint.getEntryConfig("entry");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("getEntryConfig (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server.mockEndpoint().get("/Paypoint/entry").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.paypoint.getEntryConfig("entry");
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("getEntryConfig (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { responseText: "responseText" };
-
-        server.mockEndpoint().get("/Paypoint/entry").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.paypoint.getEntryConfig("entry");
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
-    });
-
-    test("getPage (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            AdditionalData: { key1: { key: "value" }, key2: { key: "value" }, key3: { key: "value" } },
-            credentials: [
-                {
-                    accountId: "accountId",
-                    cfeeFix: 1.1,
-                    cfeeFloat: 1.1,
-                    cfeeMax: 1.1,
-                    cfeeMin: 1.1,
-                    maxticket: 1.1,
-                    minticket: 1.1,
-                    mode: 1,
-                    referenceId: 1000000,
-                    service: "service",
-                    greaterValueAllowed: true,
-                    absorbDifference: false,
-                    allowOverride: false,
-                },
-            ],
-            lastAccess: "2022-06-30T15:01:00Z",
-            pageContent: {
-                amount: { categories: [{}], enabled: true, order: 1 },
-                autopay: {
-                    enabled: true,
-                    frequencySelected: "frequencySelected",
-                    header: "header",
-                    order: 1,
-                    startDate: "1, 5-10",
-                },
-                contactUs: {
-                    emailLabel: "emailLabel",
-                    enabled: true,
-                    header: "header",
-                    order: 1,
-                    paymentIcons: true,
-                    phoneLabel: "phoneLabel",
-                },
-                entry: "entry",
-                invoices: {
-                    enabled: true,
-                    invoiceLink: { enabled: true },
-                    order: 1,
-                    viewInvoiceDetails: { enabled: true },
-                },
-                logo: { enabled: true, order: 1 },
-                messageBeforePaying: { enabled: true, label: "label", order: 1 },
-                name: "name",
-                notes: { enabled: true, header: "header", order: 1, placeholder: "placeholder", value: "value" },
-                page: { description: "description", enabled: true, header: "header", order: 1 },
-                paymentButton: { enabled: true, label: "label", order: 1 },
-                paymentMethods: {
-                    allMethodsChecked: true,
-                    enabled: true,
-                    header: "header",
-                    methods: {
-                        amex: true,
-                        applePay: true,
-                        discover: false,
-                        eCheck: false,
-                        mastercard: true,
-                        visa: true,
-                    },
-                    order: 1,
-                },
-                payor: { enabled: true, fields: [{}], header: "header", order: 1 },
-                review: { enabled: true, header: "header", order: 1 },
-                subdomain: "mypage-1",
-            },
-            pageIdentifier: "null",
-            pageSettings: {
-                color: "color",
-                customCssUrl: "customCssUrl",
-                language: "language",
-                pageLogo: {
-                    fContent: "TXkgdGVzdCBmaWxlHJ==...",
-                    filename: "my-doc.pdf",
-                    ftype: "pdf",
-                    furl: "https://mysite.com/my-doc.pdf",
-                },
-                paymentButton: { label: "label", size: "sm" },
-                redirectAfterApprove: true,
-                redirectAfterApproveUrl: "redirectAfterApproveUrl",
-            },
-            published: 1,
-            receiptContent: {
-                amount: { enabled: true, order: 1 },
-                contactUs: { enabled: true, order: 1 },
-                details: { enabled: true, order: 1 },
-                logo: { enabled: true, order: 1 },
-                messageBeforeButton: { enabled: true, label: "label", order: 1 },
-                page: { description: "description", enabled: true, header: "header", order: 1 },
-                paymentButton: { enabled: true, label: "label", order: 1 },
-                paymentInformation: { enabled: true, order: 1 },
-                settings: { enabled: true, fields: [{}], order: 1, sendAuto: true, sendManual: true },
-            },
-            subdomain: "mypage-1",
-            totalAmount: 1.1,
-            validationCode: "validationCode",
-        };
-
-        server
-            .mockEndpoint()
-            .get("/Paypoint/8cfec329267/pay-your-fees-1")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.paypoint.getPage("8cfec329267", "pay-your-fees-1");
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("getPage (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .get("/Paypoint/entry/subdomain")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.paypoint.getPage("entry", "subdomain");
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("getPage (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .get("/Paypoint/entry/subdomain")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.paypoint.getPage("entry", "subdomain");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("getPage (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .get("/Paypoint/entry/subdomain")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.paypoint.getPage("entry", "subdomain");
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("getPage (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { responseText: "responseText" };
-
-        server
-            .mockEndpoint()
-            .get("/Paypoint/entry/subdomain")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.paypoint.getPage("entry", "subdomain");
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
-    });
-
-    test("removePage (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { isSuccess: true, responseText: "Success" };
-
-        server
-            .mockEndpoint()
-            .delete("/Paypoint/8cfec329267/pay-your-fees-1")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.paypoint.removePage("8cfec329267", "pay-your-fees-1");
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("removePage (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .delete("/Paypoint/entry/subdomain")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.paypoint.removePage("entry", "subdomain");
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("removePage (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .delete("/Paypoint/entry/subdomain")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.paypoint.removePage("entry", "subdomain");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("removePage (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .delete("/Paypoint/entry/subdomain")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.paypoint.removePage("entry", "subdomain");
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("removePage (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { responseText: "responseText" };
-
-        server
-            .mockEndpoint()
-            .delete("/Paypoint/entry/subdomain")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.paypoint.removePage("entry", "subdomain");
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
@@ -719,7 +322,7 @@ describe("PaypointClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -759,7 +362,7 @@ describe("PaypointClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -772,6 +375,136 @@ describe("PaypointClient", () => {
 
         await expect(async () => {
             return await client.paypoint.saveLogo("entry", {});
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("migrate (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            entryPoint: "8cfec329267",
+            newParentOrganizationId: 123,
+            notificationRequest: {
+                notificationUrl: "https://webhook-test.yoursie.com",
+                webHeaderParameters: [{ key: "testheader", value: "1234567890" }],
+            },
+        };
+        const rawResponseBody = { isSuccess: true, responseCode: 1, responseText: "Success" };
+
+        server
+            .mockEndpoint()
+            .post("/Paypoint/migrate")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.paypoint.migrate({
+            entryPoint: "8cfec329267",
+            newParentOrganizationId: 123,
+            notificationRequest: {
+                notificationUrl: "https://webhook-test.yoursie.com",
+                webHeaderParameters: [
+                    {
+                        key: "testheader",
+                        value: "1234567890",
+                    },
+                ],
+            },
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("migrate (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { entryPoint: "entryPoint", newParentOrganizationId: 1 };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/Paypoint/migrate")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.paypoint.migrate({
+                entryPoint: "entryPoint",
+                newParentOrganizationId: 1,
+            });
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("migrate (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { entryPoint: "entryPoint", newParentOrganizationId: 1 };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .post("/Paypoint/migrate")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.paypoint.migrate({
+                entryPoint: "entryPoint",
+                newParentOrganizationId: 1,
+            });
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("migrate (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { entryPoint: "entryPoint", newParentOrganizationId: 1 };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/Paypoint/migrate")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.paypoint.migrate({
+                entryPoint: "entryPoint",
+                newParentOrganizationId: 1,
+            });
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("migrate (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { entryPoint: "entryPoint", newParentOrganizationId: 1 };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .post("/Paypoint/migrate")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.paypoint.migrate({
+                entryPoint: "entryPoint",
+                newParentOrganizationId: 1,
+            });
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
@@ -864,7 +597,7 @@ describe("PaypointClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -902,7 +635,7 @@ describe("PaypointClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -917,41 +650,400 @@ describe("PaypointClient", () => {
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
-    test("migrate", async () => {
+    test("getEntryConfig (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            entryPoint: "473abc123def",
-            newParentOrganizationId: 123,
-            notificationRequest: {
-                notificationUrl: "https://webhook-test.yoursie.com",
-                webHeaderParameters: [{ key: "testheader", value: "1234567890" }],
+
+        const rawResponseBody = {
+            isSuccess: true,
+            responseCode: 1,
+            responseData: {
+                EntryName: "8cfec329267",
+                EntryPages: [
+                    { AdditionalData: { key1: { key: "value" }, key2: { key: "value" }, key3: { key: "value" } } },
+                ],
+                IdEntry: 11111,
+                Paypoint: {
+                    Address1: "123 Ocean Drive",
+                    Address2: "Suite 400",
+                    BankData: [
+                        {
+                            bankAccountFunction: 0,
+                            bankAccountHolderName: "Gruzya Adventure Outfitters LLC",
+                            nickname: "Business Checking 1234",
+                        },
+                    ],
+                    BoardingId: 340,
+                    City: "Bristol",
+                    Contacts: [{}],
+                    Country: "US",
+                    Credentials: [{}],
+                    DbaName: "Sunshine Gutters",
+                    externalPaypointID: "",
+                    Fax: "5555555555",
+                    IdPaypoint: 1000000,
+                    LegalName: "Sunshine Services, LLC",
+                    ParentOrg: { orgName: "Pilgrim Planner", orgStatus: 1, orgType: 0 },
+                    PaypointStatus: 1,
+                    Phone: "5555555555",
+                    State: "GA",
+                    summary: { amountSubs: 0, amountTx: 0, countSubs: 0, countTx: 0, customers: 1 },
+                    TimeZone: -5,
+                    WebsiteAddress: "www.example.com",
+                    Zip: "31113",
+                    StatementEmail: { sender: "acme-partners@payabli.com", recipients: ["billing@example.com"] },
+                },
             },
+            responseText: "Success",
         };
-        const rawResponseBody = { isSuccess: true, responseCode: 1, responseText: "Success" };
 
         server
             .mockEndpoint()
-            .post("/Paypoint/migrate")
-            .jsonBody(rawRequestBody)
+            .get("/Paypoint/8cfec329267")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.paypoint.migrate({
-            entryPoint: "473abc123def",
-            newParentOrganizationId: 123,
-            notificationRequest: {
-                notificationUrl: "https://webhook-test.yoursie.com",
-                webHeaderParameters: [
-                    {
-                        key: "testheader",
-                        value: "1234567890",
-                    },
-                ],
-            },
-        });
+        const response = await client.paypoint.getEntryConfig("8cfec329267");
         expect(response).toEqual(rawResponseBody);
+    });
+
+    test("getEntryConfig (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server.mockEndpoint().get("/Paypoint/entry").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.paypoint.getEntryConfig("entry");
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("getEntryConfig (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server.mockEndpoint().get("/Paypoint/entry").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.paypoint.getEntryConfig("entry");
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("getEntryConfig (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server.mockEndpoint().get("/Paypoint/entry").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.paypoint.getEntryConfig("entry");
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("getEntryConfig (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server.mockEndpoint().get("/Paypoint/entry").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.paypoint.getEntryConfig("entry");
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("getPage (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            AdditionalData: { key1: { key: "value" }, key2: { key: "value" }, key3: { key: "value" } },
+            Credentials: [
+                {
+                    accountId: "accountId",
+                    cfeeFix: 1.1,
+                    cfeeFloat: 1.1,
+                    cfeeMax: 1.1,
+                    cfeeMin: 1.1,
+                    maxticket: 1.1,
+                    minticket: 1.1,
+                    mode: 1,
+                    referenceId: 1000000,
+                    service: "service",
+                    greaterValueAllowed: true,
+                    absorbDifference: false,
+                    allowOverride: false,
+                },
+            ],
+            LastAccess: "2022-06-30T15:01:00Z",
+            PageContent: {
+                amount: { categories: [{}], enabled: true, order: 1 },
+                autopay: {
+                    enabled: true,
+                    frequencySelected: "frequencySelected",
+                    header: "header",
+                    order: 1,
+                    startDate: "1, 5-10",
+                },
+                contactUs: {
+                    emailLabel: "emailLabel",
+                    enabled: true,
+                    header: "header",
+                    order: 1,
+                    paymentIcons: true,
+                    phoneLabel: "phoneLabel",
+                },
+                entry: "8cfec329267",
+                invoices: {
+                    enabled: true,
+                    invoiceLink: { enabled: true },
+                    order: 1,
+                    viewInvoiceDetails: { enabled: true },
+                },
+                logo: { enabled: true, order: 1 },
+                messageBeforePaying: { enabled: true, label: "label", order: 1 },
+                name: "name",
+                notes: { enabled: true, header: "header", order: 1, placeholder: "placeholder", value: "value" },
+                page: { description: "description", enabled: true, header: "header", order: 1 },
+                paymentButton: { enabled: true, label: "label", order: 1 },
+                paymentMethods: {
+                    allMethodsChecked: true,
+                    enabled: true,
+                    header: "header",
+                    methods: {
+                        amex: true,
+                        applePay: true,
+                        discover: false,
+                        eCheck: false,
+                        mastercard: true,
+                        visa: true,
+                    },
+                    order: 1,
+                },
+                payor: { enabled: true, fields: [{}], header: "header", order: 1 },
+                review: { enabled: true, header: "header", order: 1 },
+                subdomain: "mypage-1",
+            },
+            pageIdentifier: "null",
+            PageSettings: {
+                color: "color",
+                customCssUrl: "customCssUrl",
+                language: "language",
+                pageLogo: {
+                    fContent: "TXkgdGVzdCBmaWxlHJ==...",
+                    filename: "my-doc.pdf",
+                    ftype: "pdf",
+                    furl: "https://mysite.com/my-doc.pdf",
+                },
+                paymentButton: { label: "label", size: "sm" },
+                redirectAfterApprove: true,
+                redirectAfterApproveUrl: "redirectAfterApproveUrl",
+            },
+            published: 1,
+            ReceiptContent: {
+                amount: { enabled: true, order: 1 },
+                contactUs: { enabled: true, order: 1 },
+                details: { enabled: true, order: 1 },
+                logo: { enabled: true, order: 1 },
+                messageBeforeButton: { enabled: true, label: "label", order: 1 },
+                page: { description: "description", enabled: true, header: "header", order: 1 },
+                paymentButton: { enabled: true, label: "label", order: 1 },
+                paymentInformation: { enabled: true, order: 1 },
+                settings: { enabled: true, fields: [{}], order: 1, sendAuto: true, sendManual: true },
+            },
+            Subdomain: "mypage-1",
+            totalAmount: 1.1,
+            validationCode: "validationCode",
+        };
+
+        server
+            .mockEndpoint()
+            .get("/Paypoint/8cfec329267/pay-your-fees-1")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.paypoint.getPage("8cfec329267", "pay-your-fees-1");
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("getPage (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Paypoint/entry/subdomain")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.paypoint.getPage("entry", "subdomain");
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("getPage (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .get("/Paypoint/entry/subdomain")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.paypoint.getPage("entry", "subdomain");
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("getPage (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Paypoint/entry/subdomain")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.paypoint.getPage("entry", "subdomain");
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("getPage (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .get("/Paypoint/entry/subdomain")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.paypoint.getPage("entry", "subdomain");
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("removePage (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "Success" };
+
+        server
+            .mockEndpoint()
+            .delete("/Paypoint/8cfec329267/pay-your-fees-1")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.paypoint.removePage("8cfec329267", "pay-your-fees-1");
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("removePage (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .delete("/Paypoint/entry/subdomain")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.paypoint.removePage("entry", "subdomain");
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("removePage (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .delete("/Paypoint/entry/subdomain")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.paypoint.removePage("entry", "subdomain");
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("removePage (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .delete("/Paypoint/entry/subdomain")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.paypoint.removePage("entry", "subdomain");
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("removePage (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .delete("/Paypoint/entry/subdomain")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.paypoint.removePage("entry", "subdomain");
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 });

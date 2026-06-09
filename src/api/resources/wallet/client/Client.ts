@@ -15,10 +15,13 @@ export declare namespace WalletClient {
     export interface RequestOptions extends BaseRequestOptions {}
 }
 
+/**
+ * The Wallet service integrates digital wallet payment methods including Apple Pay and Google Pay for streamlined mobile and web checkout experiences. It handles wallet token validation, payment processing through tokenized credentials, and provides configuration management for enabling wallet payment options. The service manages the technical integration requirements for each wallet provider, handles token decryption and verification, and processes payments using wallet-provided tokens. It supports both one-time payments and tokenization for recurring use, while maintaining PCI compliance through wallet providers' secure token exchange mechanisms.
+ */
 export class WalletClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<WalletClient.Options>;
 
-    constructor(options: WalletClient.Options = {}) {
+    constructor(options: WalletClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -37,7 +40,7 @@ export class WalletClient {
      *     await client.wallet.configureApplePayOrganization({
      *         cascade: true,
      *         isEnabled: true,
-     *         orgId: 901
+     *         orgId: 123
      *     })
      */
     public configureApplePayOrganization(
@@ -88,12 +91,15 @@ export class WalletClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -178,12 +184,15 @@ export class WalletClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -218,7 +227,7 @@ export class WalletClient {
      *     await client.wallet.configureGooglePayOrganization({
      *         cascade: true,
      *         isEnabled: true,
-     *         orgId: 901
+     *         orgId: 123
      *     })
      */
     public configureGooglePayOrganization(
@@ -269,12 +278,15 @@ export class WalletClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -299,6 +311,11 @@ export class WalletClient {
      *
      * @param {Payabli.ConfigurePaypointRequestGooglePay} request
      * @param {WalletClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
      *     await client.wallet.configureGooglePayPaypoint({
@@ -350,11 +367,28 @@ export class WalletClient {
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.PayabliError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
         }
 
         return handleNonStatusCodeError(

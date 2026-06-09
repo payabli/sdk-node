@@ -2,7 +2,8 @@
 
 /**
  * Status of notification:
- *   - `0`: Inactive
- *   - `1`: Active
+ *
+ * - `0`: Inactive
+ * - `1`: Active
  */
 export type Statusnotification = number;

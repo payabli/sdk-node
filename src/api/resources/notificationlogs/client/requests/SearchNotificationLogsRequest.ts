@@ -6,18 +6,28 @@ import type * as Payabli from "../../../../index.js";
  * @example
  *     {
  *         PageSize: 20,
- *         body: {
- *             startDate: "2024-01-01T00:00:00Z",
- *             endDate: "2024-01-31T23:59:59Z",
- *             orgId: 12345,
- *             notificationEvent: "ActivatedMerchant",
- *             succeeded: true
- *         }
+ *         startDate: "2024-01-01T00:00:00Z",
+ *         endDate: "2024-01-31T23:59:59Z",
+ *         orgId: 123,
+ *         notificationEvent: "ActivatedMerchant",
+ *         succeeded: true
  *     }
  */
 export interface SearchNotificationLogsRequest {
+    /** Number of records on each response page. */
     PageSize?: Payabli.Pagesize;
     /** The page number to retrieve. Defaults to 1 if not provided. */
     Page?: number;
-    body: Payabli.NotificationLogSearchRequest;
+    /** The start date for the search. */
+    startDate: string;
+    /** The end date for the search. */
+    endDate: string;
+    /** The type of notification event to filter by. */
+    notificationEvent?: string;
+    /** Indicates whether the notification was successful. */
+    succeeded?: boolean;
+    /** The ID of the organization to filter by. */
+    orgId?: number;
+    /** The ID of the paypoint to filter by. */
+    paypointId?: number;
 }

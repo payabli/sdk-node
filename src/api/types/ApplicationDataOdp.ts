@@ -19,7 +19,7 @@ export interface ApplicationDataOdp {
     btype?: Payabli.OwnType | undefined;
     bzip?: Payabli.Bzip | undefined;
     /** List of contacts for the business. */
-    contacts?: ApplicationDataOdp.Contacts.Item[] | undefined;
+    contacts?: Payabli.ApplicationDataOdpContactsItem[] | undefined;
     dbaname?: Payabli.Dbaname | undefined;
     ein?: Payabli.Ein | undefined;
     faxnumber?: Payabli.BoardingBusinessFax | undefined;
@@ -36,7 +36,7 @@ export interface ApplicationDataOdp {
     mzip?: Payabli.Mzip | undefined;
     orgId?: Payabli.Orgid | undefined;
     /** List of Owners with at least a 25% ownership. */
-    ownership?: ApplicationDataOdp.Ownership.Item[] | undefined;
+    ownership?: Payabli.ApplicationDataOdpOwnershipItem[] | undefined;
     payoutAverageMonthlyVolume: Payabli.PayoutAverageMonthlyVolume;
     payoutAverageTicketAmount: Payabli.PayoutAverageTicketLimit;
     payoutCreditLimit: Payabli.PayoutCreditLimit;
@@ -56,18 +56,4 @@ export interface ApplicationDataOdp {
     RepName?: Payabli.RepName | undefined;
     RepOffice?: Payabli.RepOffice | undefined;
     onCreate?: Payabli.OnCreate | undefined;
-}
-
-export namespace ApplicationDataOdp {
-    export type Contacts = Contacts.Item[];
-
-    export namespace Contacts {
-        export interface Item extends Payabli.Contacts {}
-    }
-
-    export type Ownership = Ownership.Item[];
-
-    export namespace Ownership {
-        export interface Item extends Payabli.Owners {}
-    }
 }

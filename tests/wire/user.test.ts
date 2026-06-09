@@ -48,7 +48,7 @@ describe("UserClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -88,7 +88,7 @@ describe("UserClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -104,77 +104,91 @@ describe("UserClient", () => {
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
-    test("AuthRefreshUser (1)", async () => {
+    test("GetUser (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            inactiveTokenTime: 31,
-            isSuccess: true,
-            remaining: 120,
-            responseData: "u.fPLVSzFv1gZpHl......",
-            responseText: "Success",
+            Access: [{ roleLabel: "customers", roleValue: true }],
+            AdditionalData: "AdditionalData",
+            createdAt: "2022-07-01T15:00:01Z",
+            Email: "example@email.com",
+            language: "en",
+            lastAccess: "2022-07-01T15:00:01Z",
+            Name: "Sean Smith",
+            Phone: "5555555555",
+            Scope: [{ orgEntry: "pilgrim-planner", orgId: 123, orgType: 0 }],
+            snData: "snData",
+            snIdentifier: "snIdentifier",
+            snProvider: "google",
+            timeZone: -5,
+            userId: 1000000,
+            UsrMFA: false,
+            UsrMFAMode: 0,
+            UsrStatus: 1,
         };
 
-        server.mockEndpoint().post("/User/authrefresh").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+        server.mockEndpoint().get("/User/1000000").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.user.authRefreshUser();
+        const response = await client.user.getUser(1000000, {
+            entry: "8cfec329267",
+        });
         expect(response).toEqual(rawResponseBody);
     });
 
-    test("AuthRefreshUser (2)", async () => {
+    test("GetUser (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
 
-        server.mockEndpoint().post("/User/authrefresh").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
+        server.mockEndpoint().get("/User/1000000").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
-            return await client.user.authRefreshUser();
+            return await client.user.getUser(1000000);
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
-    test("AuthRefreshUser (3)", async () => {
+    test("GetUser (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        server.mockEndpoint().post("/User/authrefresh").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
+        server.mockEndpoint().get("/User/1000000").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
-            return await client.user.authRefreshUser();
+            return await client.user.getUser(1000000);
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
-    test("AuthRefreshUser (4)", async () => {
+    test("GetUser (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
 
-        server.mockEndpoint().post("/User/authrefresh").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
+        server.mockEndpoint().get("/User/1000000").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
-            return await client.user.authRefreshUser();
+            return await client.user.getUser(1000000);
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
-    test("AuthRefreshUser (5)", async () => {
+    test("GetUser (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        server.mockEndpoint().post("/User/authrefresh").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
+        server.mockEndpoint().get("/User/1000000").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
-            return await client.user.authRefreshUser();
+            return await client.user.getUser(1000000);
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
-    test("AuthResetUser (1)", async () => {
+    test("EditUser (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
@@ -182,18 +196,18 @@ describe("UserClient", () => {
 
         server
             .mockEndpoint()
-            .post("/User/authreset")
+            .put("/User/1000000")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.user.authResetUser();
+        const response = await client.user.editUser(1000000, {});
         expect(response).toEqual(rawResponseBody);
     });
 
-    test("AuthResetUser (2)", async () => {
+    test("EditUser (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
@@ -201,7 +215,7 @@ describe("UserClient", () => {
 
         server
             .mockEndpoint()
-            .post("/User/authreset")
+            .put("/User/1000000")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(400)
@@ -209,19 +223,19 @@ describe("UserClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.user.authResetUser();
+            return await client.user.editUser(1000000, {});
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
-    test("AuthResetUser (3)", async () => {
+    test("EditUser (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
-            .post("/User/authreset")
+            .put("/User/1000000")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(401)
@@ -229,11 +243,11 @@ describe("UserClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.user.authResetUser();
+            return await client.user.editUser(1000000, {});
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
-    test("AuthResetUser (4)", async () => {
+    test("EditUser (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
@@ -241,7 +255,7 @@ describe("UserClient", () => {
 
         server
             .mockEndpoint()
-            .post("/User/authreset")
+            .put("/User/1000000")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(500)
@@ -249,19 +263,19 @@ describe("UserClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.user.authResetUser();
+            return await client.user.editUser(1000000, {});
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
-    test("AuthResetUser (5)", async () => {
+    test("EditUser (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
-            .post("/User/authreset")
+            .put("/User/1000000")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(503)
@@ -269,7 +283,71 @@ describe("UserClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.user.authResetUser();
+            return await client.user.editUser(1000000, {});
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("DeleteUser (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { responseText: "Success" };
+
+        server.mockEndpoint().delete("/User/1000000").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const response = await client.user.deleteUser(1000000);
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("DeleteUser (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server.mockEndpoint().delete("/User/1000000").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.user.deleteUser(1000000);
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("DeleteUser (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server.mockEndpoint().delete("/User/1000000").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.user.deleteUser(1000000);
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("DeleteUser (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server.mockEndpoint().delete("/User/1000000").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.user.deleteUser(1000000);
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("DeleteUser (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server.mockEndpoint().delete("/User/1000000").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.user.deleteUser(1000000);
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
@@ -323,7 +401,7 @@ describe("UserClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -363,7 +441,7 @@ describe("UserClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -376,6 +454,175 @@ describe("UserClient", () => {
 
         await expect(async () => {
             return await client.user.authUser("provider");
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("AuthRefreshUser (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            inactiveTokenTime: 31,
+            isSuccess: true,
+            remaining: 120,
+            responseData: "u.fPLVSzFv1gZpHl......",
+            responseText: "Success",
+        };
+
+        server.mockEndpoint().post("/User/authrefresh").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const response = await client.user.authRefreshUser();
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("AuthRefreshUser (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server.mockEndpoint().post("/User/authrefresh").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.user.authRefreshUser();
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("AuthRefreshUser (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server.mockEndpoint().post("/User/authrefresh").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.user.authRefreshUser();
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("AuthRefreshUser (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server.mockEndpoint().post("/User/authrefresh").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.user.authRefreshUser();
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("AuthRefreshUser (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server.mockEndpoint().post("/User/authrefresh").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.user.authRefreshUser();
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("AuthResetUser (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseText: "Success" };
+
+        server
+            .mockEndpoint()
+            .post("/User/authreset")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.user.authResetUser();
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("AuthResetUser (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/User/authreset")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.user.authResetUser();
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("AuthResetUser (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .post("/User/authreset")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.user.authResetUser();
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("AuthResetUser (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/User/authreset")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.user.authResetUser();
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("AuthResetUser (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .post("/User/authreset")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.user.authResetUser();
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
@@ -422,7 +669,7 @@ describe("UserClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -462,7 +709,7 @@ describe("UserClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -478,68 +725,93 @@ describe("UserClient", () => {
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
-    test("DeleteUser (1)", async () => {
+    test("LogoutUser (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "Success" };
+        const rawResponseBody = { isSuccess: true, responseText: "Success" };
 
-        server.mockEndpoint().delete("/User/1000000").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+        server.mockEndpoint().get("/User/authlogout").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.user.deleteUser(1000000);
+        const response = await client.user.logoutUser();
         expect(response).toEqual(rawResponseBody);
     });
 
-    test("DeleteUser (2)", async () => {
+    test("LogoutUser (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
 
-        server.mockEndpoint().delete("/User/1000000").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
+        server.mockEndpoint().get("/User/authlogout").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
-            return await client.user.deleteUser(1000000);
+            return await client.user.logoutUser();
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
-    test("DeleteUser (3)", async () => {
+    test("LogoutUser (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        server.mockEndpoint().delete("/User/1000000").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
+        server.mockEndpoint().get("/User/authlogout").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
-            return await client.user.deleteUser(1000000);
+            return await client.user.logoutUser();
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
-    test("DeleteUser (4)", async () => {
+    test("LogoutUser (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
 
-        server.mockEndpoint().delete("/User/1000000").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
+        server.mockEndpoint().get("/User/authlogout").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
-            return await client.user.deleteUser(1000000);
+            return await client.user.logoutUser();
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
-    test("DeleteUser (5)", async () => {
+    test("LogoutUser (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        server.mockEndpoint().delete("/User/1000000").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
+        server.mockEndpoint().get("/User/authlogout").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
-            return await client.user.deleteUser(1000000);
+            return await client.user.logoutUser();
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("ValidateMfaUser", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = {
+            inactiveTokenTime: 31,
+            isSuccess: true,
+            remaining: 120,
+            responseData: "u.fPLVSzFv1gZpHl......",
+            responseText: "Success",
+        };
+
+        server
+            .mockEndpoint()
+            .post("/User/mfa")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.user.validateMfaUser();
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("EditMfaUser (1)", async () => {
@@ -585,7 +857,7 @@ describe("UserClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -625,7 +897,7 @@ describe("UserClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -638,253 +910,6 @@ describe("UserClient", () => {
 
         await expect(async () => {
             return await client.user.editMfaUser(1000000, {});
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
-    });
-
-    test("EditUser (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { isSuccess: true, responseText: "Success" };
-
-        server
-            .mockEndpoint()
-            .put("/User/1000000")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.user.editUser(1000000, {});
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("EditUser (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .put("/User/1000000")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.user.editUser(1000000, {});
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("EditUser (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .put("/User/1000000")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.user.editUser(1000000, {});
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("EditUser (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .put("/User/1000000")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.user.editUser(1000000, {});
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("EditUser (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
-
-        server
-            .mockEndpoint()
-            .put("/User/1000000")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.user.editUser(1000000, {});
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
-    });
-
-    test("GetUser (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            Access: [{ roleLabel: "customers", roleValue: true }],
-            AdditionalData: "AdditionalData",
-            createdAt: "2022-07-01T15:00:01Z",
-            Email: "example@email.com",
-            language: "en",
-            lastAccess: "2022-07-01T15:00:01Z",
-            Name: "Sean Smith",
-            Phone: "5555555555",
-            Scope: [{ orgEntry: "pilgrim-planner", orgId: 123, orgType: 0 }],
-            snData: "snData",
-            snIdentifier: "snIdentifier",
-            snProvider: "google",
-            timeZone: -5,
-            userId: 1000000,
-            UsrMFA: false,
-            UsrMFAMode: 0,
-            UsrStatus: 1,
-        };
-
-        server.mockEndpoint().get("/User/1000000").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
-
-        const response = await client.user.getUser(1000000, {
-            entry: "478ae1234",
-        });
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("GetUser (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server.mockEndpoint().get("/User/1000000").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.user.getUser(1000000);
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("GetUser (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server.mockEndpoint().get("/User/1000000").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.user.getUser(1000000);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("GetUser (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server.mockEndpoint().get("/User/1000000").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.user.getUser(1000000);
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("GetUser (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { responseText: "responseText" };
-
-        server.mockEndpoint().get("/User/1000000").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.user.getUser(1000000);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
-    });
-
-    test("LogoutUser (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { isSuccess: true, responseText: "Success" };
-
-        server.mockEndpoint().get("/User/authlogout").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
-
-        const response = await client.user.logoutUser();
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("LogoutUser (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server.mockEndpoint().get("/User/authlogout").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.user.logoutUser();
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("LogoutUser (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server.mockEndpoint().get("/User/authlogout").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.user.logoutUser();
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("LogoutUser (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server.mockEndpoint().get("/User/authlogout").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.user.logoutUser();
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("LogoutUser (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { responseText: "responseText" };
-
-        server.mockEndpoint().get("/User/authlogout").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.user.logoutUser();
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
@@ -903,13 +928,13 @@ describe("UserClient", () => {
 
         server
             .mockEndpoint()
-            .post("/User/resendmfa/usrname/Entry/1")
+            .post("/User/resendmfa/usrname/8cfec329267/1")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.user.resendMfaCode("usrname", "Entry", 1);
+        const response = await client.user.resendMfaCode("usrname", "8cfec329267", 1);
         expect(response).toEqual(rawResponseBody);
     });
 
@@ -936,7 +961,7 @@ describe("UserClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -974,7 +999,7 @@ describe("UserClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -987,30 +1012,5 @@ describe("UserClient", () => {
         await expect(async () => {
             return await client.user.resendMfaCode("usrname", "Entry", 1);
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
-    });
-
-    test("ValidateMfaUser", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = {
-            inactiveTokenTime: 31,
-            isSuccess: true,
-            remaining: 120,
-            responseData: "u.fPLVSzFv1gZpHl......",
-            responseText: "Success",
-        };
-
-        server
-            .mockEndpoint()
-            .post("/User/mfa")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.user.validateMfaUser();
-        expect(response).toEqual(rawResponseBody);
     });
 });

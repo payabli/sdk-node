@@ -11,7 +11,7 @@ describe("HostedPaymentPagesClient", () => {
 
         const rawResponseBody = {
             AdditionalData: { key1: { key: "value" }, key2: { key: "value" }, key3: { key: "value" } },
-            credentials: [
+            Credentials: [
                 {
                     accountId: "accountId",
                     cfeeFix: 1.1,
@@ -25,8 +25,8 @@ describe("HostedPaymentPagesClient", () => {
                     service: "service",
                 },
             ],
-            lastAccess: "2022-06-30T15:01:00Z",
-            pageContent: {
+            LastAccess: "2022-06-30T15:01:00Z",
+            PageContent: {
                 amount: { categories: [{}], enabled: true, order: 1 },
                 autopay: {
                     enabled: true,
@@ -43,7 +43,7 @@ describe("HostedPaymentPagesClient", () => {
                     paymentIcons: true,
                     phoneLabel: "phoneLabel",
                 },
-                entry: "entry",
+                entry: "8cfec329267",
                 invoices: {
                     enabled: true,
                     invoiceLink: { enabled: true },
@@ -75,7 +75,7 @@ describe("HostedPaymentPagesClient", () => {
                 subdomain: "mypage-1",
             },
             pageIdentifier: "null",
-            pageSettings: {
+            PageSettings: {
                 color: "color",
                 customCssUrl: "customCssUrl",
                 language: "language",
@@ -90,7 +90,7 @@ describe("HostedPaymentPagesClient", () => {
                 redirectAfterApproveUrl: "redirectAfterApproveUrl",
             },
             published: 1,
-            receiptContent: {
+            ReceiptContent: {
                 amount: { enabled: true, order: 1 },
                 contactUs: { enabled: true, order: 1 },
                 details: { enabled: true, order: 1 },
@@ -101,7 +101,7 @@ describe("HostedPaymentPagesClient", () => {
                 paymentInformation: { enabled: true, order: 1 },
                 settings: { enabled: true, fields: [{}], order: 1, sendAuto: true, sendManual: true },
             },
-            subdomain: "mypage-1",
+            Subdomain: "mypage-1",
             totalAmount: 1.1,
             validationCode: "validationCode",
         };
@@ -141,7 +141,7 @@ describe("HostedPaymentPagesClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -179,7 +179,7 @@ describe("HostedPaymentPagesClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -218,7 +218,6 @@ describe("HostedPaymentPagesClient", () => {
 
         const response = await client.hostedPaymentPages.newPage("8cfec329267", {
             idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA",
-            body: {},
         });
         expect(response).toEqual(rawResponseBody);
     });
@@ -239,9 +238,7 @@ describe("HostedPaymentPagesClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.hostedPaymentPages.newPage("entry", {
-                body: {},
-            });
+            return await client.hostedPaymentPages.newPage("entry", {});
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
@@ -249,7 +246,7 @@ describe("HostedPaymentPagesClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -261,9 +258,7 @@ describe("HostedPaymentPagesClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.hostedPaymentPages.newPage("entry", {
-                body: {},
-            });
+            return await client.hostedPaymentPages.newPage("entry", {});
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
@@ -283,9 +278,7 @@ describe("HostedPaymentPagesClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.hostedPaymentPages.newPage("entry", {
-                body: {},
-            });
+            return await client.hostedPaymentPages.newPage("entry", {});
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
@@ -293,7 +286,7 @@ describe("HostedPaymentPagesClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -305,9 +298,7 @@ describe("HostedPaymentPagesClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.hostedPaymentPages.newPage("entry", {
-                body: {},
-            });
+            return await client.hostedPaymentPages.newPage("entry", {});
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
@@ -354,7 +345,7 @@ describe("HostedPaymentPagesClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -394,7 +385,7 @@ describe("HostedPaymentPagesClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()

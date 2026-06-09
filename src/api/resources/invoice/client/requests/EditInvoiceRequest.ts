@@ -5,23 +5,26 @@ import type * as Payabli from "../../../../index.js";
 /**
  * @example
  *     {
- *         body: {
- *             invoiceData: {
- *                 items: [{
- *                         itemProductName: "Deposit",
- *                         itemDescription: "Deposit for trip planning",
- *                         itemCost: 882.37,
- *                         itemQty: 1
- *                     }],
- *                 invoiceDate: "2025-10-19",
- *                 invoiceAmount: 982.37,
- *                 invoiceNumber: "INV-6"
- *             }
+ *         invoiceData: {
+ *             items: [{
+ *                     itemProductName: "Deposit",
+ *                     itemDescription: "Deposit for trip planning",
+ *                     itemCost: 882.37,
+ *                     itemQty: 1
+ *                 }],
+ *             invoiceDate: "2025-10-19",
+ *             invoiceAmount: 982.37,
+ *             invoiceNumber: "INV-2345"
  *         }
  *     }
  */
 export interface EditInvoiceRequest {
     /** When `true`, the request creates a new customer record, regardless of whether customer identifiers match an existing customer. */
     forceCustomerCreation?: boolean;
-    body: Payabli.InvoiceDataRequest;
+    /** Object describing the customer/payor. Required for POST requests. Which fields are required depends on the paypoint's custom identifier settings. */
+    customerData?: Payabli.PayorDataRequest;
+    /** Object describing the invoice. Required for POST requests. */
+    invoiceData?: Payabli.BillData;
+    /** Object with options for scheduled invoices. */
+    scheduledOptions?: Payabli.BillOptions;
 }

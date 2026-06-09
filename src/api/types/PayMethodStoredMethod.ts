@@ -7,18 +7,9 @@ import type * as Payabli from "../index.js";
  */
 export interface PayMethodStoredMethod {
     initiator?: Payabli.Initiator | undefined;
-    /** Method to use for the transaction. Use either `card` or `ach`, depending on what kind of method was tokenized to use a saved payment method for this transaction. */
-    method: PayMethodStoredMethod.Method;
+    /** Method to use for the transaction. Use `card`, `ach`, or `wallet` depending on what kind of method was tokenized to use a saved payment method for this transaction. */
+    method: Payabli.PayMethodStoredMethodMethod;
     /** Payabli identifier of a tokenized payment method. */
     storedMethodId?: Payabli.Storedmethodid | undefined;
     storedMethodUsageType?: Payabli.StoredMethodUsageType | undefined;
-}
-
-export namespace PayMethodStoredMethod {
-    /** Method to use for the transaction. Use either `card` or `ach`, depending on what kind of method was tokenized to use a saved payment method for this transaction. */
-    export const Method = {
-        Card: "card",
-        Ach: "ach",
-    } as const;
-    export type Method = (typeof Method)[keyof typeof Method];
 }

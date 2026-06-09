@@ -9,32 +9,33 @@ describe("InvoiceClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            customerData: { firstName: "Tamara", lastName: "Bagratoni", customerNumber: "3" },
+            customerData: { firstName: "Tamara", lastName: "Bagratoni", customerNumber: "C-90010" },
             invoiceData: {
                 items: [
                     {
                         itemProductName: "Adventure Consult",
                         itemDescription: "Consultation for Georgian tours",
                         itemCost: 100,
-                        itemQty: 1,
-                        itemMode: 1,
-                        itemTotalAmount: 1,
+                        itemQty: 2,
+                        itemMode: 2,
+                        itemTotalAmount: 200,
                     },
                     {
                         itemProductName: "Deposit ",
                         itemDescription: "Deposit for trip planning",
                         itemCost: 882.37,
                         itemQty: 1,
-                        itemTotalAmount: 1,
+                        itemMode: 2,
+                        itemTotalAmount: 882.37,
                     },
                 ],
                 invoiceDate: "2025-10-19",
                 invoiceType: 0,
                 invoiceStatus: 1,
                 frequency: "onetime",
-                invoiceAmount: 982.37,
+                invoiceAmount: 1082.37,
                 discount: 10,
-                invoiceNumber: "INV-3",
+                invoiceNumber: "INV-2345",
             },
         };
         const rawResponseBody = {
@@ -56,38 +57,37 @@ describe("InvoiceClient", () => {
             .build();
 
         const response = await client.invoice.addInvoice("8cfec329267", {
-            body: {
-                customerData: {
-                    firstName: "Tamara",
-                    lastName: "Bagratoni",
-                    customerNumber: "3",
-                },
-                invoiceData: {
-                    items: [
-                        {
-                            itemProductName: "Adventure Consult",
-                            itemDescription: "Consultation for Georgian tours",
-                            itemCost: 100,
-                            itemQty: 1,
-                            itemMode: 1,
-                            itemTotalAmount: 1,
-                        },
-                        {
-                            itemProductName: "Deposit ",
-                            itemDescription: "Deposit for trip planning",
-                            itemCost: 882.37,
-                            itemQty: 1,
-                            itemTotalAmount: 1,
-                        },
-                    ],
-                    invoiceDate: "2025-10-19",
-                    invoiceType: 0,
-                    invoiceStatus: 1,
-                    frequency: "onetime",
-                    invoiceAmount: 982.37,
-                    discount: 10,
-                    invoiceNumber: "INV-3",
-                },
+            customerData: {
+                firstName: "Tamara",
+                lastName: "Bagratoni",
+                customerNumber: "C-90010",
+            },
+            invoiceData: {
+                items: [
+                    {
+                        itemProductName: "Adventure Consult",
+                        itemDescription: "Consultation for Georgian tours",
+                        itemCost: 100,
+                        itemQty: 2,
+                        itemMode: 2,
+                        itemTotalAmount: 200,
+                    },
+                    {
+                        itemProductName: "Deposit ",
+                        itemDescription: "Deposit for trip planning",
+                        itemCost: 882.37,
+                        itemQty: 1,
+                        itemMode: 2,
+                        itemTotalAmount: 882.37,
+                    },
+                ],
+                invoiceDate: "2025-10-19",
+                invoiceType: 0,
+                invoiceStatus: 1,
+                frequency: "onetime",
+                invoiceAmount: 1082.37,
+                discount: 10,
+                invoiceNumber: "INV-2345",
             },
         });
         expect(response).toEqual(rawResponseBody);
@@ -109,9 +109,7 @@ describe("InvoiceClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.invoice.addInvoice("entry", {
-                body: {},
-            });
+            return await client.invoice.addInvoice("entry", {});
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
@@ -119,7 +117,7 @@ describe("InvoiceClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -131,9 +129,7 @@ describe("InvoiceClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.invoice.addInvoice("entry", {
-                body: {},
-            });
+            return await client.invoice.addInvoice("entry", {});
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
@@ -153,9 +149,7 @@ describe("InvoiceClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.invoice.addInvoice("entry", {
-                body: {},
-            });
+            return await client.invoice.addInvoice("entry", {});
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
@@ -163,7 +157,7 @@ describe("InvoiceClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -175,9 +169,101 @@ describe("InvoiceClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.invoice.addInvoice("entry", {
-                body: {},
-            });
+            return await client.invoice.addInvoice("entry", {});
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("GetAttachedFileFromInvoice (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { fContent: "fContent", filename: "filename", ftype: "pdf", furl: "furl" };
+
+        server
+            .mockEndpoint()
+            .get("/Invoice/attachedFileFromInvoice/1/filename")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.invoice.getAttachedFileFromInvoice(1, "filename");
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("GetAttachedFileFromInvoice (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Invoice/attachedFileFromInvoice/1/filename")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.invoice.getAttachedFileFromInvoice(1, "filename");
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("GetAttachedFileFromInvoice (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .get("/Invoice/attachedFileFromInvoice/1/filename")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.invoice.getAttachedFileFromInvoice(1, "filename");
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("GetAttachedFileFromInvoice (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Invoice/attachedFileFromInvoice/1/filename")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.invoice.getAttachedFileFromInvoice(1, "filename");
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("GetAttachedFileFromInvoice (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .get("/Invoice/attachedFileFromInvoice/1/filename")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.invoice.getAttachedFileFromInvoice(1, "filename");
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
@@ -229,7 +315,7 @@ describe("InvoiceClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -267,7 +353,7 @@ describe("InvoiceClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -279,6 +365,295 @@ describe("InvoiceClient", () => {
 
         await expect(async () => {
             return await client.invoice.deleteAttachedFromInvoice(1, "filename");
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("GetInvoice (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            billEvents: [
+                {
+                    description: "TransferCreated",
+                    eventTime: "2023-07-05T22:31:06Z",
+                    refData: "refData",
+                    source: "api",
+                },
+            ],
+            company: "Acme Inc",
+            createdAt: "2022-07-01T15:00:01Z",
+            Customer: {
+                AdditionalData: null,
+                BillingAddress1: "1111 West 1st Street",
+                BillingAddress2: "Suite 200",
+                BillingCity: "Miami",
+                BillingCountry: "US",
+                BillingEmail: "example@email.com",
+                BillingPhone: "5555555555",
+                BillingState: "FL",
+                BillingZip: "45567",
+                CompanyName: "Sunshine LLC",
+                customerId: 4440,
+                CustomerNumber: "C-90010",
+                customerStatus: 1,
+                FirstName: "John",
+                Identifiers: ['\\"firstname\\"', '\\"lastname\\"', '\\"email\\"', '\\"customId\\"'],
+                LastName: "Doe",
+                ShippingAddress1: "123 Walnut St",
+                ShippingAddress2: "STE 900",
+                ShippingCity: "Johnson City",
+                ShippingCountry: "US",
+                ShippingState: "TN",
+                ShippingZip: "37619",
+            },
+            customerId: 4440,
+            discount: 10,
+            DocumentsRef: { filelist: [{}], zipfile: "zx45.zip" },
+            dutyAmount: 0,
+            firstName: "firstName",
+            freightAmount: 10,
+            frequency: "onetime",
+            invoiceAmount: 105,
+            invoiceDate: "2025-07-01",
+            invoiceDueDate: "2025-07-01",
+            invoiceEndDate: "2025-07-01",
+            invoiceId: 3674,
+            invoiceNumber: "INV-2345",
+            invoicePaidAmount: 0,
+            invoiceSentDate: "2025-10-19T00:00:00Z",
+            invoiceStatus: 1,
+            invoiceType: 0,
+            items: [
+                {
+                    itemCommodityCode: "010",
+                    itemCost: 5,
+                    itemDescription: "Deposit for materials.",
+                    itemMode: 0,
+                    itemProductCode: "M-DEPOSIT",
+                    itemProductName: "Materials deposit",
+                    itemQty: 1,
+                    itemTaxAmount: 7,
+                    itemTaxRate: 0.075,
+                    itemTotalAmount: 1.1,
+                    itemUnitOfMeasure: "SqFt",
+                },
+            ],
+            lastName: "lastName",
+            lastPaymentDate: "2025-10-19T00:00:00Z",
+            notes: null,
+            ParentOrgName: "parentOrgName",
+            paylinkId: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
+            paymentTerms: "NET30",
+            PaypointDbaname: "Sinks Inc",
+            PaypointEntryname: "5789a30009s",
+            paypointId: 3040,
+            PaypointLegalname: "Sinks and Faucets LLC",
+            purchaseOrder: "PO-345",
+            scheduledOptions: { includePaylink: true, includePdf: true },
+            shippingAddress1: "123 Walnut St",
+            shippingAddress2: "STE 900",
+            shippingCity: "Johnson City",
+            shippingCountry: "US",
+            shippingEmail: "example@email.com",
+            shippingFromZip: "30040",
+            shippingPhone: "shippingPhone",
+            shippingState: "TN",
+            shippingZip: "37619",
+            summaryCommodityCode: "501718",
+            tax: 2.05,
+            termsConditions: "termsConditions",
+        };
+
+        server.mockEndpoint().get("/Invoice/23548884").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const response = await client.invoice.getInvoice(23548884);
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("GetInvoice (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server.mockEndpoint().get("/Invoice/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.invoice.getInvoice(1);
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("GetInvoice (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server.mockEndpoint().get("/Invoice/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.invoice.getInvoice(1);
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("GetInvoice (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server.mockEndpoint().get("/Invoice/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.invoice.getInvoice(1);
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("GetInvoice (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server.mockEndpoint().get("/Invoice/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.invoice.getInvoice(1);
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("EditInvoice (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            invoiceData: {
+                items: [
+                    {
+                        itemProductName: "Deposit",
+                        itemDescription: "Deposit for trip planning",
+                        itemCost: 882.37,
+                        itemQty: 1,
+                    },
+                ],
+                invoiceDate: "2025-10-19",
+                invoiceAmount: 982.37,
+                invoiceNumber: "INV-2345",
+            },
+        };
+        const rawResponseBody = {
+            isSuccess: true,
+            responseCode: 1,
+            responseData: 332,
+            responseText: "Success",
+            pageidentifier: null,
+            roomId: 0,
+        };
+
+        server
+            .mockEndpoint()
+            .put("/Invoice/23548884")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.invoice.editInvoice(23548884, {
+            invoiceData: {
+                items: [
+                    {
+                        itemProductName: "Deposit",
+                        itemDescription: "Deposit for trip planning",
+                        itemCost: 882.37,
+                        itemQty: 1,
+                    },
+                ],
+                invoiceDate: "2025-10-19",
+                invoiceAmount: 982.37,
+                invoiceNumber: "INV-2345",
+            },
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("EditInvoice (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .put("/Invoice/1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.invoice.editInvoice(1, {});
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("EditInvoice (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .put("/Invoice/1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.invoice.editInvoice(1, {});
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("EditInvoice (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .put("/Invoice/1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.invoice.editInvoice(1, {});
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("EditInvoice (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .put("/Invoice/1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.invoice.editInvoice(1, {});
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
@@ -324,7 +699,7 @@ describe("InvoiceClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server.mockEndpoint().delete("/Invoice/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
@@ -350,405 +725,12 @@ describe("InvoiceClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server.mockEndpoint().delete("/Invoice/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
             return await client.invoice.deleteInvoice(1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
-    });
-
-    test("EditInvoice (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            invoiceData: {
-                items: [
-                    {
-                        itemProductName: "Deposit",
-                        itemDescription: "Deposit for trip planning",
-                        itemCost: 882.37,
-                        itemQty: 1,
-                    },
-                ],
-                invoiceDate: "2025-10-19",
-                invoiceAmount: 982.37,
-                invoiceNumber: "INV-6",
-            },
-        };
-        const rawResponseBody = {
-            isSuccess: true,
-            responseCode: 1,
-            responseData: 332,
-            responseText: "Success",
-            pageidentifier: null,
-            roomId: 0,
-        };
-
-        server
-            .mockEndpoint()
-            .put("/Invoice/332")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.invoice.editInvoice(332, {
-            body: {
-                invoiceData: {
-                    items: [
-                        {
-                            itemProductName: "Deposit",
-                            itemDescription: "Deposit for trip planning",
-                            itemCost: 882.37,
-                            itemQty: 1,
-                        },
-                    ],
-                    invoiceDate: "2025-10-19",
-                    invoiceAmount: 982.37,
-                    invoiceNumber: "INV-6",
-                },
-            },
-        });
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("EditInvoice (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .put("/Invoice/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.invoice.editInvoice(1, {
-                body: {},
-            });
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("EditInvoice (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .put("/Invoice/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.invoice.editInvoice(1, {
-                body: {},
-            });
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("EditInvoice (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .put("/Invoice/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.invoice.editInvoice(1, {
-                body: {},
-            });
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("EditInvoice (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
-
-        server
-            .mockEndpoint()
-            .put("/Invoice/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.invoice.editInvoice(1, {
-                body: {},
-            });
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
-    });
-
-    test("GetAttachedFileFromInvoice (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { fContent: "fContent", filename: "filename", ftype: "pdf", furl: "furl" };
-
-        server
-            .mockEndpoint()
-            .get("/Invoice/attachedFileFromInvoice/1/filename")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.invoice.getAttachedFileFromInvoice(1, "filename");
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("GetAttachedFileFromInvoice (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .get("/Invoice/attachedFileFromInvoice/1/filename")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.invoice.getAttachedFileFromInvoice(1, "filename");
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("GetAttachedFileFromInvoice (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .get("/Invoice/attachedFileFromInvoice/1/filename")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.invoice.getAttachedFileFromInvoice(1, "filename");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("GetAttachedFileFromInvoice (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .get("/Invoice/attachedFileFromInvoice/1/filename")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.invoice.getAttachedFileFromInvoice(1, "filename");
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("GetAttachedFileFromInvoice (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { responseText: "responseText" };
-
-        server
-            .mockEndpoint()
-            .get("/Invoice/attachedFileFromInvoice/1/filename")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.invoice.getAttachedFileFromInvoice(1, "filename");
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
-    });
-
-    test("GetInvoice (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            billEvents: [
-                {
-                    description: "TransferCreated",
-                    eventTime: "2023-07-05T22:31:06Z",
-                    refData: "refData",
-                    source: "api",
-                },
-            ],
-            company: "Acme Inc",
-            createdAt: "2022-07-01T15:00:01Z",
-            Customer: {
-                AdditionalData: null,
-                BillingAddress1: "1111 West 1st Street",
-                BillingAddress2: "Suite 200",
-                BillingCity: "Miami",
-                BillingCountry: "US",
-                BillingEmail: "example@email.com",
-                BillingPhone: "5555555555",
-                BillingState: "FL",
-                BillingZip: "45567",
-                CompanyName: "Sunshine LLC",
-                customerId: 4440,
-                CustomerNumber: "3456-7645A",
-                customerStatus: 1,
-                FirstName: "John",
-                Identifiers: ['\\"firstname\\"', '\\"lastname\\"', '\\"email\\"', '\\"customId\\"'],
-                LastName: "Doe",
-                ShippingAddress1: "123 Walnut St",
-                ShippingAddress2: "STE 900",
-                ShippingCity: "Johnson City",
-                ShippingCountry: "US",
-                ShippingState: "TN",
-                ShippingZip: "37619",
-            },
-            customerId: 4440,
-            discount: 10,
-            DocumentsRef: { filelist: [{}], zipfile: "zx45.zip" },
-            dutyAmount: 0,
-            firstName: "firstName",
-            freightAmount: 10,
-            frequency: "onetime",
-            invoiceAmount: 105,
-            invoiceDate: "2025-07-01",
-            invoiceDueDate: "2025-07-01",
-            invoiceEndDate: "2025-07-01",
-            invoiceId: 236,
-            invoiceNumber: "INV-2345",
-            invoicePaidAmount: 0,
-            invoiceSentDate: "2025-10-19T00:00:00Z",
-            invoiceStatus: 1,
-            invoiceType: 0,
-            items: [
-                {
-                    itemCommodityCode: "010",
-                    itemCost: 5,
-                    itemDescription: "Deposit for materials.",
-                    itemMode: 0,
-                    itemProductCode: "M-DEPOSIT",
-                    itemProductName: "Materials deposit",
-                    itemQty: 1,
-                    itemTaxAmount: 7,
-                    itemTaxRate: 0.075,
-                    itemTotalAmount: 1.1,
-                    itemUnitOfMeasure: "SqFt",
-                },
-            ],
-            lastName: "lastName",
-            lastPaymentDate: "2025-10-19T00:00:00Z",
-            notes: null,
-            ParentOrgName: "parentOrgName",
-            paylinkId: "paylinkId",
-            paymentTerms: "NET30",
-            PaypointDbaname: "Sinks Inc",
-            PaypointEntryname: "5789a30009s",
-            paypointId: 56,
-            PaypointLegalname: "Sinks and Faucets LLC",
-            purchaseOrder: "PO-345",
-            scheduledOptions: { includePaylink: true, includePdf: true },
-            shippingAddress1: "123 Walnut St",
-            shippingAddress2: "STE 900",
-            shippingCity: "Johnson City",
-            shippingCountry: "US",
-            shippingEmail: "example@email.com",
-            shippingFromZip: "30040",
-            shippingPhone: "shippingPhone",
-            shippingState: "TN",
-            shippingZip: "37619",
-            summaryCommodityCode: "501718",
-            tax: 2.05,
-            termsConditions: "termsConditions",
-        };
-
-        server.mockEndpoint().get("/Invoice/23548884").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
-
-        const response = await client.invoice.getInvoice(23548884);
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("GetInvoice (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server.mockEndpoint().get("/Invoice/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.invoice.getInvoice(1);
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("GetInvoice (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server.mockEndpoint().get("/Invoice/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.invoice.getInvoice(1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("GetInvoice (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server.mockEndpoint().get("/Invoice/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.invoice.getInvoice(1);
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("GetInvoice (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { responseText: "responseText" };
-
-        server.mockEndpoint().get("/Invoice/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.invoice.getInvoice(1);
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
@@ -793,7 +775,7 @@ describe("InvoiceClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -831,7 +813,7 @@ describe("InvoiceClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -854,9 +836,9 @@ describe("InvoiceClient", () => {
             Records: [
                 {
                     invoiceId: 3674,
-                    customerId: 1323,
-                    paypointId: 10,
-                    invoiceNumber: "QA-1709680125",
+                    customerId: 4440,
+                    paypointId: 3040,
+                    invoiceNumber: "INV-2345",
                     invoiceDate: "2025-03-05",
                     invoiceDueDate: "2025-03-05",
                     invoiceSentDate: "2025-03-05",
@@ -866,7 +848,7 @@ describe("InvoiceClient", () => {
                     invoiceStatus: 1,
                     invoiceType: 0,
                     frequency: "onetime",
-                    paymentTerms: "N30",
+                    paymentTerms: "NET30",
                     termsConditions: null,
                     notes: null,
                     tax: 0,
@@ -893,9 +875,9 @@ describe("InvoiceClient", () => {
                     Customer: {
                         AdditionalData: { key1: "value", key2: "value", key3: "value" },
                         BillingPhone: "1234567890",
-                        customerId: 1323,
+                        customerId: 4440,
                     },
-                    paylinkId: "3674-cf15b881-f276-4b69-bdc8-841b2d123XXXXXX",
+                    paylinkId: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
                     billEvents: [
                         {
                             description: "Invoice created",
@@ -964,7 +946,7 @@ describe("InvoiceClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1002,7 +984,7 @@ describe("InvoiceClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1035,9 +1017,9 @@ describe("InvoiceClient", () => {
                     Customer: {
                         AdditionalData: { key1: "value", key2: "value", key3: "value" },
                         BillingPhone: "1234567890",
-                        customerId: 1323,
+                        customerId: 4440,
                     },
-                    customerId: 1323,
+                    customerId: 4440,
                     discount: 0,
                     dutyAmount: 0,
                     externalPaypointID: "seattletrade01-10",
@@ -1052,7 +1034,7 @@ describe("InvoiceClient", () => {
                     invoiceSentDate: "2025-03-05",
                     invoiceEndDate: "2025-03-05",
                     invoiceId: 3674,
-                    invoiceNumber: "QA-1709680125",
+                    invoiceNumber: "INV-2345",
                     invoicePaidAmount: 0,
                     invoiceStatus: 1,
                     invoiceType: 0,
@@ -1060,11 +1042,11 @@ describe("InvoiceClient", () => {
                     lastName: "Tan",
                     ParentOrgName: "Emerald Enterprises",
                     ParentOrgId: 123,
-                    paylinkId: "3674-cf15b881-f276-4b69-bdc8-841b2d123XXXXXX",
-                    paymentTerms: "N30",
+                    paylinkId: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
+                    paymentTerms: "NET30",
                     PaypointDbaname: "Emerald City Trading",
                     PaypointEntryname: "47a30009s",
-                    paypointId: 10,
+                    paypointId: 3040,
                     PaypointLegalname: "Emerald City LLC",
                     shippingAddress1: "1234 Rainier Ave",
                     shippingAddress2: "Apt 567",
@@ -1127,7 +1109,7 @@ describe("InvoiceClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1165,7 +1147,7 @@ describe("InvoiceClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1218,7 +1200,7 @@ describe("InvoiceClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server.mockEndpoint().get("/Invoice/send/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
@@ -1244,7 +1226,7 @@ describe("InvoiceClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server.mockEndpoint().get("/Invoice/send/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
@@ -1294,7 +1276,7 @@ describe("InvoiceClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1332,7 +1314,7 @@ describe("InvoiceClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()

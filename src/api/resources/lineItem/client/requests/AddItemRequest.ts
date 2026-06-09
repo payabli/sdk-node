@@ -5,20 +5,30 @@ import type * as Payabli from "../../../../index.js";
 /**
  * @example
  *     {
- *         body: {
- *             itemProductCode: "M-DEPOSIT",
- *             itemProductName: "Materials deposit",
- *             itemDescription: "Deposit for materials",
- *             itemCommodityCode: "010",
- *             itemUnitOfMeasure: "SqFt",
- *             itemCost: 12.45,
- *             itemQty: 1,
- *             itemMode: 0
- *         }
+ *         itemProductCode: "M-DEPOSIT",
+ *         itemProductName: "Materials deposit",
+ *         itemDescription: "Deposit for materials",
+ *         itemCommodityCode: "010",
+ *         itemUnitOfMeasure: "SqFt",
+ *         itemCost: 12.45,
+ *         itemQty: 1,
+ *         itemMode: 0
  *     }
  */
 export interface AddItemRequest {
     /** A unique ID you can include to prevent duplicating objects or transactions if a request is sent more than once. This key isn't generated in Payabli, you must generate it yourself. */
     idempotencyKey?: string;
-    body: Payabli.LineItem;
+    /** Array of tags classifying item or product. */
+    itemCategories?: string[];
+    itemCommodityCode?: Payabli.ItemCommodityCode;
+    /** Item or product price per unit. */
+    itemCost: number;
+    itemDescription?: Payabli.ItemDescription;
+    /** Internal class of item or product: value '0' is only for invoices, '1' for bills, and '2' is common for both. */
+    itemMode?: number;
+    itemProductCode?: Payabli.ItemProductCode;
+    itemProductName?: Payabli.ItemProductName;
+    /** Quantity of item or product. */
+    itemQty: number;
+    itemUnitOfMeasure?: Payabli.ItemUnitofMeasure;
 }

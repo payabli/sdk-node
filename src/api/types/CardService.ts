@@ -3,7 +3,7 @@
 import type * as Payabli from "../index.js";
 
 export interface CardService {
-    /** Controls how to present the `batchCutoffTime` field on the application. If this field isn't sent, batch cut off time defaults to 5 ET. */
+    /** Controls how to present the `batchCutoffTime` field on the application. If this field isn't sent, batch cutoff time defaults to 5 ET. */
     batchCutoffTime?: Payabli.TemplateElement | undefined;
     cardAcceptance?: Payabli.CardAcceptanceElement | undefined;
     cardFees?: Payabli.CardFeeSection | undefined;

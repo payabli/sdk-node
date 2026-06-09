@@ -5,7 +5,7 @@ import * as errors from "../../errors/index.js";
 import type * as Payabli from "../index.js";
 
 export class ServiceUnavailableError extends errors.PayabliError {
-    constructor(body: Payabli.PayabliApiResponse, rawResponse?: core.RawResponse) {
+    constructor(body: Payabli.PayabliErrorBody, rawResponse?: core.RawResponse) {
         super({
             message: "ServiceUnavailableError",
             statusCode: 503,

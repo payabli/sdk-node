@@ -15,10 +15,13 @@ export declare namespace ManagementClient {
     export interface RequestOptions extends BaseRequestOptions {}
 }
 
+/**
+ * The Management service exposes operational utilities for paypoint administrators, including bank account verification against the verification network. It returns detailed verification results — bank name, account status, response codes, and account history — to support decision-making and troubleshooting beyond a simple pass/fail check. When bank authentication is enabled for the paypoint's organization, the service performs an identity verification check on the account holder; otherwise it performs an account existence check.
+ */
 export class ManagementClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<ManagementClient.Options>;
 
-    constructor(options: ManagementClient.Options = {}) {
+    constructor(options: ManagementClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -39,7 +42,7 @@ export class ManagementClient {
      * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
-     *     await client.management.verifyAccountDetails("entry752", {
+     *     await client.management.verifyAccountDetails("8cfec329267", {
      *         routingNumber: "122105278",
      *         accountNumber: "0000000016",
      *         accountType: "Checking",
@@ -95,12 +98,15 @@ export class ManagementClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:

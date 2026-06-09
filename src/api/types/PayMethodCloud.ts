@@ -5,6 +5,14 @@ import type * as Payabli from "../index.js";
 export interface PayMethodCloud {
     device?: Payabli.Device | undefined;
     /** Method to use for the transaction. For cloud device transactions, the method is `cloud`. */
-    method: "cloud";
+    method: PayMethodCloud.Method;
     saveIfSuccess?: Payabli.SaveIfSuccess | undefined;
+}
+
+export namespace PayMethodCloud {
+    /** Method to use for the transaction. For cloud device transactions, the method is `cloud`. */
+    export const Method = {
+        Cloud: "cloud",
+    } as const;
+    export type Method = (typeof Method)[keyof typeof Method];
 }

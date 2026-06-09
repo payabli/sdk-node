@@ -6,8 +6,11 @@ import type * as Payabli from "../index.js";
  * Details about the status of the Apple Pay service.
  */
 export interface ApplePayData {
-    /** This object is only returned when the domain verification check fails. If a domain has failed validation, this object contains information about the failure. */
+    /**
+     * This object is only returned when the domain verification check
+     * fails. If a domain has failed validation, this object contains
+     * information about the failure.
+     */
     data?: Payabli.ApplePayStatusData | undefined;
-    /** When `true`, Apple Pay is enabled. */
     isEnabled?: Payabli.IsEnabled | undefined;
 }

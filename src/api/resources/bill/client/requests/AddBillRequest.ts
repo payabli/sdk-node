@@ -5,44 +5,96 @@ import type * as Payabli from "../../../../index.js";
 /**
  * @example
  *     {
- *         body: {
- *             billNumber: "ABC-123",
- *             netAmount: 3762.87,
- *             billDate: "2024-07-01",
- *             dueDate: "2024-07-01",
- *             comments: "Deposit for materials",
- *             billItems: [{
- *                     itemProductCode: "M-DEPOSIT",
- *                     itemProductName: "Materials deposit",
- *                     itemDescription: "Deposit for materials",
- *                     itemCommodityCode: "010",
- *                     itemUnitOfMeasure: "SqFt",
- *                     itemCost: 5,
- *                     itemQty: 1,
- *                     itemMode: 0,
- *                     itemCategories: ["deposits"],
- *                     itemTotalAmount: 123,
- *                     itemTaxAmount: 7,
- *                     itemTaxRate: 0.075
- *                 }],
- *             mode: 0,
- *             accountingField1: "MyInternalId",
- *             vendor: {
- *                 vendorNumber: "1234-A"
- *             },
- *             endDate: "2024-07-01",
- *             frequency: "monthly",
- *             terms: "NET30",
- *             status: -99,
- *             attachments: [{
- *                     ftype: "pdf",
- *                     filename: "my-doc.pdf",
- *                     furl: "https://mysite.com/my-doc.pdf"
- *                 }]
- *         }
+ *         billNumber: "ABC-123",
+ *         netAmount: 3762.87,
+ *         billDate: "2024-07-01",
+ *         dueDate: "2024-07-01",
+ *         comments: "Deposit for materials",
+ *         billItems: [{
+ *                 itemProductCode: "M-DEPOSIT",
+ *                 itemProductName: "Materials deposit",
+ *                 itemDescription: "Deposit for materials",
+ *                 itemCommodityCode: "010",
+ *                 itemUnitOfMeasure: "SqFt",
+ *                 itemCost: 5,
+ *                 itemQty: 1,
+ *                 itemMode: 0,
+ *                 itemCategories: ["deposits"],
+ *                 itemTotalAmount: 123,
+ *                 itemTaxAmount: 7,
+ *                 itemTaxRate: 0.075
+ *             }],
+ *         mode: 0,
+ *         accountingField1: "MyInternalId",
+ *         vendor: {
+ *             vendorNumber: "VEN-123"
+ *         },
+ *         endDate: "2024-07-01",
+ *         frequency: "monthly",
+ *         terms: "NET30",
+ *         status: 1,
+ *         attachments: [{
+ *                 ftype: "pdf",
+ *                 filename: "my-doc.pdf",
+ *                 furl: "https://mysite.com/my-doc.pdf"
+ *             }]
  *     }
  */
 export interface AddBillRequest {
+    /** _Optional but recommended_ A unique ID that you can include to prevent duplicating objects or transactions in the case that a request is sent more than once. This key isn't generated in Payabli, you must generate it yourself. This key persists for 2 minutes. After 2 minutes, you can reuse the key if needed. */
     idempotencyKey?: Payabli.IdempotencyKey;
-    body: Payabli.BillOutData;
+    accountingField1?: Payabli.AccountingField;
+    accountingField2?: Payabli.AccountingField;
+    additionalData?: Payabli.AdditionalDataString;
+    /**
+     * An array of bill images. Attachments aren't required, but we strongly
+     * recommend including them. Including a bill image can make payouts
+     * smoother and prevent delays. You can include either the Base64-encoded
+     * file content, or you can include a `furl` to a public file. The maximum
+     * file size for image uploads is 30 MB.
+     *
+     * When vendor enrichment is enabled and the first attachment is a PDF,
+     * the invoice is scanned and extracted vendor contact information and
+     * bill details (invoice number, amount due, due date) are merged into
+     * the request. Fields in the request body take precedence over extracted
+     * data. If the scan fails, bill creation proceeds with the original
+     * request data. See the
+     * [vendor enrichment guide](/guides/pay-out-vendor-enrichment-overview)
+     * for details. Contact Payabli to enable this feature.
+     */
+    attachments?: Payabli.Attachments;
+    /** Date of bill. Accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
+    billDate?: string;
+    billItems?: Payabli.Billitems;
+    /** Unique identifier for the bill. Required when adding a bill. */
+    billNumber?: string;
+    comments?: Payabli.Comments;
+    /** Discount amount applied to the bill. */
+    discount?: number;
+    /** Due date of bill. Accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
+    dueDate?: string;
+    /**
+     * End date for scheduled bills. Applied only in `Mode` = 1. Accepted
+     * formats: YYYY-MM-DD, MM/DD/YYYY.
+     */
+    endDate?: string;
+    frequency?: Payabli.Frequency;
+    /** Lot number associated with the bill. */
+    lotNumber?: string;
+    /** Bill mode: value `0` for one-time bills, `1` for scheduled bills. */
+    mode?: number;
+    /** Net amount owed in bill. Required when adding a bill. */
+    netAmount?: number;
+    scheduledOptions?: Payabli.BillOutDataScheduledOptions;
+    status?: Payabli.Billstatus;
+    terms?: Payabli.Terms;
+    /** Total amount of the bill. */
+    totalAmount?: number;
+    /**
+     * The vendor associated with the bill. Although you can create a vendor
+     * in a create bill request, Payabli recommends creating a vendor
+     * separately and passing a valid `vendorNumber` here. At minimum, the
+     * `vendorNumber` is required.
+     */
+    vendor?: Payabli.BillOutData.Vendor;
 }

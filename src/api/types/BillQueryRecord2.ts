@@ -6,7 +6,7 @@ export interface BillQueryRecord2 {
     AccountingField1: Payabli.AccountingField | null;
     AccountingField2: Payabli.AccountingField | null;
     /** Additional data associated with the bill. */
-    AdditionalData: Record<string, string> | null;
+    AdditionalData: Record<string, string | null> | null;
     /** Batch number associated with the bill. */
     BatchNumber: string | null;
     billApprovals: Payabli.BillQueryRecord2BillApprovalsItem[] | null;

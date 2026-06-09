@@ -3,4 +3,4 @@
 /**
  * List of fields acting as customer identifiers, to be used instead of CustomerNumber.
  */
-export type Identifierfields = (string | undefined)[];
+export type Identifierfields = string[];

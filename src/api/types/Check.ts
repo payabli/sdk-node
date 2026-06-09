@@ -6,5 +6,13 @@ export interface Check {
     /** The checking accountholder's name. */
     achHolder: Payabli.AchHolder;
     /** Method to use for the transaction. Use `check` for a paper check transaction. When the method is `check`, then `paymentDetails.checkNumber` is required. */
-    method: "check";
+    method: Check.Method;
+}
+
+export namespace Check {
+    /** Method to use for the transaction. Use `check` for a paper check transaction. When the method is `check`, then `paymentDetails.checkNumber` is required. */
+    export const Method = {
+        Check: "check",
+    } as const;
+    export type Method = (typeof Method)[keyof typeof Method];
 }

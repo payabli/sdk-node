@@ -39,9 +39,7 @@ export interface BillDetailResponse {
     Source?: Payabli.Source | undefined;
     /**
      * Internal status of transaction.
-     *
      * Payout statuses, also known as money out transaction statuses, appear in PartnerHub and PayHub, and the API, and describe where a payout transaction is in its lifecycle.
-     *
      * | Status | Key | Description | Events |
      * |--------|-----|-------------|---------|
      * | **Authorized** | 11 | A payout is authorized. These are queued payouts, and nothing happens with them until they're captured. | Authorized |

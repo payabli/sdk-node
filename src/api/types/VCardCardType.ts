@@ -2,7 +2,8 @@
 
 /**
  * The type of virtual card:
- *   - Single-use virtual card:	0
- *   - Ghost card:	2
+ *
+ * - Single-use virtual card: `0`
+ * - Ghost card: `2`
  */
 export type VCardCardType = number;

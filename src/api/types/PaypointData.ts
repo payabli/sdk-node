@@ -3,29 +3,29 @@
 import type * as Payabli from "../index.js";
 
 export interface PaypointData {
-    address1?: Payabli.AddressNullable | undefined;
-    address2?: Payabli.AddressAddtlNullable | undefined;
-    bankData?: Payabli.BankData | undefined;
-    boardingId?: Payabli.BoardingId | undefined;
-    city?: Payabli.CityNullable | undefined;
-    contacts?: Payabli.ContactsField | undefined;
-    country?: Payabli.CountryNullable | undefined;
-    credentials?: Payabli.PayabliCredentialsPascal[] | undefined;
-    dbaName?: Payabli.Dbaname | undefined;
+    Address1?: Payabli.AddressNullable | undefined;
+    Address2?: Payabli.AddressAddtlNullable | undefined;
+    BankData?: Payabli.BankData | undefined;
+    BoardingId?: Payabli.BoardingId | undefined;
+    City?: Payabli.CityNullable | undefined;
+    Contacts?: Payabli.ContactsField | undefined;
+    Country?: Payabli.CountryNullable | undefined;
+    Credentials?: Payabli.PayabliCredentialsPascal[] | undefined;
+    DbaName?: Payabli.Dbaname | undefined;
     externalPaypointID?: Payabli.ExternalPaypointId | undefined;
     /** Fax number */
-    fax?: Payabli.PhoneNumber | undefined;
-    idPaypoint?: Payabli.Idpaypoint | undefined;
-    legalName?: Payabli.Legalname | undefined;
-    parentOrg?: Payabli.OrgData | undefined;
-    paypointStatus?: Payabli.Paypointstatus | undefined;
-    phone?: Payabli.PhoneNumber | undefined;
-    serviceData?: Payabli.Services | undefined;
-    state?: Payabli.StateNullable | undefined;
+    Fax?: Payabli.PhoneNumber | undefined;
+    IdPaypoint?: Payabli.Idpaypoint | undefined;
+    LegalName?: Payabli.Legalname | undefined;
+    ParentOrg?: Payabli.OrgData | undefined;
+    PaypointStatus?: Payabli.Paypointstatus | undefined;
+    Phone?: Payabli.PhoneNumber | undefined;
+    ServiceData?: Payabli.Services | undefined;
+    State?: Payabli.StateNullable | undefined;
     summary?: Payabli.PaypointSummary | undefined;
-    timeZone?: Payabli.Timezone | undefined;
-    websiteAddress?: Payabli.Website | undefined;
-    zip?: Payabli.Zip | undefined;
+    TimeZone?: Payabli.Timezone | undefined;
+    WebsiteAddress?: Payabli.Website | undefined;
+    Zip?: Payabli.Zip | undefined;
     /** Configuration for billing statement email recipients and sender address. `null` if not configured. */
-    statementEmail?: Payabli.StatementEmailConfig | undefined;
+    StatementEmail?: Payabli.StatementEmailConfig | undefined;
 }

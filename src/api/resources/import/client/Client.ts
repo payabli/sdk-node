@@ -15,10 +15,13 @@ export declare namespace ImportClient {
     export interface RequestOptions extends BaseRequestOptions {}
 }
 
+/**
+ * The Import service enables bulk data loading operations for migrating or batch creating records across various entity types. It supports structured file uploads in formats like CSV and Excel for importing customers, vendors, bills, invoices, and transactions in bulk. The service provides validation of import data before processing, error reporting for invalid records, and partial import completion for valid records when some fail validation. It handles large datasets efficiently with progress tracking and maintains import history with detailed logs of records created, updated, or skipped. The service supports field mapping for flexible data source integration and provides rollback capabilities for failed imports.
+ */
 export class ImportClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<ImportClient.Options>;
 
-    constructor(options: ImportClient.Options = {}) {
+    constructor(options: ImportClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -91,12 +94,15 @@ export class ImportClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -187,12 +193,15 @@ export class ImportClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -218,6 +227,11 @@ export class ImportClient {
      * @param {Payabli.Entrypointfield} entry
      * @param {Payabli.ImportVendorRequest} request
      * @param {ImportClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
      *     import { createReadStream } from "fs";
@@ -272,11 +286,28 @@ export class ImportClient {
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.PayabliError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/Import/vendorsForm/{entry}");

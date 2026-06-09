@@ -2,8 +2,9 @@
 
 /**
  * The entity type. Available values:
- *   - paypoint
- *   - organization
- *   - psp (payment service provider)
+ *
+ * - `paypoint`
+ * - `organization`
+ * - `psp` (payment service provider)
  */
 export type EntityType = string;

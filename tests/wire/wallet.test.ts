@@ -8,7 +8,7 @@ describe("WalletClient", () => {
     test("ConfigureApplePayOrganization (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { cascade: true, isEnabled: true, orgId: 901 };
+        const rawRequestBody = { cascade: true, isEnabled: true, orgId: 123 };
         const rawResponseBody = {
             isSuccess: true,
             pageIdentifier: "null",
@@ -38,7 +38,7 @@ describe("WalletClient", () => {
         const response = await client.wallet.configureApplePayOrganization({
             cascade: true,
             isEnabled: true,
-            orgId: 901,
+            orgId: 123,
         });
         expect(response).toEqual(rawResponseBody);
     });
@@ -67,7 +67,7 @@ describe("WalletClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -107,7 +107,7 @@ describe("WalletClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -190,7 +190,7 @@ describe("WalletClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -230,7 +230,7 @@ describe("WalletClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -249,7 +249,7 @@ describe("WalletClient", () => {
     test("ConfigureGooglePayOrganization (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { cascade: true, isEnabled: true, orgId: 901 };
+        const rawRequestBody = { cascade: true, isEnabled: true, orgId: 123 };
         const rawResponseBody = {
             isSuccess: true,
             pageIdentifier: "null",
@@ -279,7 +279,7 @@ describe("WalletClient", () => {
         const response = await client.wallet.configureGooglePayOrganization({
             cascade: true,
             isEnabled: true,
-            orgId: 901,
+            orgId: 123,
         });
         expect(response).toEqual(rawResponseBody);
     });
@@ -308,7 +308,7 @@ describe("WalletClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -348,7 +348,7 @@ describe("WalletClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -364,7 +364,7 @@ describe("WalletClient", () => {
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
-    test("ConfigureGooglePayPaypoint", async () => {
+    test("ConfigureGooglePayPaypoint (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entry: "8cfec329267", isEnabled: true };
@@ -395,5 +395,85 @@ describe("WalletClient", () => {
             isEnabled: true,
         });
         expect(response).toEqual(rawResponseBody);
+    });
+
+    test("ConfigureGooglePayPaypoint (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/Wallet/googlepay/configure-paypoint")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.wallet.configureGooglePayPaypoint();
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("ConfigureGooglePayPaypoint (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .post("/Wallet/googlepay/configure-paypoint")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.wallet.configureGooglePayPaypoint();
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("ConfigureGooglePayPaypoint (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/Wallet/googlepay/configure-paypoint")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.wallet.configureGooglePayPaypoint();
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("ConfigureGooglePayPaypoint (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .post("/Wallet/googlepay/configure-paypoint")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.wallet.configureGooglePayPaypoint();
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 });

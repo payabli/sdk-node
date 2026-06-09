@@ -9,9 +9,7 @@ export interface OrgData {
     orgName?: Payabli.Orgname | undefined;
     /**
      * The paypoint's status.
-     *
      * Active - `1`
-     *
      * Inactive - 0
      */
     orgStatus?: number | undefined;

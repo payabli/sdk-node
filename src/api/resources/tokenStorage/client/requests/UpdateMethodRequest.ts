@@ -5,65 +5,75 @@ import type * as Payabli from "../../../../index.js";
 /**
  * @example
  *     {
- *         body: {
- *             customerData: {
- *                 customerId: 4440
- *             },
- *             entryPoint: "f743aed24a",
- *             fallbackAuth: true,
- *             paymentMethod: {
- *                 cardcvv: "123",
- *                 cardexp: "02/25",
- *                 cardHolder: "John Doe",
- *                 cardnumber: "4111111111111111",
- *                 cardzip: "12345",
- *                 method: "card"
- *             }
+ *         customerData: {
+ *             customerId: 4440
+ *         },
+ *         entryPoint: "8cfec329267",
+ *         fallbackAuth: true,
+ *         paymentMethod: {
+ *             cardcvv: "123",
+ *             cardexp: "02/25",
+ *             cardHolder: "John Doe",
+ *             cardnumber: "4111111111111111",
+ *             cardzip: "12345",
+ *             method: "card"
  *         }
  *     }
  *
  * @example
  *     {
- *         body: {
- *             customerData: {
- *                 customerId: 4440
- *             },
- *             entryPoint: "f743aed24a",
- *             paymentMethod: {
- *                 achAccount: "1111111111111",
- *                 achAccountType: "Checking",
- *                 achCode: "WEB",
- *                 achHolder: "John Doe",
- *                 achHolderType: "personal",
- *                 achRouting: "123456780",
- *                 method: "ach"
- *             }
+ *         customerData: {
+ *             customerId: 4440
+ *         },
+ *         entryPoint: "8cfec329267",
+ *         paymentMethod: {
+ *             achAccount: "1111111111111",
+ *             achAccountType: "Checking",
+ *             achCode: "WEB",
+ *             achHolder: "John Doe",
+ *             achHolderType: "personal",
+ *             achRouting: "123456780",
+ *             method: "ach"
  *         }
  *     }
  *
  * @example
  *     {
- *         body: {
- *             customerData: {
- *                 customerId: 4440
- *             },
- *             entryPoint: "f743aed24a",
- *             paymentMethod: {
- *                 achAccount: "1111111111111",
- *                 achAccountType: "Checking",
- *                 achCode: "WEB",
- *                 achHolder: "John Doe",
- *                 achHolderType: "personal",
- *                 achRouting: "123456780",
- *                 method: "ach"
- *             },
- *             vendorData: {
- *                 vendorId: 7890
- *             }
+ *         customerData: {
+ *             customerId: 4440
+ *         },
+ *         entryPoint: "8cfec329267",
+ *         paymentMethod: {
+ *             achAccount: "1111111111111",
+ *             achAccountType: "Checking",
+ *             achCode: "WEB",
+ *             achHolder: "John Doe",
+ *             achHolderType: "personal",
+ *             achRouting: "123456780",
+ *             method: "ach"
+ *         },
+ *         vendorData: {
+ *             vendorId: 456
  *         }
  *     }
  */
 export interface UpdateMethodRequest {
+    /** When `true`, enables real-time validation of ACH account and routing numbers. This is an add-on feature, contact Payabli for more information. */
     achValidation?: Payabli.AchValidation;
-    body: Payabli.RequestTokenStorage;
+    /** Object describing the Customer/Payor owner of payment method. Required for POST requests. Which fields are required depends on the paypoint's custom identifier settings. */
+    customerData?: Payabli.PayorDataRequest;
+    /** Entrypoint identifier. Required for POST requests. */
+    entryPoint?: Payabli.Entrypointfield;
+    /** When `true`, if tokenization fails, Payabli will attempt an authorization transaction to request a permanent token for the card. If the authorization is successful, the card will be tokenized and the authorization will be voided automatically. */
+    fallbackAuth?: boolean;
+    /** The amount for the `fallbackAuth` transaction. Defaults to one dollar (`100`). */
+    fallbackAuthAmount?: number;
+    /** Custom description for stored payment method. */
+    methodDescription?: string;
+    /** Information about the payment method for the transaction. */
+    paymentMethod?: Payabli.RequestTokenStoragePaymentMethod;
+    vendorData?: Payabli.VendorDataRequest;
+    /** Custom identifier to indicate the source for the request */
+    source?: Payabli.Source;
+    subdomain?: Payabli.Subdomain;
 }

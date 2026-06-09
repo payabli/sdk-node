@@ -5,6 +5,6 @@
  *     {}
  */
 export interface DeleteAttachedFromBillRequest {
-    /** When `true`, the request returns the file content as a Base64-encoded string. */
+    /** When `true`, the response includes the full bill object. */
     returnObject?: boolean;
 }

@@ -69,5 +69,5 @@ export interface ExportBatchesRequest {
      *
      * Example: `batchAmount(gt)=20` returns all records with a `batchAmount` greater than 20.00
      */
-    parameters?: Record<string, string>;
+    parameters?: Record<string, string | null>;
 }

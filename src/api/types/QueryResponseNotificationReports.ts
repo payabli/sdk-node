@@ -3,22 +3,6 @@
 import type * as Payabli from "../index.js";
 
 export interface QueryResponseNotificationReports {
-    Records?: QueryResponseNotificationReports.Records.Item[] | undefined;
+    Records?: Payabli.QueryResponseNotificationReportsRecordsItem[] | undefined;
     Summary?: Payabli.QuerySummary | undefined;
-}
-
-export namespace QueryResponseNotificationReports {
-    export type Records = Records.Item[];
-
-    export namespace Records {
-        export interface Item {
-            createdAt?: Payabli.CreatedAt | undefined;
-            /** Unique identifier for the report. */
-            id?: number | undefined;
-            /** Indicator of whether the report can be downloaded. */
-            isDownloadable?: boolean | undefined;
-            /** Name of the report. */
-            reportName?: string | undefined;
-        }
-    }
 }

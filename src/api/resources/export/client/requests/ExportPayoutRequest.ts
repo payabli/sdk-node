@@ -65,5 +65,5 @@ export interface ExportPayoutRequest {
      *
      * Example: totalAmount(gt)=20 return all records with totalAmount greater than 20.00
      */
-    parameters?: Record<string, string>;
+    parameters?: Record<string, string | null>;
 }

@@ -5,73 +5,72 @@ import type * as Payabli from "../../../../index.js";
 /**
  * @example
  *     {
- *         entryPoint: "billing",
- *         vendorNumber: "VENDOR-123",
+ *         entryPoint: "8cfec329267",
+ *         vendorNumber: "VEN-123",
  *         mail2: "customer@example.com; billing@example.com",
  *         amountFixed: "true",
- *         body: {
- *             contactUs: {
- *                 emailLabel: "Email",
- *                 enabled: true,
- *                 header: "Contact Us",
- *                 order: 0,
- *                 paymentIcons: true,
- *                 phoneLabel: "Phone"
+ *         contactUs: {
+ *             emailLabel: "Email",
+ *             enabled: true,
+ *             header: "Contact Us",
+ *             order: 0,
+ *             paymentIcons: true,
+ *             phoneLabel: "Phone"
+ *         },
+ *         logo: {
+ *             enabled: true,
+ *             order: 0
+ *         },
+ *         messageBeforePaying: {
+ *             enabled: true,
+ *             label: "Please review your payment details",
+ *             order: 0
+ *         },
+ *         notes: {
+ *             enabled: true,
+ *             header: "Additional Notes",
+ *             order: 0,
+ *             placeholder: "Enter any additional notes here",
+ *             value: ""
+ *         },
+ *         page: {
+ *             description: "Get paid securely",
+ *             enabled: true,
+ *             header: "Payment Page",
+ *             order: 0
+ *         },
+ *         paymentButton: {
+ *             enabled: true,
+ *             label: "Pay Now",
+ *             order: 0
+ *         },
+ *         paymentMethods: {
+ *             allMethodsChecked: true,
+ *             allowMultipleMethods: true,
+ *             defaultMethod: "vcard",
+ *             enabled: true,
+ *             header: "Payment Methods",
+ *             methods: {
+ *                 ach: true,
+ *                 check: true,
+ *                 vcard: true
  *             },
- *             logo: {
- *                 enabled: true,
- *                 order: 0
- *             },
- *             messageBeforePaying: {
- *                 enabled: true,
- *                 label: "Please review your payment details",
- *                 order: 0
- *             },
- *             notes: {
- *                 enabled: true,
- *                 header: "Additional Notes",
- *                 order: 0,
- *                 placeholder: "Enter any additional notes here",
- *                 value: ""
- *             },
- *             page: {
- *                 description: "Get paid securely",
- *                 enabled: true,
- *                 header: "Payment Page",
- *                 order: 0
- *             },
- *             paymentButton: {
- *                 enabled: true,
- *                 label: "Pay Now",
- *                 order: 0
- *             },
- *             paymentMethods: {
- *                 allMethodsChecked: true,
- *                 allowMultipleMethods: true,
- *                 defaultMethod: "vcard",
- *                 enabled: true,
- *                 header: "Payment Methods",
- *                 methods: {
- *                     ach: true,
- *                     check: true,
- *                     vcard: true
- *                 },
- *                 order: 0,
- *                 showPreviewVirtualCard: true
- *             },
- *             review: {
- *                 enabled: true,
- *                 header: "Review Payment",
- *                 order: 0
- *             },
- *             settings: {
- *                 color: "#000000",
- *                 language: "en"
- *             }
+ *             order: 0,
+ *             showPreviewVirtualCard: true
+ *         },
+ *         review: {
+ *             enabled: true,
+ *             header: "Review Payment",
+ *             order: 0
+ *         },
+ *         settings: {
+ *             color: "#000000",
+ *             language: "en"
  *         }
  *     }
  */
 export interface PayLinkDataOut {
+    /** The entity's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry) */
     entryPoint: Payabli.Entry;
     /** The vendor number for the vendor being paid with this payment link. */
     vendorNumber: string;
@@ -79,5 +78,24 @@ export interface PayLinkDataOut {
     mail2?: string;
     /** Indicates whether customer can modify the payment amount. A value of `true` means the amount isn't modifiable, a value `false` means the payor can modify the amount to pay. */
     amountFixed?: string;
-    body: Payabli.PaymentPageRequestBodyOut;
+    /** ContactUs section of payment link page. */
+    contactUs?: Payabli.ContactElement;
+    /** Logo section of payment link page. */
+    logo?: Payabli.Element;
+    /** Message section of payment link page. */
+    messageBeforePaying?: Payabli.LabelElement;
+    /** Notes section of payment link page. */
+    notes?: Payabli.NoteElement;
+    /** Page header section of payment link page. */
+    page?: Payabli.PageElement;
+    /** Payment button section of payment link page. */
+    paymentButton?: Payabli.LabelElement;
+    /** Payment methods section of payment link page. Use this to configure which payout methods (ACH, vCard, check) are offered to the vendor. */
+    paymentMethods?: Payabli.MethodElementOut;
+    /** Review section of payment link page. */
+    review?: Payabli.HeaderElement;
+    /** Bills section of payment link page. */
+    bills?: Payabli.Element;
+    /** Settings section of payment link page. */
+    settings?: Payabli.PagelinkSetting;
 }

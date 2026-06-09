@@ -18,7 +18,7 @@ export declare namespace GhostCardClient {
 export class GhostCardClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<GhostCardClient.Options>;
 
-    constructor(options: GhostCardClient.Options = {}) {
+    constructor(options: GhostCardClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -29,7 +29,7 @@ export class GhostCardClient {
      *
      * Only one ghost card can exist per vendor per paypoint. To issue a new card to the same vendor, cancel the existing card first.
      *
-     * @param {Payabli.Entry} entry
+     * @param {Payabli.Entry} entry - The entity's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {Payabli.CreateGhostCardRequestBody} request
      * @param {GhostCardClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -39,8 +39,8 @@ export class GhostCardClient {
      * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
-     *     await client.ghostCard.createGhostCard("8cfec2e0fa", {
-     *         vendorId: 42,
+     *     await client.ghostCard.createGhostCard("8cfec329267", {
+     *         vendorId: 456,
      *         expenseLimit: 500,
      *         amount: 500,
      *         maxNumberOfUses: 3,
@@ -104,12 +104,15 @@ export class GhostCardClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -132,7 +135,7 @@ export class GhostCardClient {
     /**
      * Updates the status of a virtual card (including ghost cards) under a paypoint.
      *
-     * @param {Payabli.Entry} entry
+     * @param {Payabli.Entry} entry - The entity's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {Payabli.UpdateCardRequestBody} request
      * @param {GhostCardClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -142,7 +145,7 @@ export class GhostCardClient {
      * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
-     *     await client.ghostCard.updateCard("8cfec2e0fa", {
+     *     await client.ghostCard.updateCard("8cfec329267", {
      *         cardToken: "gc_abc123def456",
      *         status: "Cancelled"
      *     })
@@ -194,12 +197,15 @@ export class GhostCardClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:

@@ -18,7 +18,7 @@ export declare namespace HostedPaymentPagesClient {
 export class HostedPaymentPagesClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<HostedPaymentPagesClient.Options>;
 
-    constructor(options: HostedPaymentPagesClient.Options = {}) {
+    constructor(options: HostedPaymentPagesClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -26,7 +26,7 @@ export class HostedPaymentPagesClient {
      * Loads all of a payment page's details including `pageIdentifier` and `validationCode`. This endpoint requires an `application` API token.
      *
      * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
-     * @param {string} subdomain - Payment page identifier. The subdomain value is the last part of the payment page URL. For example, in`https://paypages-sandbox.payabli.com/513823dc10/pay-your-fees-1`, the subdomain is `pay-your-fees-1`.
+     * @param {string} subdomain - Payment page identifier. The subdomain value is the last part of the payment page URL. For example, in `https://paypages-sandbox.payabli.com/513823dc10/pay-your-fees-1`, the subdomain is `pay-your-fees-1`.
      * @param {HostedPaymentPagesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Payabli.BadRequestError}
@@ -81,12 +81,15 @@ export class HostedPaymentPagesClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -107,7 +110,6 @@ export class HostedPaymentPagesClient {
     }
 
     /**
-     *
      * Creates a new payment page for a paypoint.
      * Note: this operation doesn't create a new paypoint, just a payment page for an existing paypoint. Paypoints are created by the Payabli team when a boarding application is approved.
      *
@@ -122,8 +124,7 @@ export class HostedPaymentPagesClient {
      *
      * @example
      *     await client.hostedPaymentPages.newPage("8cfec329267", {
-     *         idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA",
-     *         body: {}
+     *         idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA"
      *     })
      */
     public newPage(
@@ -139,7 +140,7 @@ export class HostedPaymentPagesClient {
         request: Payabli.NewPageRequest,
         requestOptions?: HostedPaymentPagesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.PayabliApiResponse00Responsedatanonobject>> {
-        const { idempotencyKey, body: _body } = request;
+        const { idempotencyKey, ..._body } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -178,12 +179,15 @@ export class HostedPaymentPagesClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -202,7 +206,7 @@ export class HostedPaymentPagesClient {
      * Updates a payment page in a paypoint.
      *
      * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
-     * @param {string} subdomain - Payment page identifier. The subdomain value is the last part of the payment page URL. For example, in`https://paypages-sandbox.payabli.com/513823dc10/pay-your-fees-1`, the subdomain is `pay-your-fees-1`.
+     * @param {string} subdomain - Payment page identifier. The subdomain value is the last part of the payment page URL. For example, in `https://paypages-sandbox.payabli.com/513823dc10/pay-your-fees-1`, the subdomain is `pay-your-fees-1`.
      * @param {Payabli.PayabliPages} request
      * @param {HostedPaymentPagesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -266,12 +270,15 @@ export class HostedPaymentPagesClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:

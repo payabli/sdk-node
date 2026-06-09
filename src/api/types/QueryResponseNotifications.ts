@@ -6,32 +6,6 @@ import type * as Payabli from "../index.js";
  * Response payload for queries related to notifications
  */
 export interface QueryResponseNotifications {
-    Records?: QueryResponseNotifications.Records.Item[] | undefined;
+    Records?: Payabli.QueryResponseNotificationsRecordsItem[] | undefined;
     Summary?: Payabli.QuerySummary | undefined;
-}
-
-export namespace QueryResponseNotifications {
-    export type Records = Records.Item[];
-
-    export namespace Records {
-        export interface Item {
-            /** Notification content. */
-            content?: Payabli.NotificationContent | undefined;
-            /** Timestamp of when notification was created, in UTC. */
-            createdAt?: Payabli.CreatedAt | undefined;
-            frequency?: Payabli.Frequencynotification | undefined;
-            /** Timestamp of when notification was last updated, in UTC. */
-            lastUpdated?: Payabli.LastModified | undefined;
-            method?: Payabli.Methodnotification | undefined;
-            notificationId?: Payabli.NotificationId | undefined;
-            ownerId?: Payabli.Ownerid | undefined;
-            /** Name of entity owner of notification. */
-            ownerName?: string | undefined;
-            ownerType?: Payabli.Ownertype | undefined;
-            /** Custom descriptor of source of notification. */
-            source?: Payabli.Source | undefined;
-            status?: Payabli.Statusnotification | undefined;
-            target?: Payabli.Target | undefined;
-        }
-    }
 }

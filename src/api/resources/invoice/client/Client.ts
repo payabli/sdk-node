@@ -16,10 +16,13 @@ export declare namespace InvoiceClient {
     export interface RequestOptions extends BaseRequestOptions {}
 }
 
+/**
+ * The Invoice service manages accounts receivable operations for billing customers and tracking payments. It provides full invoice lifecycle management including creation, modification, and deletion of invoices with support for both one-time and recurring scheduled invoices. The service handles invoice delivery via email, attachment management for supporting documents, and automatic invoice numbering with customizable prefixes. Invoices support detailed line items, shipping information, tax and discount calculations, and multiple payment terms. The service integrates with customer records, generates payment links for online payment, and tracks payment history including partial payments against invoices.
+ */
 export class InvoiceClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<InvoiceClient.Options>;
 
-    constructor(options: InvoiceClient.Options = {}) {
+    constructor(options: InvoiceClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -37,35 +40,34 @@ export class InvoiceClient {
      *
      * @example
      *     await client.invoice.addInvoice("8cfec329267", {
-     *         body: {
-     *             customerData: {
-     *                 firstName: "Tamara",
-     *                 lastName: "Bagratoni",
-     *                 customerNumber: "3"
-     *             },
-     *             invoiceData: {
-     *                 items: [{
-     *                         itemProductName: "Adventure Consult",
-     *                         itemDescription: "Consultation for Georgian tours",
-     *                         itemCost: 100,
-     *                         itemQty: 1,
-     *                         itemMode: 1,
-     *                         itemTotalAmount: 1
-     *                     }, {
-     *                         itemProductName: "Deposit ",
-     *                         itemDescription: "Deposit for trip planning",
-     *                         itemCost: 882.37,
-     *                         itemQty: 1,
-     *                         itemTotalAmount: 1
-     *                     }],
-     *                 invoiceDate: "2025-10-19",
-     *                 invoiceType: 0,
-     *                 invoiceStatus: 1,
-     *                 frequency: "onetime",
-     *                 invoiceAmount: 982.37,
-     *                 discount: 10,
-     *                 invoiceNumber: "INV-3"
-     *             }
+     *         customerData: {
+     *             firstName: "Tamara",
+     *             lastName: "Bagratoni",
+     *             customerNumber: "C-90010"
+     *         },
+     *         invoiceData: {
+     *             items: [{
+     *                     itemProductName: "Adventure Consult",
+     *                     itemDescription: "Consultation for Georgian tours",
+     *                     itemCost: 100,
+     *                     itemQty: 2,
+     *                     itemMode: 2,
+     *                     itemTotalAmount: 200
+     *                 }, {
+     *                     itemProductName: "Deposit ",
+     *                     itemDescription: "Deposit for trip planning",
+     *                     itemCost: 882.37,
+     *                     itemQty: 1,
+     *                     itemMode: 2,
+     *                     itemTotalAmount: 882.37
+     *                 }],
+     *             invoiceDate: "2025-10-19",
+     *             invoiceType: 0,
+     *             invoiceStatus: 1,
+     *             frequency: "onetime",
+     *             invoiceAmount: 1082.37,
+     *             discount: 10,
+     *             invoiceNumber: "INV-2345"
      *         }
      *     })
      */
@@ -82,7 +84,7 @@ export class InvoiceClient {
         request: Payabli.AddInvoiceRequest,
         requestOptions?: InvoiceClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.InvoiceResponseWithoutData>> {
-        const { forceCustomerCreation, idempotencyKey, body: _body } = request;
+        const { forceCustomerCreation, idempotencyKey, ..._body } = request;
         const _queryParams: Record<string, unknown> = {
             forceCustomerCreation,
         };
@@ -125,12 +127,15 @@ export class InvoiceClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -146,298 +151,12 @@ export class InvoiceClient {
     }
 
     /**
-     * Deletes an invoice that's attached to a file.
-     *
-     * @param {number} idInvoice - Invoice ID
-     * @param {string} filename - The filename in Payabli. Filename is `zipName` in response to a request to `/api/Invoice/{idInvoice}`. Here, the filename is `0_Bill.pdf``.
-     *                            "DocumentsRef": {
-     *                              "zipfile": "inva_269.zip",
-     *                              "filelist": [
-     *                                {
-     *                                  "originalName": "Bill.pdf",
-     *                                  "zipName": "0_Bill.pdf",
-     *                                  "descriptor": null
-     *                                }
-     *                              ]
-     *                            }
-     * @param {InvoiceClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.InternalServerError}
-     * @throws {@link Payabli.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.invoice.deleteAttachedFromInvoice(23548884, "0_Bill.pdf")
-     */
-    public deleteAttachedFromInvoice(
-        idInvoice: number,
-        filename: string,
-        requestOptions?: InvoiceClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.InvoiceResponseWithoutData> {
-        return core.HttpResponsePromise.fromPromise(
-            this.__deleteAttachedFromInvoice(idInvoice, filename, requestOptions),
-        );
-    }
-
-    private async __deleteAttachedFromInvoice(
-        idInvoice: number,
-        filename: string,
-        requestOptions?: InvoiceClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.InvoiceResponseWithoutData>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await core.fetcher({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.PayabliEnvironment.Sandbox,
-                `Invoice/attachedFileFromInvoice/${core.url.encodePathParam(idInvoice)}/${core.url.encodePathParam(filename)}`,
-            ),
-            method: "DELETE",
-            headers: _headers,
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return { data: _response.body as Payabli.InvoiceResponseWithoutData, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
-                case 500:
-                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
-                case 503:
-                    throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.PayabliError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(
-            _response.error,
-            _response.rawResponse,
-            "DELETE",
-            "/Invoice/attachedFileFromInvoice/{idInvoice}/{filename}",
-        );
-    }
-
-    /**
-     * Deletes a single invoice from an entrypoint.
-     *
-     * @param {number} idInvoice - Invoice ID
-     * @param {InvoiceClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.InternalServerError}
-     * @throws {@link Payabli.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.invoice.deleteInvoice(23548884)
-     */
-    public deleteInvoice(
-        idInvoice: number,
-        requestOptions?: InvoiceClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.InvoiceResponseWithoutData> {
-        return core.HttpResponsePromise.fromPromise(this.__deleteInvoice(idInvoice, requestOptions));
-    }
-
-    private async __deleteInvoice(
-        idInvoice: number,
-        requestOptions?: InvoiceClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.InvoiceResponseWithoutData>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await core.fetcher({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.PayabliEnvironment.Sandbox,
-                `Invoice/${core.url.encodePathParam(idInvoice)}`,
-            ),
-            method: "DELETE",
-            headers: _headers,
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return { data: _response.body as Payabli.InvoiceResponseWithoutData, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
-                case 500:
-                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
-                case 503:
-                    throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.PayabliError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/Invoice/{idInvoice}");
-    }
-
-    /**
-     * Updates details for a single invoice in an entrypoint.
-     *
-     * @param {number} idInvoice - Invoice ID
-     * @param {Payabli.EditInvoiceRequest} request
-     * @param {InvoiceClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.InternalServerError}
-     * @throws {@link Payabli.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.invoice.editInvoice(332, {
-     *         body: {
-     *             invoiceData: {
-     *                 items: [{
-     *                         itemProductName: "Deposit",
-     *                         itemDescription: "Deposit for trip planning",
-     *                         itemCost: 882.37,
-     *                         itemQty: 1
-     *                     }],
-     *                 invoiceDate: "2025-10-19",
-     *                 invoiceAmount: 982.37,
-     *                 invoiceNumber: "INV-6"
-     *             }
-     *         }
-     *     })
-     */
-    public editInvoice(
-        idInvoice: number,
-        request: Payabli.EditInvoiceRequest,
-        requestOptions?: InvoiceClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.InvoiceResponseWithoutData> {
-        return core.HttpResponsePromise.fromPromise(this.__editInvoice(idInvoice, request, requestOptions));
-    }
-
-    private async __editInvoice(
-        idInvoice: number,
-        request: Payabli.EditInvoiceRequest,
-        requestOptions?: InvoiceClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.InvoiceResponseWithoutData>> {
-        const { forceCustomerCreation, body: _body } = request;
-        const _queryParams: Record<string, unknown> = {
-            forceCustomerCreation,
-        };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await core.fetcher({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.PayabliEnvironment.Sandbox,
-                `Invoice/${core.url.encodePathParam(idInvoice)}`,
-            ),
-            method: "PUT",
-            headers: _headers,
-            contentType: "application/json",
-            queryString: core.url
-                .queryBuilder()
-                .addMany(_queryParams)
-                .mergeAdditional(requestOptions?.queryParams)
-                .build(),
-            requestType: "json",
-            body: _body,
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return { data: _response.body as Payabli.InvoiceResponseWithoutData, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
-                case 500:
-                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
-                case 503:
-                    throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.PayabliError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/Invoice/{idInvoice}");
-    }
-
-    /**
      * Retrieves a file attached to an invoice.
      *
      * @param {number} idInvoice - Invoice ID
-     * @param {string} filename - The filename in Payabli. Filename is `zipName` in the response to a request to `/api/Invoice/{idInvoice}`. Here, the filename is `0_Bill.pdf``.
-     *                            ```
-     *                              "DocumentsRef": {
-     *                                "zipfile": "inva_269.zip",
-     *                                "filelist": [
-     *                                  {
-     *                                    "originalName": "Bill.pdf",
-     *                                    "zipName": "0_Bill.pdf",
-     *                                    "descriptor": null
-     *                                  }
-     *                                ]
-     *                              }
-     *                              ```
+     * @param {string} filename - The filename in Payabli. Get this from the `zipName` field
+     *                            in the `DocumentsRef.filelist` array returned by
+     *                            `/api/Invoice/{idInvoice}`. Example: `0_Bill.pdf`.
      * @param {Payabli.GetAttachedFileFromInvoiceRequest} request
      * @param {InvoiceClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -505,12 +224,15 @@ export class InvoiceClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -526,6 +248,97 @@ export class InvoiceClient {
             _response.error,
             _response.rawResponse,
             "GET",
+            "/Invoice/attachedFileFromInvoice/{idInvoice}/{filename}",
+        );
+    }
+
+    /**
+     * Deletes a file attached to an invoice.
+     *
+     * @param {number} idInvoice - Invoice ID
+     * @param {string} filename - The filename in Payabli. Get this from the `zipName` field
+     *                            in the `DocumentsRef.filelist` array returned by
+     *                            `/api/Invoice/{idInvoice}`. Example: `0_Bill.pdf`.
+     * @param {InvoiceClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.invoice.deleteAttachedFromInvoice(23548884, "0_Bill.pdf")
+     */
+    public deleteAttachedFromInvoice(
+        idInvoice: number,
+        filename: string,
+        requestOptions?: InvoiceClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.InvoiceResponseWithoutData> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__deleteAttachedFromInvoice(idInvoice, filename, requestOptions),
+        );
+    }
+
+    private async __deleteAttachedFromInvoice(
+        idInvoice: number,
+        filename: string,
+        requestOptions?: InvoiceClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.InvoiceResponseWithoutData>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `Invoice/attachedFileFromInvoice/${core.url.encodePathParam(idInvoice)}/${core.url.encodePathParam(filename)}`,
+            ),
+            method: "DELETE",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.InvoiceResponseWithoutData, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "DELETE",
             "/Invoice/attachedFileFromInvoice/{idInvoice}/{filename}",
         );
     }
@@ -586,12 +399,15 @@ export class InvoiceClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -604,6 +420,190 @@ export class InvoiceClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/Invoice/{idInvoice}");
+    }
+
+    /**
+     * Updates details for a single invoice in an entrypoint.
+     *
+     * @param {number} idInvoice - Invoice ID
+     * @param {Payabli.EditInvoiceRequest} request
+     * @param {InvoiceClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.invoice.editInvoice(23548884, {
+     *         invoiceData: {
+     *             items: [{
+     *                     itemProductName: "Deposit",
+     *                     itemDescription: "Deposit for trip planning",
+     *                     itemCost: 882.37,
+     *                     itemQty: 1
+     *                 }],
+     *             invoiceDate: "2025-10-19",
+     *             invoiceAmount: 982.37,
+     *             invoiceNumber: "INV-2345"
+     *         }
+     *     })
+     */
+    public editInvoice(
+        idInvoice: number,
+        request: Payabli.EditInvoiceRequest,
+        requestOptions?: InvoiceClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.InvoiceResponseWithoutData> {
+        return core.HttpResponsePromise.fromPromise(this.__editInvoice(idInvoice, request, requestOptions));
+    }
+
+    private async __editInvoice(
+        idInvoice: number,
+        request: Payabli.EditInvoiceRequest,
+        requestOptions?: InvoiceClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.InvoiceResponseWithoutData>> {
+        const { forceCustomerCreation, ..._body } = request;
+        const _queryParams: Record<string, unknown> = {
+            forceCustomerCreation,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `Invoice/${core.url.encodePathParam(idInvoice)}`,
+            ),
+            method: "PUT",
+            headers: _headers,
+            contentType: "application/json",
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
+            requestType: "json",
+            body: _body,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.InvoiceResponseWithoutData, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/Invoice/{idInvoice}");
+    }
+
+    /**
+     * Deletes a single invoice from an entrypoint.
+     *
+     * @param {number} idInvoice - Invoice ID
+     * @param {InvoiceClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.invoice.deleteInvoice(23548884)
+     */
+    public deleteInvoice(
+        idInvoice: number,
+        requestOptions?: InvoiceClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.InvoiceResponseWithoutData> {
+        return core.HttpResponsePromise.fromPromise(this.__deleteInvoice(idInvoice, requestOptions));
+    }
+
+    private async __deleteInvoice(
+        idInvoice: number,
+        requestOptions?: InvoiceClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.InvoiceResponseWithoutData>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `Invoice/${core.url.encodePathParam(idInvoice)}`,
+            ),
+            method: "DELETE",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.InvoiceResponseWithoutData, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/Invoice/{idInvoice}");
     }
 
     /**
@@ -662,12 +662,15 @@ export class InvoiceClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -757,12 +760,15 @@ export class InvoiceClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -852,12 +858,15 @@ export class InvoiceClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -943,12 +952,15 @@ export class InvoiceClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -1019,12 +1031,15 @@ export class InvoiceClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:

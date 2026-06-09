@@ -4,12 +4,16 @@ import type * as Payabli from "../index.js";
 
 export interface BillItem {
     /** Array of tags classifying item or product. */
-    itemCategories?: (string | undefined)[] | undefined;
+    itemCategories?: string[] | undefined;
     itemCommodityCode?: Payabli.ItemCommodityCode | undefined;
     /** Item or product price per unit. */
-    itemCost: number;
+    itemCost?: number | undefined;
     itemDescription?: Payabli.ItemDescription | undefined;
-    /** Internal class of item or product: value '0' is only for invoices , '1' for bills and, '2' common for both. */
+    /**
+     * Internal class of item or product: value `0` is only for invoices,
+     * `1` for bills, and `2` is common for both. Required on invoice line
+     * items — invoice creation fails with `Invalid item data` if it's omitted.
+     */
     itemMode?: number | undefined;
     itemProductCode?: Payabli.ItemProductCode | undefined;
     itemProductName?: Payabli.ItemProductName | undefined;
@@ -19,7 +23,10 @@ export interface BillItem {
     itemTaxAmount?: number | undefined;
     /** Tax rate applied to item or product. */
     itemTaxRate?: number | undefined;
-    /** Total amount in item or product. */
+    /**
+     * Per-line total for this item (unit cost times quantity). Distinct from
+     * the invoice's overall total, `invoiceAmount`. Required on invoice line items.
+     */
     itemTotalAmount?: number | undefined;
     itemUnitOfMeasure?: Payabli.ItemUnitofMeasure | undefined;
 }

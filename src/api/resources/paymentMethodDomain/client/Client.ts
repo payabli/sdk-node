@@ -15,10 +15,13 @@ export declare namespace PaymentMethodDomainClient {
     export interface RequestOptions extends BaseRequestOptions {}
 }
 
+/**
+ * The PaymentMethodDomain service manages payment method domains and routing configurations for optimizing transaction success rates. It handles domain verification for Apple Pay, Google Pay, and other wallet integrations requiring merchant domain validation. The service configures payment method availability and routing rules based on transaction characteristics, merchant settings, and processor capabilities. It manages fallback logic for payment processing, enables A/B testing of payment flows, and provides configuration for payment method display order and availability by geography or transaction type. The service ensures proper technical setup for each payment method channel while optimizing for conversion and user experience.
+ */
 export class PaymentMethodDomainClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<PaymentMethodDomainClient.Options>;
 
-    constructor(options: PaymentMethodDomainClient.Options = {}) {
+    constructor(options: PaymentMethodDomainClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -94,12 +97,15 @@ export class PaymentMethodDomainClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -173,12 +179,15 @@ export class PaymentMethodDomainClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -195,90 +204,6 @@ export class PaymentMethodDomainClient {
             _response.rawResponse,
             "POST",
             "/PaymentMethodDomain/{domainId}/cascade",
-        );
-    }
-
-    /**
-     * Delete a payment method domain. You can't delete an inherited domain, you must delete a domain at the organization level.
-     *
-     * @param {string} domainId - The payment method domain's ID in Payabli.
-     * @param {PaymentMethodDomainClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.InternalServerError}
-     * @throws {@link Payabli.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.paymentMethodDomain.deletePaymentMethodDomain("pmd_b8237fa45c964d8a9ef27160cd42b8c5")
-     */
-    public deletePaymentMethodDomain(
-        domainId: string,
-        requestOptions?: PaymentMethodDomainClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.DeletePaymentMethodDomainResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__deletePaymentMethodDomain(domainId, requestOptions));
-    }
-
-    private async __deletePaymentMethodDomain(
-        domainId: string,
-        requestOptions?: PaymentMethodDomainClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.DeletePaymentMethodDomainResponse>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await core.fetcher({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.PayabliEnvironment.Sandbox,
-                `PaymentMethodDomain/${core.url.encodePathParam(domainId)}`,
-            ),
-            method: "DELETE",
-            headers: _headers,
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return {
-                data: _response.body as Payabli.DeletePaymentMethodDomainResponse,
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
-                case 500:
-                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
-                case 503:
-                    throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.PayabliError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(
-            _response.error,
-            _response.rawResponse,
-            "DELETE",
-            "/PaymentMethodDomain/{domainId}",
         );
     }
 
@@ -341,12 +266,15 @@ export class PaymentMethodDomainClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -362,6 +290,195 @@ export class PaymentMethodDomainClient {
             _response.error,
             _response.rawResponse,
             "GET",
+            "/PaymentMethodDomain/{domainId}",
+        );
+    }
+
+    /**
+     * Delete a payment method domain. You can't delete an inherited domain, you must delete a domain at the organization level.
+     *
+     * @param {string} domainId - The payment method domain's ID in Payabli.
+     * @param {PaymentMethodDomainClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.paymentMethodDomain.deletePaymentMethodDomain("pmd_b8237fa45c964d8a9ef27160cd42b8c5")
+     */
+    public deletePaymentMethodDomain(
+        domainId: string,
+        requestOptions?: PaymentMethodDomainClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.DeletePaymentMethodDomainResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__deletePaymentMethodDomain(domainId, requestOptions));
+    }
+
+    private async __deletePaymentMethodDomain(
+        domainId: string,
+        requestOptions?: PaymentMethodDomainClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.DeletePaymentMethodDomainResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `PaymentMethodDomain/${core.url.encodePathParam(domainId)}`,
+            ),
+            method: "DELETE",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as Payabli.DeletePaymentMethodDomainResponse,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "DELETE",
+            "/PaymentMethodDomain/{domainId}",
+        );
+    }
+
+    /**
+     * Update a payment method domain's configuration values.
+     *
+     * @param {string} domainId - The payment method domain's ID in Payabli.
+     * @param {Payabli.UpdatePaymentMethodDomainRequest} request
+     * @param {PaymentMethodDomainClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.paymentMethodDomain.updatePaymentMethodDomain("pmd_b8237fa45c964d8a9ef27160cd42b8c5", {
+     *         applePay: {
+     *             isEnabled: false
+     *         },
+     *         googlePay: {
+     *             isEnabled: false
+     *         }
+     *     })
+     */
+    public updatePaymentMethodDomain(
+        domainId: string,
+        request: Payabli.UpdatePaymentMethodDomainRequest = {},
+        requestOptions?: PaymentMethodDomainClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.PaymentMethodDomainGeneralResponse> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__updatePaymentMethodDomain(domainId, request, requestOptions),
+        );
+    }
+
+    private async __updatePaymentMethodDomain(
+        domainId: string,
+        request: Payabli.UpdatePaymentMethodDomainRequest = {},
+        requestOptions?: PaymentMethodDomainClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.PaymentMethodDomainGeneralResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `PaymentMethodDomain/${core.url.encodePathParam(domainId)}`,
+            ),
+            method: "PATCH",
+            headers: _headers,
+            contentType: "application/json",
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            requestType: "json",
+            body: request,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as Payabli.PaymentMethodDomainGeneralResponse,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "PATCH",
             "/PaymentMethodDomain/{domainId}",
         );
     }
@@ -445,12 +562,15 @@ export class PaymentMethodDomainClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -463,105 +583,6 @@ export class PaymentMethodDomainClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/PaymentMethodDomain/list");
-    }
-
-    /**
-     * Update a payment method domain's configuration values.
-     *
-     * @param {string} domainId - The payment method domain's ID in Payabli.
-     * @param {Payabli.UpdatePaymentMethodDomainRequest} request
-     * @param {PaymentMethodDomainClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.InternalServerError}
-     * @throws {@link Payabli.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.paymentMethodDomain.updatePaymentMethodDomain("pmd_b8237fa45c964d8a9ef27160cd42b8c5", {
-     *         applePay: {
-     *             isEnabled: false
-     *         },
-     *         googlePay: {
-     *             isEnabled: false
-     *         }
-     *     })
-     */
-    public updatePaymentMethodDomain(
-        domainId: string,
-        request: Payabli.UpdatePaymentMethodDomainRequest = {},
-        requestOptions?: PaymentMethodDomainClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.PaymentMethodDomainGeneralResponse> {
-        return core.HttpResponsePromise.fromPromise(
-            this.__updatePaymentMethodDomain(domainId, request, requestOptions),
-        );
-    }
-
-    private async __updatePaymentMethodDomain(
-        domainId: string,
-        request: Payabli.UpdatePaymentMethodDomainRequest = {},
-        requestOptions?: PaymentMethodDomainClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.PaymentMethodDomainGeneralResponse>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await core.fetcher({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.PayabliEnvironment.Sandbox,
-                `PaymentMethodDomain/${core.url.encodePathParam(domainId)}`,
-            ),
-            method: "PATCH",
-            headers: _headers,
-            contentType: "application/json",
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            requestType: "json",
-            body: request,
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return {
-                data: _response.body as Payabli.PaymentMethodDomainGeneralResponse,
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
-                case 500:
-                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
-                case 503:
-                    throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.PayabliError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(
-            _response.error,
-            _response.rawResponse,
-            "PATCH",
-            "/PaymentMethodDomain/{domainId}",
-        );
     }
 
     /**

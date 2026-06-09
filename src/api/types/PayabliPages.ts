@@ -5,20 +5,20 @@ import type * as Payabli from "../index.js";
 export interface PayabliPages {
     AdditionalData?: Payabli.AdditionalData | undefined;
     /** Array of credential objects with active services for the page */
-    credentials?: Payabli.PayabliCredentials[] | undefined;
+    Credentials?: Payabli.PayabliCredentials[] | undefined;
     /** Timestamp of last access to page structure */
-    lastAccess?: string | undefined;
+    LastAccess?: string | undefined;
     /** Sections of page */
-    pageContent?: Payabli.PageContent | undefined;
+    PageContent?: Payabli.PageContent | undefined;
     pageIdentifier?: Payabli.PageIdentifier | undefined;
     /** Settings of page */
-    pageSettings?: Payabli.PageSetting | undefined;
+    PageSettings?: Payabli.PageSetting | undefined;
     /** Flag indicating if page is active to accept payments. `0` for false, `1` for true. */
     published?: number | undefined;
     /** Sections of payment receipt */
-    receiptContent?: Payabli.ReceiptContent | undefined;
+    ReceiptContent?: Payabli.ReceiptContent | undefined;
     /** Page identifier. Must be unique in platform. */
-    subdomain?: Payabli.Subdomain | undefined;
+    Subdomain?: Payabli.Subdomain | undefined;
     /** Total amount to pay in this page */
     totalAmount?: number | undefined;
     /** Base64 encoded image of CAPTCHA associated to this page load */

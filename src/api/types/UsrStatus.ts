@@ -2,9 +2,10 @@
 
 /**
  * The user's status:
- *   - Inactive:	0
- *   - Active:	1
- *   - Deleted:	-99
- *   - Locked:	85
+ *
+ * - Inactive: `0`
+ * - Active: `1`
+ * - Deleted: `-99`
+ * - Locked: `85`
  */
 export type UsrStatus = number;

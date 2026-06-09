@@ -6,8 +6,11 @@ import type * as Payabli from "../index.js";
  * Details about the status of the Google Pay service.
  */
 export interface GooglePayData {
-    /** This object is only returned when the domain verification check fails. If a domain has failed validation, this object contains information about the failure. */
+    /**
+     * This object is only returned when the domain verification check
+     * fails. If a domain has failed validation, this object contains
+     * information about the failure.
+     */
     data?: Payabli.GooglePayStatusData | undefined;
-    /** When `true`, Google Pay is enabled. */
     isEnabled?: Payabli.IsEnabled | undefined;
 }

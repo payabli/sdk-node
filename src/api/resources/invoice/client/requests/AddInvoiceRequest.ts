@@ -5,40 +5,46 @@ import type * as Payabli from "../../../../index.js";
 /**
  * @example
  *     {
- *         body: {
- *             customerData: {
- *                 firstName: "Tamara",
- *                 lastName: "Bagratoni",
- *                 customerNumber: "3"
- *             },
- *             invoiceData: {
- *                 items: [{
- *                         itemProductName: "Adventure Consult",
- *                         itemDescription: "Consultation for Georgian tours",
- *                         itemCost: 100,
- *                         itemQty: 1,
- *                         itemMode: 1,
- *                         itemTotalAmount: 1
- *                     }, {
- *                         itemProductName: "Deposit ",
- *                         itemDescription: "Deposit for trip planning",
- *                         itemCost: 882.37,
- *                         itemQty: 1,
- *                         itemTotalAmount: 1
- *                     }],
- *                 invoiceDate: "2025-10-19",
- *                 invoiceType: 0,
- *                 invoiceStatus: 1,
- *                 frequency: "onetime",
- *                 invoiceAmount: 982.37,
- *                 discount: 10,
- *                 invoiceNumber: "INV-3"
- *             }
+ *         customerData: {
+ *             firstName: "Tamara",
+ *             lastName: "Bagratoni",
+ *             customerNumber: "C-90010"
+ *         },
+ *         invoiceData: {
+ *             items: [{
+ *                     itemProductName: "Adventure Consult",
+ *                     itemDescription: "Consultation for Georgian tours",
+ *                     itemCost: 100,
+ *                     itemQty: 2,
+ *                     itemMode: 2,
+ *                     itemTotalAmount: 200
+ *                 }, {
+ *                     itemProductName: "Deposit ",
+ *                     itemDescription: "Deposit for trip planning",
+ *                     itemCost: 882.37,
+ *                     itemQty: 1,
+ *                     itemMode: 2,
+ *                     itemTotalAmount: 882.37
+ *                 }],
+ *             invoiceDate: "2025-10-19",
+ *             invoiceType: 0,
+ *             invoiceStatus: 1,
+ *             frequency: "onetime",
+ *             invoiceAmount: 1082.37,
+ *             discount: 10,
+ *             invoiceNumber: "INV-2345"
  *         }
  *     }
  */
 export interface AddInvoiceRequest {
+    /** When `true`, the request creates a new customer record, regardless of whether customer identifiers match an existing customer. Defaults to `false`. */
     forceCustomerCreation?: Payabli.ForceCustomerCreation;
+    /** _Optional but recommended_ A unique ID that you can include to prevent duplicating objects or transactions in the case that a request is sent more than once. This key isn't generated in Payabli, you must generate it yourself. This key persists for 2 minutes. After 2 minutes, you can reuse the key if needed. */
     idempotencyKey?: Payabli.IdempotencyKey;
-    body: Payabli.InvoiceDataRequest;
+    /** Object describing the customer/payor. Required for POST requests. Which fields are required depends on the paypoint's custom identifier settings. */
+    customerData?: Payabli.PayorDataRequest;
+    /** Object describing the invoice. Required for POST requests. */
+    invoiceData?: Payabli.BillData;
+    /** Object with options for scheduled invoices. */
+    scheduledOptions?: Payabli.BillOptions;
 }

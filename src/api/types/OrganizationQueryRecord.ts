@@ -3,7 +3,7 @@
 import type * as Payabli from "../index.js";
 
 export interface OrganizationQueryRecord {
-    services?: OrganizationQueryRecord.Services.Item[] | undefined;
+    services?: Payabli.OrganizationQueryRecordServicesItem[] | undefined;
     billingInfo?: Payabli.Instrument | undefined;
     contacts?: Payabli.ContactsField | undefined;
     createdAt?: Payabli.CreatedAt | undefined;
@@ -30,21 +30,4 @@ export interface OrganizationQueryRecord {
     resumable?: Payabli.Resumable | undefined;
     summary?: Payabli.SummaryOrg | undefined;
     users?: Payabli.UserQueryRecord[] | undefined;
-}
-
-export namespace OrganizationQueryRecord {
-    export type Services = Services.Item[];
-
-    export namespace Services {
-        export interface Item {
-            description?: string | undefined;
-            enabled?: boolean | undefined;
-            monthlyCost?: number | undefined;
-            name?: string | undefined;
-            reseller?: boolean | undefined;
-            setupCost?: number | undefined;
-            txCost?: number | undefined;
-            txPercentCost?: number | undefined;
-        }
-    }
 }

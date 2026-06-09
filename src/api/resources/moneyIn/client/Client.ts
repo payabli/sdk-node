@@ -15,10 +15,13 @@ export declare namespace MoneyInClient {
     export interface RequestOptions extends BaseRequestOptions {}
 }
 
+/**
+ * The MoneyIn service handles all payment acceptance operations for receiving funds from customers. This includes processing card and ACH transactions through various flows: authorize-only for reserving funds, capture for completing authorized transactions, and single-step payment processing. The service supports transaction management operations like voiding, refunding, and reversing payments, along with specialized capabilities for ACH credit microdeposits, card validation without charges, and detailed transaction retrieval. All endpoints support idempotency keys for safe retry logic and can include extended transaction details when needed.
+ */
 export class MoneyInClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<MoneyInClient.Options>;
 
-    constructor(options: MoneyInClient.Options = {}) {
+    constructor(options: MoneyInClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -39,25 +42,23 @@ export class MoneyInClient {
      *
      * @example
      *     await client.moneyIn.authorize({
-     *         body: {
-     *             customerData: {
-     *                 customerId: 4440
-     *             },
-     *             entryPoint: "f743aed24a",
-     *             ipaddress: "255.255.255.255",
-     *             paymentDetails: {
-     *                 serviceFee: 0,
-     *                 totalAmount: 100
-     *             },
-     *             paymentMethod: {
-     *                 cardcvv: "999",
-     *                 cardexp: "02/27",
-     *                 cardHolder: "John Cassian",
-     *                 cardnumber: "4111111111111111",
-     *                 cardzip: "12345",
-     *                 initiator: "payor",
-     *                 method: "card"
-     *             }
+     *         customerData: {
+     *             customerId: 4440
+     *         },
+     *         entryPoint: "8cfec329267",
+     *         ipaddress: "255.255.255.255",
+     *         paymentDetails: {
+     *             serviceFee: 0,
+     *             totalAmount: 100
+     *         },
+     *         paymentMethod: {
+     *             cardcvv: "999",
+     *             cardexp: "02/27",
+     *             cardHolder: "John Cassian",
+     *             cardnumber: "4111111111111111",
+     *             cardzip: "12345",
+     *             initiator: "payor",
+     *             method: "card"
      *         }
      *     })
      */
@@ -72,7 +73,7 @@ export class MoneyInClient {
         request: Payabli.RequestPaymentAuthorize,
         requestOptions?: MoneyInClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.AuthResponse>> {
-        const { forceCustomerCreation, idempotencyKey, body: _body } = request;
+        const { forceCustomerCreation, idempotencyKey, ..._body } = request;
         const _queryParams: Record<string, unknown> = {
             forceCustomerCreation,
         };
@@ -115,12 +116,15 @@ export class MoneyInClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -201,12 +205,15 @@ export class MoneyInClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -314,12 +321,15 @@ export class MoneyInClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -352,9 +362,9 @@ export class MoneyInClient {
      *         idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA",
      *         customerData: {
      *             billingAddress1: "5127 Linkwood ave",
-     *             customerNumber: "100"
+     *             customerNumber: "C-90010"
      *         },
-     *         entrypoint: "my-entrypoint",
+     *         entrypoint: "8cfec329267",
      *         paymentDetails: {
      *             serviceFee: 0,
      *             totalAmount: 1
@@ -376,11 +386,11 @@ export class MoneyInClient {
      *             billingCity: "Kingsport",
      *             billingEmail: "johnnyp@email.com",
      *             company: "Acme, Inc",
-     *             customerNumber: "100",
+     *             customerNumber: "C-90010",
      *             firstName: "Johnny",
      *             lastName: "Poulsbo"
      *         },
-     *         entrypoint: "my-entrypoint",
+     *         entrypoint: "8cfec329267",
      *         paymentDetails: {
      *             serviceFee: 0,
      *             totalAmount: 1
@@ -448,12 +458,15 @@ export class MoneyInClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -527,12 +540,15 @@ export class MoneyInClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -564,176 +580,162 @@ export class MoneyInClient {
      *
      * @example
      *     await client.moneyIn.getpaid({
-     *         body: {
-     *             customerData: {
-     *                 customerId: 4440
-     *             },
-     *             entryPoint: "f743aed24a",
-     *             ipaddress: "255.255.255.255",
-     *             paymentDetails: {
-     *                 serviceFee: 0,
-     *                 totalAmount: 100
-     *             },
-     *             paymentMethod: {
-     *                 cardcvv: "999",
-     *                 cardexp: "02/27",
-     *                 cardHolder: "John Cassian",
-     *                 cardnumber: "4111111111111111",
-     *                 cardzip: "12345",
-     *                 initiator: "payor",
-     *                 method: "card"
-     *             }
+     *         customerData: {
+     *             customerId: 4440
+     *         },
+     *         entryPoint: "8cfec329267",
+     *         ipaddress: "255.255.255.255",
+     *         paymentDetails: {
+     *             serviceFee: 0,
+     *             totalAmount: 100
+     *         },
+     *         paymentMethod: {
+     *             cardcvv: "999",
+     *             cardexp: "02/27",
+     *             cardHolder: "John Cassian",
+     *             cardnumber: "4111111111111111",
+     *             cardzip: "12345",
+     *             initiator: "payor",
+     *             method: "card"
      *         }
      *     })
      *
      * @example
      *     await client.moneyIn.getpaid({
-     *         body: {
-     *             customerData: {
-     *                 customerId: 4440
-     *             },
-     *             entryPoint: "f743aed24a",
-     *             ipaddress: "255.255.255.255",
-     *             paymentDetails: {
-     *                 serviceFee: 0,
-     *                 totalAmount: 100
-     *             },
-     *             paymentMethod: {
-     *                 initiator: "payor",
-     *                 method: "card",
-     *                 storedMethodId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-     *                 storedMethodUsageType: "unscheduled"
-     *             }
+     *         customerData: {
+     *             customerId: 4440
+     *         },
+     *         entryPoint: "8cfec329267",
+     *         ipaddress: "255.255.255.255",
+     *         paymentDetails: {
+     *             serviceFee: 0,
+     *             totalAmount: 100
+     *         },
+     *         paymentMethod: {
+     *             initiator: "payor",
+     *             method: "card",
+     *             storedMethodId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+     *             storedMethodUsageType: "unscheduled"
      *         }
      *     })
      *
      * @example
      *     await client.moneyIn.getpaid({
-     *         body: {
-     *             customerData: {
-     *                 customerId: 4440
-     *             },
-     *             entryPoint: "f743aed24a",
-     *             ipaddress: "255.255.255.255",
-     *             paymentDetails: {
-     *                 serviceFee: 0,
-     *                 totalAmount: 100
-     *             },
-     *             paymentMethod: {
-     *                 device: "6c361c7d-674c-44cc-b790-382b75d1xxx",
-     *                 method: "cloud",
-     *                 saveIfSuccess: true
-     *             }
+     *         customerData: {
+     *             customerId: 4440
+     *         },
+     *         entryPoint: "8cfec329267",
+     *         ipaddress: "255.255.255.255",
+     *         paymentDetails: {
+     *             serviceFee: 0,
+     *             totalAmount: 100
+     *         },
+     *         paymentMethod: {
+     *             device: "6c361c7d-674c-44cc-b790-382b75d1xxx",
+     *             method: "cloud",
+     *             saveIfSuccess: true
      *         }
      *     })
      *
      * @example
      *     await client.moneyIn.getpaid({
-     *         body: {
-     *             customerData: {
-     *                 customerId: 4440
-     *             },
-     *             entryPoint: "f743aed24a",
-     *             ipaddress: "255.255.255.255",
-     *             paymentDetails: {
-     *                 serviceFee: 0,
-     *                 totalAmount: 100
-     *             },
-     *             paymentMethod: {
-     *                 achAccount: "123123123",
-     *                 achAccountType: "Checking",
-     *                 achCode: "WEB",
-     *                 achHolder: "John Cassian",
-     *                 achHolderType: "personal",
-     *                 achRouting: "123123123",
-     *                 method: "ach"
-     *             }
+     *         customerData: {
+     *             customerId: 4440
+     *         },
+     *         entryPoint: "8cfec329267",
+     *         ipaddress: "255.255.255.255",
+     *         paymentDetails: {
+     *             serviceFee: 0,
+     *             totalAmount: 100
+     *         },
+     *         paymentMethod: {
+     *             achAccount: "123123123",
+     *             achAccountType: "Checking",
+     *             achCode: "WEB",
+     *             achHolder: "John Cassian",
+     *             achHolderType: "personal",
+     *             achRouting: "123123123",
+     *             method: "ach"
      *         }
      *     })
      *
      * @example
      *     await client.moneyIn.getpaid({
-     *         body: {
-     *             customerData: {
-     *                 customerId: 4440
-     *             },
-     *             entryPoint: "f743aed24a",
-     *             ipaddress: "255.255.255.255",
-     *             paymentDetails: {
-     *                 checkUniqueId: "abc123def456",
-     *                 serviceFee: 0,
-     *                 totalAmount: 125.5
-     *             },
-     *             paymentMethod: {
-     *                 achAccount: "123456",
-     *                 achAccountType: "Checking",
-     *                 achCode: "BOC",
-     *                 achHolder: "John Doe",
-     *                 achRouting: "123456789",
-     *                 method: "ach"
-     *             }
+     *         customerData: {
+     *             customerId: 4440
+     *         },
+     *         entryPoint: "8cfec329267",
+     *         ipaddress: "255.255.255.255",
+     *         paymentDetails: {
+     *             checkUniqueId: "abc123def456",
+     *             serviceFee: 0,
+     *             totalAmount: 125.5
+     *         },
+     *         paymentMethod: {
+     *             achAccount: "123456",
+     *             achAccountType: "Checking",
+     *             achCode: "BOC",
+     *             achHolder: "John Doe",
+     *             achRouting: "123456789",
+     *             method: "ach"
      *         }
      *     })
      *
      * @example
      *     await client.moneyIn.getpaid({
-     *         body: {
-     *             customerData: {
-     *                 billingAddress1: "123 Walnut Street",
-     *                 billingCity: "Johnson City",
-     *                 billingCountry: "US",
-     *                 billingEmail: "john@email.com",
-     *                 billingPhone: "1234567890",
-     *                 billingState: "Johnson City",
-     *                 billingZip: "37615",
-     *                 customerNumber: "3456-7645A",
-     *                 firstName: "John",
-     *                 lastName: "Cassian"
-     *             },
-     *             entryPoint: "f743aed24a",
-     *             ipaddress: "255.255.255.255",
-     *             orderDescription: "New customer package",
-     *             orderId: "982-102",
-     *             paymentDetails: {
-     *                 serviceFee: 0,
-     *                 totalAmount: 1000
-     *             },
-     *             paymentMethod: {
-     *                 cardcvv: "123",
-     *                 cardexp: "02/25",
-     *                 cardHolder: "John Cassian",
-     *                 cardnumber: "4111111111111111",
-     *                 cardzip: "12345",
-     *                 initiator: "payor",
-     *                 method: "card",
-     *                 saveIfSuccess: true
-     *             },
-     *             source: "web"
-     *         }
+     *         customerData: {
+     *             billingAddress1: "123 Walnut Street",
+     *             billingCity: "Johnson City",
+     *             billingCountry: "US",
+     *             billingEmail: "john@email.com",
+     *             billingPhone: "1234567890",
+     *             billingState: "Johnson City",
+     *             billingZip: "37615",
+     *             customerNumber: "C-90010",
+     *             firstName: "John",
+     *             lastName: "Cassian"
+     *         },
+     *         entryPoint: "8cfec329267",
+     *         ipaddress: "255.255.255.255",
+     *         orderDescription: "New customer package",
+     *         orderId: "982-102",
+     *         paymentDetails: {
+     *             serviceFee: 0,
+     *             totalAmount: 1000
+     *         },
+     *         paymentMethod: {
+     *             cardcvv: "123",
+     *             cardexp: "02/25",
+     *             cardHolder: "John Cassian",
+     *             cardnumber: "4111111111111111",
+     *             cardzip: "12345",
+     *             initiator: "payor",
+     *             method: "card",
+     *             saveIfSuccess: true
+     *         },
+     *         source: "web"
      *     })
      *
      * @example
      *     await client.moneyIn.getpaid({
-     *         body: {
-     *             customerData: {
-     *                 customerId: 4440
-     *             },
-     *             entryPoint: "f743aed24a",
-     *             ipaddress: "255.255.255.255",
-     *             paymentDetails: {
-     *                 serviceFee: 0,
-     *                 totalAmount: 100,
-     *                 currency: "CAD"
-     *             },
-     *             paymentMethod: {
-     *                 cardcvv: "999",
-     *                 cardexp: "02/27",
-     *                 cardHolder: "John Cassian",
-     *                 cardnumber: "4111111111111111",
-     *                 cardzip: "12345",
-     *                 initiator: "payor",
-     *                 method: "card"
-     *             }
+     *         customerData: {
+     *             customerId: 4440
+     *         },
+     *         entryPoint: "8cfec329267",
+     *         ipaddress: "255.255.255.255",
+     *         paymentDetails: {
+     *             serviceFee: 0,
+     *             totalAmount: 100,
+     *             currency: "CAD"
+     *         },
+     *         paymentMethod: {
+     *             cardcvv: "999",
+     *             cardexp: "02/27",
+     *             cardHolder: "John Cassian",
+     *             cardnumber: "4111111111111111",
+     *             cardzip: "12345",
+     *             initiator: "payor",
+     *             method: "card"
      *         }
      *     })
      */
@@ -748,14 +750,8 @@ export class MoneyInClient {
         request: Payabli.RequestPayment,
         requestOptions?: MoneyInClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.PayabliApiResponseGetPaid>> {
-        const {
-            achValidation,
-            forceCustomerCreation,
-            includeDetails,
-            idempotencyKey,
-            validationCode,
-            body: _body,
-        } = request;
+        const { achValidation, forceCustomerCreation, includeDetails, idempotencyKey, validationCode, ..._body } =
+            request;
         const _queryParams: Record<string, unknown> = {
             achValidation,
             forceCustomerCreation,
@@ -800,12 +796,15 @@ export class MoneyInClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -824,8 +823,7 @@ export class MoneyInClient {
      * A reversal either refunds or voids a transaction independent of the transaction's settlement status. Send a reversal request for a transaction, and Payabli automatically determines whether it's a refund or void. You don't need to know whether the transaction is settled or not. This endpoint only works on transactions made with the v1 API. For v2 transactions, check the transaction's settlement status and call v2 void or v2 refund based on the result.
      *
      * @param {string} transId - ReferenceId for the transaction (PaymentId).
-     * @param {number} amount -
-     *                          Amount to reverse from original transaction, minus any service fees charged on the original transaction.
+     * @param {number} amount - Amount to reverse from original transaction, minus any service fees charged on the original transaction.
      *
      *                          The amount provided can't be greater than the original total amount of the transaction, minus service fees. For example, if a transaction was $90 plus a $10 service fee, you can reverse up to $90.
      *
@@ -887,12 +885,15 @@ export class MoneyInClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -920,8 +921,7 @@ export class MoneyInClient {
      *   </Tip>
      *
      * @param {string} transId - ReferenceId for the transaction (PaymentId).
-     * @param {number} amount -
-     *                          Amount to refund from original transaction, minus any service fees charged on the original transaction.
+     * @param {number} amount - Amount to refund from original transaction, minus any service fees charged on the original transaction.
      *
      *                          The amount provided can't be greater than the original total amount of the transaction, minus service fees. For example, if a transaction was \$90 plus a \$10 service fee, you can refund up to \$90.
      *
@@ -983,12 +983,15 @@ export class MoneyInClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -1114,12 +1117,15 @@ export class MoneyInClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -1190,12 +1196,15 @@ export class MoneyInClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -1284,12 +1293,15 @@ export class MoneyInClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -1323,7 +1335,7 @@ export class MoneyInClient {
      * @example
      *     await client.moneyIn.validate({
      *         idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA",
-     *         entryPoint: "entry132",
+     *         entryPoint: "8cfec329267",
      *         paymentMethod: {
      *             method: "card",
      *             cardnumber: "4360000001000005",
@@ -1380,12 +1392,15 @@ export class MoneyInClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -1460,12 +1475,15 @@ export class MoneyInClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -1486,97 +1504,89 @@ export class MoneyInClient {
      * @param {Payabli.RequestPaymentV2} request
      * @param {MoneyInClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link Payabli.BadRequestAuthResponseErrorV2}
+     * @throws {@link Payabli.BadRequestError}
      * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.DeclinedAuthResponseErrorV2}
-     * @throws {@link Payabli.InternalServerResponseErrorV2}
+     * @throws {@link Payabli.PaymentRequiredError}
+     * @throws {@link Payabli.InternalServerError}
      *
      * @example
      *     await client.moneyIn.getpaidv2({
-     *         body: {
-     *             customerData: {
-     *                 customerId: 4440
-     *             },
-     *             entryPoint: "f743aed24a",
-     *             ipaddress: "255.255.255.255",
-     *             paymentDetails: {
-     *                 serviceFee: 0,
-     *                 totalAmount: 100
-     *             },
-     *             paymentMethod: {
-     *                 cardcvv: "999",
-     *                 cardexp: "02/27",
-     *                 cardHolder: "John Cassian",
-     *                 cardnumber: "4111111111111111",
-     *                 cardzip: "12345",
-     *                 initiator: "payor",
-     *                 method: "card"
-     *             }
+     *         customerData: {
+     *             customerId: 4440
+     *         },
+     *         entryPoint: "8cfec329267",
+     *         ipaddress: "255.255.255.255",
+     *         paymentDetails: {
+     *             serviceFee: 0,
+     *             totalAmount: 100
+     *         },
+     *         paymentMethod: {
+     *             cardcvv: "999",
+     *             cardexp: "02/27",
+     *             cardHolder: "John Cassian",
+     *             cardnumber: "4111111111111111",
+     *             cardzip: "12345",
+     *             initiator: "payor",
+     *             method: "card"
      *         }
      *     })
      *
      * @example
      *     await client.moneyIn.getpaidv2({
-     *         body: {
-     *             customerData: {
-     *                 customerId: 4440
-     *             },
-     *             entryPoint: "f743aed24a",
-     *             ipaddress: "255.255.255.255",
-     *             paymentDetails: {
-     *                 serviceFee: 0,
-     *                 totalAmount: 100
-     *             },
-     *             paymentMethod: {
-     *                 initiator: "payor",
-     *                 method: "card",
-     *                 storedMethodId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-     *                 storedMethodUsageType: "unscheduled"
-     *             }
+     *         customerData: {
+     *             customerId: 4440
+     *         },
+     *         entryPoint: "8cfec329267",
+     *         ipaddress: "255.255.255.255",
+     *         paymentDetails: {
+     *             serviceFee: 0,
+     *             totalAmount: 100
+     *         },
+     *         paymentMethod: {
+     *             initiator: "payor",
+     *             method: "card",
+     *             storedMethodId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+     *             storedMethodUsageType: "unscheduled"
      *         }
      *     })
      *
      * @example
      *     await client.moneyIn.getpaidv2({
-     *         body: {
-     *             customerData: {
-     *                 customerId: 4440
-     *             },
-     *             entryPoint: "f743aed24a",
-     *             ipaddress: "255.255.255.255",
-     *             paymentDetails: {
-     *                 serviceFee: 0,
-     *                 totalAmount: 100
-     *             },
-     *             paymentMethod: {
-     *                 achAccount: "123123123",
-     *                 achAccountType: "Checking",
-     *                 achCode: "WEB",
-     *                 achHolder: "John Cassian",
-     *                 achHolderType: "personal",
-     *                 achRouting: "123123123",
-     *                 method: "ach"
-     *             }
+     *         customerData: {
+     *             customerId: 4440
+     *         },
+     *         entryPoint: "8cfec329267",
+     *         ipaddress: "255.255.255.255",
+     *         paymentDetails: {
+     *             serviceFee: 0,
+     *             totalAmount: 100
+     *         },
+     *         paymentMethod: {
+     *             achAccount: "123123123",
+     *             achAccountType: "Checking",
+     *             achCode: "WEB",
+     *             achHolder: "John Cassian",
+     *             achHolderType: "personal",
+     *             achRouting: "123123123",
+     *             method: "ach"
      *         }
      *     })
      *
      * @example
      *     await client.moneyIn.getpaidv2({
-     *         body: {
-     *             customerData: {
-     *                 customerId: 4440
-     *             },
-     *             entryPoint: "f743aed24a",
-     *             ipaddress: "255.255.255.255",
-     *             paymentDetails: {
-     *                 serviceFee: 0,
-     *                 totalAmount: 100
-     *             },
-     *             paymentMethod: {
-     *                 device: "6c361c7d-674c-44cc-b790-382b75d1xxx",
-     *                 method: "cloud",
-     *                 saveIfSuccess: true
-     *             }
+     *         customerData: {
+     *             customerId: 4440
+     *         },
+     *         entryPoint: "8cfec329267",
+     *         ipaddress: "255.255.255.255",
+     *         paymentDetails: {
+     *             serviceFee: 0,
+     *             totalAmount: 100
+     *         },
+     *         paymentMethod: {
+     *             device: "6c361c7d-674c-44cc-b790-382b75d1xxx",
+     *             method: "cloud",
+     *             saveIfSuccess: true
      *         }
      *     })
      */
@@ -1591,7 +1601,7 @@ export class MoneyInClient {
         request: Payabli.RequestPaymentV2,
         requestOptions?: MoneyInClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.V2TransactionResponseWrapper>> {
-        const { achValidation, forceCustomerCreation, idempotencyKey, validationCode, body: _body } = request;
+        const { achValidation, forceCustomerCreation, idempotencyKey, validationCode, ..._body } = request;
         const _queryParams: Record<string, unknown> = {
             achValidation,
             forceCustomerCreation,
@@ -1633,22 +1643,19 @@ export class MoneyInClient {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new Payabli.BadRequestAuthResponseErrorV2(
-                        _response.error.body as Payabli.V2BadRequestError,
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
                 case 402:
-                    throw new Payabli.DeclinedAuthResponseErrorV2(
+                    throw new Payabli.PaymentRequiredError(
                         _response.error.body as Payabli.V2DeclinedTransactionResponseWrapper,
                         _response.rawResponse,
                     );
                 case 500:
-                    throw new Payabli.InternalServerResponseErrorV2(
-                        _response.error.body as Payabli.V2InternalServerError,
-                        _response.rawResponse,
-                    );
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.PayabliError({
                         statusCode: _response.error.statusCode,
@@ -1669,32 +1676,30 @@ export class MoneyInClient {
      * @param {Payabli.RequestPaymentAuthorizeV2} request
      * @param {MoneyInClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link Payabli.BadRequestAuthResponseErrorV2}
+     * @throws {@link Payabli.BadRequestError}
      * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.DeclinedAuthResponseErrorV2}
-     * @throws {@link Payabli.InternalServerResponseErrorV2}
+     * @throws {@link Payabli.PaymentRequiredError}
+     * @throws {@link Payabli.InternalServerError}
      *
      * @example
      *     await client.moneyIn.authorizev2({
-     *         body: {
-     *             customerData: {
-     *                 customerId: 4440
-     *             },
-     *             entryPoint: "f743aed24a",
-     *             ipaddress: "255.255.255.255",
-     *             paymentDetails: {
-     *                 serviceFee: 0,
-     *                 totalAmount: 100
-     *             },
-     *             paymentMethod: {
-     *                 cardcvv: "999",
-     *                 cardexp: "02/27",
-     *                 cardHolder: "John Cassian",
-     *                 cardnumber: "4111111111111111",
-     *                 cardzip: "12345",
-     *                 initiator: "payor",
-     *                 method: "card"
-     *             }
+     *         customerData: {
+     *             customerId: 4440
+     *         },
+     *         entryPoint: "8cfec329267",
+     *         ipaddress: "255.255.255.255",
+     *         paymentDetails: {
+     *             serviceFee: 0,
+     *             totalAmount: 100
+     *         },
+     *         paymentMethod: {
+     *             cardcvv: "999",
+     *             cardexp: "02/27",
+     *             cardHolder: "John Cassian",
+     *             cardnumber: "4111111111111111",
+     *             cardzip: "12345",
+     *             initiator: "payor",
+     *             method: "card"
      *         }
      *     })
      */
@@ -1709,7 +1714,7 @@ export class MoneyInClient {
         request: Payabli.RequestPaymentAuthorizeV2,
         requestOptions?: MoneyInClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.V2TransactionResponseWrapper>> {
-        const { forceCustomerCreation, idempotencyKey, body: _body } = request;
+        const { forceCustomerCreation, idempotencyKey, ..._body } = request;
         const _queryParams: Record<string, unknown> = {
             forceCustomerCreation,
         };
@@ -1750,22 +1755,19 @@ export class MoneyInClient {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new Payabli.BadRequestAuthResponseErrorV2(
-                        _response.error.body as Payabli.V2BadRequestError,
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
                 case 402:
-                    throw new Payabli.DeclinedAuthResponseErrorV2(
+                    throw new Payabli.PaymentRequiredError(
                         _response.error.body as Payabli.V2DeclinedTransactionResponseWrapper,
                         _response.rawResponse,
                     );
                 case 500:
-                    throw new Payabli.InternalServerResponseErrorV2(
-                        _response.error.body as Payabli.V2InternalServerError,
-                        _response.rawResponse,
-                    );
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.PayabliError({
                         statusCode: _response.error.statusCode,
@@ -1785,10 +1787,10 @@ export class MoneyInClient {
      * @param {Payabli.CaptureRequest} request
      * @param {MoneyInClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link Payabli.BadRequestCaptureResponseErrorV2}
+     * @throws {@link Payabli.BadRequestError}
      * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.DeclinedCaptureResponseErrorV2}
-     * @throws {@link Payabli.InternalServerResponseErrorV2}
+     * @throws {@link Payabli.PaymentRequiredError}
+     * @throws {@link Payabli.InternalServerError}
      *
      * @example
      *     await client.moneyIn.capturev2("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", {
@@ -1851,22 +1853,19 @@ export class MoneyInClient {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new Payabli.BadRequestCaptureResponseErrorV2(
-                        _response.error.body as Payabli.V2BadRequestError,
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
                 case 402:
-                    throw new Payabli.DeclinedCaptureResponseErrorV2(
+                    throw new Payabli.PaymentRequiredError(
                         _response.error.body as Payabli.V2DeclinedTransactionResponseWrapper,
                         _response.rawResponse,
                     );
                 case 500:
-                    throw new Payabli.InternalServerResponseErrorV2(
-                        _response.error.body as Payabli.V2InternalServerError,
-                        _response.rawResponse,
-                    );
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.PayabliError({
                         statusCode: _response.error.statusCode,
@@ -1892,10 +1891,10 @@ export class MoneyInClient {
      * @param {string} transId - ReferenceId for the transaction (PaymentId).
      * @param {MoneyInClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link Payabli.BadRequestRefundResponseErrorV2}
+     * @throws {@link Payabli.BadRequestError}
      * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.DeclinedRefundResponseErrorV2}
-     * @throws {@link Payabli.InternalServerResponseErrorV2}
+     * @throws {@link Payabli.PaymentRequiredError}
+     * @throws {@link Payabli.InternalServerError}
      *
      * @example
      *     await client.moneyIn.refundv2("10-3ffa27df-b171-44e0-b251-e95fbfc7a723")
@@ -1940,22 +1939,19 @@ export class MoneyInClient {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new Payabli.BadRequestRefundResponseErrorV2(
-                        _response.error.body as Payabli.V2BadRequestError,
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
                 case 402:
-                    throw new Payabli.DeclinedRefundResponseErrorV2(
+                    throw new Payabli.PaymentRequiredError(
                         _response.error.body as Payabli.V2DeclinedTransactionResponseWrapper,
                         _response.rawResponse,
                     );
                 case 500:
-                    throw new Payabli.InternalServerResponseErrorV2(
-                        _response.error.body as Payabli.V2InternalServerError,
-                        _response.rawResponse,
-                    );
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.PayabliError({
                         statusCode: _response.error.statusCode,
@@ -1977,10 +1973,10 @@ export class MoneyInClient {
      * @param {number} amount - Amount to refund from original transaction, minus any service fees charged on the original transaction. If omitted or set to 0, performs a full refund.
      * @param {MoneyInClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link Payabli.BadRequestRefundResponseErrorV2}
+     * @throws {@link Payabli.BadRequestError}
      * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.DeclinedRefundResponseErrorV2}
-     * @throws {@link Payabli.InternalServerResponseErrorV2}
+     * @throws {@link Payabli.PaymentRequiredError}
+     * @throws {@link Payabli.InternalServerError}
      *
      * @example
      *     await client.moneyIn.refundv2Amount("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0)
@@ -2030,22 +2026,19 @@ export class MoneyInClient {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new Payabli.BadRequestRefundResponseErrorV2(
-                        _response.error.body as Payabli.V2BadRequestError,
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
                 case 402:
-                    throw new Payabli.DeclinedRefundResponseErrorV2(
+                    throw new Payabli.PaymentRequiredError(
                         _response.error.body as Payabli.V2DeclinedTransactionResponseWrapper,
                         _response.rawResponse,
                     );
                 case 500:
-                    throw new Payabli.InternalServerResponseErrorV2(
-                        _response.error.body as Payabli.V2InternalServerError,
-                        _response.rawResponse,
-                    );
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.PayabliError({
                         statusCode: _response.error.statusCode,
@@ -2069,10 +2062,10 @@ export class MoneyInClient {
      * @param {string} transId - ReferenceId for the transaction (PaymentId).
      * @param {MoneyInClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link Payabli.BadRequestVoidResponseErrorV2}
+     * @throws {@link Payabli.BadRequestError}
      * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.DeclinedVoidResponseErrorV2}
-     * @throws {@link Payabli.InternalServerResponseErrorV2}
+     * @throws {@link Payabli.PaymentRequiredError}
+     * @throws {@link Payabli.InternalServerError}
      *
      * @example
      *     await client.moneyIn.voidv2("10-3ffa27df-b171-44e0-b251-e95fbfc7a723")
@@ -2117,22 +2110,19 @@ export class MoneyInClient {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new Payabli.BadRequestVoidResponseErrorV2(
-                        _response.error.body as Payabli.V2BadRequestError,
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
                 case 402:
-                    throw new Payabli.DeclinedVoidResponseErrorV2(
+                    throw new Payabli.PaymentRequiredError(
                         _response.error.body as Payabli.V2DeclinedTransactionResponseWrapper,
                         _response.rawResponse,
                     );
                 case 500:
-                    throw new Payabli.InternalServerResponseErrorV2(
-                        _response.error.body as Payabli.V2InternalServerError,
-                        _response.rawResponse,
-                    );
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.PayabliError({
                         statusCode: _response.error.statusCode,

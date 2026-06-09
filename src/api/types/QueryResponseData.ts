@@ -4,40 +4,6 @@ import type * as Payabli from "../index.js";
 
 /**
  * The transaction's response data.
- *
- * @example
- *     {
- *         authcode: "123456",
- *         avsresponse: "N",
- *         avsresponse_text: "No address or ZIP match only",
- *         cvvresponse: "M",
- *         cvvresponse_text: "CVV2/CVC2 match",
- *         orderid: "10-bfcd5a17861d4a8690ca53c00000X",
- *         response: "Success",
- *         response_code: "100",
- *         response_code_text: "Transaction was approved.",
- *         responsetext: "SUCCESS",
- *         resultCode: "A0000",
- *         resultCodeText: "Approved",
- *         transactionid: "8082800000"
- *     }
- *
- * @example
- *     {
- *         authcode: " ",
- *         avsresponse: " ",
- *         avsresponse_text: "",
- *         cvvresponse: " ",
- *         cvvresponse_text: " ",
- *         emv_auth_response_data: " ",
- *         response: "Success",
- *         response_code: "100",
- *         response_code_text: "Transaction was approved.",
- *         responsetext: "CAPTURED",
- *         resultCode: "A0000",
- *         resultCodeText: "Approved",
- *         transactionid: "TRN_xwCAjQorWAYX1nAhAoHZVfN8iYHbI0"
- *     }
  */
 export interface QueryResponseData {
     authcode?: Payabli.Authcode | undefined;

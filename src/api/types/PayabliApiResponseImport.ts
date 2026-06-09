@@ -7,20 +7,6 @@ export interface PayabliApiResponseImport {
     pageIdentifier?: Payabli.PageIdentifier | undefined;
     responseCode?: Payabli.Responsecode | undefined;
     /** The response data containing the result of the import operation. */
-    responseData?: PayabliApiResponseImport.ResponseData | undefined;
+    responseData?: Payabli.PayabliApiResponseImportResponseData | undefined;
     responseText: Payabli.ResponseText;
-}
-
-export namespace PayabliApiResponseImport {
-    /**
-     * The response data containing the result of the import operation.
-     */
-    export interface ResponseData {
-        /** The number of records successfully added. */
-        added?: number | undefined;
-        /** List of errors, if any. */
-        errors?: string[] | undefined;
-        /** The number of records that were rejected. */
-        rejected?: number | undefined;
-    }
 }

@@ -15,10 +15,13 @@ export declare namespace CustomerClient {
     export interface RequestOptions extends BaseRequestOptions {}
 }
 
+/**
+ * The Customer service provides comprehensive customer relationship management and identity tracking for payment operations. It handles creation, retrieval, updating, and deletion of customer records with flexible identifier configurations to match business requirements. The service manages customer contact information, billing and shipping addresses, and maintains customer status tracking. Customers can be linked to transactions, store multiple payment methods, manage subscriptions, and track consent preferences for communications. The service supports custom fields for additional data storage and integrates with stored payment methods and transaction history.
+ */
 export class CustomerClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<CustomerClient.Options>;
 
-    constructor(options: CustomerClient.Options = {}) {
+    constructor(options: CustomerClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -26,7 +29,7 @@ export class CustomerClient {
      * Creates a customer in an entrypoint. An identifier is required to create customer records. Change your identifier settings in Settings > Custom Fields in PartnerHub.
      * If you don't include an identifier, the record is rejected.
      *
-     * @param {Payabli.Entrypointfield} entry
+     * @param {Payabli.Entrypointfield} entry - The entrypoint identifier.
      * @param {Payabli.AddCustomerRequest} request
      * @param {CustomerClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -37,19 +40,17 @@ export class CustomerClient {
      *
      * @example
      *     await client.customer.addCustomer("8cfec329267", {
-     *         body: {
-     *             customerNumber: "12356ACB",
-     *             firstname: "Irene",
-     *             lastname: "Canizales",
-     *             address1: "123 Bishop's Trail",
-     *             city: "Mountain City",
-     *             state: "TN",
-     *             zip: "37612",
-     *             country: "US",
-     *             email: "irene@canizalesconcrete.com",
-     *             identifierFields: ["email"],
-     *             timeZone: -5
-     *         }
+     *         customerNumber: "C-90010",
+     *         firstname: "Irene",
+     *         lastname: "Canizales",
+     *         address1: "123 Bishop's Trail",
+     *         city: "Mountain City",
+     *         state: "TN",
+     *         zip: "37612",
+     *         country: "US",
+     *         email: "irene@canizalesconcrete.com",
+     *         identifierFields: ["email"],
+     *         timeZone: -5
      *     })
      */
     public addCustomer(
@@ -65,7 +66,7 @@ export class CustomerClient {
         request: Payabli.AddCustomerRequest,
         requestOptions?: CustomerClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.PayabliApiResponseCustomerQuery>> {
-        const { forceCustomerCreation, replaceExisting, idempotencyKey, body: _body } = request;
+        const { forceCustomerCreation, replaceExisting, idempotencyKey, ..._body } = request;
         const _queryParams: Record<string, unknown> = {
             forceCustomerCreation,
             replaceExisting,
@@ -112,12 +113,15 @@ export class CustomerClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -133,85 +137,6 @@ export class CustomerClient {
     }
 
     /**
-     * Delete a customer record.
-     *
-     * @param {number} customerId - Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub.
-     * @param {CustomerClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.InternalServerError}
-     * @throws {@link Payabli.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.customer.deleteCustomer(998)
-     */
-    public deleteCustomer(
-        customerId: number,
-        requestOptions?: CustomerClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.PayabliApiResponse00Responsedatanonobject> {
-        return core.HttpResponsePromise.fromPromise(this.__deleteCustomer(customerId, requestOptions));
-    }
-
-    private async __deleteCustomer(
-        customerId: number,
-        requestOptions?: CustomerClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.PayabliApiResponse00Responsedatanonobject>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await core.fetcher({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.PayabliEnvironment.Sandbox,
-                `Customer/${core.url.encodePathParam(customerId)}`,
-            ),
-            method: "DELETE",
-            headers: _headers,
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return {
-                data: _response.body as Payabli.PayabliApiResponse00Responsedatanonobject,
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
-                case 500:
-                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
-                case 503:
-                    throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.PayabliError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/Customer/{customerId}");
-    }
-
-    /**
      * Retrieves a customer's record and details.
      *
      * @param {number} customerId - Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub.
@@ -223,7 +148,7 @@ export class CustomerClient {
      * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
-     *     await client.customer.getCustomer(998)
+     *     await client.customer.getCustomer(4440)
      */
     public getCustomer(
         customerId: number,
@@ -267,12 +192,15 @@ export class CustomerClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -288,179 +216,6 @@ export class CustomerClient {
     }
 
     /**
-     * Links a customer to a transaction by ID.
-     *
-     * @param {number} customerId - Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub.
-     * @param {string} transId - ReferenceId for the transaction (PaymentId).
-     * @param {CustomerClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.InternalServerError}
-     * @throws {@link Payabli.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.customer.linkCustomerTransaction(998, "45-as456777hhhhhhhhhh77777777-324")
-     */
-    public linkCustomerTransaction(
-        customerId: number,
-        transId: string,
-        requestOptions?: CustomerClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.PayabliApiResponse00Responsedatanonobject> {
-        return core.HttpResponsePromise.fromPromise(
-            this.__linkCustomerTransaction(customerId, transId, requestOptions),
-        );
-    }
-
-    private async __linkCustomerTransaction(
-        customerId: number,
-        transId: string,
-        requestOptions?: CustomerClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.PayabliApiResponse00Responsedatanonobject>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await core.fetcher({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.PayabliEnvironment.Sandbox,
-                `Customer/link/${core.url.encodePathParam(customerId)}/${core.url.encodePathParam(transId)}`,
-            ),
-            method: "GET",
-            headers: _headers,
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return {
-                data: _response.body as Payabli.PayabliApiResponse00Responsedatanonobject,
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
-                case 500:
-                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
-                case 503:
-                    throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.PayabliError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(
-            _response.error,
-            _response.rawResponse,
-            "GET",
-            "/Customer/link/{customerId}/{transId}",
-        );
-    }
-
-    /**
-     * Sends the consent opt-in email to the customer email address in the customer record.
-     *
-     * @param {number} customerId - Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub.
-     * @param {CustomerClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.InternalServerError}
-     * @throws {@link Payabli.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.customer.requestConsent(998)
-     */
-    public requestConsent(
-        customerId: number,
-        requestOptions?: CustomerClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.PayabliApiResponse00Responsedatanonobject> {
-        return core.HttpResponsePromise.fromPromise(this.__requestConsent(customerId, requestOptions));
-    }
-
-    private async __requestConsent(
-        customerId: number,
-        requestOptions?: CustomerClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.PayabliApiResponse00Responsedatanonobject>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await core.fetcher({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.PayabliEnvironment.Sandbox,
-                `Customer/${core.url.encodePathParam(customerId)}/consent`,
-            ),
-            method: "POST",
-            headers: _headers,
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return {
-                data: _response.body as Payabli.PayabliApiResponse00Responsedatanonobject,
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
-                case 500:
-                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
-                case 503:
-                    throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.PayabliError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(
-            _response.error,
-            _response.rawResponse,
-            "POST",
-            "/Customer/{customerId}/consent",
-        );
-    }
-
-    /**
      * Update a customer record. Include only the fields you want to change.
      *
      * @param {number} customerId - Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub.
@@ -473,7 +228,7 @@ export class CustomerClient {
      * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
-     *     await client.customer.updateCustomer(998, {
+     *     await client.customer.updateCustomer(4440, {
      *         firstname: "Irene",
      *         lastname: "Canizales",
      *         address1: "145 Bishop's Trail",
@@ -533,12 +288,15 @@ export class CustomerClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -551,5 +309,266 @@ export class CustomerClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/Customer/{customerId}");
+    }
+
+    /**
+     * Delete a customer record.
+     *
+     * @param {number} customerId - Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub.
+     * @param {CustomerClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.customer.deleteCustomer(4440)
+     */
+    public deleteCustomer(
+        customerId: number,
+        requestOptions?: CustomerClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.PayabliApiResponse00Responsedatanonobject> {
+        return core.HttpResponsePromise.fromPromise(this.__deleteCustomer(customerId, requestOptions));
+    }
+
+    private async __deleteCustomer(
+        customerId: number,
+        requestOptions?: CustomerClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.PayabliApiResponse00Responsedatanonobject>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `Customer/${core.url.encodePathParam(customerId)}`,
+            ),
+            method: "DELETE",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as Payabli.PayabliApiResponse00Responsedatanonobject,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/Customer/{customerId}");
+    }
+
+    /**
+     * Sends the consent opt-in email to the customer email address in the customer record.
+     *
+     * @param {number} customerId - Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub.
+     * @param {CustomerClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.customer.requestConsent(4440)
+     */
+    public requestConsent(
+        customerId: number,
+        requestOptions?: CustomerClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.PayabliApiResponse00Responsedatanonobject> {
+        return core.HttpResponsePromise.fromPromise(this.__requestConsent(customerId, requestOptions));
+    }
+
+    private async __requestConsent(
+        customerId: number,
+        requestOptions?: CustomerClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.PayabliApiResponse00Responsedatanonobject>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `Customer/${core.url.encodePathParam(customerId)}/consent`,
+            ),
+            method: "POST",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as Payabli.PayabliApiResponse00Responsedatanonobject,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/Customer/{customerId}/consent",
+        );
+    }
+
+    /**
+     * Links a customer to a transaction by ID.
+     *
+     * @param {number} customerId - Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub.
+     * @param {string} transId - ReferenceId for the transaction (PaymentId).
+     * @param {CustomerClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.customer.linkCustomerTransaction(4440, "45-as456777hhhhhhhhhh77777777-324")
+     */
+    public linkCustomerTransaction(
+        customerId: number,
+        transId: string,
+        requestOptions?: CustomerClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.PayabliApiResponse00Responsedatanonobject> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__linkCustomerTransaction(customerId, transId, requestOptions),
+        );
+    }
+
+    private async __linkCustomerTransaction(
+        customerId: number,
+        transId: string,
+        requestOptions?: CustomerClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.PayabliApiResponse00Responsedatanonobject>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `Customer/link/${core.url.encodePathParam(customerId)}/${core.url.encodePathParam(transId)}`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as Payabli.PayabliApiResponse00Responsedatanonobject,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/Customer/link/{customerId}/{transId}",
+        );
     }
 }

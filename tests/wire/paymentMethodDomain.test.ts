@@ -101,7 +101,7 @@ describe("PaymentMethodDomainClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -141,7 +141,7 @@ describe("PaymentMethodDomainClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -225,7 +225,7 @@ describe("PaymentMethodDomainClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -263,7 +263,7 @@ describe("PaymentMethodDomainClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -275,107 +275,6 @@ describe("PaymentMethodDomainClient", () => {
 
         await expect(async () => {
             return await client.paymentMethodDomain.cascadePaymentMethodDomain("domainId");
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
-    });
-
-    test("DeletePaymentMethodDomain (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            isSuccess: true,
-            pageIdentifier: "null",
-            responseData: "pmd_b8237fa45c964d8a9ef27160cd42b8c5",
-            responseText: "Success",
-        };
-
-        server
-            .mockEndpoint()
-            .delete("/PaymentMethodDomain/pmd_b8237fa45c964d8a9ef27160cd42b8c5")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.paymentMethodDomain.deletePaymentMethodDomain(
-            "pmd_b8237fa45c964d8a9ef27160cd42b8c5",
-        );
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("DeletePaymentMethodDomain (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .delete("/PaymentMethodDomain/domainId")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.paymentMethodDomain.deletePaymentMethodDomain("domainId");
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("DeletePaymentMethodDomain (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .delete("/PaymentMethodDomain/domainId")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.paymentMethodDomain.deletePaymentMethodDomain("domainId");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("DeletePaymentMethodDomain (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .delete("/PaymentMethodDomain/domainId")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.paymentMethodDomain.deletePaymentMethodDomain("domainId");
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("DeletePaymentMethodDomain (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { responseText: "responseText" };
-
-        server
-            .mockEndpoint()
-            .delete("/PaymentMethodDomain/domainId")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.paymentMethodDomain.deletePaymentMethodDomain("domainId");
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
@@ -442,7 +341,7 @@ describe("PaymentMethodDomainClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -480,7 +379,7 @@ describe("PaymentMethodDomainClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -492,6 +391,241 @@ describe("PaymentMethodDomainClient", () => {
 
         await expect(async () => {
             return await client.paymentMethodDomain.getPaymentMethodDomain("domainId");
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("DeletePaymentMethodDomain (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            isSuccess: true,
+            pageIdentifier: "null",
+            responseData: "pmd_b8237fa45c964d8a9ef27160cd42b8c5",
+            responseText: "Success",
+        };
+
+        server
+            .mockEndpoint()
+            .delete("/PaymentMethodDomain/pmd_b8237fa45c964d8a9ef27160cd42b8c5")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.paymentMethodDomain.deletePaymentMethodDomain(
+            "pmd_b8237fa45c964d8a9ef27160cd42b8c5",
+        );
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("DeletePaymentMethodDomain (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .delete("/PaymentMethodDomain/domainId")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.paymentMethodDomain.deletePaymentMethodDomain("domainId");
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("DeletePaymentMethodDomain (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .delete("/PaymentMethodDomain/domainId")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.paymentMethodDomain.deletePaymentMethodDomain("domainId");
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("DeletePaymentMethodDomain (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .delete("/PaymentMethodDomain/domainId")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.paymentMethodDomain.deletePaymentMethodDomain("domainId");
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("DeletePaymentMethodDomain (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .delete("/PaymentMethodDomain/domainId")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.paymentMethodDomain.deletePaymentMethodDomain("domainId");
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("UpdatePaymentMethodDomain (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { applePay: { isEnabled: false }, googlePay: { isEnabled: false } };
+        const rawResponseBody = {
+            isSuccess: true,
+            pageidentifier: "null",
+            responseData: {
+                id: "pmd_b8237fa45c964d8a9ef27160cd42b8c5",
+                type: "PaymentMethodDomains",
+                entityId: 78,
+                entityType: "organization",
+                domainName: "checkout.example.com",
+                applePay: { isEnabled: false },
+                googlePay: { isEnabled: false },
+                ownerEntityId: 78,
+                ownerEntityType: "organization",
+                cascades: [
+                    {
+                        jobId: "1245697",
+                        jobStatus: "completed",
+                        createdAt: "2025-04-25T15:37:28.685Z",
+                        updatedAt: "2025-04-25T15:37:33.228Z",
+                    },
+                ],
+                createdAt: "2025-03-15T10:24:36.207Z",
+                updatedAt: "2025-04-25T16:05:12.345Z",
+            },
+            responseText: "Success",
+        };
+
+        server
+            .mockEndpoint()
+            .patch("/PaymentMethodDomain/pmd_b8237fa45c964d8a9ef27160cd42b8c5")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.paymentMethodDomain.updatePaymentMethodDomain(
+            "pmd_b8237fa45c964d8a9ef27160cd42b8c5",
+            {
+                applePay: {
+                    isEnabled: false,
+                },
+                googlePay: {
+                    isEnabled: false,
+                },
+            },
+        );
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("UpdatePaymentMethodDomain (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .patch("/PaymentMethodDomain/domainId")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.paymentMethodDomain.updatePaymentMethodDomain("domainId");
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("UpdatePaymentMethodDomain (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .patch("/PaymentMethodDomain/domainId")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.paymentMethodDomain.updatePaymentMethodDomain("domainId");
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("UpdatePaymentMethodDomain (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .patch("/PaymentMethodDomain/domainId")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.paymentMethodDomain.updatePaymentMethodDomain("domainId");
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("UpdatePaymentMethodDomain (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .patch("/PaymentMethodDomain/domainId")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.paymentMethodDomain.updatePaymentMethodDomain("domainId");
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
@@ -638,7 +772,7 @@ describe("PaymentMethodDomainClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -676,7 +810,7 @@ describe("PaymentMethodDomainClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -688,140 +822,6 @@ describe("PaymentMethodDomainClient", () => {
 
         await expect(async () => {
             return await client.paymentMethodDomain.listPaymentMethodDomains();
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
-    });
-
-    test("UpdatePaymentMethodDomain (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { applePay: { isEnabled: false }, googlePay: { isEnabled: false } };
-        const rawResponseBody = {
-            isSuccess: true,
-            pageidentifier: "null",
-            responseData: {
-                id: "pmd_b8237fa45c964d8a9ef27160cd42b8c5",
-                type: "PaymentMethodDomains",
-                entityId: 78,
-                entityType: "organization",
-                domainName: "checkout.example.com",
-                applePay: { isEnabled: false },
-                googlePay: { isEnabled: false },
-                ownerEntityId: 78,
-                ownerEntityType: "organization",
-                cascades: [
-                    {
-                        jobId: "1245697",
-                        jobStatus: "completed",
-                        createdAt: "2025-04-25T15:37:28.685Z",
-                        updatedAt: "2025-04-25T15:37:33.228Z",
-                    },
-                ],
-                createdAt: "2025-03-15T10:24:36.207Z",
-                updatedAt: "2025-04-25T16:05:12.345Z",
-            },
-            responseText: "Success",
-        };
-
-        server
-            .mockEndpoint()
-            .patch("/PaymentMethodDomain/pmd_b8237fa45c964d8a9ef27160cd42b8c5")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.paymentMethodDomain.updatePaymentMethodDomain(
-            "pmd_b8237fa45c964d8a9ef27160cd42b8c5",
-            {
-                applePay: {
-                    isEnabled: false,
-                },
-                googlePay: {
-                    isEnabled: false,
-                },
-            },
-        );
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("UpdatePaymentMethodDomain (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .patch("/PaymentMethodDomain/domainId")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.paymentMethodDomain.updatePaymentMethodDomain("domainId");
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("UpdatePaymentMethodDomain (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .patch("/PaymentMethodDomain/domainId")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.paymentMethodDomain.updatePaymentMethodDomain("domainId");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("UpdatePaymentMethodDomain (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .patch("/PaymentMethodDomain/domainId")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.paymentMethodDomain.updatePaymentMethodDomain("domainId");
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("UpdatePaymentMethodDomain (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
-
-        server
-            .mockEndpoint()
-            .patch("/PaymentMethodDomain/domainId")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.paymentMethodDomain.updatePaymentMethodDomain("domainId");
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 

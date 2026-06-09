@@ -7,18 +7,19 @@ export interface LinkData {
     rq?: Payabli.RequiredElement | undefined;
     /**
      * The type of validation applied to the field. Available values:
-     * - text
-     * - alpha
-     * - ein
-     * - url
-     * - phone
-     * - alphanumeric
-     * - zipcode
-     * - numbers
-     * - float
-     * - ssn
-     * - email
-     * - routing
+     *
+     * - `text`
+     * - `alpha`
+     * - `ein`
+     * - `url`
+     * - `phone`
+     * - `alphanumeric`
+     * - `zipcode`
+     * - `numbers`
+     * - `float`
+     * - `ssn`
+     * - `email`
+     * - `routing`
      */
     validator?: string | undefined;
     value?: Payabli.ValueTemplates | undefined;

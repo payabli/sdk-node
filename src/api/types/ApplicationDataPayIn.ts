@@ -6,7 +6,7 @@ import type * as Payabli from "../index.js";
  * Fields for Pay In boarding applications.
  */
 export interface ApplicationDataPayIn {
-    services: ApplicationDataPayIn.Services;
+    services: Payabli.ApplicationDataPayInServices;
     annualRevenue?: Payabli.Annualrevenue | undefined;
     averageBillSize?: Payabli.BoardingAverageBillSize | undefined;
     averageMonthlyBill?: Payabli.BoardingAvgMonthlyBill | undefined;
@@ -26,7 +26,7 @@ export interface ApplicationDataPayIn {
     btype?: Payabli.OwnType | undefined;
     bzip?: Payabli.Bzip | undefined;
     /** List of contacts for the business. */
-    contacts?: ApplicationDataPayIn.Contacts.Item[] | undefined;
+    contacts?: Payabli.ApplicationDataPayInContactsItem[] | undefined;
     /** The maximum amount of credit that our lending partner has authorized to your business for Pay In processing. It's the upper boundary on how much you can spend or owe on a credit account at any given time. For on-demand payout (Pay Out) credit limits, see `payoutCreditLimit`. */
     creditLimit?: string | undefined;
     /** The alternate or common name that this business is doing business under usually referred to as a DBA name. Payabli strongly recommends including this information. */
@@ -48,7 +48,7 @@ export interface ApplicationDataPayIn {
     mzip?: Payabli.Mzip | undefined;
     orgId?: Payabli.Orgid | undefined;
     /** List of Owners with at least a 25% ownership. */
-    ownership?: ApplicationDataPayIn.Ownership.Item[] | undefined;
+    ownership?: Payabli.ApplicationDataPayInOwnershipItem[] | undefined;
     /** The business's phone number. */
     phonenumber: Payabli.PhoneNumber;
     /** The business's processing region, either `US` or `CA`. */
@@ -73,30 +73,4 @@ export interface ApplicationDataPayIn {
     RepName?: Payabli.RepName | undefined;
     RepOffice?: Payabli.RepOffice | undefined;
     onCreate?: Payabli.OnCreate | undefined;
-}
-
-export namespace ApplicationDataPayIn {
-    export interface Services {
-        ach: Services.Ach;
-        card: Services.Card;
-        odp?: Payabli.OdpSetup | undefined;
-    }
-
-    export namespace Services {
-        export interface Ach extends Payabli.AchSetup {}
-
-        export interface Card extends Payabli.CardSetup {}
-    }
-
-    export type Contacts = Contacts.Item[];
-
-    export namespace Contacts {
-        export interface Item extends Payabli.Contacts {}
-    }
-
-    export type Ownership = Ownership.Item[];
-
-    export namespace Ownership {
-        export interface Item extends Payabli.Owners {}
-    }
 }

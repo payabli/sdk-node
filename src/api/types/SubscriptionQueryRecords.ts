@@ -47,7 +47,6 @@ export interface SubscriptionQueryRecords {
      * The full stored payment method record linked to the subscription
      * and charged on each billing cycle. Returned as `null` for legacy
      * subscriptions that don't have a linked stored method.
-     *
      * The shape is the same across payment vehicles (card, ACH, check).
      * Only the populated fields differ. For example, `ABA` is populated
      * for ACH, while `ExpDate` and `binData` are populated for card.
@@ -61,6 +60,8 @@ export interface SubscriptionQueryRecords {
      * - 1: Active
      */
     SubStatus?: number | undefined;
+    /** Subscription type or category. Returns `null` when no type is assigned. */
+    SubscriptionType?: (Payabli.SubscriptionType | null) | undefined;
     /** The subscription amount, including any fees. */
     TotalAmount?: number | undefined;
     /** The total number of cycles the subscription is set to run. */

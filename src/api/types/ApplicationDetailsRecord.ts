@@ -46,7 +46,7 @@ export interface ApplicationDetailsRecord {
     mccid?: string | undefined;
     mCity?: Payabli.Mstate | undefined;
     mCountry?: Payabli.Mcountry | undefined;
-    messages?: ApplicationDetailsRecord.Messages.Item[] | undefined;
+    messages?: Payabli.ApplicationDetailsRecordMessagesItem[] | undefined;
     mState?: Payabli.Mstate | undefined;
     mZip?: Payabli.Mzip | undefined;
     orgId?: Payabli.Orgid | undefined;
@@ -67,24 +67,4 @@ export interface ApplicationDetailsRecord {
     whenProvided?: Payabli.Whenprovided | undefined;
     whenrefund?: Payabli.Whenrefunded | undefined;
     additionalData?: Payabli.AdditionalDataMap | undefined;
-}
-
-export namespace ApplicationDetailsRecord {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export interface Item {
-            content?: string | undefined;
-            createdAt?: Payabli.CreatedAt | undefined;
-            currentApplicationStatus?: number | undefined;
-            currentApplicationSubStatus?: number | undefined;
-            id?: number | undefined;
-            messageType?: number | undefined;
-            originalApplicationStatus?: number | undefined;
-            originalApplicationSubStatus?: number | undefined;
-            roomId?: number | undefined;
-            userId?: number | undefined;
-            userName?: string | undefined;
-        }
-    }
 }

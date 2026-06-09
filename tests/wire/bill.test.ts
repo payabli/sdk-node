@@ -32,11 +32,11 @@ describe("BillClient", () => {
             ],
             mode: 0,
             accountingField1: "MyInternalId",
-            vendor: { vendorNumber: "1234-A" },
+            vendor: { vendorNumber: "VEN-123" },
             endDate: "2024-07-01",
             frequency: "monthly",
             terms: "NET30",
-            status: -99,
+            status: 1,
             attachments: [{ ftype: "pdf", filename: "my-doc.pdf", furl: "https://mysite.com/my-doc.pdf" }],
         };
         const rawResponseBody = {
@@ -57,45 +57,43 @@ describe("BillClient", () => {
             .build();
 
         const response = await client.bill.addBill("8cfec329267", {
-            body: {
-                billNumber: "ABC-123",
-                netAmount: 3762.87,
-                billDate: "2024-07-01",
-                dueDate: "2024-07-01",
-                comments: "Deposit for materials",
-                billItems: [
-                    {
-                        itemProductCode: "M-DEPOSIT",
-                        itemProductName: "Materials deposit",
-                        itemDescription: "Deposit for materials",
-                        itemCommodityCode: "010",
-                        itemUnitOfMeasure: "SqFt",
-                        itemCost: 5,
-                        itemQty: 1,
-                        itemMode: 0,
-                        itemCategories: ["deposits"],
-                        itemTotalAmount: 123,
-                        itemTaxAmount: 7,
-                        itemTaxRate: 0.075,
-                    },
-                ],
-                mode: 0,
-                accountingField1: "MyInternalId",
-                vendor: {
-                    vendorNumber: "1234-A",
+            billNumber: "ABC-123",
+            netAmount: 3762.87,
+            billDate: "2024-07-01",
+            dueDate: "2024-07-01",
+            comments: "Deposit for materials",
+            billItems: [
+                {
+                    itemProductCode: "M-DEPOSIT",
+                    itemProductName: "Materials deposit",
+                    itemDescription: "Deposit for materials",
+                    itemCommodityCode: "010",
+                    itemUnitOfMeasure: "SqFt",
+                    itemCost: 5,
+                    itemQty: 1,
+                    itemMode: 0,
+                    itemCategories: ["deposits"],
+                    itemTotalAmount: 123,
+                    itemTaxAmount: 7,
+                    itemTaxRate: 0.075,
                 },
-                endDate: "2024-07-01",
-                frequency: "monthly",
-                terms: "NET30",
-                status: -99,
-                attachments: [
-                    {
-                        ftype: "pdf",
-                        filename: "my-doc.pdf",
-                        furl: "https://mysite.com/my-doc.pdf",
-                    },
-                ],
+            ],
+            mode: 0,
+            accountingField1: "MyInternalId",
+            vendor: {
+                vendorNumber: "VEN-123",
             },
+            endDate: "2024-07-01",
+            frequency: "monthly",
+            terms: "NET30",
+            status: 1,
+            attachments: [
+                {
+                    ftype: "pdf",
+                    filename: "my-doc.pdf",
+                    furl: "https://mysite.com/my-doc.pdf",
+                },
+            ],
         });
         expect(response).toEqual(rawResponseBody);
     });
@@ -116,9 +114,7 @@ describe("BillClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.bill.addBill("entry", {
-                body: {},
-            });
+            return await client.bill.addBill("entry", {});
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
@@ -126,7 +122,7 @@ describe("BillClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -138,9 +134,7 @@ describe("BillClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.bill.addBill("entry", {
-                body: {},
-            });
+            return await client.bill.addBill("entry", {});
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
@@ -160,9 +154,7 @@ describe("BillClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.bill.addBill("entry", {
-                body: {},
-            });
+            return await client.bill.addBill("entry", {});
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
@@ -170,7 +162,7 @@ describe("BillClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -182,388 +174,7 @@ describe("BillClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.bill.addBill("entry", {
-                body: {},
-            });
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
-    });
-
-    test("deleteAttachedFromBill (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            responseCode: 1,
-            roomId: 0,
-            isSuccess: true,
-            responseText: "Success",
-            responseData: 6101,
-        };
-
-        server
-            .mockEndpoint()
-            .delete("/Bill/attachedFileFromBill/285/0_Bill.pdf")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.bill.deleteAttachedFromBill(285, "0_Bill.pdf");
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("deleteAttachedFromBill (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .delete("/Bill/attachedFileFromBill/1/filename")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.bill.deleteAttachedFromBill(1, "filename");
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("deleteAttachedFromBill (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .delete("/Bill/attachedFileFromBill/1/filename")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.bill.deleteAttachedFromBill(1, "filename");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("deleteAttachedFromBill (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .delete("/Bill/attachedFileFromBill/1/filename")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.bill.deleteAttachedFromBill(1, "filename");
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("deleteAttachedFromBill (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { responseText: "responseText" };
-
-        server
-            .mockEndpoint()
-            .delete("/Bill/attachedFileFromBill/1/filename")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.bill.deleteAttachedFromBill(1, "filename");
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
-    });
-
-    test("DeleteBill (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            responseCode: 1,
-            roomId: 0,
-            isSuccess: true,
-            responseText: "Success",
-            responseData: 6101,
-        };
-
-        server.mockEndpoint().delete("/Bill/285").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
-
-        const response = await client.bill.deleteBill(285);
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("DeleteBill (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server.mockEndpoint().delete("/Bill/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.bill.deleteBill(1);
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("DeleteBill (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server.mockEndpoint().delete("/Bill/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.bill.deleteBill(1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("DeleteBill (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server.mockEndpoint().delete("/Bill/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.bill.deleteBill(1);
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("DeleteBill (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { responseText: "responseText" };
-
-        server.mockEndpoint().delete("/Bill/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.bill.deleteBill(1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
-    });
-
-    test("EditBill (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { netAmount: 3762.87, billDate: "2025-07-01" };
-        const rawResponseBody = {
-            responseCode: 1,
-            roomId: 0,
-            isSuccess: true,
-            responseText: "Success",
-            responseData: 6101,
-        };
-
-        server
-            .mockEndpoint()
-            .put("/Bill/285")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.bill.editBill(285, {
-            netAmount: 3762.87,
-            billDate: "2025-07-01",
-        });
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("EditBill (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .put("/Bill/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.bill.editBill(1, {});
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("EditBill (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .put("/Bill/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.bill.editBill(1, {});
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("EditBill (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .put("/Bill/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.bill.editBill(1, {});
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("EditBill (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
-
-        server
-            .mockEndpoint()
-            .put("/Bill/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.bill.editBill(1, {});
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
-    });
-
-    test("getAttachedFromBill (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            fContent: "TXkgdGVzdCBmaWxlHJ==...",
-            filename: "my-doc.pdf",
-            ftype: "pdf",
-            furl: "https://mysite.com/my-doc.pdf",
-        };
-
-        server
-            .mockEndpoint()
-            .get("/Bill/attachedFileFromBill/285/0_Bill.pdf")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.bill.getAttachedFromBill(285, "0_Bill.pdf", {
-            returnObject: true,
-        });
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("getAttachedFromBill (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .get("/Bill/attachedFileFromBill/1/filename")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.bill.getAttachedFromBill(1, "filename");
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("getAttachedFromBill (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .get("/Bill/attachedFileFromBill/1/filename")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.bill.getAttachedFromBill(1, "filename");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("getAttachedFromBill (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .get("/Bill/attachedFileFromBill/1/filename")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.bill.getAttachedFromBill(1, "filename");
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("getAttachedFromBill (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { responseText: "responseText" };
-
-        server
-            .mockEndpoint()
-            .get("/Bill/attachedFileFromBill/1/filename")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.bill.getAttachedFromBill(1, "filename");
+            return await client.bill.addBill("entry", {});
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
@@ -603,7 +214,7 @@ describe("BillClient", () => {
                 AccountingField1: "MyInternalId",
                 AccountingField2: "MyInternalId",
                 Vendor: {
-                    VendorNumber: "1234",
+                    VendorNumber: "VEN-123",
                     Name1: "Herman's Coatings and Masonry",
                     Name2: "",
                     EIN: "XXXX6789",
@@ -643,7 +254,7 @@ describe("BillClient", () => {
                     },
                     PaymentMethod: "vcard",
                     VendorStatus: 1,
-                    VendorId: 1234,
+                    VendorId: 456,
                     Summary: {
                         ActiveBills: 5,
                         PendingBills: 2,
@@ -739,7 +350,7 @@ describe("BillClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server.mockEndpoint().get("/Bill/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
@@ -765,12 +376,701 @@ describe("BillClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server.mockEndpoint().get("/Bill/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
             return await client.bill.getBill(1);
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("EditBill (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { netAmount: 3762.87, billDate: "2025-07-01" };
+        const rawResponseBody = {
+            responseCode: 1,
+            roomId: 0,
+            isSuccess: true,
+            responseText: "Success",
+            responseData: 6101,
+        };
+
+        server
+            .mockEndpoint()
+            .put("/Bill/285")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.bill.editBill(285, {
+            netAmount: 3762.87,
+            billDate: "2025-07-01",
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("EditBill (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .put("/Bill/1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.bill.editBill(1, {});
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("EditBill (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .put("/Bill/1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.bill.editBill(1, {});
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("EditBill (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .put("/Bill/1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.bill.editBill(1, {});
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("EditBill (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .put("/Bill/1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.bill.editBill(1, {});
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("DeleteBill (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            responseCode: 1,
+            roomId: 0,
+            isSuccess: true,
+            responseText: "Success",
+            responseData: 6101,
+        };
+
+        server.mockEndpoint().delete("/Bill/285").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const response = await client.bill.deleteBill(285);
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("DeleteBill (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server.mockEndpoint().delete("/Bill/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.bill.deleteBill(1);
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("DeleteBill (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server.mockEndpoint().delete("/Bill/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.bill.deleteBill(1);
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("DeleteBill (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server.mockEndpoint().delete("/Bill/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.bill.deleteBill(1);
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("DeleteBill (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server.mockEndpoint().delete("/Bill/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.bill.deleteBill(1);
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("getAttachedFromBill (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            fContent: "TXkgdGVzdCBmaWxlHJ==...",
+            filename: "my-doc.pdf",
+            ftype: "pdf",
+            furl: "https://mysite.com/my-doc.pdf",
+        };
+
+        server
+            .mockEndpoint()
+            .get("/Bill/attachedFileFromBill/285/0_Bill.pdf")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.bill.getAttachedFromBill(285, "0_Bill.pdf", {
+            returnObject: true,
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("getAttachedFromBill (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Bill/attachedFileFromBill/1/filename")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.bill.getAttachedFromBill(1, "filename");
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("getAttachedFromBill (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .get("/Bill/attachedFileFromBill/1/filename")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.bill.getAttachedFromBill(1, "filename");
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("getAttachedFromBill (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Bill/attachedFileFromBill/1/filename")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.bill.getAttachedFromBill(1, "filename");
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("getAttachedFromBill (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .get("/Bill/attachedFileFromBill/1/filename")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.bill.getAttachedFromBill(1, "filename");
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("deleteAttachedFromBill (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            responseCode: 1,
+            roomId: 0,
+            isSuccess: true,
+            responseText: "Success",
+            responseData: 6101,
+        };
+
+        server
+            .mockEndpoint()
+            .delete("/Bill/attachedFileFromBill/285/0_Bill.pdf")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.bill.deleteAttachedFromBill(285, "0_Bill.pdf");
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("deleteAttachedFromBill (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .delete("/Bill/attachedFileFromBill/1/filename")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.bill.deleteAttachedFromBill(1, "filename");
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("deleteAttachedFromBill (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .delete("/Bill/attachedFileFromBill/1/filename")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.bill.deleteAttachedFromBill(1, "filename");
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("deleteAttachedFromBill (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .delete("/Bill/attachedFileFromBill/1/filename")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.bill.deleteAttachedFromBill(1, "filename");
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("deleteAttachedFromBill (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .delete("/Bill/attachedFileFromBill/1/filename")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.bill.deleteAttachedFromBill(1, "filename");
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("SendToApprovalBill (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = ["approver@example.com"];
+        const rawResponseBody = {
+            responseCode: 1,
+            roomId: 0,
+            isSuccess: true,
+            responseText: "Success",
+            responseData: 6101,
+        };
+
+        server
+            .mockEndpoint()
+            .post("/Bill/approval/285")
+            .header("idempotencyKey", "6B29FC40-CA47-1067-B31D-00DD010662DA")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.bill.sendToApprovalBill(285, {
+            idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA",
+            body: ["approver@example.com"],
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("SendToApprovalBill (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = ["string", "string"];
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/Bill/approval/1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.bill.sendToApprovalBill(1, {
+                body: ["string", "string"],
+            });
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("SendToApprovalBill (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = ["string", "string"];
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .post("/Bill/approval/1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.bill.sendToApprovalBill(1, {
+                body: ["string", "string"],
+            });
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("SendToApprovalBill (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = ["string", "string"];
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/Bill/approval/1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.bill.sendToApprovalBill(1, {
+                body: ["string", "string"],
+            });
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("SendToApprovalBill (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = ["string", "string"];
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .post("/Bill/approval/1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.bill.sendToApprovalBill(1, {
+                body: ["string", "string"],
+            });
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("ModifyApprovalBill (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = ["approver1@example.com", "approver2@example.com"];
+        const rawResponseBody = { isSuccess: true, responseData: 6101, responseText: "Success" };
+
+        server
+            .mockEndpoint()
+            .put("/Bill/approval/285")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.bill.modifyApprovalBill(285, ["approver1@example.com", "approver2@example.com"]);
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("ModifyApprovalBill (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = ["string", "string"];
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .put("/Bill/approval/1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.bill.modifyApprovalBill(1, ["string", "string"]);
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("ModifyApprovalBill (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = ["string", "string"];
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .put("/Bill/approval/1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.bill.modifyApprovalBill(1, ["string", "string"]);
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("ModifyApprovalBill (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = ["string", "string"];
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .put("/Bill/approval/1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.bill.modifyApprovalBill(1, ["string", "string"]);
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("ModifyApprovalBill (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = ["string", "string"];
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .put("/Bill/approval/1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.bill.modifyApprovalBill(1, ["string", "string"]);
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("SetApprovedBill (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseData: 6101, responseText: "Success" };
+
+        server
+            .mockEndpoint()
+            .get("/Bill/approval/285/true")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.bill.setApprovedBill(285, "true");
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("SetApprovedBill (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Bill/approval/1/approved")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.bill.setApprovedBill(1, "approved");
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("SetApprovedBill (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .get("/Bill/approval/1/approved")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.bill.setApprovedBill(1, "approved");
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("SetApprovedBill (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Bill/approval/1/approved")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.bill.setApprovedBill(1, "approved");
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("SetApprovedBill (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .get("/Bill/approval/1/approved")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.bill.setApprovedBill(1, "approved");
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
@@ -863,7 +1163,7 @@ describe("BillClient", () => {
                     PaypointLegalname: "MiCasa Sports LLC",
                     Source: "web",
                     Status: 2,
-                    Terms: "Net30",
+                    Terms: "NET30",
                     TotalAmount: 200,
                     Transaction: null,
                     Vendor: {
@@ -889,8 +1189,8 @@ describe("BillClient", () => {
                         Name2: "Elena",
                         Phone: "517-555-0123",
                         State: "MI",
-                        VendorId: 8723,
-                        VendorNumber: "MI-vendor-2024031926",
+                        VendorId: 456,
+                        VendorNumber: "VEN-123",
                         VendorStatus: 1,
                         Zip: "48201",
                     },
@@ -931,7 +1231,7 @@ describe("BillClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server.mockEndpoint().get("/Query/bills/entry").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
@@ -957,7 +1257,7 @@ describe("BillClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server.mockEndpoint().get("/Query/bills/entry").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
@@ -1055,7 +1355,7 @@ describe("BillClient", () => {
                     PaypointLegalname: "MiCasa Sports LLC",
                     Source: "web",
                     Status: 2,
-                    Terms: "Net30",
+                    Terms: "NET30",
                     TotalAmount: 200,
                     Transaction: null,
                     Vendor: {
@@ -1081,8 +1381,8 @@ describe("BillClient", () => {
                         Name2: "Elena",
                         Phone: "517-555-0123",
                         State: "MI",
-                        VendorId: 8723,
-                        VendorNumber: "MI-vendor-2024031926",
+                        VendorId: 456,
+                        VendorNumber: "VEN-123",
                         VendorStatus: 1,
                         Zip: "48201",
                     },
@@ -1123,7 +1423,7 @@ describe("BillClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server.mockEndpoint().get("/Query/bills/org/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
@@ -1149,322 +1449,12 @@ describe("BillClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server.mockEndpoint().get("/Query/bills/org/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
             return await client.bill.listBillsOrg(1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
-    });
-
-    test("ModifyApprovalBill (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = ["string"];
-        const rawResponseBody = { isSuccess: true, responseData: 6101, responseText: "Success" };
-
-        server
-            .mockEndpoint()
-            .put("/Bill/approval/285")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.bill.modifyApprovalBill(285, ["string"]);
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("ModifyApprovalBill (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = ["string", "string"];
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .put("/Bill/approval/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.bill.modifyApprovalBill(1, ["string", "string"]);
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("ModifyApprovalBill (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = ["string", "string"];
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .put("/Bill/approval/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.bill.modifyApprovalBill(1, ["string", "string"]);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("ModifyApprovalBill (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = ["string", "string"];
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .put("/Bill/approval/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.bill.modifyApprovalBill(1, ["string", "string"]);
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("ModifyApprovalBill (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = ["string", "string"];
-        const rawResponseBody = { responseText: "responseText" };
-
-        server
-            .mockEndpoint()
-            .put("/Bill/approval/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.bill.modifyApprovalBill(1, ["string", "string"]);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
-    });
-
-    test("SendToApprovalBill (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = ["string"];
-        const rawResponseBody = {
-            responseCode: 1,
-            roomId: 0,
-            isSuccess: true,
-            responseText: "Success",
-            responseData: 6101,
-        };
-
-        server
-            .mockEndpoint()
-            .post("/Bill/approval/285")
-            .header("idempotencyKey", "6B29FC40-CA47-1067-B31D-00DD010662DA")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.bill.sendToApprovalBill(285, {
-            idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA",
-            body: ["string"],
-        });
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("SendToApprovalBill (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = ["string", "string"];
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .post("/Bill/approval/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.bill.sendToApprovalBill(1, {
-                body: ["string", "string"],
-            });
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("SendToApprovalBill (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = ["string", "string"];
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .post("/Bill/approval/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.bill.sendToApprovalBill(1, {
-                body: ["string", "string"],
-            });
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("SendToApprovalBill (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = ["string", "string"];
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .post("/Bill/approval/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.bill.sendToApprovalBill(1, {
-                body: ["string", "string"],
-            });
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("SendToApprovalBill (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = ["string", "string"];
-        const rawResponseBody = { responseText: "responseText" };
-
-        server
-            .mockEndpoint()
-            .post("/Bill/approval/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.bill.sendToApprovalBill(1, {
-                body: ["string", "string"],
-            });
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
-    });
-
-    test("SetApprovedBill (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { isSuccess: true, responseData: 6101, responseText: "Success" };
-
-        server
-            .mockEndpoint()
-            .get("/Bill/approval/285/true")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.bill.setApprovedBill(285, "true");
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("SetApprovedBill (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .get("/Bill/approval/1/approved")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.bill.setApprovedBill(1, "approved");
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("SetApprovedBill (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .get("/Bill/approval/1/approved")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.bill.setApprovedBill(1, "approved");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("SetApprovedBill (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .get("/Bill/approval/1/approved")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.bill.setApprovedBill(1, "approved");
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("SetApprovedBill (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { responseText: "responseText" };
-
-        server
-            .mockEndpoint()
-            .get("/Bill/approval/1/approved")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.bill.setApprovedBill(1, "approved");
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 });

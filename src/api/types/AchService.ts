@@ -11,7 +11,10 @@ export interface AchService {
     achPass_highPayRange?: Payabli.TemplateElement | undefined;
     achPass_lowPayRange?: Payabli.TemplateElement | undefined;
     achPassThrough?: Payabli.AchPassThroughSection | undefined;
-    /** Controls how to present the `batchCutoffTime` field on the application. If this field isn't sent, batch cut off time defaults to 5 ET. */
+    /**
+     * Controls how to present the `batchCutoffTime` field on the application.
+     * If this field isn't sent, batch cutoff time defaults to 5 ET.
+     */
     batchCutoffTime?: Payabli.TemplateElement | undefined;
     discountFrequency?: Payabli.TemplateElement | undefined;
     fundingRollup?: Payabli.TemplateElement | undefined;

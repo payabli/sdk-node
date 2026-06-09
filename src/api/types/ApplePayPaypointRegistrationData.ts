@@ -5,7 +5,7 @@ import type * as Payabli from "../index.js";
 export interface ApplePayPaypointRegistrationData {
     entry?: Payabli.Entry | undefined;
     isEnabled?: Payabli.IsEnabled | undefined;
-    /** The wallet type. In this context it will always be `applePay`. */
+    /** The wallet type. In this context it will always be `applepay`. */
     walletType?: string | undefined;
     walletData?: Payabli.AppleWalletData | undefined;
 }

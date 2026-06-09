@@ -6,5 +6,5 @@
  */
 export interface CustomerBasicStatsRequest {
     /** List of parameters. */
-    parameters?: Record<string, string>;
+    parameters?: Record<string, string | null>;
 }

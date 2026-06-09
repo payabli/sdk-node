@@ -5,21 +5,12 @@ import type * as Payabli from "../index.js";
 export interface PayabliApiResponseNotifications {
     /**
      * If `isSuccess` = true, `responseData` contains the notification identifier.
-     *
      * If `isSuccess` = false, `responseData` contains the reason for the error.
      */
     isSuccess?: Payabli.IsSuccess | undefined;
     pageIdentifier?: Payabli.PageIdentifier | undefined;
     responseCode?: Payabli.Responsecode | undefined;
     /** When the request was successful, this contains the notification ID, or `nID` used to manage the notification. */
-    responseData?: PayabliApiResponseNotifications.ResponseData | undefined;
+    responseData?: Payabli.PayabliApiResponseNotificationsResponseData | undefined;
     responseText: Payabli.ResponseText;
-}
-
-export namespace PayabliApiResponseNotifications {
-    /**
-     * When the request was successful, this contains the notification ID, or
-     * `nID` used to manage the notification.
-     */
-    export type ResponseData = number | string;
 }

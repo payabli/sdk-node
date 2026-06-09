@@ -7,9 +7,11 @@ import type * as Payabli from "../../../../index.js";
  *     {}
  */
 export interface ListTransfersPaypointRequest {
+    /** Export format for file downloads. When specified, returns data as a file instead of JSON. */
     exportFormat?: Payabli.ExportFormat;
     /** The number of records to skip before starting to collect the result set. */
     fromRecord?: number;
+    /** Max number of records to return for the query. Use `0` or negative value to return all records. Defaults to 20. */
     limitRecord?: Payabli.LimitRecord;
     /**
      * Collection of field names, conditions, and values used to filter
@@ -50,7 +52,7 @@ export interface ListTransfersPaypointRequest {
      *   - `type` (eq, ne, in, nin)
      *   - `method` (eq, ne, in, nin)
      */
-    parameters?: Record<string, string>;
+    parameters?: Record<string, string | null>;
     /** The field name to use for sorting results. Use `desc(field_name)` to sort descending by `field_name`, and use `asc(field_name)` to sort ascending by `field_name`. */
     sortBy?: string;
 }

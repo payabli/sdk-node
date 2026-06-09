@@ -9,7 +9,7 @@ describe("GhostCardClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            vendorId: 42,
+            vendorId: 456,
             expenseLimit: 500,
             amount: 500,
             maxNumberOfUses: 3,
@@ -28,20 +28,20 @@ describe("GhostCardClient", () => {
         const rawResponseBody = {
             isSuccess: true,
             responseText: "Success",
-            responseData: { ReferenceId: "gc_abc123def456", ResultCode: 1, ResultText: "Ghost Card created" },
+            responseData: { ReferenceId: "129-219", ResultCode: 1, ResultText: "Ghost Card created" },
         };
 
         server
             .mockEndpoint()
-            .post("/MoneyOutCard/GhostCard/8cfec2e0fa")
+            .post("/MoneyOutCard/GhostCard/8cfec329267")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.ghostCard.createGhostCard("8cfec2e0fa", {
-            vendorId: 42,
+        const response = await client.ghostCard.createGhostCard("8cfec329267", {
+            vendorId: 456,
             expenseLimit: 500,
             amount: 500,
             maxNumberOfUses: 3,
@@ -120,7 +120,7 @@ describe("GhostCardClient", () => {
             dailyAmountLimit: 1.1,
             transactionAmountLimit: 1,
         };
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -208,7 +208,7 @@ describe("GhostCardClient", () => {
             dailyAmountLimit: 1.1,
             transactionAmountLimit: 1,
         };
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -244,14 +244,14 @@ describe("GhostCardClient", () => {
 
         server
             .mockEndpoint()
-            .patch("/MoneyOutCard/card/8cfec2e0fa")
+            .patch("/MoneyOutCard/card/8cfec329267")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.ghostCard.updateCard("8cfec2e0fa", {
+        const response = await client.ghostCard.updateCard("8cfec329267", {
             cardToken: "gc_abc123def456",
             status: "Cancelled",
         });
@@ -284,7 +284,7 @@ describe("GhostCardClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { cardToken: "cardToken" };
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -328,7 +328,7 @@ describe("GhostCardClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { cardToken: "cardToken" };
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()

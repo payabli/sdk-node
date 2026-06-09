@@ -5,66 +5,77 @@ import type * as Payabli from "../../../../index.js";
 /**
  * @example
  *     {
- *         body: {
- *             entryPoint: "d193cf9a46",
- *             paymentMethod: {
- *                 method: "ach",
- *                 achHolder: "Herman Coatings",
- *                 achRouting: "021000021",
- *                 achAccount: "3453445666",
- *                 achAccountType: "checking"
- *             },
- *             paymentDetails: {
- *                 totalAmount: 500,
- *                 serviceFee: 0,
- *                 currency: "USD"
- *             },
- *             vendorData: {
- *                 vendorId: 1501
- *             },
- *             billData: [{
- *                     invoiceNumber: "INV-5001",
- *                     netAmount: "500",
- *                     invoiceDate: "2025-08-01",
- *                     dueDate: "2025-08-15"
- *                 }],
- *             scheduleDetails: {
- *                 startDate: "09/01/2025",
- *                 endDate: "09/01/2026",
- *                 frequency: "monthly"
- *             }
+ *         entryPoint: "8cfec329267",
+ *         paymentMethod: {
+ *             method: "ach",
+ *             achHolder: "Herman Coatings",
+ *             achRouting: "021000021",
+ *             achAccount: "3453445666",
+ *             achAccountType: "checking"
+ *         },
+ *         paymentDetails: {
+ *             totalAmount: 500,
+ *             serviceFee: 0,
+ *             currency: "USD"
+ *         },
+ *         vendorData: {
+ *             vendorId: 456
+ *         },
+ *         billData: [{
+ *                 invoiceNumber: "INV-2345",
+ *                 netAmount: "500",
+ *                 invoiceDate: "2025-08-01",
+ *                 dueDate: "2025-08-15"
+ *             }],
+ *         scheduleDetails: {
+ *             startDate: "09/01/2027",
+ *             endDate: "09/01/2026",
+ *             frequency: "monthly"
  *         }
  *     }
  *
  * @example
  *     {
- *         body: {
- *             entryPoint: "d193cf9a46",
- *             paymentMethod: {
- *                 method: "vcard"
- *             },
- *             paymentDetails: {
- *                 totalAmount: 250,
- *                 serviceFee: 0
- *             },
- *             vendorData: {
- *                 vendorId: 1501
- *             },
- *             billData: [{
- *                     invoiceNumber: "INV-7820",
- *                     netAmount: "250",
- *                     invoiceDate: "2025-08-15",
- *                     dueDate: "2025-09-01"
- *                 }],
- *             scheduleDetails: {
- *                 startDate: "09/01/2025",
- *                 frequency: "weekly",
- *                 endDate: "untilcancelled"
- *             }
+ *         entryPoint: "8cfec329267",
+ *         paymentMethod: {
+ *             method: "vcard"
+ *         },
+ *         paymentDetails: {
+ *             totalAmount: 250,
+ *             serviceFee: 0
+ *         },
+ *         vendorData: {
+ *             vendorId: 456
+ *         },
+ *         billData: [{
+ *                 invoiceNumber: "INV-2345",
+ *                 netAmount: "250",
+ *                 invoiceDate: "2025-08-15",
+ *                 dueDate: "2025-09-01"
+ *             }],
+ *         scheduleDetails: {
+ *             startDate: "09/01/2027",
+ *             frequency: "weekly",
+ *             endDate: "untilcancelled"
  *         }
  *     }
  */
 export interface RequestPayoutSchedule {
+    /** _Optional but recommended_ A unique ID that you can include to prevent duplicating objects or transactions in the case that a request is sent more than once. This key isn't generated in Payabli, you must generate it yourself. This key persists for 2 minutes. After 2 minutes, you can reuse the key if needed. */
     idempotencyKey?: Payabli.IdempotencyKey;
-    body: Payabli.PayoutSubscriptionRequestBody;
+    entryPoint: Payabli.Entrypointfield;
+    subdomain?: Payabli.Subdomain;
+    accountId?: Payabli.AccountId;
+    source?: Payabli.Source;
+    setPause?: Payabli.PayoutSetPause;
+    /** Payment method for the payout subscription. Supports `ach`, `vcard`, and `check`. The `managed` method isn't supported for payout subscriptions. */
+    paymentMethod: Payabli.AuthorizePaymentMethod;
+    /** Object describing details of the payout. */
+    paymentDetails?: Payabli.PayoutPaymentDetail;
+    /** Object identifying the vendor for this subscription. Only a `vendorId` or `vendorNumber` is needed to link to an existing vendor. */
+    vendorData: Payabli.RequestOutAuthorizeVendorData;
+    /** Array of bills associated with the payout subscription. If omitted and `doNotCreateBills` isn't set to `true`, the system creates a bill automatically. */
+    billData?: Payabli.BillPayOutDataRequest[];
+    /** Object describing the schedule for the payout subscription. */
+    scheduleDetails?: Payabli.PayoutScheduleDetail;
 }

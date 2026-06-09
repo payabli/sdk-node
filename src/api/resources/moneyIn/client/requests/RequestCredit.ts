@@ -8,9 +8,9 @@ import type * as Payabli from "../../../../index.js";
  *         idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA",
  *         customerData: {
  *             billingAddress1: "5127 Linkwood ave",
- *             customerNumber: "100"
+ *             customerNumber: "C-90010"
  *         },
- *         entrypoint: "my-entrypoint",
+ *         entrypoint: "8cfec329267",
  *         paymentDetails: {
  *             serviceFee: 0,
  *             totalAmount: 1
@@ -32,11 +32,11 @@ import type * as Payabli from "../../../../index.js";
  *             billingCity: "Kingsport",
  *             billingEmail: "johnnyp@email.com",
  *             company: "Acme, Inc",
- *             customerNumber: "100",
+ *             customerNumber: "C-90010",
  *             firstName: "Johnny",
  *             lastName: "Poulsbo"
  *         },
- *         entrypoint: "my-entrypoint",
+ *         entrypoint: "8cfec329267",
  *         paymentDetails: {
  *             serviceFee: 0,
  *             totalAmount: 1
@@ -51,7 +51,9 @@ import type * as Payabli from "../../../../index.js";
  *     }
  */
 export interface RequestCredit {
+    /** When `true`, the request creates a new customer record, regardless of whether customer identifiers match an existing customer. Defaults to `false`. */
     forceCustomerCreation?: Payabli.ForceCustomerCreation;
+    /** _Optional but recommended_ A unique ID that you can include to prevent duplicating objects or transactions in the case that a request is sent more than once. This key isn't generated in Payabli, you must generate it yourself. This key persists for 2 minutes. After 2 minutes, you can reuse the key if needed. */
     idempotencyKey?: Payabli.IdempotencyKey;
     accountId?: Payabli.AccountId;
     /** Object describing the customer/payor. */
@@ -61,23 +63,7 @@ export interface RequestCredit {
     orderId?: Payabli.OrderId;
     paymentDetails: Payabli.PaymentDetailCredit;
     /** Object describing the ACH payment method to use for transaction. */
-    paymentMethod: RequestCredit.PaymentMethod;
+    paymentMethod: Payabli.RequestCreditPaymentMethod;
     source?: Payabli.Source;
     subdomain?: Payabli.Subdomain;
-}
-
-export namespace RequestCredit {
-    /**
-     * Object describing the ACH payment method to use for transaction.
-     */
-    export interface PaymentMethod {
-        achAccount?: Payabli.Achaccount | undefined;
-        achAccountType?: Payabli.Achaccounttype | undefined;
-        achCode?: Payabli.AchSecCode | undefined;
-        /** Bank account holder. */
-        achHolder?: Payabli.AchHolder | undefined;
-        achRouting?: Payabli.Achrouting | undefined;
-        /** Method to use for the transaction. Must be ACH. */
-        method: "ach";
-    }
 }

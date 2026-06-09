@@ -9,7 +9,7 @@ describe("PayoutSubscriptionClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            entryPoint: "d193cf9a46",
+            entryPoint: "8cfec329267",
             paymentMethod: {
                 method: "ach",
                 achHolder: "Herman Coatings",
@@ -18,13 +18,13 @@ describe("PayoutSubscriptionClient", () => {
                 achAccountType: "checking",
             },
             paymentDetails: { totalAmount: 500, serviceFee: 0, currency: "USD" },
-            vendorData: { vendorId: 1501 },
+            vendorData: { vendorId: 456 },
             billData: [
-                { invoiceNumber: "INV-5001", netAmount: "500", invoiceDate: "2025-08-01", dueDate: "2025-08-15" },
+                { invoiceNumber: "INV-2345", netAmount: "500", invoiceDate: "2025-08-01", dueDate: "2025-08-15" },
             ],
-            scheduleDetails: { startDate: "09/01/2025", endDate: "09/01/2026", frequency: "monthly" },
+            scheduleDetails: { startDate: "09/01/2027", endDate: "09/01/2026", frequency: "monthly" },
         };
-        const rawResponseBody = { responseText: "Success", isSuccess: true, responseData: 42, customerId: 1501 };
+        const rawResponseBody = { responseText: "Success", isSuccess: true, responseData: 42, customerId: 4440 };
 
         server
             .mockEndpoint()
@@ -36,36 +36,34 @@ describe("PayoutSubscriptionClient", () => {
             .build();
 
         const response = await client.payoutSubscription.createPayoutSubscription({
-            body: {
-                entryPoint: "d193cf9a46",
-                paymentMethod: {
-                    method: "ach",
-                    achHolder: "Herman Coatings",
-                    achRouting: "021000021",
-                    achAccount: "3453445666",
-                    achAccountType: "checking",
+            entryPoint: "8cfec329267",
+            paymentMethod: {
+                method: "ach",
+                achHolder: "Herman Coatings",
+                achRouting: "021000021",
+                achAccount: "3453445666",
+                achAccountType: "checking",
+            },
+            paymentDetails: {
+                totalAmount: 500,
+                serviceFee: 0,
+                currency: "USD",
+            },
+            vendorData: {
+                vendorId: 456,
+            },
+            billData: [
+                {
+                    invoiceNumber: "INV-2345",
+                    netAmount: "500",
+                    invoiceDate: "2025-08-01",
+                    dueDate: "2025-08-15",
                 },
-                paymentDetails: {
-                    totalAmount: 500,
-                    serviceFee: 0,
-                    currency: "USD",
-                },
-                vendorData: {
-                    vendorId: 1501,
-                },
-                billData: [
-                    {
-                        invoiceNumber: "INV-5001",
-                        netAmount: "500",
-                        invoiceDate: "2025-08-01",
-                        dueDate: "2025-08-15",
-                    },
-                ],
-                scheduleDetails: {
-                    startDate: "09/01/2025",
-                    endDate: "09/01/2026",
-                    frequency: "monthly",
-                },
+            ],
+            scheduleDetails: {
+                startDate: "09/01/2027",
+                endDate: "09/01/2026",
+                frequency: "monthly",
             },
         });
         expect(response).toEqual(rawResponseBody);
@@ -75,16 +73,16 @@ describe("PayoutSubscriptionClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            entryPoint: "d193cf9a46",
+            entryPoint: "8cfec329267",
             paymentMethod: { method: "vcard" },
             paymentDetails: { totalAmount: 250, serviceFee: 0 },
-            vendorData: { vendorId: 1501 },
+            vendorData: { vendorId: 456 },
             billData: [
-                { invoiceNumber: "INV-7820", netAmount: "250", invoiceDate: "2025-08-15", dueDate: "2025-09-01" },
+                { invoiceNumber: "INV-2345", netAmount: "250", invoiceDate: "2025-08-15", dueDate: "2025-09-01" },
             ],
-            scheduleDetails: { startDate: "09/01/2025", frequency: "weekly", endDate: "untilcancelled" },
+            scheduleDetails: { startDate: "09/01/2027", frequency: "weekly", endDate: "untilcancelled" },
         };
-        const rawResponseBody = { responseText: "Success", isSuccess: true, responseData: 42, customerId: 1501 };
+        const rawResponseBody = { responseText: "Success", isSuccess: true, responseData: 42, customerId: 4440 };
 
         server
             .mockEndpoint()
@@ -96,31 +94,29 @@ describe("PayoutSubscriptionClient", () => {
             .build();
 
         const response = await client.payoutSubscription.createPayoutSubscription({
-            body: {
-                entryPoint: "d193cf9a46",
-                paymentMethod: {
-                    method: "vcard",
+            entryPoint: "8cfec329267",
+            paymentMethod: {
+                method: "vcard",
+            },
+            paymentDetails: {
+                totalAmount: 250,
+                serviceFee: 0,
+            },
+            vendorData: {
+                vendorId: 456,
+            },
+            billData: [
+                {
+                    invoiceNumber: "INV-2345",
+                    netAmount: "250",
+                    invoiceDate: "2025-08-15",
+                    dueDate: "2025-09-01",
                 },
-                paymentDetails: {
-                    totalAmount: 250,
-                    serviceFee: 0,
-                },
-                vendorData: {
-                    vendorId: 1501,
-                },
-                billData: [
-                    {
-                        invoiceNumber: "INV-7820",
-                        netAmount: "250",
-                        invoiceDate: "2025-08-15",
-                        dueDate: "2025-09-01",
-                    },
-                ],
-                scheduleDetails: {
-                    startDate: "09/01/2025",
-                    frequency: "weekly",
-                    endDate: "untilcancelled",
-                },
+            ],
+            scheduleDetails: {
+                startDate: "09/01/2027",
+                frequency: "weekly",
+                endDate: "untilcancelled",
             },
         });
         expect(response).toEqual(rawResponseBody);
@@ -143,13 +139,11 @@ describe("PayoutSubscriptionClient", () => {
 
         await expect(async () => {
             return await client.payoutSubscription.createPayoutSubscription({
-                body: {
-                    entryPoint: "entryPoint",
-                    paymentMethod: {
-                        method: "method",
-                    },
-                    vendorData: {},
+                entryPoint: "entryPoint",
+                paymentMethod: {
+                    method: "method",
                 },
+                vendorData: {},
             });
         }).rejects.toThrow(Payabli.BadRequestError);
     });
@@ -158,7 +152,7 @@ describe("PayoutSubscriptionClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entryPoint: "entryPoint", paymentMethod: { method: "method" }, vendorData: {} };
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -171,13 +165,11 @@ describe("PayoutSubscriptionClient", () => {
 
         await expect(async () => {
             return await client.payoutSubscription.createPayoutSubscription({
-                body: {
-                    entryPoint: "entryPoint",
-                    paymentMethod: {
-                        method: "method",
-                    },
-                    vendorData: {},
+                entryPoint: "entryPoint",
+                paymentMethod: {
+                    method: "method",
                 },
+                vendorData: {},
             });
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
@@ -199,13 +191,11 @@ describe("PayoutSubscriptionClient", () => {
 
         await expect(async () => {
             return await client.payoutSubscription.createPayoutSubscription({
-                body: {
-                    entryPoint: "entryPoint",
-                    paymentMethod: {
-                        method: "method",
-                    },
-                    vendorData: {},
+                entryPoint: "entryPoint",
+                paymentMethod: {
+                    method: "method",
                 },
+                vendorData: {},
             });
         }).rejects.toThrow(Payabli.InternalServerError);
     });
@@ -214,7 +204,7 @@ describe("PayoutSubscriptionClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entryPoint: "entryPoint", paymentMethod: { method: "method" }, vendorData: {} };
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -227,13 +217,11 @@ describe("PayoutSubscriptionClient", () => {
 
         await expect(async () => {
             return await client.payoutSubscription.createPayoutSubscription({
-                body: {
-                    entryPoint: "entryPoint",
-                    paymentMethod: {
-                        method: "method",
-                    },
-                    vendorData: {},
+                entryPoint: "entryPoint",
+                paymentMethod: {
+                    method: "method",
                 },
+                vendorData: {},
             });
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
@@ -257,7 +245,7 @@ describe("PayoutSubscriptionClient", () => {
                     },
                 ],
                 vendor: {
-                    VendorNumber: "1234",
+                    VendorNumber: "VEN-123",
                     Name1: "Herman's Coatings",
                     Name2: "Herman's Coating Supply Company, LLC",
                     EIN: "123456789",
@@ -294,7 +282,7 @@ describe("PayoutSubscriptionClient", () => {
                         default: true,
                     },
                     VendorStatus: 1,
-                    VendorId: 1,
+                    VendorId: 456,
                     Summary: {
                         ActiveBills: 2,
                         PendingBills: 4,
@@ -344,8 +332,8 @@ describe("PayoutSubscriptionClient", () => {
                 },
                 billData: [
                     {
-                        billId: 3001,
-                        invoiceNumber: "INV-5001",
+                        billId: 54323,
+                        invoiceNumber: "INV-2345",
                         netAmount: "500",
                         invoiceDate: "2025-08-01",
                         dueDate: "2025-08-15",
@@ -353,7 +341,7 @@ describe("PayoutSubscriptionClient", () => {
                 ],
                 externalPaypointID: "d193cf9a46-10",
                 method: "ach",
-                paypointId: 255,
+                paypointId: 3040,
                 totalAmount: 500,
                 netAmount: 500,
                 feeAmount: 0,
@@ -421,7 +409,7 @@ describe("PayoutSubscriptionClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -459,7 +447,7 @@ describe("PayoutSubscriptionClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -482,7 +470,7 @@ describe("PayoutSubscriptionClient", () => {
             responseText: "Success",
             isSuccess: true,
             responseData: "42 paused",
-            customerId: 1501,
+            customerId: 4440,
         };
 
         server
@@ -504,7 +492,7 @@ describe("PayoutSubscriptionClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { setPause: false };
-        const rawResponseBody = { responseText: "Success", isSuccess: true, responseData: "42", customerId: 1501 };
+        const rawResponseBody = { responseText: "Success", isSuccess: true, responseData: "42", customerId: 4440 };
 
         server
             .mockEndpoint()
@@ -526,9 +514,9 @@ describe("PayoutSubscriptionClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             paymentDetails: { serviceFee: 0, totalAmount: 750 },
-            scheduleDetails: { endDate: "12/31/2026", frequency: "monthly", startDate: "01/01/2026" },
+            scheduleDetails: { endDate: "12/31/2027", frequency: "monthly", startDate: "01/01/2027" },
         };
-        const rawResponseBody = { responseText: "Success", isSuccess: true, responseData: "42", customerId: 1501 };
+        const rawResponseBody = { responseText: "Success", isSuccess: true, responseData: "42", customerId: 4440 };
 
         server
             .mockEndpoint()
@@ -545,9 +533,9 @@ describe("PayoutSubscriptionClient", () => {
                 totalAmount: 750,
             },
             scheduleDetails: {
-                endDate: "12/31/2026",
+                endDate: "12/31/2027",
                 frequency: "monthly",
-                startDate: "01/01/2026",
+                startDate: "01/01/2027",
             },
         });
         expect(response).toEqual(rawResponseBody);
@@ -569,7 +557,7 @@ describe("PayoutSubscriptionClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.payoutSubscription.updatePayoutSubscription(1000000, {});
+            return await client.payoutSubscription.updatePayoutSubscription(1000000);
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
@@ -577,7 +565,7 @@ describe("PayoutSubscriptionClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -589,7 +577,7 @@ describe("PayoutSubscriptionClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.payoutSubscription.updatePayoutSubscription(1000000, {});
+            return await client.payoutSubscription.updatePayoutSubscription(1000000);
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
@@ -609,7 +597,7 @@ describe("PayoutSubscriptionClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.payoutSubscription.updatePayoutSubscription(1000000, {});
+            return await client.payoutSubscription.updatePayoutSubscription(1000000);
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
@@ -617,7 +605,7 @@ describe("PayoutSubscriptionClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -629,7 +617,7 @@ describe("PayoutSubscriptionClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.payoutSubscription.updatePayoutSubscription(1000000, {});
+            return await client.payoutSubscription.updatePayoutSubscription(1000000);
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
@@ -674,7 +662,7 @@ describe("PayoutSubscriptionClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -712,7 +700,7 @@ describe("PayoutSubscriptionClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()

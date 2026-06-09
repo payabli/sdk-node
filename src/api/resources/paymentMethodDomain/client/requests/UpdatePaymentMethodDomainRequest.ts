@@ -14,16 +14,6 @@ import type * as Payabli from "../../../../index.js";
  *     }
  */
 export interface UpdatePaymentMethodDomainRequest {
-    applePay?: UpdatePaymentMethodDomainRequest.ApplePay;
-    googlePay?: UpdatePaymentMethodDomainRequest.GooglePay;
-}
-
-export namespace UpdatePaymentMethodDomainRequest {
-    export interface ApplePay {
-        isEnabled?: Payabli.IsEnabled | undefined;
-    }
-
-    export interface GooglePay {
-        isEnabled?: Payabli.IsEnabled | undefined;
-    }
+    applePay?: Payabli.UpdatePaymentMethodDomainRequestWallet;
+    googlePay?: Payabli.UpdatePaymentMethodDomainRequestWallet;
 }

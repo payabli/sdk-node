@@ -15,10 +15,13 @@ export declare namespace VendorClient {
     export interface RequestOptions extends BaseRequestOptions {}
 }
 
+/**
+ * The Vendor service manages vendor and supplier relationships for accounts payable operations. It provides complete vendor record management including creation, updates, and deletion with support for comprehensive vendor information like tax identification, multiple contact persons, and remittance details. The service handles vendor banking information for payment processing, tracks vendor status and enrollment for various payout methods, maintains separate billing and remittance addresses, and supports custom fields for internal tracking. Vendors can be associated with multiple payment methods, bills, and payout transactions while maintaining a complete activity history and summary statistics.
+ */
 export class VendorClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<VendorClient.Options>;
 
-    constructor(options: VendorClient.Options = {}) {
+    constructor(options: VendorClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -36,7 +39,7 @@ export class VendorClient {
      *
      * @example
      *     await client.vendor.addVendor("8cfec329267", {
-     *         vendorNumber: "1234",
+     *         vendorNumber: "VEN-123",
      *         name1: "Herman's Coatings and Masonry",
      *         name2: "<string>",
      *         ein: "12-3456789",
@@ -127,12 +130,15 @@ export class VendorClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -148,30 +154,25 @@ export class VendorClient {
     }
 
     /**
-     * Delete a vendor.
+     * Retrieves a vendor's details, including enrichment status and payment acceptance info when available.
      *
      * @param {number} idVendor - Vendor ID.
      * @param {VendorClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.InternalServerError}
-     * @throws {@link Payabli.ServiceUnavailableError}
-     *
      * @example
-     *     await client.vendor.deleteVendor(1)
+     *     await client.vendor.getVendor(1)
      */
-    public deleteVendor(
+    public getVendor(
         idVendor: number,
         requestOptions?: VendorClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.PayabliApiResponseVendors> {
-        return core.HttpResponsePromise.fromPromise(this.__deleteVendor(idVendor, requestOptions));
+    ): core.HttpResponsePromise<Payabli.VendorQueryRecord> {
+        return core.HttpResponsePromise.fromPromise(this.__getVendor(idVendor, requestOptions));
     }
 
-    private async __deleteVendor(
+    private async __getVendor(
         idVendor: number,
         requestOptions?: VendorClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.PayabliApiResponseVendors>> {
+    ): Promise<core.WithRawResponse<Payabli.VendorQueryRecord>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -185,7 +186,7 @@ export class VendorClient {
                     environments.PayabliEnvironment.Sandbox,
                 `Vendor/${core.url.encodePathParam(idVendor)}`,
             ),
-            method: "DELETE",
+            method: "GET",
             headers: _headers,
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
@@ -195,32 +196,18 @@ export class VendorClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Payabli.PayabliApiResponseVendors, rawResponse: _response.rawResponse };
+            return { data: _response.body as Payabli.VendorQueryRecord, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
-                case 500:
-                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
-                case 503:
-                    throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.PayabliError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
+            throw new errors.PayabliError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
         }
 
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/Vendor/{idVendor}");
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/Vendor/{idVendor}");
     }
 
     /**
@@ -287,12 +274,15 @@ export class VendorClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -308,25 +298,30 @@ export class VendorClient {
     }
 
     /**
-     * Retrieves a vendor's details, including enrichment status and payment acceptance info when available.
+     * Delete a vendor.
      *
      * @param {number} idVendor - Vendor ID.
      * @param {VendorClient.RequestOptions} requestOptions - Request-specific configuration.
      *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
      * @example
-     *     await client.vendor.getVendor(1)
+     *     await client.vendor.deleteVendor(1)
      */
-    public getVendor(
+    public deleteVendor(
         idVendor: number,
         requestOptions?: VendorClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.VendorQueryRecord> {
-        return core.HttpResponsePromise.fromPromise(this.__getVendor(idVendor, requestOptions));
+    ): core.HttpResponsePromise<Payabli.PayabliApiResponseVendors> {
+        return core.HttpResponsePromise.fromPromise(this.__deleteVendor(idVendor, requestOptions));
     }
 
-    private async __getVendor(
+    private async __deleteVendor(
         idVendor: number,
         requestOptions?: VendorClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.VendorQueryRecord>> {
+    ): Promise<core.WithRawResponse<Payabli.PayabliApiResponseVendors>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -340,7 +335,7 @@ export class VendorClient {
                     environments.PayabliEnvironment.Sandbox,
                 `Vendor/${core.url.encodePathParam(idVendor)}`,
             ),
-            method: "GET",
+            method: "DELETE",
             headers: _headers,
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
@@ -350,18 +345,35 @@ export class VendorClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Payabli.VendorQueryRecord, rawResponse: _response.rawResponse };
+            return { data: _response.body as Payabli.PayabliApiResponseVendors, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.PayabliError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
         }
 
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/Vendor/{idVendor}");
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/Vendor/{idVendor}");
     }
 
     /**
@@ -378,7 +390,7 @@ export class VendorClient {
      *
      * @example
      *     await client.vendor.enrichVendor("8cfec329267", {
-     *         vendorId: 3890,
+     *         vendorId: 456,
      *         scope: ["invoice_scan"],
      *         applyEnrichmentData: false,
      *         fallbackMethod: "check",
@@ -391,7 +403,7 @@ export class VendorClient {
      *
      * @example
      *     await client.vendor.enrichVendor("8cfec329267", {
-     *         vendorId: 3891,
+     *         vendorId: 456,
      *         scope: ["web_search"],
      *         applyEnrichmentData: false,
      *         fallbackMethod: "check"
@@ -399,7 +411,7 @@ export class VendorClient {
      *
      * @example
      *     await client.vendor.enrichVendor("8cfec329267", {
-     *         vendorId: 3891,
+     *         vendorId: 456,
      *         scope: ["web_search"],
      *         applyEnrichmentData: true,
      *         fallbackMethod: "check"
@@ -452,12 +464,15 @@ export class VendorClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:

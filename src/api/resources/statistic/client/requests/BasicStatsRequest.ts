@@ -3,8 +3,8 @@
 /**
  * @example
  *     {
- *         endDate: "2025-11-01",
- *         startDate: "2025-11-30"
+ *         startDate: "2025-11-01",
+ *         endDate: "2025-11-30"
  *     }
  */
 export interface BasicStatsRequest {
@@ -18,7 +18,7 @@ export interface BasicStatsRequest {
      */
     endDate?: string;
     /** List of parameters. */
-    parameters?: Record<string, string>;
+    parameters?: Record<string, string | null>;
     /**
      * Used with `custom` mode. The start date for the range.
      * Valid formats:

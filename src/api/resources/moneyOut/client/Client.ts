@@ -15,10 +15,13 @@ export declare namespace MoneyOutClient {
     export interface RequestOptions extends BaseRequestOptions {}
 }
 
+/**
+ * The MoneyOut service manages all outbound payment operations for sending funds to vendors and recipients. It provides comprehensive payout functionality including authorization and capture workflows for payouts, batch operations for processing multiple transactions efficiently, and support for multiple payout methods including managed payouts, ACH transfers, checks, and virtual cards. The service includes detailed transaction tracking, vCard link delivery, check image retrieval, and cancellation capabilities. It supports complex scenarios like split funding and various vendor payment preferences while maintaining full audit trails of all payout activities.
+ */
 export class MoneyOutClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<MoneyOutClient.Options>;
 
-    constructor(options: MoneyOutClient.Options = {}) {
+    constructor(options: MoneyOutClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -29,7 +32,7 @@ export class MoneyOutClient {
      *
      * When `autoCapture` is `true`, Payabli captures the transaction asynchronously after authorization. The response confirms only that the transaction was authorized; it doesn't confirm that capture succeeded. To confirm capture, listen for the [`payout_transaction_approvedcaptured`](/developers/webhooks/payout-transaction-approved-captured) webhook event.
      *
-     * @param {Payabli.MoneyOutTypesRequestOutAuthorize} request
+     * @param {Payabli.RequestOutAuthorize} request
      * @param {MoneyOutClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Payabli.BadRequestError}
@@ -39,160 +42,150 @@ export class MoneyOutClient {
      *
      * @example
      *     await client.moneyOut.authorizeOut({
-     *         body: {
-     *             entryPoint: "48acde49",
-     *             autoCapture: true,
-     *             invoiceData: [{
-     *                     billId: 54323
-     *                 }],
-     *             orderDescription: "Window Painting",
-     *             paymentDetails: {
-     *                 totalAmount: 47,
-     *                 unbundled: false
-     *             },
-     *             paymentMethod: {
-     *                 method: "managed"
-     *             },
-     *             vendorData: {
-     *                 vendorNumber: "7895433"
-     *             }
+     *         entryPoint: "8cfec329267",
+     *         autoCapture: true,
+     *         invoiceData: [{
+     *                 billId: 54323
+     *             }],
+     *         orderDescription: "Window Painting",
+     *         paymentDetails: {
+     *             totalAmount: 47,
+     *             unbundled: false
+     *         },
+     *         paymentMethod: {
+     *             method: "managed"
+     *         },
+     *         vendorData: {
+     *             vendorNumber: "VEN-123"
      *         }
      *     })
      *
      * @example
      *     await client.moneyOut.authorizeOut({
-     *         body: {
-     *             entryPoint: "48acde49",
-     *             autoCapture: true,
-     *             invoiceData: [{
-     *                     billId: 123,
-     *                     attachments: [{
-     *                             filename: "bill.pdf",
-     *                             ftype: "pdf",
-     *                             furl: "https://example.com/bill.pdf"
-     *                         }]
-     *                 }],
-     *             orderDescription: "Window Painting",
-     *             paymentDetails: {
-     *                 totalAmount: 47
-     *             },
-     *             paymentMethod: {
-     *                 method: "managed"
-     *             },
-     *             vendorData: {
-     *                 vendorNumber: "7895433"
-     *             }
+     *         entryPoint: "8cfec329267",
+     *         autoCapture: true,
+     *         invoiceData: [{
+     *                 billId: 54323,
+     *                 attachments: [{
+     *                         filename: "bill.pdf",
+     *                         ftype: "pdf",
+     *                         furl: "https://example.com/bill.pdf"
+     *                     }]
+     *             }],
+     *         orderDescription: "Window Painting",
+     *         paymentDetails: {
+     *             totalAmount: 47
+     *         },
+     *         paymentMethod: {
+     *             method: "managed"
+     *         },
+     *         vendorData: {
+     *             vendorNumber: "VEN-123"
      *         }
      *     })
      *
      * @example
      *     await client.moneyOut.authorizeOut({
-     *         body: {
-     *             entryPoint: "48acde49",
-     *             autoCapture: true,
-     *             source: "api",
-     *             invoiceData: [{
-     *                     billId: 54323
-     *                 }],
-     *             orderDescription: "Window Painting",
-     *             paymentMethod: {
-     *                 method: "ach",
-     *                 storedMethodId: "4c6a4b78-72de-4bdd-9455-b9d30f991001-XXXX"
-     *             },
-     *             paymentDetails: {
-     *                 totalAmount: 47
-     *             },
-     *             vendorData: {
-     *                 vendorNumber: "7895433"
-     *             }
+     *         entryPoint: "8cfec329267",
+     *         autoCapture: true,
+     *         source: "api",
+     *         invoiceData: [{
+     *                 billId: 54323
+     *             }],
+     *         orderDescription: "Window Painting",
+     *         paymentMethod: {
+     *             method: "ach",
+     *             storedMethodId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440"
+     *         },
+     *         paymentDetails: {
+     *             totalAmount: 47
+     *         },
+     *         vendorData: {
+     *             vendorNumber: "VEN-123"
      *         }
      *     })
      *
      * @example
      *     await client.moneyOut.authorizeOut({
-     *         body: {
-     *             entryPoint: "48acde49",
-     *             invoiceData: [{
-     *                     billId: 54323
-     *                 }],
-     *             orderDescription: "Office Supplies",
-     *             paymentDetails: {
-     *                 totalAmount: 1500,
-     *                 checkNumber: "10001"
-     *             },
-     *             paymentMethod: {
-     *                 method: "check"
-     *             },
-     *             vendorData: {
-     *                 vendorNumber: "7895433"
-     *             }
+     *         entryPoint: "8cfec329267",
+     *         invoiceData: [{
+     *                 billId: 54323
+     *             }],
+     *         orderDescription: "Office Supplies",
+     *         paymentDetails: {
+     *             totalAmount: 1500,
+     *             checkNumber: "10001"
+     *         },
+     *         paymentMethod: {
+     *             method: "check"
+     *         },
+     *         vendorData: {
+     *             vendorNumber: "VEN-123"
      *         }
      *     })
      *
      * @example
      *     await client.moneyOut.authorizeOut({
-     *         body: {
-     *             entryPoint: "47ced57b",
-     *             paymentMethod: {
-     *                 method: "ach",
-     *                 achHolder: "John Doe",
-     *                 achRouting: "011401533",
-     *                 achAccount: "123456789",
-     *                 achAccountType: "checking",
-     *                 achHolderType: "business"
-     *             },
-     *             paymentDetails: {
-     *                 totalAmount: 978.32
-     *             },
-     *             vendorData: {
-     *                 vendorNumber: "Vendor3800638299609471",
-     *                 name1: "Heritage Pro Company",
-     *                 name2: "",
-     *                 ein: "473771889",
-     *                 phone: "7868342364",
-     *                 email: "contact570@heritagepro.com",
-     *                 address1: "478 Mittie Roads",
-     *                 city: "Jakubowskifield",
-     *                 state: "WI",
-     *                 zip: "45993",
-     *                 country: "US",
-     *                 mcc: "0763",
-     *                 locationCode: "tpa",
-     *                 contacts: [{
-     *                         contactName: "Dax",
-     *                         contactEmail: "Mandy65@heritagepro.com",
-     *                         contactPhone: "996-325-5420 x31028"
-     *                     }],
-     *                 vendorStatus: 1,
-     *                 remitAddress1: "727 Terrell Streets",
-     *                 remitAddress2: "Apt. 773",
-     *                 remitCity: "South Nicholeside",
-     *                 remitState: "ID",
-     *                 remitZip: "72951-9790",
-     *                 remitCountry: "US"
-     *             },
-     *             invoiceData: [{
-     *                     invoiceNumber: "VI3BvwTG",
-     *                     netAmount: "1",
-     *                     invoiceDate: "2026-09-03",
-     *                     dueDate: "2026-11-04",
-     *                     comments: "Building Repairs - Community event setup (System updates)"
-     *                 }]
-     *         }
+     *         entryPoint: "8cfec329267",
+     *         paymentMethod: {
+     *             method: "ach",
+     *             achHolder: "John Doe",
+     *             achRouting: "011401533",
+     *             achAccount: "123456789",
+     *             achAccountType: "checking",
+     *             achHolderType: "business"
+     *         },
+     *         paymentDetails: {
+     *             totalAmount: 978.32
+     *         },
+     *         vendorData: {
+     *             vendorNumber: "VEN-123",
+     *             name1: "Heritage Pro Company",
+     *             name2: "",
+     *             ein: "473771889",
+     *             phone: "7868342364",
+     *             email: "contact570@heritagepro.com",
+     *             address1: "478 Mittie Roads",
+     *             city: "Jakubowskifield",
+     *             state: "WI",
+     *             zip: "45993",
+     *             country: "US",
+     *             mcc: "0763",
+     *             locationCode: "tpa",
+     *             contacts: [{
+     *                     contactName: "Dax",
+     *                     contactEmail: "Mandy65@heritagepro.com",
+     *                     contactPhone: "996-325-5420 x31028"
+     *                 }],
+     *             vendorStatus: 1,
+     *             remitAddress1: "727 Terrell Streets",
+     *             remitAddress2: "Apt. 773",
+     *             remitCity: "South Nicholeside",
+     *             remitState: "ID",
+     *             remitZip: "72951-9790",
+     *             remitCountry: "US"
+     *         },
+     *         invoiceData: [{
+     *                 invoiceNumber: "INV-2345",
+     *                 netAmount: "1",
+     *                 invoiceDate: "2026-09-03",
+     *                 dueDate: "2026-11-04",
+     *                 comments: "Building Repairs - Community event setup (System updates)"
+     *             }]
      *     })
      */
     public authorizeOut(
-        request: Payabli.MoneyOutTypesRequestOutAuthorize,
+        request: Payabli.RequestOutAuthorize,
         requestOptions?: MoneyOutClient.RequestOptions,
     ): core.HttpResponsePromise<Payabli.AuthCapturePayoutResponse> {
         return core.HttpResponsePromise.fromPromise(this.__authorizeOut(request, requestOptions));
     }
 
     private async __authorizeOut(
-        request: Payabli.MoneyOutTypesRequestOutAuthorize,
+        request: Payabli.RequestOutAuthorize,
         requestOptions?: MoneyOutClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.AuthCapturePayoutResponse>> {
-        const { allowDuplicatedBills, doNotCreateBills, forceVendorCreation, idempotencyKey, body: _body } = request;
+        const { allowDuplicatedBills, doNotCreateBills, forceVendorCreation, idempotencyKey, ..._body } = request;
         const _queryParams: Record<string, unknown> = {
             allowDuplicatedBills,
             doNotCreateBills,
@@ -237,12 +230,15 @@ export class MoneyOutClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -316,12 +312,15 @@ export class MoneyOutClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -394,12 +393,15 @@ export class MoneyOutClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -475,12 +477,15 @@ export class MoneyOutClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -527,7 +532,7 @@ export class MoneyOutClient {
         request: Payabli.CaptureAllOutRequest,
         requestOptions?: MoneyOutClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.CaptureAllOutResponse>> {
-        const { idempotencyKey, body: _body } = request;
+        const { idempotencyKey, ..._body } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -563,12 +568,15 @@ export class MoneyOutClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -644,12 +652,15 @@ export class MoneyOutClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -725,12 +736,15 @@ export class MoneyOutClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -801,12 +815,15 @@ export class MoneyOutClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -882,12 +899,15 @@ export class MoneyOutClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -969,12 +989,15 @@ export class MoneyOutClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -1072,12 +1095,15 @@ export class MoneyOutClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -1116,35 +1142,29 @@ export class MoneyOutClient {
      * @example
      *     await client.moneyOut.reissueOut({
      *         transId: "129-219",
-     *         body: {
-     *             paymentMethod: {
-     *                 method: "ach",
-     *                 achAccount: "9876543210",
-     *                 achAccountType: "savings",
-     *                 achRouting: "021000021",
-     *                 achHolder: "Acme Corp",
-     *                 achHolderType: "business"
-     *             }
+     *         paymentMethod: {
+     *             method: "ach",
+     *             achAccount: "9876543210",
+     *             achAccountType: "savings",
+     *             achRouting: "021000021",
+     *             achHolder: "Acme Corp",
+     *             achHolderType: "business"
      *         }
      *     })
      *
      * @example
      *     await client.moneyOut.reissueOut({
      *         transId: "129-219",
-     *         body: {
-     *             paymentMethod: {
-     *                 method: "check"
-     *             }
+     *         paymentMethod: {
+     *             method: "check"
      *         }
      *     })
      *
      * @example
      *     await client.moneyOut.reissueOut({
      *         transId: "129-219",
-     *         body: {
-     *             paymentMethod: {
-     *                 method: "vcard"
-     *             }
+     *         paymentMethod: {
+     *             method: "vcard"
      *         }
      *     })
      */
@@ -1159,7 +1179,7 @@ export class MoneyOutClient {
         request: Payabli.ReissueOutRequest,
         requestOptions?: MoneyOutClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.ReissuePayoutResponse>> {
-        const { transId, idempotencyKey, body: _body } = request;
+        const { transId, idempotencyKey, ..._body } = request;
         const _queryParams: Record<string, unknown> = {
             transId,
         };
@@ -1202,17 +1222,20 @@ export class MoneyOutClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 403:
                     throw new Payabli.ForbiddenError(
-                        _response.error.body as Payabli.PayabliApiResponsePaylinks,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:

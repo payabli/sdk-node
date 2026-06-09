@@ -2,9 +2,10 @@
 
 /**
  * The vendor's preferred payment method. Can be one of:
- * - `"managed"` - Managed payment method
- * - `"vcard"` - Virtual card payment method
- * - `"check"` - Check payment method
- * - `"ach"` - ACH payment method
+ *
+ * - `managed` — Managed payment method
+ * - `vcard` — Virtual card payment method
+ * - `check` — Check payment method
+ * - `ach` — ACH payment method
  */
 export type VendorPaymentMethodString = string;

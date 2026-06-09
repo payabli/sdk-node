@@ -5,11 +5,30 @@ import type * as Payabli from "../../../../index.js";
 /**
  * @example
  *     {
- *         idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA",
- *         body: {}
+ *         idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA"
  *     }
  */
 export interface NewPageRequest {
+    /** _Optional but recommended_ A unique ID that you can include to prevent duplicating objects or transactions in the case that a request is sent more than once. This key isn't generated in Payabli, you must generate it yourself. This key persists for 2 minutes. After 2 minutes, you can reuse the key if needed. */
     idempotencyKey?: Payabli.IdempotencyKey;
-    body: Payabli.PayabliPages;
+    AdditionalData?: Payabli.AdditionalData;
+    /** Array of credential objects with active services for the page */
+    Credentials?: Payabli.PayabliCredentials[];
+    /** Timestamp of last access to page structure */
+    LastAccess?: string;
+    /** Sections of page */
+    PageContent?: Payabli.PageContent;
+    pageIdentifier?: Payabli.PageIdentifier;
+    /** Settings of page */
+    PageSettings?: Payabli.PageSetting;
+    /** Flag indicating if page is active to accept payments. `0` for false, `1` for true. */
+    published?: number;
+    /** Sections of payment receipt */
+    ReceiptContent?: Payabli.ReceiptContent;
+    /** Page identifier. Must be unique in platform. */
+    Subdomain?: Payabli.Subdomain;
+    /** Total amount to pay in this page */
+    totalAmount?: number;
+    /** Base64 encoded image of CAPTCHA associated to this page load */
+    validationCode?: string;
 }

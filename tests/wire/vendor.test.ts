@@ -9,7 +9,7 @@ describe("VendorClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            vendorNumber: "1234",
+            vendorNumber: "VEN-123",
             name1: "Herman's Coatings and Masonry",
             name2: "<string>",
             ein: "12-3456789",
@@ -66,7 +66,7 @@ describe("VendorClient", () => {
             .build();
 
         const response = await client.vendor.addVendor("8cfec329267", {
-            vendorNumber: "1234",
+            vendorNumber: "VEN-123",
             name1: "Herman's Coatings and Masonry",
             name2: "<string>",
             ein: "12-3456789",
@@ -138,7 +138,7 @@ describe("VendorClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -178,7 +178,7 @@ describe("VendorClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -194,177 +194,12 @@ describe("VendorClient", () => {
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
-    test("DeleteVendor (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 3890, responseText: "Success" };
-
-        server.mockEndpoint().delete("/Vendor/1").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
-
-        const response = await client.vendor.deleteVendor(1);
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("DeleteVendor (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server.mockEndpoint().delete("/Vendor/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.vendor.deleteVendor(1);
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("DeleteVendor (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server.mockEndpoint().delete("/Vendor/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.vendor.deleteVendor(1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("DeleteVendor (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server.mockEndpoint().delete("/Vendor/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.vendor.deleteVendor(1);
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("DeleteVendor (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { responseText: "responseText" };
-
-        server.mockEndpoint().delete("/Vendor/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.vendor.deleteVendor(1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
-    });
-
-    test("EditVendor (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { name1: "Theodore's Janitorial" };
-        const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 3890, responseText: "Success" };
-
-        server
-            .mockEndpoint()
-            .put("/Vendor/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.vendor.editVendor(1, {
-            name1: "Theodore's Janitorial",
-        });
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("EditVendor (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .put("/Vendor/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.vendor.editVendor(1, {});
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("EditVendor (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .put("/Vendor/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.vendor.editVendor(1, {});
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("EditVendor (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .put("/Vendor/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.vendor.editVendor(1, {});
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("EditVendor (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
-
-        server
-            .mockEndpoint()
-            .put("/Vendor/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.vendor.editVendor(1, {});
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
-    });
-
     test("GetVendor", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            VendorNumber: "1234",
+            VendorNumber: "VEN-123",
             Name1: "Herman's Coatings",
             Name2: "Herman's Coating Supply Company, LLC",
             EIN: "123456789",
@@ -401,7 +236,7 @@ describe("VendorClient", () => {
                 default: true,
             },
             VendorStatus: 1,
-            VendorId: 1,
+            VendorId: 456,
             Summary: {
                 ActiveBills: 2,
                 PendingBills: 4,
@@ -456,11 +291,176 @@ describe("VendorClient", () => {
         expect(response).toEqual(rawResponseBody);
     });
 
+    test("EditVendor (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { name1: "Theodore's Janitorial" };
+        const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 3890, responseText: "Success" };
+
+        server
+            .mockEndpoint()
+            .put("/Vendor/1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.vendor.editVendor(1, {
+            name1: "Theodore's Janitorial",
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("EditVendor (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .put("/Vendor/1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.vendor.editVendor(1, {});
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("EditVendor (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .put("/Vendor/1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.vendor.editVendor(1, {});
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("EditVendor (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .put("/Vendor/1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.vendor.editVendor(1, {});
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("EditVendor (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .put("/Vendor/1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.vendor.editVendor(1, {});
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("DeleteVendor (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 3890, responseText: "Success" };
+
+        server.mockEndpoint().delete("/Vendor/1").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const response = await client.vendor.deleteVendor(1);
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("DeleteVendor (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server.mockEndpoint().delete("/Vendor/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.vendor.deleteVendor(1);
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("DeleteVendor (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server.mockEndpoint().delete("/Vendor/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.vendor.deleteVendor(1);
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("DeleteVendor (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server.mockEndpoint().delete("/Vendor/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.vendor.deleteVendor(1);
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("DeleteVendor (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server.mockEndpoint().delete("/Vendor/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.vendor.deleteVendor(1);
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
     test("EnrichVendor (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            vendorId: 3890,
+            vendorId: 456,
             scope: ["invoice_scan"],
             applyEnrichmentData: false,
             fallbackMethod: "check",
@@ -487,7 +487,7 @@ describe("VendorClient", () => {
                         cardAccepted: "unable to determine",
                         achAccepted: "unable to determine",
                         checkAccepted: "yes",
-                        invoiceNumber: "INV-70683",
+                        invoiceNumber: "INV-2345",
                         amountDue: 390.5,
                         dueDate: "2026-01-31",
                     },
@@ -505,7 +505,7 @@ describe("VendorClient", () => {
             .build();
 
         const response = await client.vendor.enrichVendor("8cfec329267", {
-            vendorId: 3890,
+            vendorId: 456,
             scope: ["invoice_scan"],
             applyEnrichmentData: false,
             fallbackMethod: "check",
@@ -522,7 +522,7 @@ describe("VendorClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            vendorId: 3891,
+            vendorId: 456,
             scope: ["web_search"],
             applyEnrichmentData: false,
             fallbackMethod: "check",
@@ -568,7 +568,7 @@ describe("VendorClient", () => {
             .build();
 
         const response = await client.vendor.enrichVendor("8cfec329267", {
-            vendorId: 3891,
+            vendorId: 456,
             scope: ["web_search"],
             applyEnrichmentData: false,
             fallbackMethod: "check",
@@ -580,7 +580,7 @@ describe("VendorClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            vendorId: 3891,
+            vendorId: 456,
             scope: ["web_search"],
             applyEnrichmentData: true,
             fallbackMethod: "check",
@@ -626,7 +626,7 @@ describe("VendorClient", () => {
             .build();
 
         const response = await client.vendor.enrichVendor("8cfec329267", {
-            vendorId: 3891,
+            vendorId: 456,
             scope: ["web_search"],
             applyEnrichmentData: true,
             fallbackMethod: "check",
@@ -660,7 +660,7 @@ describe("VendorClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { vendorId: 1000000 };
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -704,7 +704,7 @@ describe("VendorClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { vendorId: 1000000 };
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()

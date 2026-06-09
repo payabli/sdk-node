@@ -15,10 +15,13 @@ export declare namespace CheckCaptureClient {
     export interface RequestOptions extends BaseRequestOptions {}
 }
 
+/**
+ * The CheckCapture service handles remote check deposit and check conversion operations for accepting check payments electronically. It processes check images captured via mobile devices or scanners, performs image quality validation, and extracts MICR data for routing and account numbers. The service supports check 21 compliance for electronic check conversion and provides duplicate detection to prevent double deposits. It integrates with ACH processing to convert checks into electronic payments, maintains check images for record retention, and provides status tracking for check processing workflows. The service includes fraud detection capabilities and integrates with identity verification for risk management.
+ */
 export class CheckCaptureClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<CheckCaptureClient.Options>;
 
-    constructor(options: CheckCaptureClient.Options = {}) {
+    constructor(options: CheckCaptureClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -37,7 +40,7 @@ export class CheckCaptureClient {
      *
      * @example
      *     await client.checkCapture.checkProcessing({
-     *         entryPoint: "47abcfea12",
+     *         entryPoint: "8cfec329267",
      *         frontImage: "/9j/4AAQSkZJRgABAQEASABIAAD...",
      *         rearImage: "/9j/4AAQSkZJRgABAQEASABIAAD...",
      *         checkAmount: 12550
@@ -88,12 +91,15 @@ export class CheckCaptureClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:

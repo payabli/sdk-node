@@ -6,41 +6,36 @@ import type * as Payabli from "../../../../index.js";
  * @example
  *     {
  *         transId: "129-219",
- *         body: {
- *             paymentMethod: {
- *                 method: "ach",
- *                 achAccount: "9876543210",
- *                 achAccountType: "savings",
- *                 achRouting: "021000021",
- *                 achHolder: "Acme Corp",
- *                 achHolderType: "business"
- *             }
+ *         paymentMethod: {
+ *             method: "ach",
+ *             achAccount: "9876543210",
+ *             achAccountType: "savings",
+ *             achRouting: "021000021",
+ *             achHolder: "Acme Corp",
+ *             achHolderType: "business"
  *         }
  *     }
  *
  * @example
  *     {
  *         transId: "129-219",
- *         body: {
- *             paymentMethod: {
- *                 method: "check"
- *             }
+ *         paymentMethod: {
+ *             method: "check"
  *         }
  *     }
  *
  * @example
  *     {
  *         transId: "129-219",
- *         body: {
- *             paymentMethod: {
- *                 method: "vcard"
- *             }
+ *         paymentMethod: {
+ *             method: "vcard"
  *         }
  *     }
  */
 export interface ReissueOutRequest {
     /** The transaction ID of the payout to reissue. */
     transId: string;
+    /** _Optional but recommended_ A unique ID that you can include to prevent duplicating objects or transactions in the case that a request is sent more than once. This key isn't generated in Payabli, you must generate it yourself. This key persists for 2 minutes. After 2 minutes, you can reuse the key if needed. */
     idempotencyKey?: Payabli.IdempotencyKey;
-    body: Payabli.ReissuePayoutBody;
+    paymentMethod: Payabli.ReissuePaymentMethod;
 }

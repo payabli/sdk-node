@@ -3,7 +3,7 @@
 /**
  * @example
  *     {
- *         entry: "478ae1234"
+ *         entry: "8cfec329267"
  *     }
  */
 export interface GetUserRequest {

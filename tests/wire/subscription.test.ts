@@ -22,7 +22,7 @@ describe("SubscriptionClient", () => {
                 BillingZip: "45567",
                 CompanyName: "Sunshine LLC",
                 customerId: 4440,
-                CustomerNumber: "3456-7645A",
+                CustomerNumber: "C-90010",
                 customerStatus: 1,
                 FirstName: "John",
                 Identifiers: ['\\"firstname\\"', '\\"lastname\\"', '\\"email\\"', '\\"customId\\"'],
@@ -118,7 +118,7 @@ describe("SubscriptionClient", () => {
             },
             PaypointDbaname: "Sunshine Gutters",
             PaypointEntryname: "d193cf9a46",
-            PaypointId: 255,
+            PaypointId: 3040,
             PaypointLegalname: "Sunshine Services, LLC",
             PlanId: 0,
             Source: "api",
@@ -132,18 +132,146 @@ describe("SubscriptionClient", () => {
                 },
             ],
             SubStatus: 1,
+            SubscriptionType: "Regular",
             TotalAmount: 103,
             TotalCycles: 24,
             UntilCancelled: true,
         };
 
-        server.mockEndpoint().get("/Subscription/263").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+        server.mockEndpoint().get("/Subscription/231").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.subscription.getSubscription(263);
+        const response = await client.subscription.getSubscription(231);
         expect(response).toEqual(rawResponseBody);
     });
 
     test("GetSubscription (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            CreatedAt: "2026-05-12T15:25:28Z",
+            Customer: {
+                BillingAddress1: "1111 West 1st Street",
+                BillingAddress2: "Suite 200",
+                BillingCity: "Miami",
+                BillingCountry: "US",
+                BillingEmail: "example@email.com",
+                BillingPhone: "5555555555",
+                BillingState: "FL",
+                BillingZip: "45567",
+                CompanyName: "Sunshine LLC",
+                customerId: 4440,
+                CustomerNumber: "C-90010",
+                customerStatus: 1,
+                FirstName: "John",
+                Identifiers: ['\\"firstname\\"', '\\"lastname\\"'],
+                LastName: "Doe",
+                ShippingAddress1: "123 Walnut St",
+                ShippingAddress2: "STE 900",
+                ShippingCity: "Johnson City",
+                ShippingCountry: "US",
+                ShippingState: "TN",
+                ShippingZip: "37619",
+            },
+            EndDate: "2046-05-01T00:00:00Z",
+            EntrypageId: 0,
+            ExternalPaypointID: "Paypoint-100",
+            FeeAmount: 0,
+            Frequency: "firstofmonth",
+            IdSub: 50317,
+            LastRun: "2026-05-13T14:14:22Z",
+            LastUpdated: "2026-05-12T15:25:28Z",
+            LeftCycles: 238,
+            Method: "card",
+            NetAmount: 0,
+            NextDate: "2026-06-01T00:00:00Z",
+            ParentOrgName: "PropertyManager Pro",
+            PaymentData: {
+                AccountExp: "11/29",
+                accountId: "accountId",
+                AccountType: "visa",
+                AccountZip: "90210",
+                binData: {
+                    binMatchedLength: "6",
+                    binCardBrand: "Visa",
+                    binCardType: "Credit",
+                    binCardCategory: "PLATINUM",
+                    binCardIssuer: "Bank of Example",
+                    binCardIssuerCountry: "United States",
+                    binCardIssuerCountryCodeA2: "US",
+                    binCardIssuerCountryNumber: "840",
+                    binCardIsRegulated: "false",
+                    binCardUseCategory: "Consumer",
+                    binCardIssuerCountryCodeA3: "USA",
+                },
+                HolderName: "Chad Mercia",
+                Initiator: "payor",
+                MaskedAccount: "4XXXXXXXX1111",
+                paymentDetails: { categories: [], currency: "USD", serviceFee: 0, splitFunding: [], totalAmount: 0 },
+                Sequence: "subsequent",
+                StoredId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+                StoredMethodUsageType: "subscription",
+            },
+            PaypointDbaname: "Sunshine Gutters",
+            PaypointEntryname: "d193cf9a46",
+            PaypointId: 3040,
+            PaypointLegalname: "Sunshine Services, LLC",
+            PlanId: 0,
+            Source: "api",
+            StartDate: "2026-05-01T00:00:00Z",
+            StoredMethod: {
+                IdPmethod: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+                Method: "card",
+                Descriptor: "visa",
+                MaskedAccount: "4XXXXXXXX1111",
+                ExpDate: "1129",
+                HolderName: "Chad Mercia",
+                AchSecCode: null,
+                AchHolderType: null,
+                IsValidatedACH: false,
+                BIN: "",
+                binData: {
+                    binMatchedLength: "6",
+                    binCardBrand: "Visa",
+                    binCardType: "Credit",
+                    binCardCategory: "PLATINUM",
+                    binCardIssuer: "Bank of Example",
+                    binCardIssuerCountry: "United States",
+                    binCardIssuerCountryCodeA2: "US",
+                    binCardIssuerCountryNumber: "840",
+                    binCardIsRegulated: "false",
+                    binCardUseCategory: "Consumer",
+                    binCardIssuerCountryCodeA3: "USA",
+                },
+                ABA: "",
+                PostalCode: "37619",
+                MethodType: "Single Merchant",
+                LastUpdated: "2026-05-12T15:25:28Z",
+                CardUpdatedOn: "1970-01-01T00:00:00Z",
+            },
+            SubEvents: [
+                { description: "created", eventTime: "2026-05-12T15:25:27Z", refData: "0HNLG6L6JNIP5:00000001" },
+                {
+                    description: "executed",
+                    eventTime: "2026-05-13T14:14:27Z",
+                    extraData: '{"totalAmount":13.5,"serviceFee":1.5}',
+                    refData: "autopay worker",
+                },
+            ],
+            SubStatus: 1,
+            SubscriptionType: "BalanceDriven",
+            TotalAmount: 0,
+            TotalCycles: 239,
+            UntilCancelled: true,
+        };
+
+        server.mockEndpoint().get("/Subscription/231").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const response = await client.subscription.getSubscription(231);
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("GetSubscription (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -156,11 +284,11 @@ describe("SubscriptionClient", () => {
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
-    test("GetSubscription (3)", async () => {
+    test("GetSubscription (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server.mockEndpoint().get("/Subscription/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
@@ -169,7 +297,7 @@ describe("SubscriptionClient", () => {
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
-    test("GetSubscription (4)", async () => {
+    test("GetSubscription (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -182,343 +310,16 @@ describe("SubscriptionClient", () => {
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
-    test("GetSubscription (5)", async () => {
+    test("GetSubscription (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server.mockEndpoint().get("/Subscription/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
             return await client.subscription.getSubscription(1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
-    });
-
-    test("NewSubscription (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            customerData: { customerId: 4440 },
-            entryPoint: "f743aed24a",
-            paymentDetails: { serviceFee: 0, totalAmount: 100 },
-            paymentMethod: {
-                cardcvv: "123",
-                cardexp: "02/25",
-                cardHolder: "John Cassian",
-                cardnumber: "4111111111111111",
-                cardzip: "37615",
-                initiator: "payor",
-                method: "card",
-            },
-            scheduleDetails: { endDate: "03-20-2025", frequency: "weekly", planId: 1, startDate: "09-20-2024" },
-        };
-        const rawResponseBody = { responseText: "Success", isSuccess: true, responseData: 396, customerId: 4440 };
-
-        server
-            .mockEndpoint()
-            .post("/Subscription/add")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.subscription.newSubscription({
-            body: {
-                customerData: {
-                    customerId: 4440,
-                },
-                entryPoint: "f743aed24a",
-                paymentDetails: {
-                    serviceFee: 0,
-                    totalAmount: 100,
-                },
-                paymentMethod: {
-                    cardcvv: "123",
-                    cardexp: "02/25",
-                    cardHolder: "John Cassian",
-                    cardnumber: "4111111111111111",
-                    cardzip: "37615",
-                    initiator: "payor",
-                    method: "card",
-                },
-                scheduleDetails: {
-                    endDate: "03-20-2025",
-                    frequency: "weekly",
-                    planId: 1,
-                    startDate: "09-20-2024",
-                },
-            },
-        });
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("NewSubscription (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            customerData: { customerId: 4440 },
-            entryPoint: "f743aed24a",
-            paymentDetails: { serviceFee: 0, totalAmount: 100 },
-            paymentMethod: {
-                achAccount: "3453445666",
-                achAccountType: "Checking",
-                achCode: "PPD",
-                achHolder: "John Cassian",
-                achHolderType: "personal",
-                achRouting: "021000021",
-                method: "ach",
-            },
-            scheduleDetails: { endDate: "03-20-2025", frequency: "weekly", planId: 1, startDate: "09-20-2024" },
-        };
-        const rawResponseBody = { responseText: "Success", isSuccess: true, responseData: 396, customerId: 4440 };
-
-        server
-            .mockEndpoint()
-            .post("/Subscription/add")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.subscription.newSubscription({
-            body: {
-                customerData: {
-                    customerId: 4440,
-                },
-                entryPoint: "f743aed24a",
-                paymentDetails: {
-                    serviceFee: 0,
-                    totalAmount: 100,
-                },
-                paymentMethod: {
-                    achAccount: "3453445666",
-                    achAccountType: "Checking",
-                    achCode: "PPD",
-                    achHolder: "John Cassian",
-                    achHolderType: "personal",
-                    achRouting: "021000021",
-                    method: "ach",
-                },
-                scheduleDetails: {
-                    endDate: "03-20-2025",
-                    frequency: "weekly",
-                    planId: 1,
-                    startDate: "09-20-2024",
-                },
-            },
-        });
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("NewSubscription (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            customerData: { customerId: 4440 },
-            entryPoint: "f743aed24a",
-            paymentDetails: { serviceFee: 0, totalAmount: 100 },
-            paymentMethod: {
-                initiator: "merchant",
-                storedMethodId: "4000e8c6-3add-4200-8ac2-9b8a4f8b1639-1323",
-                storedMethodUsageType: "recurring",
-            },
-            scheduleDetails: { endDate: "03-20-2025", frequency: "weekly", planId: 1, startDate: "09-20-2024" },
-        };
-        const rawResponseBody = { responseText: "Success", isSuccess: true, responseData: 396, customerId: 4440 };
-
-        server
-            .mockEndpoint()
-            .post("/Subscription/add")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.subscription.newSubscription({
-            body: {
-                customerData: {
-                    customerId: 4440,
-                },
-                entryPoint: "f743aed24a",
-                paymentDetails: {
-                    serviceFee: 0,
-                    totalAmount: 100,
-                },
-                paymentMethod: {
-                    initiator: "merchant",
-                    storedMethodId: "4000e8c6-3add-4200-8ac2-9b8a4f8b1639-1323",
-                    storedMethodUsageType: "recurring",
-                },
-                scheduleDetails: {
-                    endDate: "03-20-2025",
-                    frequency: "weekly",
-                    planId: 1,
-                    startDate: "09-20-2024",
-                },
-            },
-        });
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("NewSubscription (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .post("/Subscription/add")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.subscription.newSubscription({
-                body: {},
-            });
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("NewSubscription (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .post("/Subscription/add")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.subscription.newSubscription({
-                body: {},
-            });
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("NewSubscription (6)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .post("/Subscription/add")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.subscription.newSubscription({
-                body: {},
-            });
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("NewSubscription (7)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
-
-        server
-            .mockEndpoint()
-            .post("/Subscription/add")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.subscription.newSubscription({
-                body: {},
-            });
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
-    });
-
-    test("RemoveSubscription (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { isSuccess: true, responseData: "396", responseText: "Success" };
-
-        server
-            .mockEndpoint()
-            .delete("/Subscription/396")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.subscription.removeSubscription(396);
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("RemoveSubscription (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server.mockEndpoint().delete("/Subscription/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.subscription.removeSubscription(1);
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("RemoveSubscription (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server.mockEndpoint().delete("/Subscription/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.subscription.removeSubscription(1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("RemoveSubscription (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server.mockEndpoint().delete("/Subscription/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.subscription.removeSubscription(1);
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("RemoveSubscription (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { responseText: "responseText" };
-
-        server.mockEndpoint().delete("/Subscription/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.subscription.removeSubscription(1);
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
@@ -579,7 +380,7 @@ describe("SubscriptionClient", () => {
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             paymentDetails: { serviceFee: 0, totalAmount: 100 },
-            scheduleDetails: { endDate: "03-20-2025", frequency: "weekly", planId: 1, startDate: "09-20-2024" },
+            scheduleDetails: { endDate: "2025-03-20", frequency: "weekly", planId: 1, startDate: "2024-09-20" },
         };
         const rawResponseBody = {
             responseText: "Success",
@@ -603,12 +404,381 @@ describe("SubscriptionClient", () => {
                 totalAmount: 100,
             },
             scheduleDetails: {
-                endDate: "03-20-2025",
+                endDate: "2025-03-20",
                 frequency: "weekly",
                 planId: 1,
-                startDate: "09-20-2024",
+                startDate: "2024-09-20",
             },
         });
         expect(response).toEqual(rawResponseBody);
+    });
+
+    test("RemoveSubscription (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseData: "396", responseText: "Success" };
+
+        server
+            .mockEndpoint()
+            .delete("/Subscription/231")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.subscription.removeSubscription(231);
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("RemoveSubscription (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server.mockEndpoint().delete("/Subscription/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.subscription.removeSubscription(1);
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("RemoveSubscription (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server.mockEndpoint().delete("/Subscription/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.subscription.removeSubscription(1);
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("RemoveSubscription (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server.mockEndpoint().delete("/Subscription/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.subscription.removeSubscription(1);
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("RemoveSubscription (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server.mockEndpoint().delete("/Subscription/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.subscription.removeSubscription(1);
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("NewSubscription (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            customerData: { customerId: 4440 },
+            entryPoint: "8cfec329267",
+            paymentDetails: { serviceFee: 0, totalAmount: 100 },
+            paymentMethod: {
+                cardcvv: "123",
+                cardexp: "02/25",
+                cardHolder: "John Cassian",
+                cardnumber: "4111111111111111",
+                cardzip: "37615",
+                initiator: "payor",
+                method: "card",
+            },
+            scheduleDetails: { endDate: "2025-03-20", frequency: "weekly", planId: 1, startDate: "2024-09-20" },
+        };
+        const rawResponseBody = { responseText: "Success", isSuccess: true, responseData: 396, customerId: 4440 };
+
+        server
+            .mockEndpoint()
+            .post("/Subscription/add")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.subscription.newSubscription({
+            customerData: {
+                customerId: 4440,
+            },
+            entryPoint: "8cfec329267",
+            paymentDetails: {
+                serviceFee: 0,
+                totalAmount: 100,
+            },
+            paymentMethod: {
+                cardcvv: "123",
+                cardexp: "02/25",
+                cardHolder: "John Cassian",
+                cardnumber: "4111111111111111",
+                cardzip: "37615",
+                initiator: "payor",
+                method: "card",
+            },
+            scheduleDetails: {
+                endDate: "2025-03-20",
+                frequency: "weekly",
+                planId: 1,
+                startDate: "2024-09-20",
+            },
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("NewSubscription (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            customerData: { customerId: 4440 },
+            entryPoint: "8cfec329267",
+            paymentDetails: { serviceFee: 0, totalAmount: 100 },
+            paymentMethod: {
+                achAccount: "3453445666",
+                achAccountType: "Checking",
+                achCode: "PPD",
+                achHolder: "John Cassian",
+                achHolderType: "personal",
+                achRouting: "021000021",
+                method: "ach",
+            },
+            scheduleDetails: { endDate: "2025-03-20", frequency: "weekly", planId: 1, startDate: "2024-09-20" },
+        };
+        const rawResponseBody = { responseText: "Success", isSuccess: true, responseData: 396, customerId: 4440 };
+
+        server
+            .mockEndpoint()
+            .post("/Subscription/add")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.subscription.newSubscription({
+            customerData: {
+                customerId: 4440,
+            },
+            entryPoint: "8cfec329267",
+            paymentDetails: {
+                serviceFee: 0,
+                totalAmount: 100,
+            },
+            paymentMethod: {
+                achAccount: "3453445666",
+                achAccountType: "Checking",
+                achCode: "PPD",
+                achHolder: "John Cassian",
+                achHolderType: "personal",
+                achRouting: "021000021",
+                method: "ach",
+            },
+            scheduleDetails: {
+                endDate: "2025-03-20",
+                frequency: "weekly",
+                planId: 1,
+                startDate: "2024-09-20",
+            },
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("NewSubscription (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            customerData: { customerId: 4440 },
+            entryPoint: "8cfec329267",
+            paymentDetails: { serviceFee: 0, totalAmount: 100 },
+            paymentMethod: {
+                initiator: "merchant",
+                storedMethodId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+                storedMethodUsageType: "recurring",
+            },
+            scheduleDetails: { endDate: "2025-03-20", frequency: "weekly", planId: 1, startDate: "2024-09-20" },
+        };
+        const rawResponseBody = { responseText: "Success", isSuccess: true, responseData: 396, customerId: 4440 };
+
+        server
+            .mockEndpoint()
+            .post("/Subscription/add")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.subscription.newSubscription({
+            customerData: {
+                customerId: 4440,
+            },
+            entryPoint: "8cfec329267",
+            paymentDetails: {
+                serviceFee: 0,
+                totalAmount: 100,
+            },
+            paymentMethod: {
+                initiator: "merchant",
+                storedMethodId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+                storedMethodUsageType: "recurring",
+            },
+            scheduleDetails: {
+                endDate: "2025-03-20",
+                frequency: "weekly",
+                planId: 1,
+                startDate: "2024-09-20",
+            },
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("NewSubscription (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            customerData: { customerId: 4440 },
+            entryPoint: "8cfec329267",
+            subscriptionType: "BalanceDriven",
+            paymentDetails: { serviceFee: 0, totalAmount: 100 },
+            paymentMethod: {
+                cardcvv: "123",
+                cardexp: "02/25",
+                cardHolder: "John Cassian",
+                cardnumber: "4111111111111111",
+                cardzip: "37615",
+                initiator: "payor",
+                method: "card",
+            },
+            scheduleDetails: { frequency: "endofmonth" },
+        };
+        const rawResponseBody = { responseText: "Success", isSuccess: true, responseData: 396, customerId: 4440 };
+
+        server
+            .mockEndpoint()
+            .post("/Subscription/add")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.subscription.newSubscription({
+            customerData: {
+                customerId: 4440,
+            },
+            entryPoint: "8cfec329267",
+            subscriptionType: "BalanceDriven",
+            paymentDetails: {
+                serviceFee: 0,
+                totalAmount: 100,
+            },
+            paymentMethod: {
+                cardcvv: "123",
+                cardexp: "02/25",
+                cardHolder: "John Cassian",
+                cardnumber: "4111111111111111",
+                cardzip: "37615",
+                initiator: "payor",
+                method: "card",
+            },
+            scheduleDetails: {
+                frequency: "endofmonth",
+            },
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("NewSubscription (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/Subscription/add")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.subscription.newSubscription();
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("NewSubscription (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .post("/Subscription/add")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.subscription.newSubscription();
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("NewSubscription (7)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/Subscription/add")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.subscription.newSubscription();
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("NewSubscription (8)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .post("/Subscription/add")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.subscription.newSubscription();
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 });

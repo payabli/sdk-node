@@ -9,5 +9,5 @@ export interface ConfigureApplePaypointApiResponse {
     responseData?: Payabli.ApplePayPaypointRegistrationData | undefined;
     responseText: Payabli.ResponseText;
     /** Field not in use on this endpoint */
-    roomId?: number | undefined;
+    roomId?: (number | null) | undefined;
 }

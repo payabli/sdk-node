@@ -4,7 +4,7 @@ import type * as Payabli from "../index.js";
 
 export interface LineItem {
     /** Array of tags classifying item or product. */
-    itemCategories?: (string | undefined)[] | undefined;
+    itemCategories?: string[] | undefined;
     itemCommodityCode?: Payabli.ItemCommodityCode | undefined;
     /** Item or product price per unit. */
     itemCost: number;

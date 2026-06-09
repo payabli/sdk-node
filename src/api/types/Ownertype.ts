@@ -3,7 +3,7 @@
 /**
  * Entity owner type. Accepted values:
  *
- *   - `0`: Organization/partner
- *   - `2`: Paypoint
+ * - `0`: Organization/partner
+ * - `2`: Paypoint
  */
 export type Ownertype = number;

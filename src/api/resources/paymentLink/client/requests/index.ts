@@ -1,3 +1,4 @@
+export type { PatchOutPaymentLinkRequest } from "./PatchOutPaymentLinkRequest.js";
 export type { PayLinkDataBill } from "./PayLinkDataBill.js";
 export type { PayLinkDataInvoice } from "./PayLinkDataInvoice.js";
 export type { PayLinkDataOut } from "./PayLinkDataOut.js";

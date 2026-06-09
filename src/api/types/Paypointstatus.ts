@@ -3,8 +3,7 @@
 /**
  * The paypoint's status.
  *
- * Active - `1`
- *
- * Inactive - 0
+ * - `1` — Active
+ * - `0` — Inactive
  */
 export type Paypointstatus = number;

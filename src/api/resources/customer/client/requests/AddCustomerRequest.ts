@@ -5,19 +5,17 @@ import type * as Payabli from "../../../../index.js";
 /**
  * @example
  *     {
- *         body: {
- *             customerNumber: "12356ACB",
- *             firstname: "Irene",
- *             lastname: "Canizales",
- *             address1: "123 Bishop's Trail",
- *             city: "Mountain City",
- *             state: "TN",
- *             zip: "37612",
- *             country: "US",
- *             email: "irene@canizalesconcrete.com",
- *             identifierFields: ["email"],
- *             timeZone: -5
- *         }
+ *         customerNumber: "C-90010",
+ *         firstname: "Irene",
+ *         lastname: "Canizales",
+ *         address1: "123 Bishop's Trail",
+ *         city: "Mountain City",
+ *         state: "TN",
+ *         zip: "37612",
+ *         country: "US",
+ *         email: "irene@canizalesconcrete.com",
+ *         identifierFields: ["email"],
+ *         timeZone: -5
  *     }
  */
 export interface AddCustomerRequest {
@@ -25,6 +23,47 @@ export interface AddCustomerRequest {
     forceCustomerCreation?: boolean;
     /** Flag indicating to replace existing customer with a new record. Possible values: 0 (don't replace), 1 (replace). Default is `0`. */
     replaceExisting?: number;
+    /** _Optional but recommended_ A unique ID that you can include to prevent duplicating objects or transactions in the case that a request is sent more than once. This key isn't generated in Payabli, you must generate it yourself. This key persists for 2 minutes. After 2 minutes, you can reuse the key if needed. */
     idempotencyKey?: Payabli.IdempotencyKey;
-    body: Payabli.CustomerData;
+    customerNumber?: Payabli.CustomerNumberNullable;
+    /** Customer username for customer portal */
+    customerUsername?: string;
+    /** Customer password for customer portal */
+    customerPsw?: string;
+    customerStatus?: Payabli.CustomerStatus;
+    /** Company name */
+    company?: string;
+    /** Customer first name */
+    firstname?: string;
+    /** Customer last name */
+    lastname?: string;
+    /** Customer phone number */
+    phone?: string;
+    /** Customer email address. */
+    email?: Payabli.Email;
+    /** Customer address */
+    address?: string;
+    /** Additional customer address */
+    address1?: string;
+    /** Customer city */
+    city?: string;
+    /** Customer State */
+    state?: string;
+    /** Customer postal code */
+    zip?: string;
+    /** Customer country in ISO-3166-1 alpha 2 format. See https://en.wikipedia.org/wiki/ISO_3166-1 for reference. */
+    country?: string;
+    shippingAddress?: Payabli.Shippingaddress;
+    shippingAddress1?: Payabli.Shippingaddressadditional;
+    shippingCity?: Payabli.Shippingcity;
+    shippingState?: Payabli.Shippingstate;
+    shippingZip?: Payabli.Shippingzip;
+    shippingCountry?: Payabli.Shippingcountry;
+    /** Customer balance. */
+    balance?: number;
+    timeZone?: Payabli.Timezone;
+    /** Additional Custom fields in format "key":"value". */
+    additionalFields?: Record<string, string>;
+    identifierFields?: Payabli.Identifierfields;
+    createdAt?: Payabli.CreatedAt;
 }

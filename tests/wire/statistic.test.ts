@@ -53,15 +53,15 @@ describe("StatisticClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Statistic/basic/ytd/m/1/1000000")
+            .get("/Statistic/basic/custom/m/2/1000000")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.statistic.basicStats("ytd", "m", 1, 1000000, {
-            endDate: "2025-11-01",
-            startDate: "2025-11-30",
+        const response = await client.statistic.basicStats("custom", "m", 2, 1000000, {
+            startDate: "2025-11-01",
+            endDate: "2025-11-30",
         });
         expect(response).toEqual(rawResponseBody);
     });
@@ -89,7 +89,7 @@ describe("StatisticClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -127,7 +127,7 @@ describe("StatisticClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -150,13 +150,13 @@ describe("StatisticClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Statistic/customerbasic/ytd/m/998")
+            .get("/Statistic/customerbasic/ytd/m/4440")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.statistic.customerBasicStats("ytd", "m", 998);
+        const response = await client.statistic.customerBasicStats("ytd", "m", 4440);
         expect(response).toEqual(rawResponseBody);
     });
 
@@ -183,7 +183,7 @@ describe("StatisticClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -221,7 +221,7 @@ describe("StatisticClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -252,13 +252,13 @@ describe("StatisticClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Statistic/subscriptions/30/1/1000000")
+            .get("/Statistic/subscriptions/30/2/1000000")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.statistic.subStats("30", 1, 1000000);
+        const response = await client.statistic.subStats("30", 2, 1000000);
         expect(response).toEqual(rawResponseBody);
     });
 
@@ -285,7 +285,7 @@ describe("StatisticClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -323,7 +323,7 @@ describe("StatisticClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -338,7 +338,7 @@ describe("StatisticClient", () => {
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
-    test("VendorBasicStats", async () => {
+    test("VendorBasicStats (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -374,5 +374,81 @@ describe("StatisticClient", () => {
 
         const response = await client.statistic.vendorBasicStats("ytd", "m", 1);
         expect(response).toEqual(rawResponseBody);
+    });
+
+    test("VendorBasicStats (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Statistic/vendorbasic/mode/freq/1")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.statistic.vendorBasicStats("mode", "freq", 1);
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("VendorBasicStats (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .get("/Statistic/vendorbasic/mode/freq/1")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.statistic.vendorBasicStats("mode", "freq", 1);
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("VendorBasicStats (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Statistic/vendorbasic/mode/freq/1")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.statistic.vendorBasicStats("mode", "freq", 1);
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("VendorBasicStats (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .get("/Statistic/vendorbasic/mode/freq/1")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.statistic.vendorBasicStats("mode", "freq", 1);
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 });

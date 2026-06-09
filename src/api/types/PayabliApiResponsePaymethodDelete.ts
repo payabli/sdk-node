@@ -7,15 +7,6 @@ import type * as Payabli from "../index.js";
  */
 export interface PayabliApiResponsePaymethodDelete {
     isSuccess?: Payabli.IsSuccess | undefined;
-    responseData?: PayabliApiResponsePaymethodDelete.ResponseData | undefined;
+    responseData?: Payabli.PayabliApiResponsePaymethodDeleteResponseData | undefined;
     responseText: Payabli.ResponseText;
-}
-
-export namespace PayabliApiResponsePaymethodDelete {
-    export interface ResponseData {
-        /** The method's reference ID. */
-        referenceId?: Payabli.MethodReferenceId | undefined;
-        resultCode?: Payabli.ResultCode | undefined;
-        resultText?: Payabli.Resulttext | undefined;
-    }
 }

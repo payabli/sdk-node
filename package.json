@@ -1,6 +1,6 @@
 {
     "name": "@payabli/sdk-node",
-    "version": "0.0.147",
+    "version": "1.0.0",
     "private": false,
     "repository": {
         "type": "git",
@@ -33,27 +33,16 @@
             },
             "default": "./dist/cjs/api/resources/bill/exports.js"
         },
-        "./boarding": {
+        "./customer": {
             "import": {
-                "types": "./dist/esm/api/resources/boarding/exports.d.mts",
-                "default": "./dist/esm/api/resources/boarding/exports.mjs"
+                "types": "./dist/esm/api/resources/customer/exports.d.mts",
+                "default": "./dist/esm/api/resources/customer/exports.mjs"
             },
             "require": {
-                "types": "./dist/cjs/api/resources/boarding/exports.d.ts",
-                "default": "./dist/cjs/api/resources/boarding/exports.js"
+                "types": "./dist/cjs/api/resources/customer/exports.d.ts",
+                "default": "./dist/cjs/api/resources/customer/exports.js"
             },
-            "default": "./dist/cjs/api/resources/boarding/exports.js"
-        },
-        "./chargeBacks": {
-            "import": {
-                "types": "./dist/esm/api/resources/chargeBacks/exports.d.mts",
-                "default": "./dist/esm/api/resources/chargeBacks/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/chargeBacks/exports.d.ts",
-                "default": "./dist/cjs/api/resources/chargeBacks/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/chargeBacks/exports.js"
+            "default": "./dist/cjs/api/resources/customer/exports.js"
         },
         "./checkCapture": {
             "import": {
@@ -66,105 +55,6 @@
             },
             "default": "./dist/cjs/api/resources/checkCapture/exports.js"
         },
-        "./cloud": {
-            "import": {
-                "types": "./dist/esm/api/resources/cloud/exports.d.mts",
-                "default": "./dist/esm/api/resources/cloud/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/cloud/exports.d.ts",
-                "default": "./dist/cjs/api/resources/cloud/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/cloud/exports.js"
-        },
-        "./customer": {
-            "import": {
-                "types": "./dist/esm/api/resources/customer/exports.d.mts",
-                "default": "./dist/esm/api/resources/customer/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/customer/exports.d.ts",
-                "default": "./dist/cjs/api/resources/customer/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/customer/exports.js"
-        },
-        "./export_": {
-            "import": {
-                "types": "./dist/esm/api/resources/export/exports.d.mts",
-                "default": "./dist/esm/api/resources/export/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/export/exports.d.ts",
-                "default": "./dist/cjs/api/resources/export/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/export/exports.js"
-        },
-        "./ghostCard": {
-            "import": {
-                "types": "./dist/esm/api/resources/ghostCard/exports.d.mts",
-                "default": "./dist/esm/api/resources/ghostCard/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/ghostCard/exports.d.ts",
-                "default": "./dist/cjs/api/resources/ghostCard/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/ghostCard/exports.js"
-        },
-        "./hostedPaymentPages": {
-            "import": {
-                "types": "./dist/esm/api/resources/hostedPaymentPages/exports.d.mts",
-                "default": "./dist/esm/api/resources/hostedPaymentPages/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/hostedPaymentPages/exports.d.ts",
-                "default": "./dist/cjs/api/resources/hostedPaymentPages/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/hostedPaymentPages/exports.js"
-        },
-        "./import_": {
-            "import": {
-                "types": "./dist/esm/api/resources/import/exports.d.mts",
-                "default": "./dist/esm/api/resources/import/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/import/exports.d.ts",
-                "default": "./dist/cjs/api/resources/import/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/import/exports.js"
-        },
-        "./invoice": {
-            "import": {
-                "types": "./dist/esm/api/resources/invoice/exports.d.mts",
-                "default": "./dist/esm/api/resources/invoice/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/invoice/exports.d.ts",
-                "default": "./dist/cjs/api/resources/invoice/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/invoice/exports.js"
-        },
-        "./lineItem": {
-            "import": {
-                "types": "./dist/esm/api/resources/lineItem/exports.d.mts",
-                "default": "./dist/esm/api/resources/lineItem/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/lineItem/exports.d.ts",
-                "default": "./dist/cjs/api/resources/lineItem/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/lineItem/exports.js"
-        },
-        "./management": {
-            "import": {
-                "types": "./dist/esm/api/resources/management/exports.d.mts",
-                "default": "./dist/esm/api/resources/management/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/management/exports.d.ts",
-                "default": "./dist/cjs/api/resources/management/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/management/exports.js"
-        },
         "./moneyIn": {
             "import": {
                 "types": "./dist/esm/api/resources/moneyIn/exports.d.mts",
@@ -175,127 +65,6 @@
                 "default": "./dist/cjs/api/resources/moneyIn/exports.js"
             },
             "default": "./dist/cjs/api/resources/moneyIn/exports.js"
-        },
-        "./moneyOut": {
-            "import": {
-                "types": "./dist/esm/api/resources/moneyOut/exports.d.mts",
-                "default": "./dist/esm/api/resources/moneyOut/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/moneyOut/exports.d.ts",
-                "default": "./dist/cjs/api/resources/moneyOut/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/moneyOut/exports.js"
-        },
-        "./notification": {
-            "import": {
-                "types": "./dist/esm/api/resources/notification/exports.d.mts",
-                "default": "./dist/esm/api/resources/notification/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/notification/exports.d.ts",
-                "default": "./dist/cjs/api/resources/notification/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/notification/exports.js"
-        },
-        "./notificationlogs": {
-            "import": {
-                "types": "./dist/esm/api/resources/notificationlogs/exports.d.mts",
-                "default": "./dist/esm/api/resources/notificationlogs/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/notificationlogs/exports.d.ts",
-                "default": "./dist/cjs/api/resources/notificationlogs/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/notificationlogs/exports.js"
-        },
-        "./ocr": {
-            "import": {
-                "types": "./dist/esm/api/resources/ocr/exports.d.mts",
-                "default": "./dist/esm/api/resources/ocr/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/ocr/exports.d.ts",
-                "default": "./dist/cjs/api/resources/ocr/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/ocr/exports.js"
-        },
-        "./organization": {
-            "import": {
-                "types": "./dist/esm/api/resources/organization/exports.d.mts",
-                "default": "./dist/esm/api/resources/organization/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/organization/exports.d.ts",
-                "default": "./dist/cjs/api/resources/organization/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/organization/exports.js"
-        },
-        "./paymentLink": {
-            "import": {
-                "types": "./dist/esm/api/resources/paymentLink/exports.d.mts",
-                "default": "./dist/esm/api/resources/paymentLink/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/paymentLink/exports.d.ts",
-                "default": "./dist/cjs/api/resources/paymentLink/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/paymentLink/exports.js"
-        },
-        "./paymentMethodDomain": {
-            "import": {
-                "types": "./dist/esm/api/resources/paymentMethodDomain/exports.d.mts",
-                "default": "./dist/esm/api/resources/paymentMethodDomain/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/paymentMethodDomain/exports.d.ts",
-                "default": "./dist/cjs/api/resources/paymentMethodDomain/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/paymentMethodDomain/exports.js"
-        },
-        "./payoutSubscription": {
-            "import": {
-                "types": "./dist/esm/api/resources/payoutSubscription/exports.d.mts",
-                "default": "./dist/esm/api/resources/payoutSubscription/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/payoutSubscription/exports.d.ts",
-                "default": "./dist/cjs/api/resources/payoutSubscription/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/payoutSubscription/exports.js"
-        },
-        "./paypoint": {
-            "import": {
-                "types": "./dist/esm/api/resources/paypoint/exports.d.mts",
-                "default": "./dist/esm/api/resources/paypoint/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/paypoint/exports.d.ts",
-                "default": "./dist/cjs/api/resources/paypoint/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/paypoint/exports.js"
-        },
-        "./query": {
-            "import": {
-                "types": "./dist/esm/api/resources/query/exports.d.mts",
-                "default": "./dist/esm/api/resources/query/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/query/exports.d.ts",
-                "default": "./dist/cjs/api/resources/query/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/query/exports.js"
-        },
-        "./statistic": {
-            "import": {
-                "types": "./dist/esm/api/resources/statistic/exports.d.mts",
-                "default": "./dist/esm/api/resources/statistic/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/statistic/exports.d.ts",
-                "default": "./dist/cjs/api/resources/statistic/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/statistic/exports.js"
         },
         "./subscription": {
             "import": {
@@ -308,16 +77,27 @@
             },
             "default": "./dist/cjs/api/resources/subscription/exports.js"
         },
-        "./templates": {
+        "./invoice": {
             "import": {
-                "types": "./dist/esm/api/resources/templates/exports.d.mts",
-                "default": "./dist/esm/api/resources/templates/exports.mjs"
+                "types": "./dist/esm/api/resources/invoice/exports.d.mts",
+                "default": "./dist/esm/api/resources/invoice/exports.mjs"
             },
             "require": {
-                "types": "./dist/cjs/api/resources/templates/exports.d.ts",
-                "default": "./dist/cjs/api/resources/templates/exports.js"
+                "types": "./dist/cjs/api/resources/invoice/exports.d.ts",
+                "default": "./dist/cjs/api/resources/invoice/exports.js"
             },
-            "default": "./dist/cjs/api/resources/templates/exports.js"
+            "default": "./dist/cjs/api/resources/invoice/exports.js"
+        },
+        "./paymentLink": {
+            "import": {
+                "types": "./dist/esm/api/resources/paymentLink/exports.d.mts",
+                "default": "./dist/esm/api/resources/paymentLink/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/paymentLink/exports.d.ts",
+                "default": "./dist/cjs/api/resources/paymentLink/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/paymentLink/exports.js"
         },
         "./tokenStorage": {
             "import": {
@@ -329,6 +109,182 @@
                 "default": "./dist/cjs/api/resources/tokenStorage/exports.js"
             },
             "default": "./dist/cjs/api/resources/tokenStorage/exports.js"
+        },
+        "./paypoint": {
+            "import": {
+                "types": "./dist/esm/api/resources/paypoint/exports.d.mts",
+                "default": "./dist/esm/api/resources/paypoint/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/paypoint/exports.d.ts",
+                "default": "./dist/cjs/api/resources/paypoint/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/paypoint/exports.js"
+        },
+        "./hostedPaymentPages": {
+            "import": {
+                "types": "./dist/esm/api/resources/hostedPaymentPages/exports.d.mts",
+                "default": "./dist/esm/api/resources/hostedPaymentPages/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/hostedPaymentPages/exports.d.ts",
+                "default": "./dist/cjs/api/resources/hostedPaymentPages/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/hostedPaymentPages/exports.js"
+        },
+        "./paymentMethodDomain": {
+            "import": {
+                "types": "./dist/esm/api/resources/paymentMethodDomain/exports.d.mts",
+                "default": "./dist/esm/api/resources/paymentMethodDomain/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/paymentMethodDomain/exports.d.ts",
+                "default": "./dist/cjs/api/resources/paymentMethodDomain/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/paymentMethodDomain/exports.js"
+        },
+        "./import_": {
+            "import": {
+                "types": "./dist/esm/api/resources/import/exports.d.mts",
+                "default": "./dist/esm/api/resources/import/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/import/exports.d.ts",
+                "default": "./dist/cjs/api/resources/import/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/import/exports.js"
+        },
+        "./query": {
+            "import": {
+                "types": "./dist/esm/api/resources/query/exports.d.mts",
+                "default": "./dist/esm/api/resources/query/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/query/exports.d.ts",
+                "default": "./dist/cjs/api/resources/query/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/query/exports.js"
+        },
+        "./ocr": {
+            "import": {
+                "types": "./dist/esm/api/resources/ocr/exports.d.mts",
+                "default": "./dist/esm/api/resources/ocr/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/ocr/exports.d.ts",
+                "default": "./dist/cjs/api/resources/ocr/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/ocr/exports.js"
+        },
+        "./notificationlogs": {
+            "import": {
+                "types": "./dist/esm/api/resources/notificationlogs/exports.d.mts",
+                "default": "./dist/esm/api/resources/notificationlogs/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/notificationlogs/exports.d.ts",
+                "default": "./dist/cjs/api/resources/notificationlogs/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/notificationlogs/exports.js"
+        },
+        "./cloud": {
+            "import": {
+                "types": "./dist/esm/api/resources/cloud/exports.d.mts",
+                "default": "./dist/esm/api/resources/cloud/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/cloud/exports.d.ts",
+                "default": "./dist/cjs/api/resources/cloud/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/cloud/exports.js"
+        },
+        "./lineItem": {
+            "import": {
+                "types": "./dist/esm/api/resources/lineItem/exports.d.mts",
+                "default": "./dist/esm/api/resources/lineItem/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/lineItem/exports.d.ts",
+                "default": "./dist/cjs/api/resources/lineItem/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/lineItem/exports.js"
+        },
+        "./boarding": {
+            "import": {
+                "types": "./dist/esm/api/resources/boarding/exports.d.mts",
+                "default": "./dist/esm/api/resources/boarding/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/boarding/exports.d.ts",
+                "default": "./dist/cjs/api/resources/boarding/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/boarding/exports.js"
+        },
+        "./templates": {
+            "import": {
+                "types": "./dist/esm/api/resources/templates/exports.d.mts",
+                "default": "./dist/esm/api/resources/templates/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/templates/exports.d.ts",
+                "default": "./dist/cjs/api/resources/templates/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/templates/exports.js"
+        },
+        "./export_": {
+            "import": {
+                "types": "./dist/esm/api/resources/export/exports.d.mts",
+                "default": "./dist/esm/api/resources/export/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/export/exports.d.ts",
+                "default": "./dist/cjs/api/resources/export/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/export/exports.js"
+        },
+        "./organization": {
+            "import": {
+                "types": "./dist/esm/api/resources/organization/exports.d.mts",
+                "default": "./dist/esm/api/resources/organization/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/organization/exports.d.ts",
+                "default": "./dist/cjs/api/resources/organization/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/organization/exports.js"
+        },
+        "./management": {
+            "import": {
+                "types": "./dist/esm/api/resources/management/exports.d.mts",
+                "default": "./dist/esm/api/resources/management/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/management/exports.d.ts",
+                "default": "./dist/cjs/api/resources/management/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/management/exports.js"
+        },
+        "./statistic": {
+            "import": {
+                "types": "./dist/esm/api/resources/statistic/exports.d.mts",
+                "default": "./dist/esm/api/resources/statistic/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/statistic/exports.d.ts",
+                "default": "./dist/cjs/api/resources/statistic/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/statistic/exports.js"
+        },
+        "./notification": {
+            "import": {
+                "types": "./dist/esm/api/resources/notification/exports.d.mts",
+                "default": "./dist/esm/api/resources/notification/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/notification/exports.d.ts",
+                "default": "./dist/cjs/api/resources/notification/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/notification/exports.js"
         },
         "./user": {
             "import": {
@@ -352,6 +308,28 @@
             },
             "default": "./dist/cjs/api/resources/vendor/exports.js"
         },
+        "./ghostCard": {
+            "import": {
+                "types": "./dist/esm/api/resources/ghostCard/exports.d.mts",
+                "default": "./dist/esm/api/resources/ghostCard/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/ghostCard/exports.d.ts",
+                "default": "./dist/cjs/api/resources/ghostCard/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/ghostCard/exports.js"
+        },
+        "./moneyOut": {
+            "import": {
+                "types": "./dist/esm/api/resources/moneyOut/exports.d.mts",
+                "default": "./dist/esm/api/resources/moneyOut/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/moneyOut/exports.d.ts",
+                "default": "./dist/cjs/api/resources/moneyOut/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/moneyOut/exports.js"
+        },
         "./wallet": {
             "import": {
                 "types": "./dist/esm/api/resources/wallet/exports.d.mts",
@@ -362,6 +340,28 @@
                 "default": "./dist/cjs/api/resources/wallet/exports.js"
             },
             "default": "./dist/cjs/api/resources/wallet/exports.js"
+        },
+        "./payoutSubscription": {
+            "import": {
+                "types": "./dist/esm/api/resources/payoutSubscription/exports.d.mts",
+                "default": "./dist/esm/api/resources/payoutSubscription/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/payoutSubscription/exports.d.ts",
+                "default": "./dist/cjs/api/resources/payoutSubscription/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/payoutSubscription/exports.js"
+        },
+        "./chargeBacks": {
+            "import": {
+                "types": "./dist/esm/api/resources/chargeBacks/exports.d.mts",
+                "default": "./dist/esm/api/resources/chargeBacks/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/chargeBacks/exports.d.ts",
+                "default": "./dist/cjs/api/resources/chargeBacks/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/chargeBacks/exports.js"
         },
         "./package.json": "./package.json"
     },
@@ -391,7 +391,7 @@
         "ts-loader": "^9.5.4",
         "vitest": "^4.1.1",
         "msw": "2.11.2",
-        "@types/node": "^18.19.70",
+        "@types/node": "^20.0.0",
         "typescript": "~5.9.3",
         "@biomejs/biome": "2.4.10"
     },

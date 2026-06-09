@@ -23,23 +23,29 @@ describe("ManagementClient", () => {
                 aba: "122105278",
                 accountNumber: "0000000016",
                 isValid: true,
+                errorMessage: null,
                 verificationResponse: "Pass",
                 responseCode: "2",
                 responseValue: "CA11",
                 responseDescription: "Customer authentication passed gAuthenticate.",
+                bankName: null,
+                reportedAccountType: null,
+                accountAddedDate: null,
+                accountLastUpdatedDate: null,
+                accountClosedDate: null,
             },
         };
 
         server
             .mockEndpoint()
-            .post("/Management/verifyAccountDetails/entry752")
+            .post("/Management/verifyAccountDetails/8cfec329267")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.management.verifyAccountDetails("entry752", {
+        const response = await client.management.verifyAccountDetails("8cfec329267", {
             routingNumber: "122105278",
             accountNumber: "0000000016",
             accountType: "Checking",
@@ -77,7 +83,7 @@ describe("ManagementClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { routingNumber: "routingNumber", accountNumber: "accountNumber" };
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -123,7 +129,7 @@ describe("ManagementClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { routingNumber: "routingNumber", accountNumber: "accountNumber" };
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()

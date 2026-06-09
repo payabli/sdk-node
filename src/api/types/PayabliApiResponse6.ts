@@ -8,7 +8,7 @@ import type * as Payabli from "../index.js";
 export interface PayabliApiResponse6 {
     isSuccess?: Payabli.IsSuccess | undefined;
     pageIdentifier?: Payabli.PageIdentifier | undefined;
-    /** If `isSuccess` = true, this contains the line item identifier. If `isSuccess` = false, this contains the reason of the error. */
+    /** If `isSuccess` = true, this contains the line item identifier. If `isSuccess` = false, this contains the reason for the error. */
     responseData?: Payabli.Responsedatanonobject | undefined;
     responseText: Payabli.ResponseText;
 }

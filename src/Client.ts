@@ -44,38 +44,38 @@ export declare namespace PayabliClient {
 export class PayabliClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<PayabliClient.Options>;
     protected _bill: BillClient | undefined;
-    protected _boarding: BoardingClient | undefined;
-    protected _chargeBacks: ChargeBacksClient | undefined;
-    protected _checkCapture: CheckCaptureClient | undefined;
-    protected _cloud: CloudClient | undefined;
     protected _customer: CustomerClient | undefined;
-    protected _export: ExportClient | undefined;
-    protected _ghostCard: GhostCardClient | undefined;
-    protected _hostedPaymentPages: HostedPaymentPagesClient | undefined;
-    protected _import: ImportClient | undefined;
-    protected _invoice: InvoiceClient | undefined;
-    protected _lineItem: LineItemClient | undefined;
-    protected _management: ManagementClient | undefined;
+    protected _checkCapture: CheckCaptureClient | undefined;
     protected _moneyIn: MoneyInClient | undefined;
-    protected _moneyOut: MoneyOutClient | undefined;
-    protected _notification: NotificationClient | undefined;
-    protected _notificationlogs: NotificationlogsClient | undefined;
-    protected _ocr: OcrClient | undefined;
-    protected _organization: OrganizationClient | undefined;
-    protected _paymentLink: PaymentLinkClient | undefined;
-    protected _paymentMethodDomain: PaymentMethodDomainClient | undefined;
-    protected _payoutSubscription: PayoutSubscriptionClient | undefined;
-    protected _paypoint: PaypointClient | undefined;
-    protected _query: QueryClient | undefined;
-    protected _statistic: StatisticClient | undefined;
     protected _subscription: SubscriptionClient | undefined;
-    protected _templates: TemplatesClient | undefined;
+    protected _invoice: InvoiceClient | undefined;
+    protected _paymentLink: PaymentLinkClient | undefined;
     protected _tokenStorage: TokenStorageClient | undefined;
+    protected _paypoint: PaypointClient | undefined;
+    protected _hostedPaymentPages: HostedPaymentPagesClient | undefined;
+    protected _paymentMethodDomain: PaymentMethodDomainClient | undefined;
+    protected _import: ImportClient | undefined;
+    protected _query: QueryClient | undefined;
+    protected _ocr: OcrClient | undefined;
+    protected _notificationlogs: NotificationlogsClient | undefined;
+    protected _cloud: CloudClient | undefined;
+    protected _lineItem: LineItemClient | undefined;
+    protected _boarding: BoardingClient | undefined;
+    protected _templates: TemplatesClient | undefined;
+    protected _export: ExportClient | undefined;
+    protected _organization: OrganizationClient | undefined;
+    protected _management: ManagementClient | undefined;
+    protected _statistic: StatisticClient | undefined;
+    protected _notification: NotificationClient | undefined;
     protected _user: UserClient | undefined;
     protected _vendor: VendorClient | undefined;
+    protected _ghostCard: GhostCardClient | undefined;
+    protected _moneyOut: MoneyOutClient | undefined;
     protected _wallet: WalletClient | undefined;
+    protected _payoutSubscription: PayoutSubscriptionClient | undefined;
+    protected _chargeBacks: ChargeBacksClient | undefined;
 
-    constructor(options: PayabliClient.Options = {}) {
+    constructor(options: PayabliClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -83,112 +83,96 @@ export class PayabliClient {
         return (this._bill ??= new BillClient(this._options));
     }
 
-    public get boarding(): BoardingClient {
-        return (this._boarding ??= new BoardingClient(this._options));
-    }
-
-    public get chargeBacks(): ChargeBacksClient {
-        return (this._chargeBacks ??= new ChargeBacksClient(this._options));
+    public get customer(): CustomerClient {
+        return (this._customer ??= new CustomerClient(this._options));
     }
 
     public get checkCapture(): CheckCaptureClient {
         return (this._checkCapture ??= new CheckCaptureClient(this._options));
     }
 
-    public get cloud(): CloudClient {
-        return (this._cloud ??= new CloudClient(this._options));
-    }
-
-    public get customer(): CustomerClient {
-        return (this._customer ??= new CustomerClient(this._options));
-    }
-
-    public get export(): ExportClient {
-        return (this._export ??= new ExportClient(this._options));
-    }
-
-    public get ghostCard(): GhostCardClient {
-        return (this._ghostCard ??= new GhostCardClient(this._options));
-    }
-
-    public get hostedPaymentPages(): HostedPaymentPagesClient {
-        return (this._hostedPaymentPages ??= new HostedPaymentPagesClient(this._options));
-    }
-
-    public get import(): ImportClient {
-        return (this._import ??= new ImportClient(this._options));
-    }
-
-    public get invoice(): InvoiceClient {
-        return (this._invoice ??= new InvoiceClient(this._options));
-    }
-
-    public get lineItem(): LineItemClient {
-        return (this._lineItem ??= new LineItemClient(this._options));
-    }
-
-    public get management(): ManagementClient {
-        return (this._management ??= new ManagementClient(this._options));
-    }
-
     public get moneyIn(): MoneyInClient {
         return (this._moneyIn ??= new MoneyInClient(this._options));
-    }
-
-    public get moneyOut(): MoneyOutClient {
-        return (this._moneyOut ??= new MoneyOutClient(this._options));
-    }
-
-    public get notification(): NotificationClient {
-        return (this._notification ??= new NotificationClient(this._options));
-    }
-
-    public get notificationlogs(): NotificationlogsClient {
-        return (this._notificationlogs ??= new NotificationlogsClient(this._options));
-    }
-
-    public get ocr(): OcrClient {
-        return (this._ocr ??= new OcrClient(this._options));
-    }
-
-    public get organization(): OrganizationClient {
-        return (this._organization ??= new OrganizationClient(this._options));
-    }
-
-    public get paymentLink(): PaymentLinkClient {
-        return (this._paymentLink ??= new PaymentLinkClient(this._options));
-    }
-
-    public get paymentMethodDomain(): PaymentMethodDomainClient {
-        return (this._paymentMethodDomain ??= new PaymentMethodDomainClient(this._options));
-    }
-
-    public get payoutSubscription(): PayoutSubscriptionClient {
-        return (this._payoutSubscription ??= new PayoutSubscriptionClient(this._options));
-    }
-
-    public get paypoint(): PaypointClient {
-        return (this._paypoint ??= new PaypointClient(this._options));
-    }
-
-    public get query(): QueryClient {
-        return (this._query ??= new QueryClient(this._options));
-    }
-
-    public get statistic(): StatisticClient {
-        return (this._statistic ??= new StatisticClient(this._options));
     }
 
     public get subscription(): SubscriptionClient {
         return (this._subscription ??= new SubscriptionClient(this._options));
     }
 
-    public get templates(): TemplatesClient {
-        return (this._templates ??= new TemplatesClient(this._options));
+    public get invoice(): InvoiceClient {
+        return (this._invoice ??= new InvoiceClient(this._options));
+    }
+
+    public get paymentLink(): PaymentLinkClient {
+        return (this._paymentLink ??= new PaymentLinkClient(this._options));
     }
 
     public get tokenStorage(): TokenStorageClient {
         return (this._tokenStorage ??= new TokenStorageClient(this._options));
+    }
+
+    public get paypoint(): PaypointClient {
+        return (this._paypoint ??= new PaypointClient(this._options));
+    }
+
+    public get hostedPaymentPages(): HostedPaymentPagesClient {
+        return (this._hostedPaymentPages ??= new HostedPaymentPagesClient(this._options));
+    }
+
+    public get paymentMethodDomain(): PaymentMethodDomainClient {
+        return (this._paymentMethodDomain ??= new PaymentMethodDomainClient(this._options));
+    }
+
+    public get import(): ImportClient {
+        return (this._import ??= new ImportClient(this._options));
+    }
+
+    public get query(): QueryClient {
+        return (this._query ??= new QueryClient(this._options));
+    }
+
+    public get ocr(): OcrClient {
+        return (this._ocr ??= new OcrClient(this._options));
+    }
+
+    public get notificationlogs(): NotificationlogsClient {
+        return (this._notificationlogs ??= new NotificationlogsClient(this._options));
+    }
+
+    public get cloud(): CloudClient {
+        return (this._cloud ??= new CloudClient(this._options));
+    }
+
+    public get lineItem(): LineItemClient {
+        return (this._lineItem ??= new LineItemClient(this._options));
+    }
+
+    public get boarding(): BoardingClient {
+        return (this._boarding ??= new BoardingClient(this._options));
+    }
+
+    public get templates(): TemplatesClient {
+        return (this._templates ??= new TemplatesClient(this._options));
+    }
+
+    public get export(): ExportClient {
+        return (this._export ??= new ExportClient(this._options));
+    }
+
+    public get organization(): OrganizationClient {
+        return (this._organization ??= new OrganizationClient(this._options));
+    }
+
+    public get management(): ManagementClient {
+        return (this._management ??= new ManagementClient(this._options));
+    }
+
+    public get statistic(): StatisticClient {
+        return (this._statistic ??= new StatisticClient(this._options));
+    }
+
+    public get notification(): NotificationClient {
+        return (this._notification ??= new NotificationClient(this._options));
     }
 
     public get user(): UserClient {
@@ -199,8 +183,24 @@ export class PayabliClient {
         return (this._vendor ??= new VendorClient(this._options));
     }
 
+    public get ghostCard(): GhostCardClient {
+        return (this._ghostCard ??= new GhostCardClient(this._options));
+    }
+
+    public get moneyOut(): MoneyOutClient {
+        return (this._moneyOut ??= new MoneyOutClient(this._options));
+    }
+
     public get wallet(): WalletClient {
         return (this._wallet ??= new WalletClient(this._options));
+    }
+
+    public get payoutSubscription(): PayoutSubscriptionClient {
+        return (this._payoutSubscription ??= new PayoutSubscriptionClient(this._options));
+    }
+
+    public get chargeBacks(): ChargeBacksClient {
+        return (this._chargeBacks ??= new ChargeBacksClient(this._options));
     }
 
     /**

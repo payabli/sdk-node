@@ -5,36 +5,6 @@
  * unless the payment method is card. If the payment method is Apple Pay, the
  * binData will be related to the DPAN (device primary account number), not
  * the card connected to Apple Pay.
- *
- * @example
- *     {
- *         binMatchedLength: "6",
- *         binCardBrand: "Visa",
- *         binCardType: "Credit",
- *         binCardCategory: "PLATINUM",
- *         binCardIssuer: "Bank of Example",
- *         binCardIssuerCountry: "United States",
- *         binCardIssuerCountryCodeA2: "US",
- *         binCardIssuerCountryNumber: "840",
- *         binCardIsRegulated: "false",
- *         binCardUseCategory: "Consumer",
- *         binCardIssuerCountryCodeA3: "USA"
- *     }
- *
- * @example
- *     {
- *         binMatchedLength: "6",
- *         binCardBrand: "VISA",
- *         binCardType: "DEBIT",
- *         binCardCategory: "CLASSIC",
- *         binCardIssuer: "CONOTOXIA SP. Z O.O",
- *         binCardIssuerCountry: "POLAND",
- *         binCardIssuerCountryCodeA2: "PL",
- *         binCardIssuerCountryNumber: "616",
- *         binCardIsRegulated: "true",
- *         binCardUseCategory: "Consumer",
- *         binCardIssuerCountryCodeA3: "POL"
- *     }
  */
 export interface BinData {
     /**

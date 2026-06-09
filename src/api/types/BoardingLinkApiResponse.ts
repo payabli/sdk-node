@@ -2,9 +2,6 @@
 
 import type * as Payabli from "../index.js";
 
-/**
- *
- */
 export interface BoardingLinkApiResponse {
     /**
      * Reference name for boarding link (if responseText = Success) or

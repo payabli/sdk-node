@@ -3,12 +3,24 @@
 import type * as Payabli from "../index.js";
 
 export interface ScheduleDetail {
-    /** Subscription end date in any of the accepted formats: YYYY-MM-DD, MM/DD/YYYY or the value `untilcancelled` to indicate a scheduled payment with infinite cycle. */
+    /**
+     * Subscription end date in any of the accepted formats: YYYY-MM-DD, MM/DD/YYYY or the value `untilcancelled` to indicate a scheduled payment with infinite cycle.
+     *
+     * Not applicable for `BalanceDriven` subscriptions, which run until cancelled.
+     */
     endDate?: string | undefined;
-    /** Frequency of the subscription. */
+    /**
+     * Frequency of the subscription.
+     *
+     * `BalanceDriven` subscriptions only accept the monthly cadences `firstofmonth`, `fifteenthofmonth`, and `endofmonth`.
+     */
     frequency?: Payabli.Frequency | undefined;
     /** This field is for future development, leave null. Identifier of subscription plan applied in the scheduled payment/subscription. */
     planId?: number | undefined;
-    /** Subscription start date in any of the accepted formats: YYYY-MM-DD, MM/DD/YYYY. This must be a future date. */
+    /**
+     * Subscription start date in any of the accepted formats: YYYY-MM-DD, MM/DD/YYYY. This must be a future date.
+     *
+     * Not applicable for `BalanceDriven` subscriptions, where the start date is calculated automatically from `frequency`.
+     */
     startDate?: string | undefined;
 }

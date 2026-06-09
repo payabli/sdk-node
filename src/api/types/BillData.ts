@@ -31,7 +31,7 @@ export interface BillData {
     lastName?: string | undefined;
     /** Notes included in the invoice. */
     notes?: string | undefined;
-    paymentTerms?: BillData.PaymentTerms | undefined;
+    paymentTerms?: Payabli.BillDataPaymentTerms | undefined;
     purchaseOrder?: Payabli.PurchaseOrder | undefined;
     shippingAddress1?: Payabli.Shippingaddress | undefined;
     shippingAddress2?: Payabli.Shippingaddressadditional | undefined;
@@ -47,78 +47,4 @@ export interface BillData {
     summaryCommodityCode?: Payabli.SummaryCommodityCode | undefined;
     tax?: Payabli.Tax | undefined;
     termsConditions?: Payabli.TermsConditions | undefined;
-}
-
-export namespace BillData {
-    /**
-     * Payment terms for invoice. If no terms are defined, then response data for this field defaults to `NET30`.
-     *
-     * **Available Values:**
-     *
-     * - `PIA`: Payment in advance
-     *
-     * - `CIA`: Cash in advance
-     *
-     * - `UR`: Upon receipt
-     *
-     * - `NET10`: 10 days after invoice date
-     *
-     * - `NET20`: 20 days after invoice date
-     *
-     * - `NET30`: 30 days after invoice date
-     *
-     * - `NET45`: 45 days after invoice date
-     *
-     * - `NET60`: 60 days after invoice date
-     *
-     * - `NET90`: 90 days after invoice date
-     *
-     * - `EOM`: Due end of this month
-     *
-     * - `MFI`: 1st of the month following the invoice date
-     *
-     * - `5MFI`: 5th of the month following the invoice date
-     *
-     * - `10MFI`: 10th of the month following the invoice date
-     *
-     * - `15MFI`: 15th of the month following the invoice date
-     *
-     * - `20MFI`: 20th of the month following the invoice date
-     *
-     * - `2/10NET30`: 2% discount if paid within 10 days, otherwise net 30 days
-     *
-     * - `UF`: Until further notice
-     *
-     * - `10UF`: 10 days until further notice
-     *
-     * - `20UF`: 20 days until further notice
-     *
-     * - `25UF`: 25 days until further notice
-     *
-     * - `50UF`: 50 days until further notice
-     */
-    export const PaymentTerms = {
-        Pia: "PIA",
-        Cia: "CIA",
-        Ur: "UR",
-        Net10: "NET10",
-        Net20: "NET20",
-        Net30: "NET30",
-        Net45: "NET45",
-        Net60: "NET60",
-        Net90: "NET90",
-        Eom: "EOM",
-        Mfi: "MFI",
-        FiveMfi: "5MFI",
-        TenMfi: "10MFI",
-        FifteenMfi: "15MFI",
-        TwentyMfi: "20MFI",
-        Two10Net30: "2/10NET30",
-        Uf: "UF",
-        TenUf: "10UF",
-        TwentyUf: "20UF",
-        TwentyFiveUf: "25UF",
-        FiftyUf: "50UF",
-    } as const;
-    export type PaymentTerms = (typeof PaymentTerms)[keyof typeof PaymentTerms];
 }

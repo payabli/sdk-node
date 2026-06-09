@@ -10,6 +10,14 @@ export interface PayMethodCredit {
     cardzip?: Payabli.Cardzip | undefined;
     initiator?: Payabli.Initiator | undefined;
     /** Method to use for the transaction. For transactions with a credit or debit card, or a tokenized card, use `card`. */
-    method: "card";
+    method: PayMethodCredit.Method;
     saveIfSuccess?: Payabli.SaveIfSuccess | undefined;
+}
+
+export namespace PayMethodCredit {
+    /** Method to use for the transaction. For transactions with a credit or debit card, or a tokenized card, use `card`. */
+    export const Method = {
+        Card: "card",
+    } as const;
+    export type Method = (typeof Method)[keyof typeof Method];
 }

@@ -18,14 +18,14 @@ export declare namespace OcrClient {
 export class OcrClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<OcrClient.Options>;
 
-    constructor(options: OcrClient.Options = {}) {
+    constructor(options: OcrClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
     /**
      * Use this endpoint to upload an image file for OCR processing. The accepted file formats include PDF, JPG, JPEG, PNG, and GIF. Specify the desired type of result (either 'bill' or 'invoice') in the path parameter `typeResult`. The response will contain the OCR processing results, including extracted data such as bill number, vendor information, bill items, and more.
      *
-     * @param {Payabli.TypeResult} typeResult
+     * @param {Payabli.TypeResult} typeResult - The type of object to create in Payabli. Accepted values are `bill` and `invoice`.
      * @param {Payabli.FileContentImageOnly} request
      * @param {OcrClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -61,7 +61,7 @@ export class OcrClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.PayabliEnvironment.Sandbox,
-                `/Import/ocrDocumentForm/${core.url.encodePathParam(typeResult)}`,
+                `Import/ocrDocumentForm/${core.url.encodePathParam(typeResult)}`,
             ),
             method: "POST",
             headers: _headers,
@@ -84,12 +84,15 @@ export class OcrClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -112,7 +115,7 @@ export class OcrClient {
     /**
      * Use this endpoint to submit a Base64-encoded image file for OCR processing. The accepted file formats include PDF, JPG, JPEG, PNG, and GIF. Specify the desired type of result (either 'bill' or 'invoice') in the path parameter `typeResult`. The response will contain the OCR processing results, including extracted data such as bill number, vendor information, bill items, and more.
      *
-     * @param {Payabli.TypeResult} typeResult
+     * @param {Payabli.TypeResult} typeResult - The type of object to create in Payabli. Accepted values are `bill` and `invoice`.
      * @param {Payabli.FileContentImageOnly} request
      * @param {OcrClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -143,7 +146,7 @@ export class OcrClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.PayabliEnvironment.Sandbox,
-                `/Import/ocrDocumentJson/${core.url.encodePathParam(typeResult)}`,
+                `Import/ocrDocumentJson/${core.url.encodePathParam(typeResult)}`,
             ),
             method: "POST",
             headers: _headers,

@@ -5,30 +5,45 @@ import type * as Payabli from "../../../../index.js";
 /**
  * @example
  *     {
- *         body: {
- *             customerData: {
- *                 customerId: 4440
- *             },
- *             entryPoint: "f743aed24a",
- *             ipaddress: "255.255.255.255",
- *             paymentDetails: {
- *                 serviceFee: 0,
- *                 totalAmount: 100
- *             },
- *             paymentMethod: {
- *                 cardcvv: "999",
- *                 cardexp: "02/27",
- *                 cardHolder: "John Cassian",
- *                 cardnumber: "4111111111111111",
- *                 cardzip: "12345",
- *                 initiator: "payor",
- *                 method: "card"
- *             }
+ *         customerData: {
+ *             customerId: 4440
+ *         },
+ *         entryPoint: "8cfec329267",
+ *         ipaddress: "255.255.255.255",
+ *         paymentDetails: {
+ *             serviceFee: 0,
+ *             totalAmount: 100
+ *         },
+ *         paymentMethod: {
+ *             cardcvv: "999",
+ *             cardexp: "02/27",
+ *             cardHolder: "John Cassian",
+ *             cardnumber: "4111111111111111",
+ *             cardzip: "12345",
+ *             initiator: "payor",
+ *             method: "card"
  *         }
  *     }
  */
 export interface RequestPaymentAuthorize {
+    /** When `true`, the request creates a new customer record, regardless of whether customer identifiers match an existing customer. Defaults to `false`. */
     forceCustomerCreation?: Payabli.ForceCustomerCreation;
+    /** _Optional but recommended_ A unique ID that you can include to prevent duplicating objects or transactions in the case that a request is sent more than once. This key isn't generated in Payabli, you must generate it yourself. This key persists for 2 minutes. After 2 minutes, you can reuse the key if needed. */
     idempotencyKey?: Payabli.IdempotencyKey;
-    body: Payabli.TransRequestBody;
+    accountId?: Payabli.AccountId;
+    /** Object describing the Customer/Payor. Which fields are required depends on the paypoint's custom identifier settings. */
+    customerData?: Payabli.PayorDataRequest;
+    entryPoint?: Payabli.Entrypointfield;
+    /** Object describing an Invoice linked to the transaction. */
+    invoiceData?: Payabli.BillData;
+    ipaddress?: Payabli.IpAddress;
+    orderDescription?: Payabli.Orderdescription;
+    orderId?: Payabli.OrderId;
+    /** Object describing details of the payment. Required. */
+    paymentDetails: Payabli.PaymentDetail;
+    /** Information about the payment method for the transaction. Required and recommended fields for each payment method type are described in each schema below. */
+    paymentMethod: Payabli.PaymentMethod;
+    source?: Payabli.Source;
+    subdomain?: Payabli.Subdomain;
+    subscriptionId?: Payabli.Subscriptionid;
 }

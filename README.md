@@ -63,21 +63,19 @@ import { PayabliClient } from "@payabli/sdk-node";
 
 const client = new PayabliClient({ apiKey: "YOUR_API_KEY" });
 await client.moneyIn.getpaidv2({
-    body: {
-        customerData: {
-            customerId: 4440
-        },
-        entryPoint: "f743aed24a",
-        ipaddress: "255.255.255.255",
-        paymentDetails: {
-            serviceFee: 0,
-            totalAmount: 100
-        },
-        paymentMethod: {
-            device: "6c361c7d-674c-44cc-b790-382b75d1xxx",
-            method: "cloud",
-            saveIfSuccess: true
-        }
+    customerData: {
+        customerId: 4440
+    },
+    entryPoint: "8cfec329267",
+    ipaddress: "255.255.255.255",
+    paymentDetails: {
+        serviceFee: 0,
+        totalAmount: 100
+    },
+    paymentMethod: {
+        device: "6c361c7d-674c-44cc-b790-382b75d1xxx",
+        method: "cloud",
+        saveIfSuccess: true
     }
 });
 ```

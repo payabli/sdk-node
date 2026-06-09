@@ -2,30 +2,7 @@
 
 import type * as Payabli from "../index.js";
 
-/**
- *
- */
 export interface QueryBoardingLinksResponse {
-    Records?: QueryBoardingLinksResponse.Records.Item[] | undefined;
+    Records?: Payabli.QueryBoardingLinksResponseRecordsItem[] | undefined;
     Summary?: Payabli.QuerySummary | undefined;
-}
-
-export namespace QueryBoardingLinksResponse {
-    export type Records = Records.Item[];
-
-    export namespace Records {
-        export interface Item {
-            AcceptOauth?: Payabli.AcceptOauth | undefined;
-            AcceptRegister?: Payabli.AcceptRegister | undefined;
-            EntryAttributes?: Payabli.EntryAttributes | undefined;
-            /** The record ID. */
-            Id?: number | undefined;
-            LastUpdated?: Payabli.LastModified | undefined;
-            OrgParentName?: Payabli.OrgParentName | undefined;
-            ReferenceName?: Payabli.ReferenceName | undefined;
-            ReferenceTemplateId?: Payabli.ReferenceTemplateId | undefined;
-            TemplateCode?: Payabli.TemplateCode | undefined;
-            TemplateName?: Payabli.TemplateName | undefined;
-        }
-    }
 }

@@ -2,14 +2,6 @@
 
 import type * as Payabli from "../index.js";
 
-/**
- * @example
- *     {
- *         totalPages: 1,
- *         totalRecords: 2,
- *         pageSize: 20
- *     }
- */
 export interface TransferSummary {
     totalPages: Payabli.Totalpages;
     totalRecords: Payabli.Totalrecords;

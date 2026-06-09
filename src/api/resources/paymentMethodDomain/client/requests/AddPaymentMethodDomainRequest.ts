@@ -18,26 +18,10 @@ import type * as Payabli from "../../../../index.js";
  */
 export interface AddPaymentMethodDomainRequest {
     /** Apple Pay configuration information. */
-    applePay?: AddPaymentMethodDomainRequest.ApplePay;
+    applePay?: Payabli.AddPaymentMethodDomainRequestApplePay;
     /** Google Pay configuration information. */
-    googlePay?: AddPaymentMethodDomainRequest.GooglePay;
+    googlePay?: Payabli.AddPaymentMethodDomainRequestGooglePay;
     domainName?: Payabli.DomainName;
     entityId?: Payabli.EntityId;
     entityType?: Payabli.EntityType;
-}
-
-export namespace AddPaymentMethodDomainRequest {
-    /**
-     * Apple Pay configuration information.
-     */
-    export interface ApplePay {
-        isEnabled?: Payabli.IsEnabled | undefined;
-    }
-
-    /**
-     * Google Pay configuration information.
-     */
-    export interface GooglePay {
-        isEnabled?: Payabli.IsEnabled | undefined;
-    }
 }

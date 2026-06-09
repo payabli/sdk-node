@@ -3,7 +3,7 @@
 /**
  * @example
  *     {
- *         vendorId: 42,
+ *         vendorId: 456,
  *         expenseLimit: 500,
  *         amount: 500,
  *         maxNumberOfUses: 3,

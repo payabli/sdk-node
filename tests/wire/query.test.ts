@@ -52,8 +52,8 @@ describe("QueryClient", () => {
                         BillingPhone: "+12345678",
                         BillingState: "VA",
                         BillingZip: "20147",
-                        customerId: 2707,
-                        CustomerNumber: "901102",
+                        customerId: 4440,
+                        CustomerNumber: "C-90010",
                         customerStatus: 1,
                         FirstName: "Lydia",
                         LastName: "Marshall",
@@ -95,7 +95,7 @@ describe("QueryClient", () => {
                     FeeAmount: 0,
                     OrgId: 123,
                     PayorId: 2707,
-                    PaypointId: 123,
+                    PaypointId: 3040,
                     PendingFeeAmount: 0,
                     RefundId: 0,
                     ReturnedId: 0,
@@ -207,7 +207,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -245,7 +245,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -267,28 +267,9 @@ describe("QueryClient", () => {
         const rawResponseBody = {
             Records: [
                 {
-                    PaymentSettlementStatus: 1,
-                    BatchStatus: 1,
-                    ParentOrgId: 123,
-                    DeviceId: "",
-                    RetrievalId: 0,
-                    ChargebackId: 0,
-                    AchHolderType: "personal",
-                    AchSecCode: "PPD",
-                    ConnectorName: "DefaultConnector",
-                    EntrypageId: 0,
-                    FeeAmount: 0,
-                    OrgId: 123,
-                    PayorId: 2707,
-                    PaypointId: 123,
-                    PendingFeeAmount: 0,
-                    RefundId: 0,
-                    ReturnedId: 0,
-                    splitFundingInstructions: [],
-                    TotalAmount: 2,
-                    CfeeTransactions: [],
                     Id: 25048,
                     Method: "ach",
+                    WalletType: null,
                     SettledAmount: 0.5,
                     Type: "credit",
                     BatchNumber: "batch-100-20-2024",
@@ -326,13 +307,15 @@ describe("QueryClient", () => {
                         BillingPhone: "+12345678",
                         BillingState: "VA",
                         BillingZip: "20147",
-                        customerId: 2707,
-                        CustomerNumber: "901102",
+                        customerId: 4440,
+                        CustomerNumber: "C-90010",
                         customerStatus: 1,
                         FirstName: "Lydia",
                         LastName: "Marshall",
                     },
                     SettlementDate: "2024-11-20T00:00:00Z",
+                    PaymentSettlementStatus: 1,
+                    BatchStatus: 1,
                     DepositDate: "2024-11-22T00:00:00Z",
                     ExpectedDepositDate: "2024-11-22T00:00:00Z",
                     MaskedAccount: "1XXXXXX5678",
@@ -355,7 +338,26 @@ describe("QueryClient", () => {
                     },
                     PaypointDbaname: "Gruzya Adventure Outfitters, LLC",
                     ParentOrgName: "Pilgrim Planner",
+                    ParentOrgId: 123,
                     PaypointEntryname: "7f1a3816XX",
+                    DeviceId: "",
+                    RetrievalId: 0,
+                    ChargebackId: 0,
+                    AchHolderType: "personal",
+                    AchSecCode: "PPD",
+                    ConnectorName: "DefaultConnector",
+                    EntrypageId: 0,
+                    FeeAmount: 0,
+                    OrgId: 123,
+                    PayorId: 2707,
+                    PaypointId: 3040,
+                    PendingFeeAmount: 0,
+                    RefundId: 0,
+                    ReturnedId: 0,
+                    splitFundingInstructions: [],
+                    TotalAmount: 2,
+                    CfeeTransactions: [],
+                    invoiceData: null,
                     TransactionEvents: [
                         { EventTime: "2024-11-19T15:57:40Z", TransEvent: "Created" },
                         {
@@ -459,7 +461,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -497,7 +499,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -538,7 +540,7 @@ describe("QueryClient", () => {
                     BatchSplitAmount: 0,
                     BatchStatus: 2,
                     BatchRecords: 2,
-                    PaypointId: 187,
+                    PaypointId: 3040,
                     PaypointName: "Gruzya Adventure Outfitters, LLC",
                     PaypointDba: "Gruzya Adventure Outfitters",
                     ParentOrgName: "Pilgrim Planner",
@@ -570,7 +572,7 @@ describe("QueryClient", () => {
                     BatchSplitAmount: 0,
                     BatchStatus: 2,
                     BatchRecords: 1,
-                    PaypointId: 187,
+                    PaypointId: 3040,
                     PaypointName: "Gruzya Adventure Outfitters, LLC",
                     PaypointDba: "Gruzya Adventure Outfitters",
                     ParentOrgName: "Pilgrim Planner",
@@ -610,7 +612,7 @@ describe("QueryClient", () => {
                     BatchSplitAmount: 0,
                     BatchStatus: 2,
                     BatchRecords: 4,
-                    PaypointId: 187,
+                    PaypointId: 3040,
                     PaypointName: "Gruzya Adventure Outfitters, LLC",
                     PaypointDba: "Gruzya Adventure Outfitters",
                     ParentOrgName: "Pilgrim Planner",
@@ -624,7 +626,7 @@ describe("QueryClient", () => {
                     DepositDate: null,
                     TransferDate: "2025-09-02T00:00:00Z",
                     Transfer: {
-                        TransferId: 5998,
+                        TransferId: 4521,
                         TransferDate: "2025-09-02T00:00:00Z",
                         Processor: "gp",
                         TransferStatus: 1,
@@ -682,7 +684,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -720,7 +722,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -761,7 +763,7 @@ describe("QueryClient", () => {
                     BatchSplitAmount: 0,
                     BatchStatus: 2,
                     BatchRecords: 2,
-                    PaypointId: 187,
+                    PaypointId: 3040,
                     PaypointName: "Gruzya Adventure Outfitters, LLC",
                     PaypointDba: "Gruzya Adventure Outfitters",
                     ParentOrgName: "Pilgrim Planner",
@@ -793,7 +795,7 @@ describe("QueryClient", () => {
                     BatchSplitAmount: 0,
                     BatchStatus: 2,
                     BatchRecords: 1,
-                    PaypointId: 187,
+                    PaypointId: 3040,
                     PaypointName: "Gruzya Adventure Outfitters, LLC",
                     PaypointDba: "Gruzya Adventure Outfitters",
                     ParentOrgName: "Pilgrim Planner",
@@ -833,7 +835,7 @@ describe("QueryClient", () => {
                     BatchSplitAmount: 0,
                     BatchStatus: 2,
                     BatchRecords: 4,
-                    PaypointId: 187,
+                    PaypointId: 3040,
                     PaypointName: "Gruzya Adventure Outfitters, LLC",
                     PaypointDba: "Gruzya Adventure Outfitters",
                     ParentOrgName: "Pilgrim Planner",
@@ -847,7 +849,7 @@ describe("QueryClient", () => {
                     DepositDate: null,
                     TransferDate: "2025-09-02T00:00:00Z",
                     Transfer: {
-                        TransferId: 5998,
+                        TransferId: 4521,
                         TransferDate: "2025-09-02T00:00:00Z",
                         Processor: "gp",
                         TransferStatus: 1,
@@ -905,7 +907,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -943,7 +945,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -993,10 +995,10 @@ describe("QueryClient", () => {
                     CheckStatusText: "CheckStatusText",
                     EntryName: "d193cf9a46",
                     externalPaypointID: "Paypoint-100",
-                    IdBatch: 239,
+                    IdBatch: 1049,
                     ParentOrgName: "FitnessManager",
                     PaypointDba: "Athlete Factory LLC",
-                    PaypointId: 123,
+                    PaypointId: 3040,
                     PaypointName: "Athlete Factory LLC",
                     VcardAmount: 0,
                     VcardRecords: 0,
@@ -1057,7 +1059,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1095,7 +1097,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1145,10 +1147,10 @@ describe("QueryClient", () => {
                     CheckStatusText: "CheckStatusText",
                     EntryName: "d193cf9a46",
                     externalPaypointID: "Paypoint-100",
-                    IdBatch: 239,
+                    IdBatch: 1049,
                     ParentOrgName: "FitnessManager",
                     PaypointDba: "Athlete Factory LLC",
-                    PaypointId: 123,
+                    PaypointId: 3040,
                     PaypointName: "Athlete Factory LLC",
                     VcardAmount: 0,
                     VcardRecords: 0,
@@ -1209,7 +1211,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1247,7 +1249,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1283,8 +1285,8 @@ describe("QueryClient", () => {
                         BillingState: "MT",
                         BillingZip: "59601",
                         CompanyName: "Big Sky Imports",
-                        customerId: 1324,
-                        CustomerNumber: "12345",
+                        customerId: 4440,
+                        CustomerNumber: "C-90010",
                         customerStatus: 1,
                         FirstName: "Janis",
                         Identifiers: ["firstname", "email"],
@@ -1333,8 +1335,8 @@ describe("QueryClient", () => {
                             BillingState: "MT",
                             BillingZip: "59601",
                             CompanyName: "Big Sky Imports",
-                            customerId: 1324,
-                            CustomerNumber: "12345",
+                            customerId: 4440,
+                            CustomerNumber: "C-90010",
                             customerStatus: 1,
                             FirstName: "Janis",
                             Identifiers: ["firstname", "email"],
@@ -1353,7 +1355,7 @@ describe("QueryClient", () => {
                         NetAmount: 1.5,
                         Operation: "Sale",
                         OrderId: "",
-                        OrgId: 0,
+                        OrgId: 123,
                         PaymentData: {
                             AccountExp: "0330",
                             AccountType: "visa",
@@ -1363,7 +1365,7 @@ describe("QueryClient", () => {
                         },
                         PaymentTransId: "10-bfcd5a17861d4a8690ca53c00000X",
                         PayorId: 0,
-                        PaypointId: 0,
+                        PaypointId: 3040,
                         RefundId: 0,
                         ResponseData: {
                             authcode: "123456",
@@ -1447,7 +1449,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1485,7 +1487,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1535,7 +1537,7 @@ describe("QueryClient", () => {
                         EntrypageId: 0,
                         FeeAmount: 1,
                         PayorId: 1551,
-                        PaypointId: 226,
+                        PaypointId: 3040,
                         SettlementStatus: 2,
                         splitCount: 0,
                         TotalAmount: 30.22,
@@ -1593,7 +1595,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1631,7 +1633,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1660,8 +1662,8 @@ describe("QueryClient", () => {
                     Company: "Boudreaux's Shop",
                     Country: "US",
                     Created: "2023-12-20T13:07:48Z",
-                    customerId: 2876,
-                    customerNumber: "425436530000",
+                    customerId: 4440,
+                    customerNumber: "C-90010",
                     customerStatus: 0,
                     customerSummary: {
                         NumberofTransactions: 30,
@@ -1741,7 +1743,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1779,7 +1781,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1808,8 +1810,8 @@ describe("QueryClient", () => {
                     Company: "Boudreaux's Shop",
                     Country: "US",
                     Created: "2023-12-20T13:07:48Z",
-                    customerId: 2876,
-                    customerNumber: "425436530000",
+                    customerId: 4440,
+                    customerNumber: "C-90010",
                     customerStatus: 0,
                     customerSummary: {
                         NumberofTransactions: 30,
@@ -1889,7 +1891,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1927,7 +1929,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -1950,7 +1952,7 @@ describe("QueryClient", () => {
             Summary: { pageSize: 20, totalAmount: 0, totalNetAmount: 0, totalPages: 2, totalRecords: 28 },
             Records: [
                 {
-                    deviceId: "DEV-A1B2C3D4",
+                    deviceId: "499585-389fj484-3jcj8hj3",
                     idCloud: 142,
                     description: "Front Counter Terminal",
                     serialNumber: "SN-90210-XR",
@@ -1967,7 +1969,7 @@ describe("QueryClient", () => {
                     activationCodeExpiry: "2026-04-09T14:49:42Z",
                     createdAt: "2026-04-09T01:14:37Z",
                     updatedAt: "2026-04-09T14:49:42Z",
-                    paypointId: 12345,
+                    paypointId: 3040,
                     paypointDba: "Gruzya Adventure Outfitters",
                     paypointLegal: "Gruzya Adventure Outfitters, LLC",
                     paypointEntry: "8cfec329267",
@@ -2017,7 +2019,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2055,7 +2057,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2078,7 +2080,7 @@ describe("QueryClient", () => {
             Summary: { pageSize: 20, totalAmount: 0, totalNetAmount: 0, totalPages: 2, totalRecords: 28 },
             Records: [
                 {
-                    deviceId: "DEV-A1B2C3D4",
+                    deviceId: "499585-389fj484-3jcj8hj3",
                     idCloud: 142,
                     description: "Front Counter Terminal",
                     serialNumber: "SN-90210-XR",
@@ -2095,7 +2097,7 @@ describe("QueryClient", () => {
                     activationCodeExpiry: "2026-04-09T14:49:42Z",
                     createdAt: "2026-04-09T01:14:37Z",
                     updatedAt: "2026-04-09T14:49:42Z",
-                    paypointId: 12345,
+                    paypointId: 3040,
                     paypointDba: "Gruzya Adventure Outfitters",
                     paypointLegal: "Gruzya Adventure Outfitters, LLC",
                     paypointEntry: "8cfec329267",
@@ -2108,13 +2110,13 @@ describe("QueryClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/devices/org/100")
+            .get("/Query/devices/org/123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listDevicesOrg(100, {
+        const response = await client.query.listDevicesOrg(123, {
             fromRecord: 0,
             limitRecord: 20,
             sortBy: "desc(createdAt)",
@@ -2145,7 +2147,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2183,7 +2185,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2260,7 +2262,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2298,7 +2300,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2375,7 +2377,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2413,7 +2415,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2505,7 +2507,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2543,7 +2545,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2635,7 +2637,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2673,7 +2675,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2706,7 +2708,7 @@ describe("QueryClient", () => {
                     orgCity: "Johnson City",
                     orgCountry: "US",
                     orgEntryName: "pilgrim-planner",
-                    orgId: "I-123",
+                    orgId: "123",
                     orgName: "Pilgrim Planner",
                     orgParentId: 236,
                     orgParentName: "PropertyManager Pro",
@@ -2770,7 +2772,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2808,7 +2810,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2922,7 +2924,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -2960,7 +2962,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -3074,7 +3076,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -3112,7 +3114,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -3237,7 +3239,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server.mockEndpoint().get("/Query/paypoints/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
@@ -3263,7 +3265,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server.mockEndpoint().get("/Query/paypoints/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
@@ -3292,8 +3294,8 @@ describe("QueryClient", () => {
                         BillingPhone: "+12345678",
                         BillingState: "VA",
                         BillingZip: "20147",
-                        customerId: 2707,
-                        CustomerNumber: "901102",
+                        customerId: 4440,
+                        CustomerNumber: "C-90010",
                         customerStatus: 1,
                         FirstName: "Lydia",
                         LastName: "Marshall",
@@ -3449,7 +3451,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -3487,7 +3489,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -3522,8 +3524,8 @@ describe("QueryClient", () => {
                         BillingPhone: "+12345678",
                         BillingState: "VA",
                         BillingZip: "20147",
-                        customerId: 2707,
-                        CustomerNumber: "901102",
+                        customerId: 4440,
+                        CustomerNumber: "C-90010",
                         customerStatus: 1,
                         FirstName: "Lydia",
                         LastName: "Marshall",
@@ -3679,7 +3681,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -3717,7 +3719,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -3750,8 +3752,8 @@ describe("QueryClient", () => {
                         BillingState: "TN",
                         BillingZip: "37612",
                         CompanyName: "Sunshine LLC",
-                        customerId: 1323,
-                        CustomerNumber: "1234",
+                        customerId: 4440,
+                        CustomerNumber: "C-90010",
                         customerStatus: 1,
                         FirstName: "Lisandra",
                         Identifiers: ['\\"firstname\\"', '\\"lastname\\"', '\\"email\\"'],
@@ -3771,7 +3773,7 @@ describe("QueryClient", () => {
                     invoiceData: {
                         frequency: "onetime",
                         invoiceAmount: 100,
-                        invoiceNumber: "QA-1702561870",
+                        invoiceNumber: "INV-2345",
                         invoiceStatus: 1,
                         invoiceType: 1,
                         items: [
@@ -3826,7 +3828,7 @@ describe("QueryClient", () => {
                     },
                     PaypointDbaname: "Athlete Factory LLC",
                     PaypointEntryname: "473ac58b0",
-                    PaypointId: 10,
+                    PaypointId: 3040,
                     PaypointLegalname: "Athlete Factory LLC",
                     PlanId: 1,
                     StartDate: "2024-07-20T00:00:00Z",
@@ -3874,6 +3876,7 @@ describe("QueryClient", () => {
                         },
                     ],
                     SubStatus: 1,
+                    SubscriptionType: "Regular",
                     TotalAmount: 100,
                     TotalCycles: 20,
                     UntilCancelled: false,
@@ -3928,7 +3931,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -3966,7 +3969,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -3999,8 +4002,8 @@ describe("QueryClient", () => {
                         BillingState: "TN",
                         BillingZip: "37612",
                         CompanyName: "Sunshine LLC",
-                        customerId: 1323,
-                        CustomerNumber: "1234",
+                        customerId: 4440,
+                        CustomerNumber: "C-90010",
                         customerStatus: 1,
                         FirstName: "Lisandra",
                         Identifiers: ['\\"firstname\\"', '\\"lastname\\"', '\\"email\\"'],
@@ -4020,7 +4023,7 @@ describe("QueryClient", () => {
                     invoiceData: {
                         frequency: "onetime",
                         invoiceAmount: 100,
-                        invoiceNumber: "QA-1702561870",
+                        invoiceNumber: "INV-2345",
                         invoiceStatus: 1,
                         invoiceType: 1,
                         items: [
@@ -4075,7 +4078,7 @@ describe("QueryClient", () => {
                     },
                     PaypointDbaname: "Athlete Factory LLC",
                     PaypointEntryname: "473ac58b0",
-                    PaypointId: 10,
+                    PaypointId: 3040,
                     PaypointLegalname: "Athlete Factory LLC",
                     PlanId: 1,
                     StartDate: "2024-07-20T00:00:00Z",
@@ -4123,6 +4126,7 @@ describe("QueryClient", () => {
                         },
                     ],
                     SubStatus: 1,
+                    SubscriptionType: "Regular",
                     TotalAmount: 100,
                     TotalCycles: 20,
                     UntilCancelled: false,
@@ -4177,7 +4181,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -4215,7 +4219,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -4256,7 +4260,7 @@ describe("QueryClient", () => {
                         },
                     ],
                     Vendor: {
-                        VendorNumber: "1234",
+                        VendorNumber: "VEN-123",
                         Name1: "Herman's Coatings",
                         Name2: "Herman's Coating Supply Company, LLC",
                         EIN: "123456789",
@@ -4293,7 +4297,7 @@ describe("QueryClient", () => {
                             default: true,
                         },
                         VendorStatus: 1,
-                        VendorId: 1,
+                        VendorId: 456,
                         Summary: {
                             ActiveBills: 2,
                             PendingBills: 4,
@@ -4343,8 +4347,8 @@ describe("QueryClient", () => {
                     },
                     BillData: [
                         {
-                            billId: 3001,
-                            invoiceNumber: "INV-5001",
+                            billId: 54323,
+                            invoiceNumber: "INV-2345",
                             netAmount: "500",
                             invoiceDate: "2025-08-01",
                             dueDate: "2025-08-15",
@@ -4352,7 +4356,7 @@ describe("QueryClient", () => {
                     ],
                     ExternalPaypointID: "d193cf9a46-10",
                     Method: "ach",
-                    PaypointId: 255,
+                    PaypointId: 3040,
                     TotalAmount: 500,
                     NetAmount: 500,
                     FeeAmount: 0,
@@ -4425,7 +4429,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -4463,7 +4467,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -4504,7 +4508,7 @@ describe("QueryClient", () => {
                         },
                     ],
                     Vendor: {
-                        VendorNumber: "1234",
+                        VendorNumber: "VEN-123",
                         Name1: "Herman's Coatings",
                         Name2: "Herman's Coating Supply Company, LLC",
                         EIN: "123456789",
@@ -4541,7 +4545,7 @@ describe("QueryClient", () => {
                             default: true,
                         },
                         VendorStatus: 1,
-                        VendorId: 1,
+                        VendorId: 456,
                         Summary: {
                             ActiveBills: 2,
                             PendingBills: 4,
@@ -4591,8 +4595,8 @@ describe("QueryClient", () => {
                     },
                     BillData: [
                         {
-                            billId: 3001,
-                            invoiceNumber: "INV-5001",
+                            billId: 54323,
+                            invoiceNumber: "INV-2345",
                             netAmount: "500",
                             invoiceDate: "2025-08-01",
                             dueDate: "2025-08-15",
@@ -4600,7 +4604,7 @@ describe("QueryClient", () => {
                     ],
                     ExternalPaypointID: "d193cf9a46-10",
                     Method: "ach",
-                    PaypointId: 255,
+                    PaypointId: 3040,
                     TotalAmount: 500,
                     NetAmount: 500,
                     FeeAmount: 0,
@@ -4673,7 +4677,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -4711,7 +4715,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -4757,8 +4761,8 @@ describe("QueryClient", () => {
                         BillingState: "CA",
                         BillingZip: "45567",
                         CompanyName: "Sunshine LLC",
-                        customerId: 34,
-                        CustomerNumber: "3456-7645A",
+                        customerId: 4440,
+                        CustomerNumber: "C-90010",
                         FirstName: "John",
                         LastName: "Doe",
                         ShippingAddress1: "string",
@@ -4768,7 +4772,7 @@ describe("QueryClient", () => {
                         ShippingState: "string",
                         ShippingZip: "string",
                     },
-                    DeviceId: "6c361c7d-674c-44cc-b790-382b75d1xxx",
+                    DeviceId: "499585-389fj484-3jcj8hj3",
                     EntrypageId: 0,
                     ExternalProcessorInformation: " ",
                     FeeAmount: 10.25,
@@ -4832,7 +4836,7 @@ describe("QueryClient", () => {
                     NetAmount: 100,
                     Operation: "Sale",
                     OrderId: "9876543",
-                    OrgId: 2,
+                    OrgId: 123,
                     ParentOrgName: "Payabli",
                     PaymentData: {
                         AccountExp: "0426",
@@ -4862,7 +4866,7 @@ describe("QueryClient", () => {
                     PayorId: 55,
                     PaypointDbaname: "Sunshine LLC",
                     PaypointEntryname: "7acda8200",
-                    PaypointId: 2,
+                    PaypointId: 3040,
                     PaypointLegalname: "Sunshine LLC",
                     PendingFeeAmount: 2,
                     RefundId: 0,
@@ -4951,7 +4955,7 @@ describe("QueryClient", () => {
                         paymentDetails: { totalAmount: 6.79, serviceFee: 0, currency: "USD" },
                     },
                     TransStatus: -4,
-                    PaypointId: 399,
+                    PaypointId: 3040,
                     splitFundingInstructions: [{}],
                     splitCount: 1,
                     TotalAmount: -6.79,
@@ -4960,7 +4964,7 @@ describe("QueryClient", () => {
                     SettlementStatus: 0,
                     Operation: "Reject",
                     Source: "api",
-                    OrgId: 39,
+                    OrgId: 123,
                     TransactionTime: "2026-03-02T18:56:23.109188",
                     Customer: {
                         FirstName: "Blaise",
@@ -4974,8 +4978,8 @@ describe("QueryClient", () => {
                         BillingCountry: "US",
                         BillingPhone: "+18955791994",
                         BillingEmail: "blaise.pascal@gmail.com",
-                        CustomerNumber: "o99t",
-                        customerId: 155974,
+                        CustomerNumber: "C-90010",
+                        customerId: 4440,
                         customerStatus: 1,
                     },
                     TransactionEvents: [
@@ -5030,7 +5034,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -5068,7 +5072,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -5096,7 +5100,7 @@ describe("QueryClient", () => {
                     BatchNumber: "batch_226_ach_12-30-2023",
                     CfeeTransactions: [{ transactionTime: "2024-01-15T09:30:00Z" }],
                     ConnectorName: "gp",
-                    DeviceId: "6c361c7d-674c-44cc-b790-382b75d1xxx",
+                    DeviceId: "499585-389fj484-3jcj8hj3",
                     EntrypageId: 0,
                     ExternalProcessorInformation: "[MER_xxxxxxxxxxxxxx]/[NNNNNNNNN]",
                     FeeAmount: 1,
@@ -5112,7 +5116,7 @@ describe("QueryClient", () => {
                     PayorId: 1551,
                     PaypointDbaname: "Sunshine Gutters",
                     PaypointEntryname: "d193cf9a46",
-                    PaypointId: 226,
+                    PaypointId: 3040,
                     PaypointLegalname: "Sunshine Services, LLC",
                     PendingFeeAmount: 2,
                     RefundId: 0,
@@ -5202,7 +5206,7 @@ describe("QueryClient", () => {
                         paymentDetails: { totalAmount: 6.79, serviceFee: 0, currency: "USD" },
                     },
                     TransStatus: -4,
-                    PaypointId: 399,
+                    PaypointId: 3040,
                     splitFundingInstructions: [{}],
                     splitCount: 1,
                     TotalAmount: -6.79,
@@ -5211,7 +5215,7 @@ describe("QueryClient", () => {
                     SettlementStatus: 0,
                     Operation: "Reject",
                     Source: "api",
-                    OrgId: 39,
+                    OrgId: 123,
                     TransactionTime: "2026-03-02T18:56:23.109188",
                     Customer: {
                         FirstName: "Blaise",
@@ -5225,8 +5229,8 @@ describe("QueryClient", () => {
                         BillingCountry: "US",
                         BillingPhone: "+18955791994",
                         BillingEmail: "blaise.pascal@gmail.com",
-                        CustomerNumber: "o99t",
-                        customerId: 155974,
+                        CustomerNumber: "C-90010",
+                        customerId: 4440,
                         customerStatus: 1,
                     },
                     TransactionEvents: [
@@ -5281,7 +5285,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -5319,7 +5323,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -5364,7 +5368,7 @@ describe("QueryClient", () => {
             Records: [
                 {
                     transferDetailId: 654321,
-                    transferId: 12345,
+                    transferId: 4521,
                     transactionId: "txn-4321hg6543fe",
                     type: "credit",
                     category: "sale",
@@ -5434,7 +5438,7 @@ describe("QueryClient", () => {
                     },
                     Source: "web",
                     ScheduleReference: 0,
-                    OrgId: 9876,
+                    OrgId: 123,
                     RefundId: 0,
                     ReturnedId: 0,
                     TransactionTime: "2024-01-05T12:15:30.11",
@@ -5449,13 +5453,13 @@ describe("QueryClient", () => {
                         BillingZip: "21230",
                         BillingCountry: "US",
                         BillingEmail: "ara.karapetyan@electronics.com",
-                        CustomerNumber: "0010",
-                        customerId: 7890,
+                        CustomerNumber: "C-90010",
+                        customerId: 4440,
                     },
                     transactionNumber: null,
                     billingFeesDetails: [],
                     ExternalProcessorInformation: null,
-                    PaypointId: 1357,
+                    PaypointId: 3040,
                     ChargebackId: null,
                     RetrievalId: null,
                     TransAdditionalData: null,
@@ -5485,13 +5489,13 @@ describe("QueryClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/transferDetails/47862acd/123456")
+            .get("/Query/transferDetails/8cfec329267/4521")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listTransferDetails("47862acd", 123456);
+        const response = await client.query.listTransferDetails("8cfec329267", 4521);
         expect(response).toEqual(rawResponseBody);
     });
 
@@ -5518,7 +5522,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -5556,7 +5560,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -5578,13 +5582,13 @@ describe("QueryClient", () => {
         const rawResponseBody = {
             Records: [
                 {
-                    transferId: 79851,
-                    paypointId: 705,
+                    transferId: 4521,
+                    paypointId: 3040,
                     batchNumber: "split_705_gp_11-16-2024",
                     batchCurrency: "USD",
                     batchRecords: 1,
                     transferIdentifier: "bbcbfed7-e535-45fe-8d62-000000",
-                    batchId: 111430,
+                    batchId: 1049,
                     paypointEntryName: "47ae3de37",
                     paypointLegalName: "Gruzya Outdoor Outfitters LLC",
                     paypointDbaName: "Gruzya Outdoor Outfitters",
@@ -5627,13 +5631,13 @@ describe("QueryClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/transfers/47862acd")
+            .get("/Query/transfers/8cfec329267")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listTransfers("47862acd", {
+        const response = await client.query.listTransfers("8cfec329267", {
             fromRecord: 0,
             limitRecord: 20,
         });
@@ -5663,7 +5667,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -5701,7 +5705,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -5723,13 +5727,13 @@ describe("QueryClient", () => {
         const rawResponseBody = {
             Records: [
                 {
-                    transferId: 79851,
-                    paypointId: 705,
+                    transferId: 4521,
+                    paypointId: 3040,
                     batchNumber: "split_705_gp_11-16-2024",
                     batchCurrency: "USD",
                     batchRecords: 1,
                     transferIdentifier: "bbcbfed7-e535-45fe-8d62-000000",
-                    batchId: 111430,
+                    batchId: 1049,
                     paypointEntryName: "47ae3de37",
                     paypointLegalName: "Gruzya Outdoor Outfitters LLC",
                     paypointDbaName: "Gruzya Outdoor Outfitters",
@@ -5778,8 +5782,7 @@ describe("QueryClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listTransfersOrg({
-            orgId: 123,
+        const response = await client.query.listTransfersOrg(123, {
             fromRecord: 0,
             limitRecord: 20,
         });
@@ -5801,9 +5804,7 @@ describe("QueryClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.query.listTransfersOrg({
-                orgId: 1000000,
-            });
+            return await client.query.listTransfersOrg(1000000);
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
@@ -5811,7 +5812,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -5822,9 +5823,7 @@ describe("QueryClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.query.listTransfersOrg({
-                orgId: 1000000,
-            });
+            return await client.query.listTransfersOrg(1000000);
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
@@ -5843,9 +5842,7 @@ describe("QueryClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.query.listTransfersOrg({
-                orgId: 1000000,
-            });
+            return await client.query.listTransfersOrg(1000000);
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
@@ -5853,7 +5850,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -5864,9 +5861,7 @@ describe("QueryClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.query.listTransfersOrg({
-                orgId: 1000000,
-            });
+            return await client.query.listTransfersOrg(1000000);
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
@@ -5879,7 +5874,7 @@ describe("QueryClient", () => {
             Records: [
                 {
                     transferId: 4521,
-                    paypointId: 892,
+                    paypointId: 3040,
                     batchNumber: null,
                     batchCurrency: null,
                     batchRecords: null,
@@ -5944,13 +5939,13 @@ describe("QueryClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/transfersOut/org/77")
+            .get("/Query/transfersOut/org/123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listTransfersOutOrg(77, {
+        const response = await client.query.listTransfersOutOrg(123, {
             fromRecord: 0,
             limitRecord: 20,
         });
@@ -5980,7 +5975,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -6018,7 +6013,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -6042,7 +6037,7 @@ describe("QueryClient", () => {
             Records: [
                 {
                     transferId: 4521,
-                    paypointId: 892,
+                    paypointId: 3040,
                     batchNumber: null,
                     batchCurrency: null,
                     batchRecords: null,
@@ -6107,13 +6102,13 @@ describe("QueryClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/transfersOut/47cade237")
+            .get("/Query/transfersOut/8cfec329267")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listTransfersOutPaypoint("47cade237", {
+        const response = await client.query.listTransfersOutPaypoint("8cfec329267", {
             fromRecord: 0,
             limitRecord: 20,
         });
@@ -6143,7 +6138,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -6181,7 +6176,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -6244,7 +6239,7 @@ describe("QueryClient", () => {
                     CreatedAt: "2025-01-15T10:22:18",
                     Comments: "Epoxy floor coating materials",
                     Vendor: {
-                        VendorNumber: "V-CC-2847",
+                        VendorNumber: "VEN-123",
                         Name1: "Concrete Supply Distributors",
                         Name2: null,
                         EIN: "XXXXX4567",
@@ -6270,7 +6265,7 @@ describe("QueryClient", () => {
                         BillingData: null,
                         PaymentMethod: "ach",
                         VendorStatus: 1,
-                        VendorId: 24891,
+                        VendorId: 456,
                         EnrollmentStatus: null,
                         Summary: null,
                         PaypointLegalname: "Solid Rock Concrete Coatings LLC",
@@ -6299,7 +6294,7 @@ describe("QueryClient", () => {
                     },
                     PaypointDbaname: "Solid Rock Coatings",
                     PaypointLegalname: "Solid Rock Concrete Coatings LLC",
-                    PaypointId: 892,
+                    PaypointId: 3040,
                     Status: 2,
                     PaymentId: "01KXYZ789ABC123DEF456GHI",
                     TransId: null,
@@ -6342,14 +6337,14 @@ describe("QueryClient", () => {
                     },
                     Bills: [
                         {
-                            billId: 78234,
+                            billId: 54323,
                             LotNumber: "LOT-2025-0115",
                             AccountingField1: null,
                             AccountingField2: null,
                             Terms: null,
                             AdditionalData: null,
                             attachments: null,
-                            invoiceNumber: "INV-2025-00892",
+                            invoiceNumber: "INV-2345",
                             netAmount: "1250.00",
                             invoiceDate: "2025-01-10T00:00:00",
                             dueDate: "2025-02-09",
@@ -6368,9 +6363,9 @@ describe("QueryClient", () => {
                         },
                     ],
                     externalPaypointID: "SR-892",
-                    EntryName: "47cade237",
+                    EntryName: "8cfec329267",
                     Gateway: "bank",
-                    BatchId: 12847,
+                    BatchId: 1049,
                     HasVcardTransactions: null,
                     IsSameDayACH: false,
                     ScheduleId: 0,
@@ -6391,13 +6386,13 @@ describe("QueryClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/transferDetailsOut/47ace2b25/4521")
+            .get("/Query/transferDetailsOut/8cfec329267/4521")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listTransferDetailsOut("47ace2b25", 4521, {
+        const response = await client.query.listTransferDetailsOut("8cfec329267", 4521, {
             fromRecord: 0,
             limitRecord: 20,
         });
@@ -6427,7 +6422,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -6465,7 +6460,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -6549,7 +6544,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server.mockEndpoint().get("/Query/users/org/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
@@ -6575,7 +6570,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server.mockEndpoint().get("/Query/users/org/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
 
@@ -6659,7 +6654,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -6697,7 +6692,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -6719,7 +6714,7 @@ describe("QueryClient", () => {
         const rawResponseBody = {
             Records: [
                 {
-                    VendorNumber: "1234",
+                    VendorNumber: "VEN-123",
                     Name1: "Herman's Coatings",
                     Name2: "Herman's Coating Supply Company, LLC",
                     EIN: "123456789",
@@ -6756,7 +6751,7 @@ describe("QueryClient", () => {
                         default: true,
                     },
                     VendorStatus: 1,
-                    VendorId: 1,
+                    VendorId: 456,
                     Summary: {
                         ActiveBills: 2,
                         PendingBills: 4,
@@ -6854,7 +6849,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -6892,7 +6887,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -6914,7 +6909,7 @@ describe("QueryClient", () => {
         const rawResponseBody = {
             Records: [
                 {
-                    VendorNumber: "1234",
+                    VendorNumber: "VEN-123",
                     Name1: "Herman's Coatings",
                     Name2: "Herman's Coating Supply Company, LLC",
                     EIN: "123456789",
@@ -6951,7 +6946,7 @@ describe("QueryClient", () => {
                         default: true,
                     },
                     VendorStatus: 1,
-                    VendorId: 1,
+                    VendorId: 456,
                     Summary: {
                         ActiveBills: 2,
                         PendingBills: 4,
@@ -7049,7 +7044,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -7087,7 +7082,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -7130,11 +7125,11 @@ describe("QueryClient", () => {
                     dateCreated: "2023-01-15T09:30:00Z",
                     dateModified: "2023-02-20T14:15:22Z",
                     associatedVendor: {
-                        VendorNumber: "V-12345",
+                        VendorNumber: "VEN-123",
                         Name1: "Office Supply Co.",
                         EIN: "XXXXX6789",
                         Email: "billing@officesupply.example.com",
-                        VendorId: 1542,
+                        VendorId: 456,
                     },
                     associatedCustomer: { firstname: "Acme", lastname: "Corporation" },
                     PaypointDbaname: "Global Factory LLC",
@@ -7142,7 +7137,7 @@ describe("QueryClient", () => {
                     PaypointEntryname: "4872acb376a",
                     externalPaypointID: "pay-10",
                     ParentOrgName: "SupplyPro",
-                    paypointId: 236,
+                    paypointId: 3040,
                 },
             ],
             Summary: {
@@ -7197,7 +7192,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -7235,7 +7230,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -7271,14 +7266,14 @@ describe("QueryClient", () => {
                     ExpirationDate: "06-30-2029",
                     Mcc: "5943",
                     PayoutId: 84210,
-                    CustomerId: 1542,
-                    VendorId: 9821,
+                    CustomerId: 4440,
+                    VendorId: 456,
                     MiscData1: "Invoice #12345",
                     MiscData2: "Project: Office Supplies",
                     CurrentUses: 1,
                     Amount: 500,
                     Balance: 425.5,
-                    PaypointId: 236,
+                    PaypointId: 3040,
                     PaypointLegal: "Global Factory LLC",
                     PaypointDba: "Global Factory",
                     ExternalPaypointID: "pay-10",
@@ -7335,7 +7330,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -7373,7 +7368,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -7409,14 +7404,14 @@ describe("QueryClient", () => {
                     ExpirationDate: "06-30-2029",
                     Mcc: "5943",
                     PayoutId: 84210,
-                    CustomerId: 1542,
-                    VendorId: 9821,
+                    CustomerId: 4440,
+                    VendorId: 456,
                     MiscData1: "Invoice #12345",
                     MiscData2: "Project: Office Supplies",
                     CurrentUses: 1,
                     Amount: 500,
                     Balance: 425.5,
-                    PaypointId: 236,
+                    PaypointId: 3040,
                     PaypointLegal: "Global Factory LLC",
                     PaypointDba: "Global Factory",
                     ExternalPaypointID: "pay-10",
@@ -7473,7 +7468,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -7511,7 +7506,7 @@ describe("QueryClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -7554,11 +7549,11 @@ describe("QueryClient", () => {
                     dateCreated: "2023-01-15T09:30:00Z",
                     dateModified: "2023-02-20T14:15:22Z",
                     associatedVendor: {
-                        VendorNumber: "V-12345",
+                        VendorNumber: "VEN-123",
                         Name1: "Office Supply Co.",
                         EIN: "XXXXX6789",
                         Email: "billing@officesupply.example.com",
-                        VendorId: 1542,
+                        VendorId: 456,
                     },
                     associatedCustomer: { firstname: "Acme", lastname: "Corporation" },
                     PaypointDbaname: "Global Factory LLC",
@@ -7566,7 +7561,7 @@ describe("QueryClient", () => {
                     PaypointEntryname: "4872acb376a",
                     externalPaypointID: "pay-10",
                     ParentOrgName: "SupplyPro",
-                    paypointId: 236,
+                    paypointId: 3040,
                 },
             ],
             Summary: {

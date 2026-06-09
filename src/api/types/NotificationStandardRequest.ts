@@ -3,181 +3,21 @@
 import type * as Payabli from "../index.js";
 
 /**
- * Information about the standard notification configuration (email, sms, web).
+ * Information about the standard notification configuration (email, SMS, web).
  */
 export interface NotificationStandardRequest {
-    content?: NotificationStandardRequest.Content | undefined;
-    frequency: NotificationStandardRequest.Frequency;
-    /** Get near-instant notifications via email, SMS, or webhooks for important events like new payment disputes, merchant activations, fraud alerts, approved transactions, settlement history, vendor payouts, and more. Use webhooks with notifications to get real-time updates and automate operations based on key those key events. See [Notifications](/developers/developer-guides/notifications-and-webhooks-overview#notifications) for more. */
-    method: NotificationStandardRequest.Method;
+    content?: Payabli.NotificationStandardRequestContent | undefined;
+    frequency: Payabli.NotificationStandardRequestFrequency;
+    /** Get near-instant notifications via email, SMS, or webhooks for important events like new payment disputes, merchant activations, fraud alerts, approved transactions, settlement history, vendor payouts, and more. Use webhooks with notifications to get real-time updates and automate operations based on those key events. See [Notifications](/developers/developer-guides/notifications-and-webhooks-overview#notifications) for more. */
+    method: Payabli.NotificationStandardRequestMethod;
     ownerId?: Payabli.Ownerid | undefined;
     ownerType: Payabli.Ownertype;
     status?: Payabli.Statusnotification | undefined;
     /**
      * Specify the notification target.
-     *
      * - For method=email the expected value is a list of email addresses separated by semicolon.
      * - For method=sms the expected value is a list of phone numbers separated by semicolon.
      * - For method=web the expected value is a valid and complete URL. Webhooks support only standard HTTP ports: 80, 443, 8080, or 4443.
      */
     target: string;
-}
-
-export namespace NotificationStandardRequest {
-    export interface Content {
-        /** The notification's event name. */
-        eventType?: Content.EventType | undefined;
-        /** Array of pairs key:value to insert in request body to target in **method** = *web*. */
-        internalData?: Payabli.KeyValueDuo[] | undefined;
-        /** Used internally to reference the entity or object generating the event. */
-        transactionId?: string | undefined;
-        /** Array of pairs key:value to insert in header of request to target in **method** = *web*. */
-        webHeaderParameters?: Payabli.KeyValueDuo[] | undefined;
-    }
-
-    export namespace Content {
-        /** The notification's event name. */
-        export const EventType = {
-            PayinTransactionRejected: "payin_transaction_rejected",
-            PayinTransactionOnhold: "payin_transaction_onhold",
-            PayinTransactionReleased: "payin_transaction_released",
-            PayinTransactionRecovered: "payin_transaction_recovered",
-            PayoutTransactionInitiated: "payout_transaction_initiated",
-            PayoutTransactionAuthorized: "payout_transaction_authorized",
-            PayoutTransactionApprovedcaptured: "payout_transaction_approvedcaptured",
-            PayoutTransactionDeclined: "payout_transaction_declined",
-            PayoutTransactionTechnicaldecline: "payout_transaction_technicaldecline",
-            PayoutTransactionFailed: "payout_transaction_failed",
-            PayoutTransactionError: "payout_transaction_error",
-            PayoutTransactionPaid: "payout_transaction_paid",
-            PayoutTransactionReturned: "payout_transaction_returned",
-            PayoutTransactionRejected: "payout_transaction_rejected",
-            PayoutTransactionVoidedcancelled: "payout_transaction_voidedcancelled",
-            PayoutTransactionProcessing: "payout_transaction_processing",
-            PayoutTransactionProcessed: "payout_transaction_processed",
-            PayoutTransactionOnhold: "payout_transaction_onhold",
-            PayoutTransactionReleased: "payout_transaction_released",
-            PayoutTransactionRecovered: "payout_transaction_recovered",
-            PayinBatchOnhold: "payin_batch_onhold",
-            PayinBatchReleased: "payin_batch_released",
-            PayoutBatchOpen: "payout_batch_open",
-            PayoutBatchOnhold: "payout_batch_onhold",
-            PayoutBatchReleased: "payout_batch_released",
-            PayoutBatchProcessed: "payout_batch_processed",
-            PayoutBatchPaid: "payout_batch_paid",
-            PayoutBatchFunded: "payout_batch_funded",
-            PayoutBatchClosed: "payout_batch_closed",
-            PayoutBatchNotclosed: "payout_batch_notclosed",
-            PayoutBatchFundpending: "payout_batch_fundpending",
-            PayoutBatchCancelled: "payout_batch_cancelled",
-            PayoutBatchTransferred: "payout_batch_transferred",
-            PayoutBatchResolved: "payout_batch_resolved",
-            PayoutBatchSettlementPending: "payout_batch_settlement_pending",
-            PayoutBatchSettlementIntransit: "payout_batch_settlement_intransit",
-            PayoutBatchSettlementTransferred: "payout_batch_settlement_transferred",
-            PayoutBatchSettlementFunded: "payout_batch_settlement_funded",
-            PayoutBatchSettlementResolved: "payout_batch_settlement_resolved",
-            PayoutBatchSettlementException: "payout_batch_settlement_exception",
-            PayoutBatchSettlementAchreturn: "payout_batch_settlement_achreturn",
-            PayoutBatchSettlementHeld: "payout_batch_settlement_held",
-            PayoutBatchSettlementReleased: "payout_batch_settlement_released",
-            ApprovedPayment: "ApprovedPayment",
-            AuthorizedPayment: "AuthorizedPayment",
-            DeclinedPayment: "DeclinedPayment",
-            OriginatedPayment: "OriginatedPayment",
-            SettledPayment: "SettledPayment",
-            SubscriptionCreated: "SubscriptionCreated",
-            SubscriptionUpdated: "SubscriptionUpdated",
-            SubscriptionCanceled: "SubscriptionCanceled",
-            SubscriptionCompleted: "SubscriptionCompleted",
-            FundedPayment: "FundedPayment",
-            VoidedPayment: "VoidedPayment",
-            RefundedPayment: "RefundedPayment",
-            HoldTransaction: "HoldTransaction",
-            ReleasedTransaction: "ReleasedTransaction",
-            HoldBatch: "HoldBatch",
-            ReleasedBatch: "ReleasedBatch",
-            TransferAdjusted: "TransferAdjusted",
-            TransferDisabledCreditFund: "TransferDisabledCreditFund",
-            TransferDisabledDebitFund: "TransferDisabledDebitFund",
-            TransferNotAvailableBalance: "TransferNotAvailableBalance",
-            TransferReadyforRetry: "TransferReadyforRetry",
-            TransferResolved: "TransferResolved",
-            TransferReturn: "TransferReturn",
-            TransferSuccess: "TransferSuccess",
-            TransferSuspended: "TransferSuspended",
-            TransferError: "TransferError",
-            SendReceipt: "SendReceipt",
-            RecoveredTransaction: "RecoveredTransaction",
-            CreatedApplication: "CreatedApplication",
-            ApprovedApplication: "ApprovedApplication",
-            FailedBoardingApplication: "FailedBoardingApplication",
-            SubmittedApplication: "SubmittedApplication",
-            ActivatedMerchant: "ActivatedMerchant",
-            ReceivedChargeBack: "ReceivedChargeBack",
-            ChargebackUpdated: "ChargebackUpdated",
-            ReceivedRetrieval: "ReceivedRetrieval",
-            RetrievalUpdated: "RetrievalUpdated",
-            ReceivedAchReturn: "ReceivedAchReturn",
-            HoldingApplication: "HoldingApplication",
-            DeclinedApplication: "DeclinedApplication",
-            BoardingApplication: "BoardingApplication",
-            PaypointMoved: "PaypointMoved",
-            FraudAlert: "FraudAlert",
-            InvoiceSent: "InvoiceSent",
-            InvoicePaid: "InvoicePaid",
-            InvoiceCreated: "InvoiceCreated",
-            BillPaid: "BillPaid",
-            BillApproved: "BillApproved",
-            BillDisApproved: "BillDisApproved",
-            BillCanceled: "BillCanceled",
-            BillProcessing: "BillProcessing",
-            CardCreated: "CardCreated",
-            CardActivated: "CardActivated",
-            CardDeactivated: "CardDeactivated",
-            CardExpired: "CardExpired",
-            CardExpiring: "CardExpiring",
-            CardLimitUpdated: "CardLimitUpdated",
-            BatchClosed: "BatchClosed",
-            BatchNotClosed: "BatchNotClosed",
-            PayOutFunded: "PayOutFunded",
-            PayOutProcessed: "PayOutProcessed",
-            PayOutCanceled: "PayOutCanceled",
-            PayOutPaid: "PayOutPaid",
-            PayOutReturned: "PayOutReturned",
-            PayoutSubscriptionCreated: "PayoutSubscriptionCreated",
-            PayoutSubscriptionUpdated: "PayoutSubscriptionUpdated",
-            PayoutSubscriptionCanceled: "PayoutSubscriptionCanceled",
-            PayoutSubscriptionCompleted: "PayoutSubscriptionCompleted",
-            PayoutSubscriptionReminder: "PayoutSubscriptionReminder",
-            ImportFileReceived: "importFileReceived",
-            ImportFileProcessed: "importFileProcessed",
-            ImportFileError: "importFileError",
-            ExportFileSent: "exportFileSent",
-            ExportFileError: "exportFileError",
-            UpdatedMerchant: "UpdatedMerchant",
-            Report: "Report",
-            FailedEmailNotification: "FailedEmailNotification",
-            FailedWebNotification: "FailedWebNotification",
-            FailedSmsNotification: "FailedSMSNotification",
-            UserPasswordExpiring: "UserPasswordExpiring",
-            UserPasswordExpired: "UserPasswordExpired",
-            TransactionNotFound: "TransactionNotFound",
-            SystemAlert: "SystemAlert",
-        } as const;
-        export type EventType = (typeof EventType)[keyof typeof EventType];
-    }
-
-    export const Frequency = {
-        OneTime: "one-time",
-        Untilcancelled: "untilcancelled",
-    } as const;
-    export type Frequency = (typeof Frequency)[keyof typeof Frequency];
-    /** Get near-instant notifications via email, SMS, or webhooks for important events like new payment disputes, merchant activations, fraud alerts, approved transactions, settlement history, vendor payouts, and more. Use webhooks with notifications to get real-time updates and automate operations based on key those key events. See [Notifications](/developers/developer-guides/notifications-and-webhooks-overview#notifications) for more. */
-    export const Method = {
-        Email: "email",
-        Sms: "sms",
-        Web: "web",
-    } as const;
-    export type Method = (typeof Method)[keyof typeof Method];
 }

@@ -5,7 +5,7 @@ import type * as Payabli from "../../../../index.js";
 /**
  * @example
  *     {
- *         entryPoint: "47abcfea12",
+ *         entryPoint: "8cfec329267",
  *         frontImage: "/9j/4AAQSkZJRgABAQEASABIAAD...",
  *         rearImage: "/9j/4AAQSkZJRgABAQEASABIAAD...",
  *         checkAmount: 12550

@@ -5,13 +5,12 @@ import type * as Payabli from "../../../../index.js";
 /**
  * @example
  *     {
- *         orgId: 123,
  *         fromRecord: 0,
  *         limitRecord: 20
  *     }
  */
 export interface ListTransfersRequestOrg {
-    orgId: Payabli.Orgid;
+    /** Export format for file downloads. When specified, returns data as a file instead of JSON. */
     exportFormat?: Payabli.ExportFormat;
     /** The number of records to skip before starting to collect the result set. */
     fromRecord?: number;
@@ -51,7 +50,7 @@ export interface ListTransfersRequestOrg {
      *   - `bankRoutingNumber` (ct, nct, ne, eq)
      *   - `batchCurrency` (in, nin, ne, eq)
      */
-    parameters?: Record<string, string>;
+    parameters?: Record<string, string | null>;
     /** The field name to use for sorting results. Use `desc(field_name)` to sort descending by `field_name`, and use `asc(field_name)` to sort ascending by `field_name`. */
     sortBy?: string;
 }

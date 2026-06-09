@@ -4,6 +4,5 @@
 export const Whenprovided = {
     ThirtyDaysOrLess: "30 Days or Less",
     ThirtyOneTo60Days: "31 to 60 Days",
-    SixtyDays: "60+ Days",
 } as const;
 export type Whenprovided = (typeof Whenprovided)[keyof typeof Whenprovided];

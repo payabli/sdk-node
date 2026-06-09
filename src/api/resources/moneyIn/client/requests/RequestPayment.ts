@@ -5,186 +5,190 @@ import type * as Payabli from "../../../../index.js";
 /**
  * @example
  *     {
- *         body: {
- *             customerData: {
- *                 customerId: 4440
- *             },
- *             entryPoint: "f743aed24a",
- *             ipaddress: "255.255.255.255",
- *             paymentDetails: {
- *                 serviceFee: 0,
- *                 totalAmount: 100
- *             },
- *             paymentMethod: {
- *                 cardcvv: "999",
- *                 cardexp: "02/27",
- *                 cardHolder: "John Cassian",
- *                 cardnumber: "4111111111111111",
- *                 cardzip: "12345",
- *                 initiator: "payor",
- *                 method: "card"
- *             }
+ *         customerData: {
+ *             customerId: 4440
+ *         },
+ *         entryPoint: "8cfec329267",
+ *         ipaddress: "255.255.255.255",
+ *         paymentDetails: {
+ *             serviceFee: 0,
+ *             totalAmount: 100
+ *         },
+ *         paymentMethod: {
+ *             cardcvv: "999",
+ *             cardexp: "02/27",
+ *             cardHolder: "John Cassian",
+ *             cardnumber: "4111111111111111",
+ *             cardzip: "12345",
+ *             initiator: "payor",
+ *             method: "card"
  *         }
  *     }
  *
  * @example
  *     {
- *         body: {
- *             customerData: {
- *                 customerId: 4440
- *             },
- *             entryPoint: "f743aed24a",
- *             ipaddress: "255.255.255.255",
- *             paymentDetails: {
- *                 serviceFee: 0,
- *                 totalAmount: 100
- *             },
- *             paymentMethod: {
- *                 initiator: "payor",
- *                 method: "card",
- *                 storedMethodId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
- *                 storedMethodUsageType: "unscheduled"
- *             }
+ *         customerData: {
+ *             customerId: 4440
+ *         },
+ *         entryPoint: "8cfec329267",
+ *         ipaddress: "255.255.255.255",
+ *         paymentDetails: {
+ *             serviceFee: 0,
+ *             totalAmount: 100
+ *         },
+ *         paymentMethod: {
+ *             initiator: "payor",
+ *             method: "card",
+ *             storedMethodId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+ *             storedMethodUsageType: "unscheduled"
  *         }
  *     }
  *
  * @example
  *     {
- *         body: {
- *             customerData: {
- *                 customerId: 4440
- *             },
- *             entryPoint: "f743aed24a",
- *             ipaddress: "255.255.255.255",
- *             paymentDetails: {
- *                 serviceFee: 0,
- *                 totalAmount: 100
- *             },
- *             paymentMethod: {
- *                 device: "6c361c7d-674c-44cc-b790-382b75d1xxx",
- *                 method: "cloud",
- *                 saveIfSuccess: true
- *             }
+ *         customerData: {
+ *             customerId: 4440
+ *         },
+ *         entryPoint: "8cfec329267",
+ *         ipaddress: "255.255.255.255",
+ *         paymentDetails: {
+ *             serviceFee: 0,
+ *             totalAmount: 100
+ *         },
+ *         paymentMethod: {
+ *             device: "6c361c7d-674c-44cc-b790-382b75d1xxx",
+ *             method: "cloud",
+ *             saveIfSuccess: true
  *         }
  *     }
  *
  * @example
  *     {
- *         body: {
- *             customerData: {
- *                 customerId: 4440
- *             },
- *             entryPoint: "f743aed24a",
- *             ipaddress: "255.255.255.255",
- *             paymentDetails: {
- *                 serviceFee: 0,
- *                 totalAmount: 100
- *             },
- *             paymentMethod: {
- *                 achAccount: "123123123",
- *                 achAccountType: "Checking",
- *                 achCode: "WEB",
- *                 achHolder: "John Cassian",
- *                 achHolderType: "personal",
- *                 achRouting: "123123123",
- *                 method: "ach"
- *             }
+ *         customerData: {
+ *             customerId: 4440
+ *         },
+ *         entryPoint: "8cfec329267",
+ *         ipaddress: "255.255.255.255",
+ *         paymentDetails: {
+ *             serviceFee: 0,
+ *             totalAmount: 100
+ *         },
+ *         paymentMethod: {
+ *             achAccount: "123123123",
+ *             achAccountType: "Checking",
+ *             achCode: "WEB",
+ *             achHolder: "John Cassian",
+ *             achHolderType: "personal",
+ *             achRouting: "123123123",
+ *             method: "ach"
  *         }
  *     }
  *
  * @example
  *     {
- *         body: {
- *             customerData: {
- *                 customerId: 4440
- *             },
- *             entryPoint: "f743aed24a",
- *             ipaddress: "255.255.255.255",
- *             paymentDetails: {
- *                 checkUniqueId: "abc123def456",
- *                 serviceFee: 0,
- *                 totalAmount: 125.5
- *             },
- *             paymentMethod: {
- *                 achAccount: "123456",
- *                 achAccountType: "Checking",
- *                 achCode: "BOC",
- *                 achHolder: "John Doe",
- *                 achRouting: "123456789",
- *                 method: "ach"
- *             }
+ *         customerData: {
+ *             customerId: 4440
+ *         },
+ *         entryPoint: "8cfec329267",
+ *         ipaddress: "255.255.255.255",
+ *         paymentDetails: {
+ *             checkUniqueId: "abc123def456",
+ *             serviceFee: 0,
+ *             totalAmount: 125.5
+ *         },
+ *         paymentMethod: {
+ *             achAccount: "123456",
+ *             achAccountType: "Checking",
+ *             achCode: "BOC",
+ *             achHolder: "John Doe",
+ *             achRouting: "123456789",
+ *             method: "ach"
  *         }
  *     }
  *
  * @example
  *     {
- *         body: {
- *             customerData: {
- *                 billingAddress1: "123 Walnut Street",
- *                 billingCity: "Johnson City",
- *                 billingCountry: "US",
- *                 billingEmail: "john@email.com",
- *                 billingPhone: "1234567890",
- *                 billingState: "Johnson City",
- *                 billingZip: "37615",
- *                 customerNumber: "3456-7645A",
- *                 firstName: "John",
- *                 lastName: "Cassian"
- *             },
- *             entryPoint: "f743aed24a",
- *             ipaddress: "255.255.255.255",
- *             orderDescription: "New customer package",
- *             orderId: "982-102",
- *             paymentDetails: {
- *                 serviceFee: 0,
- *                 totalAmount: 1000
- *             },
- *             paymentMethod: {
- *                 cardcvv: "123",
- *                 cardexp: "02/25",
- *                 cardHolder: "John Cassian",
- *                 cardnumber: "4111111111111111",
- *                 cardzip: "12345",
- *                 initiator: "payor",
- *                 method: "card",
- *                 saveIfSuccess: true
- *             },
- *             source: "web"
- *         }
+ *         customerData: {
+ *             billingAddress1: "123 Walnut Street",
+ *             billingCity: "Johnson City",
+ *             billingCountry: "US",
+ *             billingEmail: "john@email.com",
+ *             billingPhone: "1234567890",
+ *             billingState: "Johnson City",
+ *             billingZip: "37615",
+ *             customerNumber: "C-90010",
+ *             firstName: "John",
+ *             lastName: "Cassian"
+ *         },
+ *         entryPoint: "8cfec329267",
+ *         ipaddress: "255.255.255.255",
+ *         orderDescription: "New customer package",
+ *         orderId: "982-102",
+ *         paymentDetails: {
+ *             serviceFee: 0,
+ *             totalAmount: 1000
+ *         },
+ *         paymentMethod: {
+ *             cardcvv: "123",
+ *             cardexp: "02/25",
+ *             cardHolder: "John Cassian",
+ *             cardnumber: "4111111111111111",
+ *             cardzip: "12345",
+ *             initiator: "payor",
+ *             method: "card",
+ *             saveIfSuccess: true
+ *         },
+ *         source: "web"
  *     }
  *
  * @example
  *     {
- *         body: {
- *             customerData: {
- *                 customerId: 4440
- *             },
- *             entryPoint: "f743aed24a",
- *             ipaddress: "255.255.255.255",
- *             paymentDetails: {
- *                 serviceFee: 0,
- *                 totalAmount: 100,
- *                 currency: "CAD"
- *             },
- *             paymentMethod: {
- *                 cardcvv: "999",
- *                 cardexp: "02/27",
- *                 cardHolder: "John Cassian",
- *                 cardnumber: "4111111111111111",
- *                 cardzip: "12345",
- *                 initiator: "payor",
- *                 method: "card"
- *             }
+ *         customerData: {
+ *             customerId: 4440
+ *         },
+ *         entryPoint: "8cfec329267",
+ *         ipaddress: "255.255.255.255",
+ *         paymentDetails: {
+ *             serviceFee: 0,
+ *             totalAmount: 100,
+ *             currency: "CAD"
+ *         },
+ *         paymentMethod: {
+ *             cardcvv: "999",
+ *             cardexp: "02/27",
+ *             cardHolder: "John Cassian",
+ *             cardnumber: "4111111111111111",
+ *             cardzip: "12345",
+ *             initiator: "payor",
+ *             method: "card"
  *         }
  *     }
  */
 export interface RequestPayment {
+    /** When `true`, enables real-time validation of ACH account and routing numbers. This is an add-on feature, contact Payabli for more information. */
     achValidation?: Payabli.AchValidation;
+    /** When `true`, the request creates a new customer record, regardless of whether customer identifiers match an existing customer. Defaults to `false`. */
     forceCustomerCreation?: Payabli.ForceCustomerCreation;
     /** When `true`, transactionDetails object is returned in the response. See a full example of the `transactionDetails` object in the [Transaction integration guide](/developers/developer-guides/money-in-transaction-add#includedetailstrue-response). */
     includeDetails?: boolean;
+    /** _Optional but recommended_ A unique ID that you can include to prevent duplicating objects or transactions in the case that a request is sent more than once. This key isn't generated in Payabli, you must generate it yourself. This key persists for 2 minutes. After 2 minutes, you can reuse the key if needed. */
     idempotencyKey?: Payabli.IdempotencyKey;
     /** Value obtained from user when an API generated CAPTCHA is used in payment page */
     validationCode?: string;
-    body: Payabli.TransRequestBody;
+    accountId?: Payabli.AccountId;
+    /** Object describing the Customer/Payor. Which fields are required depends on the paypoint's custom identifier settings. */
+    customerData?: Payabli.PayorDataRequest;
+    entryPoint?: Payabli.Entrypointfield;
+    /** Object describing an Invoice linked to the transaction. */
+    invoiceData?: Payabli.BillData;
+    ipaddress?: Payabli.IpAddress;
+    orderDescription?: Payabli.Orderdescription;
+    orderId?: Payabli.OrderId;
+    /** Object describing details of the payment. Required. */
+    paymentDetails: Payabli.PaymentDetail;
+    /** Information about the payment method for the transaction. Required and recommended fields for each payment method type are described in each schema below. */
+    paymentMethod: Payabli.PaymentMethod;
+    source?: Payabli.Source;
+    subdomain?: Payabli.Subdomain;
+    subscriptionId?: Payabli.Subscriptionid;
 }

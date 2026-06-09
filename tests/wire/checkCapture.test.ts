@@ -9,7 +9,7 @@ describe("CheckCaptureClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            entryPoint: "47abcfea12",
+            entryPoint: "8cfec329267",
             frontImage: "/9j/4AAQSkZJRgABAQEASABIAAD...",
             rearImage: "/9j/4AAQSkZJRgABAQEASABIAAD...",
             checkAmount: 12550,
@@ -48,7 +48,7 @@ describe("CheckCaptureClient", () => {
             .build();
 
         const response = await client.checkCapture.checkProcessing({
-            entryPoint: "47abcfea12",
+            entryPoint: "8cfec329267",
             frontImage: "/9j/4AAQSkZJRgABAQEASABIAAD...",
             rearImage: "/9j/4AAQSkZJRgABAQEASABIAAD...",
             checkAmount: 12550,
@@ -95,7 +95,7 @@ describe("CheckCaptureClient", () => {
             rearImage: "rearImage",
             checkAmount: 1,
         };
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -155,7 +155,7 @@ describe("CheckCaptureClient", () => {
             rearImage: "rearImage",
             checkAmount: 1,
         };
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()

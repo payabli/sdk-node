@@ -6,23 +6,6 @@ import type * as Payabli from "../index.js";
  * Response for line item queries
  */
 export interface QueryResponseItems {
-    Records?: QueryResponseItems.Records.Item[] | undefined;
+    Records?: Payabli.QueryResponseItemsRecordsItem[] | undefined;
     Summary?: Payabli.QuerySummary | undefined;
-}
-
-export namespace QueryResponseItems {
-    export type Records = Records.Item[];
-
-    export namespace Records {
-        export interface Item {
-            LineItem?: Payabli.LineItem | undefined;
-            ParentOrgName?: Payabli.OrgParentName | undefined;
-            /** The paypoint's DBA name. */
-            PaypointDbaname?: Payabli.Dbaname | undefined;
-            /** The paypoint's entry name (entrypoint). */
-            PaypointEntryname?: Payabli.Entrypointfield | undefined;
-            /** the Paypoint's legal name. */
-            PaypointLegalname?: Payabli.Legalname | undefined;
-        }
-    }
 }

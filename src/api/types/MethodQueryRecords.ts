@@ -3,18 +3,34 @@
 import type * as Payabli from "../index.js";
 
 export interface MethodQueryRecords {
-    /** The bank identification number (BIN). Null when method is ACH. */
-    bin?: string | undefined;
-    binData?: Payabli.BinData | undefined;
-    descriptor?: Payabli.Descriptor | undefined;
-    /** Expiration date associated to the method (only for card) in format MMYY. */
-    expDate?: string | undefined;
-    holderName?: Payabli.Holdername | undefined;
     /** Method internal ID */
-    idPmethod?: string | undefined;
-    /** Date of last update */
-    lastUpdated?: Payabli.LastModified | undefined;
-    maskedAccount?: Payabli.Maskedaccount | undefined;
+    IdPmethod?: string | undefined;
     /** Type of payment vehicle: **ach** or **card** */
-    method?: string | undefined;
+    Method?: string | undefined;
+    Descriptor?: Payabli.Descriptor | undefined;
+    MaskedAccount?: Payabli.Maskedaccount | undefined;
+    /** Expiration date associated to the method (only for card) in format MMYY. */
+    ExpDate?: string | undefined;
+    HolderName?: Payabli.Holdername | undefined;
+    /** Standard Entry Class (SEC) code for the ACH transaction. */
+    AchSecCode?: (string | null) | undefined;
+    /** Bank accountholder type: `personal` or `business`. */
+    AchHolderType?: (string | null) | undefined;
+    /** Whether the ACH account has been validated. */
+    IsValidatedACH?: (boolean | null) | undefined;
+    /** The bank identification number (BIN). Null when method is ACH. */
+    BIN?: string | undefined;
+    binData?: Payabli.BinData | undefined;
+    /** Bank routing number. */
+    ABA?: (string | null) | undefined;
+    /** The payment method postal code. */
+    PostalCode?: (string | null) | undefined;
+    /** The payment method's token type. */
+    MethodType?: (string | null) | undefined;
+    /** Digital wallet type if applicable. */
+    WalletType?: (string | null) | undefined;
+    /** Date of last update */
+    LastUpdated?: Payabli.LastModified | undefined;
+    /** Date and time the card was last updated. */
+    CardUpdatedOn?: (string | null) | undefined;
 }

@@ -18,7 +18,7 @@ export interface PayabliCredentialsPascal {
     ReferenceId?: number | undefined;
     acceptSameDayACH?: boolean | undefined;
     /** The default currency for the paypoint, either `USD` or `CAD`. */
-    Currency?: string | undefined;
+    Currency?: string[] | undefined;
     GreaterValueAllowed?: Payabli.GreaterValueAllowed | undefined;
     AbsorbDifference?: Payabli.AbsorbDifference | undefined;
     AllowOverride?: Payabli.AllowOverride | undefined;

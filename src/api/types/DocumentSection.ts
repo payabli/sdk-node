@@ -12,26 +12,8 @@ export interface DocumentSection {
     /** When `true`, allows the applicant to upload documents to the application. */
     uploadDocuments?: boolean | undefined;
     bankData?: Payabli.BankSection | undefined;
-    termsAndConditions?: DocumentSection.TermsAndConditions | undefined;
+    termsAndConditions?: Payabli.DocumentSectionTermsAndConditions | undefined;
     signer?: Payabli.SignerSection | undefined;
     visible?: Payabli.Visible | undefined;
     withdrawalBank?: Payabli.BankSection | undefined;
-}
-
-export namespace DocumentSection {
-    export interface TermsAndConditions {
-        tcLinks?: TermsAndConditions.TcLinks.Item[] | undefined;
-        visible?: Payabli.Visible | undefined;
-    }
-
-    export namespace TermsAndConditions {
-        export type TcLinks = TcLinks.Item[];
-
-        export namespace TcLinks {
-            export interface Item {
-                label?: string | undefined;
-                value?: string | undefined;
-            }
-        }
-    }
 }

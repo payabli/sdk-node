@@ -51,7 +51,7 @@ describe("ChargeBacksClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -91,7 +91,7 @@ describe("ChargeBacksClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -140,7 +140,7 @@ describe("ChargeBacksClient", () => {
                 BillingZip: "45567",
                 CompanyName: "Sunshine LLC",
                 customerId: 4440,
-                CustomerNumber: "3456-7645A",
+                CustomerNumber: "C-90010",
                 customerStatus: 1,
                 FirstName: "John",
                 Identifiers: ["firstname", "lastname", "email", "customId"],
@@ -173,7 +173,7 @@ describe("ChargeBacksClient", () => {
                 HolderName: "Chad Mercia",
                 Initiator: "payor",
                 MaskedAccount: "4XXXXXXXX1111",
-                orderDescription: "Depost for materials for 123 Walnut St",
+                orderDescription: "Deposit for materials for 123 Walnut St",
                 paymentDetails: {
                     categories: [{ amount: 1000, label: "Deposit" }],
                     checkImage: { key: "value" },
@@ -220,7 +220,7 @@ describe("ChargeBacksClient", () => {
                     BillingZip: "45567",
                     CompanyName: "Sunshine LLC",
                     customerId: 4440,
-                    CustomerNumber: "3456-7645A",
+                    CustomerNumber: "C-90010",
                     customerStatus: 1,
                     FirstName: "John",
                     Identifiers: ["firstname", "lastname", "email", "customId"],
@@ -232,7 +232,7 @@ describe("ChargeBacksClient", () => {
                     ShippingState: "TN",
                     ShippingZip: "37619",
                 },
-                DeviceId: "6c361c7d-674c-44cc-b790-382b75d1xxx",
+                DeviceId: "499585-389fj484-3jcj8hj3",
                 EntrypageId: 0,
                 ExternalProcessorInformation: "[MER_xxxxxxxxxxxxxx]/[NNNNNNNNN]",
                 FeeAmount: 1,
@@ -297,7 +297,7 @@ describe("ChargeBacksClient", () => {
                     HolderName: "Chad Mercia",
                     Initiator: "payor",
                     MaskedAccount: "4XXXXXXXX1111",
-                    orderDescription: "Depost for materials for 123 Walnut St",
+                    orderDescription: "Deposit for materials for 123 Walnut St",
                     paymentDetails: { totalAmount: 100 },
                     Sequence: "subsequent",
                     SignatureData: "SignatureData",
@@ -308,7 +308,7 @@ describe("ChargeBacksClient", () => {
                 PayorId: 1551,
                 PaypointDbaname: "Sunshine Gutters",
                 PaypointEntryname: "d193cf9a46",
-                PaypointId: 226,
+                PaypointId: 3040,
                 PaypointLegalname: "Sunshine Services, LLC",
                 PendingFeeAmount: 2,
                 RefundId: 0,
@@ -391,7 +391,7 @@ describe("ChargeBacksClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -429,7 +429,7 @@ describe("ChargeBacksClient", () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { responseText: "responseText" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
@@ -441,6 +441,100 @@ describe("ChargeBacksClient", () => {
 
         await expect(async () => {
             return await client.chargeBacks.getChargeback(1000000);
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("getChargebackAttachment (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = "string";
+
+        server
+            .mockEndpoint()
+            .get("/ChargeBacks/getChargebackAttachments/1000000/fileName")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.chargeBacks.getChargebackAttachment(1000000, "fileName");
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("getChargebackAttachment (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/ChargeBacks/getChargebackAttachments/1000000/fileName")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.chargeBacks.getChargebackAttachment(1000000, "fileName");
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("getChargebackAttachment (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .get("/ChargeBacks/getChargebackAttachments/1000000/fileName")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.chargeBacks.getChargebackAttachment(1000000, "fileName");
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("getChargebackAttachment (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/ChargeBacks/getChargebackAttachments/1000000/fileName")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.chargeBacks.getChargebackAttachment(1000000, "fileName");
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("getChargebackAttachment (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .get("/ChargeBacks/getChargebackAttachments/1000000/fileName")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.chargeBacks.getChargebackAttachment(1000000, "fileName");
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 });

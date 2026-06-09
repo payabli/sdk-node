@@ -8,19 +8,11 @@ import type * as Payabli from "../index.js";
 export type PushPayLinkRequest = Payabli.PushPayLinkRequest.Email | Payabli.PushPayLinkRequest.Sms;
 
 export namespace PushPayLinkRequest {
-    export interface Email {
+    export interface Email extends Payabli.PushPayLinkRequestEmail {
         channel: "email";
-        /**
-         * List of additional email addresses you want to send the paylink to, formatted as an array.
-         * Payment links and opt-in requests are sent to the customer email address on file, and additional
-         * recipients can be specified here.
-         */
-        additionalEmails?: string[] | undefined;
-        /** When `true`, attaches a PDF version of the invoice to the email. */
-        attachFile?: boolean | undefined;
     }
 
-    export interface Sms {
+    export interface Sms extends Payabli.PushPayLinkRequestSms {
         channel: "sms";
     }
 }

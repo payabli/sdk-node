@@ -16,10 +16,13 @@ export declare namespace StatisticClient {
     export interface RequestOptions extends BaseRequestOptions {}
 }
 
+/**
+ * The Statistic service provides business intelligence and analytics capabilities with aggregated metrics and reporting data. It delivers dashboard-ready statistics including transaction volumes, payment success rates, revenue metrics, and trend analysis across configurable time periods. The service provides segmentation by payment method, geography, merchant, and other dimensions for detailed business insights. It calculates key performance indicators for payment operations, chargeback rates, average transaction values, and customer lifetime metrics. Statistics can be filtered by organization, paypoint, or date ranges and support comparative analysis for identifying trends and anomalies in payment processing activity.
+ */
 export class StatisticClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<StatisticClient.Options>;
 
-    constructor(options: StatisticClient.Options = {}) {
+    constructor(options: StatisticClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -40,7 +43,6 @@ export class StatisticClient {
      *                        - `lastm` - Last Month
      *                        - `lastw` - Last Week
      *                        - `yesterday` - Last Day
-     *
      * @param {string} freq - Frequency to group series. Allowed values:
      *
      *                        - `m` - monthly
@@ -62,9 +64,9 @@ export class StatisticClient {
      * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
-     *     await client.statistic.basicStats("ytd", "m", 1, 1000000, {
-     *         endDate: "2025-11-01",
-     *         startDate: "2025-11-30"
+     *     await client.statistic.basicStats("custom", "m", 2, 1000000, {
+     *         startDate: "2025-11-01",
+     *         endDate: "2025-11-30"
      *     })
      */
     public basicStats(
@@ -132,12 +134,15 @@ export class StatisticClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -191,7 +196,7 @@ export class StatisticClient {
      * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
-     *     await client.statistic.customerBasicStats("ytd", "m", 998)
+     *     await client.statistic.customerBasicStats("ytd", "m", 4440)
      */
     public customerBasicStats(
         mode: string,
@@ -254,12 +259,15 @@ export class StatisticClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -302,7 +310,7 @@ export class StatisticClient {
      * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
-     *     await client.statistic.subStats("30", 1, 1000000)
+     *     await client.statistic.subStats("30", 2, 1000000)
      */
     public subStats(
         interval: string,
@@ -360,12 +368,15 @@ export class StatisticClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -412,6 +423,11 @@ export class StatisticClient {
      * @param {number} idVendor - Vendor ID.
      * @param {Payabli.VendorBasicStatsRequest} request
      * @param {StatisticClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
      *     await client.statistic.vendorBasicStats("ytd", "m", 1)
@@ -473,11 +489,28 @@ export class StatisticClient {
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.PayabliError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
         }
 
         return handleNonStatusCodeError(

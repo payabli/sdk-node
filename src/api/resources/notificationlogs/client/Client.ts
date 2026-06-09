@@ -15,10 +15,13 @@ export declare namespace NotificationlogsClient {
     export interface RequestOptions extends BaseRequestOptions {}
 }
 
+/**
+ * The NotificationLogs service provides comprehensive logging and monitoring for all notification activities across the platform. It records detailed logs of webhook deliveries, email sends, SMS transmissions, and report generations including timestamps, status codes, and response data. The service enables troubleshooting of notification failures with detailed error messages and retry information, and provides audit trails for compliance requirements. Notification logs can be queried and filtered by notification type, status, date range, and destination, enabling operational monitoring of integration health and debugging of webhook issues. The service maintains retention policies for log data and provides statistics on notification delivery success rates.
+ */
 export class NotificationlogsClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<NotificationlogsClient.Options>;
 
-    constructor(options: NotificationlogsClient.Options = {}) {
+    constructor(options: NotificationlogsClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -40,13 +43,11 @@ export class NotificationlogsClient {
      * @example
      *     await client.notificationlogs.searchNotificationLogs({
      *         PageSize: 20,
-     *         body: {
-     *             startDate: "2024-01-01T00:00:00Z",
-     *             endDate: "2024-01-31T23:59:59Z",
-     *             orgId: 12345,
-     *             notificationEvent: "ActivatedMerchant",
-     *             succeeded: true
-     *         }
+     *         startDate: "2024-01-01T00:00:00Z",
+     *         endDate: "2024-01-31T23:59:59Z",
+     *         orgId: 123,
+     *         notificationEvent: "ActivatedMerchant",
+     *         succeeded: true
      *     })
      */
     public searchNotificationLogs(
@@ -60,7 +61,7 @@ export class NotificationlogsClient {
         request: Payabli.SearchNotificationLogsRequest,
         requestOptions?: NotificationlogsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.NotificationLog[]>> {
-        const { PageSize: pageSize, Page: page, body: _body } = request;
+        const { PageSize: pageSize, Page: page, ..._body } = request;
         const _queryParams: Record<string, unknown> = {
             PageSize: pageSize,
             Page: page,
@@ -76,7 +77,7 @@ export class NotificationlogsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.PayabliEnvironment.Sandbox,
-                "/v2/notificationlogs",
+                "v2/notificationlogs",
             ),
             method: "POST",
             headers: _headers,
@@ -103,12 +104,15 @@ export class NotificationlogsClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -160,7 +164,7 @@ export class NotificationlogsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.PayabliEnvironment.Sandbox,
-                `/v2/notificationlogs/${core.url.encodePathParam(uuid)}`,
+                `v2/notificationlogs/${core.url.encodePathParam(uuid)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -180,12 +184,15 @@ export class NotificationlogsClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -238,7 +245,7 @@ export class NotificationlogsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.PayabliEnvironment.Sandbox,
-                `/v2/notificationlogs/${core.url.encodePathParam(uuid)}/retry`,
+                `v2/notificationlogs/${core.url.encodePathParam(uuid)}/retry`,
             ),
             method: "GET",
             headers: _headers,
@@ -258,12 +265,15 @@ export class NotificationlogsClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -317,7 +327,7 @@ export class NotificationlogsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.PayabliEnvironment.Sandbox,
-                "/v2/notificationlogs/retry",
+                "v2/notificationlogs/retry",
             ),
             method: "POST",
             headers: _headers,

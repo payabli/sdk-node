@@ -7,7 +7,7 @@ import type * as Payabli from "../../../../index.js";
  *     {
  *         cascade: true,
  *         isEnabled: true,
- *         orgId: 901
+ *         orgId: 123
  *     }
  */
 export interface ConfigureOrganizationRequestApplePay {

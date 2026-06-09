@@ -20,6 +20,9 @@ export interface VendorResponseStoredMethod {
     ABA: string | null;
     PostalCode: string | null;
     MethodType: string | null;
+    /** Digital wallet type if applicable. */
+    WalletType: string | null;
     LastUpdated: string | null;
+    /** Date and time the card was last updated. */
     CardUpdatedOn: string | null;
 }

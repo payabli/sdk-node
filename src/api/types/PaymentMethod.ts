@@ -7,16 +7,7 @@ import type * as Payabli from "../index.js";
  */
 export type PaymentMethod =
     | Payabli.PayMethodCredit
-    | {
-          achAccount: Payabli.Achaccount;
-          achAccountType?: Payabli.Achaccounttype | undefined;
-          achCode?: Payabli.AchSecCode | undefined;
-          achHolder: Payabli.AchHolder;
-          achHolderType?: Payabli.AchHolderType | undefined;
-          achRouting: Payabli.Achrouting;
-          device?: Payabli.Device | undefined;
-          method: "ach";
-      }
+    | Payabli.PayMethodAch
     | Payabli.PayMethodStoredMethod
     | Payabli.PayMethodCloud
     | Payabli.Check

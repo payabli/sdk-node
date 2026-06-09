@@ -2,6 +2,10 @@
 
 import type * as Payabli from "../index.js";
 
+/**
+ * Minimal response wrapper used by approval-style endpoints that don't carry
+ * the standard response envelope.
+ */
 export interface PayabliApiResponseGeneric2Part {
     isSuccess?: Payabli.IsSuccess | undefined;
     responseText: Payabli.ResponseText;

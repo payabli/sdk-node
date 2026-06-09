@@ -2,94 +2,6 @@
 
 import type * as Payabli from "../index.js";
 
-/**
- * @example
- *     {
- *         VendorNumber: "1234",
- *         Name1: "Herman's Coatings and Masonry",
- *         Name2: "",
- *         EIN: "XXXX6789",
- *         Phone: "5555555555",
- *         Email: "contact@hermanscoatings.com",
- *         Address1: "123 Ocean Drive",
- *         Address2: "Suite 400",
- *         City: "Miami",
- *         State: "FL",
- *         Zip: "33139",
- *         Country: "US",
- *         Mcc: "7777",
- *         LocationCode: "MIA123",
- *         Contacts: [{
- *                 ContactName: "Herman Martinez",
- *                 ContactEmail: "herman@hermanscoatings.com",
- *                 ContactTitle: "Owner",
- *                 ContactPhone: "3055550000"
- *             }],
- *         BillingData: {
- *             id: 123,
- *             accountId: "acct-1xxxxx3123",
- *             nickname: "Checking Account",
- *             bankName: "Country Bank",
- *             routingAccount: "123123123",
- *             accountNumber: "1XXXXXX3123",
- *             typeAccount: "Checking",
- *             bankAccountHolderName: "Gruzya Adventure Outfitters LLC",
- *             bankAccountHolderType: "Business",
- *             bankAccountFunction: 0,
- *             verified: true,
- *             status: 1,
- *             services: [],
- *             "default": true
- *         },
- *         PaymentMethod: Payabli.VendorDataResponsePaymentMethod.Vcard,
- *         VendorStatus: 1,
- *         VendorId: 1234,
- *         Summary: {
- *             ActiveBills: 5,
- *             PendingBills: 2,
- *             InTransitBills: 1,
- *             PaidBills: 10,
- *             OverdueBills: 0,
- *             ApprovedBills: 3,
- *             DisapprovedBills: 0,
- *             TotalBills: 21,
- *             ActiveBillsAmount: 1500,
- *             PendingBillsAmount: 500,
- *             InTransitBillsAmount: 200,
- *             PaidBillsAmount: 3000,
- *             OverdueBillsAmount: 0,
- *             ApprovedBillsAmount: 800,
- *             DisapprovedBillsAmount: 0,
- *             TotalBillsAmount: 6000
- *         },
- *         PaypointLegalname: "Gruzya Adventure Outfitters LLC",
- *         PaypointDbaname: "Gruzya Adventure Outfitters",
- *         PaypointEntryname: "41035afaa7",
- *         ParentOrgName: "Pilgrim Planner",
- *         ParentOrgId: 1232,
- *         CreatedDate: "2022-07-01T15:00:01Z",
- *         LastUpdated: "2022-07-01T15:00:01Z",
- *         remitAddress1: "123 Walnut Street",
- *         remitAddress2: "Suite 900",
- *         remitCity: "Miami",
- *         remitState: "FL",
- *         remitZip: "31113",
- *         remitCountry: "US",
- *         payeeName1: "Herman Martinez",
- *         payeeName2: "",
- *         customField1: "",
- *         customField2: "",
- *         customerVendorAccount: "A-37622",
- *         InternalReferenceId: 123,
- *         additionalData: {
- *             "customField": "Custom Value 1",
- *             "reference": "REF-12345",
- *             "notes": "Additional vendor information"
- *         },
- *         externalPaypointID: "ext123",
- *         StoredMethods: []
- *     }
- */
 export interface VendorDataResponse {
     VendorNumber: Payabli.VendorNumber;
     /** Primary name for vendor. */
@@ -122,7 +34,7 @@ export interface VendorDataResponse {
     /** Object containing vendor's bank information. */
     BillingData: Payabli.VendorResponseBillingData;
     /** Preferred payment method for vendor. */
-    PaymentMethod: VendorDataResponse.PaymentMethod;
+    PaymentMethod: Payabli.VendorDataResponsePaymentMethod;
     VendorStatus: Payabli.Vendorstatus;
     VendorId: Payabli.Vendorid;
     /** Vendor enrollment status */
@@ -163,15 +75,4 @@ export interface VendorDataResponse {
     externalPaypointID: string;
     /** Array of stored payment methods for vendor */
     StoredMethods: Payabli.VendorResponseStoredMethod[];
-}
-
-export namespace VendorDataResponse {
-    /** Preferred payment method for vendor. */
-    export const PaymentMethod = {
-        Vcard: "vcard",
-        Ach: "ach",
-        Check: "check",
-        Card: "card",
-    } as const;
-    export type PaymentMethod = (typeof PaymentMethod)[keyof typeof PaymentMethod];
 }

@@ -5,7 +5,7 @@ import * as errors from "../../errors/index.js";
 import type * as Payabli from "../index.js";
 
 export class ForbiddenError extends errors.PayabliError {
-    constructor(body: Payabli.PayabliApiResponsePaylinks, rawResponse?: core.RawResponse) {
+    constructor(body: Payabli.PayabliErrorBody, rawResponse?: core.RawResponse) {
         super({
             message: "ForbiddenError",
             statusCode: 403,

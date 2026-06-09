@@ -15,10 +15,13 @@ export declare namespace CloudClient {
     export interface RequestOptions extends BaseRequestOptions {}
 }
 
+/**
+ * The CloudPayment service enables cloud-based payment terminal integration for in-person transaction processing through connected devices. It manages device pairing and authentication, transaction initiation to remote terminals, and transaction status monitoring for point-of-sale operations. The service handles various transaction types including sales, refunds, and tokenization through connected terminals while maintaining cloud communication for remote management. It supports multiple terminal types and manufacturers, manages terminal settings and configurations, and provides real-time transaction status updates. The service enables unified commerce experiences by bridging in-person and online payment channels.
+ */
 export class CloudClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<CloudClient.Options>;
 
-    constructor(options: CloudClient.Options = {}) {
+    constructor(options: CloudClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -89,12 +92,15 @@ export class CloudClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -110,6 +116,93 @@ export class CloudClient {
     }
 
     /**
+     * Remove a cloud device from an entrypoint.
+     *
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} deviceId - ID of the cloud device.
+     * @param {CloudClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.cloud.removeDevice("8cfec329267", "499585-389fj484-3jcj8hj3")
+     */
+    public removeDevice(
+        entry: string,
+        deviceId: string,
+        requestOptions?: CloudClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.RemoveDeviceResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__removeDevice(entry, deviceId, requestOptions));
+    }
+
+    private async __removeDevice(
+        entry: string,
+        deviceId: string,
+        requestOptions?: CloudClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.RemoveDeviceResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `Cloud/register/${core.url.encodePathParam(entry)}/${core.url.encodePathParam(deviceId)}`,
+            ),
+            method: "DELETE",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.RemoveDeviceResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "DELETE",
+            "/Cloud/register/{entry}/{deviceId}",
+        );
+    }
+
+    /**
      * Retrieve the registration history for a device.
      *
      * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
@@ -122,7 +215,7 @@ export class CloudClient {
      * @throws {@link Payabli.ServiceUnavailableError}
      *
      * @example
-     *     await client.cloud.historyDevice("8cfec329267", "WXGDWB")
+     *     await client.cloud.historyDevice("8cfec329267", "499585-389fj484-3jcj8hj3")
      */
     public historyDevice(
         entry: string,
@@ -168,12 +261,15 @@ export class CloudClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -264,12 +360,15 @@ export class CloudClient {
                 case 400:
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
                     throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
+                        _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
                 default:
@@ -282,89 +381,5 @@ export class CloudClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/Cloud/list/{entry}");
-    }
-
-    /**
-     * Remove a cloud device from an entrypoint.
-     *
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
-     * @param {string} deviceId - ID of the cloud device.
-     * @param {CloudClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.InternalServerError}
-     * @throws {@link Payabli.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.cloud.removeDevice("8cfec329267", "6c361c7d-674c-44cc-b790-382b75d1xxx")
-     */
-    public removeDevice(
-        entry: string,
-        deviceId: string,
-        requestOptions?: CloudClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.RemoveDeviceResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__removeDevice(entry, deviceId, requestOptions));
-    }
-
-    private async __removeDevice(
-        entry: string,
-        deviceId: string,
-        requestOptions?: CloudClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.RemoveDeviceResponse>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await core.fetcher({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.PayabliEnvironment.Sandbox,
-                `Cloud/register/${core.url.encodePathParam(entry)}/${core.url.encodePathParam(deviceId)}`,
-            ),
-            method: "DELETE",
-            headers: _headers,
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return { data: _response.body as Payabli.RemoveDeviceResponse, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 401:
-                    throw new Payabli.UnauthorizedError(_response.error.body as unknown, _response.rawResponse);
-                case 500:
-                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
-                case 503:
-                    throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliApiResponse,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.PayabliError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(
-            _response.error,
-            _response.rawResponse,
-            "DELETE",
-            "/Cloud/register/{entry}/{deviceId}",
-        );
     }
 }

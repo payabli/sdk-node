@@ -81,5 +81,5 @@ export interface ExportCustomersOrgRequest {
      * **Example:**
      * balance(gt)=20 return all records with balance greater than 20.00
      */
-    parameters?: Record<string, string>;
+    parameters?: Record<string, string | null>;
 }

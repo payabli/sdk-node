@@ -11,6 +11,7 @@ import type * as Payabli from "../../../../index.js";
  *     }
  */
 export interface ListPayoutSubscriptionsRequest {
+    /** Export format for file downloads. When specified, returns data as a file instead of JSON. */
     exportFormat?: Payabli.ExportFormat;
     /** The number of records to skip before starting to collect the result set. */
     fromRecord?: number;
@@ -81,7 +82,7 @@ export interface ListPayoutSubscriptionsRequest {
      * - `in` => inside array
      * - `nin` => not inside array
      */
-    parameters?: Record<string, string>;
+    parameters?: Record<string, string | null>;
     /** The field name to use for sorting results. Use `desc(field_name)` to sort descending by `field_name`, and use `asc(field_name)` to sort ascending by `field_name`. */
     sortBy?: string;
 }
