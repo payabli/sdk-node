@@ -1,3 +1,6 @@
 # Specify files that shouldn't be modified by Fern
 LICENSE.md
 CONTRIBUTING.md
+
+tests/wire/bill.test.ts
+tests/wire/moneyOut.test.ts

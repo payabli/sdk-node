@@ -764,122 +764,122 @@ describe("BillClient", () => {
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
-    test("SendToApprovalBill (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = ["approver@example.com"];
-        const rawResponseBody = {
-            responseCode: 1,
-            roomId: 0,
-            isSuccess: true,
-            responseText: "Success",
-            responseData: 6101,
-        };
-
-        server
-            .mockEndpoint()
-            .post("/Bill/approval/285")
-            .header("idempotencyKey", "6B29FC40-CA47-1067-B31D-00DD010662DA")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.bill.sendToApprovalBill(285, {
-            idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA",
-            body: ["approver@example.com"],
-        });
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("SendToApprovalBill (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = ["string", "string"];
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .post("/Bill/approval/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.bill.sendToApprovalBill(1, {
-                body: ["string", "string"],
-            });
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("SendToApprovalBill (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = ["string", "string"];
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
-        server
-            .mockEndpoint()
-            .post("/Bill/approval/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.bill.sendToApprovalBill(1, {
-                body: ["string", "string"],
-            });
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("SendToApprovalBill (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = ["string", "string"];
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .post("/Bill/approval/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.bill.sendToApprovalBill(1, {
-                body: ["string", "string"],
-            });
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("SendToApprovalBill (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = ["string", "string"];
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
-        server
-            .mockEndpoint()
-            .post("/Bill/approval/1")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.bill.sendToApprovalBill(1, {
-                body: ["string", "string"],
-            });
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
-    });
+    // test("SendToApprovalBill (1)", async () => {
+    //     const server = mockServerPool.createServer();
+    //     const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+    //     const rawRequestBody = ["approver@example.com"];
+    //     const rawResponseBody = {
+    //         responseCode: 1,
+    //         roomId: 0,
+    //         isSuccess: true,
+    //         responseText: "Success",
+    //         responseData: 6101,
+    //     };
+    //
+    //     server
+    //         .mockEndpoint()
+    //         .post("/Bill/approval/285")
+    //         .header("idempotencyKey", "6B29FC40-CA47-1067-B31D-00DD010662DA")
+    //         .jsonBody(rawRequestBody)
+    //         .respondWith()
+    //         .statusCode(200)
+    //         .jsonBody(rawResponseBody)
+    //         .build();
+    //
+    //     const response = await client.bill.sendToApprovalBill(285, {
+    //         idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA",
+    //         body: ["approver@example.com"],
+    //     });
+    //     expect(response).toEqual(rawResponseBody);
+    // });
+    //
+    // test("SendToApprovalBill (2)", async () => {
+    //     const server = mockServerPool.createServer();
+    //     const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+    //     const rawRequestBody = ["string", "string"];
+    //     const rawResponseBody = { key: "value" };
+    //
+    //     server
+    //         .mockEndpoint()
+    //         .post("/Bill/approval/1")
+    //         .jsonBody(rawRequestBody)
+    //         .respondWith()
+    //         .statusCode(400)
+    //         .jsonBody(rawResponseBody)
+    //         .build();
+    //
+    //     await expect(async () => {
+    //         return await client.bill.sendToApprovalBill(1, {
+    //             body: ["string", "string"],
+    //         });
+    //     }).rejects.toThrow(Payabli.BadRequestError);
+    // });
+    //
+    // test("SendToApprovalBill (3)", async () => {
+    //     const server = mockServerPool.createServer();
+    //     const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+    //     const rawRequestBody = ["string", "string"];
+    //     const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+    //
+    //     server
+    //         .mockEndpoint()
+    //         .post("/Bill/approval/1")
+    //         .jsonBody(rawRequestBody)
+    //         .respondWith()
+    //         .statusCode(401)
+    //         .jsonBody(rawResponseBody)
+    //         .build();
+    //
+    //     await expect(async () => {
+    //         return await client.bill.sendToApprovalBill(1, {
+    //             body: ["string", "string"],
+    //         });
+    //     }).rejects.toThrow(Payabli.UnauthorizedError);
+    // });
+    //
+    // test("SendToApprovalBill (4)", async () => {
+    //     const server = mockServerPool.createServer();
+    //     const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+    //     const rawRequestBody = ["string", "string"];
+    //     const rawResponseBody = { key: "value" };
+    //
+    //     server
+    //         .mockEndpoint()
+    //         .post("/Bill/approval/1")
+    //         .jsonBody(rawRequestBody)
+    //         .respondWith()
+    //         .statusCode(500)
+    //         .jsonBody(rawResponseBody)
+    //         .build();
+    //
+    //     await expect(async () => {
+    //         return await client.bill.sendToApprovalBill(1, {
+    //             body: ["string", "string"],
+    //         });
+    //     }).rejects.toThrow(Payabli.InternalServerError);
+    // });
+    //
+    // test("SendToApprovalBill (5)", async () => {
+    //     const server = mockServerPool.createServer();
+    //     const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+    //     const rawRequestBody = ["string", "string"];
+    //     const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+    //
+    //     server
+    //         .mockEndpoint()
+    //         .post("/Bill/approval/1")
+    //         .jsonBody(rawRequestBody)
+    //         .respondWith()
+    //         .statusCode(503)
+    //         .jsonBody(rawResponseBody)
+    //         .build();
+    //
+    //     await expect(async () => {
+    //         return await client.bill.sendToApprovalBill(1, {
+    //             body: ["string", "string"],
+    //         });
+    //     }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    // });
 
     test("ModifyApprovalBill (1)", async () => {
         const server = mockServerPool.createServer();

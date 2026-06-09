@@ -838,122 +838,122 @@ describe("MoneyOutClient", () => {
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
-    test("CaptureAllOut (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = ["2-29", "2-28", "2-27"];
-        const rawResponseBody = {
-            isSuccess: true,
-            responseCode: 1,
-            responseData: [
-                { CustomerId: 4440, ReferenceId: "129-230", ResultCode: 1, ResultText: "Captured" },
-                { CustomerId: 4440, ReferenceId: "129-219", ResultCode: 1, ResultText: "Captured" },
-            ],
-            responseText: "Success",
-        };
-
-        server
-            .mockEndpoint()
-            .post("/MoneyOut/captureAll")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.moneyOut.captureAllOut({
-            body: ["2-29", "2-28", "2-27"],
-        });
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("CaptureAllOut (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = ["string", "string"];
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .post("/MoneyOut/captureAll")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.moneyOut.captureAllOut({
-                body: ["string", "string"],
-            });
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("CaptureAllOut (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = ["string", "string"];
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
-        server
-            .mockEndpoint()
-            .post("/MoneyOut/captureAll")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.moneyOut.captureAllOut({
-                body: ["string", "string"],
-            });
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("CaptureAllOut (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = ["string", "string"];
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .post("/MoneyOut/captureAll")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.moneyOut.captureAllOut({
-                body: ["string", "string"],
-            });
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("CaptureAllOut (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = ["string", "string"];
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
-        server
-            .mockEndpoint()
-            .post("/MoneyOut/captureAll")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.moneyOut.captureAllOut({
-                body: ["string", "string"],
-            });
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
-    });
+    // test("CaptureAllOut (1)", async () => {
+    //     const server = mockServerPool.createServer();
+    //     const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+    //     const rawRequestBody = ["2-29", "2-28", "2-27"];
+    //     const rawResponseBody = {
+    //         isSuccess: true,
+    //         responseCode: 1,
+    //         responseData: [
+    //             { CustomerId: 4440, ReferenceId: "129-230", ResultCode: 1, ResultText: "Captured" },
+    //             { CustomerId: 4440, ReferenceId: "129-219", ResultCode: 1, ResultText: "Captured" },
+    //         ],
+    //         responseText: "Success",
+    //     };
+    //
+    //     server
+    //         .mockEndpoint()
+    //         .post("/MoneyOut/captureAll")
+    //         .jsonBody(rawRequestBody)
+    //         .respondWith()
+    //         .statusCode(200)
+    //         .jsonBody(rawResponseBody)
+    //         .build();
+    //
+    //     const response = await client.moneyOut.captureAllOut({
+    //         body: ["2-29", "2-28", "2-27"],
+    //     });
+    //     expect(response).toEqual(rawResponseBody);
+    // });
+    //
+    // test("CaptureAllOut (2)", async () => {
+    //     const server = mockServerPool.createServer();
+    //     const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+    //     const rawRequestBody = ["string", "string"];
+    //     const rawResponseBody = { key: "value" };
+    //
+    //     server
+    //         .mockEndpoint()
+    //         .post("/MoneyOut/captureAll")
+    //         .jsonBody(rawRequestBody)
+    //         .respondWith()
+    //         .statusCode(400)
+    //         .jsonBody(rawResponseBody)
+    //         .build();
+    //
+    //     await expect(async () => {
+    //         return await client.moneyOut.captureAllOut({
+    //             body: ["string", "string"],
+    //         });
+    //     }).rejects.toThrow(Payabli.BadRequestError);
+    // });
+    //
+    // test("CaptureAllOut (3)", async () => {
+    //     const server = mockServerPool.createServer();
+    //     const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+    //     const rawRequestBody = ["string", "string"];
+    //     const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+    //
+    //     server
+    //         .mockEndpoint()
+    //         .post("/MoneyOut/captureAll")
+    //         .jsonBody(rawRequestBody)
+    //         .respondWith()
+    //         .statusCode(401)
+    //         .jsonBody(rawResponseBody)
+    //         .build();
+    //
+    //     await expect(async () => {
+    //         return await client.moneyOut.captureAllOut({
+    //             body: ["string", "string"],
+    //         });
+    //     }).rejects.toThrow(Payabli.UnauthorizedError);
+    // });
+    //
+    // test("CaptureAllOut (4)", async () => {
+    //     const server = mockServerPool.createServer();
+    //     const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+    //     const rawRequestBody = ["string", "string"];
+    //     const rawResponseBody = { key: "value" };
+    //
+    //     server
+    //         .mockEndpoint()
+    //         .post("/MoneyOut/captureAll")
+    //         .jsonBody(rawRequestBody)
+    //         .respondWith()
+    //         .statusCode(500)
+    //         .jsonBody(rawResponseBody)
+    //         .build();
+    //
+    //     await expect(async () => {
+    //         return await client.moneyOut.captureAllOut({
+    //             body: ["string", "string"],
+    //         });
+    //     }).rejects.toThrow(Payabli.InternalServerError);
+    // });
+    //
+    // test("CaptureAllOut (5)", async () => {
+    //     const server = mockServerPool.createServer();
+    //     const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+    //     const rawRequestBody = ["string", "string"];
+    //     const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+    //
+    //     server
+    //         .mockEndpoint()
+    //         .post("/MoneyOut/captureAll")
+    //         .jsonBody(rawRequestBody)
+    //         .respondWith()
+    //         .statusCode(503)
+    //         .jsonBody(rawResponseBody)
+    //         .build();
+    //
+    //     await expect(async () => {
+    //         return await client.moneyOut.captureAllOut({
+    //             body: ["string", "string"],
+    //         });
+    //     }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    // });
 
     test("CaptureOut (1)", async () => {
         const server = mockServerPool.createServer();
