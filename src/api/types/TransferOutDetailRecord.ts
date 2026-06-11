@@ -112,8 +112,7 @@ export interface TransferOutDetailRecord {
     ScheduleId: number | null;
     /** Settlement status. */
     SettlementStatus: string | null;
-    /** Name of the settlement status. */
-    SettlementStatusName: string | null;
+    SettlementStatusName: Payabli.SettlementStatusName | null;
     /** Date of settlement. */
     SettlementDate: string | null;
     /** Whether the transaction was flagged for risk. */

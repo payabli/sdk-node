@@ -18,7 +18,7 @@ export interface CustomerData {
     firstname?: string | undefined;
     /** Customer last name */
     lastname?: string | undefined;
-    /** Customer phone number */
+    /** Customer phone number. Payabli normalizes this value when it's stored. For example, `(555) 555-0100` is stored as `+15555550100`. */
     phone?: string | undefined;
     /** Customer email address. */
     email?: Payabli.Email | undefined;

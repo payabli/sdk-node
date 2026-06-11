@@ -213,12 +213,14 @@ describe("VendorClient", () => {
             Country: "US",
             Mcc: "7777",
             LocationCode: "LOC123",
-            Contacts: {
-                ContactEmail: "eric@martinezcoatings.com",
-                ContactName: "Eric Martinez",
-                ContactPhone: "5555555555",
-                ContactTitle: "Owner",
-            },
+            Contacts: [
+                {
+                    ContactEmail: "eric@martinezcoatings.com",
+                    ContactName: "Eric Martinez",
+                    ContactPhone: "5555555555",
+                    ContactTitle: "Owner",
+                },
+            ],
             BillingData: {
                 id: 123456,
                 accountId: "bank-account-001",

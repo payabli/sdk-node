@@ -2,7 +2,7 @@
 
 /**
  * The settlement status of the payout transaction. See
- * [Payout Transaction Statuses](/guides/money-out-statuses#payout-transaction-statuses)
+ * [Payout Transaction Statuses](/guides/pay-out-status-reference#payout-transaction-statuses)
  * for a full reference.
  */
 export type SettlementStatusPayout = string;

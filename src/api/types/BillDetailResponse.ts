@@ -60,15 +60,17 @@ export interface BillDetailResponse {
     externalPaypointID?: Payabli.ExternalPaypointId | undefined;
     EntryName?: Payabli.Entry | undefined;
     /** Identifier for the batch in which this transaction was processed. Used to track and reconcile batch-level operations. */
-    BatchId?: string | undefined;
+    BatchId?: number | undefined;
     HasVcardTransactions?: Payabli.HasVcardTransactions | undefined;
     IsSameDayACH?: Payabli.IsSameDayAch | undefined;
     ScheduleId?: Payabli.ScheduleId | undefined;
-    SettlementStatus?: Payabli.SettlementStatus | undefined;
+    SettlementStatus?: Payabli.SettlementStatusPayout | undefined;
+    SettlementStatusName?: (Payabli.SettlementStatusName | null) | undefined;
     RiskFlagged?: Payabli.RiskFlagged | undefined;
     RiskFlaggedOn?: Payabli.RiskFlaggedOn | undefined;
     RiskStatus?: Payabli.RiskStatus | undefined;
     RiskReason?: Payabli.RiskReason | undefined;
     RiskAction?: Payabli.RiskAction | undefined;
     RiskActionCode?: Payabli.RiskActionCode | undefined;
+    EntityId?: Payabli.EntityIdString | undefined;
 }

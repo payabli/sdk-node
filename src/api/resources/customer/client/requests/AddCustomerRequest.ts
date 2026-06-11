@@ -37,7 +37,7 @@ export interface AddCustomerRequest {
     firstname?: string;
     /** Customer last name */
     lastname?: string;
-    /** Customer phone number */
+    /** Customer phone number. Payabli normalizes this value when it's stored. For example, `(555) 555-0100` is stored as `+15555550100`. */
     phone?: string;
     /** Customer email address. */
     email?: Payabli.Email;

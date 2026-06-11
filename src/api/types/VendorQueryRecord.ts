@@ -8,7 +8,8 @@ export interface VendorQueryRecord {
     Address2?: Payabli.AddressAddtlNullable | undefined;
     BillingData?: Payabli.BillingDataResponse | undefined;
     City?: Payabli.CityNullable | undefined;
-    Contacts?: Payabli.ContactsResponse | undefined;
+    /** Array of objects describing the vendor's contacts. */
+    Contacts?: Payabli.ContactsResponse[] | undefined;
     Country?: string | undefined;
     CreatedDate?: Payabli.CreatedAt | undefined;
     customerVendorAccount?: string | undefined;
