@@ -4861,6 +4861,7 @@ describe("QueryClient", () => {
                         HolderName: "Billy J Franks",
                         Initiator: "payor",
                         MaskedAccount: "411111XXXXXX1111",
+                        orderDescription: "Monthly subscription",
                         paymentDetails: { totalAmount: 100 },
                         Sequence: "first",
                         StoredId: "675b43c1-9867-463c-8dc7-3d6ddb68554b-12812",
@@ -4946,6 +4947,7 @@ describe("QueryClient", () => {
                         MaskedAccount: "5XXXXXXXXXXX4415",
                         AccountExp: "12/29",
                         HolderName: "RENEE DESCARTES",
+                        orderDescription: "Invoice 2034",
                         binData: {
                             binMatchedLength: "9",
                             binCardBrand: "MASTERCARD",
@@ -5115,7 +5117,7 @@ describe("QueryClient", () => {
                     OrderId: "O-5140",
                     OrgId: 123,
                     ParentOrgName: "PropertyManager Pro",
-                    PaymentData: { paymentDetails: { totalAmount: 100 } },
+                    PaymentData: { orderDescription: "Monthly subscription", paymentDetails: { totalAmount: 100 } },
                     PaymentTransId: "226-fe55ec0348e34702bd91b4be198ce7ec",
                     PayorId: 1551,
                     PaypointDbaname: "Sunshine Gutters",
@@ -5197,6 +5199,7 @@ describe("QueryClient", () => {
                         MaskedAccount: "5XXXXXXXXXXX4415",
                         AccountExp: "12/29",
                         HolderName: "RENEE DESCARTES",
+                        orderDescription: "Invoice 2034",
                         binData: {
                             binMatchedLength: "9",
                             binCardBrand: "MASTERCARD",
@@ -5937,6 +5940,8 @@ describe("QueryClient", () => {
                             },
                         },
                     ],
+                    type: "credit",
+                    method: "ach",
                 },
             ],
         };
@@ -6100,6 +6105,8 @@ describe("QueryClient", () => {
                             },
                         },
                     ],
+                    type: "credit",
+                    method: "ach",
                 },
             ],
         };

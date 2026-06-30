@@ -3,8 +3,10 @@
 import type * as Payabli from "../index.js";
 
 export interface CaptureAllOutResponseResponseDataItem {
-    /** Internal unique Id of vendor owner of transaction. Returns `0` if the transaction wasn't assigned to an existing vendor or no vendor was created. */
-    CustomerId?: Payabli.Customeridtrans | undefined;
+    /** Payabli-generated unique ID of the vendor on the payout. Returns the same value as `VendorId`, or `0` when no vendor is associated. */
+    CustomerId?: Payabli.Vendoridtrans | undefined;
+    /** Payabli-generated unique ID of the vendor on the payout. Returns the same value as `CustomerId`, or `0` when no vendor is associated. */
+    VendorId?: Payabli.Vendoridtrans | undefined;
     ReferenceId?: Payabli.Referenceidtrans | undefined;
     ResultCode?: Payabli.ResultCode | undefined;
     /**

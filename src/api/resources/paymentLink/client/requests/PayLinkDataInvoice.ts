@@ -112,6 +112,16 @@ import type * as Payabli from "../../../../index.js";
  *             redirectAfterApproveUrl: "https://example.com/success"
  *         }
  *     }
+ *
+ * @example
+ *     {
+ *         invoices: {
+ *             enabled: true
+ *         },
+ *         contactUs: {
+ *             enabled: false
+ *         }
+ *     }
  */
 export interface PayLinkDataInvoice {
     /** Indicates whether customer can modify the payment amount. A value of `true` means the amount isn't modifiable, a value `false` means the payor can modify the amount to pay. */
@@ -120,26 +130,26 @@ export interface PayLinkDataInvoice {
     mail2?: string;
     /** _Optional but recommended_ A unique ID that you can include to prevent duplicating objects or transactions in the case that a request is sent more than once. This key isn't generated in Payabli, you must generate it yourself. This key persists for 2 minutes. After 2 minutes, you can reuse the key if needed. */
     idempotencyKey?: Payabli.IdempotencyKey;
-    /** ContactUs section of payment link page */
+    /** Contact us section of payment link page. If omitted, this block is enabled at display order 11. */
     contactUs?: Payabli.ContactElement;
-    /** Invoices section of payment link page */
-    invoices?: Payabli.InvoiceElement;
-    /** Logo section of payment link page */
+    /** Invoices section of payment link page. Required. Omitting it returns a `400` error with code `7045`. */
+    invoices: Payabli.InvoiceElement;
+    /** Logo section of payment link page. If omitted, this block is enabled at display order 1, and the logo image is resolved from the paypoint's entry logo. */
     logo?: Payabli.Element;
-    /** Message section of payment link page */
+    /** Message section of payment link page. If omitted, this block is enabled at display order 5. */
     messageBeforePaying?: Payabli.LabelElement;
-    /** Notes section of payment link page */
+    /** Notes section of payment link page. If omitted, this block is enabled at display order 10. */
     notes?: Payabli.NoteElement;
-    /** Page header section of payment link page */
+    /** Page header section of payment link page. If omitted, this block is enabled at display order 2. */
     page?: Payabli.PageElement;
-    /** Payment button section of payment link page */
+    /** Payment button section of payment link page. If omitted, this block is enabled at display order 6, with the label "Pay Now". */
     paymentButton?: Payabli.LabelElement;
-    /** Payment methods section of payment link page */
+    /** Payment methods section of payment link page. If omitted, this block is enabled at display order 3, with all payment methods enabled except RDC. */
     paymentMethods?: Payabli.MethodElement;
     /** Customer/Payor section of payment link page */
     payor?: Payabli.PayorElement;
-    /** Review section of payment link page */
+    /** Review section of payment link page. If omitted, this block is enabled at display order 4. */
     review?: Payabli.HeaderElement;
-    /** Settings section of payment link page */
+    /** Settings section of payment link page. If omitted, defaults are applied, including page color `#10a0e3` and language `en`. */
     settings?: Payabli.PagelinkSetting;
 }

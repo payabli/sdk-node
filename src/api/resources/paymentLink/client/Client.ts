@@ -28,6 +28,8 @@ export class PaymentLinkClient {
     /**
      * Generates a payment link for an invoice from the invoice ID.
      *
+     * The payment page configuration blocks (`logo`, `page`, `paymentMethods`, `review`, `messageBeforePaying`, `paymentButton`, `notes`, `contactUs`, and `settings`) are optional. When you omit a block, Payabli applies a default rather than hiding it. The block is enabled at a fixed display order, so the generated page stays complete and branded. To hide a section, send the block explicitly with `enabled` set to `false`. An explicit value is always honored and is never replaced by a default. For each block's default, see its description in the request body.
+     *
      * @param {number} idInvoice - Invoice ID
      * @param {Payabli.PayLinkDataInvoice} request
      * @param {PaymentLinkClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -146,10 +148,20 @@ export class PaymentLinkClient {
      *             redirectAfterApproveUrl: "https://example.com/success"
      *         }
      *     })
+     *
+     * @example
+     *     await client.paymentLink.addPayLinkFromInvoice(23548884, {
+     *         invoices: {
+     *             enabled: true
+     *         },
+     *         contactUs: {
+     *             enabled: false
+     *         }
+     *     })
      */
     public addPayLinkFromInvoice(
         idInvoice: number,
-        request: Payabli.PayLinkDataInvoice = {},
+        request: Payabli.PayLinkDataInvoice,
         requestOptions?: PaymentLinkClient.RequestOptions,
     ): core.HttpResponsePromise<Payabli.PayabliApiResponsePaymentLinks> {
         return core.HttpResponsePromise.fromPromise(this.__addPayLinkFromInvoice(idInvoice, request, requestOptions));
@@ -157,7 +169,7 @@ export class PaymentLinkClient {
 
     private async __addPayLinkFromInvoice(
         idInvoice: number,
-        request: Payabli.PayLinkDataInvoice = {},
+        request: Payabli.PayLinkDataInvoice,
         requestOptions?: PaymentLinkClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.PayabliApiResponsePaymentLinks>> {
         const { amountFixed, mail2, idempotencyKey, ..._body } = request;

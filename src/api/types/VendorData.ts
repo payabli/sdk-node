@@ -4,7 +4,7 @@ import type * as Payabli from "../index.js";
 
 export interface VendorData {
     vendorNumber?: Payabli.VendorNumber | undefined;
-    AdditionalData?: Payabli.AdditionalData | undefined;
+    AdditionalData?: Payabli.AdditionalDataMap | undefined;
     /** Vendor's street address. If any address field is provided, this field is required along with `city`, `state`, and `zip`. Allowed characters are letters, numbers, spaces, and `. , */
     address1?: Payabli.AddressNullable | undefined;
     /** Additional line for vendor's address, such as a suite or unit number. Always optional. */

@@ -58,7 +58,7 @@ import type * as Payabli from "../../../../index.js";
  *         orderDescription: "Window Painting",
  *         paymentMethod: {
  *             method: "ach",
- *             storedMethodId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440"
+ *             storedMethodId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-456"
  *         },
  *         paymentDetails: {
  *             totalAmount: 47
@@ -84,6 +84,50 @@ import type * as Payabli from "../../../../index.js";
  *         },
  *         vendorData: {
  *             vendorNumber: "VEN-123"
+ *         }
+ *     }
+ *
+ * @example
+ *     {
+ *         entryPoint: "48acde49",
+ *         invoiceData: [{
+ *                 billId: 54323
+ *             }],
+ *         orderDescription: "Contractor Payment",
+ *         paymentDetails: {
+ *             totalAmount: 2500
+ *         },
+ *         paymentMethod: {
+ *             method: "wire",
+ *             achHolder: "Jane Smith",
+ *             achRouting: "011401533",
+ *             achAccount: "987654321",
+ *             achAccountType: "checking"
+ *         },
+ *         vendorData: {
+ *             vendorNumber: "7895433"
+ *         }
+ *     }
+ *
+ * @example
+ *     {
+ *         entryPoint: "48acde49",
+ *         invoiceData: [{
+ *                 billId: 54323
+ *             }],
+ *         orderDescription: "Urgent Vendor Payment",
+ *         paymentDetails: {
+ *             totalAmount: 1200
+ *         },
+ *         paymentMethod: {
+ *             method: "rtp",
+ *             achHolder: "Jane Smith",
+ *             achRouting: "011401533",
+ *             achAccount: "987654321",
+ *             achAccountType: "checking"
+ *         },
+ *         vendorData: {
+ *             vendorNumber: "7895433"
  *         }
  *     }
  *

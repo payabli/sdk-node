@@ -74,4 +74,8 @@ export interface TransferOutRecord {
     eventsData: Payabli.TransferOutEventData[] | null;
     /** List of messages associated with the transfer. */
     messages: Payabli.TransferOutMessage[] | null;
+    /** The transfer type. One of `debit`, `credit`, or `billing`. */
+    type: string | null;
+    /** The payment method for the transfer, such as `ach`, `vcard`, or `check`. */
+    method: string | null;
 }

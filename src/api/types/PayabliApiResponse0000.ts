@@ -10,5 +10,5 @@ export interface PayabliApiResponse0000 {
     responseText: Payabli.ResponseText;
     pageIdentifier?: Payabli.PageIdentifier | undefined;
     responseCode?: Payabli.Responsecode | undefined;
-    responseData?: Payabli.PayabliApiResponse0ResponseData | undefined;
+    responseData?: Payabli.CancelPayoutResponseData | undefined;
 }

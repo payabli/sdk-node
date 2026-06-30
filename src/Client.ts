@@ -7,6 +7,7 @@ import { CheckCaptureClient } from "./api/resources/checkCapture/client/Client.j
 import { CloudClient } from "./api/resources/cloud/client/Client.js";
 import { CustomerClient } from "./api/resources/customer/client/Client.js";
 import { ExportClient } from "./api/resources/export/client/Client.js";
+import { FundingClient } from "./api/resources/funding/client/Client.js";
 import { GhostCardClient } from "./api/resources/ghostCard/client/Client.js";
 import { HostedPaymentPagesClient } from "./api/resources/hostedPaymentPages/client/Client.js";
 import { ImportClient } from "./api/resources/import/client/Client.js";
@@ -71,6 +72,7 @@ export class PayabliClient {
     protected _vendor: VendorClient | undefined;
     protected _ghostCard: GhostCardClient | undefined;
     protected _moneyOut: MoneyOutClient | undefined;
+    protected _funding: FundingClient | undefined;
     protected _wallet: WalletClient | undefined;
     protected _payoutSubscription: PayoutSubscriptionClient | undefined;
     protected _chargeBacks: ChargeBacksClient | undefined;
@@ -189,6 +191,10 @@ export class PayabliClient {
 
     public get moneyOut(): MoneyOutClient {
         return (this._moneyOut ??= new MoneyOutClient(this._options));
+    }
+
+    public get funding(): FundingClient {
+        return (this._funding ??= new FundingClient(this._options));
     }
 
     public get wallet(): WalletClient {

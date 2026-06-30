@@ -723,4 +723,297 @@ describe("VendorClient", () => {
             });
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
+
+    test("ScheduleEnrichmentCall (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            vendorId: 456,
+            phone: "5555550200",
+            enrichmentId: "enrich-3890-a1b2c3d4",
+            billId: 54323,
+            fallbackMethod: "check",
+            maxRetries: 3,
+            timezone: "America/New_York",
+        };
+        const rawResponseBody = {
+            responseCode: 1,
+            roomId: 0,
+            isSuccess: true,
+            responseText: "Success",
+            responseData: {
+                callScheduleId: 430,
+                enrichmentId: "enrich-3890-a1b2c3d4",
+                scheduledCallDate: "2026-06-16T13:00:00Z",
+                status: "dispatched",
+            },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/Vendor/enrich/schedule_call/8cfec329267")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.vendor.scheduleEnrichmentCall("8cfec329267", {
+            vendorId: 456,
+            phone: "5555550200",
+            enrichmentId: "enrich-3890-a1b2c3d4",
+            billId: 54323,
+            fallbackMethod: "check",
+            maxRetries: 3,
+            timezone: "America/New_York",
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("ScheduleEnrichmentCall (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { vendorId: 1000000 };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/Vendor/enrich/schedule_call/entry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.vendor.scheduleEnrichmentCall("entry", {
+                vendorId: 1000000,
+            });
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("ScheduleEnrichmentCall (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { vendorId: 1000000 };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .post("/Vendor/enrich/schedule_call/entry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.vendor.scheduleEnrichmentCall("entry", {
+                vendorId: 1000000,
+            });
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("ScheduleEnrichmentCall (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { vendorId: 1000000 };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .post("/Vendor/enrich/schedule_call/entry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(429)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.vendor.scheduleEnrichmentCall("entry", {
+                vendorId: 1000000,
+            });
+        }).rejects.toThrow(Payabli.TooManyRequestsError);
+    });
+
+    test("ScheduleEnrichmentCall (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { vendorId: 1000000 };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/Vendor/enrich/schedule_call/entry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.vendor.scheduleEnrichmentCall("entry", {
+                vendorId: 1000000,
+            });
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("ScheduleEnrichmentCall (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { vendorId: 1000000 };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .post("/Vendor/enrich/schedule_call/entry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.vendor.scheduleEnrichmentCall("entry", {
+                vendorId: 1000000,
+            });
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
+    test("GetEnrichmentCallStatus (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            vendorId: 456,
+            state: "scheduled",
+            scheduled: { scheduledFor: "2026-06-16T13:00:00Z", attemptsRemaining: 3, maxAttempts: 3 },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/Vendor/456/enrichment/call-status")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.vendor.getEnrichmentCallStatus(456);
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("GetEnrichmentCallStatus (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            vendorId: 456,
+            state: "successful",
+            completed: {
+                completedAt: "2026-06-16T13:13:42Z",
+                durationSeconds: 222,
+                summary: "Vendor confirmed they accept card payments and provided a billing email.",
+                callId: "call-3890-9f8e7d6c",
+                transcript:
+                    "AI Agent: Hi, I'm calling on behalf of Acme Corporation about payment options. Does Greenfield Landscaping accept card payments?\nVendor: Yes, we take cards. You can send receipts to our billing email.",
+                extractedData: { selectedPaymentMethod: "card", contactEmail: "ap@greenfield-landscaping.com" },
+            },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/Vendor/456/enrichment/call-status")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.vendor.getEnrichmentCallStatus(456);
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("GetEnrichmentCallStatus (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            vendorId: 456,
+            state: "failed",
+            failed: {
+                lastAttemptAt: "2026-06-16T13:00:00Z",
+                reason: "No answer",
+                attemptsRemaining: 2,
+                maxAttempts: 3,
+                nextRetryScheduledFor: "2026-06-17T13:00:00Z",
+            },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/Vendor/456/enrichment/call-status")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.vendor.getEnrichmentCallStatus(456);
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("GetEnrichmentCallStatus (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .get("/Vendor/1000000/enrichment/call-status")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.vendor.getEnrichmentCallStatus(1000000);
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("GetEnrichmentCallStatus (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/Vendor/1000000/enrichment/call-status")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.vendor.getEnrichmentCallStatus(1000000);
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("GetEnrichmentCallStatus (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .get("/Vendor/1000000/enrichment/call-status")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.vendor.getEnrichmentCallStatus(1000000);
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
 });

@@ -39,7 +39,7 @@ export interface VendorEnrichRequest {
     scope?: string[];
     /** When `true` (the default), extracted data is automatically written to the vendor record. Only empty fields are populated, existing values are never overwritten. When `false`, the vendor record isn't modified. In both cases, `enrichmentData` in the response contains the extracted results. Use `false` for UI flows where users review and confirm changes before applying them with the update vendor endpoint. */
     applyEnrichmentData?: boolean;
-    /** When `true`, triggers an AI outreach call if enrichment stages return insufficient payment acceptance info. This feature is currently in development. */
+    /** When `true`, Payabli schedules an AI outreach call to the vendor if the enrichment stages return insufficient payment acceptance info. The call collects the vendor's preferred payment method and contact email. This is the third enrichment stage and is opt-in at the org level. See the schedule outreach call endpoint for behavior and requirements. */
     scheduleCallIfNeeded?: boolean;
     /** PDF invoice file, Base64-encoded. Required when `scope` includes `invoice_scan`. */
     invoiceFile?: Payabli.FileContent;

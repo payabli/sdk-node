@@ -21,6 +21,14 @@ export interface StatBasicExtendedQueryRecord {
     outCheckTransactions: number;
     /** Outbound (payout) Managed Payables transactions count. */
     outPendingMethodTransactions: number;
+    /** Outbound (payout) RTP transactions count. */
+    outRTPTransactions: number;
+    /** Outbound (payout) RTP transactions volume. */
+    outRTPVolume: number;
+    /** Outbound (payout) wire transactions count. */
+    outWireTransactions: number;
+    /** Outbound (payout) wire transactions volume. */
+    outWireVolume: number;
     /** Outbound (payout) volume. */
     outTransactionsVolume: number;
     /** Recurring outbound (payout) volume. */

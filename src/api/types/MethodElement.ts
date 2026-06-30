@@ -10,6 +10,10 @@ export interface MethodElement {
     header?: string | undefined;
     methods?: Payabli.MethodsList | undefined;
     order?: Payabli.Order | undefined;
+    /** Description text shown in the payment methods section. */
+    paymentDescription?: string | undefined;
     /** Settings for wallet payment methods. */
     settings?: Payabli.MethodElementSettings | undefined;
+    /** Controls whether the "Save payment details for future use" checkbox appears on the hosted payment page. Set to `false` to hide the checkbox. Defaults to `true`. */
+    showSaveMethod?: boolean | undefined;
 }

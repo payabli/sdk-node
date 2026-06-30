@@ -26,11 +26,16 @@ export class MoneyInClient {
     }
 
     /**
+     * @deprecated
+     *
+     * <Warning>
+     *   This endpoint is deprecated. New integrations should use the [Authorize endpoint](/developers/api-reference/moneyinV2/authorize-a-transaction), then capture, void, or refund the resulting transaction with the corresponding endpoints. Transactions created with this legacy endpoint must be managed with the legacy lifecycle endpoints — they aren't interchangeable with the current ones.
+     * </Warning>
+     *
+     *
      * Authorize a card transaction. This returns an authorization code and reserves funds for the merchant. Authorized transactions aren't flagged for settlement until [captured](/developers/api-reference/moneyin/capture-an-authorized-transaction).
+     *
      * Only card transactions can be authorized. This endpoint can't be used for ACH transactions.
-     * <Tip>
-     *   Consider migrating to the [v2 Authorize endpoint](/developers/api-reference/moneyinV2/authorize-a-transaction) to take advantage of unified response codes and improved response consistency.
-     * </Tip>
      *
      * @param {Payabli.RequestPaymentAuthorize} request
      * @param {MoneyInClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -143,7 +148,7 @@ export class MoneyInClient {
      * @deprecated
      *
      * <Warning>
-     *   This endpoint is deprecated and will be sunset on November 24, 2025. Migrate to [POST `/capture/{transId}`](/developers/api-reference/moneyin/capture-an-authorized-transaction)`.
+     *   This endpoint is deprecated. Use [POST `/capture/{transId}`](/developers/api-reference/moneyin/capture-an-authorized-transaction) instead, which supports partial captures and service fee adjustments.
      * </Warning>
      *
      *   Capture an [authorized
@@ -234,13 +239,15 @@ export class MoneyInClient {
     }
 
     /**
+     * @deprecated
+     *
+     * <Warning>
+     *   This endpoint is deprecated. Use it only to capture transactions originally authorized with the legacy [Authorize endpoint](/developers/api-reference/moneyin/authorize-a-transaction). New integrations should use the [Capture endpoint](/developers/api-reference/moneyinV2/capture-an-authorized-transaction), which only works on transactions authorized with the current [Authorize endpoint](/developers/api-reference/moneyinV2/authorize-a-transaction).
+     * </Warning>
+     *
      * Capture an [authorized transaction](/developers/api-reference/moneyin/authorize-a-transaction) to complete the transaction and move funds from the customer to merchant account.
      *
      * You can use this endpoint to capture both full and partial amounts of the original authorized transaction. See [Capture an authorized transaction](/developers/developer-guides/pay-in-auth-and-capture) for more information about this endpoint.
-     *
-     * <Tip>
-     * Consider migrating to the [v2 Capture endpoint](/developers/api-reference/moneyinV2/capture-an-authorized-transaction) to take advantage of unified response codes and improved response consistency.
-     * </Tip>
      *
      * @param {string} transId - ReferenceId for the transaction (PaymentId).
      * @param {Payabli.CaptureRequest} request
@@ -564,11 +571,13 @@ export class MoneyInClient {
     }
 
     /**
-     * Make a single transaction. This method authorizes and captures a payment in one step.
+     * @deprecated
      *
-     *   <Tip>
-     *   Consider migrating to the [v2 Make a transaction endpoint](/developers/api-reference/moneyinV2/make-a-transaction) to take advantage of unified response codes and improved response consistency.
-     *   </Tip>
+     * <Warning>
+     *   This endpoint is deprecated. New integrations should use the [Make a transaction endpoint](/developers/api-reference/moneyinV2/make-a-transaction) and manage the resulting transaction with the corresponding void or refund endpoints. Transactions created with this legacy endpoint must be managed with the legacy lifecycle endpoints — they aren't interchangeable with the current ones.
+     * </Warning>
+     *
+     * Make a single transaction. This method authorizes and captures a payment in one step.
      *
      * @param {Payabli.RequestPayment} request
      * @param {MoneyInClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -820,7 +829,13 @@ export class MoneyInClient {
     }
 
     /**
-     * A reversal either refunds or voids a transaction independent of the transaction's settlement status. Send a reversal request for a transaction, and Payabli automatically determines whether it's a refund or void. You don't need to know whether the transaction is settled or not. This endpoint only works on transactions made with the v1 API. For v2 transactions, check the transaction's settlement status and call v2 void or v2 refund based on the result.
+     * @deprecated
+     *
+     * <Warning>
+     *   This endpoint is deprecated and only works on transactions created with the legacy endpoints. There's no equivalent in the current endpoints. For transactions created with [Make a transaction](/developers/api-reference/moneyinV2/make-a-transaction) or [Authorize](/developers/api-reference/moneyinV2/authorize-a-transaction), check the transaction's settlement status and call [Void](/developers/api-reference/moneyinV2/void-a-transaction) or [Refund](/developers/api-reference/moneyinV2/refund-a-settled-transaction) based on the result.
+     * </Warning>
+     *
+     * A reversal either refunds or voids a transaction independent of the transaction's settlement status. Send a reversal request for a transaction, and Payabli automatically determines whether it's a refund or void. You don't need to know whether the transaction is settled or not. This endpoint only works on transactions made with the legacy endpoints. For transactions made with the current endpoints, check the transaction's settlement status and call void or refund based on the result.
      *
      * @param {string} transId - ReferenceId for the transaction (PaymentId).
      * @param {number} amount - Amount to reverse from original transaction, minus any service fees charged on the original transaction.
@@ -914,11 +929,13 @@ export class MoneyInClient {
     }
 
     /**
-     * Refund a transaction that has settled and send money back to the account holder. If a transaction hasn't been settled, void it instead.
+     * @deprecated
      *
-     *   <Tip>
-     *   Consider migrating to the [v2 Refund endpoint](/developers/api-reference/moneyinV2/refund-a-settled-transaction) to take advantage of unified response codes and improved response consistency.
-     *   </Tip>
+     * <Warning>
+     *   This endpoint is deprecated. Use it only to refund transactions originally created with the legacy endpoints. New integrations should use the [Refund endpoint](/developers/api-reference/moneyinV2/refund-a-settled-transaction), which only works on transactions created with [Make a transaction](/developers/api-reference/moneyinV2/make-a-transaction) or [Authorize](/developers/api-reference/moneyinV2/authorize-a-transaction).
+     * </Warning>
+     *
+     * Refund a transaction that has settled and send money back to the account holder. If a transaction hasn't been settled, void it instead.
      *
      * @param {string} transId - ReferenceId for the transaction (PaymentId).
      * @param {number} amount - Amount to refund from original transaction, minus any service fees charged on the original transaction.
@@ -1012,6 +1029,12 @@ export class MoneyInClient {
     }
 
     /**
+     * @deprecated
+     *
+     * <Warning>
+     *   This endpoint is deprecated. Use it only to refund transactions originally created with the legacy endpoints. To refund a split-funded transaction created with [Make a transaction](/developers/api-reference/moneyinV2/make-a-transaction) or [Authorize](/developers/api-reference/moneyinV2/authorize-a-transaction), use the [Refund endpoint](/developers/api-reference/moneyinV2/refund-a-settled-transaction) with split instructions in the request body.
+     * </Warning>
+     *
      * Refunds a settled transaction with split instructions.
      *
      * @param {string} transId - ReferenceId for the transaction (PaymentId).
@@ -1416,11 +1439,13 @@ export class MoneyInClient {
     }
 
     /**
-     * Cancel a transaction that hasn't been settled yet. Voiding non-captured authorizations prevents future captures. If a transaction has been settled, refund it instead.
+     * @deprecated
      *
-     *   <Tip>
-     *   Consider migrating to the [v2 Void endpoint](/developers/api-reference/moneyinV2/void-a-transaction) to take advantage of unified response codes and improved response consistency.
-     *   </Tip>
+     * <Warning>
+     *   This endpoint is deprecated. Use it only to void transactions originally created with the legacy endpoints. New integrations should use the [Void endpoint](/developers/api-reference/moneyinV2/void-a-transaction), which only works on transactions created with [Make a transaction](/developers/api-reference/moneyinV2/make-a-transaction) or [Authorize](/developers/api-reference/moneyinV2/authorize-a-transaction).
+     * </Warning>
+     *
+     * Cancel a transaction that hasn't been settled yet. Voiding non-captured authorizations prevents future captures. If a transaction has been settled, refund it instead.
      *
      * @param {string} transId - ReferenceId for the transaction (PaymentId).
      * @param {MoneyInClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -1884,11 +1909,16 @@ export class MoneyInClient {
     }
 
     /**
-     * Give a full refund for a transaction that has settled and send money back to the account holder. To perform a partial refund, see [Partially refund a transaction](developers/api-reference/moneyinV2/partial-refund-a-settled-transaction).
+     * Give a full refund for a transaction that has settled and send money back to the account holder. To perform a partial refund, see [Partially refund a transaction](/developers/api-reference/moneyinV2/partial-refund-a-settled-transaction).
      *
      * This is the v2 version of the refund endpoint, and returns the unified response format. See [Pay In unified response codes reference](/guides/pay-in-unified-response-codes-reference) for more information.
      *
+     * <Note>
+     *   To refund a split-funded transaction, include split instructions in the request body. Omit the body for a standard refund.
+     * </Note>
+     *
      * @param {string} transId - ReferenceId for the transaction (PaymentId).
+     * @param {Payabli.RefundV2Request} request
      * @param {MoneyInClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Payabli.BadRequestError}
@@ -1897,17 +1927,39 @@ export class MoneyInClient {
      * @throws {@link Payabli.InternalServerError}
      *
      * @example
-     *     await client.moneyIn.refundv2("10-3ffa27df-b171-44e0-b251-e95fbfc7a723")
+     *     await client.moneyIn.refundv2("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", {})
+     *
+     * @example
+     *     await client.moneyIn.refundv2("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", {
+     *         source: "api",
+     *         orderDescription: "Materials deposit",
+     *         amount: 100,
+     *         refundDetails: {
+     *             splitRefunding: [{
+     *                     originationEntryPoint: "495147f647",
+     *                     accountId: "187-342",
+     *                     description: "Refunding undelivered materials",
+     *                     amount: 60
+     *                 }, {
+     *                     originationEntryPoint: "8cfec329267",
+     *                     accountId: "187-343",
+     *                     description: "Refunding deposit for undelivered materials",
+     *                     amount: 40
+     *                 }]
+     *         }
+     *     })
      */
     public refundv2(
         transId: string,
+        request: Payabli.RefundV2Request,
         requestOptions?: MoneyInClient.RequestOptions,
     ): core.HttpResponsePromise<Payabli.V2TransactionResponseWrapper> {
-        return core.HttpResponsePromise.fromPromise(this.__refundv2(transId, requestOptions));
+        return core.HttpResponsePromise.fromPromise(this.__refundv2(transId, request, requestOptions));
     }
 
     private async __refundv2(
         transId: string,
+        request: Payabli.RefundV2Request,
         requestOptions?: MoneyInClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.V2TransactionResponseWrapper>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
@@ -1925,7 +1977,10 @@ export class MoneyInClient {
             ),
             method: "POST",
             headers: _headers,
+            contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            requestType: "json",
+            body: request,
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -1965,12 +2020,17 @@ export class MoneyInClient {
     }
 
     /**
-     * Refund a transaction that has settled and send money back to the account holder. If `amount` is omitted or set to 0, performs a full refund. When a non-zero `amount` is provided, this endpoint performs a partial refund.
+     * Refund a transaction that has settled and send money back to the account holder. If `amount` is set to 0, performs a full refund. When a non-zero `amount` is provided, this endpoint performs a partial refund.
      *
      * This is the v2 version of the refund endpoint, and returns the unified response format. See [Pay In unified response codes reference](/guides/pay-in-unified-response-codes-reference) for more information.
      *
+     * <Note>
+     *   To refund a split-funded transaction, include split instructions in the request body. Omit the body for a standard refund.
+     * </Note>
+     *
      * @param {string} transId - ReferenceId for the transaction (PaymentId).
-     * @param {number} amount - Amount to refund from original transaction, minus any service fees charged on the original transaction. If omitted or set to 0, performs a full refund.
+     * @param {number} amount - Amount to refund from original transaction, minus any service fees charged on the original transaction. If set to 0, performs a full refund.
+     * @param {Payabli.RefundV2Request} request
      * @param {MoneyInClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Payabli.BadRequestError}
@@ -1979,22 +2039,43 @@ export class MoneyInClient {
      * @throws {@link Payabli.InternalServerError}
      *
      * @example
-     *     await client.moneyIn.refundv2Amount("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0)
+     *     await client.moneyIn.refundv2Amount("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0, {})
      *
      * @example
-     *     await client.moneyIn.refundv2Amount("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 100.99)
+     *     await client.moneyIn.refundv2Amount("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 100.99, {})
+     *
+     * @example
+     *     await client.moneyIn.refundv2Amount("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 70, {
+     *         source: "api",
+     *         orderDescription: "Materials deposit",
+     *         refundDetails: {
+     *             splitRefunding: [{
+     *                     originationEntryPoint: "495147f647",
+     *                     accountId: "187-342",
+     *                     description: "Refunding undelivered materials",
+     *                     amount: 40
+     *                 }, {
+     *                     originationEntryPoint: "8cfec329267",
+     *                     accountId: "187-343",
+     *                     description: "Refunding deposit for undelivered materials",
+     *                     amount: 30
+     *                 }]
+     *         }
+     *     })
      */
     public refundv2Amount(
         transId: string,
         amount: number,
+        request: Payabli.RefundV2Request,
         requestOptions?: MoneyInClient.RequestOptions,
     ): core.HttpResponsePromise<Payabli.V2TransactionResponseWrapper> {
-        return core.HttpResponsePromise.fromPromise(this.__refundv2Amount(transId, amount, requestOptions));
+        return core.HttpResponsePromise.fromPromise(this.__refundv2Amount(transId, amount, request, requestOptions));
     }
 
     private async __refundv2Amount(
         transId: string,
         amount: number,
+        request: Payabli.RefundV2Request,
         requestOptions?: MoneyInClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.V2TransactionResponseWrapper>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
@@ -2012,7 +2093,10 @@ export class MoneyInClient {
             ),
             method: "POST",
             headers: _headers,
+            contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            requestType: "json",
+            body: request,
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,

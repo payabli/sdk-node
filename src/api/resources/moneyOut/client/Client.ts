@@ -32,11 +32,14 @@ export class MoneyOutClient {
      *
      * When `autoCapture` is `true`, Payabli captures the transaction asynchronously after authorization. The response confirms only that the transaction was authorized; it doesn't confirm that capture succeeded. To confirm capture, listen for the [`payout_transaction_approvedcaptured`](/developers/webhooks/payout-transaction-approved-captured) webhook event.
      *
+     * If a velocity fraud alert is triggered, the endpoint returns a `202` response with `responseCode` `9051`, and the authorization is held for risk review rather than rejected. If a risk policy blocks the transaction, the endpoint returns a `422` response with `responseCode` `9005`, a terminal rejection.
+     *
      * @param {Payabli.RequestOutAuthorize} request
      * @param {MoneyOutClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Payabli.BadRequestError}
      * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.UnprocessableEntityError}
      * @throws {@link Payabli.InternalServerError}
      * @throws {@link Payabli.ServiceUnavailableError}
      *
@@ -95,7 +98,7 @@ export class MoneyOutClient {
      *         orderDescription: "Window Painting",
      *         paymentMethod: {
      *             method: "ach",
-     *             storedMethodId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440"
+     *             storedMethodId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-456"
      *         },
      *         paymentDetails: {
      *             totalAmount: 47
@@ -121,6 +124,50 @@ export class MoneyOutClient {
      *         },
      *         vendorData: {
      *             vendorNumber: "VEN-123"
+     *         }
+     *     })
+     *
+     * @example
+     *     await client.moneyOut.authorizeOut({
+     *         entryPoint: "48acde49",
+     *         invoiceData: [{
+     *                 billId: 54323
+     *             }],
+     *         orderDescription: "Contractor Payment",
+     *         paymentDetails: {
+     *             totalAmount: 2500
+     *         },
+     *         paymentMethod: {
+     *             method: "wire",
+     *             achHolder: "Jane Smith",
+     *             achRouting: "011401533",
+     *             achAccount: "987654321",
+     *             achAccountType: "checking"
+     *         },
+     *         vendorData: {
+     *             vendorNumber: "7895433"
+     *         }
+     *     })
+     *
+     * @example
+     *     await client.moneyOut.authorizeOut({
+     *         entryPoint: "48acde49",
+     *         invoiceData: [{
+     *                 billId: 54323
+     *             }],
+     *         orderDescription: "Urgent Vendor Payment",
+     *         paymentDetails: {
+     *             totalAmount: 1200
+     *         },
+     *         paymentMethod: {
+     *             method: "rtp",
+     *             achHolder: "Jane Smith",
+     *             achRouting: "011401533",
+     *             achAccount: "987654321",
+     *             achAccountType: "checking"
+     *         },
+     *         vendorData: {
+     *             vendorNumber: "7895433"
      *         }
      *     })
      *
@@ -231,6 +278,11 @@ export class MoneyOutClient {
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
                     throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 422:
+                    throw new Payabli.UnprocessableEntityError(
                         _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
@@ -592,7 +644,9 @@ export class MoneyOutClient {
     }
 
     /**
-     * Captures a single authorized payout transaction by ID. If the transaction was authorized with `autoCapture` set to `true`,  you don't need to call this endpoint to capture the transaction for processing.
+     * Captures a single authorized payout transaction by ID. If the transaction was authorized with `autoCapture` set to `true`, you don't need to call this endpoint to capture the transaction for processing.
+     *
+     * If a velocity fraud alert is triggered, the endpoint returns a `202` response with `responseCode` `9051`, and the capture is held for risk review rather than rejected. If a risk policy blocks the transaction, the endpoint returns a `422` response with `responseCode` `9005`, a terminal rejection.
      *
      * @param {string} referenceId - The ID for the payout transaction.
      * @param {Payabli.CaptureOutRequest} request
@@ -600,6 +654,7 @@ export class MoneyOutClient {
      *
      * @throws {@link Payabli.BadRequestError}
      * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.UnprocessableEntityError}
      * @throws {@link Payabli.InternalServerError}
      * @throws {@link Payabli.ServiceUnavailableError}
      *
@@ -653,6 +708,11 @@ export class MoneyOutClient {
                     throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
                     throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 422:
+                    throw new Payabli.UnprocessableEntityError(
                         _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
@@ -836,6 +896,102 @@ export class MoneyOutClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/MoneyOut/vcard/{cardToken}");
+    }
+
+    /**
+     * Renews an expired or expiring virtual card by extending its expiration date to a future month.
+     *
+     * The card must be a virtual card that hasn't been fully used. The new expiration date must be in `MM-YYYY` or `MM/YYYY` format and no more than 2 years and 363 days in the future. The card expires on the last day of the month you specify.
+     *
+     * On success, `referenceId` holds the renewed card's token (the card processor may issue a new token). The response reuses the standard payout result object, so the payment-transaction fields it carries don't apply to renewal and always return `null`.
+     *
+     * @param {string} cardToken - ID for the virtual card to renew.
+     * @param {Payabli.RenewVCardRequest} request
+     * @param {MoneyOutClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.moneyOut.renewVCard("20231206142225226104", {
+     *         expirationDate: "12-2027"
+     *     })
+     */
+    public renewVCard(
+        cardToken: string,
+        request: Payabli.RenewVCardRequest,
+        requestOptions?: MoneyOutClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.RenewVCardResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__renewVCard(cardToken, request, requestOptions));
+    }
+
+    private async __renewVCard(
+        cardToken: string,
+        request: Payabli.RenewVCardRequest,
+        requestOptions?: MoneyOutClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.RenewVCardResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `MoneyOutCard/vcard/${core.url.encodePathParam(cardToken)}/renew`,
+            ),
+            method: "PUT",
+            headers: _headers,
+            contentType: "application/json",
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            requestType: "json",
+            body: request,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.RenewVCardResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "PUT",
+            "/MoneyOutCard/vcard/{cardToken}/renew",
+        );
     }
 
     /**

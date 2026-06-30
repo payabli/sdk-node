@@ -49,6 +49,8 @@ export interface QueryResponseSettlementsRecordsItem {
     /** The date and time when the transaction was settled. This field is null when the transaction's `SettlementStatus` is -1, -5, or -6 (Exception, Held, or Released). */
     SettlementDate?: string | undefined;
     Source?: Payabli.Source | undefined;
+    /** Split funding instructions for the settled transaction, each enriched with the batch and transfer that paid out the split. Null when the transaction has no splits. */
+    splitFundingInstructions?: (Payabli.SettlementSplitFundingDetail[] | null) | undefined;
     Status?: Payabli.SettlementStatus | undefined;
     /** Events associated with this transaction. */
     TransactionEvents?: Payabli.QueryTransactionEvents[] | undefined;

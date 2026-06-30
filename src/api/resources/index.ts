@@ -12,6 +12,8 @@ export * from "./customer/client/requests/index.js";
 export * as customer from "./customer/index.js";
 export * from "./export/client/requests/index.js";
 export * as export_ from "./export/index.js";
+export * from "./funding/client/requests/index.js";
+export * as funding from "./funding/index.js";
 export * from "./ghostCard/client/requests/index.js";
 export * as ghostCard from "./ghostCard/index.js";
 export * from "./hostedPaymentPages/client/requests/index.js";

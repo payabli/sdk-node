@@ -58,6 +58,7 @@ describe("HostedPaymentPagesClient", () => {
                 paymentButton: { enabled: true, label: "label", order: 1 },
                 paymentMethods: {
                     allMethodsChecked: true,
+                    showSaveMethod: true,
                     enabled: true,
                     header: "header",
                     methods: {

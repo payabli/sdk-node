@@ -209,7 +209,37 @@ describe("PaymentLinkClient", () => {
     test("AddPayLinkFromInvoice (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
+        const rawRequestBody = { invoices: { enabled: true }, contactUs: { enabled: false } };
+        const rawResponseBody = {
+            isSuccess: true,
+            responseData: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
+            responseText: "Success",
+        };
+
+        server
+            .mockEndpoint()
+            .post("/PaymentLink/23548884")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.paymentLink.addPayLinkFromInvoice(23548884, {
+            invoices: {
+                enabled: true,
+            },
+            contactUs: {
+                enabled: false,
+            },
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("AddPayLinkFromInvoice (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { invoices: {} };
         const rawResponseBody = { key: "value" };
 
         server
@@ -222,14 +252,16 @@ describe("PaymentLinkClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.paymentLink.addPayLinkFromInvoice(1);
+            return await client.paymentLink.addPayLinkFromInvoice(1, {
+                invoices: {},
+            });
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
-    test("AddPayLinkFromInvoice (3)", async () => {
+    test("AddPayLinkFromInvoice (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
+        const rawRequestBody = { invoices: {} };
         const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
@@ -242,14 +274,16 @@ describe("PaymentLinkClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.paymentLink.addPayLinkFromInvoice(1);
+            return await client.paymentLink.addPayLinkFromInvoice(1, {
+                invoices: {},
+            });
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
-    test("AddPayLinkFromInvoice (4)", async () => {
+    test("AddPayLinkFromInvoice (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
+        const rawRequestBody = { invoices: {} };
         const rawResponseBody = { key: "value" };
 
         server
@@ -262,14 +296,16 @@ describe("PaymentLinkClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.paymentLink.addPayLinkFromInvoice(1);
+            return await client.paymentLink.addPayLinkFromInvoice(1, {
+                invoices: {},
+            });
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
-    test("AddPayLinkFromInvoice (5)", async () => {
+    test("AddPayLinkFromInvoice (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
+        const rawRequestBody = { invoices: {} };
         const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
@@ -282,7 +318,9 @@ describe("PaymentLinkClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.paymentLink.addPayLinkFromInvoice(1);
+            return await client.paymentLink.addPayLinkFromInvoice(1, {
+                invoices: {},
+            });
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 

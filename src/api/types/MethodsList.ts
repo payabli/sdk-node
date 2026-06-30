@@ -15,4 +15,10 @@ export interface MethodsList {
     mastercard?: boolean | undefined;
     /** When `true`, Visa is accepted. */
     visa?: boolean | undefined;
+    /** When `true`, Diners Club is accepted. */
+    diners?: boolean | undefined;
+    /** When `true`, JCB is accepted. */
+    jcb?: boolean | undefined;
+    /** When `true`, Remote Deposit Capture (RDC) is accepted. */
+    rdc?: boolean | undefined;
 }

@@ -41,6 +41,8 @@ export interface ListTransfersOutPaypointRequest {
      *   - `paypointDbaName` (ne, eq, ct, nct)
      *   - `batchNumber` (ne, eq, ct, nct)
      *   - `batchId` (ne, eq, in, nin)
+     *   - `detailType` (eq, ne, in, nin, ct, nct)
+     *   - `detailMethod` (eq, ne, in, nin, ct, nct)
      */
     parameters?: Record<string, string | null>;
     /** The field name to use for sorting results. Use `desc(field_name)` to sort descending by `field_name`, and use `asc(field_name)` to sort ascending by `field_name`. */

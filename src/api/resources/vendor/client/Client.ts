@@ -486,4 +486,193 @@ export class VendorClient {
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/Vendor/enrich/{entry}");
     }
+
+    /**
+     * @beta This endpoint is in pre-release and may change.
+     *
+     * Schedules an AI outreach call to a vendor to collect their preferred payment method and contact email. This is the third enrichment stage. Calls are scheduled for the next business day at around 9 AM in the vendor's timezone, with retries on no-answer and a fallback payment method applied when retries are exhausted. This feature is opt-in at the org level. Contact your Payabli representative to enable it, provision a phone number, and discuss pricing.
+     *
+     * @param {string} entry - Entrypoint identifier.
+     * @param {Payabli.ScheduleEnrichmentCallRequest} request
+     * @param {VendorClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.TooManyRequestsError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.vendor.scheduleEnrichmentCall("8cfec329267", {
+     *         vendorId: 456,
+     *         phone: "5555550200",
+     *         enrichmentId: "enrich-3890-a1b2c3d4",
+     *         billId: 54323,
+     *         fallbackMethod: "check",
+     *         maxRetries: 3,
+     *         timezone: "America/New_York"
+     *     })
+     */
+    public scheduleEnrichmentCall(
+        entry: string,
+        request: Payabli.ScheduleEnrichmentCallRequest,
+        requestOptions?: VendorClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.VendorScheduleCallResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__scheduleEnrichmentCall(entry, request, requestOptions));
+    }
+
+    private async __scheduleEnrichmentCall(
+        entry: string,
+        request: Payabli.ScheduleEnrichmentCallRequest,
+        requestOptions?: VendorClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.VendorScheduleCallResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `Vendor/enrich/schedule_call/${core.url.encodePathParam(entry)}`,
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            requestType: "json",
+            body: request,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.VendorScheduleCallResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 429:
+                    throw new Payabli.TooManyRequestsError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/Vendor/enrich/schedule_call/{entry}",
+        );
+    }
+
+    /**
+     * @beta This endpoint is in pre-release and may change.
+     *
+     * Returns the latest AI outreach call activity for a vendor. The response is a composite object with a `state` discriminator (`none`, `scheduled`, `successful`, or `failed`); the block that matches the current state is populated. When the vendor has no call activity, `state` is `none` and the response returns HTTP 200.
+     *
+     * @param {number} idVendor - ID of the vendor to read call status for.
+     * @param {VendorClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     *
+     * @example
+     *     await client.vendor.getEnrichmentCallStatus(456)
+     */
+    public getEnrichmentCallStatus(
+        idVendor: number,
+        requestOptions?: VendorClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.VendorCallStatusResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getEnrichmentCallStatus(idVendor, requestOptions));
+    }
+
+    private async __getEnrichmentCallStatus(
+        idVendor: number,
+        requestOptions?: VendorClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.VendorCallStatusResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `Vendor/${core.url.encodePathParam(idVendor)}/enrichment/call-status`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.VendorCallStatusResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/Vendor/{idVendor}/enrichment/call-status",
+        );
+    }
 }

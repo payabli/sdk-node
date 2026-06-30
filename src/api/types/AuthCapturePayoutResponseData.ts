@@ -9,6 +9,9 @@ export interface AuthCapturePayoutResponseData {
     resultText: Payabli.Resulttext;
     avsResponseText: Payabli.AvsResponseText | null;
     cvvResponseText: Payabli.CvvResponseText | null;
-    customerId: Payabli.Customeridtrans;
+    /** Payabli-generated unique ID of the vendor on the payout. Returns the same value as `vendorId`, or `0` when no vendor is associated. */
+    customerId: Payabli.Vendoridtrans;
+    /** Payabli-generated unique ID of the vendor on the payout. Returns the same value as `customerId`, or `0` when no vendor is associated. */
+    vendorId: Payabli.Vendoridtrans;
     methodReferenceId: Payabli.MethodReferenceId | null;
 }
