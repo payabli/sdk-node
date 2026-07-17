@@ -2,9 +2,9 @@
 
 /** Describes the business refund policy. */
 export const Whenrefunded = {
-    ExchangeOnly: "Exchange Only",
-    NoRefundOrExchange: "No Refund or Exchange",
-    MoreThan30Days: "More than 30 days",
-    ThirtyDaysOrLess: "30 Days or Less",
-} as const;
-export type Whenrefunded = (typeof Whenrefunded)[keyof typeof Whenrefunded];
+        ExchangeOnly: "Exchange Only",
+        NoRefundOrExchange: "No Refund or Exchange",
+        MoreThan30Days: "More than 30 days",
+        ThirtyDaysOrLess: "30 Days or Less"
+    } as const;
+export type Whenrefunded = typeof Whenrefunded[keyof typeof Whenrefunded];

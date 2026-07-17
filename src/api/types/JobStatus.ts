@@ -2,8 +2,8 @@
 
 /** The cascade process status. */
 export const JobStatus = {
-    InProgress: "in_progress",
-    Completed: "completed",
-    Failed: "failed",
-} as const;
-export type JobStatus = (typeof JobStatus)[keyof typeof JobStatus];
+        InProgress: "in_progress",
+        Completed: "completed",
+        Failed: "failed"
+    } as const;
+export type JobStatus = typeof JobStatus[keyof typeof JobStatus];

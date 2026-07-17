@@ -2,10 +2,10 @@
 
 /** Method to use for the transaction. */
 export const Methodall = {
-    Card: "card",
-    Ach: "ach",
-    Cloud: "cloud",
-    Check: "check",
-    Cash: "cash",
-} as const;
-export type Methodall = (typeof Methodall)[keyof typeof Methodall];
+        Card: "card",
+        Ach: "ach",
+        Cloud: "cloud",
+        Check: "check",
+        Cash: "cash"
+    } as const;
+export type Methodall = typeof Methodall[keyof typeof Methodall];

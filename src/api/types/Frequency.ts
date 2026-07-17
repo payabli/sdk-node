@@ -2,15 +2,15 @@
 
 /** Frequency for operation. The `firstofmonth`, `fifteenthofmonth`, and `endofmonth` values are only valid on subscriptions — they aren't accepted by other endpoints (such as invoice scheduling) that use this enum. */
 export const Frequency = {
-    OneTime: "onetime",
-    Weekly: "weekly",
-    Every2Weeks: "every2weeks",
-    Every6Months: "every6months",
-    Monthly: "monthly",
-    Every3Months: "every3months",
-    Annually: "annually",
-    FirstOfMonth: "firstofmonth",
-    FifteenthOfMonth: "fifteenthofmonth",
-    EndOfMonth: "endofmonth",
-} as const;
-export type Frequency = (typeof Frequency)[keyof typeof Frequency];
+        OneTime: "onetime",
+        Weekly: "weekly",
+        Every2Weeks: "every2weeks",
+        Every6Months: "every6months",
+        Monthly: "monthly",
+        Every3Months: "every3months",
+        Annually: "annually",
+        FirstOfMonth: "firstofmonth",
+        FifteenthOfMonth: "fifteenthofmonth",
+        EndOfMonth: "endofmonth"
+    } as const;
+export type Frequency = typeof Frequency[keyof typeof Frequency];

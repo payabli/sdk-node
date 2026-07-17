@@ -3,7608 +3,4217 @@
 import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
+import { mockBearerAuth } from "./mockAuth";
 
 describe("QueryClient", () => {
+    
     test("ListBatchDetails (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    Id: 25048,
-                    Method: "ach",
-                    WalletType: null,
-                    SettledAmount: 0.5,
-                    Type: "credit",
-                    BatchNumber: "batch-100-20-2024",
-                    BatchAmount: 32,
-                    PaymentTransId: "245-9e4072eef77e45979ea0e49f680000X",
-                    PaymentTransStatus: 1,
-                    ScheduleReference: 0,
-                    GatewayTransId: "TRN_XXXXX",
-                    OrderId: "",
-                    TransMethod: "ach",
-                    PaymentData: {
-                        AccountType: "Checking",
-                        HolderName: "Lydia Marshall",
-                        MaskedAccount: "1XXXXXX5678",
-                        paymentDetails: {
-                            categories: [{ amount: 1000, label: "Deposit" }],
-                            currency: "USD",
-                            serviceFee: 0,
-                            splitFunding: [{}],
-                            totalAmount: 2,
-                        },
-                    },
-                    NetAmount: 2,
-                    Operation: "Sale",
-                    Category: "auth",
-                    Source: "api",
-                    Status: 1,
-                    TransactionTime: "2024-11-19T15:58:01Z",
-                    Customer: {
-                        BillingAddress1: "100 Golden Ridge Drive",
-                        BillingAddress2: "STE 100",
-                        BillingCity: "Mendota",
-                        BillingCountry: "US",
-                        BillingEmail: "lydia@example.com",
-                        BillingPhone: "+12345678",
-                        BillingState: "VA",
-                        BillingZip: "20147",
-                        customerId: 4440,
-                        CustomerNumber: "C-90010",
-                        customerStatus: 1,
-                        FirstName: "Lydia",
-                        LastName: "Marshall",
-                    },
-                    SettlementDate: "2024-11-20T00:00:00Z",
-                    PaymentSettlementStatus: 1,
-                    BatchStatus: 1,
-                    DepositDate: "2024-11-22T00:00:00Z",
-                    ExpectedDepositDate: "2024-11-22T00:00:00Z",
-                    MaskedAccount: "1XXXXXX5678",
-                    CreatedAt: "2024-11-19T15:58:01Z",
-                    PaypointLegalname: "Gruzya Adventure Outfitters, LLC",
-                    ResponseData: {
-                        authcode: " ",
-                        avsresponse: " ",
-                        avsresponse_text: "",
-                        cvvresponse: " ",
-                        cvvresponse_text: " ",
-                        emv_auth_response_data: " ",
-                        response: "Success",
-                        response_code: "100",
-                        response_code_text: "Transaction was approved.",
-                        responsetext: "CAPTURED",
-                        resultCode: "A0000",
-                        resultCodeText: "Approved",
-                        transactionid: "TRN_xwCAjQorWAYX1nAhAoHZVfN8iYHbI0",
-                    },
-                    PaypointDbaname: "Gruzya Adventure Outfitters, LLC",
-                    ParentOrgName: "Pilgrim Planner",
-                    ParentOrgId: 123,
-                    PaypointEntryname: "7f1a3816XX",
-                    DeviceId: "",
-                    RetrievalId: 0,
-                    ChargebackId: 0,
-                    AchHolderType: "personal",
-                    AchSecCode: "PPD",
-                    ConnectorName: "DefaultConnector",
-                    EntrypageId: 0,
-                    FeeAmount: 0,
-                    OrgId: 123,
-                    PayorId: 2707,
-                    PaypointId: 3040,
-                    PendingFeeAmount: 0,
-                    RefundId: 0,
-                    ReturnedId: 0,
-                    splitFundingInstructions: [],
-                    TotalAmount: 2,
-                    CfeeTransactions: [],
-                    invoiceData: null,
-                    TransactionEvents: [
-                        { EventTime: "2024-11-19T15:57:40Z", TransEvent: "Created" },
-                        {
-                            EventData: {
-                                account_id: "TRA_XXXXX",
-                                account_name: "123456",
-                                action: {
-                                    app_id: "XXXXX",
-                                    app_name: "PayAbli",
-                                    id: "ACT_XXXXX",
-                                    result_code: "SUCCESS",
-                                    time_created: "2024-11-19T20:58:01.583Z",
-                                    type: "AUTHORIZE",
-                                },
-                                amount: "200",
-                                batch_id: "",
-                                capture_mode: "AUTO",
-                                channel: "CNP",
-                                country: "US",
-                                currency: "USD",
-                                fees: { amount: "0", rate: "0.00", total_amount: "0" },
-                                id: "TRN_XXXXX",
-                                merchant_amount: "200",
-                                merchant_id: "MER_XXXXX",
-                                merchant_name: "Henriette97",
-                                order: { reference: "" },
-                                payment_method: {
-                                    bank_transfer: {
-                                        account_type: "CHECKING",
-                                        bank: { name: "" },
-                                        masked_account_number_last4: "XXXX5678",
-                                    },
-                                    entry_mode: "ECOM",
-                                    message: "Success",
-                                    narrative: "Lydia Marshall",
-                                    result: "00",
-                                },
-                                reference: "245-XXXXX",
-                                status: "CAPTURED",
-                                time_created: "2024-11-19T20:58:01.583Z",
-                                type: "SALE",
-                            },
-                            EventTime: "2024-11-19T20:58:01Z",
-                            TransEvent: "Approved",
-                        },
-                        { EventTime: "2024-11-20T03:05:10Z", TransEvent: "ClosedBatch" },
-                    ],
-                    externalPaypointID: "ext-paypoint-123",
-                    isHold: 0,
-                },
-            ],
-            Summary: {
-                serviceFees: 852.48,
-                transferAmount: 0,
-                refunds: -3521.85,
-                heldAmount: 3.7,
-                totalRecords: 21872,
-                totalAmount: 61645.74,
-                totalNetAmount: 61645.74,
-                totalPages: 21872,
-                pageSize: 0,
-                pageidentifier: null,
-            },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "Id" : 25048 , "Method" : "ach" , "WalletType" : null , "SettledAmount" : 0.5 , "Type" : "credit" , "BatchNumber" : "batch-100-20-2024" , "BatchAmount" : 32 , "PaymentTransId" : "245-9e4072eef77e45979ea0e49f680000X" , "PaymentTransStatus" : 1 , "ScheduleReference" : 0 , "GatewayTransId" : "TRN_XXXXX" , "OrderId" : "" , "TransMethod" : "ach" , "PaymentData" : { "AccountType" : "Checking" , "HolderName" : "Lydia Marshall" , "MaskedAccount" : "1XXXXXX5678" , "paymentDetails" : { "categories" : [ { "amount" : 1000 , "label" : "Deposit" } ] , "currency" : "USD" , "serviceFee" : 0 , "splitFunding" : [ { } ] , "totalAmount" : 2 } } , "NetAmount" : 2 , "Operation" : "Sale" , "Category" : "auth" , "Source" : "api" , "Status" : 1 , "TransactionTime" : "2024-11-19T15:58:01Z" , "Customer" : { "BillingAddress1" : "100 Golden Ridge Drive" , "BillingAddress2" : "STE 100" , "BillingCity" : "Mendota" , "BillingCountry" : "US" , "BillingEmail" : "lydia@example.com" , "BillingPhone" : "+12345678" , "BillingState" : "VA" , "BillingZip" : "20147" , "customerId" : 4440 , "CustomerNumber" : "C-90010" , "customerStatus" : 1 , "FirstName" : "Lydia" , "LastName" : "Marshall" } , "SettlementDate" : "2024-11-20T00:00:00Z" , "PaymentSettlementStatus" : 1 , "BatchStatus" : 1 , "DepositDate" : "2024-11-22T00:00:00Z" , "ExpectedDepositDate" : "2024-11-22T00:00:00Z" , "MaskedAccount" : "1XXXXXX5678" , "CreatedAt" : "2024-11-19T15:58:01Z" , "PaypointLegalname" : "Gruzya Adventure Outfitters, LLC" , "ResponseData" : { "authcode" : " " , "avsresponse" : " " , "avsresponse_text" : "" , "cvvresponse" : " " , "cvvresponse_text" : " " , "emv_auth_response_data" : " " , "response" : "Success" , "response_code" : "100" , "response_code_text" : "Transaction was approved." , "responsetext" : "CAPTURED" , "resultCode" : "A0000" , "resultCodeText" : "Approved" , "transactionid" : "TRN_xwCAjQorWAYX1nAhAoHZVfN8iYHbI0" } , "PaypointDbaname" : "Gruzya Adventure Outfitters, LLC" , "ParentOrgName" : "Pilgrim Planner" , "ParentOrgId" : 123 , "PaypointEntryname" : "7f1a3816XX" , "DeviceId" : "" , "RetrievalId" : 0 , "ChargebackId" : 0 , "AchHolderType" : "personal" , "AchSecCode" : "PPD" , "ConnectorName" : "DefaultConnector" , "EntrypageId" : 0 , "FeeAmount" : 0 , "OrgId" : 123 , "PayorId" : 2707 , "PaypointId" : 3040 , "PendingFeeAmount" : 0 , "RefundId" : 0 , "ReturnedId" : 0 , "splitFundingInstructions" : [ ] , "TotalAmount" : 2 , "CfeeTransactions" : [ ] , "invoiceData" : null , "TransactionEvents" : [ { "EventTime" : "2024-11-19T15:57:40Z" , "TransEvent" : "Created" } , { "EventData" : { "account_id" : "TRA_XXXXX" , "account_name" : "123456" , "action" : { "app_id" : "XXXXX" , "app_name" : "PayAbli" , "id" : "ACT_XXXXX" , "result_code" : "SUCCESS" , "time_created" : "2024-11-19T20:58:01.583Z" , "type" : "AUTHORIZE" } , "amount" : "200" , "batch_id" : "" , "capture_mode" : "AUTO" , "channel" : "CNP" , "country" : "US" , "currency" : "USD" , "fees" : { "amount" : "0" , "rate" : "0.00" , "total_amount" : "0" } , "id" : "TRN_XXXXX" , "merchant_amount" : "200" , "merchant_id" : "MER_XXXXX" , "merchant_name" : "Henriette97" , "order" : { "reference" : "" } , "payment_method" : { "bank_transfer" : { "account_type" : "CHECKING" , "bank" : { "name" : "" } , "masked_account_number_last4" : "XXXX5678" } , "entry_mode" : "ECOM" , "message" : "Success" , "narrative" : "Lydia Marshall" , "result" : "00" } , "reference" : "245-XXXXX" , "status" : "CAPTURED" , "time_created" : "2024-11-19T20:58:01.583Z" , "type" : "SALE" } , "EventTime" : "2024-11-19T20:58:01Z" , "TransEvent" : "Approved" } , { "EventTime" : "2024-11-20T03:05:10Z" , "TransEvent" : "ClosedBatch" } ] , "externalPaypointID" : "ext-paypoint-123" , "isHold" : 0 } ] , "Summary" : { "serviceFees" : 852.48 , "transferAmount" : 0 , "refunds" : -3521.85 , "heldAmount" : 3.7 , "totalRecords" : 21872 , "totalAmount" : 61645.74 , "totalNetAmount" : 61645.74 , "totalPages" : 21872 , "pageSize" : 0 , "pageidentifier" : null } };
+        
         server
             .mockEndpoint()
-            .get("/Query/batchDetails/8cfec329267")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batchDetails/8cfec329267").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listBatchDetails("8cfec329267", {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listBatchDetails("8cfec329267", {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListBatchDetails (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/batchDetails/entry")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batchDetails/entry").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listBatchDetails("entry");
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listBatchDetails("entry")
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListBatchDetails (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/batchDetails/entry")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batchDetails/entry").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listBatchDetails("entry");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listBatchDetails("entry")
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListBatchDetails (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/batchDetails/entry")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batchDetails/entry").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listBatchDetails("entry");
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listBatchDetails("entry")
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListBatchDetails (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/batchDetails/entry")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batchDetails/entry").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listBatchDetails("entry");
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listBatchDetails("entry")
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListBatchDetailsOrg (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    Id: 25048,
-                    Method: "ach",
-                    WalletType: null,
-                    SettledAmount: 0.5,
-                    Type: "credit",
-                    BatchNumber: "batch-100-20-2024",
-                    BatchAmount: 32,
-                    PaymentTransId: "245-9e4072eef77e45979ea0e49f680000X",
-                    PaymentTransStatus: 1,
-                    ScheduleReference: 0,
-                    GatewayTransId: "TRN_XXXXX",
-                    OrderId: "",
-                    TransMethod: "ach",
-                    PaymentData: {
-                        AccountType: "Checking",
-                        HolderName: "Lydia Marshall",
-                        MaskedAccount: "1XXXXXX5678",
-                        paymentDetails: {
-                            categories: [{ amount: 1000, label: "Deposit" }],
-                            currency: "USD",
-                            serviceFee: 0,
-                            splitFunding: [{}],
-                            totalAmount: 2,
-                        },
-                    },
-                    NetAmount: 2,
-                    Operation: "Sale",
-                    Category: "auth",
-                    Source: "api",
-                    Status: 1,
-                    TransactionTime: "2024-11-19T15:58:01Z",
-                    Customer: {
-                        BillingAddress1: "100 Golden Ridge Drive",
-                        BillingAddress2: "STE 100",
-                        BillingCity: "Mendota",
-                        BillingCountry: "US",
-                        BillingEmail: "lydia@example.com",
-                        BillingPhone: "+12345678",
-                        BillingState: "VA",
-                        BillingZip: "20147",
-                        customerId: 4440,
-                        CustomerNumber: "C-90010",
-                        customerStatus: 1,
-                        FirstName: "Lydia",
-                        LastName: "Marshall",
-                    },
-                    SettlementDate: "2024-11-20T00:00:00Z",
-                    PaymentSettlementStatus: 1,
-                    BatchStatus: 1,
-                    DepositDate: "2024-11-22T00:00:00Z",
-                    ExpectedDepositDate: "2024-11-22T00:00:00Z",
-                    MaskedAccount: "1XXXXXX5678",
-                    CreatedAt: "2024-11-19T15:58:01Z",
-                    PaypointLegalname: "Gruzya Adventure Outfitters, LLC",
-                    ResponseData: {
-                        authcode: " ",
-                        avsresponse: " ",
-                        avsresponse_text: "",
-                        cvvresponse: " ",
-                        cvvresponse_text: " ",
-                        emv_auth_response_data: " ",
-                        response: "Success",
-                        response_code: "100",
-                        response_code_text: "Transaction was approved.",
-                        responsetext: "CAPTURED",
-                        resultCode: "A0000",
-                        resultCodeText: "Approved",
-                        transactionid: "TRN_xwCAjQorWAYX1nAhAoHZVfN8iYHbI0",
-                    },
-                    PaypointDbaname: "Gruzya Adventure Outfitters, LLC",
-                    ParentOrgName: "Pilgrim Planner",
-                    ParentOrgId: 123,
-                    PaypointEntryname: "7f1a3816XX",
-                    DeviceId: "",
-                    RetrievalId: 0,
-                    ChargebackId: 0,
-                    AchHolderType: "personal",
-                    AchSecCode: "PPD",
-                    ConnectorName: "DefaultConnector",
-                    EntrypageId: 0,
-                    FeeAmount: 0,
-                    OrgId: 123,
-                    PayorId: 2707,
-                    PaypointId: 3040,
-                    PendingFeeAmount: 0,
-                    RefundId: 0,
-                    ReturnedId: 0,
-                    splitFundingInstructions: [],
-                    TotalAmount: 2,
-                    CfeeTransactions: [],
-                    invoiceData: null,
-                    TransactionEvents: [
-                        { EventTime: "2024-11-19T15:57:40Z", TransEvent: "Created" },
-                        {
-                            EventData: {
-                                account_id: "TRA_XXXXX",
-                                account_name: "123456",
-                                action: {
-                                    app_id: "XXXXX",
-                                    app_name: "PayAbli",
-                                    id: "ACT_XXXXX",
-                                    result_code: "SUCCESS",
-                                    time_created: "2024-11-19T20:58:01.583Z",
-                                    type: "AUTHORIZE",
-                                },
-                                amount: "200",
-                                batch_id: "",
-                                capture_mode: "AUTO",
-                                channel: "CNP",
-                                country: "US",
-                                currency: "USD",
-                                fees: { amount: "0", rate: "0.00", total_amount: "0" },
-                                id: "TRN_XXXXX",
-                                merchant_amount: "200",
-                                merchant_id: "MER_XXXXX",
-                                merchant_name: "Henriette97",
-                                order: { reference: "" },
-                                payment_method: {
-                                    bank_transfer: {
-                                        account_type: "CHECKING",
-                                        bank: { name: "" },
-                                        masked_account_number_last4: "XXXX5678",
-                                    },
-                                    entry_mode: "ECOM",
-                                    message: "Success",
-                                    narrative: "Lydia Marshall",
-                                    result: "00",
-                                },
-                                reference: "245-XXXXX",
-                                status: "CAPTURED",
-                                time_created: "2024-11-19T20:58:01.583Z",
-                                type: "SALE",
-                            },
-                            EventTime: "2024-11-19T20:58:01Z",
-                            TransEvent: "Approved",
-                        },
-                        { EventTime: "2024-11-20T03:05:10Z", TransEvent: "ClosedBatch" },
-                    ],
-                    externalPaypointID: "ext-paypoint-123",
-                    isHold: 0,
-                },
-            ],
-            Summary: {
-                heldAmount: 3.7,
-                pageSize: 0,
-                refunds: -3521.85,
-                serviceFees: 852.48,
-                totalAmount: 61645.74,
-                totalNetAmount: 61645.74,
-                totalPages: 21872,
-                totalRecords: 21872,
-                transferAmount: 0,
-            },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "Id" : 25048 , "Method" : "ach" , "WalletType" : null , "SettledAmount" : 0.5 , "Type" : "credit" , "BatchNumber" : "batch-100-20-2024" , "BatchAmount" : 32 , "PaymentTransId" : "245-9e4072eef77e45979ea0e49f680000X" , "PaymentTransStatus" : 1 , "ScheduleReference" : 0 , "GatewayTransId" : "TRN_XXXXX" , "OrderId" : "" , "TransMethod" : "ach" , "PaymentData" : { "AccountType" : "Checking" , "HolderName" : "Lydia Marshall" , "MaskedAccount" : "1XXXXXX5678" , "paymentDetails" : { "categories" : [ { "amount" : 1000 , "label" : "Deposit" } ] , "currency" : "USD" , "serviceFee" : 0 , "splitFunding" : [ { } ] , "totalAmount" : 2 } } , "NetAmount" : 2 , "Operation" : "Sale" , "Category" : "auth" , "Source" : "api" , "Status" : 1 , "TransactionTime" : "2024-11-19T15:58:01Z" , "Customer" : { "BillingAddress1" : "100 Golden Ridge Drive" , "BillingAddress2" : "STE 100" , "BillingCity" : "Mendota" , "BillingCountry" : "US" , "BillingEmail" : "lydia@example.com" , "BillingPhone" : "+12345678" , "BillingState" : "VA" , "BillingZip" : "20147" , "customerId" : 4440 , "CustomerNumber" : "C-90010" , "customerStatus" : 1 , "FirstName" : "Lydia" , "LastName" : "Marshall" } , "SettlementDate" : "2024-11-20T00:00:00Z" , "PaymentSettlementStatus" : 1 , "BatchStatus" : 1 , "DepositDate" : "2024-11-22T00:00:00Z" , "ExpectedDepositDate" : "2024-11-22T00:00:00Z" , "MaskedAccount" : "1XXXXXX5678" , "CreatedAt" : "2024-11-19T15:58:01Z" , "PaypointLegalname" : "Gruzya Adventure Outfitters, LLC" , "ResponseData" : { "authcode" : " " , "avsresponse" : " " , "avsresponse_text" : "" , "cvvresponse" : " " , "cvvresponse_text" : " " , "emv_auth_response_data" : " " , "response" : "Success" , "response_code" : "100" , "response_code_text" : "Transaction was approved." , "responsetext" : "CAPTURED" , "resultCode" : "A0000" , "resultCodeText" : "Approved" , "transactionid" : "TRN_xwCAjQorWAYX1nAhAoHZVfN8iYHbI0" } , "PaypointDbaname" : "Gruzya Adventure Outfitters, LLC" , "ParentOrgName" : "Pilgrim Planner" , "ParentOrgId" : 123 , "PaypointEntryname" : "7f1a3816XX" , "DeviceId" : "" , "RetrievalId" : 0 , "ChargebackId" : 0 , "AchHolderType" : "personal" , "AchSecCode" : "PPD" , "ConnectorName" : "DefaultConnector" , "EntrypageId" : 0 , "FeeAmount" : 0 , "OrgId" : 123 , "PayorId" : 2707 , "PaypointId" : 3040 , "PendingFeeAmount" : 0 , "RefundId" : 0 , "ReturnedId" : 0 , "splitFundingInstructions" : [ ] , "TotalAmount" : 2 , "CfeeTransactions" : [ ] , "invoiceData" : null , "TransactionEvents" : [ { "EventTime" : "2024-11-19T15:57:40Z" , "TransEvent" : "Created" } , { "EventData" : { "account_id" : "TRA_XXXXX" , "account_name" : "123456" , "action" : { "app_id" : "XXXXX" , "app_name" : "PayAbli" , "id" : "ACT_XXXXX" , "result_code" : "SUCCESS" , "time_created" : "2024-11-19T20:58:01.583Z" , "type" : "AUTHORIZE" } , "amount" : "200" , "batch_id" : "" , "capture_mode" : "AUTO" , "channel" : "CNP" , "country" : "US" , "currency" : "USD" , "fees" : { "amount" : "0" , "rate" : "0.00" , "total_amount" : "0" } , "id" : "TRN_XXXXX" , "merchant_amount" : "200" , "merchant_id" : "MER_XXXXX" , "merchant_name" : "Henriette97" , "order" : { "reference" : "" } , "payment_method" : { "bank_transfer" : { "account_type" : "CHECKING" , "bank" : { "name" : "" } , "masked_account_number_last4" : "XXXX5678" } , "entry_mode" : "ECOM" , "message" : "Success" , "narrative" : "Lydia Marshall" , "result" : "00" } , "reference" : "245-XXXXX" , "status" : "CAPTURED" , "time_created" : "2024-11-19T20:58:01.583Z" , "type" : "SALE" } , "EventTime" : "2024-11-19T20:58:01Z" , "TransEvent" : "Approved" } , { "EventTime" : "2024-11-20T03:05:10Z" , "TransEvent" : "ClosedBatch" } ] , "externalPaypointID" : "ext-paypoint-123" , "isHold" : 0 } ] , "Summary" : { "heldAmount" : 3.7 , "pageSize" : 0 , "refunds" : -3521.85 , "serviceFees" : 852.48 , "totalAmount" : 61645.74 , "totalNetAmount" : 61645.74 , "totalPages" : 21872 , "totalRecords" : 21872 , "transferAmount" : 0 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/batchDetails/org/123")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batchDetails/org/123").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listBatchDetailsOrg(123, {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listBatchDetailsOrg(123, {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListBatchDetailsOrg (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/batchDetails/org/1")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batchDetails/org/1").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listBatchDetailsOrg(1);
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listBatchDetailsOrg(1)
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListBatchDetailsOrg (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/batchDetails/org/1")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batchDetails/org/1").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listBatchDetailsOrg(1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listBatchDetailsOrg(1)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListBatchDetailsOrg (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/batchDetails/org/1")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batchDetails/org/1").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listBatchDetailsOrg(1);
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listBatchDetailsOrg(1)
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListBatchDetailsOrg (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/batchDetails/org/1")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batchDetails/org/1").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listBatchDetailsOrg(1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listBatchDetailsOrg(1)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListBatches (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Summary: { pageSize: 20, totalAmount: 54049.71, totalNetAmount: 0, totalPages: 3, totalRecords: 3 },
-            Records: [
-                {
-                    IdBatch: 1049,
-                    BatchNumber: "batch_2857_combined_08-26-2025_001",
-                    TransferIdentifier: null,
-                    EventsData: [
-                        { description: "Created", eventTime: "2025-08-25T03:19:27.6190027-04:00", source: "api" },
-                    ],
-                    ConnectorName: "GP",
-                    BatchDate: "2025-08-25T20:00:00",
-                    BatchAmount: 0,
-                    BatchFeesAmount: 0,
-                    BatchAuthAmount: 0,
-                    BatchReleasedAmount: 0,
-                    BatchHoldAmount: 0,
-                    BatchReturnedAmount: 0,
-                    BatchRefundAmount: 0,
-                    BatchSplitAmount: 0,
-                    BatchStatus: 2,
-                    BatchRecords: 2,
-                    PaypointId: 3040,
-                    PaypointName: "Gruzya Adventure Outfitters, LLC",
-                    PaypointDba: "Gruzya Adventure Outfitters",
-                    ParentOrgName: "Pilgrim Planner",
-                    ParentOrgId: 105,
-                    externalPaypointID: null,
-                    EntryName: "47f4f8c7e1",
-                    BankName: "Riverdale Community Bank",
-                    BatchType: 0,
-                    Method: "combined",
-                    ExpectedDepositDate: "2025-08-26T00:00:00Z",
-                    DepositDate: null,
-                    TransferDate: "2025-08-26T00:00:00Z",
-                    Transfer: null,
-                },
-                {
-                    IdBatch: 1043,
-                    BatchNumber: "BT-2023041817-187",
-                    TransferIdentifier: null,
-                    EventsData: null,
-                    ConnectorName: null,
-                    BatchDate: "2023-04-18T17:01:03Z",
-                    BatchAmount: 219.02,
-                    BatchFeesAmount: 0,
-                    BatchAuthAmount: 0,
-                    BatchReleasedAmount: 0,
-                    BatchHoldAmount: 0,
-                    BatchReturnedAmount: 0,
-                    BatchRefundAmount: 0,
-                    BatchSplitAmount: 0,
-                    BatchStatus: 2,
-                    BatchRecords: 1,
-                    PaypointId: 3040,
-                    PaypointName: "Gruzya Adventure Outfitters, LLC",
-                    PaypointDba: "Gruzya Adventure Outfitters",
-                    ParentOrgName: "Pilgrim Planner",
-                    ParentOrgId: 105,
-                    externalPaypointID: null,
-                    EntryName: "d193cf9a46",
-                    BankName: "Riverdale Community Bank",
-                    BatchType: 0,
-                    Method: "card",
-                    ExpectedDepositDate: "2023-04-19T00:00:00Z",
-                    DepositDate: null,
-                    TransferDate: "2025-09-02T00:00:00Z",
-                    Transfer: null,
-                },
-                {
-                    IdBatch: 1012,
-                    BatchNumber: "BT-2023041421-187",
-                    TransferIdentifier: "ec310c3d-d4bf-4670-9524-00fcc4ab6a2a",
-                    EventsData: [
-                        { description: "Created", eventTime: "2023-04-14T21:01:03Z", source: "api" },
-                        {
-                            description: "Closed",
-                            eventTime: "2023-04-15T03:05:10Z",
-                            refData: "batchId: 1012",
-                            source: "worker",
-                        },
-                    ],
-                    ConnectorName: "GP",
-                    BatchDate: "2023-04-14T21:01:03Z",
-                    BatchAmount: 1080.44,
-                    BatchFeesAmount: 0,
-                    BatchAuthAmount: 1080.44,
-                    BatchReleasedAmount: 0,
-                    BatchHoldAmount: 0,
-                    BatchReturnedAmount: 0,
-                    BatchRefundAmount: 0,
-                    BatchSplitAmount: 0,
-                    BatchStatus: 2,
-                    BatchRecords: 4,
-                    PaypointId: 3040,
-                    PaypointName: "Gruzya Adventure Outfitters, LLC",
-                    PaypointDba: "Gruzya Adventure Outfitters",
-                    ParentOrgName: "Pilgrim Planner",
-                    ParentOrgId: 105,
-                    externalPaypointID: null,
-                    EntryName: "d193cf9a46",
-                    BankName: "Riverdale Community Bank",
-                    BatchType: 0,
-                    Method: "card",
-                    ExpectedDepositDate: "2023-04-15T00:00:00Z",
-                    DepositDate: null,
-                    TransferDate: "2025-09-02T00:00:00Z",
-                    Transfer: {
-                        TransferId: 4521,
-                        TransferDate: "2025-09-02T00:00:00Z",
-                        Processor: "gp",
-                        TransferStatus: 1,
-                        GrossAmount: 1080.44,
-                        ChargeBackAmount: 0,
-                        ReturnedAmount: 0,
-                        RefundAmount: 0,
-                        HoldAmount: 0,
-                        ReleasedAmount: 0,
-                        BillingFeesAmount: 0,
-                        ThirdPartyPaidAmount: 0,
-                        AdjustmentsAmount: 0,
-                        NetFundedAmount: 1080.44,
-                    },
-                },
-            ],
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Summary" : { "pageSize" : 20 , "totalAmount" : 54049.71 , "totalNetAmount" : 0 , "totalPages" : 3 , "totalRecords" : 3 } , "Records" : [ { "IdBatch" : 1049 , "BatchNumber" : "batch_2857_combined_08-26-2025_001" , "TransferIdentifier" : null , "EventsData" : [ { "description" : "Created" , "eventTime" : "2025-08-25T03:19:27.6190027-04:00" , "source" : "api" } ] , "ConnectorName" : "GP" , "BatchDate" : "2025-08-25T20:00:00" , "BatchAmount" : 0 , "BatchFeesAmount" : 0 , "BatchAuthAmount" : 0 , "BatchReleasedAmount" : 0 , "BatchHoldAmount" : 0 , "BatchReturnedAmount" : 0 , "BatchRefundAmount" : 0 , "BatchSplitAmount" : 0 , "BatchStatus" : 2 , "BatchRecords" : 2 , "PaypointId" : 3040 , "PaypointName" : "Gruzya Adventure Outfitters, LLC" , "PaypointDba" : "Gruzya Adventure Outfitters" , "ParentOrgName" : "Pilgrim Planner" , "ParentOrgId" : 105 , "externalPaypointID" : null , "EntryName" : "47f4f8c7e1" , "BankName" : "Riverdale Community Bank" , "BatchType" : 0 , "Method" : "combined" , "ExpectedDepositDate" : "2025-08-26T00:00:00Z" , "DepositDate" : null , "TransferDate" : "2025-08-26T00:00:00Z" , "Transfer" : null } , { "IdBatch" : 1043 , "BatchNumber" : "BT-2023041817-187" , "TransferIdentifier" : null , "EventsData" : null , "ConnectorName" : null , "BatchDate" : "2023-04-18T17:01:03Z" , "BatchAmount" : 219.02 , "BatchFeesAmount" : 0 , "BatchAuthAmount" : 0 , "BatchReleasedAmount" : 0 , "BatchHoldAmount" : 0 , "BatchReturnedAmount" : 0 , "BatchRefundAmount" : 0 , "BatchSplitAmount" : 0 , "BatchStatus" : 2 , "BatchRecords" : 1 , "PaypointId" : 3040 , "PaypointName" : "Gruzya Adventure Outfitters, LLC" , "PaypointDba" : "Gruzya Adventure Outfitters" , "ParentOrgName" : "Pilgrim Planner" , "ParentOrgId" : 105 , "externalPaypointID" : null , "EntryName" : "d193cf9a46" , "BankName" : "Riverdale Community Bank" , "BatchType" : 0 , "Method" : "card" , "ExpectedDepositDate" : "2023-04-19T00:00:00Z" , "DepositDate" : null , "TransferDate" : "2025-09-02T00:00:00Z" , "Transfer" : null } , { "IdBatch" : 1012 , "BatchNumber" : "BT-2023041421-187" , "TransferIdentifier" : "ec310c3d-d4bf-4670-9524-00fcc4ab6a2a" , "EventsData" : [ { "description" : "Created" , "eventTime" : "2023-04-14T21:01:03Z" , "source" : "api" } , { "description" : "Closed" , "eventTime" : "2023-04-15T03:05:10Z" , "refData" : "batchId: 1012" , "source" : "worker" } ] , "ConnectorName" : "GP" , "BatchDate" : "2023-04-14T21:01:03Z" , "BatchAmount" : 1080.44 , "BatchFeesAmount" : 0 , "BatchAuthAmount" : 1080.44 , "BatchReleasedAmount" : 0 , "BatchHoldAmount" : 0 , "BatchReturnedAmount" : 0 , "BatchRefundAmount" : 0 , "BatchSplitAmount" : 0 , "BatchStatus" : 2 , "BatchRecords" : 4 , "PaypointId" : 3040 , "PaypointName" : "Gruzya Adventure Outfitters, LLC" , "PaypointDba" : "Gruzya Adventure Outfitters" , "ParentOrgName" : "Pilgrim Planner" , "ParentOrgId" : 105 , "externalPaypointID" : null , "EntryName" : "d193cf9a46" , "BankName" : "Riverdale Community Bank" , "BatchType" : 0 , "Method" : "card" , "ExpectedDepositDate" : "2023-04-15T00:00:00Z" , "DepositDate" : null , "TransferDate" : "2025-09-02T00:00:00Z" , "Transfer" : { "TransferId" : 4521 , "TransferDate" : "2025-09-02T00:00:00Z" , "Processor" : "gp" , "TransferStatus" : 1 , "GrossAmount" : 1080.44 , "ChargeBackAmount" : 0 , "ReturnedAmount" : 0 , "RefundAmount" : 0 , "HoldAmount" : 0 , "ReleasedAmount" : 0 , "BillingFeesAmount" : 0 , "ThirdPartyPaidAmount" : 0 , "AdjustmentsAmount" : 0 , "NetFundedAmount" : 1080.44 } } ] };
+        
         server
             .mockEndpoint()
-            .get("/Query/batches/8cfec329267")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batches/8cfec329267").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listBatches("8cfec329267", {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listBatches("8cfec329267", {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListBatches (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/batches/entry")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batches/entry").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listBatches("entry");
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listBatches("entry")
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListBatches (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/batches/entry")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batches/entry").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listBatches("entry");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listBatches("entry")
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListBatches (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/batches/entry")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batches/entry").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listBatches("entry");
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listBatches("entry")
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListBatches (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/batches/entry")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batches/entry").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listBatches("entry");
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listBatches("entry")
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListBatchesOrg (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Summary: { pageSize: 20, totalAmount: 54049.71, totalNetAmount: 0, totalPages: 3, totalRecords: 3 },
-            Records: [
-                {
-                    IdBatch: 1049,
-                    BatchNumber: "batch_2857_combined_08-26-2025_001",
-                    TransferIdentifier: null,
-                    EventsData: [
-                        { description: "Created", eventTime: "2025-08-25T03:19:27.6190027-04:00", source: "api" },
-                    ],
-                    ConnectorName: "GP",
-                    BatchDate: "2025-08-25T20:00:00",
-                    BatchAmount: 0,
-                    BatchFeesAmount: 0,
-                    BatchAuthAmount: 0,
-                    BatchReleasedAmount: 0,
-                    BatchHoldAmount: 0,
-                    BatchReturnedAmount: 0,
-                    BatchRefundAmount: 0,
-                    BatchSplitAmount: 0,
-                    BatchStatus: 2,
-                    BatchRecords: 2,
-                    PaypointId: 3040,
-                    PaypointName: "Gruzya Adventure Outfitters, LLC",
-                    PaypointDba: "Gruzya Adventure Outfitters",
-                    ParentOrgName: "Pilgrim Planner",
-                    ParentOrgId: 105,
-                    externalPaypointID: null,
-                    EntryName: "47f4f8c7e1",
-                    BankName: "Riverdale Community Bank",
-                    BatchType: 0,
-                    Method: "combined",
-                    ExpectedDepositDate: "2025-08-26T00:00:00Z",
-                    DepositDate: null,
-                    TransferDate: "2025-08-26T00:00:00Z",
-                    Transfer: null,
-                },
-                {
-                    IdBatch: 1043,
-                    BatchNumber: "BT-2023041817-187",
-                    TransferIdentifier: null,
-                    EventsData: null,
-                    ConnectorName: null,
-                    BatchDate: "2023-04-18T17:01:03Z",
-                    BatchAmount: 219.02,
-                    BatchFeesAmount: 0,
-                    BatchAuthAmount: 0,
-                    BatchReleasedAmount: 0,
-                    BatchHoldAmount: 0,
-                    BatchReturnedAmount: 0,
-                    BatchRefundAmount: 0,
-                    BatchSplitAmount: 0,
-                    BatchStatus: 2,
-                    BatchRecords: 1,
-                    PaypointId: 3040,
-                    PaypointName: "Gruzya Adventure Outfitters, LLC",
-                    PaypointDba: "Gruzya Adventure Outfitters",
-                    ParentOrgName: "Pilgrim Planner",
-                    ParentOrgId: 105,
-                    externalPaypointID: null,
-                    EntryName: "d193cf9a46",
-                    BankName: "Riverdale Community Bank",
-                    BatchType: 0,
-                    Method: "card",
-                    ExpectedDepositDate: "2023-04-19T00:00:00Z",
-                    DepositDate: null,
-                    TransferDate: "2025-09-02T00:00:00Z",
-                    Transfer: null,
-                },
-                {
-                    IdBatch: 1012,
-                    BatchNumber: "BT-2023041421-187",
-                    TransferIdentifier: "ec310c3d-d4bf-4670-9524-00fcc4ab6a2a",
-                    EventsData: [
-                        { description: "Created", eventTime: "2023-04-14T21:01:03Z", source: "api" },
-                        {
-                            description: "Closed",
-                            eventTime: "2023-04-15T03:05:10Z",
-                            refData: "batchId: 1012",
-                            source: "worker",
-                        },
-                    ],
-                    ConnectorName: "GP",
-                    BatchDate: "2023-04-14T21:01:03Z",
-                    BatchAmount: 1080.44,
-                    BatchFeesAmount: 0,
-                    BatchAuthAmount: 1080.44,
-                    BatchReleasedAmount: 0,
-                    BatchHoldAmount: 0,
-                    BatchReturnedAmount: 0,
-                    BatchRefundAmount: 0,
-                    BatchSplitAmount: 0,
-                    BatchStatus: 2,
-                    BatchRecords: 4,
-                    PaypointId: 3040,
-                    PaypointName: "Gruzya Adventure Outfitters, LLC",
-                    PaypointDba: "Gruzya Adventure Outfitters",
-                    ParentOrgName: "Pilgrim Planner",
-                    ParentOrgId: 105,
-                    externalPaypointID: null,
-                    EntryName: "d193cf9a46",
-                    BankName: "Riverdale Community Bank",
-                    BatchType: 0,
-                    Method: "card",
-                    ExpectedDepositDate: "2023-04-15T00:00:00Z",
-                    DepositDate: null,
-                    TransferDate: "2025-09-02T00:00:00Z",
-                    Transfer: {
-                        TransferId: 4521,
-                        TransferDate: "2025-09-02T00:00:00Z",
-                        Processor: "gp",
-                        TransferStatus: 1,
-                        GrossAmount: 1080.44,
-                        ChargeBackAmount: 0,
-                        ReturnedAmount: 0,
-                        RefundAmount: 0,
-                        HoldAmount: 0,
-                        ReleasedAmount: 0,
-                        BillingFeesAmount: 0,
-                        ThirdPartyPaidAmount: 0,
-                        AdjustmentsAmount: 0,
-                        NetFundedAmount: 1080.44,
-                    },
-                },
-            ],
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Summary" : { "pageSize" : 20 , "totalAmount" : 54049.71 , "totalNetAmount" : 0 , "totalPages" : 3 , "totalRecords" : 3 } , "Records" : [ { "IdBatch" : 1049 , "BatchNumber" : "batch_2857_combined_08-26-2025_001" , "TransferIdentifier" : null , "EventsData" : [ { "description" : "Created" , "eventTime" : "2025-08-25T03:19:27.6190027-04:00" , "source" : "api" } ] , "ConnectorName" : "GP" , "BatchDate" : "2025-08-25T20:00:00" , "BatchAmount" : 0 , "BatchFeesAmount" : 0 , "BatchAuthAmount" : 0 , "BatchReleasedAmount" : 0 , "BatchHoldAmount" : 0 , "BatchReturnedAmount" : 0 , "BatchRefundAmount" : 0 , "BatchSplitAmount" : 0 , "BatchStatus" : 2 , "BatchRecords" : 2 , "PaypointId" : 3040 , "PaypointName" : "Gruzya Adventure Outfitters, LLC" , "PaypointDba" : "Gruzya Adventure Outfitters" , "ParentOrgName" : "Pilgrim Planner" , "ParentOrgId" : 105 , "externalPaypointID" : null , "EntryName" : "47f4f8c7e1" , "BankName" : "Riverdale Community Bank" , "BatchType" : 0 , "Method" : "combined" , "ExpectedDepositDate" : "2025-08-26T00:00:00Z" , "DepositDate" : null , "TransferDate" : "2025-08-26T00:00:00Z" , "Transfer" : null } , { "IdBatch" : 1043 , "BatchNumber" : "BT-2023041817-187" , "TransferIdentifier" : null , "EventsData" : null , "ConnectorName" : null , "BatchDate" : "2023-04-18T17:01:03Z" , "BatchAmount" : 219.02 , "BatchFeesAmount" : 0 , "BatchAuthAmount" : 0 , "BatchReleasedAmount" : 0 , "BatchHoldAmount" : 0 , "BatchReturnedAmount" : 0 , "BatchRefundAmount" : 0 , "BatchSplitAmount" : 0 , "BatchStatus" : 2 , "BatchRecords" : 1 , "PaypointId" : 3040 , "PaypointName" : "Gruzya Adventure Outfitters, LLC" , "PaypointDba" : "Gruzya Adventure Outfitters" , "ParentOrgName" : "Pilgrim Planner" , "ParentOrgId" : 105 , "externalPaypointID" : null , "EntryName" : "d193cf9a46" , "BankName" : "Riverdale Community Bank" , "BatchType" : 0 , "Method" : "card" , "ExpectedDepositDate" : "2023-04-19T00:00:00Z" , "DepositDate" : null , "TransferDate" : "2025-09-02T00:00:00Z" , "Transfer" : null } , { "IdBatch" : 1012 , "BatchNumber" : "BT-2023041421-187" , "TransferIdentifier" : "ec310c3d-d4bf-4670-9524-00fcc4ab6a2a" , "EventsData" : [ { "description" : "Created" , "eventTime" : "2023-04-14T21:01:03Z" , "source" : "api" } , { "description" : "Closed" , "eventTime" : "2023-04-15T03:05:10Z" , "refData" : "batchId: 1012" , "source" : "worker" } ] , "ConnectorName" : "GP" , "BatchDate" : "2023-04-14T21:01:03Z" , "BatchAmount" : 1080.44 , "BatchFeesAmount" : 0 , "BatchAuthAmount" : 1080.44 , "BatchReleasedAmount" : 0 , "BatchHoldAmount" : 0 , "BatchReturnedAmount" : 0 , "BatchRefundAmount" : 0 , "BatchSplitAmount" : 0 , "BatchStatus" : 2 , "BatchRecords" : 4 , "PaypointId" : 3040 , "PaypointName" : "Gruzya Adventure Outfitters, LLC" , "PaypointDba" : "Gruzya Adventure Outfitters" , "ParentOrgName" : "Pilgrim Planner" , "ParentOrgId" : 105 , "externalPaypointID" : null , "EntryName" : "d193cf9a46" , "BankName" : "Riverdale Community Bank" , "BatchType" : 0 , "Method" : "card" , "ExpectedDepositDate" : "2023-04-15T00:00:00Z" , "DepositDate" : null , "TransferDate" : "2025-09-02T00:00:00Z" , "Transfer" : { "TransferId" : 4521 , "TransferDate" : "2025-09-02T00:00:00Z" , "Processor" : "gp" , "TransferStatus" : 1 , "GrossAmount" : 1080.44 , "ChargeBackAmount" : 0 , "ReturnedAmount" : 0 , "RefundAmount" : 0 , "HoldAmount" : 0 , "ReleasedAmount" : 0 , "BillingFeesAmount" : 0 , "ThirdPartyPaidAmount" : 0 , "AdjustmentsAmount" : 0 , "NetFundedAmount" : 1080.44 } } ] };
+        
         server
             .mockEndpoint()
-            .get("/Query/batches/org/123")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batches/org/123").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listBatchesOrg(123, {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listBatchesOrg(123, {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListBatchesOrg (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/batches/org/1")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batches/org/1").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listBatchesOrg(1);
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listBatchesOrg(1)
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListBatchesOrg (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/batches/org/1")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batches/org/1").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listBatchesOrg(1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listBatchesOrg(1)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListBatchesOrg (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/batches/org/1")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batches/org/1").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listBatchesOrg(1);
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listBatchesOrg(1)
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListBatchesOrg (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/batches/org/1")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batches/org/1").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listBatchesOrg(1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listBatchesOrg(1)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListBatchesOut (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    AchAmount: 0,
-                    AchRecords: 0,
-                    AchStatus: 0,
-                    AchStatusText: "AchStatusText",
-                    BatchAmount: 4,
-                    BatchCancelledAmount: 0,
-                    BatchCancelledRecords: 0,
-                    BatchDate: "2024-01-01T00:00:00Z",
-                    BatchNumber: "10-20240101-PAYABLITST",
-                    BatchPaidAmount: 0,
-                    BatchPaidRecords: 0,
-                    BatchProcessedAmount: 0,
-                    BatchProcessedRecords: 0,
-                    BatchProcessingAmount: 0,
-                    BatchProcessingRecords: 0,
-                    BatchRecords: 1,
-                    BatchStatus: 1,
-                    BatchStatusText: "Waiting Funds",
-                    CardAmount: 0,
-                    CardRecords: 0,
-                    CardStatus: 0,
-                    CardStatusText: "CardStatusText",
-                    CheckAmount: 0,
-                    CheckRecords: 0,
-                    CheckStatus: 0,
-                    CheckStatusText: "CheckStatusText",
-                    EntryName: "d193cf9a46",
-                    externalPaypointID: "Paypoint-100",
-                    IdBatch: 1049,
-                    ParentOrgName: "FitnessManager",
-                    PaypointDba: "Athlete Factory LLC",
-                    PaypointId: 3040,
-                    PaypointName: "Athlete Factory LLC",
-                    VcardAmount: 0,
-                    VcardRecords: 0,
-                    VcardStatus: 0,
-                    VcardStatusText: "VcardStatusText",
-                    WireAmount: 0,
-                    WireRecords: 0,
-                    WireStatus: 0,
-                    WireStatusText: "WireStatusText",
-                },
-            ],
-            Summary: {
-                pageidentifier: "null",
-                pageSize: 20,
-                totalAmount: 0.01,
-                totalNetAmount: 0,
-                totalPages: 1,
-                totalRecords: 46,
-            },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "AchAmount" : 0 , "AchRecords" : 0 , "AchStatus" : 0 , "AchStatusText" : "AchStatusText" , "BatchAmount" : 4 , "BatchCancelledAmount" : 0 , "BatchCancelledRecords" : 0 , "BatchDate" : "2024-01-01T00:00:00Z" , "BatchNumber" : "10-20240101-PAYABLITST" , "BatchPaidAmount" : 0 , "BatchPaidRecords" : 0 , "BatchProcessedAmount" : 0 , "BatchProcessedRecords" : 0 , "BatchProcessingAmount" : 0 , "BatchProcessingRecords" : 0 , "BatchRecords" : 1 , "BatchStatus" : 1 , "BatchStatusText" : "Waiting Funds" , "CardAmount" : 0 , "CardRecords" : 0 , "CardStatus" : 0 , "CardStatusText" : "CardStatusText" , "CheckAmount" : 0 , "CheckRecords" : 0 , "CheckStatus" : 0 , "CheckStatusText" : "CheckStatusText" , "EntryName" : "d193cf9a46" , "externalPaypointID" : "Paypoint-100" , "IdBatch" : 1049 , "ParentOrgName" : "FitnessManager" , "PaypointDba" : "Athlete Factory LLC" , "PaypointId" : 3040 , "PaypointName" : "Athlete Factory LLC" , "VcardAmount" : 0 , "VcardRecords" : 0 , "VcardStatus" : 0 , "VcardStatusText" : "VcardStatusText" , "WireAmount" : 0 , "WireRecords" : 0 , "WireStatus" : 0 , "WireStatusText" : "WireStatusText" } ] , "Summary" : { "pageidentifier" : "null" , "pageSize" : 20 , "totalAmount" : 0.01 , "totalNetAmount" : 0 , "totalPages" : 1 , "totalRecords" : 46 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/batchesOut/8cfec329267")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batchesOut/8cfec329267").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listBatchesOut("8cfec329267", {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listBatchesOut("8cfec329267", {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListBatchesOut (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/batchesOut/entry")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batchesOut/entry").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listBatchesOut("entry");
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listBatchesOut("entry")
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListBatchesOut (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/batchesOut/entry")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batchesOut/entry").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listBatchesOut("entry");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listBatchesOut("entry")
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListBatchesOut (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/batchesOut/entry")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batchesOut/entry").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listBatchesOut("entry");
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listBatchesOut("entry")
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListBatchesOut (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/batchesOut/entry")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batchesOut/entry").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listBatchesOut("entry");
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listBatchesOut("entry")
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListBatchesOutOrg (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    AchAmount: 0,
-                    AchRecords: 0,
-                    AchStatus: 0,
-                    AchStatusText: "AchStatusText",
-                    BatchAmount: 4,
-                    BatchCancelledAmount: 0,
-                    BatchCancelledRecords: 0,
-                    BatchDate: "2024-01-01T00:00:00Z",
-                    BatchNumber: "10-20240101-PAYABLITST",
-                    BatchPaidAmount: 0,
-                    BatchPaidRecords: 0,
-                    BatchProcessedAmount: 0,
-                    BatchProcessedRecords: 0,
-                    BatchProcessingAmount: 0,
-                    BatchProcessingRecords: 0,
-                    BatchRecords: 1,
-                    BatchStatus: 1,
-                    BatchStatusText: "Waiting Funds",
-                    CardAmount: 0,
-                    CardRecords: 0,
-                    CardStatus: 0,
-                    CardStatusText: "CardStatusText",
-                    CheckAmount: 0,
-                    CheckRecords: 0,
-                    CheckStatus: 0,
-                    CheckStatusText: "CheckStatusText",
-                    EntryName: "d193cf9a46",
-                    externalPaypointID: "Paypoint-100",
-                    IdBatch: 1049,
-                    ParentOrgName: "FitnessManager",
-                    PaypointDba: "Athlete Factory LLC",
-                    PaypointId: 3040,
-                    PaypointName: "Athlete Factory LLC",
-                    VcardAmount: 0,
-                    VcardRecords: 0,
-                    VcardStatus: 0,
-                    VcardStatusText: "VcardStatusText",
-                    WireAmount: 0,
-                    WireRecords: 0,
-                    WireStatus: 0,
-                    WireStatusText: "WireStatusText",
-                },
-            ],
-            Summary: {
-                pageidentifier: "null",
-                pageSize: 20,
-                totalAmount: 0.01,
-                totalNetAmount: 0,
-                totalPages: 1,
-                totalRecords: 46,
-            },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "AchAmount" : 0 , "AchRecords" : 0 , "AchStatus" : 0 , "AchStatusText" : "AchStatusText" , "BatchAmount" : 4 , "BatchCancelledAmount" : 0 , "BatchCancelledRecords" : 0 , "BatchDate" : "2024-01-01T00:00:00Z" , "BatchNumber" : "10-20240101-PAYABLITST" , "BatchPaidAmount" : 0 , "BatchPaidRecords" : 0 , "BatchProcessedAmount" : 0 , "BatchProcessedRecords" : 0 , "BatchProcessingAmount" : 0 , "BatchProcessingRecords" : 0 , "BatchRecords" : 1 , "BatchStatus" : 1 , "BatchStatusText" : "Waiting Funds" , "CardAmount" : 0 , "CardRecords" : 0 , "CardStatus" : 0 , "CardStatusText" : "CardStatusText" , "CheckAmount" : 0 , "CheckRecords" : 0 , "CheckStatus" : 0 , "CheckStatusText" : "CheckStatusText" , "EntryName" : "d193cf9a46" , "externalPaypointID" : "Paypoint-100" , "IdBatch" : 1049 , "ParentOrgName" : "FitnessManager" , "PaypointDba" : "Athlete Factory LLC" , "PaypointId" : 3040 , "PaypointName" : "Athlete Factory LLC" , "VcardAmount" : 0 , "VcardRecords" : 0 , "VcardStatus" : 0 , "VcardStatusText" : "VcardStatusText" , "WireAmount" : 0 , "WireRecords" : 0 , "WireStatus" : 0 , "WireStatusText" : "WireStatusText" } ] , "Summary" : { "pageidentifier" : "null" , "pageSize" : 20 , "totalAmount" : 0.01 , "totalNetAmount" : 0 , "totalPages" : 1 , "totalRecords" : 46 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/batchesOut/org/123")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batchesOut/org/123").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listBatchesOutOrg(123, {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listBatchesOutOrg(123, {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListBatchesOutOrg (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/batchesOut/org/1")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batchesOut/org/1").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listBatchesOutOrg(1);
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listBatchesOutOrg(1)
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListBatchesOutOrg (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/batchesOut/org/1")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batchesOut/org/1").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listBatchesOutOrg(1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listBatchesOutOrg(1)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListBatchesOutOrg (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/batchesOut/org/1")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batchesOut/org/1").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listBatchesOutOrg(1);
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listBatchesOutOrg(1)
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListBatchesOutOrg (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/batchesOut/org/1")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/batchesOut/org/1").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listBatchesOutOrg(1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listBatchesOutOrg(1)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListChargebacks (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    AccountType: "4XXXXXX0003",
-                    CaseNumber: "00001",
-                    ChargebackDate: "2023-02-08T00:00:00Z",
-                    CreatedAt: "2023-02-20T15:36:49Z",
-                    Customer: {
-                        BillingAddress1: "321 Big Sky Road",
-                        BillingAddress2: "",
-                        BillingCity: "Helena",
-                        BillingCountry: "US",
-                        BillingEmail: "janis.berzins@example.com",
-                        BillingPhone: "406-555-0123",
-                        BillingState: "MT",
-                        BillingZip: "59601",
-                        CompanyName: "Big Sky Imports",
-                        customerId: 4440,
-                        CustomerNumber: "C-90010",
-                        customerStatus: 1,
-                        FirstName: "Janis",
-                        Identifiers: ["firstname", "email"],
-                        LastName: "Berzins",
-                        ShippingAddress1: "321 Big Sky Road",
-                        ShippingAddress2: "",
-                        ShippingCity: "Helena",
-                        ShippingCountry: "US",
-                        ShippingState: "MT",
-                        ShippingZip: "59601",
-                    },
-                    externalPaypointID: "f743aed24a-10",
-                    Id: 578,
-                    LastFour: "4XXXXXX0003",
-                    Method: "card",
-                    NetAmount: 1.5,
-                    OrderId: "",
-                    ParentOrgName: "Par",
-                    PaymentData: {
-                        AccountExp: "0330",
-                        AccountType: "visa",
-                        HolderName: "Janis Berzins",
-                        MaskedAccount: "4XXXXXX0003",
-                        paymentDetails: { totalAmount: 100 },
-                        StoredId: "stored-id-123",
-                    },
-                    PaymentTransId: "10-bfcd5a17861d4a8690ca53c00000X",
-                    PaypointDbaname: "Global Factory LLC",
-                    PaypointEntryname: "f743aed24a",
-                    PaypointLegalname: "Global Factory LLC",
-                    Reason: "Testing",
-                    ReasonCode: "00001",
-                    ReferenceNumber: "10-bfcd5a17861d4a8690ca53c00000X",
-                    ReplyBy: "2023-03-02T15:36:49Z",
-                    ScheduleReference: 0,
-                    Status: 3,
-                    Transaction: {
-                        BatchAmount: 0,
-                        Customer: {
-                            BillingAddress1: "321 Big Sky Road",
-                            BillingAddress2: "",
-                            BillingCity: "Helena",
-                            BillingCountry: "US",
-                            BillingEmail: "janis.berzins@example.com",
-                            BillingPhone: "406-555-0123",
-                            BillingState: "MT",
-                            BillingZip: "59601",
-                            CompanyName: "Big Sky Imports",
-                            customerId: 4440,
-                            CustomerNumber: "C-90010",
-                            customerStatus: 1,
-                            FirstName: "Janis",
-                            Identifiers: ["firstname", "email"],
-                            LastName: "Berzins",
-                            ShippingAddress1: "321 Big Sky Road",
-                            ShippingAddress2: "",
-                            ShippingCity: "Helena",
-                            ShippingCountry: "US",
-                            ShippingState: "MT",
-                            ShippingZip: "59601",
-                        },
-                        EntrypageId: 0,
-                        FeeAmount: 0.06,
-                        GatewayTransId: "8082800000",
-                        Method: "card",
-                        NetAmount: 1.5,
-                        Operation: "Sale",
-                        OrderId: "",
-                        OrgId: 123,
-                        PaymentData: {
-                            AccountExp: "0330",
-                            AccountType: "visa",
-                            HolderName: "Lisandra Sosa",
-                            MaskedAccount: "4XXXXXX0003",
-                            paymentDetails: { currency: "USD", serviceFee: 0.06, totalAmount: 1.56 },
-                        },
-                        PaymentTransId: "10-bfcd5a17861d4a8690ca53c00000X",
-                        PayorId: 0,
-                        PaypointId: 3040,
-                        RefundId: 0,
-                        ResponseData: {
-                            authcode: "123456",
-                            avsresponse: "N",
-                            avsresponse_text: "No address or ZIP match only",
-                            cvvresponse: "N",
-                            cvvresponse_text: "CVV2/CVC2 no match",
-                            orderid: "10-bfcd5a17861d4a8690ca53c00000X",
-                            response_code: "100",
-                            response_code_text: "Transaction was approved.",
-                            responsetext: "SUCCESS",
-                            transactionid: "8082800000",
-                        },
-                        ReturnedId: 0,
-                        ScheduleReference: 0,
-                        SettlementStatus: 0,
-                        Source: "api",
-                        splitCount: 0,
-                        TotalAmount: 1.56,
-                        TransactionEvents: [
-                            { EventTime: "2023-02-20T15:36:47Z", TransEvent: "created" },
-                            {
-                                EventData:
-                                    "response=1&responsetext=SUCCESS&authcode=123456&transactionid=8082800000&avsresponse=N&cvvresponse=N&orderid=10-bfcd5a17861d4a8690ca53c00000X&type=sale&response_code=100",
-                                EventTime: "2023-02-20T15:36:49Z",
-                                TransEvent: "Approved",
-                            },
-                        ],
-                        TransactionTime: "2023-02-20T15:36:47Z",
-                        TransStatus: 1,
-                    },
-                    TransactionTime: "2023-02-20T15:36:47Z",
-                },
-            ],
-            Summary: {
-                pageIdentifier: "null",
-                pageSize: 20,
-                totalAmount: 1.56,
-                totalNetAmount: 1.5,
-                totalPages: 1,
-                totalRecords: 1,
-            },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "AccountType" : "4XXXXXX0003" , "CaseNumber" : "00001" , "ChargebackDate" : "2023-02-08T00:00:00Z" , "CreatedAt" : "2023-02-20T15:36:49Z" , "Customer" : { "BillingAddress1" : "321 Big Sky Road" , "BillingAddress2" : "" , "BillingCity" : "Helena" , "BillingCountry" : "US" , "BillingEmail" : "janis.berzins@example.com" , "BillingPhone" : "406-555-0123" , "BillingState" : "MT" , "BillingZip" : "59601" , "CompanyName" : "Big Sky Imports" , "customerId" : 4440 , "CustomerNumber" : "C-90010" , "customerStatus" : 1 , "FirstName" : "Janis" , "Identifiers" : [ "firstname" , "email" ] , "LastName" : "Berzins" , "ShippingAddress1" : "321 Big Sky Road" , "ShippingAddress2" : "" , "ShippingCity" : "Helena" , "ShippingCountry" : "US" , "ShippingState" : "MT" , "ShippingZip" : "59601" } , "externalPaypointID" : "f743aed24a-10" , "Id" : 578 , "LastFour" : "4XXXXXX0003" , "Method" : "card" , "NetAmount" : 1.5 , "OrderId" : "" , "ParentOrgName" : "Par" , "PaymentData" : { "AccountExp" : "0330" , "AccountType" : "visa" , "HolderName" : "Janis Berzins" , "MaskedAccount" : "4XXXXXX0003" , "paymentDetails" : { "totalAmount" : 100 } , "StoredId" : "stored-id-123" } , "PaymentTransId" : "10-bfcd5a17861d4a8690ca53c00000X" , "PaypointDbaname" : "Global Factory LLC" , "PaypointEntryname" : "f743aed24a" , "PaypointLegalname" : "Global Factory LLC" , "Reason" : "Testing" , "ReasonCode" : "00001" , "ReferenceNumber" : "10-bfcd5a17861d4a8690ca53c00000X" , "ReplyBy" : "2023-03-02T15:36:49Z" , "ScheduleReference" : 0 , "Status" : 3 , "Transaction" : { "BatchAmount" : 0 , "Customer" : { "BillingAddress1" : "321 Big Sky Road" , "BillingAddress2" : "" , "BillingCity" : "Helena" , "BillingCountry" : "US" , "BillingEmail" : "janis.berzins@example.com" , "BillingPhone" : "406-555-0123" , "BillingState" : "MT" , "BillingZip" : "59601" , "CompanyName" : "Big Sky Imports" , "customerId" : 4440 , "CustomerNumber" : "C-90010" , "customerStatus" : 1 , "FirstName" : "Janis" , "Identifiers" : [ "firstname" , "email" ] , "LastName" : "Berzins" , "ShippingAddress1" : "321 Big Sky Road" , "ShippingAddress2" : "" , "ShippingCity" : "Helena" , "ShippingCountry" : "US" , "ShippingState" : "MT" , "ShippingZip" : "59601" } , "EntrypageId" : 0 , "FeeAmount" : 0.06 , "GatewayTransId" : "8082800000" , "Method" : "card" , "NetAmount" : 1.5 , "Operation" : "Sale" , "OrderId" : "" , "OrgId" : 123 , "PaymentData" : { "AccountExp" : "0330" , "AccountType" : "visa" , "HolderName" : "Lisandra Sosa" , "MaskedAccount" : "4XXXXXX0003" , "paymentDetails" : { "currency" : "USD" , "serviceFee" : 0.06 , "totalAmount" : 1.56 } } , "PaymentTransId" : "10-bfcd5a17861d4a8690ca53c00000X" , "PayorId" : 0 , "PaypointId" : 3040 , "RefundId" : 0 , "ResponseData" : { "authcode" : "123456" , "avsresponse" : "N" , "avsresponse_text" : "No address or ZIP match only" , "cvvresponse" : "N" , "cvvresponse_text" : "CVV2/CVC2 no match" , "orderid" : "10-bfcd5a17861d4a8690ca53c00000X" , "response_code" : "100" , "response_code_text" : "Transaction was approved." , "responsetext" : "SUCCESS" , "transactionid" : "8082800000" } , "ReturnedId" : 0 , "ScheduleReference" : 0 , "SettlementStatus" : 0 , "Source" : "api" , "splitCount" : 0 , "TotalAmount" : 1.56 , "TransactionEvents" : [ { "EventTime" : "2023-02-20T15:36:47Z" , "TransEvent" : "created" } , { "EventData" : "response=1&responsetext=SUCCESS&authcode=123456&transactionid=8082800000&avsresponse=N&cvvresponse=N&orderid=10-bfcd5a17861d4a8690ca53c00000X&type=sale&response_code=100" , "EventTime" : "2023-02-20T15:36:49Z" , "TransEvent" : "Approved" } ] , "TransactionTime" : "2023-02-20T15:36:47Z" , "TransStatus" : 1 } , "TransactionTime" : "2023-02-20T15:36:47Z" } ] , "Summary" : { "pageIdentifier" : "null" , "pageSize" : 20 , "totalAmount" : 1.56 , "totalNetAmount" : 1.5 , "totalPages" : 1 , "totalRecords" : 1 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/chargebacks/8cfec329267")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/chargebacks/8cfec329267").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listChargebacks("8cfec329267", {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listChargebacks("8cfec329267", {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListChargebacks (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/chargebacks/entry")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/chargebacks/entry").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listChargebacks("entry");
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listChargebacks("entry")
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListChargebacks (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/chargebacks/entry")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/chargebacks/entry").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listChargebacks("entry");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listChargebacks("entry")
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListChargebacks (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/chargebacks/entry")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/chargebacks/entry").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listChargebacks("entry");
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listChargebacks("entry")
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListChargebacks (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/chargebacks/entry")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/chargebacks/entry").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listChargebacks("entry");
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listChargebacks("entry")
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListChargebacksOrg (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    AccountType: "4XXXXXX0003",
-                    CaseNumber: "00001",
-                    ChargebackDate: "2023-02-08T00:00:00Z",
-                    CreatedAt: "2022-07-01T15:00:01Z",
-                    externalPaypointID: "Paypoint-100",
-                    Id: 578,
-                    LastFour: "4XXXXXX0003",
-                    Method: "card",
-                    NetAmount: 1.5,
-                    OrderId: "O-5140",
-                    pageidentifier: "null",
-                    ParentOrgName: "PropertyManager Pro",
-                    PaymentData: { paymentDetails: { totalAmount: 100 } },
-                    PaymentTransId: "10-bfcd5a17861d4a8690ca53c142ca3810",
-                    PaypointDbaname: "Sunshine Gutters",
-                    PaypointEntryname: "d193cf9a46",
-                    PaypointLegalname: "Sunshine Services, LLC",
-                    Reason: "Testing",
-                    ReasonCode: "00001",
-                    ReferenceNumber: "10-bfcd5a17861d4a8690ca53c142ca3810",
-                    ReplyBy: "2022-07-11T15:00:01Z",
-                    Responses: "Responses",
-                    ScheduleReference: 0,
-                    Status: 3,
-                    Transaction: {
-                        EntrypageId: 0,
-                        FeeAmount: 1,
-                        PayorId: 1551,
-                        PaypointId: 3040,
-                        SettlementStatus: 2,
-                        splitCount: 0,
-                        TotalAmount: 30.22,
-                        TransStatus: 1,
-                    },
-                    TransactionTime: "2024-01-15T09:30:00Z",
-                },
-            ],
-            Summary: {
-                pageIdentifier: "null",
-                pageSize: 20,
-                totalAmount: 77.22,
-                totalNetAmount: 77.22,
-                totalPages: 2,
-                totalRecords: 2,
-            },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "AccountType" : "4XXXXXX0003" , "CaseNumber" : "00001" , "ChargebackDate" : "2023-02-08T00:00:00Z" , "CreatedAt" : "2022-07-01T15:00:01Z" , "externalPaypointID" : "Paypoint-100" , "Id" : 578 , "LastFour" : "4XXXXXX0003" , "Method" : "card" , "NetAmount" : 1.5 , "OrderId" : "O-5140" , "pageidentifier" : "null" , "ParentOrgName" : "PropertyManager Pro" , "PaymentData" : { "paymentDetails" : { "totalAmount" : 100 } } , "PaymentTransId" : "10-bfcd5a17861d4a8690ca53c142ca3810" , "PaypointDbaname" : "Sunshine Gutters" , "PaypointEntryname" : "d193cf9a46" , "PaypointLegalname" : "Sunshine Services, LLC" , "Reason" : "Testing" , "ReasonCode" : "00001" , "ReferenceNumber" : "10-bfcd5a17861d4a8690ca53c142ca3810" , "ReplyBy" : "2022-07-11T15:00:01Z" , "Responses" : "Responses" , "ScheduleReference" : 0 , "Status" : 3 , "Transaction" : { "EntrypageId" : 0 , "FeeAmount" : 1 , "PayorId" : 1551 , "PaypointId" : 3040 , "SettlementStatus" : 2 , "splitCount" : 0 , "TotalAmount" : 30.22 , "TransStatus" : 1 } , "TransactionTime" : "2024-01-15T09:30:00Z" } ] , "Summary" : { "pageIdentifier" : "null" , "pageSize" : 20 , "totalAmount" : 77.22 , "totalNetAmount" : 77.22 , "totalPages" : 2 , "totalRecords" : 2 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/chargebacks/org/123")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/chargebacks/org/123").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listChargebacksOrg(123, {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listChargebacksOrg(123, {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListChargebacksOrg (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/chargebacks/org/1")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/chargebacks/org/1").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listChargebacksOrg(1);
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listChargebacksOrg(1)
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListChargebacksOrg (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/chargebacks/org/1")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/chargebacks/org/1").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listChargebacksOrg(1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listChargebacksOrg(1)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListChargebacksOrg (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/chargebacks/org/1")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/chargebacks/org/1").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listChargebacksOrg(1);
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listChargebacksOrg(1)
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListChargebacksOrg (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/chargebacks/org/1")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/chargebacks/org/1").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listChargebacksOrg(1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listChargebacksOrg(1)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListCustomers (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    Address: "1234 Bayou Road",
-                    Address1: "Suite 2",
-                    Balance: 0,
-                    City: "Lafayette",
-                    Company: "Boudreaux's Shop",
-                    Country: "US",
-                    Created: "2023-12-20T13:07:48Z",
-                    customerId: 4440,
-                    customerNumber: "C-90010",
-                    customerStatus: 0,
-                    customerSummary: {
-                        NumberofTransactions: 30,
-                        TotalAmountTransactions: 1500,
-                        TotalNetAmountTransactions: 1500,
-                    },
-                    Email: "thibodeaux.hebert@bayoumail.com",
-                    externalPaypointID: "pay-10",
-                    Firstname: "Thibodeaux",
-                    IdentifierFields: ["email"],
-                    Lastname: "Hebert",
-                    LastUpdated: "2023-12-20T13:07:48Z",
-                    MFA: false,
-                    MFAMode: 0,
-                    ParentOrgName: "SupplyPro",
-                    PaypointDbaname: "Global Factory LLC",
-                    PaypointEntryname: "4872acb376a",
-                    PaypointLegalname: "Global Factory LLC",
-                    Phone: "(504) 823-4566",
-                    ShippingAddress: "1234 Bayou Road",
-                    ShippingAddress1: "Suite 2",
-                    ShippingCity: "Lafayette",
-                    ShippingCountry: "US",
-                    ShippingState: "LA",
-                    ShippingZip: "70501",
-                    State: "LA",
-                    TimeZone: 0,
-                    Zip: "70501",
-                },
-            ],
-            Summary: {
-                pageIdentifier: "XXXXXXXXXXXXXX",
-                pageSize: 20,
-                totalAmount: 0,
-                totalNetAmount: 0,
-                totalPages: 26,
-                totalRecords: 510,
-            },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "Address" : "1234 Bayou Road" , "Address1" : "Suite 2" , "Balance" : 0 , "City" : "Lafayette" , "Company" : "Boudreaux's Shop" , "Country" : "US" , "Created" : "2023-12-20T13:07:48Z" , "customerId" : 4440 , "customerNumber" : "C-90010" , "customerStatus" : 0 , "customerSummary" : { "NumberofTransactions" : 30 , "TotalAmountTransactions" : 1500 , "TotalNetAmountTransactions" : 1500 } , "Email" : "thibodeaux.hebert@bayoumail.com" , "externalPaypointID" : "pay-10" , "Firstname" : "Thibodeaux" , "IdentifierFields" : [ "email" ] , "Lastname" : "Hebert" , "LastUpdated" : "2023-12-20T13:07:48Z" , "MFA" : false , "MFAMode" : 0 , "ParentOrgName" : "SupplyPro" , "PaypointDbaname" : "Global Factory LLC" , "PaypointEntryname" : "4872acb376a" , "PaypointLegalname" : "Global Factory LLC" , "Phone" : "(504) 823-4566" , "ShippingAddress" : "1234 Bayou Road" , "ShippingAddress1" : "Suite 2" , "ShippingCity" : "Lafayette" , "ShippingCountry" : "US" , "ShippingState" : "LA" , "ShippingZip" : "70501" , "State" : "LA" , "TimeZone" : 0 , "Zip" : "70501" } ] , "Summary" : { "pageIdentifier" : "XXXXXXXXXXXXXX" , "pageSize" : 20 , "totalAmount" : 0 , "totalNetAmount" : 0 , "totalPages" : 26 , "totalRecords" : 510 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/customers/8cfec329267")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/customers/8cfec329267").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listCustomers("8cfec329267", {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listCustomers("8cfec329267", {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListCustomers (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/customers/entry")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/customers/entry").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listCustomers("entry");
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listCustomers("entry")
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListCustomers (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/customers/entry")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/customers/entry").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listCustomers("entry");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listCustomers("entry")
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListCustomers (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/customers/entry")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/customers/entry").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listCustomers("entry");
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listCustomers("entry")
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListCustomers (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/customers/entry")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/customers/entry").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listCustomers("entry");
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listCustomers("entry")
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListCustomersOrg (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    Address: "1234 Bayou Road",
-                    Address1: "Suite 2",
-                    Balance: 0,
-                    City: "Lafayette",
-                    Company: "Boudreaux's Shop",
-                    Country: "US",
-                    Created: "2023-12-20T13:07:48Z",
-                    customerId: 4440,
-                    customerNumber: "C-90010",
-                    customerStatus: 0,
-                    customerSummary: {
-                        NumberofTransactions: 30,
-                        TotalAmountTransactions: 1500,
-                        TotalNetAmountTransactions: 1500,
-                    },
-                    Email: "thibodeaux.hebert@bayoumail.com",
-                    externalPaypointID: "pay-10",
-                    Firstname: "Thibodeaux",
-                    IdentifierFields: ["email"],
-                    Lastname: "Hebert",
-                    LastUpdated: "2023-12-20T13:07:48Z",
-                    MFA: false,
-                    MFAMode: 0,
-                    ParentOrgName: "SupplyPro",
-                    PaypointDbaname: "Global Factory LLC",
-                    PaypointEntryname: "4872acb376a",
-                    PaypointLegalname: "Global Factory LLC",
-                    Phone: "(504) 823-4566",
-                    ShippingAddress: "1234 Bayou Road",
-                    ShippingAddress1: "Suite 2",
-                    ShippingCity: "Lafayette",
-                    ShippingCountry: "US",
-                    ShippingState: "LA",
-                    ShippingZip: "70501",
-                    State: "LA",
-                    TimeZone: 0,
-                    Zip: "70501",
-                },
-            ],
-            Summary: {
-                pageIdentifier: "XXXXXXXXXXXXXX",
-                pageSize: 20,
-                totalAmount: 0,
-                totalNetAmount: 0,
-                totalPages: 26,
-                totalRecords: 510,
-            },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "Address" : "1234 Bayou Road" , "Address1" : "Suite 2" , "Balance" : 0 , "City" : "Lafayette" , "Company" : "Boudreaux's Shop" , "Country" : "US" , "Created" : "2023-12-20T13:07:48Z" , "customerId" : 4440 , "customerNumber" : "C-90010" , "customerStatus" : 0 , "customerSummary" : { "NumberofTransactions" : 30 , "TotalAmountTransactions" : 1500 , "TotalNetAmountTransactions" : 1500 } , "Email" : "thibodeaux.hebert@bayoumail.com" , "externalPaypointID" : "pay-10" , "Firstname" : "Thibodeaux" , "IdentifierFields" : [ "email" ] , "Lastname" : "Hebert" , "LastUpdated" : "2023-12-20T13:07:48Z" , "MFA" : false , "MFAMode" : 0 , "ParentOrgName" : "SupplyPro" , "PaypointDbaname" : "Global Factory LLC" , "PaypointEntryname" : "4872acb376a" , "PaypointLegalname" : "Global Factory LLC" , "Phone" : "(504) 823-4566" , "ShippingAddress" : "1234 Bayou Road" , "ShippingAddress1" : "Suite 2" , "ShippingCity" : "Lafayette" , "ShippingCountry" : "US" , "ShippingState" : "LA" , "ShippingZip" : "70501" , "State" : "LA" , "TimeZone" : 0 , "Zip" : "70501" } ] , "Summary" : { "pageIdentifier" : "XXXXXXXXXXXXXX" , "pageSize" : 20 , "totalAmount" : 0 , "totalNetAmount" : 0 , "totalPages" : 26 , "totalRecords" : 510 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/customers/org/123")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/customers/org/123").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listCustomersOrg(123, {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listCustomersOrg(123, {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListCustomersOrg (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/customers/org/1")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/customers/org/1").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listCustomersOrg(1);
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listCustomersOrg(1)
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListCustomersOrg (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/customers/org/1")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/customers/org/1").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listCustomersOrg(1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listCustomersOrg(1)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListCustomersOrg (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/customers/org/1")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/customers/org/1").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listCustomersOrg(1);
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listCustomersOrg(1)
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListCustomersOrg (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/customers/org/1")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/customers/org/1").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listCustomersOrg(1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listCustomersOrg(1)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListDevices (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Summary: { pageSize: 20, totalAmount: 0, totalNetAmount: 0, totalPages: 2, totalRecords: 28 },
-            Records: [
-                {
-                    deviceId: "499585-389fj484-3jcj8hj3",
-                    idCloud: 142,
-                    description: "Front Counter Terminal",
-                    serialNumber: "SN-90210-XR",
-                    friendlyName: "Front Counter Terminal",
-                    make: "Ingenico",
-                    model: "LK2500",
-                    deviceType: 1,
-                    deviceStatus: 1,
-                    deviceOs: null,
-                    macAddress: "1A2B3C4D5E6F",
-                    lastHealthCheck: "2026-04-09T14:49:42Z",
-                    registrationCode: "REG-A1B2C3D4",
-                    activationAttempts: 0,
-                    activationCodeExpiry: "2026-04-09T14:49:42Z",
-                    createdAt: "2026-04-09T01:14:37Z",
-                    updatedAt: "2026-04-09T14:49:42Z",
-                    paypointId: 3040,
-                    paypointDba: "Gruzya Adventure Outfitters",
-                    paypointLegal: "Gruzya Adventure Outfitters, LLC",
-                    paypointEntry: "8cfec329267",
-                    externalPaypointId: "GRUZYA-01",
-                    parentOrgId: 100,
-                    parentOrgName: "Example Corp",
-                },
-            ],
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Summary" : { "pageSize" : 20 , "totalAmount" : 0 , "totalNetAmount" : 0 , "totalPages" : 2 , "totalRecords" : 28 } , "Records" : [ { "deviceId" : "499585-389fj484-3jcj8hj3" , "idCloud" : 142 , "description" : "Front Counter Terminal" , "serialNumber" : "SN-90210-XR" , "friendlyName" : "Front Counter Terminal" , "make" : "Ingenico" , "model" : "LK2500" , "deviceType" : 1 , "deviceStatus" : 1 , "deviceOs" : null , "macAddress" : "1A2B3C4D5E6F" , "lastHealthCheck" : "2026-04-09T14:49:42Z" , "registrationCode" : "REG-A1B2C3D4" , "activationAttempts" : 0 , "activationCodeExpiry" : "2026-04-09T14:49:42Z" , "createdAt" : "2026-04-09T01:14:37Z" , "updatedAt" : "2026-04-09T14:49:42Z" , "paypointId" : 3040 , "paypointDba" : "Gruzya Adventure Outfitters" , "paypointLegal" : "Gruzya Adventure Outfitters, LLC" , "paypointEntry" : "8cfec329267" , "externalPaypointId" : "GRUZYA-01" , "parentOrgId" : 100 , "parentOrgName" : "Example Corp" } ] };
+        
         server
             .mockEndpoint()
-            .get("/Query/devices/8cfec329267")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/devices/8cfec329267").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listDevices("8cfec329267", {
-            fromRecord: 0,
-            limitRecord: 20,
-            sortBy: "desc(createdAt)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listDevices("8cfec329267", {
+    fromRecord: 0,
+    limitRecord: 20,
+    sortBy: "desc(createdAt)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListDevices (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/devices/entry")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/devices/entry").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listDevices("entry");
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listDevices("entry")
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListDevices (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/devices/entry")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/devices/entry").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listDevices("entry");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listDevices("entry")
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListDevices (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/devices/entry")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/devices/entry").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listDevices("entry");
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listDevices("entry")
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListDevices (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/devices/entry")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/devices/entry").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listDevices("entry");
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listDevices("entry")
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListDevicesOrg (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Summary: { pageSize: 20, totalAmount: 0, totalNetAmount: 0, totalPages: 2, totalRecords: 28 },
-            Records: [
-                {
-                    deviceId: "499585-389fj484-3jcj8hj3",
-                    idCloud: 142,
-                    description: "Front Counter Terminal",
-                    serialNumber: "SN-90210-XR",
-                    friendlyName: "Front Counter Terminal",
-                    make: "Ingenico",
-                    model: "LK2500",
-                    deviceType: 1,
-                    deviceStatus: 1,
-                    deviceOs: null,
-                    macAddress: "1A2B3C4D5E6F",
-                    lastHealthCheck: "2026-04-09T14:49:42Z",
-                    registrationCode: "REG-A1B2C3D4",
-                    activationAttempts: 0,
-                    activationCodeExpiry: "2026-04-09T14:49:42Z",
-                    createdAt: "2026-04-09T01:14:37Z",
-                    updatedAt: "2026-04-09T14:49:42Z",
-                    paypointId: 3040,
-                    paypointDba: "Gruzya Adventure Outfitters",
-                    paypointLegal: "Gruzya Adventure Outfitters, LLC",
-                    paypointEntry: "8cfec329267",
-                    externalPaypointId: "GRUZYA-01",
-                    parentOrgId: 100,
-                    parentOrgName: "Example Corp",
-                },
-            ],
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Summary" : { "pageSize" : 20 , "totalAmount" : 0 , "totalNetAmount" : 0 , "totalPages" : 2 , "totalRecords" : 28 } , "Records" : [ { "deviceId" : "499585-389fj484-3jcj8hj3" , "idCloud" : 142 , "description" : "Front Counter Terminal" , "serialNumber" : "SN-90210-XR" , "friendlyName" : "Front Counter Terminal" , "make" : "Ingenico" , "model" : "LK2500" , "deviceType" : 1 , "deviceStatus" : 1 , "deviceOs" : null , "macAddress" : "1A2B3C4D5E6F" , "lastHealthCheck" : "2026-04-09T14:49:42Z" , "registrationCode" : "REG-A1B2C3D4" , "activationAttempts" : 0 , "activationCodeExpiry" : "2026-04-09T14:49:42Z" , "createdAt" : "2026-04-09T01:14:37Z" , "updatedAt" : "2026-04-09T14:49:42Z" , "paypointId" : 3040 , "paypointDba" : "Gruzya Adventure Outfitters" , "paypointLegal" : "Gruzya Adventure Outfitters, LLC" , "paypointEntry" : "8cfec329267" , "externalPaypointId" : "GRUZYA-01" , "parentOrgId" : 100 , "parentOrgName" : "Example Corp" } ] };
+        
         server
             .mockEndpoint()
-            .get("/Query/devices/org/123")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/devices/org/123").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listDevicesOrg(123, {
-            fromRecord: 0,
-            limitRecord: 20,
-            sortBy: "desc(createdAt)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listDevicesOrg(123, {
+    fromRecord: 0,
+    limitRecord: 20,
+    sortBy: "desc(createdAt)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListDevicesOrg (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/devices/org/1")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/devices/org/1").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listDevicesOrg(1);
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listDevicesOrg(1)
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListDevicesOrg (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/devices/org/1")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/devices/org/1").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listDevicesOrg(1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listDevicesOrg(1)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListDevicesOrg (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/devices/org/1")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/devices/org/1").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listDevicesOrg(1);
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listDevicesOrg(1)
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListDevicesOrg (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/devices/org/1")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/devices/org/1").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listDevicesOrg(1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listDevicesOrg(1)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListNotificationReports (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    createdAt: "2024-02-20T01:48:04Z",
-                    id: 4881,
-                    isDownloadable: true,
-                    reportName: "Transaction-2024-02-20-000000-0-2.csv",
-                },
-            ],
-            Summary: {
-                pageIdentifier: "null",
-                pageSize: 20,
-                totalAmount: 0,
-                totalNetAmount: 0,
-                totalPages: 1,
-                totalRecords: 1,
-            },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "createdAt" : "2024-02-20T01:48:04Z" , "id" : 4881 , "isDownloadable" : true , "reportName" : "Transaction-2024-02-20-000000-0-2.csv" } ] , "Summary" : { "pageIdentifier" : "null" , "pageSize" : 20 , "totalAmount" : 0 , "totalNetAmount" : 0 , "totalPages" : 1 , "totalRecords" : 1 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/notificationReports/8cfec329267")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/notificationReports/8cfec329267").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listNotificationReports("8cfec329267", {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listNotificationReports("8cfec329267", {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListNotificationReports (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/notificationReports/entry")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/notificationReports/entry").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listNotificationReports("entry");
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listNotificationReports("entry")
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListNotificationReports (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/notificationReports/entry")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/notificationReports/entry").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listNotificationReports("entry");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listNotificationReports("entry")
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListNotificationReports (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/notificationReports/entry")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/notificationReports/entry").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listNotificationReports("entry");
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listNotificationReports("entry")
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListNotificationReports (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/notificationReports/entry")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/notificationReports/entry").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listNotificationReports("entry");
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listNotificationReports("entry")
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListNotificationReportsOrg (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    createdAt: "2024-02-20T01:48:04Z",
-                    id: 4881,
-                    isDownloadable: true,
-                    reportName: "Transaction-2024-02-20-000000-0-2.csv",
-                },
-            ],
-            Summary: {
-                pageIdentifier: "null",
-                pageSize: 20,
-                totalAmount: 0,
-                totalNetAmount: 0,
-                totalPages: 1,
-                totalRecords: 1,
-            },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "createdAt" : "2024-02-20T01:48:04Z" , "id" : 4881 , "isDownloadable" : true , "reportName" : "Transaction-2024-02-20-000000-0-2.csv" } ] , "Summary" : { "pageIdentifier" : "null" , "pageSize" : 20 , "totalAmount" : 0 , "totalNetAmount" : 0 , "totalPages" : 1 , "totalRecords" : 1 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/notificationReports/org/123")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/notificationReports/org/123").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listNotificationReportsOrg(123, {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listNotificationReportsOrg(123, {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListNotificationReportsOrg (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/notificationReports/org/1")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/notificationReports/org/1").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listNotificationReportsOrg(1);
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listNotificationReportsOrg(1)
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListNotificationReportsOrg (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/notificationReports/org/1")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/notificationReports/org/1").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listNotificationReportsOrg(1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listNotificationReportsOrg(1)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListNotificationReportsOrg (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/notificationReports/org/1")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/notificationReports/org/1").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listNotificationReportsOrg(1);
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listNotificationReportsOrg(1)
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListNotificationReportsOrg (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/notificationReports/org/1")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/notificationReports/org/1").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listNotificationReportsOrg(1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listNotificationReportsOrg(1)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListNotifications (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    content: { eventType: "ReceivedChargeBack", timeZone: 0 },
-                    createdAt: "2022-06-07T05:00:00Z",
-                    frequency: "untilcancelled",
-                    lastUpdated: "2022-06-07T05:00:00Z",
-                    method: "email",
-                    notificationId: 88976,
-                    ownerId: 123,
-                    ownerName: "Pilgrim Planner",
-                    ownerType: 2,
-                    source: "api",
-                    status: 1,
-                    target: "example@example.com",
-                },
-                {
-                    content: { eventType: "ReceivedAchReturn", timeZone: 0 },
-                    createdAt: "2022-06-07T05:00:00Z",
-                    frequency: "untilcancelled",
-                    lastUpdated: "2022-06-07T05:00:00Z",
-                    method: "email",
-                    notificationId: 88975,
-                    ownerId: 123,
-                    ownerName: "Pilgrim Planner",
-                    ownerType: 2,
-                    source: "api",
-                    status: 1,
-                    target: "example@example.com",
-                },
-            ],
-            Summary: { pageSize: 20, totalAmount: 0, totalNetAmount: 0, totalPages: 1, totalRecords: 2 },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "content" : { "eventType" : "ReceivedChargeBack" , "timeZone" : 0 } , "createdAt" : "2022-06-07T05:00:00Z" , "frequency" : "untilcancelled" , "lastUpdated" : "2022-06-07T05:00:00Z" , "method" : "email" , "notificationId" : 88976 , "ownerId" : 123 , "ownerName" : "Pilgrim Planner" , "ownerType" : 2 , "source" : "api" , "status" : 1 , "target" : "example@example.com" } , { "content" : { "eventType" : "ReceivedAchReturn" , "timeZone" : 0 } , "createdAt" : "2022-06-07T05:00:00Z" , "frequency" : "untilcancelled" , "lastUpdated" : "2022-06-07T05:00:00Z" , "method" : "email" , "notificationId" : 88975 , "ownerId" : 123 , "ownerName" : "Pilgrim Planner" , "ownerType" : 2 , "source" : "api" , "status" : 1 , "target" : "example@example.com" } ] , "Summary" : { "pageSize" : 20 , "totalAmount" : 0 , "totalNetAmount" : 0 , "totalPages" : 1 , "totalRecords" : 2 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/notifications/8cfec329267")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/notifications/8cfec329267").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listNotifications("8cfec329267", {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listNotifications("8cfec329267", {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListNotifications (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/notifications/entry")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/notifications/entry").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listNotifications("entry");
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listNotifications("entry")
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListNotifications (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/notifications/entry")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/notifications/entry").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listNotifications("entry");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listNotifications("entry")
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListNotifications (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/notifications/entry")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/notifications/entry").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listNotifications("entry");
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listNotifications("entry")
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListNotifications (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/notifications/entry")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/notifications/entry").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listNotifications("entry");
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listNotifications("entry")
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListNotificationsOrg (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    content: { eventType: "ReceivedChargeBack", timeZone: 0 },
-                    createdAt: "2022-06-07T05:00:00Z",
-                    frequency: "untilcancelled",
-                    lastUpdated: "2022-06-07T05:00:00Z",
-                    method: "email",
-                    notificationId: 88976,
-                    ownerId: 123,
-                    ownerName: "Pilgrim Planner",
-                    ownerType: 2,
-                    source: "api",
-                    status: 1,
-                    target: "example@example.com",
-                },
-                {
-                    content: { eventType: "ReceivedAchReturn", timeZone: 0 },
-                    createdAt: "2022-06-07T05:00:00Z",
-                    frequency: "untilcancelled",
-                    lastUpdated: "2022-06-07T05:00:00Z",
-                    method: "email",
-                    notificationId: 88975,
-                    ownerId: 123,
-                    ownerName: "Pilgrim Planner",
-                    ownerType: 2,
-                    source: "api",
-                    status: 1,
-                    target: "example@example.com",
-                },
-            ],
-            Summary: { pageSize: 20, totalAmount: 0, totalNetAmount: 0, totalPages: 1, totalRecords: 2 },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "content" : { "eventType" : "ReceivedChargeBack" , "timeZone" : 0 } , "createdAt" : "2022-06-07T05:00:00Z" , "frequency" : "untilcancelled" , "lastUpdated" : "2022-06-07T05:00:00Z" , "method" : "email" , "notificationId" : 88976 , "ownerId" : 123 , "ownerName" : "Pilgrim Planner" , "ownerType" : 2 , "source" : "api" , "status" : 1 , "target" : "example@example.com" } , { "content" : { "eventType" : "ReceivedAchReturn" , "timeZone" : 0 } , "createdAt" : "2022-06-07T05:00:00Z" , "frequency" : "untilcancelled" , "lastUpdated" : "2022-06-07T05:00:00Z" , "method" : "email" , "notificationId" : 88975 , "ownerId" : 123 , "ownerName" : "Pilgrim Planner" , "ownerType" : 2 , "source" : "api" , "status" : 1 , "target" : "example@example.com" } ] , "Summary" : { "pageSize" : 20 , "totalAmount" : 0 , "totalNetAmount" : 0 , "totalPages" : 1 , "totalRecords" : 2 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/notifications/org/123")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/notifications/org/123").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listNotificationsOrg(123, {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listNotificationsOrg(123, {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListNotificationsOrg (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/notifications/org/1")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/notifications/org/1").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listNotificationsOrg(1);
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listNotificationsOrg(1)
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListNotificationsOrg (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/notifications/org/1")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/notifications/org/1").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listNotificationsOrg(1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listNotificationsOrg(1)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListNotificationsOrg (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/notifications/org/1")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/notifications/org/1").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listNotificationsOrg(1);
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listNotificationsOrg(1)
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListNotificationsOrg (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/notifications/org/1")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/notifications/org/1").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listNotificationsOrg(1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listNotificationsOrg(1)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListOrganizations (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    services: [{}],
-                    contacts: [{}],
-                    createdAt: "2022-07-01T15:00:01Z",
-                    hasBilling: true,
-                    hasResidual: true,
-                    idOrg: 123,
-                    isRoot: false,
-                    orgAddress: "123 Walnut Street",
-                    orgCity: "Johnson City",
-                    orgCountry: "US",
-                    orgEntryName: "pilgrim-planner",
-                    orgId: "123",
-                    orgName: "Pilgrim Planner",
-                    orgParentId: 236,
-                    orgParentName: "PropertyManager Pro",
-                    orgState: "TN",
-                    orgTimezone: -5,
-                    orgType: 0,
-                    orgWebsite: "www.pilgrimageplanner.com",
-                    orgZip: "orgZip",
-                    recipientEmailNotification: true,
-                    replyToEmail: "example@email.com",
-                    resumable: false,
-                    users: [{ createdAt: "2022-07-01T15:00:01Z", UsrMFAMode: 0 }],
-                },
-            ],
-            Summary: {
-                pageIdentifier: "null",
-                pageSize: 20,
-                totalAmount: 77.22,
-                totalNetAmount: 77.22,
-                totalPages: 2,
-                totalRecords: 2,
-            },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "services" : [ { } ] , "contacts" : [ { } ] , "createdAt" : "2022-07-01T15:00:01Z" , "hasBilling" : true , "hasResidual" : true , "idOrg" : 123 , "isRoot" : false , "orgAddress" : "123 Walnut Street" , "orgCity" : "Johnson City" , "orgCountry" : "US" , "orgEntryName" : "pilgrim-planner" , "orgId" : "123" , "orgName" : "Pilgrim Planner" , "orgParentId" : 236 , "orgParentName" : "PropertyManager Pro" , "orgState" : "TN" , "orgTimezone" : -5 , "orgType" : 0 , "orgWebsite" : "www.pilgrimageplanner.com" , "orgZip" : "orgZip" , "recipientEmailNotification" : true , "replyToEmail" : "example@email.com" , "resumable" : false , "users" : [ { "createdAt" : "2022-07-01T15:00:01Z" , "UsrMFAMode" : 0 } ] } ] , "Summary" : { "pageIdentifier" : "null" , "pageSize" : 20 , "totalAmount" : 77.22 , "totalNetAmount" : 77.22 , "totalPages" : 2 , "totalRecords" : 2 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/organizations/123")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/organizations/123").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listOrganizations(123, {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listOrganizations(123, {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListOrganizations (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/organizations/1")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/organizations/1").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listOrganizations(1);
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listOrganizations(1)
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListOrganizations (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/organizations/1")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/organizations/1").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listOrganizations(1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listOrganizations(1)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListOrganizations (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/organizations/1")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/organizations/1").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listOrganizations(1);
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listOrganizations(1)
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListOrganizations (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/organizations/1")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/organizations/1").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listOrganizations(1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listOrganizations(1)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListPayout (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    BatchNumber: "BT-2024321",
-                    Bills: [{}],
-                    CardToken: "CardToken",
-                    CheckNumber: "12345",
-                    Comments: "Deposit for materials",
-                    CreatedAt: "2022-07-01T15:00:01Z",
-                    EntryName: "d193cf9a46",
-                    Events: [{}],
-                    externalPaypointID: "Paypoint-100",
-                    FeeAmount: 10.25,
-                    Gateway: "TSYS",
-                    IdOut: 236,
-                    LastUpdated: "2022-07-01T15:00:01Z",
-                    NetAmount: 3762.87,
-                    ParentOrgName: "PropertyManager Pro",
-                    PaymentData: { paymentDetails: { totalAmount: 100 } },
-                    PaymentId: "12345678910",
-                    PaymentMethod: "ach",
-                    PaymentStatus: "Processed",
-                    PaypointDbaname: "Sunshine Gutters",
-                    PaypointLegalname: "Sunshine Services, LLC",
-                    Source: "api",
-                    Status: 1,
-                    TotalAmount: 110.25,
-                    Vendor: {
-                        additionalData: { key1: { key: "value" }, key2: { key: "value" }, key3: { key: "value" } },
-                        CreatedDate: "2022-07-01T15:00:01Z",
-                    },
-                },
-            ],
-            Summary: {
-                totalPages: 391,
-                totalRecords: 7803,
-                totalAmount: 21435.95,
-                totalNetAmount: 21435.95,
-                totalPaid: 1,
-                totalPaidAmount: 4,
-                totalCanceled: 1743,
-                totalCanceledAmount: 4515,
-                totalCaptured: 138,
-                totalCapturedAmount: 542,
-                totalAuthorized: 4139,
-                totalAuthorizedAmount: 11712.35,
-                totalProcessing: 1780,
-                totalProcessingAmount: 4660.6,
-                totalOpen: 2,
-                totalOpenAmount: 2,
-                totalOnHold: 0,
-                totalOnHoldAmount: 0,
-                pageSize: 20,
-            },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "IdOut" : 236 , "CreatedAt" : "2024-01-15T15:00:01Z" , "Comments" : "Deposit for materials" , "Vendor" : { "VendorNumber" : "VEN-123" , "Name1" : "Riverside Plumbing" , "Phone" : "(555) 555-1234" , "Email" : "vendor@example.com" , "Address1" : "100 Main Street" , "City" : "Miami" , "State" : "FL" , "Zip" : "33131" , "Country" : "US" , "Contacts" : [ { "ContactName" : "Alex Doe" , "ContactEmail" : "contact@example.com" , "ContactTitle" : "Accounts Receivable" , "ContactPhone" : "(555) 555-5678" } ] , "PaymentMethod" : "ach" , "VendorStatus" : 1 , "VendorId" : 456 , "PaypointLegalname" : "Sunshine Services, LLC" , "PaypointId" : 3040 , "PaypointDbaname" : "Sunshine Gutters" , "PaypointEntryname" : "8cfec329267" , "ParentOrgName" : "PropertyManager Pro" , "ParentOrgId" : 123 , "CreatedDate" : "2024-01-10T15:00:01Z" , "LastUpdated" : "2024-01-12T15:00:01Z" , "remitAddress1" : "100 Main Street" , "remitCity" : "Miami" , "remitState" : "FL" , "remitZip" : "33131" , "remitCountry" : "US" , "InternalReferenceId" : 12345 , "CardAccepted" : "yes" , "AchAccepted" : "yes" , "CheckAccepted" : "no" , "EnrichmentStatus" : "fully_enriched" , "EnrichedBy" : "web_search" , "EnrichedAt" : "2024-01-12T15:00:01Z" , "externalPaypointID" : "" } , "PaypointDbaname" : "Sunshine Gutters" , "PaypointLegalname" : "Sunshine Services, LLC" , "PaypointId" : 3040 , "Status" : 1 , "PaymentId" : "01J0ABCDEF2WQ4VS323V5WKZP3" , "LastUpdated" : "2024-01-15T15:00:01Z" , "TotalAmount" : 110.25 , "NetAmount" : 100 , "FeeAmount" : 10.25 , "Source" : "api" , "ParentOrgName" : "PropertyManager Pro" , "ParentOrgId" : 123 , "BatchNumber" : "BT-2024321" , "PaymentStatus" : "Processed" , "PaymentMethod" : "ach" , "CheckNumber" : "12345" , "PaymentData" : { "MaskedAccount" : "1XXXXXX3123" , "AccountType" : "checking" , "AccountExp" : "" , "AccountZip" : "" , "StoredId" : "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-456" , "accountId" : "" } , "Bills" : [ { "billId" : 54323 , "invoiceNumber" : "INV-2345" , "netAmount" : "100" , "invoiceDate" : "2024-01-10" , "dueDate" : "2024-01-20" , "comments" : "" , "discount" : "0" , "totalAmount" : "100" } ] , "Events" : [ { "TransEvent" : "Risk Validated: PASSED" , "EventData" : "blockedCard, blockedIP, blockedPaypoint, blockedPayor" , "EventTime" : "2024-01-15T15:00:01Z" } , { "TransEvent" : "Created" , "EventData" : "0HNMNN3L95DJB:00000001" , "EventTime" : "2024-01-15T15:00:02Z" } , { "TransEvent" : "Authorized" , "EventData" : "0HNMNN3L95DJB:00000001" , "EventTime" : "2024-01-15T15:00:03Z" } ] , "externalPaypointID" : "" , "EntryName" : "8cfec329267" , "Gateway" : "BK" , "BatchId" : 0 , "HasVcardTransactions" : false , "IsSameDayACH" : false , "ScheduleId" : 0 , "SettlementStatus" : "None" , "SettlementStatusName" : "" , "RiskFlagged" : false , "RiskFlaggedOn" : "2024-01-15T15:00:01Z" , "RiskStatus" : "PASSED" , "RiskReason" : "" , "RiskAction" : "" , "RiskActionCode" : 0 , "PayoutProgram" : "ODP" , "EntityId" : "01J0ABCDEF9FWATVWMBWGE6MPP" } ] , "Summary" : { "totalPaid" : 1 , "totalPaidAmount" : 4 , "totalCanceled" : 1743 , "totalCanceledAmount" : 4515 , "totalCaptured" : 138 , "totalCapturedAmount" : 542 , "totalAuthorized" : 4139 , "totalAuthorizedAmount" : 11712.35 , "totalProcessing" : 1780 , "totalProcessingAmount" : 4660.6 , "totalOpen" : 2 , "totalOpenAmount" : 2 , "totalOnHold" : 0 , "totalOnHoldAmount" : 0 , "totalRecords" : 7803 , "totalAmount" : 21435.95 , "totalNetAmount" : 21435.95 , "totalPages" : 391 , "pageSize" : 20 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/payouts/8cfec329267")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/payouts/8cfec329267").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listPayout("8cfec329267", {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listPayout("8cfec329267", {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListPayout (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/payouts/entry")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/payouts/entry").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listPayout("entry");
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listPayout("entry")
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListPayout (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/payouts/entry")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/payouts/entry").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listPayout("entry");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listPayout("entry")
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListPayout (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/payouts/entry")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/payouts/entry").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listPayout("entry");
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listPayout("entry")
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListPayout (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/payouts/entry")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/payouts/entry").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listPayout("entry");
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listPayout("entry")
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListPayoutOrg (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    BatchNumber: "BT-2024321",
-                    Bills: [{}],
-                    CardToken: "CardToken",
-                    CheckNumber: "12345",
-                    Comments: "Deposit for materials",
-                    CreatedAt: "2022-07-01T15:00:01Z",
-                    EntryName: "d193cf9a46",
-                    Events: [{}],
-                    externalPaypointID: "Paypoint-100",
-                    FeeAmount: 10.25,
-                    Gateway: "TSYS",
-                    IdOut: 236,
-                    LastUpdated: "2022-07-01T15:00:01Z",
-                    NetAmount: 3762.87,
-                    ParentOrgName: "PropertyManager Pro",
-                    PaymentData: { paymentDetails: { totalAmount: 100 } },
-                    PaymentId: "12345678910",
-                    PaymentMethod: "ach",
-                    PaymentStatus: "Processed",
-                    PaypointDbaname: "Sunshine Gutters",
-                    PaypointLegalname: "Sunshine Services, LLC",
-                    Source: "api",
-                    Status: 1,
-                    TotalAmount: 110.25,
-                    Vendor: {
-                        additionalData: { key1: { key: "value" }, key2: { key: "value" }, key3: { key: "value" } },
-                        CreatedDate: "2022-07-01T15:00:01Z",
-                    },
-                },
-            ],
-            Summary: {
-                totalPages: 391,
-                totalRecords: 7803,
-                totalAmount: 21435.95,
-                totalNetAmount: 21435.95,
-                totalPaid: 1,
-                totalPaidAmount: 4,
-                totalCanceled: 1743,
-                totalCanceledAmount: 4515,
-                totalCaptured: 138,
-                totalCapturedAmount: 542,
-                totalAuthorized: 4139,
-                totalAuthorizedAmount: 11712.35,
-                totalProcessing: 1780,
-                totalProcessingAmount: 4660.6,
-                totalOpen: 2,
-                totalOpenAmount: 2,
-                totalOnHold: 0,
-                totalOnHoldAmount: 0,
-                pageSize: 20,
-            },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "IdOut" : 236 , "CreatedAt" : "2024-01-15T15:00:01Z" , "Comments" : "Deposit for materials" , "Vendor" : { "VendorNumber" : "VEN-123" , "Name1" : "Riverside Plumbing" , "Phone" : "(555) 555-1234" , "Email" : "vendor@example.com" , "Address1" : "100 Main Street" , "City" : "Miami" , "State" : "FL" , "Zip" : "33131" , "Country" : "US" , "Contacts" : [ { "ContactName" : "Alex Doe" , "ContactEmail" : "contact@example.com" , "ContactTitle" : "Accounts Receivable" , "ContactPhone" : "(555) 555-5678" } ] , "PaymentMethod" : "ach" , "VendorStatus" : 1 , "VendorId" : 456 , "PaypointLegalname" : "Sunshine Services, LLC" , "PaypointId" : 3040 , "PaypointDbaname" : "Sunshine Gutters" , "PaypointEntryname" : "8cfec329267" , "ParentOrgName" : "PropertyManager Pro" , "ParentOrgId" : 123 , "CreatedDate" : "2024-01-10T15:00:01Z" , "LastUpdated" : "2024-01-12T15:00:01Z" , "remitAddress1" : "100 Main Street" , "remitCity" : "Miami" , "remitState" : "FL" , "remitZip" : "33131" , "remitCountry" : "US" , "InternalReferenceId" : 12345 , "CardAccepted" : "yes" , "AchAccepted" : "yes" , "CheckAccepted" : "no" , "EnrichmentStatus" : "fully_enriched" , "EnrichedBy" : "web_search" , "EnrichedAt" : "2024-01-12T15:00:01Z" , "externalPaypointID" : "" } , "PaypointDbaname" : "Sunshine Gutters" , "PaypointLegalname" : "Sunshine Services, LLC" , "PaypointId" : 3040 , "Status" : 1 , "PaymentId" : "01J0ABCDEF2WQ4VS323V5WKZP3" , "LastUpdated" : "2024-01-15T15:00:01Z" , "TotalAmount" : 110.25 , "NetAmount" : 100 , "FeeAmount" : 10.25 , "Source" : "api" , "ParentOrgName" : "PropertyManager Pro" , "ParentOrgId" : 123 , "BatchNumber" : "BT-2024321" , "PaymentStatus" : "Processed" , "PaymentMethod" : "ach" , "CheckNumber" : "12345" , "PaymentData" : { "MaskedAccount" : "1XXXXXX3123" , "AccountType" : "checking" , "AccountExp" : "" , "AccountZip" : "" , "StoredId" : "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-456" , "accountId" : "" } , "Bills" : [ { "billId" : 54323 , "invoiceNumber" : "INV-2345" , "netAmount" : "100" , "invoiceDate" : "2024-01-10" , "dueDate" : "2024-01-20" , "comments" : "" , "discount" : "0" , "totalAmount" : "100" } ] , "Events" : [ { "TransEvent" : "Risk Validated: PASSED" , "EventData" : "blockedCard, blockedIP, blockedPaypoint, blockedPayor" , "EventTime" : "2024-01-15T15:00:01Z" } , { "TransEvent" : "Created" , "EventData" : "0HNMNN3L95DJB:00000001" , "EventTime" : "2024-01-15T15:00:02Z" } , { "TransEvent" : "Authorized" , "EventData" : "0HNMNN3L95DJB:00000001" , "EventTime" : "2024-01-15T15:00:03Z" } ] , "externalPaypointID" : "" , "EntryName" : "8cfec329267" , "Gateway" : "BK" , "BatchId" : 0 , "HasVcardTransactions" : false , "IsSameDayACH" : false , "ScheduleId" : 0 , "SettlementStatus" : "None" , "SettlementStatusName" : "" , "RiskFlagged" : false , "RiskFlaggedOn" : "2024-01-15T15:00:01Z" , "RiskStatus" : "PASSED" , "RiskReason" : "" , "RiskAction" : "" , "RiskActionCode" : 0 , "PayoutProgram" : "ODP" , "EntityId" : "01J0ABCDEF9FWATVWMBWGE6MPP" } ] , "Summary" : { "totalPaid" : 1 , "totalPaidAmount" : 4 , "totalCanceled" : 1743 , "totalCanceledAmount" : 4515 , "totalCaptured" : 138 , "totalCapturedAmount" : 542 , "totalAuthorized" : 4139 , "totalAuthorizedAmount" : 11712.35 , "totalProcessing" : 1780 , "totalProcessingAmount" : 4660.6 , "totalOpen" : 2 , "totalOpenAmount" : 2 , "totalOnHold" : 0 , "totalOnHoldAmount" : 0 , "totalRecords" : 7803 , "totalAmount" : 21435.95 , "totalNetAmount" : 21435.95 , "totalPages" : 391 , "pageSize" : 20 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/payouts/org/123")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/payouts/org/123").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listPayoutOrg(123, {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listPayoutOrg(123, {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListPayoutOrg (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/payouts/org/1")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/payouts/org/1").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listPayoutOrg(1);
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listPayoutOrg(1)
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListPayoutOrg (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/payouts/org/1")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/payouts/org/1").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listPayoutOrg(1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listPayoutOrg(1)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListPayoutOrg (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/payouts/org/1")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/payouts/org/1").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listPayoutOrg(1);
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listPayoutOrg(1)
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListPayoutOrg (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/payouts/org/1")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/payouts/org/1").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listPayoutOrg(1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listPayoutOrg(1)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListPaypoints (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    AverageMonthlyVolume: 1000,
-                    AverageTicketAmount: 1000,
-                    BAddress1: "123 Walnut Street",
-                    BAddress2: "Suite 103",
-                    BankData: [
-                        {
-                            bankAccountFunction: 0,
-                            bankAccountHolderName: "Gruzya Adventure Outfitters LLC",
-                            nickname: "Business Checking 1234",
-                        },
-                    ],
-                    BCity: "New Vegas",
-                    BCountry: "US",
-                    BFax: "5551234567",
-                    BinPerson: 60,
-                    BinPhone: 20,
-                    BinWeb: 20,
-                    BoardingId: 340,
-                    BPhone: "5551234567",
-                    BStartdate: "01/01/1990",
-                    BState: "FL",
-                    BSummary: "Brick and mortar store that sells office supplies",
-                    BTimeZone: -5,
-                    BZip: "33000",
-                    ContactData: [{}],
-                    CreatedAt: "2022-07-01T15:00:01Z",
-                    DbaName: "Sunshine Gutters",
-                    DocumentsRef: "DocumentsRef",
-                    Ein: "123456789",
-                    EntryPoints: [{}],
-                    externalPaypointID: "Paypoint-100",
-                    ExternalProcessorInformation: "[MER_xxxxxxxxxxxxxx]/[NNNNNNNNN]",
-                    HighTicketAmount: 1000,
-                    IdPaypoint: 1000000,
-                    LastModified: "2022-07-01T15:00:01Z",
-                    LegalName: "Sunshine Services, LLC",
-                    License: "2222222FFG",
-                    LicenseState: "CA",
-                    MAddress1: "123 Walnut Street",
-                    MAddress2: "STE 900",
-                    Mccid: "Mccid",
-                    MCity: "Johnson City",
-                    MCountry: "US",
-                    MState: "TN",
-                    MZip: "37615",
-                    OrgId: 123,
-                    OrgParentName: "PropertyManager Pro",
-                    OwnerData: [{}],
-                    OwnType: "Limited Liability Company",
-                    PaypointStatus: 1,
-                    SalesCode: "SalesCode",
-                    Taxfillname: "Sunshine LLC",
-                    TemplateId: 22,
-                    WebsiteAddress: "www.example.com",
-                    Whencharged: "When Service Provided",
-                    Whendelivered: "0-7 Days",
-                    Whenprovided: "30 Days or Less",
-                    Whenrefund: "Exchange Only",
-                },
-            ],
-            Summary: {
-                pageIdentifier: "null",
-                pageSize: 20,
-                totalAmount: 77.22,
-                totalNetAmount: 77.22,
-                totalPages: 2,
-                totalRecords: 2,
-            },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "AverageMonthlyVolume" : 1000 , "AverageTicketAmount" : 1000 , "BAddress1" : "123 Walnut Street" , "BAddress2" : "Suite 103" , "BankData" : [ { "bankAccountFunction" : 0 , "bankAccountHolderName" : "Gruzya Adventure Outfitters LLC" , "nickname" : "Business Checking 1234" } ] , "BCity" : "New Vegas" , "BCountry" : "US" , "BFax" : "5551234567" , "BinPerson" : 60 , "BinPhone" : 20 , "BinWeb" : 20 , "BoardingId" : 340 , "BPhone" : "5551234567" , "BStartdate" : "01/01/1990" , "BState" : "FL" , "BSummary" : "Brick and mortar store that sells office supplies" , "BTimeZone" : -5 , "BZip" : "33000" , "ContactData" : [ { } ] , "CreatedAt" : "2022-07-01T15:00:01Z" , "DbaName" : "Sunshine Gutters" , "DocumentsRef" : "DocumentsRef" , "Ein" : "123456789" , "EntryPoints" : [ { } ] , "externalPaypointID" : "Paypoint-100" , "ExternalProcessorInformation" : "[MER_xxxxxxxxxxxxxx]/[NNNNNNNNN]" , "HighTicketAmount" : 1000 , "IdPaypoint" : 1000000 , "LastModified" : "2022-07-01T15:00:01Z" , "LegalName" : "Sunshine Services, LLC" , "License" : "2222222FFG" , "LicenseState" : "CA" , "MAddress1" : "123 Walnut Street" , "MAddress2" : "STE 900" , "Mccid" : "Mccid" , "MCity" : "Johnson City" , "MCountry" : "US" , "MState" : "TN" , "MZip" : "37615" , "OrgId" : 123 , "OrgParentName" : "PropertyManager Pro" , "OwnerData" : [ { } ] , "OwnType" : "Limited Liability Company" , "PaypointStatus" : 1 , "SalesCode" : "SalesCode" , "Taxfillname" : "Sunshine LLC" , "TemplateId" : 22 , "WebsiteAddress" : "www.example.com" , "Whencharged" : "When Service Provided" , "Whendelivered" : "0-7 Days" , "Whenprovided" : "30 Days or Less" , "Whenrefund" : "Exchange Only" } ] , "Summary" : { "pageIdentifier" : "null" , "pageSize" : 20 , "totalAmount" : 77.22 , "totalNetAmount" : 77.22 , "totalPages" : 2 , "totalRecords" : 2 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/paypoints/123")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/paypoints/123").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listPaypoints(123, {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listPaypoints(123, {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListPaypoints (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
+        server
+            .mockEndpoint()
+            .get("/Query/paypoints/1").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        server.mockEndpoint().get("/Query/paypoints/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.query.listPaypoints(1);
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listPaypoints(1)
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListPaypoints (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
+        server
+            .mockEndpoint()
+            .get("/Query/paypoints/1").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        server.mockEndpoint().get("/Query/paypoints/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.query.listPaypoints(1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listPaypoints(1)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListPaypoints (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
+        server
+            .mockEndpoint()
+            .get("/Query/paypoints/1").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        server.mockEndpoint().get("/Query/paypoints/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.query.listPaypoints(1);
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listPaypoints(1)
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListPaypoints (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
+        server
+            .mockEndpoint()
+            .get("/Query/paypoints/1").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        server.mockEndpoint().get("/Query/paypoints/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.query.listPaypoints(1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listPaypoints(1)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListSettlements (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    BatchAmount: 32,
-                    BatchNumber: "batch-100-20-2024",
-                    Category: "auth",
-                    CreatedAt: "2024-11-19T15:58:01Z",
-                    Customer: {
-                        BillingAddress1: "100 Golden Ridge Drive",
-                        BillingAddress2: "STE 100",
-                        BillingCity: "Mendota",
-                        BillingCountry: "US",
-                        BillingEmail: "lydia@example.com",
-                        BillingPhone: "+12345678",
-                        BillingState: "VA",
-                        BillingZip: "20147",
-                        customerId: 4440,
-                        CustomerNumber: "C-90010",
-                        customerStatus: 1,
-                        FirstName: "Lydia",
-                        LastName: "Marshall",
-                    },
-                    ExpectedDepositDate: "2024-11-22T00:00:00Z",
-                    GatewayTransId: "TRN_XXXXX",
-                    Id: 25048,
-                    isHold: 0,
-                    MaskedAccount: "1XXXXXX5678",
-                    Method: "ach",
-                    NetAmount: 2,
-                    Operation: "Sale",
-                    OrderId: "",
-                    ParentOrgName: "Pilgrim Planner",
-                    PaymentData: {
-                        AccountType: "Checking",
-                        HolderName: "Lydia Marshall",
-                        MaskedAccount: "1XXXXXX5678",
-                        paymentDetails: {
-                            categories: [{ amount: 1000, label: "Deposit" }],
-                            currency: "USD",
-                            serviceFee: 0,
-                            splitFunding: [{}],
-                            totalAmount: 2,
-                        },
-                    },
-                    PaymentTransId: "245-9e4072eef77e45979ea0e49f680000X",
-                    PaymentTransStatus: 1,
-                    PaypointDbaname: "Gruzya Adventure Outfitters, LLC",
-                    PaypointEntryname: "7f1a3816XX",
-                    PaypointLegalname: "Gruzya Adventure Outfitters, LLC",
-                    ResponseData: {
-                        authcode: " ",
-                        avsresponse: " ",
-                        avsresponse_text: "",
-                        cvvresponse: " ",
-                        cvvresponse_text: " ",
-                        emv_auth_response_data: " ",
-                        response: "Success",
-                        response_code: "100",
-                        response_code_text: "Transaction was approved.",
-                        responsetext: "CAPTURED",
-                        resultCode: "A0000",
-                        resultCodeText: "Approved",
-                        transactionid: "TRN_xwCAjQorWAYX1nAhAoHZVfN8iYHbI0",
-                    },
-                    ScheduleReference: 0,
-                    SettledAmount: 0.5,
-                    SettlementDate: "2024-11-20T00:00:00Z",
-                    Source: "api",
-                    Status: 1,
-                    TransactionEvents: [
-                        { EventTime: "2024-11-19T15:57:40Z", TransEvent: "Created" },
-                        {
-                            EventData: {
-                                account_id: "TRA_XXXXX",
-                                account_name: "123456",
-                                action: {
-                                    app_id: "XXXXX",
-                                    app_name: "PayAbli",
-                                    id: "ACT_XXXXX",
-                                    result_code: "SUCCESS",
-                                    time_created: "2024-11-19T20:58:01.583Z",
-                                    type: "AUTHORIZE",
-                                },
-                                amount: "200",
-                                batch_id: "",
-                                capture_mode: "AUTO",
-                                channel: "CNP",
-                                country: "US",
-                                currency: "USD",
-                                fees: { amount: "0", rate: "0.00", total_amount: "0" },
-                                id: "TRN_XXXXX",
-                                merchant_amount: "200",
-                                merchant_id: "MER_XXXXX",
-                                merchant_name: "Henriette97",
-                                order: { reference: "" },
-                                payment_method: {
-                                    bank_transfer: {
-                                        account_type: "CHECKING",
-                                        bank: { name: "" },
-                                        masked_account_number_last4: "XXXX5678",
-                                    },
-                                    entry_mode: "ECOM",
-                                    message: "Success",
-                                    narrative: "Lydia Marshall",
-                                    result: "00",
-                                },
-                                reference: "245-XXXXX",
-                                status: "CAPTURED",
-                                time_created: "2024-11-19T20:58:01.583Z",
-                                type: "SALE",
-                            },
-                            EventTime: "2024-11-19T20:58:01Z",
-                            TransEvent: "Approved",
-                        },
-                        { EventTime: "2024-11-20T03:05:10Z", TransEvent: "ClosedBatch" },
-                    ],
-                    TransactionTime: "2024-11-19T15:58:01Z",
-                    TransMethod: "ach",
-                    Type: "credit",
-                },
-            ],
-            Summary: {
-                heldAmount: 3.7,
-                pageSize: 0,
-                refunds: -3521.85,
-                serviceFees: 852.48,
-                totalAmount: 61645.74,
-                totalNetAmount: 61645.74,
-                totalPages: 21872,
-                totalRecords: 21872,
-                transferAmount: 0,
-            },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "BatchAmount" : 32 , "BatchNumber" : "batch-100-20-2024" , "Category" : "auth" , "CreatedAt" : "2024-11-19T15:58:01Z" , "Customer" : { "BillingAddress1" : "100 Golden Ridge Drive" , "BillingAddress2" : "STE 100" , "BillingCity" : "Mendota" , "BillingCountry" : "US" , "BillingEmail" : "lydia@example.com" , "BillingPhone" : "+12345678" , "BillingState" : "VA" , "BillingZip" : "20147" , "customerId" : 4440 , "CustomerNumber" : "C-90010" , "customerStatus" : 1 , "FirstName" : "Lydia" , "LastName" : "Marshall" } , "ExpectedDepositDate" : "2024-11-22T00:00:00Z" , "GatewayTransId" : "TRN_XXXXX" , "Id" : 25048 , "isHold" : 0 , "MaskedAccount" : "1XXXXXX5678" , "Method" : "ach" , "NetAmount" : 2 , "Operation" : "Sale" , "OrderId" : "" , "ParentOrgName" : "Pilgrim Planner" , "PaymentData" : { "AccountType" : "Checking" , "HolderName" : "Lydia Marshall" , "MaskedAccount" : "1XXXXXX5678" , "paymentDetails" : { "categories" : [ { "amount" : 1000 , "label" : "Deposit" } ] , "currency" : "USD" , "serviceFee" : 0 , "splitFunding" : [ { } ] , "totalAmount" : 2 } } , "PaymentTransId" : "245-9e4072eef77e45979ea0e49f680000X" , "PaymentTransStatus" : 1 , "PaypointDbaname" : "Gruzya Adventure Outfitters, LLC" , "PaypointEntryname" : "7f1a3816XX" , "PaypointLegalname" : "Gruzya Adventure Outfitters, LLC" , "ResponseData" : { "authcode" : " " , "avsresponse" : " " , "avsresponse_text" : "" , "cvvresponse" : " " , "cvvresponse_text" : " " , "emv_auth_response_data" : " " , "response" : "Success" , "response_code" : "100" , "response_code_text" : "Transaction was approved." , "responsetext" : "CAPTURED" , "resultCode" : "A0000" , "resultCodeText" : "Approved" , "transactionid" : "TRN_xwCAjQorWAYX1nAhAoHZVfN8iYHbI0" } , "ScheduleReference" : 0 , "SettledAmount" : 0.5 , "SettlementDate" : "2024-11-20T00:00:00Z" , "Source" : "api" , "Status" : 1 , "TransactionEvents" : [ { "EventTime" : "2024-11-19T15:57:40Z" , "TransEvent" : "Created" } , { "EventData" : { "account_id" : "TRA_XXXXX" , "account_name" : "123456" , "action" : { "app_id" : "XXXXX" , "app_name" : "PayAbli" , "id" : "ACT_XXXXX" , "result_code" : "SUCCESS" , "time_created" : "2024-11-19T20:58:01.583Z" , "type" : "AUTHORIZE" } , "amount" : "200" , "batch_id" : "" , "capture_mode" : "AUTO" , "channel" : "CNP" , "country" : "US" , "currency" : "USD" , "fees" : { "amount" : "0" , "rate" : "0.00" , "total_amount" : "0" } , "id" : "TRN_XXXXX" , "merchant_amount" : "200" , "merchant_id" : "MER_XXXXX" , "merchant_name" : "Henriette97" , "order" : { "reference" : "" } , "payment_method" : { "bank_transfer" : { "account_type" : "CHECKING" , "bank" : { "name" : "" } , "masked_account_number_last4" : "XXXX5678" } , "entry_mode" : "ECOM" , "message" : "Success" , "narrative" : "Lydia Marshall" , "result" : "00" } , "reference" : "245-XXXXX" , "status" : "CAPTURED" , "time_created" : "2024-11-19T20:58:01.583Z" , "type" : "SALE" } , "EventTime" : "2024-11-19T20:58:01Z" , "TransEvent" : "Approved" } , { "EventTime" : "2024-11-20T03:05:10Z" , "TransEvent" : "ClosedBatch" } ] , "TransactionTime" : "2024-11-19T15:58:01Z" , "TransMethod" : "ach" , "Type" : "credit" } ] , "Summary" : { "heldAmount" : 3.7 , "pageSize" : 0 , "refunds" : -3521.85 , "serviceFees" : 852.48 , "totalAmount" : 61645.74 , "totalNetAmount" : 61645.74 , "totalPages" : 21872 , "totalRecords" : 21872 , "transferAmount" : 0 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/settlements/8cfec329267")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/settlements/8cfec329267").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listSettlements("8cfec329267", {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listSettlements("8cfec329267", {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListSettlements (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/settlements/entry")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/settlements/entry").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listSettlements("entry");
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listSettlements("entry")
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListSettlements (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/settlements/entry")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/settlements/entry").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listSettlements("entry");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listSettlements("entry")
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListSettlements (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/settlements/entry")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/settlements/entry").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listSettlements("entry");
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listSettlements("entry")
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListSettlements (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/settlements/entry")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/settlements/entry").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listSettlements("entry");
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listSettlements("entry")
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListSettlementsOrg (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    BatchAmount: 32,
-                    BatchNumber: "batch-100-20-2024",
-                    Category: "auth",
-                    CreatedAt: "2024-11-19T15:58:01Z",
-                    Customer: {
-                        BillingAddress1: "100 Golden Ridge Drive",
-                        BillingAddress2: "STE 100",
-                        BillingCity: "Mendota",
-                        BillingCountry: "US",
-                        BillingEmail: "lydia@example.com",
-                        BillingPhone: "+12345678",
-                        BillingState: "VA",
-                        BillingZip: "20147",
-                        customerId: 4440,
-                        CustomerNumber: "C-90010",
-                        customerStatus: 1,
-                        FirstName: "Lydia",
-                        LastName: "Marshall",
-                    },
-                    ExpectedDepositDate: "2024-11-22T00:00:00Z",
-                    GatewayTransId: "TRN_XXXXX",
-                    Id: 25048,
-                    isHold: 0,
-                    MaskedAccount: "1XXXXXX5678",
-                    Method: "ach",
-                    NetAmount: 2,
-                    Operation: "Sale",
-                    OrderId: "",
-                    ParentOrgName: "Pilgrim Planner",
-                    PaymentData: {
-                        AccountType: "Checking",
-                        HolderName: "Lydia Marshall",
-                        MaskedAccount: "1XXXXXX5678",
-                        paymentDetails: {
-                            categories: [{ amount: 1000, label: "Deposit" }],
-                            currency: "USD",
-                            serviceFee: 0,
-                            splitFunding: [{}],
-                            totalAmount: 2,
-                        },
-                    },
-                    PaymentTransId: "245-9e4072eef77e45979ea0e49f680000X",
-                    PaymentTransStatus: 1,
-                    PaypointDbaname: "Gruzya Adventure Outfitters, LLC",
-                    PaypointEntryname: "7f1a3816XX",
-                    PaypointLegalname: "Gruzya Adventure Outfitters, LLC",
-                    ResponseData: {
-                        authcode: " ",
-                        avsresponse: " ",
-                        avsresponse_text: "",
-                        cvvresponse: " ",
-                        cvvresponse_text: " ",
-                        emv_auth_response_data: " ",
-                        response: "Success",
-                        response_code: "100",
-                        response_code_text: "Transaction was approved.",
-                        responsetext: "CAPTURED",
-                        resultCode: "A0000",
-                        resultCodeText: "Approved",
-                        transactionid: "TRN_xwCAjQorWAYX1nAhAoHZVfN8iYHbI0",
-                    },
-                    ScheduleReference: 0,
-                    SettledAmount: 0.5,
-                    SettlementDate: "2024-11-20T00:00:00Z",
-                    Source: "api",
-                    Status: 1,
-                    TransactionEvents: [
-                        { EventTime: "2024-11-19T15:57:40Z", TransEvent: "Created" },
-                        {
-                            EventData: {
-                                account_id: "TRA_XXXXX",
-                                account_name: "123456",
-                                action: {
-                                    app_id: "XXXXX",
-                                    app_name: "PayAbli",
-                                    id: "ACT_XXXXX",
-                                    result_code: "SUCCESS",
-                                    time_created: "2024-11-19T20:58:01.583Z",
-                                    type: "AUTHORIZE",
-                                },
-                                amount: "200",
-                                batch_id: "",
-                                capture_mode: "AUTO",
-                                channel: "CNP",
-                                country: "US",
-                                currency: "USD",
-                                fees: { amount: "0", rate: "0.00", total_amount: "0" },
-                                id: "TRN_XXXXX",
-                                merchant_amount: "200",
-                                merchant_id: "MER_XXXXX",
-                                merchant_name: "Henriette97",
-                                order: { reference: "" },
-                                payment_method: {
-                                    bank_transfer: {
-                                        account_type: "CHECKING",
-                                        bank: { name: "" },
-                                        masked_account_number_last4: "XXXX5678",
-                                    },
-                                    entry_mode: "ECOM",
-                                    message: "Success",
-                                    narrative: "Lydia Marshall",
-                                    result: "00",
-                                },
-                                reference: "245-XXXXX",
-                                status: "CAPTURED",
-                                time_created: "2024-11-19T20:58:01.583Z",
-                                type: "SALE",
-                            },
-                            EventTime: "2024-11-19T20:58:01Z",
-                            TransEvent: "Approved",
-                        },
-                        { EventTime: "2024-11-20T03:05:10Z", TransEvent: "ClosedBatch" },
-                    ],
-                    TransactionTime: "2024-11-19T15:58:01Z",
-                    TransMethod: "ach",
-                    Type: "credit",
-                },
-            ],
-            Summary: {
-                heldAmount: 3.7,
-                pageSize: 0,
-                refunds: -3521.85,
-                serviceFees: 852.48,
-                totalAmount: 61645.74,
-                totalNetAmount: 61645.74,
-                totalPages: 21872,
-                totalRecords: 21872,
-                transferAmount: 0,
-            },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "BatchAmount" : 32 , "BatchNumber" : "batch-100-20-2024" , "Category" : "auth" , "CreatedAt" : "2024-11-19T15:58:01Z" , "Customer" : { "BillingAddress1" : "100 Golden Ridge Drive" , "BillingAddress2" : "STE 100" , "BillingCity" : "Mendota" , "BillingCountry" : "US" , "BillingEmail" : "lydia@example.com" , "BillingPhone" : "+12345678" , "BillingState" : "VA" , "BillingZip" : "20147" , "customerId" : 4440 , "CustomerNumber" : "C-90010" , "customerStatus" : 1 , "FirstName" : "Lydia" , "LastName" : "Marshall" } , "ExpectedDepositDate" : "2024-11-22T00:00:00Z" , "GatewayTransId" : "TRN_XXXXX" , "Id" : 25048 , "isHold" : 0 , "MaskedAccount" : "1XXXXXX5678" , "Method" : "ach" , "NetAmount" : 2 , "Operation" : "Sale" , "OrderId" : "" , "ParentOrgName" : "Pilgrim Planner" , "PaymentData" : { "AccountType" : "Checking" , "HolderName" : "Lydia Marshall" , "MaskedAccount" : "1XXXXXX5678" , "paymentDetails" : { "categories" : [ { "amount" : 1000 , "label" : "Deposit" } ] , "currency" : "USD" , "serviceFee" : 0 , "splitFunding" : [ { } ] , "totalAmount" : 2 } } , "PaymentTransId" : "245-9e4072eef77e45979ea0e49f680000X" , "PaymentTransStatus" : 1 , "PaypointDbaname" : "Gruzya Adventure Outfitters, LLC" , "PaypointEntryname" : "7f1a3816XX" , "PaypointLegalname" : "Gruzya Adventure Outfitters, LLC" , "ResponseData" : { "authcode" : " " , "avsresponse" : " " , "avsresponse_text" : "" , "cvvresponse" : " " , "cvvresponse_text" : " " , "emv_auth_response_data" : " " , "response" : "Success" , "response_code" : "100" , "response_code_text" : "Transaction was approved." , "responsetext" : "CAPTURED" , "resultCode" : "A0000" , "resultCodeText" : "Approved" , "transactionid" : "TRN_xwCAjQorWAYX1nAhAoHZVfN8iYHbI0" } , "ScheduleReference" : 0 , "SettledAmount" : 0.5 , "SettlementDate" : "2024-11-20T00:00:00Z" , "Source" : "api" , "Status" : 1 , "TransactionEvents" : [ { "EventTime" : "2024-11-19T15:57:40Z" , "TransEvent" : "Created" } , { "EventData" : { "account_id" : "TRA_XXXXX" , "account_name" : "123456" , "action" : { "app_id" : "XXXXX" , "app_name" : "PayAbli" , "id" : "ACT_XXXXX" , "result_code" : "SUCCESS" , "time_created" : "2024-11-19T20:58:01.583Z" , "type" : "AUTHORIZE" } , "amount" : "200" , "batch_id" : "" , "capture_mode" : "AUTO" , "channel" : "CNP" , "country" : "US" , "currency" : "USD" , "fees" : { "amount" : "0" , "rate" : "0.00" , "total_amount" : "0" } , "id" : "TRN_XXXXX" , "merchant_amount" : "200" , "merchant_id" : "MER_XXXXX" , "merchant_name" : "Henriette97" , "order" : { "reference" : "" } , "payment_method" : { "bank_transfer" : { "account_type" : "CHECKING" , "bank" : { "name" : "" } , "masked_account_number_last4" : "XXXX5678" } , "entry_mode" : "ECOM" , "message" : "Success" , "narrative" : "Lydia Marshall" , "result" : "00" } , "reference" : "245-XXXXX" , "status" : "CAPTURED" , "time_created" : "2024-11-19T20:58:01.583Z" , "type" : "SALE" } , "EventTime" : "2024-11-19T20:58:01Z" , "TransEvent" : "Approved" } , { "EventTime" : "2024-11-20T03:05:10Z" , "TransEvent" : "ClosedBatch" } ] , "TransactionTime" : "2024-11-19T15:58:01Z" , "TransMethod" : "ach" , "Type" : "credit" } ] , "Summary" : { "heldAmount" : 3.7 , "pageSize" : 0 , "refunds" : -3521.85 , "serviceFees" : 852.48 , "totalAmount" : 61645.74 , "totalNetAmount" : 61645.74 , "totalPages" : 21872 , "totalRecords" : 21872 , "transferAmount" : 0 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/settlements/org/123")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/settlements/org/123").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listSettlementsOrg(123, {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listSettlementsOrg(123, {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListSettlementsOrg (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/settlements/org/1")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/settlements/org/1").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listSettlementsOrg(1);
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listSettlementsOrg(1)
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListSettlementsOrg (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/settlements/org/1")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/settlements/org/1").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listSettlementsOrg(1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listSettlementsOrg(1)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListSettlementsOrg (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/settlements/org/1")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/settlements/org/1").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listSettlementsOrg(1);
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listSettlementsOrg(1)
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListSettlementsOrg (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/settlements/org/1")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/settlements/org/1").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listSettlementsOrg(1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listSettlementsOrg(1)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListSubscriptions (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    CreatedAt: "2023-12-14T08:51:10Z",
-                    Customer: {
-                        BillingAddress1: "68 Golden Drive",
-                        BillingAddress2: "",
-                        BillingCity: "Johnson City",
-                        BillingCountry: "US",
-                        BillingEmail: "company@payabli.com",
-                        BillingPhone: "",
-                        BillingState: "TN",
-                        BillingZip: "37612",
-                        CompanyName: "Sunshine LLC",
-                        customerId: 4440,
-                        CustomerNumber: "C-90010",
-                        customerStatus: 1,
-                        FirstName: "Lisandra",
-                        Identifiers: ['\\"firstname\\"', '\\"lastname\\"', '\\"email\\"'],
-                        LastName: "Smitch",
-                        ShippingAddress1: "68 Golden Drive",
-                        ShippingCity: "Johnson City",
-                        ShippingCountry: "US",
-                        ShippingState: "TN",
-                        ShippingZip: "37612",
-                    },
-                    EndDate: "2026-03-20T00:00:00Z",
-                    EntrypageId: 0,
-                    ExternalPaypointID: "f743aed24a-10",
-                    FeeAmount: 0,
-                    Frequency: "monthly",
-                    IdSub: 580,
-                    invoiceData: {
-                        frequency: "onetime",
-                        invoiceAmount: 100,
-                        invoiceNumber: "INV-2345",
-                        invoiceStatus: 1,
-                        invoiceType: 1,
-                        items: [
-                            {
-                                itemCost: 10,
-                                itemDescription: "service",
-                                itemMode: 1,
-                                itemProductName: "Mat replacement",
-                                itemQty: 5,
-                                itemTotalAmount: 50,
-                            },
-                            {
-                                itemCost: 5,
-                                itemDescription: "service",
-                                itemMode: 1,
-                                itemProductName: "Mat clean",
-                                itemQty: 10,
-                                itemTotalAmount: 50,
-                            },
-                        ],
-                    },
-                    LastRun: "2024-01-02T14:32:11Z",
-                    LastUpdated: "2023-12-14T08:51:10Z",
-                    LeftCycles: 20,
-                    Method: "card",
-                    NetAmount: 10,
-                    NextDate: "2024-07-20T00:00:00Z",
-                    ParentOrgName: "FitnessManager",
-                    PaymentData: {
-                        AccountExp: "0924",
-                        AccountType: "unknown",
-                        AccountZip: "37612",
-                        binData: {
-                            binMatchedLength: "6",
-                            binCardBrand: "Visa",
-                            binCardType: "Credit",
-                            binCardCategory: "PLATINUM",
-                            binCardIssuer: "Bank of Example",
-                            binCardIssuerCountry: "United States",
-                            binCardIssuerCountryCodeA2: "US",
-                            binCardIssuerCountryNumber: "840",
-                            binCardIsRegulated: "false",
-                            binCardUseCategory: "Consumer",
-                            binCardIssuerCountryCodeA3: "USA",
-                        },
-                        HolderName: "Lisandra Smitch",
-                        Initiator: "payor",
-                        MaskedAccount: "2222 4XXXXXX0010",
-                        paymentDetails: { currency: "USD", serviceFee: 0, totalAmount: 100 },
-                        Sequence: "subsequent",
-                        StoredMethodUsageType: "subscription",
-                    },
-                    PaypointDbaname: "Athlete Factory LLC",
-                    PaypointEntryname: "473ac58b0",
-                    PaypointId: 3040,
-                    PaypointLegalname: "Athlete Factory LLC",
-                    PlanId: 1,
-                    StartDate: "2024-07-20T00:00:00Z",
-                    StoredMethod: {
-                        IdPmethod: "6edcbb56-9c0e-4003-b3d1-99abf149ba0e",
-                        Method: "card",
-                        Descriptor: "Visa for subscriptions",
-                        MaskedAccount: "4XXXXXXX0010",
-                        ExpDate: "0924",
-                        HolderName: "Lisandra Smitch",
-                        AchSecCode: null,
-                        AchHolderType: null,
-                        IsValidatedACH: false,
-                        BIN: "",
-                        binData: {
-                            binMatchedLength: "6",
-                            binCardBrand: "Visa",
-                            binCardType: "Credit",
-                            binCardCategory: "PLATINUM",
-                            binCardIssuer: "Bank of Example",
-                            binCardIssuerCountry: "United States",
-                            binCardIssuerCountryCodeA2: "US",
-                            binCardIssuerCountryNumber: "840",
-                            binCardIsRegulated: "false",
-                            binCardUseCategory: "Consumer",
-                            binCardIssuerCountryCodeA3: "USA",
-                        },
-                        ABA: "",
-                        PostalCode: "37612",
-                        MethodType: "Single Merchant",
-                        LastUpdated: "2023-12-14T08:51:10Z",
-                        CardUpdatedOn: null,
-                    },
-                    SubEvents: [
-                        {
-                            description: "created",
-                            eventTime: "2023-12-14T13:51:10Z",
-                            refData: "00-3470dfe2658b492811630255602f3fb5-d06fe0f72110000-00",
-                        },
-                        {
-                            description: "updated",
-                            eventTime: "2023-12-15T10:30:00Z",
-                            refData: "01-1234abcde6789fghij4567klmnopqr89-abcdefghi12345678-01",
-                            source: "web app",
-                        },
-                    ],
-                    SubStatus: 1,
-                    SubscriptionType: "Regular",
-                    TotalAmount: 100,
-                    TotalCycles: 20,
-                    UntilCancelled: false,
-                },
-            ],
-            Summary: {
-                pageIdentifier: "XXXXXXXXXXXXXXXXXXX",
-                pageSize: 20,
-                totalAmount: 150.22,
-                totalNetAmount: 150.22,
-                totalPages: 1,
-                totalRecords: 2,
-            },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "CreatedAt" : "2023-12-14T08:51:10Z" , "Customer" : { "BillingAddress1" : "68 Golden Drive" , "BillingAddress2" : "" , "BillingCity" : "Johnson City" , "BillingCountry" : "US" , "BillingEmail" : "company@payabli.com" , "BillingPhone" : "" , "BillingState" : "TN" , "BillingZip" : "37612" , "CompanyName" : "Sunshine LLC" , "customerId" : 4440 , "CustomerNumber" : "C-90010" , "customerStatus" : 1 , "FirstName" : "Lisandra" , "Identifiers" : [ "\\\"firstname\\\"" , "\\\"lastname\\\"" , "\\\"email\\\"" ] , "LastName" : "Smitch" , "ShippingAddress1" : "68 Golden Drive" , "ShippingCity" : "Johnson City" , "ShippingCountry" : "US" , "ShippingState" : "TN" , "ShippingZip" : "37612" } , "EndDate" : "2026-03-20T00:00:00Z" , "EntrypageId" : 0 , "ExternalPaypointID" : "f743aed24a-10" , "FeeAmount" : 0 , "Frequency" : "monthly" , "IdSub" : 580 , "invoiceData" : { "frequency" : "onetime" , "invoiceAmount" : 100 , "invoiceNumber" : "INV-2345" , "invoiceStatus" : 1 , "invoiceType" : 1 , "items" : [ { "itemCost" : 10 , "itemDescription" : "service" , "itemMode" : 1 , "itemProductName" : "Mat replacement" , "itemQty" : 5 , "itemTotalAmount" : 50 } , { "itemCost" : 5 , "itemDescription" : "service" , "itemMode" : 1 , "itemProductName" : "Mat clean" , "itemQty" : 10 , "itemTotalAmount" : 50 } ] } , "LastRun" : "2024-01-02T14:32:11Z" , "LastUpdated" : "2023-12-14T08:51:10Z" , "LeftCycles" : 20 , "Method" : "card" , "NetAmount" : 10 , "NextDate" : "2024-07-20T00:00:00Z" , "ParentOrgName" : "FitnessManager" , "PaymentData" : { "AccountExp" : "0924" , "AccountType" : "unknown" , "AccountZip" : "37612" , "binData" : { "binMatchedLength" : "6" , "binCardBrand" : "Visa" , "binCardType" : "Credit" , "binCardCategory" : "PLATINUM" , "binCardIssuer" : "Bank of Example" , "binCardIssuerCountry" : "United States" , "binCardIssuerCountryCodeA2" : "US" , "binCardIssuerCountryNumber" : "840" , "binCardIsRegulated" : "false" , "binCardUseCategory" : "Consumer" , "binCardIssuerCountryCodeA3" : "USA" } , "HolderName" : "Lisandra Smitch" , "Initiator" : "payor" , "MaskedAccount" : "2222 4XXXXXX0010" , "paymentDetails" : { "currency" : "USD" , "serviceFee" : 0 , "totalAmount" : 100 } , "Sequence" : "subsequent" , "StoredMethodUsageType" : "subscription" } , "PaypointDbaname" : "Athlete Factory LLC" , "PaypointEntryname" : "473ac58b0" , "PaypointId" : 3040 , "PaypointLegalname" : "Athlete Factory LLC" , "PlanId" : 1 , "StartDate" : "2024-07-20T00:00:00Z" , "StoredMethod" : { "IdPmethod" : "6edcbb56-9c0e-4003-b3d1-99abf149ba0e" , "Method" : "card" , "Descriptor" : "Visa for subscriptions" , "MaskedAccount" : "4XXXXXXX0010" , "ExpDate" : "0924" , "HolderName" : "Lisandra Smitch" , "AchSecCode" : null , "AchHolderType" : null , "IsValidatedACH" : false , "BIN" : "" , "binData" : { "binMatchedLength" : "6" , "binCardBrand" : "Visa" , "binCardType" : "Credit" , "binCardCategory" : "PLATINUM" , "binCardIssuer" : "Bank of Example" , "binCardIssuerCountry" : "United States" , "binCardIssuerCountryCodeA2" : "US" , "binCardIssuerCountryNumber" : "840" , "binCardIsRegulated" : "false" , "binCardUseCategory" : "Consumer" , "binCardIssuerCountryCodeA3" : "USA" } , "ABA" : "" , "PostalCode" : "37612" , "MethodType" : "Single Merchant" , "LastUpdated" : "2023-12-14T08:51:10Z" , "CardUpdatedOn" : null } , "SubEvents" : [ { "description" : "created" , "eventTime" : "2023-12-14T13:51:10Z" , "refData" : "00-3470dfe2658b492811630255602f3fb5-d06fe0f72110000-00" } , { "description" : "updated" , "eventTime" : "2023-12-15T10:30:00Z" , "refData" : "01-1234abcde6789fghij4567klmnopqr89-abcdefghi12345678-01" , "source" : "web app" } ] , "SubStatus" : 1 , "SubscriptionType" : "Regular" , "TotalAmount" : 100 , "TotalCycles" : 20 , "UntilCancelled" : false } ] , "Summary" : { "pageIdentifier" : "XXXXXXXXXXXXXXXXXXX" , "pageSize" : 20 , "totalAmount" : 150.22 , "totalNetAmount" : 150.22 , "totalPages" : 1 , "totalRecords" : 2 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/subscriptions/8cfec329267")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/subscriptions/8cfec329267").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listSubscriptions("8cfec329267", {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listSubscriptions("8cfec329267", {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListSubscriptions (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/subscriptions/entry")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/subscriptions/entry").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listSubscriptions("entry");
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listSubscriptions("entry")
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListSubscriptions (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/subscriptions/entry")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/subscriptions/entry").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listSubscriptions("entry");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listSubscriptions("entry")
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListSubscriptions (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/subscriptions/entry")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/subscriptions/entry").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listSubscriptions("entry");
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listSubscriptions("entry")
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListSubscriptions (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/subscriptions/entry")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/subscriptions/entry").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listSubscriptions("entry");
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listSubscriptions("entry")
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListSubscriptionsOrg (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    CreatedAt: "2023-12-14T08:51:10Z",
-                    Customer: {
-                        BillingAddress1: "68 Golden Drive",
-                        BillingAddress2: "",
-                        BillingCity: "Johnson City",
-                        BillingCountry: "US",
-                        BillingEmail: "company@payabli.com",
-                        BillingPhone: "",
-                        BillingState: "TN",
-                        BillingZip: "37612",
-                        CompanyName: "Sunshine LLC",
-                        customerId: 4440,
-                        CustomerNumber: "C-90010",
-                        customerStatus: 1,
-                        FirstName: "Lisandra",
-                        Identifiers: ['\\"firstname\\"', '\\"lastname\\"', '\\"email\\"'],
-                        LastName: "Smitch",
-                        ShippingAddress1: "68 Golden Drive",
-                        ShippingCity: "Johnson City",
-                        ShippingCountry: "US",
-                        ShippingState: "TN",
-                        ShippingZip: "37612",
-                    },
-                    EndDate: "2026-03-20T00:00:00Z",
-                    EntrypageId: 0,
-                    ExternalPaypointID: "f743aed24a-10",
-                    FeeAmount: 0,
-                    Frequency: "monthly",
-                    IdSub: 580,
-                    invoiceData: {
-                        frequency: "onetime",
-                        invoiceAmount: 100,
-                        invoiceNumber: "INV-2345",
-                        invoiceStatus: 1,
-                        invoiceType: 1,
-                        items: [
-                            {
-                                itemCost: 10,
-                                itemDescription: "service",
-                                itemMode: 1,
-                                itemProductName: "Mat replacement",
-                                itemQty: 5,
-                                itemTotalAmount: 50,
-                            },
-                            {
-                                itemCost: 5,
-                                itemDescription: "service",
-                                itemMode: 1,
-                                itemProductName: "Mat clean",
-                                itemQty: 10,
-                                itemTotalAmount: 50,
-                            },
-                        ],
-                    },
-                    LastRun: "2024-01-02T14:32:11Z",
-                    LastUpdated: "2023-12-14T08:51:10Z",
-                    LeftCycles: 20,
-                    Method: "card",
-                    NetAmount: 10,
-                    NextDate: "2024-07-20T00:00:00Z",
-                    ParentOrgName: "FitnessManager",
-                    PaymentData: {
-                        AccountExp: "0924",
-                        AccountType: "unknow",
-                        AccountZip: "37612",
-                        binData: {
-                            binMatchedLength: "6",
-                            binCardBrand: "Visa",
-                            binCardType: "Credit",
-                            binCardCategory: "PLATINUM",
-                            binCardIssuer: "Bank of Example",
-                            binCardIssuerCountry: "United States",
-                            binCardIssuerCountryCodeA2: "US",
-                            binCardIssuerCountryNumber: "840",
-                            binCardIsRegulated: "false",
-                            binCardUseCategory: "Consumer",
-                            binCardIssuerCountryCodeA3: "USA",
-                        },
-                        HolderName: "Lisandra Smitch",
-                        Initiator: "payor",
-                        MaskedAccount: "2222 4XXXXXX0010",
-                        paymentDetails: { currency: "USD", serviceFee: 0, totalAmount: 100 },
-                        Sequence: "subsequent",
-                        StoredMethodUsageType: "subscription",
-                    },
-                    PaypointDbaname: "Athlete Factory LLC",
-                    PaypointEntryname: "473ac58b0",
-                    PaypointId: 3040,
-                    PaypointLegalname: "Athlete Factory LLC",
-                    PlanId: 1,
-                    StartDate: "2024-07-20T00:00:00Z",
-                    StoredMethod: {
-                        IdPmethod: "6edcbb56-9c0e-4003-b3d1-99abf149ba0e",
-                        Method: "card",
-                        Descriptor: "Visa for subscriptions",
-                        MaskedAccount: "4XXXXXXX0010",
-                        ExpDate: "0924",
-                        HolderName: "Lisandra Smitch",
-                        AchSecCode: null,
-                        AchHolderType: null,
-                        IsValidatedACH: false,
-                        BIN: "",
-                        binData: {
-                            binMatchedLength: "6",
-                            binCardBrand: "Visa",
-                            binCardType: "Credit",
-                            binCardCategory: "PLATINUM",
-                            binCardIssuer: "Bank of Example",
-                            binCardIssuerCountry: "United States",
-                            binCardIssuerCountryCodeA2: "US",
-                            binCardIssuerCountryNumber: "840",
-                            binCardIsRegulated: "false",
-                            binCardUseCategory: "Consumer",
-                            binCardIssuerCountryCodeA3: "USA",
-                        },
-                        ABA: "",
-                        PostalCode: "37612",
-                        MethodType: "Single Merchant",
-                        LastUpdated: "2023-12-14T08:51:10Z",
-                        CardUpdatedOn: null,
-                    },
-                    SubEvents: [
-                        {
-                            description: "created",
-                            eventTime: "2023-12-14T13:51:10Z",
-                            refData: "00-3470dfe2658b492811630255602f3fb5-d06fe0f72110000-00",
-                        },
-                        {
-                            description: "updated",
-                            eventTime: "2023-12-15T10:30:00Z",
-                            refData: "01-1234abcde6789fghij4567klmnopqr89-abcdefghi12345678-01",
-                            source: "web app",
-                        },
-                    ],
-                    SubStatus: 1,
-                    SubscriptionType: "Regular",
-                    TotalAmount: 100,
-                    TotalCycles: 20,
-                    UntilCancelled: false,
-                },
-            ],
-            Summary: {
-                pageIdentifier: "XXXXXXXXXXXXXXXXXXX",
-                pageSize: 20,
-                totalAmount: 150.22,
-                totalNetAmount: 150.22,
-                totalPages: 1,
-                totalRecords: 2,
-            },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "CreatedAt" : "2023-12-14T08:51:10Z" , "Customer" : { "BillingAddress1" : "68 Golden Drive" , "BillingAddress2" : "" , "BillingCity" : "Johnson City" , "BillingCountry" : "US" , "BillingEmail" : "company@payabli.com" , "BillingPhone" : "" , "BillingState" : "TN" , "BillingZip" : "37612" , "CompanyName" : "Sunshine LLC" , "customerId" : 4440 , "CustomerNumber" : "C-90010" , "customerStatus" : 1 , "FirstName" : "Lisandra" , "Identifiers" : [ "\\\"firstname\\\"" , "\\\"lastname\\\"" , "\\\"email\\\"" ] , "LastName" : "Smitch" , "ShippingAddress1" : "68 Golden Drive" , "ShippingCity" : "Johnson City" , "ShippingCountry" : "US" , "ShippingState" : "TN" , "ShippingZip" : "37612" } , "EndDate" : "2026-03-20T00:00:00Z" , "EntrypageId" : 0 , "ExternalPaypointID" : "f743aed24a-10" , "FeeAmount" : 0 , "Frequency" : "monthly" , "IdSub" : 580 , "invoiceData" : { "frequency" : "onetime" , "invoiceAmount" : 100 , "invoiceNumber" : "INV-2345" , "invoiceStatus" : 1 , "invoiceType" : 1 , "items" : [ { "itemCost" : 10 , "itemDescription" : "service" , "itemMode" : 1 , "itemProductName" : "Mat replacement" , "itemQty" : 5 , "itemTotalAmount" : 50 } , { "itemCost" : 5 , "itemDescription" : "service" , "itemMode" : 1 , "itemProductName" : "Mat clean" , "itemQty" : 10 , "itemTotalAmount" : 50 } ] } , "LastRun" : "2024-01-02T14:32:11Z" , "LastUpdated" : "2023-12-14T08:51:10Z" , "LeftCycles" : 20 , "Method" : "card" , "NetAmount" : 10 , "NextDate" : "2024-07-20T00:00:00Z" , "ParentOrgName" : "FitnessManager" , "PaymentData" : { "AccountExp" : "0924" , "AccountType" : "unknow" , "AccountZip" : "37612" , "binData" : { "binMatchedLength" : "6" , "binCardBrand" : "Visa" , "binCardType" : "Credit" , "binCardCategory" : "PLATINUM" , "binCardIssuer" : "Bank of Example" , "binCardIssuerCountry" : "United States" , "binCardIssuerCountryCodeA2" : "US" , "binCardIssuerCountryNumber" : "840" , "binCardIsRegulated" : "false" , "binCardUseCategory" : "Consumer" , "binCardIssuerCountryCodeA3" : "USA" } , "HolderName" : "Lisandra Smitch" , "Initiator" : "payor" , "MaskedAccount" : "2222 4XXXXXX0010" , "paymentDetails" : { "currency" : "USD" , "serviceFee" : 0 , "totalAmount" : 100 } , "Sequence" : "subsequent" , "StoredMethodUsageType" : "subscription" } , "PaypointDbaname" : "Athlete Factory LLC" , "PaypointEntryname" : "473ac58b0" , "PaypointId" : 3040 , "PaypointLegalname" : "Athlete Factory LLC" , "PlanId" : 1 , "StartDate" : "2024-07-20T00:00:00Z" , "StoredMethod" : { "IdPmethod" : "6edcbb56-9c0e-4003-b3d1-99abf149ba0e" , "Method" : "card" , "Descriptor" : "Visa for subscriptions" , "MaskedAccount" : "4XXXXXXX0010" , "ExpDate" : "0924" , "HolderName" : "Lisandra Smitch" , "AchSecCode" : null , "AchHolderType" : null , "IsValidatedACH" : false , "BIN" : "" , "binData" : { "binMatchedLength" : "6" , "binCardBrand" : "Visa" , "binCardType" : "Credit" , "binCardCategory" : "PLATINUM" , "binCardIssuer" : "Bank of Example" , "binCardIssuerCountry" : "United States" , "binCardIssuerCountryCodeA2" : "US" , "binCardIssuerCountryNumber" : "840" , "binCardIsRegulated" : "false" , "binCardUseCategory" : "Consumer" , "binCardIssuerCountryCodeA3" : "USA" } , "ABA" : "" , "PostalCode" : "37612" , "MethodType" : "Single Merchant" , "LastUpdated" : "2023-12-14T08:51:10Z" , "CardUpdatedOn" : null } , "SubEvents" : [ { "description" : "created" , "eventTime" : "2023-12-14T13:51:10Z" , "refData" : "00-3470dfe2658b492811630255602f3fb5-d06fe0f72110000-00" } , { "description" : "updated" , "eventTime" : "2023-12-15T10:30:00Z" , "refData" : "01-1234abcde6789fghij4567klmnopqr89-abcdefghi12345678-01" , "source" : "web app" } ] , "SubStatus" : 1 , "SubscriptionType" : "Regular" , "TotalAmount" : 100 , "TotalCycles" : 20 , "UntilCancelled" : false } ] , "Summary" : { "pageIdentifier" : "XXXXXXXXXXXXXXXXXXX" , "pageSize" : 20 , "totalAmount" : 150.22 , "totalNetAmount" : 150.22 , "totalPages" : 1 , "totalRecords" : 2 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/subscriptions/org/123")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/subscriptions/org/123").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listSubscriptionsOrg(123, {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listSubscriptionsOrg(123, {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListSubscriptionsOrg (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/subscriptions/org/1")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/subscriptions/org/1").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listSubscriptionsOrg(1);
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listSubscriptionsOrg(1)
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListSubscriptionsOrg (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/subscriptions/org/1")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/subscriptions/org/1").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listSubscriptionsOrg(1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listSubscriptionsOrg(1)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListSubscriptionsOrg (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/subscriptions/org/1")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/subscriptions/org/1").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listSubscriptionsOrg(1);
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listSubscriptionsOrg(1)
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListSubscriptionsOrg (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/subscriptions/org/1")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/subscriptions/org/1").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listSubscriptionsOrg(1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listSubscriptionsOrg(1)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListPayoutSubscriptions (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Summary: {
-                totalRecords: 1,
-                totalAmount: 500,
-                totalNetAmount: 500,
-                totalPages: 1,
-                pageSize: 20,
-                pageIdentifier: "XXXXXXXXXXXXXXXXXXX",
-            },
-            Records: [
-                {
-                    IdOutSubscription: 42,
-                    Status: 1,
-                    Events: [
-                        {
-                            description: "TransferCreated",
-                            eventTime: "2025-09-01T06:00:00Z",
-                            refData: "refData",
-                            source: "api",
-                        },
-                    ],
-                    Vendor: {
-                        VendorNumber: "VEN-123",
-                        Name1: "Herman's Coatings",
-                        Name2: "Herman's Coating Supply Company, LLC",
-                        EIN: "123456789",
-                        Phone: "2125551234",
-                        Email: "example@email.com",
-                        Address1: "123 Ocean Drive",
-                        Address2: "Suite 400",
-                        City: "Bristol",
-                        State: "GA",
-                        Zip: "31113",
-                        Country: "US",
-                        Mcc: "7777",
-                        LocationCode: "LOC123",
-                        Contacts: [
-                            {
-                                ContactEmail: "eric@martinezcoatings.com",
-                                ContactName: "Eric Martinez",
-                                ContactPhone: "5555555555",
-                                ContactTitle: "Owner",
-                            },
-                        ],
-                        BillingData: {
-                            id: 123456,
-                            accountId: "bank-account-001",
-                            nickname: "Main Checking Account",
-                            bankName: "Example Bank",
-                            routingAccount: "123456789",
-                            accountNumber: "9876543210",
-                            typeAccount: "Checking",
-                            bankAccountHolderName: "John Doe",
-                            bankAccountHolderType: "Business",
-                            bankAccountFunction: 2,
-                            verified: true,
-                            status: 1,
-                            services: [],
-                            default: true,
-                        },
-                        VendorStatus: 1,
-                        VendorId: 456,
-                        Summary: {
-                            ActiveBills: 2,
-                            PendingBills: 4,
-                            InTransitBills: 3,
-                            PaidBills: 18,
-                            OverdueBills: 1,
-                            ApprovedBills: 5,
-                            DisapprovedBills: 1,
-                            TotalBills: 34,
-                            ActiveBillsAmount: 1250.75,
-                            PendingBillsAmount: 2890.5,
-                            InTransitBillsAmount: 1675.25,
-                            PaidBillsAmount: 15420.8,
-                            OverdueBillsAmount: 425,
-                            ApprovedBillsAmount: 3240.9,
-                            DisapprovedBillsAmount: 180,
-                            TotalBillsAmount: 25083.2,
-                        },
-                        PaypointLegalname: "Sunshine Services, LLC",
-                        PaypointDbaname: "Sunshine Gutters",
-                        PaypointEntryname: "d193cf9a46",
-                        ParentOrgName: "PropertyManager Pro",
-                        ParentOrgId: 1000,
-                        CreatedDate: "2022-07-01T15:00:01Z",
-                        LastUpdated: "2022-07-01T15:00:01Z",
-                        remitAddress1: "123 Walnut Street",
-                        remitAddress2: "Suite 900",
-                        remitCity: "Miami",
-                        remitState: "FL",
-                        remitZip: "31113",
-                        remitCountry: "US",
-                        payeeName1: "payeeName1",
-                        payeeName2: "payeeName2",
-                        customField1: "",
-                        customField2: "",
-                        customerVendorAccount: "123-456",
-                        InternalReferenceId: 1000000,
-                        PaymentPortalUrl: "https://greenfield-landscaping.com/pay",
-                        CardAccepted: "yes",
-                        AchAccepted: "unable to determine",
-                        EnrichmentStatus: "fully_enriched",
-                        EnrichedBy: "web_search",
-                        EnrichedAt: "2026-03-05T14:22:10Z",
-                        EnrichmentId: "enrich-3890-a1b2c3d4",
-                        externalPaypointID: "Paypoint-100",
-                        StoredMethods: [],
-                    },
-                    BillData: [
-                        {
-                            billId: 54323,
-                            invoiceNumber: "INV-2345",
-                            netAmount: "500",
-                            invoiceDate: "2025-08-01",
-                            dueDate: "2025-08-15",
-                        },
-                    ],
-                    ExternalPaypointID: "d193cf9a46-10",
-                    Method: "ach",
-                    PaypointId: 3040,
-                    TotalAmount: 500,
-                    NetAmount: 500,
-                    FeeAmount: 0,
-                    PaymentData: {
-                        AccountType: "checking",
-                        HolderName: "Herman Coatings",
-                        Initiator: "merchant",
-                        MaskedAccount: "XXXXXX5666",
-                        paymentDetails: { currency: "USD", serviceFee: 0, totalAmount: 500 },
-                        Sequence: "subsequent",
-                        StoredMethodUsageType: "recurring",
-                    },
-                    StartDate: "2025-09-01T00:00:00Z",
-                    EndDate: "2026-09-01T00:00:00Z",
-                    NextDate: "2025-10-01T00:00:00Z",
-                    Frequency: "monthly",
-                    TotalCycles: 12,
-                    LeftCycles: 11,
-                    LastRun: "2025-09-01T06:00:00Z",
-                    EntrypageId: 0,
-                    UntilCancelled: false,
-                    LastUpdated: "2025-08-01T12:00:00Z",
-                    CreatedAt: "2025-08-01T12:00:00Z",
-                    PaypointLegalname: "Sunshine Services, LLC",
-                    PaypointDbaname: "Sunshine Gutters",
-                    PaypointEntryname: "d193cf9a46",
-                    ParentOrgName: "PropertyManager Pro",
-                    ParentOrgId: 236,
-                    Source: "api",
-                },
-            ],
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Summary" : { "totalRecords" : 1 , "totalAmount" : 500 , "totalNetAmount" : 500 , "totalPages" : 1 , "pageSize" : 20 , "pageIdentifier" : "XXXXXXXXXXXXXXXXXXX" } , "Records" : [ { "IdOutSubscription" : 42 , "Status" : 1 , "Events" : [ { "description" : "TransferCreated" , "eventTime" : "2025-09-01T06:00:00Z" , "refData" : "refData" , "source" : "api" } ] , "Vendor" : { "VendorNumber" : "VEN-123" , "Name1" : "Herman's Coatings" , "Name2" : "Herman's Coating Supply Company, LLC" , "EIN" : "123456789" , "Phone" : "2125551234" , "Email" : "example@email.com" , "Address1" : "123 Ocean Drive" , "Address2" : "Suite 400" , "City" : "Bristol" , "State" : "GA" , "Zip" : "31113" , "Country" : "US" , "Mcc" : "7777" , "LocationCode" : "LOC123" , "Contacts" : [ { "ContactEmail" : "eric@martinezcoatings.com" , "ContactName" : "Eric Martinez" , "ContactPhone" : "5555555555" , "ContactTitle" : "Owner" } ] , "BillingData" : { "id" : 123456 , "accountId" : "bank-account-001" , "nickname" : "Main Checking Account" , "bankName" : "Example Bank" , "routingAccount" : "123456789" , "accountNumber" : "9876543210" , "typeAccount" : "Checking" , "bankAccountHolderName" : "John Doe" , "bankAccountHolderType" : "Business" , "bankAccountFunction" : 2 , "verified" : true , "status" : 1 , "services" : [ ] , "default" : true } , "VendorStatus" : 1 , "VendorId" : 456 , "Summary" : { "ActiveBills" : 2 , "PendingBills" : 4 , "InTransitBills" : 3 , "PaidBills" : 18 , "OverdueBills" : 1 , "ApprovedBills" : 5 , "DisapprovedBills" : 1 , "TotalBills" : 34 , "ActiveBillsAmount" : 1250.75 , "PendingBillsAmount" : 2890.5 , "InTransitBillsAmount" : 1675.25 , "PaidBillsAmount" : 15420.8 , "OverdueBillsAmount" : 425 , "ApprovedBillsAmount" : 3240.9 , "DisapprovedBillsAmount" : 180 , "TotalBillsAmount" : 25083.2 } , "PaypointLegalname" : "Sunshine Services, LLC" , "PaypointDbaname" : "Sunshine Gutters" , "PaypointEntryname" : "d193cf9a46" , "ParentOrgName" : "PropertyManager Pro" , "ParentOrgId" : 1000 , "CreatedDate" : "2022-07-01T15:00:01Z" , "LastUpdated" : "2022-07-01T15:00:01Z" , "remitAddress1" : "123 Walnut Street" , "remitAddress2" : "Suite 900" , "remitCity" : "Miami" , "remitState" : "FL" , "remitZip" : "31113" , "remitCountry" : "US" , "payeeName1" : "payeeName1" , "payeeName2" : "payeeName2" , "customField1" : "" , "customField2" : "" , "customerVendorAccount" : "123-456" , "InternalReferenceId" : 1000000 , "PaymentPortalUrl" : "https://greenfield-landscaping.com/pay" , "CardAccepted" : "yes" , "AchAccepted" : "unable to determine" , "EnrichmentStatus" : "fully_enriched" , "EnrichedBy" : "web_search" , "EnrichedAt" : "2026-03-05T14:22:10Z" , "EnrichmentId" : "enrich-3890-a1b2c3d4" , "externalPaypointID" : "Paypoint-100" , "StoredMethods" : [ ] } , "BillData" : [ { "billId" : 54323 , "invoiceNumber" : "INV-2345" , "netAmount" : "500" , "invoiceDate" : "2025-08-01" , "dueDate" : "2025-08-15" } ] , "ExternalPaypointID" : "d193cf9a46-10" , "Method" : "ach" , "PaypointId" : 3040 , "TotalAmount" : 500 , "NetAmount" : 500 , "FeeAmount" : 0 , "PaymentData" : { "AccountType" : "checking" , "HolderName" : "Herman Coatings" , "Initiator" : "merchant" , "MaskedAccount" : "XXXXXX5666" , "paymentDetails" : { "currency" : "USD" , "serviceFee" : 0 , "totalAmount" : 500 } , "Sequence" : "subsequent" , "StoredMethodUsageType" : "recurring" } , "StartDate" : "2025-09-01T00:00:00Z" , "EndDate" : "2026-09-01T00:00:00Z" , "NextDate" : "2025-10-01T00:00:00Z" , "Frequency" : "monthly" , "TotalCycles" : 12 , "LeftCycles" : 11 , "LastRun" : "2025-09-01T06:00:00Z" , "EntrypageId" : 0 , "UntilCancelled" : false , "LastUpdated" : "2025-08-01T12:00:00Z" , "CreatedAt" : "2025-08-01T12:00:00Z" , "PaypointLegalname" : "Sunshine Services, LLC" , "PaypointDbaname" : "Sunshine Gutters" , "PaypointEntryname" : "d193cf9a46" , "ParentOrgName" : "PropertyManager Pro" , "ParentOrgId" : 236 , "Source" : "api" } ] };
+        
         server
             .mockEndpoint()
-            .get("/Query/payoutsubscriptions/8cfec329267")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/payoutsubscriptions/8cfec329267").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listPayoutSubscriptions("8cfec329267", {
-            fromRecord: 0,
-            limitRecord: 20,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listPayoutSubscriptions("8cfec329267", {
+    fromRecord: 0,
+    limitRecord: 20,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListPayoutSubscriptions (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/payoutsubscriptions/entry")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/payoutsubscriptions/entry").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listPayoutSubscriptions("entry");
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listPayoutSubscriptions("entry")
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListPayoutSubscriptions (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/payoutsubscriptions/entry")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/payoutsubscriptions/entry").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listPayoutSubscriptions("entry");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listPayoutSubscriptions("entry")
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListPayoutSubscriptions (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/payoutsubscriptions/entry")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/payoutsubscriptions/entry").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listPayoutSubscriptions("entry");
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listPayoutSubscriptions("entry")
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListPayoutSubscriptions (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/payoutsubscriptions/entry")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/payoutsubscriptions/entry").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listPayoutSubscriptions("entry");
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listPayoutSubscriptions("entry")
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListPayoutSubscriptionsOrg (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Summary: {
-                totalRecords: 1,
-                totalAmount: 500,
-                totalNetAmount: 500,
-                totalPages: 1,
-                pageSize: 20,
-                pageIdentifier: "XXXXXXXXXXXXXXXXXXX",
-            },
-            Records: [
-                {
-                    IdOutSubscription: 42,
-                    Status: 1,
-                    Events: [
-                        {
-                            description: "TransferCreated",
-                            eventTime: "2025-09-01T06:00:00Z",
-                            refData: "refData",
-                            source: "api",
-                        },
-                    ],
-                    Vendor: {
-                        VendorNumber: "VEN-123",
-                        Name1: "Herman's Coatings",
-                        Name2: "Herman's Coating Supply Company, LLC",
-                        EIN: "123456789",
-                        Phone: "2125551234",
-                        Email: "example@email.com",
-                        Address1: "123 Ocean Drive",
-                        Address2: "Suite 400",
-                        City: "Bristol",
-                        State: "GA",
-                        Zip: "31113",
-                        Country: "US",
-                        Mcc: "7777",
-                        LocationCode: "LOC123",
-                        Contacts: [
-                            {
-                                ContactEmail: "eric@martinezcoatings.com",
-                                ContactName: "Eric Martinez",
-                                ContactPhone: "5555555555",
-                                ContactTitle: "Owner",
-                            },
-                        ],
-                        BillingData: {
-                            id: 123456,
-                            accountId: "bank-account-001",
-                            nickname: "Main Checking Account",
-                            bankName: "Example Bank",
-                            routingAccount: "123456789",
-                            accountNumber: "9876543210",
-                            typeAccount: "Checking",
-                            bankAccountHolderName: "John Doe",
-                            bankAccountHolderType: "Business",
-                            bankAccountFunction: 2,
-                            verified: true,
-                            status: 1,
-                            services: [],
-                            default: true,
-                        },
-                        VendorStatus: 1,
-                        VendorId: 456,
-                        Summary: {
-                            ActiveBills: 2,
-                            PendingBills: 4,
-                            InTransitBills: 3,
-                            PaidBills: 18,
-                            OverdueBills: 1,
-                            ApprovedBills: 5,
-                            DisapprovedBills: 1,
-                            TotalBills: 34,
-                            ActiveBillsAmount: 1250.75,
-                            PendingBillsAmount: 2890.5,
-                            InTransitBillsAmount: 1675.25,
-                            PaidBillsAmount: 15420.8,
-                            OverdueBillsAmount: 425,
-                            ApprovedBillsAmount: 3240.9,
-                            DisapprovedBillsAmount: 180,
-                            TotalBillsAmount: 25083.2,
-                        },
-                        PaypointLegalname: "Sunshine Services, LLC",
-                        PaypointDbaname: "Sunshine Gutters",
-                        PaypointEntryname: "d193cf9a46",
-                        ParentOrgName: "PropertyManager Pro",
-                        ParentOrgId: 1000,
-                        CreatedDate: "2022-07-01T15:00:01Z",
-                        LastUpdated: "2022-07-01T15:00:01Z",
-                        remitAddress1: "123 Walnut Street",
-                        remitAddress2: "Suite 900",
-                        remitCity: "Miami",
-                        remitState: "FL",
-                        remitZip: "31113",
-                        remitCountry: "US",
-                        payeeName1: "payeeName1",
-                        payeeName2: "payeeName2",
-                        customField1: "",
-                        customField2: "",
-                        customerVendorAccount: "123-456",
-                        InternalReferenceId: 1000000,
-                        PaymentPortalUrl: "https://greenfield-landscaping.com/pay",
-                        CardAccepted: "yes",
-                        AchAccepted: "unable to determine",
-                        EnrichmentStatus: "fully_enriched",
-                        EnrichedBy: "web_search",
-                        EnrichedAt: "2026-03-05T14:22:10Z",
-                        EnrichmentId: "enrich-3890-a1b2c3d4",
-                        externalPaypointID: "Paypoint-100",
-                        StoredMethods: [],
-                    },
-                    BillData: [
-                        {
-                            billId: 54323,
-                            invoiceNumber: "INV-2345",
-                            netAmount: "500",
-                            invoiceDate: "2025-08-01",
-                            dueDate: "2025-08-15",
-                        },
-                    ],
-                    ExternalPaypointID: "d193cf9a46-10",
-                    Method: "ach",
-                    PaypointId: 3040,
-                    TotalAmount: 500,
-                    NetAmount: 500,
-                    FeeAmount: 0,
-                    PaymentData: {
-                        AccountType: "checking",
-                        HolderName: "Herman Coatings",
-                        Initiator: "merchant",
-                        MaskedAccount: "XXXXXX5666",
-                        paymentDetails: { currency: "USD", serviceFee: 0, totalAmount: 500 },
-                        Sequence: "subsequent",
-                        StoredMethodUsageType: "recurring",
-                    },
-                    StartDate: "2025-09-01T00:00:00Z",
-                    EndDate: "2026-09-01T00:00:00Z",
-                    NextDate: "2025-10-01T00:00:00Z",
-                    Frequency: "monthly",
-                    TotalCycles: 12,
-                    LeftCycles: 11,
-                    LastRun: "2025-09-01T06:00:00Z",
-                    EntrypageId: 0,
-                    UntilCancelled: false,
-                    LastUpdated: "2025-08-01T12:00:00Z",
-                    CreatedAt: "2025-08-01T12:00:00Z",
-                    PaypointLegalname: "Sunshine Services, LLC",
-                    PaypointDbaname: "Sunshine Gutters",
-                    PaypointEntryname: "d193cf9a46",
-                    ParentOrgName: "PropertyManager Pro",
-                    ParentOrgId: 236,
-                    Source: "api",
-                },
-            ],
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Summary" : { "totalRecords" : 1 , "totalAmount" : 500 , "totalNetAmount" : 500 , "totalPages" : 1 , "pageSize" : 20 , "pageIdentifier" : "XXXXXXXXXXXXXXXXXXX" } , "Records" : [ { "IdOutSubscription" : 42 , "Status" : 1 , "Events" : [ { "description" : "TransferCreated" , "eventTime" : "2025-09-01T06:00:00Z" , "refData" : "refData" , "source" : "api" } ] , "Vendor" : { "VendorNumber" : "VEN-123" , "Name1" : "Herman's Coatings" , "Name2" : "Herman's Coating Supply Company, LLC" , "EIN" : "123456789" , "Phone" : "2125551234" , "Email" : "example@email.com" , "Address1" : "123 Ocean Drive" , "Address2" : "Suite 400" , "City" : "Bristol" , "State" : "GA" , "Zip" : "31113" , "Country" : "US" , "Mcc" : "7777" , "LocationCode" : "LOC123" , "Contacts" : [ { "ContactEmail" : "eric@martinezcoatings.com" , "ContactName" : "Eric Martinez" , "ContactPhone" : "5555555555" , "ContactTitle" : "Owner" } ] , "BillingData" : { "id" : 123456 , "accountId" : "bank-account-001" , "nickname" : "Main Checking Account" , "bankName" : "Example Bank" , "routingAccount" : "123456789" , "accountNumber" : "9876543210" , "typeAccount" : "Checking" , "bankAccountHolderName" : "John Doe" , "bankAccountHolderType" : "Business" , "bankAccountFunction" : 2 , "verified" : true , "status" : 1 , "services" : [ ] , "default" : true } , "VendorStatus" : 1 , "VendorId" : 456 , "Summary" : { "ActiveBills" : 2 , "PendingBills" : 4 , "InTransitBills" : 3 , "PaidBills" : 18 , "OverdueBills" : 1 , "ApprovedBills" : 5 , "DisapprovedBills" : 1 , "TotalBills" : 34 , "ActiveBillsAmount" : 1250.75 , "PendingBillsAmount" : 2890.5 , "InTransitBillsAmount" : 1675.25 , "PaidBillsAmount" : 15420.8 , "OverdueBillsAmount" : 425 , "ApprovedBillsAmount" : 3240.9 , "DisapprovedBillsAmount" : 180 , "TotalBillsAmount" : 25083.2 } , "PaypointLegalname" : "Sunshine Services, LLC" , "PaypointDbaname" : "Sunshine Gutters" , "PaypointEntryname" : "d193cf9a46" , "ParentOrgName" : "PropertyManager Pro" , "ParentOrgId" : 1000 , "CreatedDate" : "2022-07-01T15:00:01Z" , "LastUpdated" : "2022-07-01T15:00:01Z" , "remitAddress1" : "123 Walnut Street" , "remitAddress2" : "Suite 900" , "remitCity" : "Miami" , "remitState" : "FL" , "remitZip" : "31113" , "remitCountry" : "US" , "payeeName1" : "payeeName1" , "payeeName2" : "payeeName2" , "customField1" : "" , "customField2" : "" , "customerVendorAccount" : "123-456" , "InternalReferenceId" : 1000000 , "PaymentPortalUrl" : "https://greenfield-landscaping.com/pay" , "CardAccepted" : "yes" , "AchAccepted" : "unable to determine" , "EnrichmentStatus" : "fully_enriched" , "EnrichedBy" : "web_search" , "EnrichedAt" : "2026-03-05T14:22:10Z" , "EnrichmentId" : "enrich-3890-a1b2c3d4" , "externalPaypointID" : "Paypoint-100" , "StoredMethods" : [ ] } , "BillData" : [ { "billId" : 54323 , "invoiceNumber" : "INV-2345" , "netAmount" : "500" , "invoiceDate" : "2025-08-01" , "dueDate" : "2025-08-15" } ] , "ExternalPaypointID" : "d193cf9a46-10" , "Method" : "ach" , "PaypointId" : 3040 , "TotalAmount" : 500 , "NetAmount" : 500 , "FeeAmount" : 0 , "PaymentData" : { "AccountType" : "checking" , "HolderName" : "Herman Coatings" , "Initiator" : "merchant" , "MaskedAccount" : "XXXXXX5666" , "paymentDetails" : { "currency" : "USD" , "serviceFee" : 0 , "totalAmount" : 500 } , "Sequence" : "subsequent" , "StoredMethodUsageType" : "recurring" } , "StartDate" : "2025-09-01T00:00:00Z" , "EndDate" : "2026-09-01T00:00:00Z" , "NextDate" : "2025-10-01T00:00:00Z" , "Frequency" : "monthly" , "TotalCycles" : 12 , "LeftCycles" : 11 , "LastRun" : "2025-09-01T06:00:00Z" , "EntrypageId" : 0 , "UntilCancelled" : false , "LastUpdated" : "2025-08-01T12:00:00Z" , "CreatedAt" : "2025-08-01T12:00:00Z" , "PaypointLegalname" : "Sunshine Services, LLC" , "PaypointDbaname" : "Sunshine Gutters" , "PaypointEntryname" : "d193cf9a46" , "ParentOrgName" : "PropertyManager Pro" , "ParentOrgId" : 236 , "Source" : "api" } ] };
+        
         server
             .mockEndpoint()
-            .get("/Query/payoutsubscriptions/org/123")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/payoutsubscriptions/org/123").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listPayoutSubscriptionsOrg(123, {
-            fromRecord: 0,
-            limitRecord: 20,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listPayoutSubscriptionsOrg(123, {
+    fromRecord: 0,
+    limitRecord: 20,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListPayoutSubscriptionsOrg (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/payoutsubscriptions/org/1")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/payoutsubscriptions/org/1").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listPayoutSubscriptionsOrg(1);
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listPayoutSubscriptionsOrg(1)
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListPayoutSubscriptionsOrg (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/payoutsubscriptions/org/1")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/payoutsubscriptions/org/1").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listPayoutSubscriptionsOrg(1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listPayoutSubscriptionsOrg(1)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListPayoutSubscriptionsOrg (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/payoutsubscriptions/org/1")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/payoutsubscriptions/org/1").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listPayoutSubscriptionsOrg(1);
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listPayoutSubscriptionsOrg(1)
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListPayoutSubscriptionsOrg (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/payoutsubscriptions/org/1")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/payoutsubscriptions/org/1").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listPayoutSubscriptionsOrg(1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listPayoutSubscriptionsOrg(1)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListTransactions (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    BatchAmount: 30.22,
-                    BatchNumber: "1234567",
-                    CfeeTransactions: [
-                        {
-                            cFeeTransid: "string",
-                            feeAmount: 0,
-                            operation: "string",
-                            refundId: 0,
-                            settlementStatus: 0,
-                            transactionTime: "2019-08-24T14:15:22Z",
-                            transStatus: 0,
-                        },
-                    ],
-                    ConnectorName: "gp",
-                    Customer: {
-                        BillingAddress1: "1111 street",
-                        BillingAddress2: "string",
-                        BillingCity: "myCity",
-                        BillingCountry: "US",
-                        BillingEmail: "customer@mail.com",
-                        BillingPhone: "1234567890",
-                        BillingState: "CA",
-                        BillingZip: "45567",
-                        CompanyName: "Sunshine LLC",
-                        customerId: 4440,
-                        CustomerNumber: "C-90010",
-                        FirstName: "John",
-                        LastName: "Doe",
-                        ShippingAddress1: "string",
-                        ShippingAddress2: "string",
-                        ShippingCity: "string",
-                        ShippingCountry: "string",
-                        ShippingState: "string",
-                        ShippingZip: "string",
-                    },
-                    DeviceId: "499585-389fj484-3jcj8hj3",
-                    EntrypageId: 0,
-                    ExternalProcessorInformation: " ",
-                    FeeAmount: 10.25,
-                    GatewayTransId: "string",
-                    invoiceData: {
-                        attachments: [
-                            {
-                                fContent: "TXkgdGVzdCBmaWxlHJ==...",
-                                filename: "my-doc.pdf",
-                                ftype: "pdf",
-                                furl: "https://mysite.com/my-doc.pdf",
-                            },
-                        ],
-                        company: "string",
-                        discount: 0,
-                        dutyAmount: 0,
-                        firstName: "string",
-                        freightAmount: 10,
-                        frequency: "onetime",
-                        invoiceAmount: 105,
-                        invoiceDate: "2026-01-01",
-                        invoiceDueDate: "2026-01-15",
-                        invoiceEndDate: "2026-01-15",
-                        invoiceNumber: "INV-2345",
-                        invoiceStatus: 0,
-                        invoiceType: 0,
-                        items: [
-                            {
-                                itemCategories: ["string"],
-                                itemCommodityCode: "string",
-                                itemCost: 1,
-                                itemDescription: "string",
-                                itemMode: 0,
-                                itemProductCode: "string",
-                                itemProductName: "product 01",
-                                itemQty: 1,
-                                itemTaxAmount: 0,
-                                itemTaxRate: 0,
-                                itemTotalAmount: 0,
-                                itemUnitOfMeasure: "U",
-                            },
-                        ],
-                        lastName: "string",
-                        notes: "string",
-                        paymentTerms: "PIA",
-                        purchaseOrder: "string",
-                        shippingAddress1: "string",
-                        shippingAddress2: "string",
-                        shippingCity: "string",
-                        shippingCountry: "string",
-                        shippingEmail: "string",
-                        shippingFromZip: "string",
-                        shippingPhone: "string",
-                        shippingState: "string",
-                        shippingZip: "string",
-                        summaryCommodityCode: "string",
-                        tax: 2.05,
-                        termsConditions: "string",
-                    },
-                    Method: "card",
-                    NetAmount: 100,
-                    Operation: "Sale",
-                    OrderId: "9876543",
-                    OrgId: 123,
-                    ParentOrgName: "Payabli",
-                    PaymentData: {
-                        AccountExp: "0426",
-                        AccountType: "visa",
-                        binData: {
-                            binMatchedLength: "6",
-                            binCardBrand: "VISA",
-                            binCardType: "DEBIT",
-                            binCardCategory: "CLASSIC",
-                            binCardIssuer: "CONOTOXIA SP. Z O.O",
-                            binCardIssuerCountry: "POLAND",
-                            binCardIssuerCountryCodeA2: "PL",
-                            binCardIssuerCountryNumber: "616",
-                            binCardIsRegulated: "true",
-                            binCardUseCategory: "Consumer",
-                            binCardIssuerCountryCodeA3: "POL",
-                        },
-                        HolderName: "Billy J Franks",
-                        Initiator: "payor",
-                        MaskedAccount: "411111XXXXXX1111",
-                        orderDescription: "Monthly subscription",
-                        paymentDetails: { totalAmount: 100 },
-                        Sequence: "first",
-                        StoredId: "675b43c1-9867-463c-8dc7-3d6ddb68554b-12812",
-                        StoredMethodUsageType: "unscheduled",
-                    },
-                    PaymentTransId: "2345667-ddd-fff",
-                    PayorId: 55,
-                    PaypointDbaname: "Sunshine LLC",
-                    PaypointEntryname: "7acda8200",
-                    PaypointId: 3040,
-                    PaypointLegalname: "Sunshine LLC",
-                    PendingFeeAmount: 2,
-                    RefundId: 0,
-                    ResponseData: {
-                        authcode: "123456",
-                        avsresponse: "N",
-                        avsresponse_text: "No address or ZIP match only",
-                        cvvresponse: "M",
-                        cvvresponse_text: "CVV2/CVC2 match",
-                        orderid: "10-bfcd5a17861d4a8690ca53c00000X",
-                        response: "Success",
-                        response_code: "100",
-                        response_code_text: "Transaction was approved.",
-                        responsetext: "SUCCESS",
-                        resultCode: "A0000",
-                        resultCodeText: "Approved",
-                        transactionid: "8082800000",
-                    },
-                    ReturnedId: 0,
-                    ScheduleReference: 0,
-                    SettlementStatus: 0,
-                    Source: "vterminal",
-                    splitFundingInstructions: [{}],
-                    splitCount: 1,
-                    TotalAmount: 110.25,
-                    TransactionEvents: [{}],
-                    TransactionTime: "2019-08-24T14:15:22Z",
-                    TransStatus: 1,
-                },
-            ],
-            Summary: {
-                pageIdentifier: "XXXXXXXXXXXXXXXXXXX",
-                pageSize: 20,
-                totalAmount: 177.22,
-                totalNetAmount: 177.22,
-                totalPages: 1,
-                totalRecords: 2,
-            },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "BatchAmount" : 30.22 , "BatchNumber" : "1234567" , "CfeeTransactions" : [ { "cFeeTransid" : "string" , "feeAmount" : 0 , "operation" : "string" , "refundId" : 0 , "settlementStatus" : 0 , "transactionTime" : "2019-08-24T14:15:22Z" , "transStatus" : 0 } ] , "ConnectorName" : "gp" , "Customer" : { "BillingAddress1" : "1111 street" , "BillingAddress2" : "string" , "BillingCity" : "myCity" , "BillingCountry" : "US" , "BillingEmail" : "customer@mail.com" , "BillingPhone" : "1234567890" , "BillingState" : "CA" , "BillingZip" : "45567" , "CompanyName" : "Sunshine LLC" , "customerId" : 4440 , "CustomerNumber" : "C-90010" , "FirstName" : "John" , "LastName" : "Doe" , "ShippingAddress1" : "string" , "ShippingAddress2" : "string" , "ShippingCity" : "string" , "ShippingCountry" : "string" , "ShippingState" : "string" , "ShippingZip" : "string" } , "DeviceId" : "499585-389fj484-3jcj8hj3" , "EntrypageId" : 0 , "ExternalProcessorInformation" : " " , "FeeAmount" : 10.25 , "GatewayTransId" : "string" , "invoiceData" : { "attachments" : [ { "fContent" : "TXkgdGVzdCBmaWxlHJ==..." , "filename" : "my-doc.pdf" , "ftype" : "pdf" , "furl" : "https://mysite.com/my-doc.pdf" } ] , "company" : "string" , "discount" : 0 , "dutyAmount" : 0 , "firstName" : "string" , "freightAmount" : 10 , "frequency" : "onetime" , "invoiceAmount" : 105 , "invoiceDate" : "2026-01-01" , "invoiceDueDate" : "2026-01-15" , "invoiceEndDate" : "2026-01-15" , "invoiceNumber" : "INV-2345" , "invoiceStatus" : 0 , "invoiceType" : 0 , "items" : [ { "itemCategories" : [ "string" ] , "itemCommodityCode" : "string" , "itemCost" : 1 , "itemDescription" : "string" , "itemMode" : 0 , "itemProductCode" : "string" , "itemProductName" : "product 01" , "itemQty" : 1 , "itemTaxAmount" : 0 , "itemTaxRate" : 0 , "itemTotalAmount" : 0 , "itemUnitOfMeasure" : "U" } ] , "lastName" : "string" , "notes" : "string" , "paymentTerms" : "PIA" , "purchaseOrder" : "string" , "shippingAddress1" : "string" , "shippingAddress2" : "string" , "shippingCity" : "string" , "shippingCountry" : "string" , "shippingEmail" : "string" , "shippingFromZip" : "string" , "shippingPhone" : "string" , "shippingState" : "string" , "shippingZip" : "string" , "summaryCommodityCode" : "string" , "tax" : 2.05 , "termsConditions" : "string" } , "Method" : "card" , "NetAmount" : 100 , "Operation" : "Sale" , "OrderId" : "9876543" , "OrgId" : 123 , "ParentOrgName" : "Payabli" , "PaymentData" : { "AccountExp" : "0426" , "AccountType" : "visa" , "binData" : { "binMatchedLength" : "6" , "binCardBrand" : "VISA" , "binCardType" : "DEBIT" , "binCardCategory" : "CLASSIC" , "binCardIssuer" : "CONOTOXIA SP. Z O.O" , "binCardIssuerCountry" : "POLAND" , "binCardIssuerCountryCodeA2" : "PL" , "binCardIssuerCountryNumber" : "616" , "binCardIsRegulated" : "true" , "binCardUseCategory" : "Consumer" , "binCardIssuerCountryCodeA3" : "POL" } , "HolderName" : "Billy J Franks" , "Initiator" : "payor" , "MaskedAccount" : "411111XXXXXX1111" , "orderDescription" : "Monthly subscription" , "paymentDetails" : { "totalAmount" : 100 } , "Sequence" : "first" , "StoredId" : "675b43c1-9867-463c-8dc7-3d6ddb68554b-12812" , "StoredMethodUsageType" : "unscheduled" } , "PaymentTransId" : "2345667-ddd-fff" , "PayorId" : 55 , "PaypointDbaname" : "Sunshine LLC" , "PaypointEntryname" : "7acda8200" , "PaypointId" : 3040 , "PaypointLegalname" : "Sunshine LLC" , "PendingFeeAmount" : 2 , "RefundId" : 0 , "ResponseData" : { "authcode" : "123456" , "avsresponse" : "N" , "avsresponse_text" : "No address or ZIP match only" , "cvvresponse" : "M" , "cvvresponse_text" : "CVV2/CVC2 match" , "orderid" : "10-bfcd5a17861d4a8690ca53c00000X" , "response" : "Success" , "response_code" : "100" , "response_code_text" : "Transaction was approved." , "responsetext" : "SUCCESS" , "resultCode" : "A0000" , "resultCodeText" : "Approved" , "transactionid" : "8082800000" } , "ReturnedId" : 0 , "ScheduleReference" : 0 , "SettlementStatus" : 0 , "Source" : "vterminal" , "splitFundingInstructions" : [ { } ] , "splitCount" : 1 , "TotalAmount" : 110.25 , "TransactionEvents" : [ { } ] , "TransactionTime" : "2019-08-24T14:15:22Z" , "TransStatus" : 1 } ] , "Summary" : { "pageIdentifier" : "XXXXXXXXXXXXXXXXXXX" , "pageSize" : 20 , "totalAmount" : 177.22 , "totalNetAmount" : 177.22 , "totalPages" : 1 , "totalRecords" : 2 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/transactions/8cfec329267")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transactions/8cfec329267").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listTransactions("8cfec329267", {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listTransactions("8cfec329267", {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListTransactions (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    ParentOrgName: "RealistRoofing",
-                    PaypointDbaname: "Eagle-Pointe",
-                    PaypointLegalname: "Eagle-Pointe",
-                    PaypointEntryname: "entry399",
-                    PaymentTransId: "399-8e7e5fc7-f483-43cc-9e78-d8a36ac857bf",
-                    ConnectorName: "GP",
-                    Method: "card",
-                    PayorId: 155974,
-                    PaymentData: {
-                        MaskedAccount: "5XXXXXXXXXXX4415",
-                        AccountExp: "12/29",
-                        HolderName: "RENEE DESCARTES",
-                        orderDescription: "Invoice 2034",
-                        binData: {
-                            binMatchedLength: "9",
-                            binCardBrand: "MASTERCARD",
-                            binCardType: "CREDIT",
-                            binCardCategory: "MIXED PRODUCT",
-                            binCardIssuer: "ALLIED IRISH BANKS, PLC",
-                            binCardIssuerCountry: "IRELAND",
-                            binCardIsRegulated: "False",
-                            binCardUseCategory: "PERSONAL",
-                        },
-                        paymentDetails: { totalAmount: 6.79, serviceFee: 0, currency: "USD" },
-                    },
-                    TransStatus: -4,
-                    PaypointId: 3040,
-                    splitFundingInstructions: [{}],
-                    splitCount: 1,
-                    TotalAmount: -6.79,
-                    NetAmount: -6.79,
-                    FeeAmount: 0,
-                    SettlementStatus: 0,
-                    Operation: "Reject",
-                    Source: "api",
-                    OrgId: 123,
-                    TransactionTime: "2026-03-02T18:56:23.109188",
-                    Customer: {
-                        FirstName: "Blaise",
-                        LastName: "Pascal",
-                        CompanyName: "Pensees LLC",
-                        BillingAddress1: "49912 Aufengrupt Pointe",
-                        BillingAddress2: "apt 6",
-                        BillingCity: "South Litzy",
-                        BillingState: "FL",
-                        BillingZip: "33000",
-                        BillingCountry: "US",
-                        BillingPhone: "+18955791994",
-                        BillingEmail: "blaise.pascal@gmail.com",
-                        CustomerNumber: "C-90010",
-                        customerId: 4440,
-                        customerStatus: 1,
-                    },
-                    TransactionEvents: [
-                        {
-                            TransEvent: "Created",
-                            EventData: "Card Reject - CTDR Id: 1379241",
-                            EventTime: "2026-03-02T18:56:23.352035",
-                        },
-                    ],
-                },
-            ],
-            Summary: { totalRecords: 14, totalAmount: -79.48, totalNetAmount: -74.41, totalPages: 14, pageSize: 1 },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "ParentOrgName" : "RealistRoofing" , "PaypointDbaname" : "Eagle-Pointe" , "PaypointLegalname" : "Eagle-Pointe" , "PaypointEntryname" : "entry399" , "PaymentTransId" : "399-8e7e5fc7-f483-43cc-9e78-d8a36ac857bf" , "ConnectorName" : "GP" , "Method" : "card" , "PayorId" : 155974 , "PaymentData" : { "MaskedAccount" : "5XXXXXXXXXXX4415" , "AccountExp" : "12/29" , "HolderName" : "RENEE DESCARTES" , "orderDescription" : "Invoice 2034" , "binData" : { "binMatchedLength" : "9" , "binCardBrand" : "MASTERCARD" , "binCardType" : "CREDIT" , "binCardCategory" : "MIXED PRODUCT" , "binCardIssuer" : "ALLIED IRISH BANKS, PLC" , "binCardIssuerCountry" : "IRELAND" , "binCardIsRegulated" : "False" , "binCardUseCategory" : "PERSONAL" } , "paymentDetails" : { "totalAmount" : 6.79 , "serviceFee" : 0 , "currency" : "USD" } } , "TransStatus" : -4 , "PaypointId" : 3040 , "splitFundingInstructions" : [ { } ] , "splitCount" : 1 , "TotalAmount" : -6.79 , "NetAmount" : -6.79 , "FeeAmount" : 0 , "SettlementStatus" : 0 , "Operation" : "Reject" , "Source" : "api" , "OrgId" : 123 , "TransactionTime" : "2026-03-02T18:56:23.109188" , "Customer" : { "FirstName" : "Blaise" , "LastName" : "Pascal" , "CompanyName" : "Pensees LLC" , "BillingAddress1" : "49912 Aufengrupt Pointe" , "BillingAddress2" : "apt 6" , "BillingCity" : "South Litzy" , "BillingState" : "FL" , "BillingZip" : "33000" , "BillingCountry" : "US" , "BillingPhone" : "+18955791994" , "BillingEmail" : "blaise.pascal@gmail.com" , "CustomerNumber" : "C-90010" , "customerId" : 4440 , "customerStatus" : 1 } , "TransactionEvents" : [ { "TransEvent" : "Created" , "EventData" : "Card Reject - CTDR Id: 1379241" , "EventTime" : "2026-03-02T18:56:23.352035" } ] } ] , "Summary" : { "totalRecords" : 14 , "totalAmount" : -79.48 , "totalNetAmount" : -74.41 , "totalPages" : 14 , "pageSize" : 1 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/transactions/8cfec329267")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transactions/8cfec329267").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listTransactions("8cfec329267", {
-            limitRecord: 1,
-            parameters: {
-                "operation(eq)": "Reject",
-            },
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listTransactions("8cfec329267", {
+    limitRecord: 1,
+    parameters: {
+        "operation(eq)": "Reject"
+    }
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListTransactions (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transactions/entry")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transactions/entry").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransactions("entry");
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listTransactions("entry")
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListTransactions (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transactions/entry")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transactions/entry").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransactions("entry");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listTransactions("entry")
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListTransactions (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transactions/entry")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transactions/entry").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransactions("entry");
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listTransactions("entry")
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListTransactions (6)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transactions/entry")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transactions/entry").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransactions("entry");
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listTransactions("entry")
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListTransactionsOrg (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    AchHolderType: "personal",
-                    AchSecCode: "AchSecCode",
-                    BatchAmount: 30.22,
-                    BatchNumber: "batch_226_ach_12-30-2023",
-                    CfeeTransactions: [{ transactionTime: "2024-01-15T09:30:00Z" }],
-                    ConnectorName: "gp",
-                    DeviceId: "499585-389fj484-3jcj8hj3",
-                    EntrypageId: 0,
-                    ExternalProcessorInformation: "[MER_xxxxxxxxxxxxxx]/[NNNNNNNNN]",
-                    FeeAmount: 1,
-                    GatewayTransId: "TRN_xwCAjQorWAYX1nAhAoHZVfN8iYHbI0",
-                    Method: "ach",
-                    NetAmount: 3762.87,
-                    Operation: "Sale",
-                    OrderId: "O-5140",
-                    OrgId: 123,
-                    ParentOrgName: "PropertyManager Pro",
-                    PaymentData: { orderDescription: "Monthly subscription", paymentDetails: { totalAmount: 100 } },
-                    PaymentTransId: "226-fe55ec0348e34702bd91b4be198ce7ec",
-                    PayorId: 1551,
-                    PaypointDbaname: "Sunshine Gutters",
-                    PaypointEntryname: "d193cf9a46",
-                    PaypointId: 3040,
-                    PaypointLegalname: "Sunshine Services, LLC",
-                    PendingFeeAmount: 2,
-                    RefundId: 0,
-                    ResponseData: {
-                        authcode: " ",
-                        avsresponse: " ",
-                        avsresponse_text: "",
-                        cvvresponse: " ",
-                        cvvresponse_text: " ",
-                        emv_auth_response_data: " ",
-                        response: "Success",
-                        response_code: "100",
-                        response_code_text: "Transaction was approved.",
-                        responsetext: "CAPTURED",
-                        resultCode: "A0000",
-                        resultCodeText: "Approved",
-                        transactionid: "TRN_xwCAjQorWAYX1nAhAoHZVfN8iYHbI0",
-                    },
-                    ReturnedId: 0,
-                    ScheduleReference: 0,
-                    SettlementStatus: 2,
-                    Source: "api",
-                    splitFundingInstructions: [{}],
-                    splitCount: 1,
-                    TotalAmount: 30.22,
-                    TransactionEvents: [{}],
-                    TransactionTime: "2025-10-19T00:00:00Z",
-                    TransAdditionalData: { key: "value" },
-                    TransStatus: 1,
-                },
-            ],
-            Summary: {
-                pageIdentifier: "null",
-                pageSize: 20,
-                totalAmount: 77.22,
-                totalNetAmount: 77.22,
-                totalPages: 2,
-                totalRecords: 2,
-            },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "AchHolderType" : "personal" , "AchSecCode" : "AchSecCode" , "BatchAmount" : 30.22 , "BatchNumber" : "batch_226_ach_12-30-2023" , "CfeeTransactions" : [ { "transactionTime" : "2024-01-15T09:30:00Z" } ] , "ConnectorName" : "gp" , "DeviceId" : "499585-389fj484-3jcj8hj3" , "EntrypageId" : 0 , "ExternalProcessorInformation" : "[MER_xxxxxxxxxxxxxx]/[NNNNNNNNN]" , "FeeAmount" : 1 , "GatewayTransId" : "TRN_xwCAjQorWAYX1nAhAoHZVfN8iYHbI0" , "Method" : "ach" , "NetAmount" : 3762.87 , "Operation" : "Sale" , "OrderId" : "O-5140" , "OrgId" : 123 , "ParentOrgName" : "PropertyManager Pro" , "PaymentData" : { "orderDescription" : "Monthly subscription" , "paymentDetails" : { "totalAmount" : 100 } } , "PaymentTransId" : "226-fe55ec0348e34702bd91b4be198ce7ec" , "PayorId" : 1551 , "PaypointDbaname" : "Sunshine Gutters" , "PaypointEntryname" : "d193cf9a46" , "PaypointId" : 3040 , "PaypointLegalname" : "Sunshine Services, LLC" , "PendingFeeAmount" : 2 , "RefundId" : 0 , "ResponseData" : { "authcode" : " " , "avsresponse" : " " , "avsresponse_text" : "" , "cvvresponse" : " " , "cvvresponse_text" : " " , "emv_auth_response_data" : " " , "response" : "Success" , "response_code" : "100" , "response_code_text" : "Transaction was approved." , "responsetext" : "CAPTURED" , "resultCode" : "A0000" , "resultCodeText" : "Approved" , "transactionid" : "TRN_xwCAjQorWAYX1nAhAoHZVfN8iYHbI0" } , "ReturnedId" : 0 , "ScheduleReference" : 0 , "SettlementStatus" : 2 , "Source" : "api" , "splitFundingInstructions" : [ { } ] , "splitCount" : 1 , "TotalAmount" : 30.22 , "TransactionEvents" : [ { } ] , "TransactionTime" : "2025-10-19T00:00:00Z" , "TransAdditionalData" : { "key" : "value" } , "TransStatus" : 1 } ] , "Summary" : { "pageIdentifier" : "null" , "pageSize" : 20 , "totalAmount" : 77.22 , "totalNetAmount" : 77.22 , "totalPages" : 2 , "totalRecords" : 2 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/transactions/org/123")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transactions/org/123").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listTransactionsOrg(123, {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listTransactionsOrg(123, {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListTransactionsOrg (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    ParentOrgName: "RealistRoofing",
-                    PaypointDbaname: "Eagle-Pointe",
-                    PaypointLegalname: "Eagle-Pointe",
-                    PaypointEntryname: "entry399",
-                    PaymentTransId: "399-8e7e5fc7-f483-43cc-9e78-d8a36ac857bf",
-                    ConnectorName: "GP",
-                    Method: "card",
-                    PayorId: 155974,
-                    PaymentData: {
-                        MaskedAccount: "5XXXXXXXXXXX4415",
-                        AccountExp: "12/29",
-                        HolderName: "RENEE DESCARTES",
-                        orderDescription: "Invoice 2034",
-                        binData: {
-                            binMatchedLength: "9",
-                            binCardBrand: "MASTERCARD",
-                            binCardType: "CREDIT",
-                            binCardCategory: "MIXED PRODUCT",
-                            binCardIssuer: "ALLIED IRISH BANKS, PLC",
-                            binCardIssuerCountry: "IRELAND",
-                            binCardIsRegulated: "False",
-                            binCardUseCategory: "PERSONAL",
-                        },
-                        paymentDetails: { totalAmount: 6.79, serviceFee: 0, currency: "USD" },
-                    },
-                    TransStatus: -4,
-                    PaypointId: 3040,
-                    splitFundingInstructions: [{}],
-                    splitCount: 1,
-                    TotalAmount: -6.79,
-                    NetAmount: -6.79,
-                    FeeAmount: 0,
-                    SettlementStatus: 0,
-                    Operation: "Reject",
-                    Source: "api",
-                    OrgId: 123,
-                    TransactionTime: "2026-03-02T18:56:23.109188",
-                    Customer: {
-                        FirstName: "Blaise",
-                        LastName: "Pascal",
-                        CompanyName: "Pensees LLC",
-                        BillingAddress1: "49912 Aufengrupt Pointe",
-                        BillingAddress2: "apt 6",
-                        BillingCity: "South Litzy",
-                        BillingState: "FL",
-                        BillingZip: "33000",
-                        BillingCountry: "US",
-                        BillingPhone: "+18955791994",
-                        BillingEmail: "blaise.pascal@gmail.com",
-                        CustomerNumber: "C-90010",
-                        customerId: 4440,
-                        customerStatus: 1,
-                    },
-                    TransactionEvents: [
-                        {
-                            TransEvent: "Created",
-                            EventData: "Card Reject - CTDR Id: 1379241",
-                            EventTime: "2026-03-02T18:56:23.352035",
-                        },
-                    ],
-                },
-            ],
-            Summary: { totalRecords: 14, totalAmount: -79.48, totalNetAmount: -74.41, totalPages: 14, pageSize: 1 },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "ParentOrgName" : "RealistRoofing" , "PaypointDbaname" : "Eagle-Pointe" , "PaypointLegalname" : "Eagle-Pointe" , "PaypointEntryname" : "entry399" , "PaymentTransId" : "399-8e7e5fc7-f483-43cc-9e78-d8a36ac857bf" , "ConnectorName" : "GP" , "Method" : "card" , "PayorId" : 155974 , "PaymentData" : { "MaskedAccount" : "5XXXXXXXXXXX4415" , "AccountExp" : "12/29" , "HolderName" : "RENEE DESCARTES" , "orderDescription" : "Invoice 2034" , "binData" : { "binMatchedLength" : "9" , "binCardBrand" : "MASTERCARD" , "binCardType" : "CREDIT" , "binCardCategory" : "MIXED PRODUCT" , "binCardIssuer" : "ALLIED IRISH BANKS, PLC" , "binCardIssuerCountry" : "IRELAND" , "binCardIsRegulated" : "False" , "binCardUseCategory" : "PERSONAL" } , "paymentDetails" : { "totalAmount" : 6.79 , "serviceFee" : 0 , "currency" : "USD" } } , "TransStatus" : -4 , "PaypointId" : 3040 , "splitFundingInstructions" : [ { } ] , "splitCount" : 1 , "TotalAmount" : -6.79 , "NetAmount" : -6.79 , "FeeAmount" : 0 , "SettlementStatus" : 0 , "Operation" : "Reject" , "Source" : "api" , "OrgId" : 123 , "TransactionTime" : "2026-03-02T18:56:23.109188" , "Customer" : { "FirstName" : "Blaise" , "LastName" : "Pascal" , "CompanyName" : "Pensees LLC" , "BillingAddress1" : "49912 Aufengrupt Pointe" , "BillingAddress2" : "apt 6" , "BillingCity" : "South Litzy" , "BillingState" : "FL" , "BillingZip" : "33000" , "BillingCountry" : "US" , "BillingPhone" : "+18955791994" , "BillingEmail" : "blaise.pascal@gmail.com" , "CustomerNumber" : "C-90010" , "customerId" : 4440 , "customerStatus" : 1 } , "TransactionEvents" : [ { "TransEvent" : "Created" , "EventData" : "Card Reject - CTDR Id: 1379241" , "EventTime" : "2026-03-02T18:56:23.352035" } ] } ] , "Summary" : { "totalRecords" : 14 , "totalAmount" : -79.48 , "totalNetAmount" : -74.41 , "totalPages" : 14 , "pageSize" : 1 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/transactions/org/123")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transactions/org/123").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listTransactionsOrg(123, {
-            limitRecord: 1,
-            parameters: {
-                "operation(eq)": "Reject",
-            },
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listTransactionsOrg(123, {
+    limitRecord: 1,
+    parameters: {
+        "operation(eq)": "Reject"
+    }
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListTransactionsOrg (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transactions/org/1")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transactions/org/1").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransactionsOrg(1);
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listTransactionsOrg(1)
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListTransactionsOrg (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transactions/org/1")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transactions/org/1").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransactionsOrg(1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listTransactionsOrg(1)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListTransactionsOrg (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transactions/org/1")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transactions/org/1").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransactionsOrg(1);
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listTransactionsOrg(1)
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListTransactionsOrg (6)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transactions/org/1")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transactions/org/1").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransactionsOrg(1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listTransactionsOrg(1)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListTransferDetails (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Summary: {
-                achReturns: -50,
-                adjustments: 10,
-                billingFees: 25,
-                chargebacks: 0,
-                grossTransferAmount: 1000,
-                releaseAmount: 0,
-                thirdPartyPaid: 0,
-                totalNetAmountTransfer: 935,
-                serviceFees: 30,
-                splitAmount: 650.22,
-                transferAmount: 935,
-                refunds: -20,
-                heldAmount: 0,
-                totalRecords: 1,
-                totalAmount: 1000,
-                totalNetAmount: 935,
-                netBatchAmount: 935,
-                totalPages: 1,
-                pageSize: 20,
-                pageidentifier: "XYZ123ABC456",
-            },
-            Records: [
-                {
-                    transferDetailId: 654321,
-                    transferId: 4521,
-                    transactionId: "txn-4321hg6543fe",
-                    type: "credit",
-                    category: "sale",
-                    grossAmount: 1000,
-                    chargeBackAmount: 0,
-                    returnedAmount: 0,
-                    refundAmount: 20,
-                    holdAmount: 0,
-                    releasedAmount: 0,
-                    billingFeesAmount: 25,
-                    thirdPartyPaidAmount: 0,
-                    adjustmentsAmount: 10,
-                    netTransferAmount: 935,
-                    splitFundingAmount: 0,
-                    ParentOrgName: "GadgetPro",
-                    PaypointDbaname: "Global Gadgets",
-                    PaypointLegalname: "Global Gadgets, LLC",
-                    PaypointEntryname: "48ae10920",
-                    PaymentTransId: "txn-4321hg6543fe",
-                    ConnectorName: "gp",
-                    GatewayTransId: "TRN_K6Nz3JxrNKkaPTF4ExCqfO4UwMW4CM",
-                    OrderId: "order789",
-                    Method: "ach",
-                    BatchNumber: "batch_226_ach_12-30-2023",
-                    BatchAmount: 30.22,
-                    PayorId: 1551,
-                    PaymentData: {
-                        MaskedAccount: "411812XXXXXX2357",
-                        AccountType: "visa",
-                        AccountExp: "08/28",
-                        HolderName: "Ara Karapetyan",
-                        orderDescription: "Electronics Purchase",
-                        binData: {
-                            binMatchedLength: "6",
-                            binCardBrand: "Visa",
-                            binCardType: "Credit",
-                            binCardCategory: "PLATINUM",
-                            binCardIssuer: "Bank of Example",
-                            binCardIssuerCountry: "United States",
-                            binCardIssuerCountryCodeA2: "US",
-                            binCardIssuerCountryNumber: "840",
-                            binCardIsRegulated: "false",
-                            binCardUseCategory: "Consumer",
-                            binCardIssuerCountryCodeA3: "USA",
-                        },
-                    },
-                    TransStatus: 1,
-                    TotalAmount: 1000,
-                    NetAmount: 935,
-                    FeeAmount: 1,
-                    SettlementStatus: 2,
-                    Operation: "Sale",
-                    ResponseData: {
-                        authcode: "123456",
-                        avsresponse: "N",
-                        avsresponse_text: "No address or ZIP match only",
-                        cvvresponse: "M",
-                        cvvresponse_text: "CVV2/CVC2 match",
-                        orderid: "10-bfcd5a17861d4a8690ca53c00000X",
-                        response: "Success",
-                        response_code: "100",
-                        response_code_text: "Transaction was approved.",
-                        responsetext: "SUCCESS",
-                        resultCode: "A0000",
-                        resultCodeText: "Approved",
-                        transactionid: "8082800000",
-                    },
-                    Source: "web",
-                    ScheduleReference: 0,
-                    OrgId: 123,
-                    RefundId: 0,
-                    ReturnedId: 0,
-                    TransactionTime: "2024-01-05T12:15:30.11",
-                    Customer: {
-                        Identifiers: ["customerId", "email"],
-                        FirstName: "Ara",
-                        LastName: "Karapetyan",
-                        CompanyName: "Ara's Electronics",
-                        BillingAddress1: "7890 Tech Park Drive",
-                        BillingCity: "Baltimore",
-                        BillingState: "MD",
-                        BillingZip: "21230",
-                        BillingCountry: "US",
-                        BillingEmail: "ara.karapetyan@electronics.com",
-                        CustomerNumber: "C-90010",
-                        customerId: 4440,
-                    },
-                    transactionNumber: null,
-                    billingFeesDetails: [],
-                    ExternalProcessorInformation: null,
-                    PaypointId: 3040,
-                    ChargebackId: null,
-                    RetrievalId: null,
-                    TransAdditionalData: null,
-                    invoiceData: null,
-                    EntrypageId: null,
-                    externalPaypointID: null,
-                    IsValidatedACH: true,
-                    splitFundingInstructions: [],
-                    CfeeTransactions: [],
-                    TransactionEvents: [],
-                    PendingFeeAmount: 0,
-                    RiskFlagged: false,
-                    RiskFlaggedOn: null,
-                    RiskStatus: "approved",
-                    RiskReason: null,
-                    RiskAction: null,
-                    RiskActionCode: null,
-                    DeviceId: null,
-                    AchSecCode: "PPD",
-                    AchHolderType: "personal",
-                    IpAddress: "192.100.1.100",
-                    IsSameDayACH: false,
-                    WalletType: null,
-                },
-            ],
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Summary" : { "achReturns" : -50 , "adjustments" : 10 , "billingFees" : 25 , "chargebacks" : 0 , "grossTransferAmount" : 1000 , "releaseAmount" : 0 , "thirdPartyPaid" : 0 , "totalNetAmountTransfer" : 935 , "serviceFees" : 30 , "splitAmount" : 650.22 , "transferAmount" : 935 , "refunds" : -20 , "heldAmount" : 0 , "totalRecords" : 1 , "totalAmount" : 1000 , "totalNetAmount" : 935 , "netBatchAmount" : 935 , "totalPages" : 1 , "pageSize" : 20 , "pageidentifier" : "XYZ123ABC456" } , "Records" : [ { "transferDetailId" : 654321 , "transferId" : 4521 , "transactionId" : "txn-4321hg6543fe" , "type" : "credit" , "category" : "sale" , "grossAmount" : 1000 , "chargeBackAmount" : 0 , "returnedAmount" : 0 , "refundAmount" : 20 , "holdAmount" : 0 , "releasedAmount" : 0 , "billingFeesAmount" : 25 , "thirdPartyPaidAmount" : 0 , "adjustmentsAmount" : 10 , "netTransferAmount" : 935 , "splitFundingAmount" : 0 , "ParentOrgName" : "GadgetPro" , "PaypointDbaname" : "Global Gadgets" , "PaypointLegalname" : "Global Gadgets, LLC" , "PaypointEntryname" : "48ae10920" , "PaymentTransId" : "txn-4321hg6543fe" , "ConnectorName" : "gp" , "GatewayTransId" : "TRN_K6Nz3JxrNKkaPTF4ExCqfO4UwMW4CM" , "OrderId" : "order789" , "Method" : "ach" , "BatchNumber" : "batch_226_ach_12-30-2023" , "BatchAmount" : 30.22 , "PayorId" : 1551 , "PaymentData" : { "MaskedAccount" : "411812XXXXXX2357" , "AccountType" : "visa" , "AccountExp" : "08/28" , "HolderName" : "Ara Karapetyan" , "orderDescription" : "Electronics Purchase" , "binData" : { "binMatchedLength" : "6" , "binCardBrand" : "Visa" , "binCardType" : "Credit" , "binCardCategory" : "PLATINUM" , "binCardIssuer" : "Bank of Example" , "binCardIssuerCountry" : "United States" , "binCardIssuerCountryCodeA2" : "US" , "binCardIssuerCountryNumber" : "840" , "binCardIsRegulated" : "false" , "binCardUseCategory" : "Consumer" , "binCardIssuerCountryCodeA3" : "USA" } } , "TransStatus" : 1 , "TotalAmount" : 1000 , "NetAmount" : 935 , "FeeAmount" : 1 , "SettlementStatus" : 2 , "Operation" : "Sale" , "ResponseData" : { "authcode" : "123456" , "avsresponse" : "N" , "avsresponse_text" : "No address or ZIP match only" , "cvvresponse" : "M" , "cvvresponse_text" : "CVV2/CVC2 match" , "orderid" : "10-bfcd5a17861d4a8690ca53c00000X" , "response" : "Success" , "response_code" : "100" , "response_code_text" : "Transaction was approved." , "responsetext" : "SUCCESS" , "resultCode" : "A0000" , "resultCodeText" : "Approved" , "transactionid" : "8082800000" } , "Source" : "web" , "ScheduleReference" : 0 , "OrgId" : 123 , "RefundId" : 0 , "ReturnedId" : 0 , "TransactionTime" : "2024-01-05T12:15:30.11" , "Customer" : { "Identifiers" : [ "customerId" , "email" ] , "FirstName" : "Ara" , "LastName" : "Karapetyan" , "CompanyName" : "Ara's Electronics" , "BillingAddress1" : "7890 Tech Park Drive" , "BillingCity" : "Baltimore" , "BillingState" : "MD" , "BillingZip" : "21230" , "BillingCountry" : "US" , "BillingEmail" : "ara.karapetyan@electronics.com" , "CustomerNumber" : "C-90010" , "customerId" : 4440 } , "transactionNumber" : null , "billingFeesDetails" : [ ] , "ExternalProcessorInformation" : null , "PaypointId" : 3040 , "ChargebackId" : null , "RetrievalId" : null , "TransAdditionalData" : null , "invoiceData" : null , "EntrypageId" : null , "externalPaypointID" : null , "IsValidatedACH" : true , "splitFundingInstructions" : [ ] , "CfeeTransactions" : [ ] , "TransactionEvents" : [ ] , "PendingFeeAmount" : 0 , "RiskFlagged" : false , "RiskFlaggedOn" : null , "RiskStatus" : "approved" , "RiskReason" : null , "RiskAction" : null , "RiskActionCode" : null , "DeviceId" : null , "AchSecCode" : "PPD" , "AchHolderType" : "personal" , "IpAddress" : "192.100.1.100" , "IsSameDayACH" : false , "WalletType" : null } ] };
+        
         server
             .mockEndpoint()
-            .get("/Query/transferDetails/8cfec329267/4521")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transferDetails/8cfec329267/4521").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listTransferDetails("8cfec329267", 4521);
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listTransferDetails("8cfec329267", 4521);
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListTransferDetails (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transferDetails/entry/1")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transferDetails/entry/1").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransferDetails("entry", 1);
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listTransferDetails("entry", 1)
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListTransferDetails (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transferDetails/entry/1")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transferDetails/entry/1").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransferDetails("entry", 1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listTransferDetails("entry", 1)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListTransferDetails (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transferDetails/entry/1")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transferDetails/entry/1").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransferDetails("entry", 1);
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listTransferDetails("entry", 1)
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListTransferDetails (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transferDetails/entry/1")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transferDetails/entry/1").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransferDetails("entry", 1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listTransferDetails("entry", 1)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListTransfers (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    transferId: 4521,
-                    paypointId: 3040,
-                    batchNumber: "split_705_gp_11-16-2024",
-                    batchCurrency: "USD",
-                    batchRecords: 1,
-                    transferIdentifier: "bbcbfed7-e535-45fe-8d62-000000",
-                    batchId: 1049,
-                    paypointEntryName: "47ae3de37",
-                    paypointLegalName: "Gruzya Outdoor Outfitters LLC",
-                    paypointDbaName: "Gruzya Outdoor Outfitters",
-                    paypointLogo: "https://example.com/logo.png",
-                    parentOrgName: "Pilgrim Planner",
-                    parentOrgId: 12345,
-                    parentOrgEntryName: "43aebc000",
-                    parentOrgLogo: "https://example.com/parent-logo.png",
-                    externalPaypointID: "ext-12345",
-                    bankAccount: {
-                        accountNumber: "****1234",
-                        routingNumber: "123456789",
-                        bankName: "Riverdale Community Bank",
-                    },
-                    transferDate: "2024-11-17T08:20:07.288+00:00",
-                    processor: "gp",
-                    transferStatus: 2,
-                    grossAmount: 1029,
-                    chargeBackAmount: 25,
-                    returnedAmount: 0,
-                    holdAmount: 0,
-                    releasedAmount: 0,
-                    billingFeesAmount: 0,
-                    thirdPartyPaidAmount: 0,
-                    adjustmentsAmount: 0,
-                    netTransferAmount: 1004,
-                    splitAmount: 650.22,
-                    eventsData: [
-                        {
-                            description: "Transfer Created",
-                            eventTime: "2024-11-16T08:15:33.4364067Z",
-                            source: "worker",
-                        },
-                    ],
-                    messages: [],
-                },
-            ],
-            Summary: { totalPages: 1, totalRecords: 2, pageSize: 20 },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "transferId" : 4521 , "paypointId" : 3040 , "batchNumber" : "split_705_gp_11-16-2024" , "batchCurrency" : "USD" , "batchRecords" : 1 , "transferIdentifier" : "bbcbfed7-e535-45fe-8d62-000000" , "batchId" : 1049 , "paypointEntryName" : "47ae3de37" , "paypointLegalName" : "Gruzya Outdoor Outfitters LLC" , "paypointDbaName" : "Gruzya Outdoor Outfitters" , "paypointLogo" : "https://example.com/logo.png" , "parentOrgName" : "Pilgrim Planner" , "parentOrgId" : 12345 , "parentOrgEntryName" : "43aebc000" , "parentOrgLogo" : "https://example.com/parent-logo.png" , "externalPaypointID" : "ext-12345" , "bankAccount" : { "accountNumber" : "****1234" , "routingNumber" : "123456789" , "bankName" : "Riverdale Community Bank" } , "transferDate" : "2024-11-17T08:20:07.288+00:00" , "processor" : "gp" , "transferStatus" : 2 , "grossAmount" : 1029 , "chargeBackAmount" : 25 , "returnedAmount" : 0 , "holdAmount" : 0 , "releasedAmount" : 0 , "billingFeesAmount" : 0 , "thirdPartyPaidAmount" : 0 , "adjustmentsAmount" : 0 , "netTransferAmount" : 1004 , "splitAmount" : 650.22 , "eventsData" : [ { "description" : "Transfer Created" , "eventTime" : "2024-11-16T08:15:33.4364067Z" , "source" : "worker" } ] , "messages" : [ ] } ] , "Summary" : { "totalPages" : 1 , "totalRecords" : 2 , "pageSize" : 20 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/transfers/8cfec329267")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transfers/8cfec329267").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listTransfers("8cfec329267", {
-            fromRecord: 0,
-            limitRecord: 20,
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listTransfers("8cfec329267", {
+    fromRecord: 0,
+    limitRecord: 20
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListTransfers (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transfers/entry")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transfers/entry").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransfers("entry");
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listTransfers("entry")
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListTransfers (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transfers/entry")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transfers/entry").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransfers("entry");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listTransfers("entry")
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListTransfers (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transfers/entry")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transfers/entry").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransfers("entry");
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listTransfers("entry")
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListTransfers (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transfers/entry")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transfers/entry").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransfers("entry");
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listTransfers("entry")
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListTransfersOrg (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    transferId: 4521,
-                    paypointId: 3040,
-                    batchNumber: "split_705_gp_11-16-2024",
-                    batchCurrency: "USD",
-                    batchRecords: 1,
-                    transferIdentifier: "bbcbfed7-e535-45fe-8d62-000000",
-                    batchId: 1049,
-                    paypointEntryName: "47ae3de37",
-                    paypointLegalName: "Gruzya Outdoor Outfitters LLC",
-                    paypointDbaName: "Gruzya Outdoor Outfitters",
-                    paypointLogo: "https://example.com/logo.png",
-                    parentOrgName: "Pilgrim Planner",
-                    parentOrgId: 12345,
-                    parentOrgEntryName: "43aebc000",
-                    parentOrgLogo: "https://example.com/parent-logo.png",
-                    externalPaypointID: "ext-12345",
-                    bankAccount: {
-                        accountNumber: "****1234",
-                        routingNumber: "123456789",
-                        bankName: "Riverdale Community Bank",
-                    },
-                    transferDate: "2024-11-17T08:20:07.288+00:00",
-                    processor: "gp",
-                    transferStatus: 2,
-                    grossAmount: 1029,
-                    chargeBackAmount: 25,
-                    returnedAmount: 0,
-                    holdAmount: 0,
-                    releasedAmount: 0,
-                    billingFeesAmount: 0,
-                    thirdPartyPaidAmount: 0,
-                    adjustmentsAmount: 0,
-                    netTransferAmount: 1004,
-                    splitAmount: 650.22,
-                    eventsData: [
-                        {
-                            description: "Transfer Created",
-                            eventTime: "2024-11-16T08:15:33.4364067Z",
-                            source: "worker",
-                        },
-                    ],
-                    messages: [],
-                },
-            ],
-            Summary: { totalPages: 1, totalRecords: 2, pageSize: 20 },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "transferId" : 4521 , "paypointId" : 3040 , "batchNumber" : "split_705_gp_11-16-2024" , "batchCurrency" : "USD" , "batchRecords" : 1 , "transferIdentifier" : "bbcbfed7-e535-45fe-8d62-000000" , "batchId" : 1049 , "paypointEntryName" : "47ae3de37" , "paypointLegalName" : "Gruzya Outdoor Outfitters LLC" , "paypointDbaName" : "Gruzya Outdoor Outfitters" , "paypointLogo" : "https://example.com/logo.png" , "parentOrgName" : "Pilgrim Planner" , "parentOrgId" : 12345 , "parentOrgEntryName" : "43aebc000" , "parentOrgLogo" : "https://example.com/parent-logo.png" , "externalPaypointID" : "ext-12345" , "bankAccount" : { "accountNumber" : "****1234" , "routingNumber" : "123456789" , "bankName" : "Riverdale Community Bank" } , "transferDate" : "2024-11-17T08:20:07.288+00:00" , "processor" : "gp" , "transferStatus" : 2 , "grossAmount" : 1029 , "chargeBackAmount" : 25 , "returnedAmount" : 0 , "holdAmount" : 0 , "releasedAmount" : 0 , "billingFeesAmount" : 0 , "thirdPartyPaidAmount" : 0 , "adjustmentsAmount" : 0 , "netTransferAmount" : 1004 , "splitAmount" : 650.22 , "eventsData" : [ { "description" : "Transfer Created" , "eventTime" : "2024-11-16T08:15:33.4364067Z" , "source" : "worker" } ] , "messages" : [ ] } ] , "Summary" : { "totalPages" : 1 , "totalRecords" : 2 , "pageSize" : 20 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/transfers/org/123")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transfers/org/123").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listTransfersOrg(123, {
-            fromRecord: 0,
-            limitRecord: 20,
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listTransfersOrg(123, {
+    fromRecord: 0,
+    limitRecord: 20
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListTransfersOrg (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transfers/org/1000000")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transfers/org/1000000").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransfersOrg(1000000);
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listTransfersOrg(1000000)
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListTransfersOrg (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transfers/org/1000000")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transfers/org/1000000").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransfersOrg(1000000);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listTransfersOrg(1000000)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListTransfersOrg (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transfers/org/1000000")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transfers/org/1000000").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransfersOrg(1000000);
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listTransfersOrg(1000000)
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListTransfersOrg (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transfers/org/1000000")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transfers/org/1000000").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransfersOrg(1000000);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listTransfersOrg(1000000)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListTransfersOutOrg (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Summary: { totalPages: 12, totalRecords: 234, pageSize: 20 },
-            Records: [
-                {
-                    transferId: 4521,
-                    paypointId: 3040,
-                    batchNumber: null,
-                    batchCurrency: null,
-                    batchRecords: null,
-                    transferIdentifier: null,
-                    batchId: null,
-                    batchNetAmount: null,
-                    batchStatus: null,
-                    paypointEntryName: "47cade237",
-                    paypointLegalName: "Solid Rock Concrete Coatings LLC",
-                    paypointDbaName: "Solid Rock Coatings",
-                    paypointLogo: "https://example.com/logos/solidrock.png",
-                    parentOrgName: "Premier Property Services",
-                    parentOrgId: 77,
-                    parentOrgLogo: "https://example.com/logos/premier.png",
-                    parentOrgEntryName: "premierps",
-                    externalPaypointID: "SR-892",
-                    bankAccount: {
-                        accountNumber: "4XXXXXX7231",
-                        routingNumber: "121000358",
-                        bankName: "Riverdale Community Bank",
-                    },
-                    transferDate: "2025-01-15T14:30:00Z",
-                    processor: "BK",
-                    transferStatus: null,
-                    grossAmount: 2847.5,
-                    chargeBackAmount: null,
-                    returnedAmount: 0,
-                    holdAmount: 0,
-                    releasedAmount: 0,
-                    billingFeesAmount: 12.5,
-                    thirdPartyPaidAmount: null,
-                    adjustmentsAmount: null,
-                    netTransferAmount: 2835,
-                    splitAmount: null,
-                    eventsData: [
-                        {
-                            description: "Payout funded",
-                            eventTime: "2025-01-15T14:28:45",
-                            refData: "",
-                            extraData: null,
-                            source: "system",
-                        },
-                    ],
-                    messages: [
-                        {
-                            Id: 8842,
-                            RoomId: 1205,
-                            UserId: 334,
-                            UserName: "Maria Santos",
-                            Content: "Transfer processed successfully",
-                            CreatedAt: "2025-01-15T14:30:00",
-                            MessageType: 1,
-                            MessageProperties: {
-                                originalTransferStatus: "pending",
-                                currentTransferStatus: "completed",
-                            },
-                        },
-                    ],
-                    type: "credit",
-                    method: "ach",
-                },
-            ],
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Summary" : { "totalPages" : 12 , "totalRecords" : 234 , "pageSize" : 20 } , "Records" : [ { "transferId" : 4521 , "paypointId" : 3040 , "batchNumber" : null , "batchCurrency" : null , "batchRecords" : null , "transferIdentifier" : null , "batchId" : null , "batchNetAmount" : null , "batchStatus" : null , "paypointEntryName" : "47cade237" , "paypointLegalName" : "Solid Rock Concrete Coatings LLC" , "paypointDbaName" : "Solid Rock Coatings" , "paypointLogo" : "https://example.com/logos/solidrock.png" , "parentOrgName" : "Premier Property Services" , "parentOrgId" : 77 , "parentOrgLogo" : "https://example.com/logos/premier.png" , "parentOrgEntryName" : "premierps" , "externalPaypointID" : "SR-892" , "bankAccount" : { "accountNumber" : "4XXXXXX7231" , "routingNumber" : "121000358" , "bankName" : "Riverdale Community Bank" } , "transferDate" : "2025-01-15T14:30:00Z" , "processor" : "BK" , "transferStatus" : null , "grossAmount" : 2847.5 , "chargeBackAmount" : null , "returnedAmount" : 0 , "holdAmount" : 0 , "releasedAmount" : 0 , "billingFeesAmount" : 12.5 , "thirdPartyPaidAmount" : null , "adjustmentsAmount" : null , "netTransferAmount" : 2835 , "splitAmount" : null , "eventsData" : [ { "description" : "Payout funded" , "eventTime" : "2025-01-15T14:28:45" , "refData" : "" , "extraData" : null , "source" : "system" } ] , "messages" : [ { "Id" : 8842 , "RoomId" : 1205 , "UserId" : 334 , "UserName" : "Maria Santos" , "Content" : "Transfer processed successfully" , "CreatedAt" : "2025-01-15T14:30:00" , "MessageType" : 1 , "MessageProperties" : { "originalTransferStatus" : "pending" , "currentTransferStatus" : "completed" } } ] , "type" : "credit" , "method" : "ach" } ] };
+        
         server
             .mockEndpoint()
-            .get("/Query/transfersOut/org/123")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transfersOut/org/123").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listTransfersOutOrg(123, {
-            fromRecord: 0,
-            limitRecord: 20,
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listTransfersOutOrg(123, {
+    fromRecord: 0,
+    limitRecord: 20
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListTransfersOutOrg (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transfersOut/org/1")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transfersOut/org/1").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransfersOutOrg(1);
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listTransfersOutOrg(1)
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListTransfersOutOrg (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transfersOut/org/1")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transfersOut/org/1").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransfersOutOrg(1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listTransfersOutOrg(1)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListTransfersOutOrg (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transfersOut/org/1")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transfersOut/org/1").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransfersOutOrg(1);
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listTransfersOutOrg(1)
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListTransfersOutOrg (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transfersOut/org/1")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transfersOut/org/1").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransfersOutOrg(1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listTransfersOutOrg(1)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListTransfersOutPaypoint (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Summary: { totalPages: 8, totalRecords: 156, pageSize: 20 },
-            Records: [
-                {
-                    transferId: 4521,
-                    paypointId: 3040,
-                    batchNumber: null,
-                    batchCurrency: null,
-                    batchRecords: null,
-                    transferIdentifier: null,
-                    batchId: null,
-                    batchNetAmount: null,
-                    batchStatus: null,
-                    paypointEntryName: "47cade237",
-                    paypointLegalName: "Solid Rock Concrete Coatings LLC",
-                    paypointDbaName: "Solid Rock Coatings",
-                    paypointLogo: "https://example.com/logos/solidrock.png",
-                    parentOrgName: "Premier Property Services",
-                    parentOrgId: 77,
-                    parentOrgLogo: "https://example.com/logos/premier.png",
-                    parentOrgEntryName: "premierps",
-                    externalPaypointID: "SR-892",
-                    bankAccount: {
-                        accountNumber: "4XXXXXX7231",
-                        routingNumber: "121000358",
-                        bankName: "Riverdale Community Bank",
-                    },
-                    transferDate: "2025-01-15T14:30:00Z",
-                    processor: "BK",
-                    transferStatus: null,
-                    grossAmount: 2847.5,
-                    chargeBackAmount: null,
-                    returnedAmount: 0,
-                    holdAmount: 0,
-                    releasedAmount: 0,
-                    billingFeesAmount: 12.5,
-                    thirdPartyPaidAmount: null,
-                    adjustmentsAmount: null,
-                    netTransferAmount: 2835,
-                    splitAmount: null,
-                    eventsData: [
-                        {
-                            description: "Payout funded",
-                            eventTime: "2025-01-15T14:28:45",
-                            refData: "",
-                            extraData: null,
-                            source: "system",
-                        },
-                    ],
-                    messages: [
-                        {
-                            Id: 8842,
-                            RoomId: 1205,
-                            UserId: 334,
-                            UserName: "Maria Santos",
-                            Content: "Transfer processed successfully",
-                            CreatedAt: "2025-01-15T14:30:00",
-                            MessageType: 1,
-                            MessageProperties: {
-                                originalTransferStatus: "pending",
-                                currentTransferStatus: "completed",
-                            },
-                        },
-                    ],
-                    type: "credit",
-                    method: "ach",
-                },
-            ],
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Summary" : { "totalPages" : 8 , "totalRecords" : 156 , "pageSize" : 20 } , "Records" : [ { "transferId" : 4521 , "paypointId" : 3040 , "batchNumber" : null , "batchCurrency" : null , "batchRecords" : null , "transferIdentifier" : null , "batchId" : null , "batchNetAmount" : null , "batchStatus" : null , "paypointEntryName" : "47cade237" , "paypointLegalName" : "Solid Rock Concrete Coatings LLC" , "paypointDbaName" : "Solid Rock Coatings" , "paypointLogo" : "https://example.com/logos/solidrock.png" , "parentOrgName" : "Premier Property Services" , "parentOrgId" : 77 , "parentOrgLogo" : "https://example.com/logos/premier.png" , "parentOrgEntryName" : "premierps" , "externalPaypointID" : "SR-892" , "bankAccount" : { "accountNumber" : "4XXXXXX7231" , "routingNumber" : "121000358" , "bankName" : "Riverdale Community Bank" } , "transferDate" : "2025-01-15T14:30:00Z" , "processor" : "BK" , "transferStatus" : null , "grossAmount" : 2847.5 , "chargeBackAmount" : null , "returnedAmount" : 0 , "holdAmount" : 0 , "releasedAmount" : 0 , "billingFeesAmount" : 12.5 , "thirdPartyPaidAmount" : null , "adjustmentsAmount" : null , "netTransferAmount" : 2835 , "splitAmount" : null , "eventsData" : [ { "description" : "Payout funded" , "eventTime" : "2025-01-15T14:28:45" , "refData" : "" , "extraData" : null , "source" : "system" } ] , "messages" : [ { "Id" : 8842 , "RoomId" : 1205 , "UserId" : 334 , "UserName" : "Maria Santos" , "Content" : "Transfer processed successfully" , "CreatedAt" : "2025-01-15T14:30:00" , "MessageType" : 1 , "MessageProperties" : { "originalTransferStatus" : "pending" , "currentTransferStatus" : "completed" } } ] , "type" : "credit" , "method" : "ach" } ] };
+        
         server
             .mockEndpoint()
-            .get("/Query/transfersOut/8cfec329267")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transfersOut/8cfec329267").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listTransfersOutPaypoint("8cfec329267", {
-            fromRecord: 0,
-            limitRecord: 20,
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listTransfersOutPaypoint("8cfec329267", {
+    fromRecord: 0,
+    limitRecord: 20
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListTransfersOutPaypoint (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transfersOut/entry")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transfersOut/entry").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransfersOutPaypoint("entry");
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listTransfersOutPaypoint("entry")
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListTransfersOutPaypoint (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transfersOut/entry")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transfersOut/entry").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransfersOutPaypoint("entry");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listTransfersOutPaypoint("entry")
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListTransfersOutPaypoint (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transfersOut/entry")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transfersOut/entry").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransfersOutPaypoint("entry");
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listTransfersOutPaypoint("entry")
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListTransfersOutPaypoint (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transfersOut/entry")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transfersOut/entry").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransfersOutPaypoint("entry");
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listTransfersOutPaypoint("entry")
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListTransferDetailsOut (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Summary: {
-                achReturns: 0,
-                adjustments: 0,
-                billingFees: 25,
-                chargebacks: 0,
-                grossTransferAmount: 4875,
-                releaseAmount: 0,
-                thirdPartyPaid: 0,
-                totalNetAmountTransfer: 4850,
-                netBatchAmount: 0,
-                splitAmount: 0,
-                serviceFees: 0,
-                transferAmount: 0,
-                refunds: 0,
-                heldAmount: 0,
-                totalRecords: 156,
-                totalAmount: 0,
-                totalNetAmount: 0,
-                totalPages: 8,
-                pageSize: 20,
-                pageidentifier: null,
-            },
-            Records: [
-                {
-                    transferDetailId: 9847,
-                    transferId: 4521,
-                    transactionId: "01KXYZ789ABC123DEF456GHI",
-                    IdOut: 88234,
-                    method: null,
-                    type: "Debit",
-                    category: "grouped",
-                    grossAmount: 1250,
-                    returnedAmount: 0,
-                    refundAmount: 0,
-                    holdAmount: 0,
-                    releasedAmount: 0,
-                    billingFeesAmount: 5,
-                    adjustmentsAmount: 0,
-                    netTransferAmount: 1245,
-                    billingFeesDetails: null,
-                    CreatedAt: "2025-01-15T10:22:18",
-                    Comments: "Epoxy floor coating materials",
-                    Vendor: {
-                        VendorNumber: "VEN-123",
-                        Name1: "Concrete Supply Distributors",
-                        Name2: null,
-                        EIN: "XXXXX4567",
-                        Phone: "(512) 555-0147",
-                        Email: "accounts@concretesupply.example.com",
-                        RemitEmail: "payments@concretesupply.example.com",
-                        Address1: "4200 Industrial Parkway",
-                        Address2: "Unit B",
-                        City: "Austin",
-                        State: "TX",
-                        Zip: "78745",
-                        Country: "US",
-                        Mcc: "5039",
-                        LocationCode: null,
-                        Contacts: [
-                            {
-                                ContactName: "Robert Chen",
-                                ContactEmail: "rchen@concretesupply.example.com",
-                                ContactTitle: "Accounts Receivable",
-                                ContactPhone: "(512) 555-0148",
-                            },
-                        ],
-                        BillingData: null,
-                        PaymentMethod: "ach",
-                        VendorStatus: 1,
-                        VendorId: 456,
-                        EnrollmentStatus: null,
-                        Summary: null,
-                        PaypointLegalname: "Solid Rock Concrete Coatings LLC",
-                        PaypointId: null,
-                        PaypointDbaname: "Solid Rock Coatings",
-                        PaypointEntryname: "47cade237",
-                        ParentOrgName: "Premier Property Services",
-                        ParentOrgId: 77,
-                        CreatedDate: "2024-08-12T09:15:00",
-                        LastUpdated: "2025-01-10T14:30:22",
-                        remitAddress1: "4200 Industrial Parkway",
-                        remitAddress2: "Unit B",
-                        remitCity: "Austin",
-                        remitState: "TX",
-                        remitZip: "78745",
-                        remitCountry: "US",
-                        payeeName1: null,
-                        payeeName2: null,
-                        customField1: "",
-                        customField2: "",
-                        customerVendorAccount: "SRCC-001847",
-                        InternalReferenceId: 3392,
-                        additionalData: null,
-                        externalPaypointID: "SR-892",
-                        StoredMethods: null,
-                    },
-                    PaypointDbaname: "Solid Rock Coatings",
-                    PaypointLegalname: "Solid Rock Concrete Coatings LLC",
-                    PaypointId: 3040,
-                    Status: 2,
-                    PaymentId: "01KXYZ789ABC123DEF456GHI",
-                    TransId: null,
-                    TransStatus: null,
-                    TransStatusDetail: null,
-                    TransStatusName: null,
-                    TransStatusCategory: null,
-                    LastUpdated: "2025-01-15T10:23:05",
-                    TotalAmount: 1250,
-                    NetAmount: 1245,
-                    FeeAmount: 5,
-                    Source: "api",
-                    ParentOrgName: "Premier Property Services",
-                    ParentOrgId: 77,
-                    BatchNumber: "b7c3e891-4f2a-4d8e-9a1b-c5d6e7f8a9b0",
-                    PaymentStatus: "Processing",
-                    PaymentMethod: "ach",
-                    CardToken: null,
-                    CheckNumber: "",
-                    CheckData: null,
-                    PaymentData: {
-                        MaskedAccount: "7XXXXXX4523",
-                        AccountType: "checking",
-                        AccountExp: "",
-                        AccountZip: "",
-                        HolderName: null,
-                        StoredId: "f8e7d6c5-b4a3-9281-7654-321098fedcba",
-                        Initiator: null,
-                        StoredMethodUsageType: null,
-                        Sequence: null,
-                        orderDescription: "Epoxy floor coating materials",
-                        cloudSignatureData: null,
-                        cloudSignatureFormat: null,
-                        paymentDetails: null,
-                        payorData: null,
-                        accountId: "bankOut1",
-                        bankAccount: null,
-                        gatewayConnector: null,
-                        binData: null,
-                    },
-                    Bills: [
-                        {
-                            billId: 54323,
-                            LotNumber: "LOT-2025-0115",
-                            AccountingField1: null,
-                            AccountingField2: null,
-                            Terms: null,
-                            AdditionalData: null,
-                            attachments: null,
-                            invoiceNumber: "INV-2345",
-                            netAmount: "1250.00",
-                            invoiceDate: "2025-01-10T00:00:00",
-                            dueDate: "2025-02-09",
-                            comments: "50 gal epoxy primer, 25 gal topcoat - Project Riverside Plaza",
-                            identifier: null,
-                            discount: null,
-                            totalAmount: null,
-                        },
-                    ],
-                    Events: [
-                        { TransEvent: "Risk Validated: PASSED", EventData: "", EventTime: "2025-01-15T10:22:20" },
-                        {
-                            TransEvent: "Captured",
-                            EventData: "0ABC123XYZ789:00000012",
-                            EventTime: "2025-01-15T10:22:25",
-                        },
-                    ],
-                    externalPaypointID: "SR-892",
-                    EntryName: "8cfec329267",
-                    Gateway: "bank",
-                    BatchId: 1049,
-                    HasVcardTransactions: null,
-                    IsSameDayACH: false,
-                    ScheduleId: 0,
-                    SettlementStatus: "Pending",
-                    SettlementStatusName: "",
-                    SettlementDate: null,
-                    RiskFlagged: false,
-                    RiskFlaggedOn: "2025-01-15T10:22:18",
-                    RiskStatus: "PASSED",
-                    RiskReason: "",
-                    RiskAction: "",
-                    RiskActionCode: 0,
-                    PayoutProgram: "ODP",
-                    AchTraceNumber: null,
-                },
-            ],
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Summary" : { "achReturns" : 0 , "adjustments" : 0 , "billingFees" : 25 , "chargebacks" : 0 , "grossTransferAmount" : 4875 , "releaseAmount" : 0 , "thirdPartyPaid" : 0 , "totalNetAmountTransfer" : 4850 , "netBatchAmount" : 0 , "splitAmount" : 0 , "serviceFees" : 0 , "transferAmount" : 0 , "refunds" : 0 , "heldAmount" : 0 , "totalRecords" : 156 , "totalAmount" : 0 , "totalNetAmount" : 0 , "totalPages" : 8 , "pageSize" : 20 , "pageidentifier" : null } , "Records" : [ { "transferDetailId" : 9847 , "transferId" : 4521 , "transactionId" : "01KXYZ789ABC123DEF456GHI" , "IdOut" : 88234 , "method" : null , "type" : "Debit" , "category" : "grouped" , "grossAmount" : 1250 , "returnedAmount" : 0 , "refundAmount" : 0 , "holdAmount" : 0 , "releasedAmount" : 0 , "billingFeesAmount" : 5 , "adjustmentsAmount" : 0 , "netTransferAmount" : 1245 , "billingFeesDetails" : null , "CreatedAt" : "2025-01-15T10:22:18" , "Comments" : "Epoxy floor coating materials" , "Vendor" : { "VendorNumber" : "VEN-123" , "Name1" : "Concrete Supply Distributors" , "Name2" : null , "EIN" : "XXXXX4567" , "Phone" : "(512) 555-0147" , "Email" : "accounts@concretesupply.example.com" , "RemitEmail" : "payments@concretesupply.example.com" , "Address1" : "4200 Industrial Parkway" , "Address2" : "Unit B" , "City" : "Austin" , "State" : "TX" , "Zip" : "78745" , "Country" : "US" , "Mcc" : "5039" , "LocationCode" : null , "Contacts" : [ { "ContactName" : "Robert Chen" , "ContactEmail" : "rchen@concretesupply.example.com" , "ContactTitle" : "Accounts Receivable" , "ContactPhone" : "(512) 555-0148" } ] , "BillingData" : null , "PaymentMethod" : "ach" , "VendorStatus" : 1 , "VendorId" : 456 , "EnrollmentStatus" : null , "Summary" : null , "PaypointLegalname" : "Solid Rock Concrete Coatings LLC" , "PaypointId" : null , "PaypointDbaname" : "Solid Rock Coatings" , "PaypointEntryname" : "47cade237" , "ParentOrgName" : "Premier Property Services" , "ParentOrgId" : 77 , "CreatedDate" : "2024-08-12T09:15:00" , "LastUpdated" : "2025-01-10T14:30:22" , "remitAddress1" : "4200 Industrial Parkway" , "remitAddress2" : "Unit B" , "remitCity" : "Austin" , "remitState" : "TX" , "remitZip" : "78745" , "remitCountry" : "US" , "payeeName1" : null , "payeeName2" : null , "customField1" : "" , "customField2" : "" , "customerVendorAccount" : "SRCC-001847" , "InternalReferenceId" : 3392 , "additionalData" : null , "externalPaypointID" : "SR-892" , "StoredMethods" : null } , "PaypointDbaname" : "Solid Rock Coatings" , "PaypointLegalname" : "Solid Rock Concrete Coatings LLC" , "PaypointId" : 3040 , "Status" : 2 , "PaymentId" : "01KXYZ789ABC123DEF456GHI" , "TransId" : null , "TransStatus" : null , "TransStatusDetail" : null , "TransStatusName" : null , "TransStatusCategory" : null , "LastUpdated" : "2025-01-15T10:23:05" , "TotalAmount" : 1250 , "NetAmount" : 1245 , "FeeAmount" : 5 , "Source" : "api" , "ParentOrgName" : "Premier Property Services" , "ParentOrgId" : 77 , "BatchNumber" : "b7c3e891-4f2a-4d8e-9a1b-c5d6e7f8a9b0" , "PaymentStatus" : "Processing" , "PaymentMethod" : "ach" , "CardToken" : null , "CheckNumber" : "" , "CheckData" : null , "PaymentData" : { "MaskedAccount" : "7XXXXXX4523" , "AccountType" : "checking" , "AccountExp" : "" , "AccountZip" : "" , "HolderName" : null , "StoredId" : "f8e7d6c5-b4a3-9281-7654-321098fedcba" , "Initiator" : null , "StoredMethodUsageType" : null , "Sequence" : null , "orderDescription" : "Epoxy floor coating materials" , "cloudSignatureData" : null , "cloudSignatureFormat" : null , "paymentDetails" : null , "payorData" : null , "accountId" : "bankOut1" , "bankAccount" : null , "gatewayConnector" : null , "binData" : null } , "Bills" : [ { "billId" : 54323 , "LotNumber" : "LOT-2025-0115" , "AccountingField1" : null , "AccountingField2" : null , "Terms" : null , "AdditionalData" : null , "attachments" : null , "invoiceNumber" : "INV-2345" , "netAmount" : "1250.00" , "invoiceDate" : "2025-01-10T00:00:00" , "dueDate" : "2025-02-09" , "comments" : "50 gal epoxy primer, 25 gal topcoat - Project Riverside Plaza" , "identifier" : null , "discount" : null , "totalAmount" : null } ] , "Events" : [ { "TransEvent" : "Risk Validated: PASSED" , "EventData" : "" , "EventTime" : "2025-01-15T10:22:20" } , { "TransEvent" : "Captured" , "EventData" : "0ABC123XYZ789:00000012" , "EventTime" : "2025-01-15T10:22:25" } ] , "externalPaypointID" : "SR-892" , "EntryName" : "8cfec329267" , "Gateway" : "bank" , "BatchId" : 1049 , "HasVcardTransactions" : null , "IsSameDayACH" : false , "ScheduleId" : 0 , "SettlementStatus" : "Pending" , "SettlementStatusName" : "" , "SettlementDate" : null , "RiskFlagged" : false , "RiskFlaggedOn" : "2025-01-15T10:22:18" , "RiskStatus" : "PASSED" , "RiskReason" : "" , "RiskAction" : "" , "RiskActionCode" : 0 , "PayoutProgram" : "ODP" , "AchTraceNumber" : null } ] };
+        
         server
             .mockEndpoint()
-            .get("/Query/transferDetailsOut/8cfec329267/4521")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transferDetailsOut/8cfec329267/4521").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listTransferDetailsOut("8cfec329267", 4521, {
-            fromRecord: 0,
-            limitRecord: 20,
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listTransferDetailsOut("8cfec329267", 4521, {
+    fromRecord: 0,
+    limitRecord: 20
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListTransferDetailsOut (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transferDetailsOut/entry/1")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transferDetailsOut/entry/1").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransferDetailsOut("entry", 1);
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listTransferDetailsOut("entry", 1)
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListTransferDetailsOut (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transferDetailsOut/entry/1")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transferDetailsOut/entry/1").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransferDetailsOut("entry", 1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listTransferDetailsOut("entry", 1)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListTransferDetailsOut (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transferDetailsOut/entry/1")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transferDetailsOut/entry/1").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransferDetailsOut("entry", 1);
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listTransferDetailsOut("entry", 1)
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListTransferDetailsOut (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/transferDetailsOut/entry/1")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/transferDetailsOut/entry/1").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listTransferDetailsOut("entry", 1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listTransferDetailsOut("entry", 1)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListUsersOrg (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    Access: [{ roleValue: true }],
-                    AdditionalData: "AdditionalData",
-                    createdAt: "2022-07-01T15:00:01Z",
-                    Email: "example@email.com",
-                    language: "en",
-                    lastAccess: "2022-07-01T15:00:01Z",
-                    Name: "Sean Smith",
-                    Phone: "5555555555",
-                    Scope: [{ orgType: 0 }],
-                    snData: "snData",
-                    snIdentifier: "snIdentifier",
-                    snProvider: "google",
-                    timeZone: -5,
-                    userId: 1000000,
-                    UsrMFA: false,
-                    UsrMFAMode: 0,
-                    UsrStatus: 1,
-                },
-            ],
-            Summary: {
-                pageIdentifier: "null",
-                pageSize: 20,
-                totalAmount: 77.22,
-                totalNetAmount: 77.22,
-                totalPages: 2,
-                totalRecords: 2,
-            },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "Access" : [ { "roleValue" : true } ] , "AdditionalData" : "AdditionalData" , "createdAt" : "2022-07-01T15:00:01Z" , "Email" : "example@email.com" , "language" : "en" , "lastAccess" : "2022-07-01T15:00:01Z" , "Name" : "Sean Smith" , "Phone" : "5555555555" , "Scope" : [ { "orgType" : 0 } ] , "snData" : "snData" , "snIdentifier" : "snIdentifier" , "snProvider" : "google" , "timeZone" : -5 , "userId" : 1000000 , "UsrMFA" : false , "UsrMFAMode" : 0 , "UsrStatus" : 1 } ] , "Summary" : { "pageIdentifier" : "null" , "pageSize" : 20 , "totalAmount" : 77.22 , "totalNetAmount" : 77.22 , "totalPages" : 2 , "totalRecords" : 2 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/users/org/123")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/users/org/123").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listUsersOrg(123, {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listUsersOrg(123, {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListUsersOrg (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
+        server
+            .mockEndpoint()
+            .get("/Query/users/org/1").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        server.mockEndpoint().get("/Query/users/org/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.query.listUsersOrg(1);
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listUsersOrg(1)
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListUsersOrg (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
+        server
+            .mockEndpoint()
+            .get("/Query/users/org/1").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        server.mockEndpoint().get("/Query/users/org/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.query.listUsersOrg(1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listUsersOrg(1)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListUsersOrg (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
+        server
+            .mockEndpoint()
+            .get("/Query/users/org/1").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        server.mockEndpoint().get("/Query/users/org/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.query.listUsersOrg(1);
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listUsersOrg(1)
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListUsersOrg (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
+        server
+            .mockEndpoint()
+            .get("/Query/users/org/1").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        server.mockEndpoint().get("/Query/users/org/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.query.listUsersOrg(1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listUsersOrg(1)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListUsersPaypoint (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    Access: [{ roleValue: true }],
-                    AdditionalData: "AdditionalData",
-                    createdAt: "2022-07-01T15:00:01Z",
-                    Email: "example@email.com",
-                    language: "en",
-                    lastAccess: "2022-07-01T15:00:01Z",
-                    Name: "Sean Smith",
-                    Phone: "5555555555",
-                    Scope: [{ orgType: 0 }],
-                    snData: "snData",
-                    snIdentifier: "snIdentifier",
-                    snProvider: "google",
-                    timeZone: -5,
-                    userId: 1000000,
-                    UsrMFA: false,
-                    UsrMFAMode: 0,
-                    UsrStatus: 1,
-                },
-            ],
-            Summary: {
-                pageIdentifier: "null",
-                pageSize: 20,
-                totalAmount: 77.22,
-                totalNetAmount: 77.22,
-                totalPages: 2,
-                totalRecords: 2,
-            },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "Access" : [ { "roleValue" : true } ] , "AdditionalData" : "AdditionalData" , "createdAt" : "2022-07-01T15:00:01Z" , "Email" : "example@email.com" , "language" : "en" , "lastAccess" : "2022-07-01T15:00:01Z" , "Name" : "Sean Smith" , "Phone" : "5555555555" , "Scope" : [ { "orgType" : 0 } ] , "snData" : "snData" , "snIdentifier" : "snIdentifier" , "snProvider" : "google" , "timeZone" : -5 , "userId" : 1000000 , "UsrMFA" : false , "UsrMFAMode" : 0 , "UsrStatus" : 1 } ] , "Summary" : { "pageIdentifier" : "null" , "pageSize" : 20 , "totalAmount" : 77.22 , "totalNetAmount" : 77.22 , "totalPages" : 2 , "totalRecords" : 2 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/users/point/8cfec329267")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/users/point/8cfec329267").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listUsersPaypoint("8cfec329267", {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listUsersPaypoint("8cfec329267", {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListUsersPaypoint (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/users/point/entry")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/users/point/entry").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listUsersPaypoint("entry");
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listUsersPaypoint("entry")
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListUsersPaypoint (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/users/point/entry")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/users/point/entry").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listUsersPaypoint("entry");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listUsersPaypoint("entry")
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListUsersPaypoint (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/users/point/entry")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/users/point/entry").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listUsersPaypoint("entry");
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listUsersPaypoint("entry")
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListUsersPaypoint (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/users/point/entry")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/users/point/entry").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listUsersPaypoint("entry");
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listUsersPaypoint("entry")
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListVendors (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    VendorNumber: "VEN-123",
-                    Name1: "Herman's Coatings",
-                    Name2: "Herman's Coating Supply Company, LLC",
-                    EIN: "123456789",
-                    Phone: "2125551234",
-                    Email: "example@email.com",
-                    Address1: "123 Ocean Drive",
-                    Address2: "Suite 400",
-                    City: "Bristol",
-                    State: "GA",
-                    Zip: "31113",
-                    Country: "US",
-                    Mcc: "7777",
-                    LocationCode: "LOC123",
-                    Contacts: [
-                        {
-                            ContactEmail: "eric@martinezcoatings.com",
-                            ContactName: "Eric Martinez",
-                            ContactPhone: "5555555555",
-                            ContactTitle: "Owner",
-                        },
-                    ],
-                    BillingData: {
-                        id: 123456,
-                        accountId: "bank-account-001",
-                        nickname: "Main Checking Account",
-                        bankName: "Example Bank",
-                        routingAccount: "123456789",
-                        accountNumber: "9876543210",
-                        typeAccount: "Checking",
-                        bankAccountHolderName: "John Doe",
-                        bankAccountHolderType: "Business",
-                        bankAccountFunction: 2,
-                        verified: true,
-                        status: 1,
-                        services: [],
-                        default: true,
-                    },
-                    VendorStatus: 1,
-                    VendorId: 456,
-                    Summary: {
-                        ActiveBills: 2,
-                        PendingBills: 4,
-                        InTransitBills: 3,
-                        PaidBills: 18,
-                        OverdueBills: 1,
-                        ApprovedBills: 5,
-                        DisapprovedBills: 1,
-                        TotalBills: 34,
-                        ActiveBillsAmount: 1250.75,
-                        PendingBillsAmount: 2890.5,
-                        InTransitBillsAmount: 1675.25,
-                        PaidBillsAmount: 15420.8,
-                        OverdueBillsAmount: 425,
-                        ApprovedBillsAmount: 3240.9,
-                        DisapprovedBillsAmount: 180,
-                        TotalBillsAmount: 25083.2,
-                    },
-                    PaypointLegalname: "Sunshine Services, LLC",
-                    PaypointDbaname: "Sunshine Gutters",
-                    PaypointEntryname: "d193cf9a46",
-                    ParentOrgName: "PropertyManager Pro",
-                    ParentOrgId: 1000,
-                    CreatedDate: "2022-07-01T15:00:01Z",
-                    LastUpdated: "2022-07-01T15:00:01Z",
-                    remitAddress1: "123 Walnut Street",
-                    remitAddress2: "Suite 900",
-                    remitCity: "Miami",
-                    remitState: "FL",
-                    remitZip: "31113",
-                    remitCountry: "US",
-                    payeeName1: "payeeName1",
-                    payeeName2: "payeeName2",
-                    customField1: "",
-                    customField2: "",
-                    customerVendorAccount: "123-456",
-                    InternalReferenceId: 1000000,
-                    PaymentPortalUrl: "https://greenfield-landscaping.com/pay",
-                    CardAccepted: "yes",
-                    AchAccepted: "unable to determine",
-                    EnrichmentStatus: "fully_enriched",
-                    EnrichedBy: "web_search",
-                    EnrichedAt: "2026-03-05T14:22:10Z",
-                    EnrichmentId: "enrich-3890-a1b2c3d4",
-                    externalPaypointID: "Paypoint-100",
-                    StoredMethods: [],
-                },
-            ],
-            Summary: {
-                pageIdentifier: "null",
-                pageSize: 20,
-                totalAmount: 200,
-                totalNetAmount: 77.22,
-                totalPages: 1,
-                totalRecords: 1,
-            },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "VendorNumber" : "VEN-123" , "Name1" : "Herman's Coatings" , "Name2" : "Herman's Coating Supply Company, LLC" , "EIN" : "123456789" , "Phone" : "2125551234" , "Email" : "example@email.com" , "Address1" : "123 Ocean Drive" , "Address2" : "Suite 400" , "City" : "Bristol" , "State" : "GA" , "Zip" : "31113" , "Country" : "US" , "Mcc" : "7777" , "LocationCode" : "LOC123" , "Contacts" : [ { "ContactEmail" : "eric@martinezcoatings.com" , "ContactName" : "Eric Martinez" , "ContactPhone" : "5555555555" , "ContactTitle" : "Owner" } ] , "BillingData" : { "id" : 123456 , "accountId" : "bank-account-001" , "nickname" : "Main Checking Account" , "bankName" : "Example Bank" , "routingAccount" : "123456789" , "accountNumber" : "9876543210" , "typeAccount" : "Checking" , "bankAccountHolderName" : "John Doe" , "bankAccountHolderType" : "Business" , "bankAccountFunction" : 2 , "verified" : true , "status" : 1 , "services" : [ ] , "default" : true } , "VendorStatus" : 1 , "VendorId" : 456 , "Summary" : { "ActiveBills" : 2 , "PendingBills" : 4 , "InTransitBills" : 3 , "PaidBills" : 18 , "OverdueBills" : 1 , "ApprovedBills" : 5 , "DisapprovedBills" : 1 , "TotalBills" : 34 , "ActiveBillsAmount" : 1250.75 , "PendingBillsAmount" : 2890.5 , "InTransitBillsAmount" : 1675.25 , "PaidBillsAmount" : 15420.8 , "OverdueBillsAmount" : 425 , "ApprovedBillsAmount" : 3240.9 , "DisapprovedBillsAmount" : 180 , "TotalBillsAmount" : 25083.2 } , "PaypointLegalname" : "Sunshine Services, LLC" , "PaypointDbaname" : "Sunshine Gutters" , "PaypointEntryname" : "d193cf9a46" , "ParentOrgName" : "PropertyManager Pro" , "ParentOrgId" : 1000 , "CreatedDate" : "2022-07-01T15:00:01Z" , "LastUpdated" : "2022-07-01T15:00:01Z" , "remitAddress1" : "123 Walnut Street" , "remitAddress2" : "Suite 900" , "remitCity" : "Miami" , "remitState" : "FL" , "remitZip" : "31113" , "remitCountry" : "US" , "payeeName1" : "payeeName1" , "payeeName2" : "payeeName2" , "customField1" : "" , "customField2" : "" , "customerVendorAccount" : "123-456" , "InternalReferenceId" : 1000000 , "PaymentPortalUrl" : "https://greenfield-landscaping.com/pay" , "CardAccepted" : "yes" , "AchAccepted" : "unable to determine" , "EnrichmentStatus" : "fully_enriched" , "EnrichedBy" : "web_search" , "EnrichedAt" : "2026-03-05T14:22:10Z" , "EnrichmentId" : "enrich-3890-a1b2c3d4" , "externalPaypointID" : "Paypoint-100" , "StoredMethods" : [ ] } ] , "Summary" : { "pageIdentifier" : "null" , "pageSize" : 20 , "totalAmount" : 200 , "totalNetAmount" : 77.22 , "totalPages" : 1 , "totalRecords" : 1 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/vendors/8cfec329267")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/vendors/8cfec329267").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listVendors("8cfec329267", {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listVendors("8cfec329267", {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListVendors (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/vendors/entry")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/vendors/entry").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listVendors("entry");
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listVendors("entry")
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListVendors (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/vendors/entry")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/vendors/entry").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listVendors("entry");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listVendors("entry")
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListVendors (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/vendors/entry")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/vendors/entry").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listVendors("entry");
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listVendors("entry")
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListVendors (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/vendors/entry")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/vendors/entry").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listVendors("entry");
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listVendors("entry")
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListVendorsOrg (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    VendorNumber: "VEN-123",
-                    Name1: "Herman's Coatings",
-                    Name2: "Herman's Coating Supply Company, LLC",
-                    EIN: "123456789",
-                    Phone: "2125551234",
-                    Email: "example@email.com",
-                    Address1: "123 Ocean Drive",
-                    Address2: "Suite 400",
-                    City: "Bristol",
-                    State: "GA",
-                    Zip: "31113",
-                    Country: "US",
-                    Mcc: "7777",
-                    LocationCode: "LOC123",
-                    Contacts: [
-                        {
-                            ContactEmail: "eric@martinezcoatings.com",
-                            ContactName: "Eric Martinez",
-                            ContactPhone: "5555555555",
-                            ContactTitle: "Owner",
-                        },
-                    ],
-                    BillingData: {
-                        id: 123456,
-                        accountId: "bank-account-001",
-                        nickname: "Main Checking Account",
-                        bankName: "Example Bank",
-                        routingAccount: "123456789",
-                        accountNumber: "9876543210",
-                        typeAccount: "Checking",
-                        bankAccountHolderName: "John Doe",
-                        bankAccountHolderType: "Business",
-                        bankAccountFunction: 2,
-                        verified: true,
-                        status: 1,
-                        services: [],
-                        default: true,
-                    },
-                    VendorStatus: 1,
-                    VendorId: 456,
-                    Summary: {
-                        ActiveBills: 2,
-                        PendingBills: 4,
-                        InTransitBills: 3,
-                        PaidBills: 18,
-                        OverdueBills: 1,
-                        ApprovedBills: 5,
-                        DisapprovedBills: 1,
-                        TotalBills: 34,
-                        ActiveBillsAmount: 1250.75,
-                        PendingBillsAmount: 2890.5,
-                        InTransitBillsAmount: 1675.25,
-                        PaidBillsAmount: 15420.8,
-                        OverdueBillsAmount: 425,
-                        ApprovedBillsAmount: 3240.9,
-                        DisapprovedBillsAmount: 180,
-                        TotalBillsAmount: 25083.2,
-                    },
-                    PaypointLegalname: "Sunshine Services, LLC",
-                    PaypointDbaname: "Sunshine Gutters",
-                    PaypointEntryname: "d193cf9a46",
-                    ParentOrgName: "PropertyManager Pro",
-                    ParentOrgId: 1000,
-                    CreatedDate: "2022-07-01T15:00:01Z",
-                    LastUpdated: "2022-07-01T15:00:01Z",
-                    remitAddress1: "123 Walnut Street",
-                    remitAddress2: "Suite 900",
-                    remitCity: "Miami",
-                    remitState: "FL",
-                    remitZip: "31113",
-                    remitCountry: "US",
-                    payeeName1: "payeeName1",
-                    payeeName2: "payeeName2",
-                    customField1: "",
-                    customField2: "",
-                    customerVendorAccount: "123-456",
-                    InternalReferenceId: 1000000,
-                    PaymentPortalUrl: "https://greenfield-landscaping.com/pay",
-                    CardAccepted: "yes",
-                    AchAccepted: "unable to determine",
-                    EnrichmentStatus: "fully_enriched",
-                    EnrichedBy: "web_search",
-                    EnrichedAt: "2026-03-05T14:22:10Z",
-                    EnrichmentId: "enrich-3890-a1b2c3d4",
-                    externalPaypointID: "Paypoint-100",
-                    StoredMethods: [],
-                },
-            ],
-            Summary: {
-                pageIdentifier: "null",
-                pageSize: 20,
-                totalAmount: 200,
-                totalNetAmount: 77.22,
-                totalPages: 1,
-                totalRecords: 1,
-            },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "VendorNumber" : "VEN-123" , "Name1" : "Herman's Coatings" , "Name2" : "Herman's Coating Supply Company, LLC" , "EIN" : "123456789" , "Phone" : "2125551234" , "Email" : "example@email.com" , "Address1" : "123 Ocean Drive" , "Address2" : "Suite 400" , "City" : "Bristol" , "State" : "GA" , "Zip" : "31113" , "Country" : "US" , "Mcc" : "7777" , "LocationCode" : "LOC123" , "Contacts" : [ { "ContactEmail" : "eric@martinezcoatings.com" , "ContactName" : "Eric Martinez" , "ContactPhone" : "5555555555" , "ContactTitle" : "Owner" } ] , "BillingData" : { "id" : 123456 , "accountId" : "bank-account-001" , "nickname" : "Main Checking Account" , "bankName" : "Example Bank" , "routingAccount" : "123456789" , "accountNumber" : "9876543210" , "typeAccount" : "Checking" , "bankAccountHolderName" : "John Doe" , "bankAccountHolderType" : "Business" , "bankAccountFunction" : 2 , "verified" : true , "status" : 1 , "services" : [ ] , "default" : true } , "VendorStatus" : 1 , "VendorId" : 456 , "Summary" : { "ActiveBills" : 2 , "PendingBills" : 4 , "InTransitBills" : 3 , "PaidBills" : 18 , "OverdueBills" : 1 , "ApprovedBills" : 5 , "DisapprovedBills" : 1 , "TotalBills" : 34 , "ActiveBillsAmount" : 1250.75 , "PendingBillsAmount" : 2890.5 , "InTransitBillsAmount" : 1675.25 , "PaidBillsAmount" : 15420.8 , "OverdueBillsAmount" : 425 , "ApprovedBillsAmount" : 3240.9 , "DisapprovedBillsAmount" : 180 , "TotalBillsAmount" : 25083.2 } , "PaypointLegalname" : "Sunshine Services, LLC" , "PaypointDbaname" : "Sunshine Gutters" , "PaypointEntryname" : "d193cf9a46" , "ParentOrgName" : "PropertyManager Pro" , "ParentOrgId" : 1000 , "CreatedDate" : "2022-07-01T15:00:01Z" , "LastUpdated" : "2022-07-01T15:00:01Z" , "remitAddress1" : "123 Walnut Street" , "remitAddress2" : "Suite 900" , "remitCity" : "Miami" , "remitState" : "FL" , "remitZip" : "31113" , "remitCountry" : "US" , "payeeName1" : "payeeName1" , "payeeName2" : "payeeName2" , "customField1" : "" , "customField2" : "" , "customerVendorAccount" : "123-456" , "InternalReferenceId" : 1000000 , "PaymentPortalUrl" : "https://greenfield-landscaping.com/pay" , "CardAccepted" : "yes" , "AchAccepted" : "unable to determine" , "EnrichmentStatus" : "fully_enriched" , "EnrichedBy" : "web_search" , "EnrichedAt" : "2026-03-05T14:22:10Z" , "EnrichmentId" : "enrich-3890-a1b2c3d4" , "externalPaypointID" : "Paypoint-100" , "StoredMethods" : [ ] } ] , "Summary" : { "pageIdentifier" : "null" , "pageSize" : 20 , "totalAmount" : 200 , "totalNetAmount" : 77.22 , "totalPages" : 1 , "totalRecords" : 1 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/vendors/org/123")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/vendors/org/123").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listVendorsOrg(123, {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listVendorsOrg(123, {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListVendorsOrg (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/vendors/org/1")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/vendors/org/1").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listVendorsOrg(1);
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listVendorsOrg(1)
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListVendorsOrg (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/vendors/org/1")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/vendors/org/1").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listVendorsOrg(1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listVendorsOrg(1)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListVendorsOrg (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/vendors/org/1")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/vendors/org/1").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listVendorsOrg(1);
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listVendorsOrg(1)
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListVendorsOrg (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/vendors/org/1")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/vendors/org/1").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listVendorsOrg(1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listVendorsOrg(1)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListVcards (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    vcardSent: true,
-                    cardType: 0,
-                    cardToken: "vcrd_5Ty8NrBzXjKuqHm9DwElfP",
-                    cardNumber: "44XX XXXX XXXX 1234",
-                    cvc: "XXX",
-                    expirationDate: "2025-12",
-                    status: "Active",
-                    amount: 500,
-                    currentBalance: 375.25,
-                    expenseLimit: 100,
-                    expenseLimitPeriod: "monthly",
-                    maxNumberOfUses: 10,
-                    currentNumberOfUses: 3,
-                    exactAmount: false,
-                    mcc: "5812",
-                    tcc: "T01",
-                    misc1: "Invoice #12345",
-                    misc2: "Project: Office Supplies",
-                    dateCreated: "2023-01-15T09:30:00Z",
-                    dateModified: "2023-02-20T14:15:22Z",
-                    associatedVendor: {
-                        VendorNumber: "VEN-123",
-                        Name1: "Office Supply Co.",
-                        EIN: "XXXXX6789",
-                        Email: "billing@officesupply.example.com",
-                        VendorId: 456,
-                    },
-                    associatedCustomer: { firstname: "Acme", lastname: "Corporation" },
-                    PaypointDbaname: "Global Factory LLC",
-                    PaypointLegalname: "Global Factory LLC",
-                    PaypointEntryname: "4872acb376a",
-                    externalPaypointID: "pay-10",
-                    ParentOrgName: "SupplyPro",
-                    paypointId: 3040,
-                },
-            ],
-            Summary: {
-                pageidentifier: "XXXXXXXXXXXXXX",
-                pageSize: 20,
-                totalAmount: 2500,
-                totalNetAmount: 0,
-                totalactive: 5,
-                totalamountactive: 2500,
-                totalbalanceactive: 1875.25,
-                totalPages: 1,
-                totalRecords: 5,
-            },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "vcardSent" : true , "cardType" : 0 , "cardToken" : "vcrd_5Ty8NrBzXjKuqHm9DwElfP" , "cardNumber" : "44XX XXXX XXXX 1234" , "cvc" : "XXX" , "expirationDate" : "2025-12" , "status" : "Active" , "amount" : 500 , "currentBalance" : 375.25 , "expenseLimit" : 100 , "expenseLimitPeriod" : "monthly" , "maxNumberOfUses" : 10 , "currentNumberOfUses" : 3 , "exactAmount" : false , "mcc" : "5812" , "tcc" : "T01" , "misc1" : "Invoice #12345" , "misc2" : "Project: Office Supplies" , "dateCreated" : "2023-01-15T09:30:00Z" , "dateModified" : "2023-02-20T14:15:22Z" , "associatedVendor" : { "VendorNumber" : "VEN-123" , "Name1" : "Office Supply Co." , "EIN" : "XXXXX6789" , "Email" : "billing@officesupply.example.com" , "VendorId" : 456 } , "associatedCustomer" : { "firstname" : "Acme" , "lastname" : "Corporation" } , "PaypointDbaname" : "Global Factory LLC" , "PaypointLegalname" : "Global Factory LLC" , "PaypointEntryname" : "4872acb376a" , "externalPaypointID" : "pay-10" , "ParentOrgName" : "SupplyPro" , "paypointId" : 3040 } ] , "Summary" : { "pageidentifier" : "XXXXXXXXXXXXXX" , "pageSize" : 20 , "totalAmount" : 2500 , "totalNetAmount" : 0 , "totalactive" : 5 , "totalamountactive" : 2500 , "totalbalanceactive" : 1875.25 , "totalPages" : 1 , "totalRecords" : 5 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/vcards/8cfec329267")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/vcards/8cfec329267").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listVcards("8cfec329267", {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listVcards("8cfec329267", {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListVcards (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/vcards/entry")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/vcards/entry").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listVcards("entry");
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listVcards("entry")
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListVcards (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/vcards/entry")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/vcards/entry").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listVcards("entry");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listVcards("entry")
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListVcards (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/vcards/entry")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/vcards/entry").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listVcards("entry");
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listVcards("entry")
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListVcards (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/vcards/entry")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/vcards/entry").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listVcards("entry");
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listVcards("entry")
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListVcardsTransactions (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Summary: {
-                totalPages: 20,
-                totalRecords: 393,
-                totalAmount: 231.58,
-                totalactive: 388,
-                totalamountactive: 219.58,
-                totalbalanceactive: -213.83,
-            },
-            Records: [
-                {
-                    Identifier: "7HQ2P9B4XD",
-                    CardToken: "5RJ8MN2KC4",
-                    LastFour: "1234",
-                    ExpirationDate: "06-30-2029",
-                    Mcc: "5943",
-                    PayoutId: 84210,
-                    CustomerId: 4440,
-                    VendorId: 456,
-                    MiscData1: "Invoice #12345",
-                    MiscData2: "Project: Office Supplies",
-                    CurrentUses: 1,
-                    Amount: 500,
-                    Balance: 425.5,
-                    PaypointId: 3040,
-                    PaypointLegal: "Global Factory LLC",
-                    PaypointDba: "Global Factory",
-                    ExternalPaypointID: "pay-10",
-                    OrgName: "SupplyPro",
-                    Type: "AUTHORIZATION",
-                    Status: "AUTHORIZATION",
-                    CreatedOn: "2026-05-05 03:28:53.082830",
-                    TransactionAmount: "74.500",
-                    PostedAmount: "0.000",
-                    PostedOn: null,
-                    MerchantName: "Office Supply Co.",
-                    AuthorizationStatus: "AUTHORIZATION",
-                    ReasonToDecline: null,
-                },
-            ],
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Summary" : { "totalPages" : 20 , "totalRecords" : 393 , "totalAmount" : 231.58 , "totalactive" : 388 , "totalamountactive" : 219.58 , "totalbalanceactive" : -213.83 } , "Records" : [ { "Identifier" : "7HQ2P9B4XD" , "CardToken" : "5RJ8MN2KC4" , "LastFour" : "1234" , "ExpirationDate" : "06-30-2029" , "Mcc" : "5943" , "PayoutId" : 84210 , "CustomerId" : 4440 , "VendorId" : 456 , "MiscData1" : "Invoice #12345" , "MiscData2" : "Project: Office Supplies" , "CurrentUses" : 1 , "Amount" : 500 , "Balance" : 425.5 , "PaypointId" : 3040 , "PaypointLegal" : "Global Factory LLC" , "PaypointDba" : "Global Factory" , "ExternalPaypointID" : "pay-10" , "OrgName" : "SupplyPro" , "Type" : "AUTHORIZATION" , "Status" : "AUTHORIZATION" , "CreatedOn" : "2026-05-05 03:28:53.082830" , "TransactionAmount" : "74.500" , "PostedAmount" : "0.000" , "PostedOn" : null , "MerchantName" : "Office Supply Co." , "AuthorizationStatus" : "AUTHORIZATION" , "ReasonToDecline" : null } ] };
+        
         server
             .mockEndpoint()
-            .get("/Query/vcardsTransactions/8cfec329267")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/vcardsTransactions/8cfec329267").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listVcardsTransactions("8cfec329267", {
-            fromRecord: 0,
-            limitRecord: 20,
-            sortBy: "desc(CreatedOn)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listVcardsTransactions("8cfec329267", {
+    fromRecord: 0,
+    limitRecord: 20,
+    sortBy: "desc(CreatedOn)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListVcardsTransactions (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/vcardsTransactions/entry")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/vcardsTransactions/entry").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listVcardsTransactions("entry");
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listVcardsTransactions("entry")
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListVcardsTransactions (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/vcardsTransactions/entry")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/vcardsTransactions/entry").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listVcardsTransactions("entry");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listVcardsTransactions("entry")
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListVcardsTransactions (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/vcardsTransactions/entry")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/vcardsTransactions/entry").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listVcardsTransactions("entry");
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listVcardsTransactions("entry")
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListVcardsTransactions (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/vcardsTransactions/entry")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/vcardsTransactions/entry").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listVcardsTransactions("entry");
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listVcardsTransactions("entry")
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListVcardsTransactionsOrg (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Summary: {
-                totalPages: 20,
-                totalRecords: 393,
-                totalAmount: 231.58,
-                totalactive: 388,
-                totalamountactive: 219.58,
-                totalbalanceactive: -213.83,
-            },
-            Records: [
-                {
-                    Identifier: "7HQ2P9B4XD",
-                    CardToken: "5RJ8MN2KC4",
-                    LastFour: "1234",
-                    ExpirationDate: "06-30-2029",
-                    Mcc: "5943",
-                    PayoutId: 84210,
-                    CustomerId: 4440,
-                    VendorId: 456,
-                    MiscData1: "Invoice #12345",
-                    MiscData2: "Project: Office Supplies",
-                    CurrentUses: 1,
-                    Amount: 500,
-                    Balance: 425.5,
-                    PaypointId: 3040,
-                    PaypointLegal: "Global Factory LLC",
-                    PaypointDba: "Global Factory",
-                    ExternalPaypointID: "pay-10",
-                    OrgName: "SupplyPro",
-                    Type: "AUTHORIZATION",
-                    Status: "AUTHORIZATION",
-                    CreatedOn: "2026-05-05 03:28:53.082830",
-                    TransactionAmount: "74.500",
-                    PostedAmount: "0.000",
-                    PostedOn: null,
-                    MerchantName: "Office Supply Co.",
-                    AuthorizationStatus: "AUTHORIZATION",
-                    ReasonToDecline: null,
-                },
-            ],
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Summary" : { "totalPages" : 20 , "totalRecords" : 393 , "totalAmount" : 231.58 , "totalactive" : 388 , "totalamountactive" : 219.58 , "totalbalanceactive" : -213.83 } , "Records" : [ { "Identifier" : "7HQ2P9B4XD" , "CardToken" : "5RJ8MN2KC4" , "LastFour" : "1234" , "ExpirationDate" : "06-30-2029" , "Mcc" : "5943" , "PayoutId" : 84210 , "CustomerId" : 4440 , "VendorId" : 456 , "MiscData1" : "Invoice #12345" , "MiscData2" : "Project: Office Supplies" , "CurrentUses" : 1 , "Amount" : 500 , "Balance" : 425.5 , "PaypointId" : 3040 , "PaypointLegal" : "Global Factory LLC" , "PaypointDba" : "Global Factory" , "ExternalPaypointID" : "pay-10" , "OrgName" : "SupplyPro" , "Type" : "AUTHORIZATION" , "Status" : "AUTHORIZATION" , "CreatedOn" : "2026-05-05 03:28:53.082830" , "TransactionAmount" : "74.500" , "PostedAmount" : "0.000" , "PostedOn" : null , "MerchantName" : "Office Supply Co." , "AuthorizationStatus" : "AUTHORIZATION" , "ReasonToDecline" : null } ] };
+        
         server
             .mockEndpoint()
-            .get("/Query/vcardsTransactions/org/123")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/vcardsTransactions/org/123").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listVcardsTransactionsOrg(123, {
-            fromRecord: 0,
-            limitRecord: 20,
-            sortBy: "desc(CreatedOn)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listVcardsTransactionsOrg(123, {
+    fromRecord: 0,
+    limitRecord: 20,
+    sortBy: "desc(CreatedOn)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListVcardsTransactionsOrg (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/vcardsTransactions/org/1")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/vcardsTransactions/org/1").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listVcardsTransactionsOrg(1);
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.query.listVcardsTransactionsOrg(1)
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListVcardsTransactionsOrg (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/vcardsTransactions/org/1")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/vcardsTransactions/org/1").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listVcardsTransactionsOrg(1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.query.listVcardsTransactionsOrg(1)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListVcardsTransactionsOrg (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Query/vcardsTransactions/org/1")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/vcardsTransactions/org/1").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listVcardsTransactionsOrg(1);
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.query.listVcardsTransactionsOrg(1)
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListVcardsTransactionsOrg (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Query/vcardsTransactions/org/1")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/vcardsTransactions/org/1").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.query.listVcardsTransactionsOrg(1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.query.listVcardsTransactionsOrg(1)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListVcardsOrg", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            Records: [
-                {
-                    vcardSent: true,
-                    cardType: 0,
-                    cardToken: "vcrd_5Ty8NrBzXjKuqHm9DwElfP",
-                    cardNumber: "44XX XXXX XXXX 1234",
-                    cvc: "XXX",
-                    expirationDate: "2025-12",
-                    status: "Active",
-                    amount: 500,
-                    currentBalance: 375.25,
-                    expenseLimit: 100,
-                    expenseLimitPeriod: "monthly",
-                    maxNumberOfUses: 10,
-                    currentNumberOfUses: 3,
-                    exactAmount: false,
-                    mcc: "5812",
-                    tcc: "T01",
-                    misc1: "Invoice #12345",
-                    misc2: "Project: Office Supplies",
-                    dateCreated: "2023-01-15T09:30:00Z",
-                    dateModified: "2023-02-20T14:15:22Z",
-                    associatedVendor: {
-                        VendorNumber: "VEN-123",
-                        Name1: "Office Supply Co.",
-                        EIN: "XXXXX6789",
-                        Email: "billing@officesupply.example.com",
-                        VendorId: 456,
-                    },
-                    associatedCustomer: { firstname: "Acme", lastname: "Corporation" },
-                    PaypointDbaname: "Global Factory LLC",
-                    PaypointLegalname: "Global Factory LLC",
-                    PaypointEntryname: "4872acb376a",
-                    externalPaypointID: "pay-10",
-                    ParentOrgName: "SupplyPro",
-                    paypointId: 3040,
-                },
-            ],
-            Summary: {
-                pageidentifier: "XXXXXXXXXXXXXX",
-                pageSize: 20,
-                totalAmount: 2500,
-                totalNetAmount: 0,
-                totalactive: 5,
-                totalamountactive: 2500,
-                totalbalanceactive: 1875.25,
-                totalPages: 1,
-                totalRecords: 5,
-            },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "Records" : [ { "vcardSent" : true , "cardType" : 0 , "cardToken" : "vcrd_5Ty8NrBzXjKuqHm9DwElfP" , "cardNumber" : "44XX XXXX XXXX 1234" , "cvc" : "XXX" , "expirationDate" : "2025-12" , "status" : "Active" , "amount" : 500 , "currentBalance" : 375.25 , "expenseLimit" : 100 , "expenseLimitPeriod" : "monthly" , "maxNumberOfUses" : 10 , "currentNumberOfUses" : 3 , "exactAmount" : false , "mcc" : "5812" , "tcc" : "T01" , "misc1" : "Invoice #12345" , "misc2" : "Project: Office Supplies" , "dateCreated" : "2023-01-15T09:30:00Z" , "dateModified" : "2023-02-20T14:15:22Z" , "associatedVendor" : { "VendorNumber" : "VEN-123" , "Name1" : "Office Supply Co." , "EIN" : "XXXXX6789" , "Email" : "billing@officesupply.example.com" , "VendorId" : 456 } , "associatedCustomer" : { "firstname" : "Acme" , "lastname" : "Corporation" } , "PaypointDbaname" : "Global Factory LLC" , "PaypointLegalname" : "Global Factory LLC" , "PaypointEntryname" : "4872acb376a" , "externalPaypointID" : "pay-10" , "ParentOrgName" : "SupplyPro" , "paypointId" : 3040 } ] , "Summary" : { "pageidentifier" : "XXXXXXXXXXXXXX" , "pageSize" : 20 , "totalAmount" : 2500 , "totalNetAmount" : 0 , "totalactive" : 5 , "totalamountactive" : 2500 , "totalbalanceactive" : 1875.25 , "totalPages" : 1 , "totalRecords" : 5 } };
+        
         server
             .mockEndpoint()
-            .get("/Query/vcards/org/123")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Query/vcards/org/123").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.query.listVcardsOrg(123, {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.query.listVcardsOrg(123, {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
+          
 });

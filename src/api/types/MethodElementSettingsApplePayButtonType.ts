@@ -6,19 +6,18 @@
  * for more information.
  */
 export const MethodElementSettingsApplePayButtonType = {
-    Plain: "plain",
-    Buy: "buy",
-    Donate: "donate",
-    CheckOut: "check-out",
-    Book: "book",
-    Continue: "continue",
-    TopUp: "top-up",
-    Order: "order",
-    Rent: "rent",
-    Support: "support",
-    Contribute: "contribute",
-    Tip: "tip",
-    Pay: "pay",
-} as const;
-export type MethodElementSettingsApplePayButtonType =
-    (typeof MethodElementSettingsApplePayButtonType)[keyof typeof MethodElementSettingsApplePayButtonType];
+        Plain: "plain",
+        Buy: "buy",
+        Donate: "donate",
+        CheckOut: "check-out",
+        Book: "book",
+        Continue: "continue",
+        TopUp: "top-up",
+        Order: "order",
+        Rent: "rent",
+        Support: "support",
+        Contribute: "contribute",
+        Tip: "tip",
+        Pay: "pay"
+    } as const;
+export type MethodElementSettingsApplePayButtonType = typeof MethodElementSettingsApplePayButtonType[keyof typeof MethodElementSettingsApplePayButtonType];

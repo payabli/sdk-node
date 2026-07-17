@@ -2,13 +2,13 @@
 
 /** The MIME type of the file (if content is provided). */
 export const FileContentFtype = {
-    Pdf: "pdf",
-    Doc: "doc",
-    Docx: "docx",
-    Jpg: "jpg",
-    Jpeg: "jpeg",
-    Png: "png",
-    Gif: "gif",
-    Txt: "txt",
-} as const;
-export type FileContentFtype = (typeof FileContentFtype)[keyof typeof FileContentFtype];
+        Pdf: "pdf",
+        Doc: "doc",
+        Docx: "docx",
+        Jpg: "jpg",
+        Jpeg: "jpeg",
+        Png: "png",
+        Gif: "gif",
+        Txt: "txt"
+    } as const;
+export type FileContentFtype = typeof FileContentFtype[keyof typeof FileContentFtype];

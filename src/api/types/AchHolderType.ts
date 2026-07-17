@@ -2,7 +2,7 @@
 
 /** The bank's accountholder type: personal or business. */
 export const AchHolderType = {
-    Personal: "personal",
-    Business: "business",
-} as const;
-export type AchHolderType = (typeof AchHolderType)[keyof typeof AchHolderType];
+        Personal: "personal",
+        Business: "business"
+    } as const;
+export type AchHolderType = typeof AchHolderType[keyof typeof AchHolderType];

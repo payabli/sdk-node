@@ -2,10 +2,10 @@
 
 /** Method to use to send the notification to the target. */
 export const Methodnotification = {
-    Email: "email",
-    Sms: "sms",
-    Web: "web",
-    ReportEmail: "report-email",
-    ReportWeb: "report-web",
-} as const;
-export type Methodnotification = (typeof Methodnotification)[keyof typeof Methodnotification];
+        Email: "email",
+        Sms: "sms",
+        Web: "web",
+        ReportEmail: "report-email",
+        ReportWeb: "report-web"
+    } as const;
+export type Methodnotification = typeof Methodnotification[keyof typeof Methodnotification];

@@ -28,18 +28,21 @@ import { QueryClient } from "./api/resources/query/client/Client.js";
 import { StatisticClient } from "./api/resources/statistic/client/Client.js";
 import { SubscriptionClient } from "./api/resources/subscription/client/Client.js";
 import { TemplatesClient } from "./api/resources/templates/client/Client.js";
+import { TokenClient } from "./api/resources/token/client/Client.js";
 import { TokenStorageClient } from "./api/resources/tokenStorage/client/Client.js";
 import { UserClient } from "./api/resources/user/client/Client.js";
 import { VendorClient } from "./api/resources/vendor/client/Client.js";
 import { WalletClient } from "./api/resources/wallet/client/Client.js";
 import type { BaseClientOptions, BaseRequestOptions } from "./BaseClient.js";
-import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "./BaseClient.js";
+import { normalizeClientOptionsWithAuth, type NormalizedClientOptionsWithAuth } from "./BaseClient.js";
 import * as core from "./core/index.js";
+import * as environments from "./environments.js";
 
 export declare namespace PayabliClient {
     export type Options = BaseClientOptions;
 
-    export interface RequestOptions extends BaseRequestOptions {}
+    export interface RequestOptions extends BaseRequestOptions {
+    }
 }
 
 export class PayabliClient {
@@ -48,6 +51,7 @@ export class PayabliClient {
     protected _customer: CustomerClient | undefined;
     protected _checkCapture: CheckCaptureClient | undefined;
     protected _moneyIn: MoneyInClient | undefined;
+    protected _token: TokenClient | undefined;
     protected _subscription: SubscriptionClient | undefined;
     protected _invoice: InvoiceClient | undefined;
     protected _paymentLink: PaymentLinkClient | undefined;
@@ -77,8 +81,11 @@ export class PayabliClient {
     protected _payoutSubscription: PayoutSubscriptionClient | undefined;
     protected _chargeBacks: ChargeBacksClient | undefined;
 
-    constructor(options: PayabliClient.Options) {
-        this._options = normalizeClientOptionsWithAuth(options);
+    constructor(options: PayabliClient.Options = {}) {
+
+
+                        this._options = normalizeClientOptionsWithAuth(options);
+                    
     }
 
     public get bill(): BillClient {
@@ -95,6 +102,10 @@ export class PayabliClient {
 
     public get moneyIn(): MoneyInClient {
         return (this._moneyIn ??= new MoneyInClient(this._options));
+    }
+
+    public get token(): TokenClient {
+        return (this._token ??= new TokenClient(this._options));
     }
 
     public get subscription(): SubscriptionClient {
@@ -219,24 +230,16 @@ export class PayabliClient {
      * @param {core.PassthroughRequest.RequestOptions} requestOptions - Per-request overrides (timeout, retries, headers, abort signal).
      * @returns {Promise<Response>} A standard Response object.
      */
-    public async fetch(
-        input: Request | string | URL,
-        init?: RequestInit,
-        requestOptions?: core.PassthroughRequest.RequestOptions,
-    ): Promise<Response> {
-        return core.makePassthroughRequest(
-            input,
-            init,
-            {
-                baseUrl: this._options.baseUrl ?? this._options.environment,
-                headers: this._options.headers,
-                timeoutInSeconds: this._options.timeoutInSeconds,
-                maxRetries: this._options.maxRetries,
-                fetch: this._options.fetch,
-                logging: this._options.logging,
-                getAuthHeaders: async () => (await this._options.authProvider.getAuthRequest()).headers,
-            },
-            requestOptions,
-        );
+    public async fetch(input: Request | string | URL, init?: RequestInit, requestOptions?: core.PassthroughRequest.RequestOptions): Promise<Response> {
+
+        return core.makePassthroughRequest(input, init, {
+            baseUrl: this._options.baseUrl ?? this._options.environment,
+            headers: this._options.headers,
+            timeoutInSeconds: this._options.timeoutInSeconds,
+            maxRetries: this._options.maxRetries,
+            fetch: this._options.fetch,
+            logging: this._options.logging,
+            getAuthHeaders: async () => (await this._options.authProvider.getAuthRequest()).headers,
+        }, requestOptions);
     }
 }

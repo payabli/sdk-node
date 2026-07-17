@@ -2,8 +2,8 @@
 
 /** Specify the size of the custom payment button. */
 export const ButtonElementSize = {
-    Sm: "sm",
-    Md: "md",
-    Lg: "lg",
-} as const;
-export type ButtonElementSize = (typeof ButtonElementSize)[keyof typeof ButtonElementSize];
+        Sm: "sm",
+        Md: "md",
+        Lg: "lg"
+    } as const;
+export type ButtonElementSize = typeof ButtonElementSize[keyof typeof ButtonElementSize];

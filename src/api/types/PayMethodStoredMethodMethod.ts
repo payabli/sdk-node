@@ -6,9 +6,8 @@
  * this transaction.
  */
 export const PayMethodStoredMethodMethod = {
-    Card: "card",
-    Ach: "ach",
-    Wallet: "wallet",
-} as const;
-export type PayMethodStoredMethodMethod =
-    (typeof PayMethodStoredMethodMethod)[keyof typeof PayMethodStoredMethodMethod];
+        Card: "card",
+        Ach: "ach",
+        Wallet: "wallet"
+    } as const;
+export type PayMethodStoredMethodMethod = typeof PayMethodStoredMethodMethod[keyof typeof PayMethodStoredMethodMethod];

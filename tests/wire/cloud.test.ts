@@ -3,403 +3,404 @@
 import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
+import { mockBearerAuth } from "./mockAuth";
 
 describe("CloudClient", () => {
+    
     test("addDevice (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { registrationCode: "YS7DS5", description: "Front Desk POS" };
-        const rawResponseBody = {
-            isSuccess: true,
-            responseData: "6c361c7d-674c-44cc-b790-382b75d1xxx",
-            responseText: "Success",
-        };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { "registrationCode" : "YS7DS5" , "description" : "Front Desk POS" };
+        const rawResponseBody = { "isSuccess" : true , "responseData" : "6c361c7d-674c-44cc-b790-382b75d1xxx" , "responseText" : "Success" };
+        
         server
             .mockEndpoint()
-            .post("/Cloud/register/8cfec329267")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Cloud/register/8cfec329267").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.cloud.addDevice("8cfec329267", {
-            registrationCode: "YS7DS5",
-            description: "Front Desk POS",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.cloud.addDevice("8cfec329267", {
+    registrationCode: "YS7DS5",
+    description: "Front Desk POS"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("addDevice (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .post("/Cloud/register/entry")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Cloud/register/entry").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.cloud.addDevice("entry");
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.cloud.addDevice("entry")
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("addDevice (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .post("/Cloud/register/entry")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Cloud/register/entry").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.cloud.addDevice("entry");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.cloud.addDevice("entry")
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("addDevice (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .post("/Cloud/register/entry")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Cloud/register/entry").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.cloud.addDevice("entry");
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.cloud.addDevice("entry")
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("addDevice (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .post("/Cloud/register/entry")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Cloud/register/entry").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.cloud.addDevice("entry");
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.cloud.addDevice("entry")
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("RemoveDevice (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            isSuccess: true,
-            responseData: "6c361c7d-674c-44cc-b790-382b75d1xxx",
-            responseText: "Success",
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseData" : "6c361c7d-674c-44cc-b790-382b75d1xxx" , "responseText" : "Success" };
+        
         server
             .mockEndpoint()
-            .delete("/Cloud/register/8cfec329267/499585-389fj484-3jcj8hj3")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .delete("/Cloud/register/8cfec329267/499585-389fj484-3jcj8hj3").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.cloud.removeDevice("8cfec329267", "499585-389fj484-3jcj8hj3");
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.cloud.removeDevice("8cfec329267", "499585-389fj484-3jcj8hj3");
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("RemoveDevice (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .delete("/Cloud/register/entry/deviceId")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .delete("/Cloud/register/entry/deviceId").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.cloud.removeDevice("entry", "deviceId");
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.cloud.removeDevice("entry", "deviceId")
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("RemoveDevice (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .delete("/Cloud/register/entry/deviceId")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .delete("/Cloud/register/entry/deviceId").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.cloud.removeDevice("entry", "deviceId");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.cloud.removeDevice("entry", "deviceId")
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("RemoveDevice (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .delete("/Cloud/register/entry/deviceId")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .delete("/Cloud/register/entry/deviceId").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.cloud.removeDevice("entry", "deviceId");
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.cloud.removeDevice("entry", "deviceId")
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("RemoveDevice (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .delete("/Cloud/register/entry/deviceId")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .delete("/Cloud/register/entry/deviceId").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.cloud.removeDevice("entry", "deviceId");
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.cloud.removeDevice("entry", "deviceId")
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("HistoryDevice (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            isSuccess: true,
-            responseList: [
-                {
-                    connected: true,
-                    dateRegistered: "2024-03-05T15:56:04Z",
-                    deviceId: "499585-389fj484-3jcj8hj3",
-                    deviceNickName: "Front Desk POS",
-                    make: "ingenico",
-                    model: "LK2500",
-                    registered: true,
-                    serialNumber: "312345692080000000",
-                },
-            ],
-            responseText: "Success",
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseList" : [ { "connected" : true , "dateRegistered" : "2024-03-05T15:56:04Z" , "deviceId" : "499585-389fj484-3jcj8hj3" , "deviceNickName" : "Front Desk POS" , "make" : "ingenico" , "model" : "LK2500" , "registered" : true , "serialNumber" : "312345692080000000" } ] , "responseText" : "Success" };
+        
         server
             .mockEndpoint()
-            .get("/Cloud/history/8cfec329267/499585-389fj484-3jcj8hj3")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Cloud/history/8cfec329267/499585-389fj484-3jcj8hj3").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.cloud.historyDevice("8cfec329267", "499585-389fj484-3jcj8hj3");
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.cloud.historyDevice("8cfec329267", "499585-389fj484-3jcj8hj3");
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("HistoryDevice (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Cloud/history/entry/deviceId")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Cloud/history/entry/deviceId").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.cloud.historyDevice("entry", "deviceId");
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.cloud.historyDevice("entry", "deviceId")
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("HistoryDevice (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Cloud/history/entry/deviceId")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Cloud/history/entry/deviceId").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.cloud.historyDevice("entry", "deviceId");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.cloud.historyDevice("entry", "deviceId")
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("HistoryDevice (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Cloud/history/entry/deviceId")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Cloud/history/entry/deviceId").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.cloud.historyDevice("entry", "deviceId");
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.cloud.historyDevice("entry", "deviceId")
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("HistoryDevice (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Cloud/history/entry/deviceId")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Cloud/history/entry/deviceId").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.cloud.historyDevice("entry", "deviceId");
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.cloud.historyDevice("entry", "deviceId")
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ListDevice (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            isSuccess: true,
-            responseList: [
-                {
-                    connected: true,
-                    dateRegistered: "2024-03-05T15:56:04Z",
-                    deviceId: "499585-389fj484-3jcj8hj3",
-                    deviceNickName: "Front Desk POS",
-                    make: "ingenico",
-                    model: "LK2500",
-                    registered: true,
-                    serialNumber: "312345692080000000",
-                },
-            ],
-            responseText: "Success",
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseList" : [ { "connected" : true , "dateRegistered" : "2024-03-05T15:56:04Z" , "deviceId" : "499585-389fj484-3jcj8hj3" , "deviceNickName" : "Front Desk POS" , "make" : "ingenico" , "model" : "LK2500" , "registered" : true , "serialNumber" : "312345692080000000" } ] , "responseText" : "Success" };
+        
         server
             .mockEndpoint()
-            .get("/Cloud/list/8cfec329267")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Cloud/list/8cfec329267").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.cloud.listDevice("8cfec329267");
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.cloud.listDevice("8cfec329267");
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ListDevice (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
+        server
+            .mockEndpoint()
+            .get("/Cloud/list/entry").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        server.mockEndpoint().get("/Cloud/list/entry").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.cloud.listDevice("entry");
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.cloud.listDevice("entry")
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListDevice (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
+        server
+            .mockEndpoint()
+            .get("/Cloud/list/entry").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        server.mockEndpoint().get("/Cloud/list/entry").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.cloud.listDevice("entry");
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.cloud.listDevice("entry")
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListDevice (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
+        server
+            .mockEndpoint()
+            .get("/Cloud/list/entry").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        server.mockEndpoint().get("/Cloud/list/entry").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.cloud.listDevice("entry");
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.cloud.listDevice("entry")
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListDevice (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
+        server
+            .mockEndpoint()
+            .get("/Cloud/list/entry").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        server.mockEndpoint().get("/Cloud/list/entry").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.cloud.listDevice("entry");
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.cloud.listDevice("entry")
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
+          
 });

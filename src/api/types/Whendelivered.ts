@@ -2,9 +2,9 @@
 
 /** When goods and services are delivered. */
 export const Whendelivered = {
-    Zero7Days: "0-7 Days",
-    Eight14Days: "8-14 Days",
-    Fifteen30Days: "15-30 Days",
-    Over30Days: "Over 30 Days",
-} as const;
-export type Whendelivered = (typeof Whendelivered)[keyof typeof Whendelivered];
+        Zero7Days: "0-7 Days",
+        Eight14Days: "8-14 Days",
+        Fifteen30Days: "15-30 Days",
+        Over30Days: "Over 30 Days"
+    } as const;
+export type Whendelivered = typeof Whendelivered[keyof typeof Whendelivered];

@@ -2,8 +2,7 @@
 
 /** Payment method used for the transaction */
 export const TransactionDetailRecordMethod = {
-    Ach: "ach",
-    Card: "card",
-} as const;
-export type TransactionDetailRecordMethod =
-    (typeof TransactionDetailRecordMethod)[keyof typeof TransactionDetailRecordMethod];
+        Ach: "ach",
+        Card: "card"
+    } as const;
+export type TransactionDetailRecordMethod = typeof TransactionDetailRecordMethod[keyof typeof TransactionDetailRecordMethod];

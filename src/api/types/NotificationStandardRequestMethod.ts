@@ -10,9 +10,8 @@
  * for more.
  */
 export const NotificationStandardRequestMethod = {
-    Email: "email",
-    Sms: "sms",
-    Web: "web",
-} as const;
-export type NotificationStandardRequestMethod =
-    (typeof NotificationStandardRequestMethod)[keyof typeof NotificationStandardRequestMethod];
+        Email: "email",
+        Sms: "sms",
+        Web: "web"
+    } as const;
+export type NotificationStandardRequestMethod = typeof NotificationStandardRequestMethod[keyof typeof NotificationStandardRequestMethod];

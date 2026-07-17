@@ -2,11 +2,10 @@
 
 /** Preferred payment method used. */
 export const BillQueryRecord2PaymentMethod = {
-    Vcard: "vcard",
-    Ach: "ach",
-    Check: "check",
-    Card: "card",
-    Managed: "managed",
-} as const;
-export type BillQueryRecord2PaymentMethod =
-    (typeof BillQueryRecord2PaymentMethod)[keyof typeof BillQueryRecord2PaymentMethod];
+        Vcard: "vcard",
+        Ach: "ach",
+        Check: "check",
+        Card: "card",
+        Managed: "managed"
+    } as const;
+export type BillQueryRecord2PaymentMethod = typeof BillQueryRecord2PaymentMethod[keyof typeof BillQueryRecord2PaymentMethod];

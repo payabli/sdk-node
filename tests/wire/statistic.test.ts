@@ -3,456 +3,399 @@
 import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
+import { mockBearerAuth } from "./mockAuth";
 
 describe("StatisticClient", () => {
+    
     test("BasicStats (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = [
-            {
-                outCustomers: 18196,
-                outNewCustomers: 1089,
-                outTransactions: 3319,
-                outSubscriptionsPaid: 0,
-                outCardTransactions: 0,
-                outVCardTransactions: 0,
-                outACHTransactions: 0,
-                outCheckTransactions: 0,
-                outPendingMethodTransactions: 22,
-                outRTPTransactions: 8,
-                outRTPVolume: 12500,
-                outWireTransactions: 5,
-                outWireVolume: 47800,
-                outTransactionsVolume: 13111741.78,
-                outSubscriptionsPaidVolume: 0,
-                outCardVolume: 0,
-                outVCardVolume: 0,
-                outACHVolume: 0,
-                outCheckVolume: 0,
-                outPendingMethodVolume: 82,
-                statX: "2025-11",
-                inTransactions: 168204,
-                inSubscriptionsPaid: 311,
-                inCustomers: 2561522,
-                inNewCustomers: 44846,
-                inCardTransactions: 115059,
-                inACHTransactions: 53153,
-                inCheckTransactions: 0,
-                inCashTransactions: 15,
-                inWalletTransactions: 0,
-                inCardChargeBacks: 17,
-                inACHReturns: 0,
-                inTransactionsVolume: 104795896.94,
-                inSubscriptionsPaidVolume: 81569.32,
-                inCardVolume: 41085285.13,
-                inACHVolume: 63706101.81,
-                inCheckVolume: 0,
-                inCashVolume: 4510,
-                inWalletVolume: 0,
-                inCardChargeBackVolume: 15455.75,
-                inACHReturnsVolume: 0,
-            },
-        ];
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = [ { "outCustomers" : 18196 , "outNewCustomers" : 1089 , "outTransactions" : 3319 , "outSubscriptionsPaid" : 0 , "outCardTransactions" : 0 , "outVCardTransactions" : 0 , "outACHTransactions" : 0 , "outCheckTransactions" : 0 , "outPendingMethodTransactions" : 22 , "outRTPTransactions" : 8 , "outRTPVolume" : 12500 , "outWireTransactions" : 5 , "outWireVolume" : 47800 , "outTransactionsVolume" : 13111741.78 , "outSubscriptionsPaidVolume" : 0 , "outCardVolume" : 0 , "outVCardVolume" : 0 , "outACHVolume" : 0 , "outCheckVolume" : 0 , "outPendingMethodVolume" : 82 , "statX" : "2025-11" , "inTransactions" : 168204 , "inSubscriptionsPaid" : 311 , "inCustomers" : 2561522 , "inNewCustomers" : 44846 , "inCardTransactions" : 115059 , "inACHTransactions" : 53153 , "inCheckTransactions" : 0 , "inCashTransactions" : 15 , "inWalletTransactions" : 0 , "inCardChargeBacks" : 17 , "inACHReturns" : 0 , "inTransactionsVolume" : 104795896.94 , "inSubscriptionsPaidVolume" : 81569.32 , "inCardVolume" : 41085285.13 , "inACHVolume" : 63706101.81 , "inCheckVolume" : 0 , "inCashVolume" : 4510 , "inWalletVolume" : 0 , "inCardChargeBackVolume" : 15455.75 , "inACHReturnsVolume" : 0 } ];
+        
         server
             .mockEndpoint()
-            .get("/Statistic/basic/custom/m/2/1000000")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Statistic/basic/custom/m/2/1000000").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.statistic.basicStats("custom", "m", 2, 1000000, {
-            startDate: "2025-11-01",
-            endDate: "2025-11-30",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.statistic.basicStats("custom", "m", 2, 1000000, {
+    startDate: "2025-11-01",
+    endDate: "2025-11-30"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("BasicStats (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Statistic/basic/mode/freq/1/1000000")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Statistic/basic/mode/freq/1/1000000").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.statistic.basicStats("mode", "freq", 1, 1000000);
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.statistic.basicStats("mode", "freq", 1, 1000000)
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("BasicStats (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Statistic/basic/mode/freq/1/1000000")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Statistic/basic/mode/freq/1/1000000").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.statistic.basicStats("mode", "freq", 1, 1000000);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.statistic.basicStats("mode", "freq", 1, 1000000)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("BasicStats (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Statistic/basic/mode/freq/1/1000000")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Statistic/basic/mode/freq/1/1000000").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.statistic.basicStats("mode", "freq", 1, 1000000);
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.statistic.basicStats("mode", "freq", 1, 1000000)
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("BasicStats (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Statistic/basic/mode/freq/1/1000000")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Statistic/basic/mode/freq/1/1000000").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.statistic.basicStats("mode", "freq", 1, 1000000);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.statistic.basicStats("mode", "freq", 1, 1000000)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("CustomerBasicStats (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = [{ interval: "2023-03", count: 45, volume: 12500.75 }];
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = [ { "interval" : "2023-03" , "count" : 45 , "volume" : 12500.75 } ];
+        
         server
             .mockEndpoint()
-            .get("/Statistic/customerbasic/ytd/m/4440")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Statistic/customerbasic/ytd/m/4440").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.statistic.customerBasicStats("ytd", "m", 4440);
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.statistic.customerBasicStats("ytd", "m", 4440);
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("CustomerBasicStats (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Statistic/customerbasic/mode/freq/1")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Statistic/customerbasic/mode/freq/1").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.statistic.customerBasicStats("mode", "freq", 1);
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.statistic.customerBasicStats("mode", "freq", 1)
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("CustomerBasicStats (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Statistic/customerbasic/mode/freq/1")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Statistic/customerbasic/mode/freq/1").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.statistic.customerBasicStats("mode", "freq", 1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.statistic.customerBasicStats("mode", "freq", 1)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("CustomerBasicStats (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Statistic/customerbasic/mode/freq/1")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Statistic/customerbasic/mode/freq/1").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.statistic.customerBasicStats("mode", "freq", 1);
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.statistic.customerBasicStats("mode", "freq", 1)
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("CustomerBasicStats (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Statistic/customerbasic/mode/freq/1")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Statistic/customerbasic/mode/freq/1").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.statistic.customerBasicStats("mode", "freq", 1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.statistic.customerBasicStats("mode", "freq", 1)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("SubStats (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = [
-            {
-                statX: "2023-03",
-                inTransactions: 150,
-                inTransactionsVolume: 25000.5,
-                inWalletTransactions: 10,
-                inWalletVolume: 1000.5,
-            },
-        ];
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = [ { "statX" : "2023-03" , "inTransactions" : 150 , "inTransactionsVolume" : 25000.5 , "inWalletTransactions" : 10 , "inWalletVolume" : 1000.5 } ];
+        
         server
             .mockEndpoint()
-            .get("/Statistic/subscriptions/30/2/1000000")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Statistic/subscriptions/30/2/1000000").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.statistic.subStats("30", 2, 1000000);
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.statistic.subStats("30", 2, 1000000);
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("SubStats (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Statistic/subscriptions/interval/1/1000000")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Statistic/subscriptions/interval/1/1000000").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.statistic.subStats("interval", 1, 1000000);
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.statistic.subStats("interval", 1, 1000000)
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("SubStats (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Statistic/subscriptions/interval/1/1000000")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Statistic/subscriptions/interval/1/1000000").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.statistic.subStats("interval", 1, 1000000);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.statistic.subStats("interval", 1, 1000000)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("SubStats (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Statistic/subscriptions/interval/1/1000000")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Statistic/subscriptions/interval/1/1000000").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.statistic.subStats("interval", 1, 1000000);
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.statistic.subStats("interval", 1, 1000000)
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("SubStats (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Statistic/subscriptions/interval/1/1000000")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Statistic/subscriptions/interval/1/1000000").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.statistic.subStats("interval", 1, 1000000);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.statistic.subStats("interval", 1, 1000000)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("VendorBasicStats (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = [
-            {
-                statX: "2023-03",
-                active: 25,
-                activeVolume: 5000.25,
-                sentToApproval: 10,
-                sentToApprovalVolume: 2500.75,
-                toApproval: 8,
-                toApprovalVolume: 1800.5,
-                approved: 20,
-                approvedVolume: 4200,
-                disapproved: 3,
-                disapprovedVolume: 600.25,
-                cancelled: 2,
-                cancelledVolume: 400,
-                inTransit: 5,
-                inTransitVolume: 1250.75,
-                paid: 18,
-                paidVolume: 3800.5,
-            },
-        ];
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = [ { "statX" : "2023-03" , "active" : 25 , "activeVolume" : 5000.25 , "sentToApproval" : 10 , "sentToApprovalVolume" : 2500.75 , "toApproval" : 8 , "toApprovalVolume" : 1800.5 , "approved" : 20 , "approvedVolume" : 4200 , "disapproved" : 3 , "disapprovedVolume" : 600.25 , "cancelled" : 2 , "cancelledVolume" : 400 , "inTransit" : 5 , "inTransitVolume" : 1250.75 , "paid" : 18 , "paidVolume" : 3800.5 } ];
+        
         server
             .mockEndpoint()
-            .get("/Statistic/vendorbasic/ytd/m/1")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Statistic/vendorbasic/ytd/m/1").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.statistic.vendorBasicStats("ytd", "m", 1);
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.statistic.vendorBasicStats("ytd", "m", 1);
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("VendorBasicStats (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Statistic/vendorbasic/mode/freq/1")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Statistic/vendorbasic/mode/freq/1").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.statistic.vendorBasicStats("mode", "freq", 1);
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.statistic.vendorBasicStats("mode", "freq", 1)
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("VendorBasicStats (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Statistic/vendorbasic/mode/freq/1")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Statistic/vendorbasic/mode/freq/1").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.statistic.vendorBasicStats("mode", "freq", 1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.statistic.vendorBasicStats("mode", "freq", 1)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("VendorBasicStats (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Statistic/vendorbasic/mode/freq/1")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Statistic/vendorbasic/mode/freq/1").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.statistic.vendorBasicStats("mode", "freq", 1);
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.statistic.vendorBasicStats("mode", "freq", 1)
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("VendorBasicStats (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Statistic/vendorbasic/mode/freq/1")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Statistic/vendorbasic/mode/freq/1").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.statistic.vendorBasicStats("mode", "freq", 1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.statistic.vendorBasicStats("mode", "freq", 1)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
+          
 });

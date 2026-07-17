@@ -3,477 +3,430 @@
 import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
+import { mockBearerAuth } from "./mockAuth";
 
 describe("WalletClient", () => {
+    
     test("ConfigureApplePayOrganization (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { cascade: true, isEnabled: true, orgId: 123 };
-        const rawResponseBody = {
-            isSuccess: true,
-            pageIdentifier: "null",
-            responseCode: 1,
-            responseData: {
-                createdAt: "2022-07-01T15:00:01Z",
-                id: "id",
-                jobId: "445865",
-                jobStatus: "completed",
-                organizationId: 901,
-                type: "type",
-                updatedAt: "2022-07-01T15:00:01Z",
-                updates: { cascade: true, isEnabled: true },
-            },
-            responseText: "Success",
-        };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { "cascade" : true , "isEnabled" : true , "orgId" : 123 };
+        const rawResponseBody = { "isSuccess" : true , "pageIdentifier" : "null" , "responseCode" : 1 , "responseData" : { "createdAt" : "2022-07-01T15:00:01Z" , "id" : "id" , "jobId" : "445865" , "jobStatus" : "completed" , "organizationId" : 901 , "type" : "type" , "updatedAt" : "2022-07-01T15:00:01Z" , "updates" : { "cascade" : true , "isEnabled" : true } } , "responseText" : "Success" };
+        
         server
             .mockEndpoint()
-            .post("/Wallet/applepay/configure-organization")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Wallet/applepay/configure-organization").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.wallet.configureApplePayOrganization({
-            cascade: true,
-            isEnabled: true,
-            orgId: 123,
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.wallet.configureApplePayOrganization({
+    cascade: true,
+    isEnabled: true,
+    orgId: 123
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ConfigureApplePayOrganization (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .post("/Wallet/applepay/configure-organization")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Wallet/applepay/configure-organization").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.wallet.configureApplePayOrganization();
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.wallet.configureApplePayOrganization()
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ConfigureApplePayOrganization (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .post("/Wallet/applepay/configure-organization")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Wallet/applepay/configure-organization").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.wallet.configureApplePayOrganization();
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.wallet.configureApplePayOrganization()
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ConfigureApplePayOrganization (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .post("/Wallet/applepay/configure-organization")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Wallet/applepay/configure-organization").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.wallet.configureApplePayOrganization();
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.wallet.configureApplePayOrganization()
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ConfigureApplePayOrganization (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .post("/Wallet/applepay/configure-organization")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Wallet/applepay/configure-organization").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.wallet.configureApplePayOrganization();
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.wallet.configureApplePayOrganization()
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ConfigureApplePayPaypoint (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { entry: "8cfec329267", isEnabled: true };
-        const rawResponseBody = {
-            isSuccess: true,
-            pageIdentifier: "null",
-            responseCode: 1,
-            responseData: {
-                entry: "8cfec329267",
-                isEnabled: true,
-                walletType: "applepay",
-                walletData: {
-                    entry: "8cfec329267",
-                    applePayMerchantId: "applePayMerchantId",
-                    domainNames: ["subdomain.domain.com"],
-                    paypointName: "Alaskan Domes",
-                    markedForDeletionAt: "2022-07-01T15:00:01Z",
-                    createdAt: "2022-07-01T15:00:01Z",
-                    updatedAt: "2022-07-01T15:00:01Z",
-                    id: "id",
-                    type: "ApplePayRegistration",
-                },
-            },
-            responseText: "Success",
-        };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { "entry" : "8cfec329267" , "isEnabled" : true };
+        const rawResponseBody = { "isSuccess" : true , "pageIdentifier" : "null" , "responseCode" : 1 , "responseData" : { "entry" : "8cfec329267" , "isEnabled" : true , "walletType" : "applepay" , "walletData" : { "entry" : "8cfec329267" , "applePayMerchantId" : "applePayMerchantId" , "domainNames" : [ "subdomain.domain.com" ] , "paypointName" : "Alaskan Domes" , "markedForDeletionAt" : "2022-07-01T15:00:01Z" , "createdAt" : "2022-07-01T15:00:01Z" , "updatedAt" : "2022-07-01T15:00:01Z" , "id" : "id" , "type" : "ApplePayRegistration" } } , "responseText" : "Success" };
+        
         server
             .mockEndpoint()
-            .post("/Wallet/applepay/configure-paypoint")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Wallet/applepay/configure-paypoint").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.wallet.configureApplePayPaypoint({
-            entry: "8cfec329267",
-            isEnabled: true,
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.wallet.configureApplePayPaypoint({
+    entry: "8cfec329267",
+    isEnabled: true
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ConfigureApplePayPaypoint (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .post("/Wallet/applepay/configure-paypoint")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Wallet/applepay/configure-paypoint").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.wallet.configureApplePayPaypoint();
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.wallet.configureApplePayPaypoint()
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ConfigureApplePayPaypoint (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .post("/Wallet/applepay/configure-paypoint")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Wallet/applepay/configure-paypoint").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.wallet.configureApplePayPaypoint();
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.wallet.configureApplePayPaypoint()
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ConfigureApplePayPaypoint (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .post("/Wallet/applepay/configure-paypoint")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Wallet/applepay/configure-paypoint").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.wallet.configureApplePayPaypoint();
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.wallet.configureApplePayPaypoint()
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ConfigureApplePayPaypoint (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .post("/Wallet/applepay/configure-paypoint")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Wallet/applepay/configure-paypoint").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.wallet.configureApplePayPaypoint();
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.wallet.configureApplePayPaypoint()
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ConfigureGooglePayOrganization (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { cascade: true, isEnabled: true, orgId: 123 };
-        const rawResponseBody = {
-            isSuccess: true,
-            pageIdentifier: "null",
-            responseCode: 1,
-            responseData: {
-                createdAt: "2022-07-01T15:00:01Z",
-                id: "id",
-                jobId: "445865",
-                jobStatus: "completed",
-                organizationId: 901,
-                type: "type",
-                updatedAt: "2022-07-01T15:00:01Z",
-                updates: { cascade: true, isEnabled: true },
-            },
-            responseText: "Success",
-        };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { "cascade" : true , "isEnabled" : true , "orgId" : 123 };
+        const rawResponseBody = { "isSuccess" : true , "pageIdentifier" : "null" , "responseCode" : 1 , "responseData" : { "createdAt" : "2022-07-01T15:00:01Z" , "id" : "id" , "jobId" : "445865" , "jobStatus" : "completed" , "organizationId" : 901 , "type" : "type" , "updatedAt" : "2022-07-01T15:00:01Z" , "updates" : { "cascade" : true , "isEnabled" : true } } , "responseText" : "Success" };
+        
         server
             .mockEndpoint()
-            .post("/Wallet/googlepay/configure-organization")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Wallet/googlepay/configure-organization").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.wallet.configureGooglePayOrganization({
-            cascade: true,
-            isEnabled: true,
-            orgId: 123,
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.wallet.configureGooglePayOrganization({
+    cascade: true,
+    isEnabled: true,
+    orgId: 123
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ConfigureGooglePayOrganization (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .post("/Wallet/googlepay/configure-organization")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Wallet/googlepay/configure-organization").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.wallet.configureGooglePayOrganization();
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.wallet.configureGooglePayOrganization()
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ConfigureGooglePayOrganization (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .post("/Wallet/googlepay/configure-organization")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Wallet/googlepay/configure-organization").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.wallet.configureGooglePayOrganization();
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.wallet.configureGooglePayOrganization()
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ConfigureGooglePayOrganization (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .post("/Wallet/googlepay/configure-organization")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Wallet/googlepay/configure-organization").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.wallet.configureGooglePayOrganization();
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.wallet.configureGooglePayOrganization()
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ConfigureGooglePayOrganization (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .post("/Wallet/googlepay/configure-organization")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Wallet/googlepay/configure-organization").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.wallet.configureGooglePayOrganization();
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.wallet.configureGooglePayOrganization()
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("ConfigureGooglePayPaypoint (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { entry: "8cfec329267", isEnabled: true };
-        const rawResponseBody = {
-            isSuccess: true,
-            pageIdentifier: "null",
-            responseCode: 1,
-            responseData: {
-                entry: "8cfec329267",
-                isEnabled: true,
-                walletType: "googlepay",
-                walletData: { gatewayMerchantId: "123ID", gatewayId: "123ID" },
-            },
-            responseText: "Success",
-        };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { "entry" : "8cfec329267" , "isEnabled" : true };
+        const rawResponseBody = { "isSuccess" : true , "pageIdentifier" : "null" , "responseCode" : 1 , "responseData" : { "entry" : "8cfec329267" , "isEnabled" : true , "walletType" : "googlepay" , "walletData" : { "gatewayMerchantId" : "123ID" , "gatewayId" : "123ID" } } , "responseText" : "Success" };
+        
         server
             .mockEndpoint()
-            .post("/Wallet/googlepay/configure-paypoint")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Wallet/googlepay/configure-paypoint").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.wallet.configureGooglePayPaypoint({
-            entry: "8cfec329267",
-            isEnabled: true,
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.wallet.configureGooglePayPaypoint({
+    entry: "8cfec329267",
+    isEnabled: true
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("ConfigureGooglePayPaypoint (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .post("/Wallet/googlepay/configure-paypoint")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Wallet/googlepay/configure-paypoint").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.wallet.configureGooglePayPaypoint();
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.wallet.configureGooglePayPaypoint()
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ConfigureGooglePayPaypoint (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .post("/Wallet/googlepay/configure-paypoint")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Wallet/googlepay/configure-paypoint").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.wallet.configureGooglePayPaypoint();
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.wallet.configureGooglePayPaypoint()
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ConfigureGooglePayPaypoint (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .post("/Wallet/googlepay/configure-paypoint")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Wallet/googlepay/configure-paypoint").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.wallet.configureGooglePayPaypoint();
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.wallet.configureGooglePayPaypoint()
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ConfigureGooglePayPaypoint (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .post("/Wallet/googlepay/configure-paypoint")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Wallet/googlepay/configure-paypoint").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.wallet.configureGooglePayPaypoint();
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.wallet.configureGooglePayPaypoint()
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
+          
 });

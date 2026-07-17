@@ -5,9 +5,8 @@
  * Used for `method` = `report-email` and `report-web`.
  */
 export const NotificationContentFileFormat = {
-    Json: "json",
-    Csv: "csv",
-    Xlsx: "xlsx",
-} as const;
-export type NotificationContentFileFormat =
-    (typeof NotificationContentFileFormat)[keyof typeof NotificationContentFileFormat];
+        Json: "json",
+        Csv: "csv",
+        Xlsx: "xlsx"
+    } as const;
+export type NotificationContentFileFormat = typeof NotificationContentFileFormat[keyof typeof NotificationContentFileFormat];

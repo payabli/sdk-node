@@ -2,7 +2,7 @@
 
 /** Describes when customers are charged for goods or services. */
 export const Whencharged = {
-    WhenServiceProvided: "When Service Provided",
-    InAdvance: "In Advance",
-} as const;
-export type Whencharged = (typeof Whencharged)[keyof typeof Whencharged];
+        WhenServiceProvided: "When Service Provided",
+        InAdvance: "In Advance"
+    } as const;
+export type Whencharged = typeof Whencharged[keyof typeof Whencharged];

@@ -2,7 +2,7 @@
 
 /** Describes whether the bank is a personal or business account. */
 export const BankAccountHolderType = {
-    Personal: "Personal",
-    Business: "Business",
-} as const;
-export type BankAccountHolderType = (typeof BankAccountHolderType)[keyof typeof BankAccountHolderType];
+        Personal: "Personal",
+        Business: "Business"
+    } as const;
+export type BankAccountHolderType = typeof BankAccountHolderType[keyof typeof BankAccountHolderType];

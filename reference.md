@@ -860,7 +860,7 @@ await client.bill.listBillsOrg(123, {
 <dl>
 <dd>
 
-Creates a customer in an entrypoint. An identifier is required to create customer records. Change your identifier settings in Settings > Custom Fields in PartnerHub.
+Creates a customer in an entrypoint. An identifier is required to create customer records. Change your identifier settings in Settings > Custom Fields in the Payabli Portal.
 If you don't include an identifier, the record is rejected.
 </dd>
 </dl>
@@ -975,7 +975,7 @@ await client.customer.getCustomer(4440);
 <dl>
 <dd>
 
-**customerId:** `number` — Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub.
+**customerId:** `number` — Payabli-generated customer ID. Maps to "Customer ID" column in the Payabli Portal.
     
 </dd>
 </dl>
@@ -1046,7 +1046,7 @@ await client.customer.updateCustomer(4440, {
 <dl>
 <dd>
 
-**customerId:** `number` — Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub.
+**customerId:** `number` — Payabli-generated customer ID. Maps to "Customer ID" column in the Payabli Portal.
     
 </dd>
 </dl>
@@ -1117,7 +1117,7 @@ await client.customer.deleteCustomer(4440);
 <dl>
 <dd>
 
-**customerId:** `number` — Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub.
+**customerId:** `number` — Payabli-generated customer ID. Maps to "Customer ID" column in the Payabli Portal.
     
 </dd>
 </dl>
@@ -1180,7 +1180,7 @@ await client.customer.requestConsent(4440);
 <dl>
 <dd>
 
-**customerId:** `number` — Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub.
+**customerId:** `number` — Payabli-generated customer ID. Maps to "Customer ID" column in the Payabli Portal.
     
 </dd>
 </dl>
@@ -1243,7 +1243,7 @@ await client.customer.linkCustomerTransaction(4440, "45-as456777hhhhhhhhhh777777
 <dl>
 <dd>
 
-**customerId:** `number` — Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub.
+**customerId:** `number` — Payabli-generated customer ID. Maps to "Customer ID" column in the Payabli Portal.
     
 </dd>
 </dl>
@@ -2818,6 +2818,73 @@ await client.moneyIn.voidv2("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
 </dl>
 </details>
 
+## Token
+<details><summary><code>client.token.<a href="/src/api/resources/token/client/Client.ts">createServerSideToken</a>({ ...params }) -> Payabli.PayabliAccessTokenResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Exchanges a client ID and client secret for a short-lived Bearer access token using the OAuth2 client-credentials flow. Designed for server-to-server use: the credentials and the returned token stay on your backend. Send the returned `access_token` in the `Authorization` header as `Bearer <access_token>` on subsequent API calls. See the [OAuth authentication guide](/developers/oauth-authentication) for the full flow.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.token.createServerSideToken({
+    clientId: "YOUR_CLIENT_ID",
+    clientSecret: "YOUR_CLIENT_SECRET"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Payabli.CreateServerSideTokenRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `TokenClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Subscription
 <details><summary><code>client.subscription.<a href="/src/api/resources/subscription/client/Client.ts">getSubscription</a>(subId) -> Payabli.SubscriptionQueryRecords</code></summary>
 <dl>
@@ -3056,7 +3123,7 @@ await client.subscription.newSubscription({
     },
     paymentMethod: {
         cardcvv: "123",
-        cardexp: "02/25",
+        cardexp: "12/29",
         cardHolder: "John Cassian",
         cardnumber: "4111111111111111",
         cardzip: "37615",
@@ -5039,7 +5106,7 @@ await client.tokenStorage.addMethod({
     methodDescription: "Primary Visa card",
     paymentMethod: {
         cardcvv: "123",
-        cardexp: "02/25",
+        cardexp: "12/29",
         cardHolder: "John Doe",
         cardnumber: "4111111111111111",
         cardzip: "12345",
@@ -5191,7 +5258,7 @@ await client.tokenStorage.updateMethod("32-8877drt00045632-678", {
     fallbackAuth: true,
     paymentMethod: {
         cardcvv: "123",
-        cardexp: "02/25",
+        cardexp: "12/29",
         cardHolder: "John Doe",
         cardnumber: "4111111111111111",
         cardzip: "12345",
@@ -11564,7 +11631,7 @@ await client.boarding.getByTemplateIdLinkApplication(80);
 <dl>
 <dd>
 
-**templateId:** `number` — The boarding template ID. You can find this at the end of the boarding template URL in PartnerHub. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
+**templateId:** `number` — The boarding template ID. You can find this at the end of the boarding template URL in the Payabli Portal. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
     
 </dd>
 </dl>
@@ -12052,7 +12119,7 @@ await client.templates.deleteTemplate(80);
 <dl>
 <dd>
 
-**templateId:** `number` — The boarding template ID. You can find this at the end of the boarding template URL in PartnerHub. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
+**templateId:** `number` — The boarding template ID. You can find this at the end of the boarding template URL in the Payabli Portal. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
     
 </dd>
 </dl>
@@ -12115,7 +12182,7 @@ await client.templates.getlinkTemplate(80, true);
 <dl>
 <dd>
 
-**templateId:** `number` — The boarding template ID. You can find this at the end of the boarding template URL in PartnerHub. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
+**templateId:** `number` — The boarding template ID. You can find this at the end of the boarding template URL in the Payabli Portal. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
     
 </dd>
 </dl>
@@ -12186,7 +12253,7 @@ await client.templates.getTemplate(80);
 <dl>
 <dd>
 
-**templateId:** `number` — The boarding template ID. You can find this at the end of the boarding template URL in PartnerHub. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
+**templateId:** `number` — The boarding template ID. You can find this at the end of the boarding template URL in the Payabli Portal. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
     
 </dd>
 </dl>
@@ -15605,7 +15672,7 @@ For example, `w` groups the results by week.
 <dl>
 <dd>
 
-**customerId:** `number` — Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub.
+**customerId:** `number` — Payabli-generated customer ID. Maps to "Customer ID" column in the Payabli Portal.
     
 </dd>
 </dl>
@@ -17697,9 +17764,11 @@ Authorizes a transaction for payout.
 
 If you don't pass `autoCapture` with a value of `true`, authorized transactions aren't flagged for settlement until captured. Use the `referenceId` returned in the response to capture the transaction.
 
-When `autoCapture` is `true`, Payabli captures the transaction asynchronously after authorization. The response confirms only that the transaction was authorized; it doesn't confirm that capture succeeded. To confirm capture, listen for the [`payout_transaction_approvedcaptured`](/developers/webhooks/payout-transaction-approved-captured) webhook event.
+When `autoCapture` is `true`, Payabli captures the transaction asynchronously after authorization. The response confirms only that the transaction was authorized; it doesn't confirm that capture succeeded. To confirm capture, listen for the [`payout_transaction_approvedcaptured`](/developers/api-reference/webhooks-overview/payout-transaction-approved-captured) webhook event.
 
 If a velocity fraud alert is triggered, the endpoint returns a `202` response with `responseCode` `9051`, and the authorization is held for risk review rather than rejected. If a risk policy blocks the transaction, the endpoint returns a `422` response with `responseCode` `9005`, a terminal rejection.
+
+For check payouts, Payabli validates the remit (mailing) address at authorization. If the address fails deliverability validation, the endpoint returns a `422` response and doesn't charge the paypoint. Correct the address and re-authorize. Other payout rails (ACH, RTP, virtual card, wire, and managed payables) aren't affected.
 </dd>
 </dl>
 </dd>

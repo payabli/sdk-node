@@ -5,68 +5,68 @@
  * this field defaults to `NET30`.
  */
 export const Terms = {
-    /**
+        /**
      * Payment in advance. */
     Pia: "PIA",
-    /**
+        /**
      * Cash in advance. */
     Cia: "CIA",
-    /**
+        /**
      * Upon receipt. */
     Ur: "UR",
-    /**
+        /**
      * 10 days after invoice date. */
     Net10: "NET10",
-    /**
+        /**
      * 20 days after invoice date. */
     Net20: "NET20",
-    /**
+        /**
      * 30 days after invoice date. */
     Net30: "NET30",
-    /**
+        /**
      * 45 days after invoice date. */
     Net45: "NET45",
-    /**
+        /**
      * 60 days after invoice date. */
     Net60: "NET60",
-    /**
+        /**
      * 90 days after invoice date. */
     Net90: "NET90",
-    /**
+        /**
      * Due end of this month. */
     Eom: "EOM",
-    /**
+        /**
      * 1st of the month following the invoice date. */
     Mfi: "MFI",
-    /**
+        /**
      * 5th of the month following the invoice date. */
     FiveMfi: "5MFI",
-    /**
+        /**
      * 10th of the month following the invoice date. */
     TenMfi: "10MFI",
-    /**
+        /**
      * 15th of the month following the invoice date. */
     FifteenMfi: "15MFI",
-    /**
+        /**
      * 20th of the month following the invoice date. */
     TwentyMfi: "20MFI",
-    /**
+        /**
      * 2% discount if paid within 10 days, otherwise net 30. */
     Two10Net30: "2/10NET30",
-    /**
+        /**
      * Under fixed terms. */
     Uf: "UF",
-    /**
+        /**
      * 10 day grace period under EOM. */
     TenUf: "10UF",
-    /**
+        /**
      * 20 day grace period under EOM. */
     TwentyUf: "20UF",
-    /**
+        /**
      * 25 day grace period under EOM. */
     TwentyFiveUf: "25UF",
-    /**
+        /**
      * 50 day grace period under EOM. */
-    FiftyUf: "50UF",
-} as const;
-export type Terms = (typeof Terms)[keyof typeof Terms];
+    FiftyUf: "50UF"
+    } as const;
+export type Terms = typeof Terms[keyof typeof Terms];

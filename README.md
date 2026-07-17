@@ -14,6 +14,7 @@ The Payabli TypeScript library provides convenient access to the Payabli APIs fr
 - [Getting Started](#getting-started)
 - [Usage](#usage)
 - [Environments](#environments)
+- [Authentication](#authentication)
 - [Request and Response Types](#request-and-response-types)
 - [Exception Handling](#exception-handling)
 - [File Uploads](#file-uploads)
@@ -61,7 +62,7 @@ Instantiate and use the client with the following:
 ```typescript
 import { PayabliClient } from "@payabli/sdk-node";
 
-const client = new PayabliClient({ apiKey: "YOUR_API_KEY" });
+const client = new PayabliClient({ clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET", apiKey: "YOUR_API_KEY" });
 await client.moneyIn.getpaidv2({
     customerData: {
         customerId: 4440
@@ -89,6 +90,37 @@ import { PayabliClient, PayabliEnvironment } from "@payabli/sdk-node";
 
 const client = new PayabliClient({
     environment: PayabliEnvironment.Sandbox,
+});
+```
+
+## Authentication
+
+The SDK supports OAuth authentication with two options:
+
+**Option 1: OAuth Client Credentials Flow**
+
+Use this when you want the SDK to automatically handle OAuth token retrieval and refreshing:
+
+```typescript
+import { PayabliClient } from "@payabli/sdk-node";
+
+const client = new PayabliClient({
+    clientId: "YOUR_CLIENT_ID",
+    clientSecret: "YOUR_CLIENT_SECRET",
+    ...
+});
+```
+
+**Option 2: Token Override**
+
+Use this when you already have a valid bearer token and want to skip the OAuth flow:
+
+```typescript
+import { PayabliClient } from "@payabli/sdk-node";
+
+const client = new PayabliClient({
+    token: "my-pre-generated-bearer-token",
+    ...
 });
 ```
 
@@ -134,7 +166,7 @@ import { createReadStream } from "fs";
 import * as fs from "fs";
 import { PayabliClient } from "@payabli/sdk-node";
 
-const client = new PayabliClient({ apiKey: "YOUR_API_KEY" });
+const client = new PayabliClient({ clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET", apiKey: "YOUR_API_KEY" });
 await client.import.importBills("8cfec329267", {
     file: fs.createReadStream("/path/to/your/file")
 });

@@ -2,14 +2,14 @@
 
 /** Frequency for notifications. */
 export const Frequencynotification = {
-    OneTime: "one-time",
-    Daily: "daily",
-    Weekly: "weekly",
-    Biweekly: "biweekly",
-    Monthly: "monthly",
-    Quarterly: "quarterly",
-    Semiannually: "semiannually",
-    Annually: "annually",
-    Untilcancelled: "untilcancelled",
-} as const;
-export type Frequencynotification = (typeof Frequencynotification)[keyof typeof Frequencynotification];
+        OneTime: "one-time",
+        Daily: "daily",
+        Weekly: "weekly",
+        Biweekly: "biweekly",
+        Monthly: "monthly",
+        Quarterly: "quarterly",
+        Semiannually: "semiannually",
+        Annually: "annually",
+        Untilcancelled: "untilcancelled"
+    } as const;
+export type Frequencynotification = typeof Frequencynotification[keyof typeof Frequencynotification];

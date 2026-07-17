@@ -2,7 +2,7 @@
 
 /** Region where payment processing occurs. */
 export const OdpSetupProcessingRegion = {
-    Us: "US",
-    Ca: "CA",
-} as const;
-export type OdpSetupProcessingRegion = (typeof OdpSetupProcessingRegion)[keyof typeof OdpSetupProcessingRegion];
+        Us: "US",
+        Ca: "CA"
+    } as const;
+export type OdpSetupProcessingRegion = typeof OdpSetupProcessingRegion[keyof typeof OdpSetupProcessingRegion];

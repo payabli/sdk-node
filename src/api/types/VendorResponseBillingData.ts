@@ -17,5 +17,5 @@ export interface VendorResponseBillingData {
     verified?: boolean | undefined;
     status?: number | undefined;
     services?: unknown[] | undefined;
-    default?: boolean | undefined;
+    "default"?: boolean | undefined;
 }

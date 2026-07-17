@@ -3,373 +3,400 @@
 import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
+import { mockBearerAuth } from "./mockAuth";
 
 describe("TemplatesClient", () => {
+    
     test("DeleteTemplate (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 3625, responseText: "Success" };
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseCode" : 1 , "responseData" : 3625 , "responseText" : "Success" };
+        
+        server
+            .mockEndpoint()
+            .delete("/Templates/80").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        server.mockEndpoint().delete("/Templates/80").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
-
-        const response = await client.templates.deleteTemplate(80);
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.templates.deleteTemplate(80);
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("DeleteTemplate (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
+        server
+            .mockEndpoint()
+            .delete("/Templates/1.1").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        server.mockEndpoint().delete("/Templates/1.1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.templates.deleteTemplate(1.1);
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.templates.deleteTemplate(1.1)
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("DeleteTemplate (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
+        server
+            .mockEndpoint()
+            .delete("/Templates/1.1").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        server.mockEndpoint().delete("/Templates/1.1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.templates.deleteTemplate(1.1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.templates.deleteTemplate(1.1)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("DeleteTemplate (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
+        server
+            .mockEndpoint()
+            .delete("/Templates/1.1").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        server.mockEndpoint().delete("/Templates/1.1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.templates.deleteTemplate(1.1);
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.templates.deleteTemplate(1.1)
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("DeleteTemplate (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
+        server
+            .mockEndpoint()
+            .delete("/Templates/1.1").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        server.mockEndpoint().delete("/Templates/1.1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.templates.deleteTemplate(1.1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.templates.deleteTemplate(1.1)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("getlinkTemplate (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { responseData: "34", responseText: "Success" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "responseData" : "34" , "responseText" : "Success" };
+        
         server
             .mockEndpoint()
-            .get("/Templates/getlink/80/true")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Templates/getlink/80/true").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.templates.getlinkTemplate(80, true);
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.templates.getlinkTemplate(80, true);
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("getlinkTemplate (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Templates/getlink/1.1/true")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Templates/getlink/1.1/true").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.templates.getlinkTemplate(1.1, true);
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.templates.getlinkTemplate(1.1, true)
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("getlinkTemplate (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Templates/getlink/1.1/true")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Templates/getlink/1.1/true").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.templates.getlinkTemplate(1.1, true);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.templates.getlinkTemplate(1.1, true)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("getlinkTemplate (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/Templates/getlink/1.1/true")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Templates/getlink/1.1/true").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.templates.getlinkTemplate(1.1, true);
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.templates.getlinkTemplate(1.1, true)
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("getlinkTemplate (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .get("/Templates/getlink/1.1/true")
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Templates/getlink/1.1/true").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.templates.getlinkTemplate(1.1, true);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.templates.getlinkTemplate(1.1, true)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-
+          
     test("getTemplate (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = {
-            addPrice: true,
-            boardingLinks: [
-                {
-                    acceptOauth: false,
-                    acceptRegister: false,
-                    entryAttributes: "entryAttributes",
-                    id: 91,
-                    lastUpdated: "2022-07-01T15:00:01Z",
-                    orgParentName: "PropertyManager Pro",
-                    referenceName: "payabli-00710",
-                    referenceTemplateId: 1830,
-                    templateCode: "templateCode",
-                    templateName: "SMB",
-                },
-            ],
-            createdAt: "2022-07-01T15:00:01Z",
-            idTemplate: 1000000,
-            isRoot: false,
-            orgParentName: "PropertyManager Pro",
-            recipientEmailNotification: true,
-            resumable: false,
-            templateCode: "templateCode",
-            templateContent: {
-                businessData: { visible: true },
-                documentsData: {
-                    minimumDocuments: 1,
-                    subFooter: "subFooter",
-                    subHeader: "subHeader",
-                    uploadDocuments: true,
-                    visible: true,
-                },
-                ownershipData: {
-                    multipleContacts: true,
-                    multipleOwners: true,
-                    subFooter: "subFooter",
-                    subHeader: "subHeader",
-                    visible: true,
-                },
-                processingData: { subFooter: "subFooter", subHeader: "subHeader", visible: true },
-                salesData: { salesCode: "salesCode", salesCRM: "salesCRM" },
-                servicesData: { subFooter: "subFooter", subHeader: "subHeader", visible: true },
-                underwritingData: { method: "automatic", policyId: "J-itEyD6A7y5S5yYFjxOrb" },
-            },
-            templateDescription: "templateDescription",
-            templateTitle: "templateTitle",
-            usedBy: 1,
-        };
-
-        server.mockEndpoint().get("/Templates/get/80").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
-
-        const response = await client.templates.getTemplate(80);
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("getTemplate (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server.mockEndpoint().get("/Templates/get/1.1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.templates.getTemplate(1.1);
-        }).rejects.toThrow(Payabli.BadRequestError);
-    });
-
-    test("getTemplate (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
-        server.mockEndpoint().get("/Templates/get/1.1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.templates.getTemplate(1.1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
-    });
-
-    test("getTemplate (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server.mockEndpoint().get("/Templates/get/1.1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.templates.getTemplate(1.1);
-        }).rejects.toThrow(Payabli.InternalServerError);
-    });
-
-    test("getTemplate (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
-
-        server.mockEndpoint().get("/Templates/get/1.1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.templates.getTemplate(1.1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
-    });
-
-    test("ListTemplates (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            records: [
-                {
-                    addPrice: true,
-                    boardingLinks: [{ id: 91 }],
-                    createdAt: "2022-07-01T15:00:01Z",
-                    idTemplate: 1000000,
-                    isRoot: false,
-                    orgParentName: "PropertyManager Pro",
-                    recipientEmailNotification: true,
-                    resumable: false,
-                    templateCode: "templateCode",
-                    templateDescription: "templateDescription",
-                    templateTitle: "templateTitle",
-                    usedBy: 1,
-                },
-            ],
-            summary: {
-                pageIdentifier: "null",
-                pageSize: 20,
-                totalAmount: 77.22,
-                totalNetAmount: 77.22,
-                totalPages: 2,
-                totalRecords: 2,
-            },
-        };
-
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "addPrice" : true , "boardingLinks" : [ { "acceptOauth" : false , "acceptRegister" : false , "entryAttributes" : "entryAttributes" , "id" : 91 , "lastUpdated" : "2022-07-01T15:00:01Z" , "orgParentName" : "PropertyManager Pro" , "referenceName" : "payabli-00710" , "referenceTemplateId" : 1830 , "templateCode" : "templateCode" , "templateName" : "SMB" } ] , "createdAt" : "2022-07-01T15:00:01Z" , "idTemplate" : 1000000 , "isRoot" : false , "orgParentName" : "PropertyManager Pro" , "recipientEmailNotification" : true , "resumable" : false , "templateCode" : "templateCode" , "templateContent" : { "businessData" : { "visible" : true } , "documentsData" : { "minimumDocuments" : 1 , "subFooter" : "subFooter" , "subHeader" : "subHeader" , "uploadDocuments" : true , "visible" : true } , "ownershipData" : { "multipleContacts" : true , "multipleOwners" : true , "subFooter" : "subFooter" , "subHeader" : "subHeader" , "visible" : true } , "processingData" : { "subFooter" : "subFooter" , "subHeader" : "subHeader" , "visible" : true } , "salesData" : { "salesCode" : "salesCode" , "salesCRM" : "salesCRM" } , "servicesData" : { "subFooter" : "subFooter" , "subHeader" : "subHeader" , "visible" : true } , "underwritingData" : { "method" : "automatic" , "policyId" : "J-itEyD6A7y5S5yYFjxOrb" } } , "templateDescription" : "templateDescription" , "templateTitle" : "templateTitle" , "usedBy" : 1 };
+        
         server
             .mockEndpoint()
-            .get("/Query/templates/123")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/Templates/get/80").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.templates.listTemplates(123, {
-            fromRecord: 251,
-            limitRecord: 0,
-            sortBy: "desc(field_name)",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.templates.getTemplate(80);
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
+          
+    test("getTemplate (2)", async () => {
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
+        server
+            .mockEndpoint()
+            .get("/Templates/get/1.1").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
+
+        
+            await expect(async () => {
+                return await client.templates.getTemplate(1.1)
+            }).rejects.toThrow(Payabli.BadRequestError);
+    });
+          
+    test("getTemplate (3)", async () => {
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
+        server
+            .mockEndpoint()
+            .get("/Templates/get/1.1").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
+
+        
+            await expect(async () => {
+                return await client.templates.getTemplate(1.1)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+          
+    test("getTemplate (4)", async () => {
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
+        server
+            .mockEndpoint()
+            .get("/Templates/get/1.1").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
+
+        
+            await expect(async () => {
+                return await client.templates.getTemplate(1.1)
+            }).rejects.toThrow(Payabli.InternalServerError);
+    });
+          
+    test("getTemplate (5)", async () => {
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
+        server
+            .mockEndpoint()
+            .get("/Templates/get/1.1").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
+
+        
+            await expect(async () => {
+                return await client.templates.getTemplate(1.1)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+          
+    test("ListTemplates (1)", async () => {
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "records" : [ { "addPrice" : true , "boardingLinks" : [ { "id" : 91 } ] , "createdAt" : "2022-07-01T15:00:01Z" , "idTemplate" : 1000000 , "isRoot" : false , "orgParentName" : "PropertyManager Pro" , "recipientEmailNotification" : true , "resumable" : false , "templateCode" : "templateCode" , "templateDescription" : "templateDescription" , "templateTitle" : "templateTitle" , "usedBy" : 1 } ] , "summary" : { "pageIdentifier" : "null" , "pageSize" : 20 , "totalAmount" : 77.22 , "totalNetAmount" : 77.22 , "totalPages" : 2 , "totalRecords" : 2 } };
+        
+        server
+            .mockEndpoint()
+            .get("/Query/templates/123").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
+
+        
+                        
+                                const response = await client.templates.listTemplates(123, {
+    fromRecord: 251,
+    limitRecord: 0,
+    sortBy: "desc(field_name)"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
+    });
+          
     test("ListTemplates (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
+        server
+            .mockEndpoint()
+            .get("/Query/templates/1").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        server.mockEndpoint().get("/Query/templates/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.templates.listTemplates(1);
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.templates.listTemplates(1)
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("ListTemplates (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
+        server
+            .mockEndpoint()
+            .get("/Query/templates/1").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        server.mockEndpoint().get("/Query/templates/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.templates.listTemplates(1);
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.templates.listTemplates(1)
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("ListTemplates (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { key: "value" };
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
+        server
+            .mockEndpoint()
+            .get("/Query/templates/1").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        server.mockEndpoint().get("/Query/templates/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.templates.listTemplates(1);
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.templates.listTemplates(1)
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("ListTemplates (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
+        server
+            .mockEndpoint()
+            .get("/Query/templates/1").respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        server.mockEndpoint().get("/Query/templates/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.templates.listTemplates(1);
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.templates.listTemplates(1)
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
+          
 });

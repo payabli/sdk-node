@@ -4,4 +4,6 @@
  * Any data associated to the event received from processor. Contents vary
  * by event type.
  */
-export type QueryTransactionEventsEventData = Record<string, unknown> | string;
+export type QueryTransactionEventsEventData = 
+    | Record<string, unknown>
+    | string;

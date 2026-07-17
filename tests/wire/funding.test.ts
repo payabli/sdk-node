@@ -3,124 +3,130 @@
 import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
+import { mockBearerAuth } from "./mockAuth";
 
 describe("FundingClient", () => {
+    
     test("DepositFunds (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { amount: 10, entrypoint: "48acde49", accountId: "333" };
-        const rawResponseBody = { isSuccess: true, responseText: "Success", responseData: null, pageIdentifier: null };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { "amount" : 10 , "entrypoint" : "48acde49" , "accountId" : "333" };
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "Success" , "responseData" : null , "pageIdentifier" : null };
+        
         server
             .mockEndpoint()
-            .post("/Funding/depositFunds")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Funding/depositFunds").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.funding.depositFunds({
-            amount: 10,
-            entrypoint: "48acde49",
-            accountId: "333",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.funding.depositFunds({
+    amount: 10,
+    entrypoint: "48acde49",
+    accountId: "333"
+});
+                                expect(response).toEqual(rawResponseBody);
+                              
+                    
     });
-
+          
     test("DepositFunds (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { amount: 1.1, entrypoint: "entrypoint", accountId: "accountId" };
-        const rawResponseBody = { key: "value" };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { "amount" : 1.1 , "entrypoint" : "entrypoint" , "accountId" : "accountId" };
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .post("/Funding/depositFunds")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Funding/depositFunds").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.funding.depositFunds({
-                amount: 1.1,
-                entrypoint: "entrypoint",
-                accountId: "accountId",
-            });
-        }).rejects.toThrow(Payabli.BadRequestError);
+        
+            await expect(async () => {
+                return await client.funding.depositFunds({
+    amount: 1.1,
+    entrypoint: "entrypoint",
+    accountId: "accountId"
+})
+            }).rejects.toThrow(Payabli.BadRequestError);
     });
-
+          
     test("DepositFunds (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { amount: 1.1, entrypoint: "entrypoint", accountId: "accountId" };
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { "amount" : 1.1 , "entrypoint" : "entrypoint" , "accountId" : "accountId" };
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .post("/Funding/depositFunds")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Funding/depositFunds").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.funding.depositFunds({
-                amount: 1.1,
-                entrypoint: "entrypoint",
-                accountId: "accountId",
-            });
-        }).rejects.toThrow(Payabli.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.funding.depositFunds({
+    amount: 1.1,
+    entrypoint: "entrypoint",
+    accountId: "accountId"
+})
+            }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-
+          
     test("DepositFunds (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { amount: 1.1, entrypoint: "entrypoint", accountId: "accountId" };
-        const rawResponseBody = { key: "value" };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { "amount" : 1.1 , "entrypoint" : "entrypoint" , "accountId" : "accountId" };
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .post("/Funding/depositFunds")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Funding/depositFunds").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.funding.depositFunds({
-                amount: 1.1,
-                entrypoint: "entrypoint",
-                accountId: "accountId",
-            });
-        }).rejects.toThrow(Payabli.InternalServerError);
+        
+            await expect(async () => {
+                return await client.funding.depositFunds({
+    amount: 1.1,
+    entrypoint: "entrypoint",
+    accountId: "accountId"
+})
+            }).rejects.toThrow(Payabli.InternalServerError);
     });
-
+          
     test("DepositFunds (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { amount: 1.1, entrypoint: "entrypoint", accountId: "accountId" };
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const server = mockServerPool.createServer();mockBearerAuth(server);
 
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const rawRequestBody = { "amount" : 1.1 , "entrypoint" : "entrypoint" , "accountId" : "accountId" };
+        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
+        
         server
             .mockEndpoint()
-            .post("/Funding/depositFunds")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(503)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/Funding/depositFunds").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(503).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.funding.depositFunds({
-                amount: 1.1,
-                entrypoint: "entrypoint",
-                accountId: "accountId",
-            });
-        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        
+            await expect(async () => {
+                return await client.funding.depositFunds({
+    amount: 1.1,
+    entrypoint: "entrypoint",
+    accountId: "accountId"
+})
+            }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
+          
 });

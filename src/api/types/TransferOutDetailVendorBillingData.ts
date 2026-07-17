@@ -31,7 +31,7 @@ export interface TransferOutDetailVendorBillingData {
     /** Services associated with the billing data. */
     services: unknown[] | null;
     /** Whether this is the default billing data. */
-    default: boolean | null;
+    "default": boolean | null;
     /** The country of the bank account. */
     country: string | null;
 }

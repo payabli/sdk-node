@@ -5,11 +5,11 @@
  * instead of JSON.
  */
 export const ExportFormat = {
-    /**
+        /**
      * Comma-separated values file. */
     Csv: "csv",
-    /**
+        /**
      * Excel spreadsheet file. */
-    Xlsx: "xlsx",
-} as const;
-export type ExportFormat = (typeof ExportFormat)[keyof typeof ExportFormat];
+    Xlsx: "xlsx"
+    } as const;
+export type ExportFormat = typeof ExportFormat[keyof typeof ExportFormat];

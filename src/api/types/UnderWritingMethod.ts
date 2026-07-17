@@ -12,8 +12,8 @@
  *   proceeds directly to boarding products and services.
  */
 export const UnderWritingMethod = {
-    Automatic: "automatic",
-    Manual: "manual",
-    Bypass: "bypass",
-} as const;
-export type UnderWritingMethod = (typeof UnderWritingMethod)[keyof typeof UnderWritingMethod];
+        Automatic: "automatic",
+        Manual: "manual",
+        Bypass: "bypass"
+    } as const;
+export type UnderWritingMethod = typeof UnderWritingMethod[keyof typeof UnderWritingMethod];
