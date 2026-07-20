@@ -63,7 +63,7 @@ export interface VendorQueryRecord {
     EnrichedAt?: string | undefined;
     /** Identifier for the enrichment request that last updated this vendor. */
     EnrichmentId?: string | undefined;
-    additionalData?: Payabli.AdditionalData | undefined;
+    additionalData?: Payabli.AdditionalDataMap | undefined;
     externalPaypointID?: Payabli.ExternalPaypointId | undefined;
     StoredMethods?: Payabli.VendorResponseStoredMethod[] | undefined;
 }

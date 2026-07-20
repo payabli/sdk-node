@@ -9,10 +9,10 @@
     "flattenRequestParameters": true,
     "enableInlineTypes": true
   },
-  "originGitCommit": "fbf628bcea22b886022a9bd709dca9daaf0bd3ca",
+  "originGitCommit": "4a292ff89b1a47f4e159d99e6b8ac1d9af84a653",
   "originGitCommitIsDirty": true,
   "invokedBy": "ci",
-  "requestedVersion": "1.0.4",
+  "requestedVersion": "1.0.5",
   "ciProvider": "github",
-  "sdkVersion": "1.0.4"
+  "sdkVersion": "1.0.5"
 }
