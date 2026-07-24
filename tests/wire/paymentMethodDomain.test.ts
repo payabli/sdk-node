@@ -3,14 +3,12 @@
 import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
-import { mockBearerAuth } from "./mockAuth";
 
 describe("PaymentMethodDomainClient", () => {
     
     test("AddPaymentMethodDomain (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { "domainName" : "checkout.example.com" , "entityId" : 109 , "entityType" : "paypoint" , "applePay" : { "isEnabled" : true } , "googlePay" : { "isEnabled" : true } };
         const rawResponseBody = { "isSuccess" : true , "pageidentifier" : "pageidentifier" , "responseData" : { "id" : "pmd_a4c7e39d15f24b8c8d6259f174e3d081" , "type" : "PaymentMethodDomains" , "entityId" : 109 , "entityType" : "paypoint" , "domainName" : "checkout.example.com" , "applePay" : { "isEnabled" : true } , "googlePay" : { "isEnabled" : true } , "ownerEntityId" : 109 , "ownerEntityType" : "paypoint" , "cascades" : [ { "jobId" : "1030398" , "jobStatus" : "completed" , "createdAt" : "2025-04-25T15:37:28.685Z" , "updatedAt" : "2025-04-25T15:37:33.228Z" } , { "jobId" : "611502" , "jobStatus" : "completed" , "createdAt" : "2026-09-26T22:25:45.095Z" , "updatedAt" : "2026-09-26T22:25:46.187Z" } , { "jobId" : "611172" , "jobStatus" : "completed" , "createdAt" : "2026-09-26T19:46:40.075Z" , "updatedAt" : "2026-09-26T19:47:13.548Z" } ] , "createdAt" : "2025-04-25T15:44:17.016Z" , "updatedAt" : "2025-04-25T15:44:17.016Z" } , "responseText" : "Success" };
         
@@ -40,9 +38,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("AddPaymentMethodDomain (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "key" : "value" };
         
@@ -60,9 +57,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("AddPaymentMethodDomain (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -80,9 +76,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("AddPaymentMethodDomain (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "key" : "value" };
         
@@ -100,9 +95,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("AddPaymentMethodDomain (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -120,9 +114,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("CascadePaymentMethodDomain (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "pageidentifier" : "null" , "responseData" : { "id" : "pmd_b8237fa45c964d8a9ef27160cd42b8c5" , "type" : "PaymentMethodDomains" , "entityId" : 78 , "entityType" : "organization" , "domainName" : "checkout.example.com" , "applePay" : { "isEnabled" : true } , "googlePay" : { "isEnabled" : true } , "ownerEntityId" : 78 , "ownerEntityType" : "organization" , "cascades" : [ { "jobId" : "1245697" , "jobStatus" : "completed" , "createdAt" : "2025-04-25T15:37:28.685Z" , "updatedAt" : "2025-04-25T15:37:33.228Z" } ] , "createdAt" : "2025-03-15T10:24:36.207Z" , "updatedAt" : "2025-04-25T15:38:46.804Z" } , "responseText" : "Success" };
         
@@ -141,9 +134,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("CascadePaymentMethodDomain (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -160,9 +152,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("CascadePaymentMethodDomain (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -179,9 +170,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("CascadePaymentMethodDomain (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -198,9 +188,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("CascadePaymentMethodDomain (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -217,9 +206,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("GetPaymentMethodDomain (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "id" : "pmd_b8237fa45c964d8a9ef27160cd42b8c5" , "type" : "PaymentMethodDomains" , "entityId" : 78 , "entityType" : "organization" , "domainName" : "checkout.example.com" , "applePay" : { "isEnabled" : true } , "googlePay" : { "isEnabled" : true } , "ownerEntityId" : 78 , "ownerEntityType" : "organization" , "cascades" : [ { "jobId" : "1245697" , "jobStatus" : "completed" , "createdAt" : "2025-04-25T15:37:28.685Z" , "updatedAt" : "2025-04-25T15:37:33.228Z" } ] , "createdAt" : "2025-03-15T10:24:36.207Z" , "updatedAt" : "2025-04-25T15:38:46.804Z" };
         
@@ -238,9 +226,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("GetPaymentMethodDomain (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -257,9 +244,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("GetPaymentMethodDomain (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -276,9 +262,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("GetPaymentMethodDomain (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -295,9 +280,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("GetPaymentMethodDomain (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -314,9 +298,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("DeletePaymentMethodDomain (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "pageIdentifier" : "null" , "responseData" : "pmd_b8237fa45c964d8a9ef27160cd42b8c5" , "responseText" : "Success" };
         
@@ -335,9 +318,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("DeletePaymentMethodDomain (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -354,9 +336,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("DeletePaymentMethodDomain (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -373,9 +354,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("DeletePaymentMethodDomain (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -392,9 +372,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("DeletePaymentMethodDomain (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -411,9 +390,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("UpdatePaymentMethodDomain (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { "applePay" : { "isEnabled" : false } , "googlePay" : { "isEnabled" : false } };
         const rawResponseBody = { "isSuccess" : true , "pageidentifier" : "null" , "responseData" : { "id" : "pmd_b8237fa45c964d8a9ef27160cd42b8c5" , "type" : "PaymentMethodDomains" , "entityId" : 78 , "entityType" : "organization" , "domainName" : "checkout.example.com" , "applePay" : { "isEnabled" : false } , "googlePay" : { "isEnabled" : false } , "ownerEntityId" : 78 , "ownerEntityType" : "organization" , "cascades" : [ { "jobId" : "1245697" , "jobStatus" : "completed" , "createdAt" : "2025-04-25T15:37:28.685Z" , "updatedAt" : "2025-04-25T15:37:33.228Z" } ] , "createdAt" : "2025-03-15T10:24:36.207Z" , "updatedAt" : "2025-04-25T16:05:12.345Z" } , "responseText" : "Success" };
         
@@ -440,9 +418,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("UpdatePaymentMethodDomain (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "key" : "value" };
         
@@ -460,9 +437,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("UpdatePaymentMethodDomain (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -480,9 +456,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("UpdatePaymentMethodDomain (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "key" : "value" };
         
@@ -500,9 +475,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("UpdatePaymentMethodDomain (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -520,9 +494,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("ListPaymentMethodDomains (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "records" : [ { "id" : "pmd_7b4b3ca0f6b74f02853dfcee5ec090a3" , "type" : "PaymentMethodDomains" , "entityId" : 1147 , "entityType" : "paypoint" , "domainName" : "payment.example.com" , "applePay" : { "isEnabled" : true } , "googlePay" : { "isEnabled" : true } , "ownerEntityId" : 1147 , "ownerEntityType" : "paypoint" , "createdAt" : "2025-02-13T18:31:07.023Z" , "updatedAt" : "2025-03-18T13:48:39.056Z" } , { "id" : "pmd_1f799c8ab7dd432dbc2052ce332c101c" , "type" : "PaymentMethodDomains" , "entityId" : 1147 , "entityType" : "paypoint" , "domainName" : "checkout.example.com" , "applePay" : { "isEnabled" : true } , "googlePay" : { "isEnabled" : true } , "ownerEntityId" : 1147 , "ownerEntityType" : "paypoint" , "createdAt" : "2025-02-13T18:04:50.207Z" , "updatedAt" : "2025-02-13T18:04:50.207Z" } , { "id" : "pmd_135ac1be6fab4a97850aadbbba77ce1b" , "type" : "PaymentMethodDomains" , "entityId" : 1147 , "entityType" : "paypoint" , "domainName" : "pay.example.com" , "applePay" : { "isEnabled" : true } , "googlePay" : { "isEnabled" : false } , "ownerEntityId" : 1147 , "ownerEntityType" : "paypoint" , "createdAt" : "2026-09-06T03:55:32.213Z" , "updatedAt" : "2026-09-06T03:55:47.586Z" } ] , "summary" : { "pageIdentifier" : "t.wlbQ4YZ3/JJkaP2/muAxibhlwdVz1Ve89QtI40H9KPhf..." , "pageSize" : 20 , "totalPages" : 1 , "totalRecords" : 17 } };
         
@@ -544,9 +517,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("ListPaymentMethodDomains (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "records" : [ { "id" : "pmd_1bed085c821e432fa71ae0817c571dd6" , "type" : "PaymentMethodDomains" , "entityId" : 39 , "entityType" : "organization" , "domainName" : "checkout.example.com" , "applePay" : { "isEnabled" : true } , "googlePay" : { "isEnabled" : false } , "ownerEntityId" : 39 , "ownerEntityType" : "organization" , "createdAt" : "2026-09-27T01:20:17.486Z" , "updatedAt" : "2025-03-26T23:55:36.876Z" } , { "id" : "pmd_dab1e3d2a3774216920bdc2afd62c307" , "type" : "PaymentMethodDomains" , "entityId" : 39 , "entityType" : "organization" , "domainName" : "checkout.example.com" , "applePay" : { "isEnabled" : true } , "googlePay" : { "isEnabled" : false } , "ownerEntityId" : 39 , "ownerEntityType" : "organization" , "createdAt" : "2026-08-23T03:42:06.673Z" , "updatedAt" : "2025-03-26T23:56:15.708Z" } ] , "summary" : { "pageIdentifier" : "pageIdentifier" , "pageSize" : 20 , "totalPages" : 1 , "totalRecords" : 2 } };
         
@@ -568,9 +540,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("ListPaymentMethodDomains (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -587,9 +558,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("ListPaymentMethodDomains (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -606,9 +576,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("ListPaymentMethodDomains (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -625,9 +594,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("ListPaymentMethodDomains (6)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -644,9 +612,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("VerifyPaymentMethodDomain (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "pageidentifier" : "null" , "responseData" : { "id" : "pmd_b8237fa45c964d8a9ef27160cd42b8c5" , "type" : "PaymentMethodDomains" , "entityId" : 78 , "entityType" : "organization" , "domainName" : "checkout.example.com" , "applePay" : { "isEnabled" : true } , "googlePay" : { "isEnabled" : true } , "ownerEntityId" : 78 , "ownerEntityType" : "organization" , "cascades" : [ { "jobId" : "1245697" , "jobStatus" : "completed" , "createdAt" : "2025-04-25T15:37:28.685Z" , "updatedAt" : "2025-04-25T15:37:33.228Z" } ] , "createdAt" : "2025-03-15T10:24:36.207Z" , "updatedAt" : "2025-04-25T15:45:21.517Z" } , "responseText" : "Success" };
         
@@ -665,9 +632,8 @@ describe("PaymentMethodDomainClient", () => {
     });
           
     test("VerifyPaymentMethodDomain (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : false , "pageidentifier" : "null" , "responseData" : { "id" : "pmd_b8237fa45c964d8a9ef27160cd42b8c5" , "type" : "PaymentMethodDomains" , "entityId" : 78 , "entityType" : "organization" , "domainName" : "checkout.example.com" , "applePay" : { "isEnabled" : true , "data" : { "errorMessage" : "Unable to validate the domain. Verification file not found at https://checkout.example.com/.well-known/apple-developer-merchantid-domain-association" , "metadata" : { "isFileAvailable" : false , "isFileContentValid" : false , "statusCode" : 404 } } } , "googlePay" : { "isEnabled" : true , "data" : { "errorMessage" : "Unable to validate the domain. Domain not found." , "metadata" : { "statusCode" : 404 } } } , "ownerEntityId" : 78 , "ownerEntityType" : "organization" , "cascades" : [ { "jobId" : "1245697" , "jobStatus" : "completed" , "createdAt" : "2025-04-25T15:37:28.685Z" , "updatedAt" : "2025-04-25T15:37:33.228Z" } ] , "createdAt" : "2025-03-15T10:24:36.207Z" , "updatedAt" : "2025-04-25T15:45:21.517Z" } , "responseText" : "Failed" };
         

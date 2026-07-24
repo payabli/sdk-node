@@ -3,14 +3,12 @@
 import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
-import { mockBearerAuth } from "./mockAuth";
 
 describe("ExportClient", () => {
     
     test("ExportApplications (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -33,9 +31,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportApplications (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -52,9 +49,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportApplications (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -71,9 +67,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportApplications (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -90,9 +85,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportApplications (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -109,9 +103,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatchDetails (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -134,9 +127,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatchDetails (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -153,9 +145,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatchDetails (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -172,9 +163,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatchDetails (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -191,9 +181,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatchDetails (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -210,9 +199,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatchDetailsOrg (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -235,9 +223,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatchDetailsOrg (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -254,9 +241,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatchDetailsOrg (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -273,9 +259,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatchDetailsOrg (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -292,9 +277,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatchDetailsOrg (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -311,9 +295,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatches (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -336,9 +319,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatches (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -355,9 +337,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatches (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -374,9 +355,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatches (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -393,9 +373,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatches (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -412,9 +391,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatchesOrg (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -437,9 +415,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatchesOrg (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -456,9 +433,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatchesOrg (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -475,9 +451,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatchesOrg (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -494,9 +469,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatchesOrg (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -513,9 +487,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatchesOut (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -538,9 +511,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatchesOut (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -557,9 +529,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatchesOut (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -576,9 +547,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatchesOut (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -595,9 +565,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatchesOut (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -614,9 +583,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatchesOutOrg (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -639,9 +607,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatchesOutOrg (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -658,9 +625,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatchesOutOrg (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -677,9 +643,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatchesOutOrg (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -696,9 +661,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBatchesOutOrg (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -715,9 +679,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBills (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -740,9 +703,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBills (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -759,9 +721,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBills (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -778,9 +739,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBills (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -797,9 +757,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBills (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -816,9 +775,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBillsOrg (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -841,9 +799,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBillsOrg (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -860,9 +817,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBillsOrg (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -879,9 +835,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBillsOrg (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -898,9 +853,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportBillsOrg (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -917,9 +871,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportChargebacks (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -942,9 +895,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportChargebacks (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -961,9 +913,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportChargebacks (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -980,9 +931,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportChargebacks (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -999,9 +949,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportChargebacks (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1018,9 +967,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportChargebacksOrg (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1043,9 +991,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportChargebacksOrg (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1062,9 +1009,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportChargebacksOrg (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1081,9 +1027,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportChargebacksOrg (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1100,9 +1045,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportChargebacksOrg (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1119,9 +1063,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportCustomers (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1144,9 +1087,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportCustomers (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1163,9 +1105,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportCustomers (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1182,9 +1123,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportCustomers (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1201,9 +1141,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportCustomers (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1220,9 +1159,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportCustomersOrg (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1245,9 +1183,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportCustomersOrg (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1264,9 +1201,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportCustomersOrg (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1283,9 +1219,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportCustomersOrg (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1302,9 +1237,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportCustomersOrg (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1321,9 +1255,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportInvoices (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1346,9 +1279,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportInvoices (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1365,9 +1297,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportInvoices (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1384,9 +1315,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportInvoices (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1403,9 +1333,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportInvoices (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1422,9 +1351,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportInvoicesOrg (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1447,9 +1375,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportInvoicesOrg (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1466,9 +1393,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportInvoicesOrg (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1485,9 +1411,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportInvoicesOrg (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1504,9 +1429,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportInvoicesOrg (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1523,9 +1447,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportOrganizations (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1548,9 +1471,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportOrganizations (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1567,9 +1489,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportOrganizations (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1586,9 +1507,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportOrganizations (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1605,9 +1525,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportOrganizations (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1624,9 +1543,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportPayout (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1649,9 +1567,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportPayout (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1668,9 +1585,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportPayout (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1687,9 +1603,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportPayout (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1706,9 +1621,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportPayout (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1725,9 +1639,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportPayoutOrg (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1750,9 +1663,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportPayoutOrg (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1769,9 +1681,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportPayoutOrg (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1788,9 +1699,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportPayoutOrg (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1807,9 +1717,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportPayoutOrg (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1826,9 +1735,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportPaypoints (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1851,9 +1759,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportPaypoints (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1870,9 +1777,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportPaypoints (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1889,9 +1795,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportPaypoints (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1908,9 +1813,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportPaypoints (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1927,9 +1831,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportSettlements (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1952,9 +1855,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportSettlements (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1971,9 +1873,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportSettlements (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1990,9 +1891,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportSettlements (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -2009,9 +1909,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportSettlements (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -2028,9 +1927,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportSettlementsOrg (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -2053,9 +1951,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportSettlementsOrg (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -2072,9 +1969,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportSettlementsOrg (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -2091,9 +1987,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportSettlementsOrg (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -2110,9 +2005,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportSettlementsOrg (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -2129,9 +2023,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportSubscriptions (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -2154,9 +2047,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportSubscriptions (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -2173,9 +2065,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportSubscriptions (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -2192,9 +2083,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportSubscriptions (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -2211,9 +2101,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportSubscriptions (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -2230,9 +2119,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportSubscriptionsOrg (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -2255,9 +2143,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportSubscriptionsOrg (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -2274,9 +2161,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportSubscriptionsOrg (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -2293,9 +2179,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportSubscriptionsOrg (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -2312,9 +2197,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportSubscriptionsOrg (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -2331,9 +2215,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportTransactions (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -2356,9 +2239,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportTransactions (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -2375,9 +2257,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportTransactions (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -2394,9 +2275,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportTransactions (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -2413,9 +2293,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportTransactions (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -2432,9 +2311,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportTransactionsOrg (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -2457,9 +2335,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportTransactionsOrg (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -2476,9 +2353,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportTransactionsOrg (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -2495,9 +2371,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportTransactionsOrg (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -2514,9 +2389,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportTransactionsOrg (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -2533,9 +2407,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportTransferDetails (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -2559,9 +2432,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportTransferDetails (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -2578,9 +2450,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportTransferDetails (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -2597,9 +2468,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportTransferDetails (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -2616,9 +2486,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportTransferDetails (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -2635,9 +2504,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportTransfers (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -2661,9 +2529,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportTransfers (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -2680,9 +2547,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportTransfers (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -2699,9 +2565,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportTransfers (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -2718,9 +2583,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportTransfers (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -2737,9 +2601,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportVendors (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -2762,9 +2625,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportVendors (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -2781,9 +2643,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportVendors (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -2800,9 +2661,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportVendors (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -2819,9 +2679,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportVendors (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -2838,9 +2697,8 @@ describe("ExportClient", () => {
     });
           
     test("ExportVendorsOrg", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         

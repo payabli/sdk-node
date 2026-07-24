@@ -3,14 +3,12 @@
 import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
-import { mockBearerAuth } from "./mockAuth";
 
 describe("NotificationlogsClient", () => {
     
     test("searchNotificationLogs (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { "startDate" : "2024-01-01T00:00:00Z" , "endDate" : "2024-01-31T23:59:59Z" , "orgId" : 123 , "notificationEvent" : "ActivatedMerchant" , "succeeded" : true };
         const rawResponseBody = [ { "id" : "550e8400-e29b-41d4-a716-446655440000" , "orgId" : 123 , "paypointId" : 3040 , "notificationEvent" : "ActivatedMerchant" , "target" : "https://webhook.example.com/payments" , "responseStatus" : "200" , "success" : true , "jobData" : "{\"transactionId\":\"txn_123\"}" , "createdDate" : "2024-01-15T10:30:00Z" , "successDate" : "2024-01-15T10:30:05Z" , "lastFailedDate" : null , "isInProgress" : false } ];
         
@@ -37,9 +35,8 @@ describe("NotificationlogsClient", () => {
     });
           
     test("searchNotificationLogs (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { "startDate" : "2024-01-15T09:30:00Z" , "endDate" : "2024-01-15T09:30:00Z" };
         const rawResponseBody = { "key" : "value" };
         
@@ -60,9 +57,8 @@ describe("NotificationlogsClient", () => {
     });
           
     test("searchNotificationLogs (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { "startDate" : "2024-01-15T09:30:00Z" , "endDate" : "2024-01-15T09:30:00Z" };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -83,9 +79,8 @@ describe("NotificationlogsClient", () => {
     });
           
     test("searchNotificationLogs (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { "startDate" : "2024-01-15T09:30:00Z" , "endDate" : "2024-01-15T09:30:00Z" };
         const rawResponseBody = { "key" : "value" };
         
@@ -106,9 +101,8 @@ describe("NotificationlogsClient", () => {
     });
           
     test("searchNotificationLogs (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { "startDate" : "2024-01-15T09:30:00Z" , "endDate" : "2024-01-15T09:30:00Z" };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -129,9 +123,8 @@ describe("NotificationlogsClient", () => {
     });
           
     test("getNotificationLog (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "id" : "550e8400-e29b-41d4-a716-446655440000" , "orgId" : 123 , "paypointId" : 3040 , "notificationEvent" : "ActivatedMerchant" , "target" : "https://webhook.example.com/payments" , "responseStatus" : "200" , "success" : true , "jobData" : "{\"transactionId\":\"txn_123\"}" , "createdDate" : "2024-01-15T10:30:00Z" , "successDate" : "2024-01-15T10:30:05Z" , "lastFailedDate" : null , "isInProgress" : false , "webHeaders" : [ { "key" : "Content-Type" , "value" : "application/json" } , { "key" : "User-Agent" , "value" : "PaymentSystem/1.0" } ] , "responseHeaders" : [ { "key" : "Content-Type" , "value" : [ "application/json" ] } , { "key" : "X-Request-ID" , "value" : [ "req_abc123" ] } ] , "responseContent" : "{\"status\":\"received\",\"id\":\"wh_123\"}" };
         
@@ -150,9 +143,8 @@ describe("NotificationlogsClient", () => {
     });
           
     test("getNotificationLog (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -169,9 +161,8 @@ describe("NotificationlogsClient", () => {
     });
           
     test("getNotificationLog (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -188,9 +179,8 @@ describe("NotificationlogsClient", () => {
     });
           
     test("getNotificationLog (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -207,9 +197,8 @@ describe("NotificationlogsClient", () => {
     });
           
     test("getNotificationLog (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -226,9 +215,8 @@ describe("NotificationlogsClient", () => {
     });
           
     test("retryNotificationLog (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "id" : "550e8400-e29b-41d4-a716-446655440000" , "orgId" : 123 , "paypointId" : 3040 , "notificationEvent" : "ActivatedMerchant" , "target" : "https://webhook.example.com/payments" , "responseStatus" : "200" , "success" : true , "jobData" : "{\"transactionId\":\"txn_123\"}" , "createdDate" : "2024-01-15T10:30:00Z" , "successDate" : "2024-01-15T10:30:05Z" , "lastFailedDate" : null , "isInProgress" : false , "webHeaders" : [ { "key" : "Content-Type" , "value" : "application/json" } ] , "responseHeaders" : [ { "key" : "Content-Type" , "value" : [ "application/json" ] } ] , "responseContent" : "{\"status\":\"received\",\"id\":\"wh_123\"}" };
         
@@ -247,9 +235,8 @@ describe("NotificationlogsClient", () => {
     });
           
     test("retryNotificationLog (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -266,9 +253,8 @@ describe("NotificationlogsClient", () => {
     });
           
     test("retryNotificationLog (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -285,9 +271,8 @@ describe("NotificationlogsClient", () => {
     });
           
     test("retryNotificationLog (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -304,9 +289,8 @@ describe("NotificationlogsClient", () => {
     });
           
     test("retryNotificationLog (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -323,9 +307,8 @@ describe("NotificationlogsClient", () => {
     });
           
     test("bulkRetryNotificationLogs", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = [ "550e8400-e29b-41d4-a716-446655440000" , "550e8400-e29b-41d4-a716-446655440001" , "550e8400-e29b-41d4-a716-446655440002" ];
         
         

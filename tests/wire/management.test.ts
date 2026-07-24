@@ -3,14 +3,12 @@
 import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
-import { mockBearerAuth } from "./mockAuth";
 
 describe("ManagementClient", () => {
     
     test("VerifyAccountDetails (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { "routingNumber" : "122105278" , "accountNumber" : "0000000016" , "accountType" : "Checking" , "country" : "US" , "accountHolderType" : "personal" , "holderName" : "Jane Doe" };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "Success" , "responseData" : { "aba" : "122105278" , "accountNumber" : "0000000016" , "isValid" : true , "errorMessage" : null , "verificationResponse" : "Pass" , "responseCode" : "2" , "responseValue" : "CA11" , "responseDescription" : "Customer authentication passed gAuthenticate." , "bankName" : null , "reportedAccountType" : null , "accountAddedDate" : null , "accountLastUpdatedDate" : null , "accountClosedDate" : null } };
         
@@ -37,9 +35,8 @@ describe("ManagementClient", () => {
     });
           
     test("VerifyAccountDetails (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { "routingNumber" : "routingNumber" , "accountNumber" : "accountNumber" };
         const rawResponseBody = { "key" : "value" };
         
@@ -60,9 +57,8 @@ describe("ManagementClient", () => {
     });
           
     test("VerifyAccountDetails (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { "routingNumber" : "routingNumber" , "accountNumber" : "accountNumber" };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -83,9 +79,8 @@ describe("ManagementClient", () => {
     });
           
     test("VerifyAccountDetails (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { "routingNumber" : "routingNumber" , "accountNumber" : "accountNumber" };
         const rawResponseBody = { "key" : "value" };
         
@@ -106,9 +101,8 @@ describe("ManagementClient", () => {
     });
           
     test("VerifyAccountDetails (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { "routingNumber" : "routingNumber" , "accountNumber" : "accountNumber" };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         

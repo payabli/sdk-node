@@ -3,14 +3,12 @@
 import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
-import { mockBearerAuth } from "./mockAuth";
 
 describe("CheckCaptureClient", () => {
     
     test("CheckProcessing (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { "entryPoint" : "8cfec329267" , "frontImage" : "/9j/4AAQSkZJRgABAQEASABIAAD..." , "rearImage" : "/9j/4AAQSkZJRgABAQEASABIAAD..." , "checkAmount" : 12550 };
         const rawResponseBody = { "id" : "txn_abc123def456" , "success" : true , "processDate" : "2025-04-10T04:17:09.875Z" , "ocrMicr" : "⑆123456789⑆ ⑈123456⑈ 0123" , "ocrMicrStatus" : "SUCCESS" , "ocrMicrConfidence" : "95" , "ocrAccountNumber" : "123456" , "ocrRoutingNumber" : "123456789" , "ocrCheckNumber" : "0123" , "ocrCheckTranCode" : "" , "ocrAmount" : "125.50" , "ocrAmountStatus" : "SUCCESS" , "ocrAmountConfidence" : "98" , "amountDiscrepancyDetected" : false , "endorsementDetected" : true , "errors" : [ ] , "messages" : [ "Check processed successfully" ] , "carLarMatchConfidence" : "97" , "carLarMatchStatus" : "MATCH" , "checkType" : 1 , "referenceNumber" : "REF_XYZ789" };
         
@@ -35,9 +33,8 @@ describe("CheckCaptureClient", () => {
     });
           
     test("CheckProcessing (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { "entryPoint" : "entryPoint" , "frontImage" : "frontImage" , "rearImage" : "rearImage" , "checkAmount" : 1 };
         const rawResponseBody = { "key" : "value" };
         
@@ -60,9 +57,8 @@ describe("CheckCaptureClient", () => {
     });
           
     test("CheckProcessing (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { "entryPoint" : "entryPoint" , "frontImage" : "frontImage" , "rearImage" : "rearImage" , "checkAmount" : 1 };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -85,9 +81,8 @@ describe("CheckCaptureClient", () => {
     });
           
     test("CheckProcessing (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { "entryPoint" : "entryPoint" , "frontImage" : "frontImage" , "rearImage" : "rearImage" , "checkAmount" : 1 };
         const rawResponseBody = { "key" : "value" };
         
@@ -110,9 +105,8 @@ describe("CheckCaptureClient", () => {
     });
           
     test("CheckProcessing (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { "entryPoint" : "entryPoint" , "frontImage" : "frontImage" , "rearImage" : "rearImage" , "checkAmount" : 1 };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         

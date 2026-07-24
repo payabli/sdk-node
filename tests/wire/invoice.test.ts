@@ -3,14 +3,12 @@
 import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
-import { mockBearerAuth } from "./mockAuth";
 
 describe("InvoiceClient", () => {
     
     test("AddInvoice (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { "customerData" : { "firstName" : "Tamara" , "lastName" : "Bagratoni" , "customerNumber" : "C-90010" } , "invoiceData" : { "items" : [ { "itemProductName" : "Adventure Consult" , "itemDescription" : "Consultation for Georgian tours" , "itemCost" : 100 , "itemQty" : 2 , "itemMode" : 2 , "itemTotalAmount" : 200 } , { "itemProductName" : "Deposit " , "itemDescription" : "Deposit for trip planning" , "itemCost" : 882.37 , "itemQty" : 1 , "itemMode" : 2 , "itemTotalAmount" : 882.37 } ] , "invoiceDate" : "2025-10-19" , "invoiceType" : 0 , "invoiceStatus" : 1 , "frequency" : "onetime" , "invoiceAmount" : 1082.37 , "discount" : 10 , "invoiceNumber" : "INV-2345" } };
         const rawResponseBody = { "isSuccess" : true , "responseCode" : 1 , "responseData" : 3625 , "responseText" : "Success" , "pageidentifier" : null , "roomId" : 0 };
         
@@ -60,9 +58,8 @@ describe("InvoiceClient", () => {
     });
           
     test("AddInvoice (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "key" : "value" };
         
@@ -80,9 +77,8 @@ describe("InvoiceClient", () => {
     });
           
     test("AddInvoice (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -100,9 +96,8 @@ describe("InvoiceClient", () => {
     });
           
     test("AddInvoice (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "key" : "value" };
         
@@ -120,9 +115,8 @@ describe("InvoiceClient", () => {
     });
           
     test("AddInvoice (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -140,9 +134,8 @@ describe("InvoiceClient", () => {
     });
           
     test("GetAttachedFileFromInvoice (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "fContent" : "fContent" , "filename" : "filename" , "ftype" : "pdf" , "furl" : "furl" };
         
@@ -161,9 +154,8 @@ describe("InvoiceClient", () => {
     });
           
     test("GetAttachedFileFromInvoice (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -180,9 +172,8 @@ describe("InvoiceClient", () => {
     });
           
     test("GetAttachedFileFromInvoice (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -199,9 +190,8 @@ describe("InvoiceClient", () => {
     });
           
     test("GetAttachedFileFromInvoice (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -218,9 +208,8 @@ describe("InvoiceClient", () => {
     });
           
     test("GetAttachedFileFromInvoice (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -237,9 +226,8 @@ describe("InvoiceClient", () => {
     });
           
     test("deleteAttachedFromInvoice (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseCode" : 1 , "responseData" : 3625 , "responseText" : "Success" , "pageidentifier" : null , "roomId" : 0 };
         
@@ -258,9 +246,8 @@ describe("InvoiceClient", () => {
     });
           
     test("deleteAttachedFromInvoice (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -277,9 +264,8 @@ describe("InvoiceClient", () => {
     });
           
     test("deleteAttachedFromInvoice (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -296,9 +282,8 @@ describe("InvoiceClient", () => {
     });
           
     test("deleteAttachedFromInvoice (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -315,9 +300,8 @@ describe("InvoiceClient", () => {
     });
           
     test("deleteAttachedFromInvoice (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -334,9 +318,8 @@ describe("InvoiceClient", () => {
     });
           
     test("GetInvoice (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "billEvents" : [ { "description" : "TransferCreated" , "eventTime" : "2023-07-05T22:31:06Z" , "refData" : "refData" , "source" : "api" } ] , "company" : "Acme Inc" , "createdAt" : "2022-07-01T15:00:01Z" , "Customer" : { "AdditionalData" : null , "BillingAddress1" : "1111 West 1st Street" , "BillingAddress2" : "Suite 200" , "BillingCity" : "Miami" , "BillingCountry" : "US" , "BillingEmail" : "example@email.com" , "BillingPhone" : "5555555555" , "BillingState" : "FL" , "BillingZip" : "45567" , "CompanyName" : "Sunshine LLC" , "customerId" : 4440 , "CustomerNumber" : "C-90010" , "customerStatus" : 1 , "FirstName" : "John" , "Identifiers" : [ "\\\"firstname\\\"" , "\\\"lastname\\\"" , "\\\"email\\\"" , "\\\"customId\\\"" ] , "LastName" : "Doe" , "ShippingAddress1" : "123 Walnut St" , "ShippingAddress2" : "STE 900" , "ShippingCity" : "Johnson City" , "ShippingCountry" : "US" , "ShippingState" : "TN" , "ShippingZip" : "37619" } , "customerId" : 4440 , "discount" : 10 , "DocumentsRef" : { "filelist" : [ { } ] , "zipfile" : "zx45.zip" } , "dutyAmount" : 0 , "firstName" : "firstName" , "freightAmount" : 10 , "frequency" : "onetime" , "invoiceAmount" : 105 , "invoiceDate" : "2025-07-01" , "invoiceDueDate" : "2025-07-01" , "invoiceEndDate" : "2025-07-01" , "invoiceId" : 3674 , "invoiceNumber" : "INV-2345" , "invoicePaidAmount" : 0 , "invoiceSentDate" : "2025-10-19T00:00:00Z" , "invoiceStatus" : 1 , "invoiceType" : 0 , "items" : [ { "itemCommodityCode" : "010" , "itemCost" : 5 , "itemDescription" : "Deposit for materials." , "itemMode" : 0 , "itemProductCode" : "M-DEPOSIT" , "itemProductName" : "Materials deposit" , "itemQty" : 1 , "itemTaxAmount" : 7 , "itemTaxRate" : 0.075 , "itemTotalAmount" : 1.1 , "itemUnitOfMeasure" : "SqFt" } ] , "lastName" : "lastName" , "lastPaymentDate" : "2025-10-19T00:00:00Z" , "notes" : null , "ParentOrgName" : "parentOrgName" , "paylinkId" : "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234" , "paymentTerms" : "NET30" , "PaypointDbaname" : "Sinks Inc" , "PaypointEntryname" : "5789a30009s" , "paypointId" : 3040 , "PaypointLegalname" : "Sinks and Faucets LLC" , "purchaseOrder" : "PO-345" , "scheduledOptions" : { "includePaylink" : true , "includePdf" : true } , "shippingAddress1" : "123 Walnut St" , "shippingAddress2" : "STE 900" , "shippingCity" : "Johnson City" , "shippingCountry" : "US" , "shippingEmail" : "example@email.com" , "shippingFromZip" : "30040" , "shippingPhone" : "shippingPhone" , "shippingState" : "TN" , "shippingZip" : "37619" , "summaryCommodityCode" : "501718" , "tax" : 2.05 , "termsConditions" : "termsConditions" };
         
@@ -355,9 +338,8 @@ describe("InvoiceClient", () => {
     });
           
     test("GetInvoice (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -374,9 +356,8 @@ describe("InvoiceClient", () => {
     });
           
     test("GetInvoice (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -393,9 +374,8 @@ describe("InvoiceClient", () => {
     });
           
     test("GetInvoice (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -412,9 +392,8 @@ describe("InvoiceClient", () => {
     });
           
     test("GetInvoice (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -431,9 +410,8 @@ describe("InvoiceClient", () => {
     });
           
     test("EditInvoice (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { "invoiceData" : { "items" : [ { "itemProductName" : "Deposit" , "itemDescription" : "Deposit for trip planning" , "itemCost" : 882.37 , "itemQty" : 1 } ] , "invoiceDate" : "2025-10-19" , "invoiceAmount" : 982.37 , "invoiceNumber" : "INV-2345" } };
         const rawResponseBody = { "isSuccess" : true , "responseCode" : 1 , "responseData" : 332 , "responseText" : "Success" , "pageidentifier" : null , "roomId" : 0 };
         
@@ -465,9 +443,8 @@ describe("InvoiceClient", () => {
     });
           
     test("EditInvoice (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "key" : "value" };
         
@@ -485,9 +462,8 @@ describe("InvoiceClient", () => {
     });
           
     test("EditInvoice (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -505,9 +481,8 @@ describe("InvoiceClient", () => {
     });
           
     test("EditInvoice (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "key" : "value" };
         
@@ -525,9 +500,8 @@ describe("InvoiceClient", () => {
     });
           
     test("EditInvoice (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -545,9 +519,8 @@ describe("InvoiceClient", () => {
     });
           
     test("DeleteInvoice (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseCode" : 1 , "responseData" : 3625 , "responseText" : "Success" , "pageidentifier" : null , "roomId" : 0 };
         
@@ -566,9 +539,8 @@ describe("InvoiceClient", () => {
     });
           
     test("DeleteInvoice (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -585,9 +557,8 @@ describe("InvoiceClient", () => {
     });
           
     test("DeleteInvoice (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -604,9 +575,8 @@ describe("InvoiceClient", () => {
     });
           
     test("DeleteInvoice (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -623,9 +593,8 @@ describe("InvoiceClient", () => {
     });
           
     test("DeleteInvoice (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -642,9 +611,8 @@ describe("InvoiceClient", () => {
     });
           
     test("GetInvoiceNumber (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseData" : "MyInvoice-114434565s32440" , "responseText" : "Success" };
         
@@ -663,9 +631,8 @@ describe("InvoiceClient", () => {
     });
           
     test("GetInvoiceNumber (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -682,9 +649,8 @@ describe("InvoiceClient", () => {
     });
           
     test("GetInvoiceNumber (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -701,9 +667,8 @@ describe("InvoiceClient", () => {
     });
           
     test("GetInvoiceNumber (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -720,9 +685,8 @@ describe("InvoiceClient", () => {
     });
           
     test("GetInvoiceNumber (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -739,9 +703,8 @@ describe("InvoiceClient", () => {
     });
           
     test("ListInvoices (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "Records" : [ { "invoiceId" : 3674 , "customerId" : 4440 , "paypointId" : 3040 , "invoiceNumber" : "INV-2345" , "invoiceDate" : "2025-03-05" , "invoiceDueDate" : "2025-03-05" , "invoiceSentDate" : "2025-03-05" , "invoiceEndDate" : "2025-03-05" , "lastPaymentDate" : null , "createdAt" : "2024-03-05T18:08:45Z" , "invoiceStatus" : 1 , "invoiceType" : 0 , "frequency" : "onetime" , "paymentTerms" : "NET30" , "termsConditions" : null , "notes" : null , "tax" : 0 , "discount" : 0 , "invoiceAmount" : 50 , "invoicePaidAmount" : 0 , "freightAmount" : 0 , "dutyAmount" : 0 , "purchaseOrder" : null , "firstName" : "Amirah" , "lastName" : "Tan" , "company" : null , "shippingAddress1" : "1234 Rainier Ave" , "shippingAddress2" : "Apt 567" , "shippingCity" : "Seattle" , "shippingState" : "WA" , "shippingZip" : "98101" , "shippingFromZip" : "" , "shippingCountry" : "US" , "shippingEmail" : "amirah.tan@example.com" , "shippingPhone" : "" , "summaryCommodityCode" : null , "items" : [ { "itemCost" : 50 , "itemDescription" : "service" , "itemProductName" : "Internet" , "itemQty" : 1 } ] , "Customer" : { "AdditionalData" : { "key1" : "value" , "key2" : "value" , "key3" : "value" } , "BillingPhone" : "1234567890" , "customerId" : 4440 } , "paylinkId" : "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234" , "billEvents" : [ { "description" : "Invoice created" , "eventTime" : "2024-03-05T23:08:45Z" , "refData" : "00-802fa578504a7af6f3dd890a3802f7ef-61b4bedXXXX1234" } ] , "scheduledOptions" : null , "PaypointLegalname" : "Emerald City LLC" , "PaypointDbaname" : "Emerald City Trading" , "PaypointEntryname" : "47a30009s" , "ParentOrgId" : 123 , "ParentOrgName" : "Emerald Enterprises" , "AdditionalData" : null , "DocumentsRef" : null , "externalPaypointID" : "seattletrade01-10" , "pageIdentifier" : null } ] , "Summary" : { "pageIdentifier" : "null" , "pageSize" : 20 , "totalAmount" : 77.22 , "totalNetAmount" : 77.22 , "totalPages" : 2 , "totalRecords" : 2 } };
         
@@ -764,9 +727,8 @@ describe("InvoiceClient", () => {
     });
           
     test("ListInvoices (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -783,9 +745,8 @@ describe("InvoiceClient", () => {
     });
           
     test("ListInvoices (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -802,9 +763,8 @@ describe("InvoiceClient", () => {
     });
           
     test("ListInvoices (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -821,9 +781,8 @@ describe("InvoiceClient", () => {
     });
           
     test("ListInvoices (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -840,9 +799,8 @@ describe("InvoiceClient", () => {
     });
           
     test("ListInvoicesOrg (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "Records" : [ { "billEvents" : [ { "description" : "Invoice created" , "eventTime" : "2024-03-05T23:08:45Z" , "refData" : "00-802fa578504a7af6f3dd890a3802f7ef-61b4bedXXXX1234" } ] , "createdAt" : "2024-03-05T18:08:45Z" , "Customer" : { "AdditionalData" : { "key1" : "value" , "key2" : "value" , "key3" : "value" } , "BillingPhone" : "1234567890" , "customerId" : 4440 } , "customerId" : 4440 , "discount" : 0 , "dutyAmount" : 0 , "externalPaypointID" : "seattletrade01-10" , "firstName" : "Amirah" , "freightAmount" : 0 , "frequency" : "onetime" , "termsConditions" : null , "notes" : null , "invoiceAmount" : 50 , "invoiceDate" : "2025-03-05" , "invoiceDueDate" : "2025-03-05" , "invoiceSentDate" : "2025-03-05" , "invoiceEndDate" : "2025-03-05" , "invoiceId" : 3674 , "invoiceNumber" : "INV-2345" , "invoicePaidAmount" : 0 , "invoiceStatus" : 1 , "invoiceType" : 0 , "items" : [ { "itemCost" : 50 , "itemDescription" : "service" , "itemProductName" : "Internet" , "itemQty" : 1 } ] , "lastName" : "Tan" , "ParentOrgName" : "Emerald Enterprises" , "ParentOrgId" : 123 , "paylinkId" : "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234" , "paymentTerms" : "NET30" , "PaypointDbaname" : "Emerald City Trading" , "PaypointEntryname" : "47a30009s" , "paypointId" : 3040 , "PaypointLegalname" : "Emerald City LLC" , "shippingAddress1" : "1234 Rainier Ave" , "shippingAddress2" : "Apt 567" , "shippingCity" : "Seattle" , "shippingCountry" : "US" , "shippingEmail" : "amirah.tan@example.com" , "shippingFromZip" : "" , "shippingPhone" : "" , "shippingState" : "WA" , "shippingZip" : "98101" , "tax" : 0 } ] , "Summary" : { "pageIdentifier" : "null" , "pageSize" : 20 , "totalAmount" : 77.22 , "totalNetAmount" : 77.22 , "totalPages" : 2 , "totalRecords" : 2 } };
         
@@ -865,9 +823,8 @@ describe("InvoiceClient", () => {
     });
           
     test("ListInvoicesOrg (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -884,9 +841,8 @@ describe("InvoiceClient", () => {
     });
           
     test("ListInvoicesOrg (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -903,9 +859,8 @@ describe("InvoiceClient", () => {
     });
           
     test("ListInvoicesOrg (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -922,9 +877,8 @@ describe("InvoiceClient", () => {
     });
           
     test("ListInvoicesOrg (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -941,9 +895,8 @@ describe("InvoiceClient", () => {
     });
           
     test("SendInvoice (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "Success" };
         
@@ -965,9 +918,8 @@ describe("InvoiceClient", () => {
     });
           
     test("SendInvoice (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -984,9 +936,8 @@ describe("InvoiceClient", () => {
     });
           
     test("SendInvoice (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1003,9 +954,8 @@ describe("InvoiceClient", () => {
     });
           
     test("SendInvoice (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1022,9 +972,8 @@ describe("InvoiceClient", () => {
     });
           
     test("SendInvoice (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1041,9 +990,8 @@ describe("InvoiceClient", () => {
     });
           
     test("GetInvoicePDF (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1062,9 +1010,8 @@ describe("InvoiceClient", () => {
     });
           
     test("GetInvoicePDF (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1081,9 +1028,8 @@ describe("InvoiceClient", () => {
     });
           
     test("GetInvoicePDF (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1100,9 +1046,8 @@ describe("InvoiceClient", () => {
     });
           
     test("GetInvoicePDF (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1119,9 +1064,8 @@ describe("InvoiceClient", () => {
     });
           
     test("GetInvoicePDF (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         

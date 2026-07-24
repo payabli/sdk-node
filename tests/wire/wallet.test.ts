@@ -3,14 +3,12 @@
 import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
-import { mockBearerAuth } from "./mockAuth";
 
 describe("WalletClient", () => {
     
     test("ConfigureApplePayOrganization (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { "cascade" : true , "isEnabled" : true , "orgId" : 123 };
         const rawResponseBody = { "isSuccess" : true , "pageIdentifier" : "null" , "responseCode" : 1 , "responseData" : { "createdAt" : "2022-07-01T15:00:01Z" , "id" : "id" , "jobId" : "445865" , "jobStatus" : "completed" , "organizationId" : 901 , "type" : "type" , "updatedAt" : "2022-07-01T15:00:01Z" , "updates" : { "cascade" : true , "isEnabled" : true } } , "responseText" : "Success" };
         
@@ -34,9 +32,8 @@ describe("WalletClient", () => {
     });
           
     test("ConfigureApplePayOrganization (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "key" : "value" };
         
@@ -54,9 +51,8 @@ describe("WalletClient", () => {
     });
           
     test("ConfigureApplePayOrganization (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -74,9 +70,8 @@ describe("WalletClient", () => {
     });
           
     test("ConfigureApplePayOrganization (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "key" : "value" };
         
@@ -94,9 +89,8 @@ describe("WalletClient", () => {
     });
           
     test("ConfigureApplePayOrganization (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -114,9 +108,8 @@ describe("WalletClient", () => {
     });
           
     test("ConfigureApplePayPaypoint (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { "entry" : "8cfec329267" , "isEnabled" : true };
         const rawResponseBody = { "isSuccess" : true , "pageIdentifier" : "null" , "responseCode" : 1 , "responseData" : { "entry" : "8cfec329267" , "isEnabled" : true , "walletType" : "applepay" , "walletData" : { "entry" : "8cfec329267" , "applePayMerchantId" : "applePayMerchantId" , "domainNames" : [ "subdomain.domain.com" ] , "paypointName" : "Alaskan Domes" , "markedForDeletionAt" : "2022-07-01T15:00:01Z" , "createdAt" : "2022-07-01T15:00:01Z" , "updatedAt" : "2022-07-01T15:00:01Z" , "id" : "id" , "type" : "ApplePayRegistration" } } , "responseText" : "Success" };
         
@@ -139,9 +132,8 @@ describe("WalletClient", () => {
     });
           
     test("ConfigureApplePayPaypoint (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "key" : "value" };
         
@@ -159,9 +151,8 @@ describe("WalletClient", () => {
     });
           
     test("ConfigureApplePayPaypoint (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -179,9 +170,8 @@ describe("WalletClient", () => {
     });
           
     test("ConfigureApplePayPaypoint (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "key" : "value" };
         
@@ -199,9 +189,8 @@ describe("WalletClient", () => {
     });
           
     test("ConfigureApplePayPaypoint (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -219,9 +208,8 @@ describe("WalletClient", () => {
     });
           
     test("ConfigureGooglePayOrganization (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { "cascade" : true , "isEnabled" : true , "orgId" : 123 };
         const rawResponseBody = { "isSuccess" : true , "pageIdentifier" : "null" , "responseCode" : 1 , "responseData" : { "createdAt" : "2022-07-01T15:00:01Z" , "id" : "id" , "jobId" : "445865" , "jobStatus" : "completed" , "organizationId" : 901 , "type" : "type" , "updatedAt" : "2022-07-01T15:00:01Z" , "updates" : { "cascade" : true , "isEnabled" : true } } , "responseText" : "Success" };
         
@@ -245,9 +233,8 @@ describe("WalletClient", () => {
     });
           
     test("ConfigureGooglePayOrganization (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "key" : "value" };
         
@@ -265,9 +252,8 @@ describe("WalletClient", () => {
     });
           
     test("ConfigureGooglePayOrganization (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -285,9 +271,8 @@ describe("WalletClient", () => {
     });
           
     test("ConfigureGooglePayOrganization (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "key" : "value" };
         
@@ -305,9 +290,8 @@ describe("WalletClient", () => {
     });
           
     test("ConfigureGooglePayOrganization (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -325,9 +309,8 @@ describe("WalletClient", () => {
     });
           
     test("ConfigureGooglePayPaypoint (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { "entry" : "8cfec329267" , "isEnabled" : true };
         const rawResponseBody = { "isSuccess" : true , "pageIdentifier" : "null" , "responseCode" : 1 , "responseData" : { "entry" : "8cfec329267" , "isEnabled" : true , "walletType" : "googlepay" , "walletData" : { "gatewayMerchantId" : "123ID" , "gatewayId" : "123ID" } } , "responseText" : "Success" };
         
@@ -350,9 +333,8 @@ describe("WalletClient", () => {
     });
           
     test("ConfigureGooglePayPaypoint (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "key" : "value" };
         
@@ -370,9 +352,8 @@ describe("WalletClient", () => {
     });
           
     test("ConfigureGooglePayPaypoint (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -390,9 +371,8 @@ describe("WalletClient", () => {
     });
           
     test("ConfigureGooglePayPaypoint (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "key" : "value" };
         
@@ -410,9 +390,8 @@ describe("WalletClient", () => {
     });
           
     test("ConfigureGooglePayPaypoint (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
-
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         

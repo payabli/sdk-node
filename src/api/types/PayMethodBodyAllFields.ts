@@ -19,7 +19,7 @@ export interface PayMethodBodyAllFields {
     cardnumber?: Payabli.Cardnumber | undefined;
     cardzip?: Payabli.Cardzip | undefined;
     device?: Payabli.Device | undefined;
-    initator?: Payabli.Initiator | undefined;
+    initiator?: Payabli.Initiator | undefined;
     method?: Payabli.Methodall | undefined;
     saveIfSuccess?: Payabli.SaveIfSuccess | undefined;
     storedMethodId?: Payabli.Storedmethodid | undefined;
