@@ -52,8 +52,9 @@ export class CloudClient {
     }
 
     private async __addDevice(entry: string, request: Payabli.DeviceEntry = {}, requestOptions?: CloudClient.RequestOptions): Promise<core.WithRawResponse<Payabli.AddDeviceResponse>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { idempotencyKey, ..._body } = request;
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, mergeOnlyDefinedHeaders({ "idempotencyKey": idempotencyKey }), requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Cloud/register/${core.url.encodePathParam(entry)}`),
@@ -66,6 +67,7 @@ export class CloudClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -110,7 +112,8 @@ export class CloudClient {
     }
 
     private async __removeDevice(entry: string, deviceId: string, requestOptions?: CloudClient.RequestOptions): Promise<core.WithRawResponse<Payabli.RemoveDeviceResponse>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Cloud/register/${core.url.encodePathParam(entry)}/${core.url.encodePathParam(deviceId)}`),
@@ -120,6 +123,7 @@ export class CloudClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -164,7 +168,8 @@ export class CloudClient {
     }
 
     private async __historyDevice(entry: string, deviceId: string, requestOptions?: CloudClient.RequestOptions): Promise<core.WithRawResponse<Payabli.CloudQueryApiResponse>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Cloud/history/${core.url.encodePathParam(entry)}/${core.url.encodePathParam(deviceId)}`),
@@ -174,6 +179,7 @@ export class CloudClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -222,11 +228,12 @@ export class CloudClient {
     }
 
     private async __listDevice(entry: string, request: Payabli.ListDeviceRequest = {}, requestOptions?: CloudClient.RequestOptions): Promise<core.WithRawResponse<Payabli.CloudQueryApiResponse>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { forceRefresh } = request;
         const _queryParams: Record<string, unknown> = {
             forceRefresh
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Cloud/list/${core.url.encodePathParam(entry)}`),
@@ -236,6 +243,7 @@ export class CloudClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });

@@ -62,12 +62,13 @@ export class CustomerClient {
     }
 
     private async __addCustomer(entry: Payabli.Entrypointfield, request: Payabli.AddCustomerRequest, requestOptions?: CustomerClient.RequestOptions): Promise<core.WithRawResponse<Payabli.PayabliApiResponseCustomerQuery>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { forceCustomerCreation, replaceExisting, idempotencyKey, ..._body } = request;
         const _queryParams: Record<string, unknown> = {
             forceCustomerCreation,
             replaceExisting
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, mergeOnlyDefinedHeaders({ "idempotencyKey": idempotencyKey }), requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Customer/single/${core.url.encodePathParam(entry)}`),
@@ -80,6 +81,7 @@ export class CustomerClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -123,7 +125,8 @@ export class CustomerClient {
     }
 
     private async __getCustomer(customerId: number, requestOptions?: CustomerClient.RequestOptions): Promise<core.WithRawResponse<Payabli.CustomerQueryRecords>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Customer/${core.url.encodePathParam(customerId)}`),
@@ -133,6 +136,7 @@ export class CustomerClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -185,7 +189,8 @@ export class CustomerClient {
     }
 
     private async __updateCustomer(customerId: number, request: Payabli.CustomerData, requestOptions?: CustomerClient.RequestOptions): Promise<core.WithRawResponse<Payabli.PayabliApiResponse00Responsedatanonobject>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Customer/${core.url.encodePathParam(customerId)}`),
@@ -198,6 +203,7 @@ export class CustomerClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -241,7 +247,8 @@ export class CustomerClient {
     }
 
     private async __deleteCustomer(customerId: number, requestOptions?: CustomerClient.RequestOptions): Promise<core.WithRawResponse<Payabli.PayabliApiResponse00Responsedatanonobject>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Customer/${core.url.encodePathParam(customerId)}`),
@@ -251,6 +258,7 @@ export class CustomerClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -294,7 +302,8 @@ export class CustomerClient {
     }
 
     private async __requestConsent(customerId: number, requestOptions?: CustomerClient.RequestOptions): Promise<core.WithRawResponse<Payabli.PayabliApiResponse00Responsedatanonobject>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Customer/${core.url.encodePathParam(customerId)}/consent`),
@@ -304,6 +313,7 @@ export class CustomerClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -348,7 +358,8 @@ export class CustomerClient {
     }
 
     private async __linkCustomerTransaction(customerId: number, transId: string, requestOptions?: CustomerClient.RequestOptions): Promise<core.WithRawResponse<Payabli.PayabliApiResponse00Responsedatanonobject>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Customer/link/${core.url.encodePathParam(customerId)}/${core.url.encodePathParam(transId)}`),
@@ -358,6 +369,7 @@ export class CustomerClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });

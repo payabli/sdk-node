@@ -78,13 +78,14 @@ export class StatisticClient {
     }
 
     private async __basicStats(mode: string, freq: string, level: number, entryId: number, request: Payabli.BasicStatsRequest = {}, requestOptions?: StatisticClient.RequestOptions): Promise<core.WithRawResponse<Payabli.StatBasicExtendedQueryRecord[]>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { endDate, parameters, startDate } = request;
         const _queryParams: Record<string, unknown> = {
             endDate,
             parameters: parameters != null ? toJson(parameters) : undefined,
             startDate
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Statistic/basic/${core.url.encodePathParam(mode)}/${core.url.encodePathParam(freq)}/${core.url.encodePathParam(level)}/${core.url.encodePathParam(entryId)}`),
@@ -94,6 +95,7 @@ export class StatisticClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -159,11 +161,12 @@ export class StatisticClient {
     }
 
     private async __customerBasicStats(mode: string, freq: string, customerId: number, request: Payabli.CustomerBasicStatsRequest = {}, requestOptions?: StatisticClient.RequestOptions): Promise<core.WithRawResponse<Payabli.SubscriptionStatsQueryRecord[]>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { parameters } = request;
         const _queryParams: Record<string, unknown> = {
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Statistic/customerbasic/${core.url.encodePathParam(mode)}/${core.url.encodePathParam(freq)}/${core.url.encodePathParam(customerId)}`),
@@ -173,6 +176,7 @@ export class StatisticClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -227,11 +231,12 @@ export class StatisticClient {
     }
 
     private async __subStats(interval: string, level: number, entryId: number, request: Payabli.SubStatsRequest = {}, requestOptions?: StatisticClient.RequestOptions): Promise<core.WithRawResponse<Payabli.StatBasicQueryRecord[]>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { parameters } = request;
         const _queryParams: Record<string, unknown> = {
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Statistic/subscriptions/${core.url.encodePathParam(interval)}/${core.url.encodePathParam(level)}/${core.url.encodePathParam(entryId)}`),
@@ -241,6 +246,7 @@ export class StatisticClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -306,11 +312,12 @@ export class StatisticClient {
     }
 
     private async __vendorBasicStats(mode: string, freq: string, idVendor: number, request: Payabli.VendorBasicStatsRequest = {}, requestOptions?: StatisticClient.RequestOptions): Promise<core.WithRawResponse<Payabli.StatisticsVendorQueryRecord[]>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { parameters } = request;
         const _queryParams: Record<string, unknown> = {
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Statistic/vendorbasic/${core.url.encodePathParam(mode)}/${core.url.encodePathParam(freq)}/${core.url.encodePathParam(idVendor)}`),
@@ -320,6 +327,7 @@ export class StatisticClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });

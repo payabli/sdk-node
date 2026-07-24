@@ -62,7 +62,7 @@ Instantiate and use the client with the following:
 ```typescript
 import { PayabliClient } from "@payabli/sdk-node";
 
-const client = new PayabliClient({ apiKey: "YOUR_API_KEY" });
+const client = new PayabliClient({ clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET", apiKey: "YOUR_API_KEY" });
 await client.moneyIn.getpaidv2({
     customerData: {
         customerId: 4440
@@ -166,7 +166,7 @@ import { createReadStream } from "fs";
 import * as fs from "fs";
 import { PayabliClient } from "@payabli/sdk-node";
 
-const client = new PayabliClient({ apiKey: "YOUR_API_KEY" });
+const client = new PayabliClient({ clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET", apiKey: "YOUR_API_KEY" });
 await client.import.importBills("8cfec329267", {
     file: fs.createReadStream("/path/to/your/file")
 });

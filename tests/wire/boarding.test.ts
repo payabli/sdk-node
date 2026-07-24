@@ -3,12 +3,14 @@
 import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
+import { mockBearerAuth } from "./mockAuth";
 
 describe("BoardingClient", () => {
     
     test("AddApplication (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { "services" : { "ach" : { } , "card" : { "acceptAmex" : true , "acceptDiscover" : true , "acceptMastercard" : true , "acceptVisa" : true } } , "annualRevenue" : 1000 , "averageBillSize" : "500" , "averageMonthlyBill" : "5650" , "avgmonthly" : 1000 , "baddress" : "123 Walnut Street" , "baddress1" : "Suite 103" , "bankData" : [ { "accountNumber" : "123123100" , "bankAccountFunction" : 1 , "bankAccountHolderName" : "Gruzya Adventure Outfitters LLC" , "bankAccountHolderType" : "Business" , "bankName" : "Test Bank 1" , "nickname" : "Withdrawal Account" , "routingAccount" : "123123123" , "typeAccount" : "Checking" , "accountId" : "123-456" } , { "accountNumber" : "123123200" , "bankAccountFunction" : 0 , "bankAccountHolderName" : "Gruzya Adventure Outfitters LLC" , "bankAccountHolderType" : "Business" , "bankName" : "Test Bank 2" , "nickname" : "Deposit Account" , "routingAccount" : "321321321" , "typeAccount" : "Checking" , "accountId" : "123-789" } ] , "bcity" : "New Vegas" , "bcountry" : "US" , "binperson" : 60 , "binphone" : 20 , "binweb" : 20 , "bstate" : "FL" , "bsummary" : "Brick and mortar store that sells office supplies" , "btype" : "Limited Liability Company" , "bzip" : "33000" , "contacts" : [ { "contactEmail" : "herman@hermanscoatings.com" , "contactName" : "Herman Martinez" , "contactPhone" : "3055550000" , "contactTitle" : "Owner" } ] , "creditLimit" : "creditLimit" , "dbaName" : "Sunshine Gutters" , "ein" : "123456789" , "faxnumber" : "1234567890" , "highticketamt" : 1000 , "legalName" : "Sunshine Services, LLC" , "license" : "2222222FFG" , "licstate" : "CA" , "maddress" : "123 Walnut Street" , "maddress1" : "STE 900" , "mcc" : "7777" , "mcity" : "Johnson City" , "mcountry" : "US" , "mstate" : "TN" , "mzip" : "37615" , "orgId" : 123 , "ownership" : [ { "oaddress" : "33 North St" , "ocity" : "Any City" , "ocountry" : "US" , "odriverstate" : "CA" , "ostate" : "CA" , "ownerdob" : "01/01/1990" , "ownerdriver" : "CA6677778" , "owneremail" : "test@email.com" , "ownername" : "John Smith" , "ownerpercent" : 100 , "ownerphone1" : "555888111" , "ownerphone2" : "555888111" , "ownerssn" : "123456789" , "ownertitle" : "CEO" , "ozip" : "55555" } ] , "phonenumber" : "1234567890" , "processingRegion" : "US" , "recipientEmail" : "josephray@example.com" , "recipientEmailNotification" : true , "resumable" : true , "signer" : { "address" : "33 North St" , "address1" : "STE 900" , "city" : "Bristol" , "country" : "US" , "dob" : "01/01/1976" , "email" : "test@email.com" , "name" : "John Smith" , "phone" : "555888111" , "ssn" : "123456789" , "state" : "TN" , "zip" : "55555" , "pciAttestation" : true , "signedDocumentReference" : "https://example.com/signed-document.pdf" , "attestationDate" : "04/20/2025" , "signDate" : "04/20/2025" , "additionalData" : { "deviceId" : "499585-389fj484-3jcj8hj3" , "session" : "fifji4-fiu443-fn4843" , "timeWithCompany" : "6 Years" } } , "startdate" : "01/01/1990" , "taxFillName" : "Sunshine LLC" , "templateId" : 22 , "ticketamt" : 1000 , "website" : "www.example.com" , "whenCharged" : "When Service Provided" , "whenDelivered" : "Over 30 Days" , "whenProvided" : "30 Days or Less" , "whenRefunded" : "30 Days or Less" };
         const rawResponseBody = { "isSuccess" : true , "responseCode" : 1 , "responseData" : 3625 , "responseText" : "Success" };
         
@@ -149,8 +151,9 @@ describe("BoardingClient", () => {
     });
           
     test("AddApplication (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { "annualRevenue" : 750000 , "baddress" : "789 Industrial Parkway" , "baddress1" : "Unit 12" , "bankData" : [ { "accountNumber" : "1XXXXXX3100" , "bankAccountFunction" : 1 , "bankAccountHolderName" : "Herman's Coatings LLC" , "bankAccountHolderType" : "Business" , "bankName" : "First Miami Bank" , "nickname" : "Withdrawal Account" , "routingAccount" : "123123123" , "typeAccount" : "Checking" , "accountId" : "123-456" } , { "accountNumber" : "1XXXXXX3200" , "bankAccountFunction" : 0 , "bankAccountHolderName" : "Herman's Coatings LLC" , "bankAccountHolderType" : "Business" , "bankName" : "First Miami Bank" , "nickname" : "Deposit Account" , "routingAccount" : "123123123" , "typeAccount" : "Checking" , "accountId" : "123-789" } , { "accountNumber" : "1XXXXXX3123" , "bankAccountFunction" : 3 , "bankAccountHolderName" : "Herman's Coatings LLC" , "bankAccountHolderType" : "Business" , "bankName" : "First Miami Bank" , "nickname" : "Remittance Account" , "routingAccount" : "123123123" , "typeAccount" : "Checking" , "accountId" : "123-100" } ] , "bcity" : "Miami" , "bcountry" : "US" , "bstate" : "FL" , "bsummary" : "Commercial and industrial coating services, including protective and decorative coatings" , "btype" : "Limited Liability Company" , "bzip" : "33101" , "contacts" : [ { "contactEmail" : "herman@hermanscoatings.com" , "contactName" : "Herman Martinez" , "contactPhone" : "3055550000" , "contactTitle" : "Owner" } ] , "dbaname" : "Herman's Coatings" , "ein" : "123456789" , "faxnumber" : "3055550001" , "legalname" : "Herman's Coatings LLC" , "license" : "FL123456" , "licstate" : "FL" , "maddress" : "789 Industrial Parkway" , "maddress1" : "Unit 12" , "mcc" : "1799" , "mcity" : "Miami" , "mcountry" : "US" , "mstate" : "FL" , "mzip" : "33101" , "orgId" : 123 , "ownership" : [ { "oaddress" : "123 Palm Avenue" , "ocity" : "Miami" , "ocountry" : "US" , "odriverstate" : "FL" , "ostate" : "FL" , "ownerdob" : "05/15/1980" , "ownerdriver" : "FL789456" , "owneremail" : "herman@hermanscoatings.com" , "ownername" : "Herman Martinez" , "ownerpercent" : 100 , "ownerphone1" : "3055550000" , "ownerphone2" : "3055550002" , "ownerssn" : "123456789" , "ownertitle" : "Owner" , "ozip" : "33102" } ] , "phonenumber" : "3055550000" , "recipientEmail" : "herman@hermanscoatings.com" , "recipientEmailNotification" : true , "resumable" : true , "signer" : { "address" : "33 North St" , "address1" : "STE 900" , "city" : "Bristol" , "country" : "US" , "dob" : "01/01/1976" , "email" : "test@email.com" , "name" : "John Smith" , "phone" : "555888111" , "ssn" : "123456789" , "state" : "TN" , "zip" : "55555" , "pciAttestation" : true , "signedDocumentReference" : "https://example.com/signed-document.pdf" , "attestationDate" : "04/20/2025" , "signDate" : "04/20/2025" , "additionalData" : { "deviceId" : "499585-389fj484-3jcj8hj3" , "session" : "fifji4-fiu443-fn4843" , "timeWithCompany" : "6 Years" } } , "startdate" : "01/01/2015" , "taxfillname" : "Herman's Coatings LLC" , "templateId" : 22 , "website" : "www.hermanscoatings.com" };
         const rawResponseBody = { "isSuccess" : true , "responseCode" : 1 , "responseData" : 3625 , "responseText" : "Success" };
         
@@ -278,8 +281,9 @@ describe("BoardingClient", () => {
     });
           
     test("AddApplication (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { "services" : { "ach" : { "acceptCCD" : true , "acceptPPD" : true , "acceptWeb" : true } , "card" : { "acceptAmex" : true , "acceptDiscover" : true , "acceptMastercard" : true , "acceptVisa" : true } , "odp" : { "allowAch" : true , "allowChecks" : true , "allowVCard" : true , "processing_region" : "US" , "processor" : "tsys" , "issuerNetworkSettingsId" : "12345678901234" } } , "annualRevenue" : 750000 , "baddress" : "789 Industrial Parkway" , "baddress1" : "Unit 12" , "bankData" : [ { "accountNumber" : "1XXXXXX3100" , "bankAccountFunction" : 1 , "bankAccountHolderName" : "Herman's Coatings LLC" , "bankAccountHolderType" : "Business" , "bankName" : "First Miami Bank" , "nickname" : "Withdrawal Account" , "routingAccount" : "123123123" , "typeAccount" : "Checking" , "accountId" : "333-789" } , { "accountNumber" : "1XXXXXX3200" , "bankAccountFunction" : 0 , "bankAccountHolderName" : "Herman's Coatings LLC" , "bankAccountHolderType" : "Business" , "bankName" : "First Miami Bank" , "nickname" : "Deposit Account" , "routingAccount" : "123123123" , "typeAccount" : "Checking" , "accountId" : "333-234" } , { "accountNumber" : "1XXXXXX3123" , "bankAccountFunction" : 3 , "bankAccountHolderName" : "Herman's Coatings LLC" , "bankAccountHolderType" : "Business" , "bankName" : "First Miami Bank" , "nickname" : "Remittance Account" , "routingAccount" : "123123123" , "typeAccount" : "Checking" , "accountId" : "333-567" } ] , "bcity" : "Miami" , "bcountry" : "US" , "bstate" : "FL" , "bsummary" : "Commercial and industrial coating services, including protective and decorative coatings" , "btype" : "Limited Liability Company" , "bzip" : "33101" , "contacts" : [ { "contactEmail" : "herman@hermanscoatings.com" , "contactName" : "Herman Martinez" , "contactPhone" : "3055550000" , "contactTitle" : "Owner" } ] , "dbaname" : "Herman's Coatings" , "ein" : "123456789" , "faxnumber" : "3055550001" , "highticketamt" : 15000 , "legalname" : "Herman's Coatings LLC" , "license" : "FL123456" , "licstate" : "FL" , "maddress" : "789 Industrial Parkway" , "maddress1" : "Unit 12" , "mcc" : "1799" , "mcity" : "Miami" , "mcountry" : "US" , "mstate" : "FL" , "mzip" : "33101" , "orgId" : 123 , "ownership" : [ { "oaddress" : "123 Palm Avenue" , "ocity" : "Miami" , "ocountry" : "US" , "odriverstate" : "FL" , "ostate" : "FL" , "ownerdob" : "05/15/1980" , "ownerdriver" : "FL789456" , "owneremail" : "herman@hermanscoatings.com" , "ownername" : "Herman Martinez" , "ownerpercent" : 100 , "ownerphone1" : "3055550000" , "ownerphone2" : "3055550002" , "ownerssn" : "123456789" , "ownertitle" : "Owner" , "ozip" : "33102" } ] , "payoutAverageMonthlyVolume" : 50000 , "payoutAverageTicketAmount" : 3500 , "payoutCreditLimit" : 25000 , "payoutHighTicketAmount" : 15000 , "phonenumber" : "3055550000" , "recipientEmail" : "herman@hermanscoatings.com" , "recipientEmailNotification" : true , "resumable" : true , "signer" : { "address" : "33 North St" , "address1" : "STE 900" , "city" : "Bristol" , "country" : "US" , "dob" : "01/01/1976" , "email" : "test@email.com" , "name" : "John Smith" , "phone" : "555888111" , "ssn" : "123456789" , "state" : "TN" , "zip" : "55555" , "pciAttestation" : true , "signedDocumentReference" : "https://example.com/signed-document.pdf" , "attestationDate" : "04/20/2025" , "signDate" : "04/20/2025" , "additionalData" : { "deviceId" : "499585-389fj484-3jcj8hj3" , "session" : "fifji4-fiu443-fn4843" , "timeWithCompany" : "6 Years" } } , "startdate" : "01/01/2015" , "taxfillname" : "Herman's Coatings LLC" , "templateId" : 22 , "website" : "www.hermanscoatings.com" };
         const rawResponseBody = { "isSuccess" : true , "responseCode" : 1 , "responseData" : 3625 , "responseText" : "Success" };
         
@@ -433,8 +437,9 @@ describe("BoardingClient", () => {
     });
           
     test("AddApplication (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { "services" : { "ach" : { "acceptCCD" : true , "acceptPPD" : true , "acceptWeb" : true } , "card" : { "acceptAmex" : true , "acceptDiscover" : true , "acceptMastercard" : true , "acceptVisa" : true } , "odp" : { "allowAch" : false , "allowChecks" : false , "allowVCard" : false } } , "annualRevenue" : 750000 , "attachments" : [ { } , { } ] , "baddress" : "789 Industrial Parkway" , "baddress1" : "Unit 12" , "bankData" : [ { "accountNumber" : "1XXXXXX3100" , "bankAccountFunction" : 1 , "bankAccountHolderName" : "Herman's Coatings LLC" , "bankAccountHolderType" : "Business" , "bankName" : "First Miami Bank" , "id" : 123 , "nickname" : "Withdrawal Account" , "routingAccount" : "123123123" , "typeAccount" : "Checking" , "accountId" : "123-789" } , { "accountNumber" : "1XXXXXX3200" , "bankAccountFunction" : 0 , "bankAccountHolderName" : "Herman's Coatings LLC" , "bankAccountHolderType" : "Business" , "bankName" : "First Miami Bank" , "id" : 456 , "nickname" : "Deposit Account" , "routingAccount" : "123123123" , "typeAccount" : "Checking" , "accountId" : "123-456" } , { "accountNumber" : "1XXXXXX3123" , "bankAccountFunction" : 3 , "bankAccountHolderName" : "Herman's Coatings LLC" , "bankAccountHolderType" : "Business" , "bankName" : "First Miami Bank" , "id" : 987 , "nickname" : "Remittance Account" , "routingAccount" : "123123123" , "typeAccount" : "Checking" , "accountId" : "123-100" } ] , "bcity" : "Miami" , "bcountry" : "US" , "boardingLinkId" : "bl_123456" , "bstate" : "FL" , "bsummary" : "Commercial and industrial coating services, including protective and decorative coatings" , "btype" : "Limited Liability Company" , "bzip" : "33101" , "contacts" : [ { "contactEmail" : "herman@hermanscoatings.com" , "contactName" : "Herman Martinez" , "contactPhone" : "3055550000" , "contactTitle" : "Owner" } ] , "dbaname" : "Herman's Coatings" , "ein" : "123456789" , "faxnumber" : "3055550001" , "highticketamt" : 15000 , "legalname" : "Herman's Coatings LLC" , "license" : "FL123456" , "licstate" : "FL" , "maddress" : "789 Industrial Parkway" , "maddress1" : "Unit 12" , "mcc" : "1799" , "mcity" : "Miami" , "mcountry" : "US" , "mstate" : "FL" , "mzip" : "33101" , "orgId" : 123 , "ownership" : [ { "oaddress" : "123 Palm Avenue" , "ocity" : "Miami" , "ocountry" : "US" , "odriverstate" : "FL" , "ostate" : "FL" , "ownerdob" : "05/15/1980" , "ownerdriver" : "FL789456" , "owneremail" : "herman@hermanscoatings.com" , "ownername" : "Herman Martinez" , "ownerpercent" : 100 , "ownerphone1" : "3055550000" , "ownerphone2" : "3055550002" , "ownerssn" : "123456789" , "ownertitle" : "Owner" , "ozip" : "33102" } ] , "payoutAverageMonthlyVolume" : 50000 , "payoutAverageTicketAmount" : 500 , "payoutCreditLimit" : 25000 , "payoutHighTicketAmount" : 15000 , "phonenumber" : "3055550000" , "recipientEmail" : "herman@hermanscoatings.com" , "recipientEmailNotification" : true , "resumable" : true , "signer" : { "address" : "33 North St" , "address1" : "STE 900" , "city" : "Bristol" , "country" : "US" , "dob" : "01/01/1976" , "email" : "test@email.com" , "name" : "John Smith" , "phone" : "555888111" , "ssn" : "123456789" , "state" : "TN" , "zip" : "55555" , "pciAttestation" : true , "signedDocumentReference" : "https://example.com/signed-document.pdf" , "attestationDate" : "04/20/2025" , "signDate" : "04/20/2025" , "additionalData" : { "deviceId" : "499585-389fj484-3jcj8hj3" , "session" : "fifji4-fiu443-fn4843" , "timeWithCompany" : "6 Years" } } , "startdate" : "01/01/2015" , "taxfillname" : "Herman's Coatings LLC" , "templateId" : 22 , "website" : "www.hermanscoatings.com" };
         const rawResponseBody = { "isSuccess" : true , "responseCode" : 1 , "responseData" : 3625 , "responseText" : "Success" };
         
@@ -590,8 +595,9 @@ describe("BoardingClient", () => {
     });
           
     test("AddApplication (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { "services" : { "ach" : { } , "card" : { } } , "bankData" : [ { } , { } ] , "phonenumber" : "phonenumber" , "processingRegion" : "processingRegion" , "signer" : { } , "whenCharged" : "When Service Provided" , "whenDelivered" : "0-7 Days" , "whenProvided" : "30 Days or Less" , "whenRefunded" : "Exchange Only" };
         const rawResponseBody = { "key" : "value" };
         
@@ -622,8 +628,9 @@ describe("BoardingClient", () => {
     });
           
     test("AddApplication (6)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { "services" : { "ach" : { } , "card" : { } } , "bankData" : [ { } , { } ] , "phonenumber" : "phonenumber" , "processingRegion" : "processingRegion" , "signer" : { } , "whenCharged" : "When Service Provided" , "whenDelivered" : "0-7 Days" , "whenProvided" : "30 Days or Less" , "whenRefunded" : "Exchange Only" };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -654,8 +661,9 @@ describe("BoardingClient", () => {
     });
           
     test("AddApplication (7)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { "services" : { "ach" : { } , "card" : { } } , "bankData" : [ { } , { } ] , "phonenumber" : "phonenumber" , "processingRegion" : "processingRegion" , "signer" : { } , "whenCharged" : "When Service Provided" , "whenDelivered" : "0-7 Days" , "whenProvided" : "30 Days or Less" , "whenRefunded" : "Exchange Only" };
         const rawResponseBody = { "key" : "value" };
         
@@ -686,8 +694,9 @@ describe("BoardingClient", () => {
     });
           
     test("AddApplication (8)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { "services" : { "ach" : { } , "card" : { } } , "bankData" : [ { } , { } ] , "phonenumber" : "phonenumber" , "processingRegion" : "processingRegion" , "signer" : { } , "whenCharged" : "When Service Provided" , "whenDelivered" : "0-7 Days" , "whenProvided" : "30 Days or Less" , "whenRefunded" : "Exchange Only" };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -718,8 +727,9 @@ describe("BoardingClient", () => {
     });
           
     test("UpdateApplication (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "isSuccess" : true , "responseCode" : 1 , "responseData" : 3625 , "responseText" : "Success" };
         
@@ -739,8 +749,9 @@ describe("BoardingClient", () => {
     });
           
     test("UpdateApplication (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "key" : "value" };
         
@@ -758,8 +769,9 @@ describe("BoardingClient", () => {
     });
           
     test("UpdateApplication (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -777,8 +789,9 @@ describe("BoardingClient", () => {
     });
           
     test("UpdateApplication (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "key" : "value" };
         
@@ -796,8 +809,9 @@ describe("BoardingClient", () => {
     });
           
     test("UpdateApplication (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -815,8 +829,9 @@ describe("BoardingClient", () => {
     });
           
     test("DeleteApplication (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseCode" : 1 , "responseData" : 3625 , "responseText" : "Success" };
         
@@ -835,8 +850,9 @@ describe("BoardingClient", () => {
     });
           
     test("DeleteApplication (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -853,8 +869,9 @@ describe("BoardingClient", () => {
     });
           
     test("DeleteApplication (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -871,8 +888,9 @@ describe("BoardingClient", () => {
     });
           
     test("DeleteApplication (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -889,8 +907,9 @@ describe("BoardingClient", () => {
     });
           
     test("DeleteApplication (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -907,8 +926,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetApplication (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "annualRevenue" : 1000 , "averageMonthlyVolume" : 1000 , "averageTicketAmount" : 1000 , "bAddress1" : "123 Walnut Street" , "bAddress2" : "Suite 103" , "bankData" : [ { "accountNumber" : "123123123" , "bankAccountFunction" : 1 , "bankAccountHolderName" : "Gruzya Adventure Outfitters LLC" , "bankAccountHolderType" : "Business" , "bankName" : "Test Bank" , "nickname" : "Withdrawal Account" , "routingAccount" : "123123123" , "typeAccount" : "Checking" , "accountId" : "123-456" } , { "accountNumber" : "123123123" , "bankAccountFunction" : 0 , "bankAccountHolderName" : "Gruzya Adventure Outfitters LLC" , "bankAccountHolderType" : "Business" , "bankName" : "Test Bank" , "nickname" : "Deposit Account" , "routingAccount" : "123123123" , "typeAccount" : "Checking" , "accountId" : "123-456" } ] , "bCity" : "New Vegas" , "bCountry" : "US" , "bFax" : "5551234567" , "binPerson" : 60 , "binPhone" : 20 , "binWeb" : 20 , "boardingLinkId" : 91 , "boardingStatus" : 123 , "boardingSubStatus" : 123 , "bPhone" : "5551234567" , "bStartdate" : "01/01/1990" , "bState" : "FL" , "bSummary" : "Brick and mortar store that sells office supplies" , "builderData" : { "services" : { "ach" : { "acceptance" : { "ccd" : { "ro" : false , "value" : "<string>" } , "ppd" : { "ro" : false , "value" : "<string>" } , "web" : { "ro" : false , "value" : "<string>" } } , "fees" : { "body" : [ { "columns" : [ { "value" : "<string>" } ] } ] , "header" : { "columns" : [ { "value" : "<string>" } ] } } , "price" : { "body" : [ { "columns" : [ { "value" : "<string>" } ] } ] , "header" : { "columns" : [ { "value" : "<string>" } ] } } } , "card" : { "acceptance" : { "amex" : { "ro" : false , "value" : "<string>" } , "discover" : { "ro" : false , "value" : "<string>" } , "mastercard" : { "ro" : false , "value" : "<string>" } , "visa" : { "ro" : false , "value" : "<string>" } } , "fees" : { "body" : [ { "columns" : [ { "value" : "<string>" } ] } ] , "header" : { "columns" : [ { "value" : "<string>" } ] } } , "price" : { "body" : [ { "columns" : [ { "value" : "<string>" } ] } ] , "header" : { "columns" : [ { "value" : "<string>" } ] } } } } , "attributes" : { "minimumDocuments" : 1 , "multipleContacts" : true , "multipleOwners" : true } , "banking" : { "depositAccount" : { "accountNumber" : { "ro" : false , "value" : "<string>" } , "bankName" : { "ro" : false , "value" : "<string>" } , "routingAccount" : { "ro" : false , "value" : "<string>" } , "typeAccount" : { "ro" : false , "value" : "<string>" } } , "withdrawalAccount" : { "accountNumber" : { "ro" : false , "value" : "<string>" } , "bankName" : { "ro" : false , "value" : "<string>" } , "routingAccount" : { "ro" : false , "value" : "<string>" } , "typeAccount" : { "ro" : false , "value" : "<string>" } } } , "business" : { "address" : { "baddress" : { "ro" : false , "validator" : "alphanumeric" , "value" : "<string>" } , "baddress1" : { "ro" : false , "validator" : "alphanumeric" , "value" : "<string>" } , "bcity" : { "ro" : false , "validator" : "alphanumeric" , "value" : "<string>" } , "bcountry" : { "ro" : false , "value" : "<string>" } , "bstate" : { "ro" : false , "value" : "<string>" } , "bzip" : { "ro" : false , "validator" : "zipcode" , "value" : "<string>" } , "maddress" : { "ro" : false , "validator" : "alphanumeric" , "value" : "<string>" } , "maddress1" : { "ro" : false , "validator" : "alphanumeric" , "value" : "<string>" } , "mcity" : { "ro" : false , "validator" : "alphanumeric" , "value" : "<string>" } , "mcountry" : { "ro" : false , "value" : "<string>" } , "mstate" : { "ro" : false , "value" : "<string>" } , "mzip" : { "ro" : false , "validator" : "zipcode" , "value" : "<string>" } } , "details" : { "btype" : { "ro" : false , "value" : "<string>" } , "dbaname" : { "ro" : false , "validator" : "alphanumeric" , "value" : "<string>" } , "ein" : { "ro" : false , "validator" : "routing" , "value" : "<string>" } , "faxnumber" : { "ro" : false , "validator" : "phone" , "value" : "<string>" } , "legalname" : { "ro" : false , "validator" : "alphanumeric" , "value" : "<string>" } , "license" : { "ro" : false , "validator" : "alphanumeric" , "value" : "<string>" } , "licstate" : { "ro" : false , "value" : "<string>" } , "phonenumber" : { "ro" : false , "validator" : "phone" , "value" : "<string>" } , "startdate" : { "ro" : false , "value" : "2021-12-13T05:00:00.000Z" } , "taxfillname" : { "ro" : false , "validator" : "alphanumeric" , "value" : "<string>" } , "website" : { "ro" : false , "validator" : "url" , "value" : "<string>" } } } , "owners" : { "contact_list" : { "contactEmail" : { "ro" : false , "validator" : "email" , "value" : "<string>" } , "contactName" : { "ro" : false , "validator" : "alphanumeric" , "value" : "<string>" } , "contactPhone" : { "ro" : false , "validator" : "phone" , "value" : "<string>" } , "contactTitle" : { "ro" : false , "validator" : "alpha" , "value" : "<string>" } } , "own_list" : { "oaddress" : { "ro" : false , "validator" : "alphanumeric" , "value" : "<string>" } , "ocity" : { "ro" : false , "validator" : "alphanumeric" , "value" : "<string>" } , "ocountry" : { "ro" : false , "value" : "<string>" } , "odriverstate" : { "ro" : false , "value" : "<string>" } , "ostate" : { "ro" : false , "value" : "<string>" } , "ownerdob" : { "ro" : false , "value" : "2003-06-05T04:00:00.000Z" } , "ownerdriver" : { "ro" : false , "validator" : "alphanumeric" , "value" : "<string>" } , "owneremail" : { "ro" : false , "validator" : "email" , "value" : "<string>" } , "ownername" : { "ro" : false , "validator" : "alphanumeric" , "value" : "<string>" } , "ownerpercent" : { "ro" : false , "validator" : "number" , "value" : "<string>" } , "ownerphone1" : { "ro" : false , "validator" : "phone" , "value" : "<string>" } , "ownerphone2" : { "ro" : false , "validator" : "phone" , "value" : "<string>" } , "ownerssn" : { "ro" : false , "validator" : "routing" , "value" : "<string>" } , "ownertitle" : { "ro" : false , "validator" : "alpha" , "value" : "<string>" } , "ozip" : { "ro" : false , "validator" : "zipcode" , "value" : "<string>" } } } , "processing" : { "avgmonthly" : { "ro" : false , "validator" : "numbers" , "value" : "<string>" } , "binperson" : { "ro" : false , "value" : "<string>" } , "binphone" : { "ro" : false , "value" : "<string>" } , "binweb" : { "ro" : false , "value" : "<string>" } , "bsummary" : { "ro" : false , "validator" : "text" , "value" : "<string>" } , "highticketamt" : { "ro" : false , "validator" : "numbers" , "value" : "<string>" } , "mcc" : { "ro" : false , "value" : "<string>" } , "ticketamt" : { "ro" : false , "validator" : "numbers" , "value" : "<string>" } , "whenCharged" : { "ro" : false , "value" : "<string>" } , "whenDelivered" : { "ro" : false , "value" : "<string>" } , "whenProvided" : { "ro" : false , "value" : "<string>" } , "whenRefunded" : { "ro" : false , "value" : "<string>" } } } , "bZip" : "33000" , "contactData" : [ { "contactEmail" : "herman@hermanscoatings.com" , "contactName" : "Herman Martinez" , "contactPhone" : "3055550000" , "contactTitle" : "Owner" } ] , "createdAt" : "2022-07-01T15:00:01Z" , "dbaName" : "Sunshine Gutters" , "documentsRef" : { "filelist" : [ { "originalName" : "<string>" , "zipName" : "<string>" } ] , "zipfile" : "zx45.zip" } , "ein" : "XXXX6789" , "externalPaypointId" : "Paypoint-100" , "generalEvents" : [ { "description" : "Created" , "eventTime" : "2022-06-17T16:35:21Z" } , { "description" : "Updated Status" , "eventTime" : "2022-06-17T16:35:22Z" , "refData" : "1" } ] , "highTicketAmount" : 1000 , "idApplication" : 325 , "lastModified" : "2022-07-01T15:00:01Z" , "legalName" : "Sunshine Services, LLC" , "license" : "2222222FFG" , "licenseState" : "CA" , "logo" : "https://mysite.com/my-logo.png" , "mAddress1" : "123 Walnut Street" , "mAddress2" : "STE 900" , "mccid" : "<string>" , "mCity" : "TN" , "mCountry" : "US" , "messages" : [ { "content" : "Requested business license and bank statements." , "createdAt" : "2023-10-30T19:37:20Z" , "currentApplicationStatus" : 3 , "currentApplicationSubStatus" : 2 , "id" : 261 , "messageType" : 1 , "originalApplicationStatus" : -99 , "originalApplicationSubStatus" : 0 , "roomId" : 6 , "userId" : 104 , "userName" : "admin" } , { "content" : "TIN Failed, Need to reach out to merchant" , "createdAt" : "2023-10-25T18:41:55Z" , "currentApplicationStatus" : 3 , "currentApplicationSubStatus" : 3 , "id" : 231 , "messageType" : 1 , "originalApplicationStatus" : -99 , "originalApplicationSubStatus" : 0 , "roomId" : 6 , "userId" : 104 , "userName" : "admin" } , { "content" : "Application approved, finalizing agreement." , "createdAt" : "2023-09-09T00:00:00Z" , "currentApplicationStatus" : 7 , "currentApplicationSubStatus" : 5 , "id" : 3 , "messageType" : 1 , "originalApplicationStatus" : -99 , "originalApplicationSubStatus" : 0 , "roomId" : 6 , "userId" : 5 , "userName" : "admin" } ] , "mState" : "TN" , "mZip" : "37615" , "orgId" : 123 , "orgParentName" : "PropertyManager Pro" , "ownerData" : [ { "oaddress" : "33 North St" , "ocity" : "Any City" , "ocountry" : "US" , "odriverstate" : "CA" , "ostate" : "CA" , "ownerdob" : "01/01/1990" , "ownerdriver" : "CA6677778" , "owneremail" : "test@email.com" , "ownername" : "John Smith" , "ownerpercent" : 25 , "ownerphone1" : "555888111" , "ownerphone2" : "555888111" , "ownerssn" : "123456789" , "ownertitle" : "CEO" , "ozip" : "55555" } ] , "ownType" : "Limited Liability Company" , "pageidentifier" : "<string>" , "recipientEmailNotification" : true , "resumable" : true , "salesCode" : "<string>" , "serviceData" : { "ach" : { "acceptCCD" : true , "acceptPPD" : true , "acceptWeb" : true } , "card" : { "acceptAmex" : true , "acceptDiscover" : true , "acceptMastercard" : true , "acceptVisa" : true } , "odp" : { "allowAch" : true , "allowChecks" : true , "allowVCard" : true , "processing_region" : "US" , "processor" : "tysys" , "issuerNetworkSettingsId" : "12345678901234" } } , "signer" : { "address" : "33 North St" , "address1" : "STE 900" , "city" : "Bristol" , "country" : "US" , "dob" : "01/01/1976" , "email" : "test@email.com" , "name" : "John Smith" , "phone" : "555888111" , "ssn" : "123456789" , "state" : "TN" , "zip" : "55555" , "pciAttestation" : true , "signedDocumentReference" : "https://example.com/signed-document.pdf" , "attestationDate" : "04/20/2025" , "signDate" : "04/20/2025" , "additionalData" : { "deviceId" : "499585-389fj484-3jcj8hj3" , "session" : "fifji4-fiu443-fn4843" , "timeWithCompany" : "6 Years" } } , "taxfillname" : "Sunshine LLC" , "templateId" : 22 , "websiteAddress" : "www.example.com" , "whencharged" : "When Service Provided" , "whendelivered" : "Over 30 Days" , "whenProvided" : "30 Days or Less" , "whenrefund" : "Exchange Only" };
         
@@ -927,8 +947,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetApplication (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -945,8 +966,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetApplication (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -963,8 +985,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetApplication (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -981,8 +1004,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetApplication (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -999,8 +1023,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetApplicationByAuth (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { "email" : "admin@email.com" , "referenceId" : "129-219" };
         const rawResponseBody = { "annualRevenue" : 1000 , "averageMonthlyVolume" : 1000 , "averageTicketAmount" : 1000 , "bAddress1" : "123 Walnut Street" , "bAddress2" : "Suite 103" , "bankData" : [ { "accountNumber" : "1XXXXXX3123" , "bankAccountFunction" : 1 , "bankAccountHolderName" : "Gruzya Adventure Outfitters LLC" , "bankAccountHolderType" : "Personal" , "bankName" : "Country Bank" , "id" : 1 , "nickname" : "Business Checking 1234" , "routingAccount" : "123123123" , "typeAccount" : "Checking" , "accountId" : "123-456" } , { "accountNumber" : "1XXXXXX3123" , "bankAccountFunction" : 0 , "bankAccountHolderName" : "Gruzya Adventure Outfitters LLC" , "bankAccountHolderType" : "Personal" , "bankName" : "Country Bank" , "id" : 1 , "nickname" : "Business Checking 1234" , "routingAccount" : "123123123" , "typeAccount" : "Checking" , "accountId" : "123-456" } ] , "bCity" : "New Vegas" , "bCountry" : "US" , "bFax" : "5551234567" , "binPerson" : 60 , "binPhone" : 20 , "binWeb" : 20 , "boardingLinkId" : 91 , "boardingStatus" : 1 , "boardingSubStatus" : 1 , "bPhone" : "5551234567" , "bStartdate" : "01/01/1990" , "bState" : "FL" , "bSummary" : "Brick and mortar store that sells office supplies" , "builderData" : { "attributes" : { "minimumDocuments" : 1 , "multipleContacts" : true , "multipleOwners" : true } } , "bZip" : "33000" , "contactData" : [ { "contactEmail" : "example@email.com" , "contactName" : "Herman Martinez" , "contactPhone" : "3055550000" , "contactTitle" : "Owner" } ] , "createdAt" : "2022-07-01T15:00:01Z" , "dbaName" : "Sunshine Gutters" , "documentsRef" : { "filelist" : [ { } ] , "zipfile" : "zx45.zip" } , "ein" : "123456789" , "externalPaypointId" : "Paypoint-100" , "generalEvents" : [ { "description" : "TransferCreated" , "eventTime" : "2023-07-05T22:31:06Z" , "refData" : "refData" , "source" : "api" } ] , "highTicketAmount" : 1000 , "idApplication" : 352 , "lastModified" : "2022-07-01T15:00:01Z" , "legalName" : "Sunshine Services, LLC" , "license" : "2222222FFG" , "licenseState" : "CA" , "logo" : { "fContent" : "TXkgdGVzdCBmaWxlHJ==..." , "filename" : "my-doc.pdf" , "ftype" : "pdf" , "furl" : "https://mysite.com/my-doc.pdf" } , "mAddress1" : "123 Walnut Street" , "mAddress2" : "STE 900" , "mccid" : "mccid" , "mCity" : "TN" , "mCountry" : "US" , "mState" : "TN" , "mZip" : "37615" , "orgId" : 123 , "orgParentName" : "PropertyManager Pro" , "ownerData" : [ { "oaddress" : "33 North St" , "ocity" : "Any City" , "ocountry" : "US" , "odriverstate" : "CA" , "ostate" : "CA" , "ownerdob" : "01/01/1990" , "ownerdriver" : "CA6677778" , "owneremail" : "example@email.com" , "ownername" : "John Smith" , "ownerpercent" : 25 , "ownerphone1" : "555888111" , "ownerphone2" : "555888111" , "ownerssn" : "123456789" , "ownertitle" : "CEO" , "ozip" : "55555" } ] , "ownType" : "Limited Liability Company" , "pageidentifier" : "null" , "recipientEmailNotification" : true , "resumable" : false , "salesCode" : "salesCode" , "serviceData" : { "ach" : { "acceptCCD" : false , "acceptPPD" : false , "acceptWeb" : true } , "card" : { "acceptAmex" : true , "acceptDiscover" : false , "acceptMastercard" : true , "acceptVisa" : true } , "odp" : { "allowAch" : true , "allowChecks" : true , "allowVCard" : true , "processing_region" : "US" , "processor" : "tysys" , "issuerNetworkSettingsId" : "12345678901234" } } , "signer" : { "acceptance" : false , "address" : "33 North St" , "address1" : "STE 900" , "city" : "Bristol" , "country" : "US" , "dob" : "01/01/1990" , "email" : "example@email.com" , "name" : "John Smith" , "phone" : "555888111" , "signedDocumentReference" : "signedDocumentReference" , "signerUuid" : "54455d5d-34ff-416c-91e0-5bc87199999" , "ssn" : "123456789" , "state" : "TN" , "zip" : "55555" } , "taxfillname" : "Sunshine LLC" , "templateId" : 22 , "websiteAddress" : "www.example.com" , "whencharged" : "When Service Provided" , "whendelivered" : "0-7 Days" , "whenProvided" : "30 Days or Less" , "whenrefund" : "Exchange Only" };
         
@@ -1023,8 +1048,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetApplicationByAuth (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "key" : "value" };
         
@@ -1042,8 +1068,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetApplicationByAuth (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1061,8 +1088,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetApplicationByAuth (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "key" : "value" };
         
@@ -1080,8 +1108,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetApplicationByAuth (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1099,8 +1128,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetByIdLinkApplication (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "acceptOauth" : false , "acceptRegister" : false , "builderData" : { "attributes" : { "minimumDocuments" : 1 , "multipleContacts" : true , "multipleOwners" : true } } , "entryAttributes" : "entryAttributes" , "id" : 1000000 , "logo" : { "fContent" : "TXkgdGVzdCBmaWxlHJ==..." , "filename" : "my-doc.pdf" , "ftype" : "pdf" , "furl" : "https://mysite.com/my-doc.pdf" } , "orgId" : 123 , "pageIdentifier:" : "null" , "recipientEmailNotification" : true , "referenceName" : "payabli-00710" , "referenceTemplateId" : 1830 , "resumable" : false };
         
@@ -1119,8 +1149,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetByIdLinkApplication (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1137,8 +1168,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetByIdLinkApplication (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1155,8 +1187,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetByIdLinkApplication (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1173,8 +1206,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetByIdLinkApplication (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1191,8 +1225,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetByTemplateIdLinkApplication (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "acceptOauth" : false , "acceptRegister" : false , "builderData" : { "attributes" : { "minimumDocuments" : 1 , "multipleContacts" : true , "multipleOwners" : true } } , "entryAttributes" : "entryAttributes" , "id" : 1000000 , "logo" : { "fContent" : "TXkgdGVzdCBmaWxlHJ==..." , "filename" : "my-doc.pdf" , "ftype" : "pdf" , "furl" : "https://mysite.com/my-doc.pdf" } , "orgId" : 123 , "pageIdentifier:" : "null" , "recipientEmailNotification" : true , "referenceName" : "payabli-00710" , "referenceTemplateId" : 1830 , "resumable" : false };
         
@@ -1211,8 +1246,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetByTemplateIdLinkApplication (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1229,8 +1265,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetByTemplateIdLinkApplication (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1247,8 +1284,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetByTemplateIdLinkApplication (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1265,8 +1303,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetByTemplateIdLinkApplication (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1283,8 +1322,9 @@ describe("BoardingClient", () => {
     });
           
     test("getExternalApplication (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseCode" : 1 , "responseData" : { "appLink" : "https://boarding-sandbox.payabli.com/boarding/externalapp/load/17E" , "referenceId" : "129-219" } , "responseText" : "Success" };
         
@@ -1303,8 +1343,9 @@ describe("BoardingClient", () => {
     });
           
     test("getExternalApplication (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1321,8 +1362,9 @@ describe("BoardingClient", () => {
     });
           
     test("getExternalApplication (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1339,8 +1381,9 @@ describe("BoardingClient", () => {
     });
           
     test("getExternalApplication (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1357,8 +1400,9 @@ describe("BoardingClient", () => {
     });
           
     test("getExternalApplication (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1375,8 +1419,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetLinkApplication (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "acceptOauth" : false , "acceptRegister" : false , "builderData" : { "attributes" : { "minimumDocuments" : 1 , "multipleContacts" : true , "multipleOwners" : true } } , "entryAttributes" : "entryAttributes" , "id" : 1000000 , "logo" : { "fContent" : "TXkgdGVzdCBmaWxlHJ==..." , "filename" : "my-doc.pdf" , "ftype" : "pdf" , "furl" : "https://mysite.com/my-doc.pdf" } , "orgId" : 123 , "pageIdentifier:" : "null" , "recipientEmailNotification" : true , "referenceName" : "payabli-00710" , "referenceTemplateId" : 1830 , "resumable" : false };
         
@@ -1395,8 +1440,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetLinkApplication (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1413,8 +1459,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetLinkApplication (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1431,8 +1478,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetLinkApplication (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1449,8 +1497,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetLinkApplication (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1467,8 +1516,9 @@ describe("BoardingClient", () => {
     });
           
     test("ListApplications (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "Records" : [ { "annualRevenue" : 1000 , "averageMonthlyVolume" : 1000 , "averageTicketAmount" : 1000 , "bAddress1" : "123 Walnut Street" , "bAddress2" : "Suite 103" , "bankData" : [ { "accountNumber" : "1XXXXXX3123" , "bankAccountFunction" : 1 , "bankAccountHolderName" : "Gruzya Adventure Outfitters LLC" , "bankAccountHolderType" : "Personal" , "bankName" : "Country Bank" , "id" : 1 , "nickname" : "Business Checking 1234" , "routingAccount" : "123123123" , "typeAccount" : "Checking" , "accountId" : "123-456" } , { "accountNumber" : "1XXXXXX3123" , "bankAccountFunction" : 0 , "bankAccountHolderName" : "Gruzya Adventure Outfitters LLC" , "bankAccountHolderType" : "Personal" , "bankName" : "Country Bank" , "id" : 1 , "nickname" : "Business Checking 1234" , "routingAccount" : "123123123" , "typeAccount" : "Checking" , "accountId" : "123-456" } ] , "bCity" : "New Vegas" , "bCountry" : "US" , "bFax" : "5551234567" , "binPerson" : 60 , "binPhone" : 20 , "binWeb" : 20 , "boardingLinkId" : 91 , "boardingStatus" : 1 , "boardingSubStatus" : 1 , "bPhone" : "5551234567" , "bStartdate" : "01/01/1990" , "bState" : "FL" , "bSummary" : "Brick and mortar store that sells office supplies" , "bZip" : "33000" , "contactData" : [ { } ] , "createdAt" : "2022-07-01T15:00:01Z" , "dbaName" : "Sunshine Gutters" , "ein" : "123456789" , "externalPaypointId" : "Paypoint-100" , "generalEvents" : [ { "description" : "TransferCreated" , "eventTime" : "2023-07-05T22:31:06Z" } ] , "highTicketAmount" : 1000 , "idApplication" : 352 , "lastModified" : "2022-07-01T15:00:01Z" , "legalName" : "Sunshine Services, LLC" , "license" : "2222222FFG" , "licenseState" : "CA" , "mAddress1" : "123 Walnut Street" , "mAddress2" : "STE 900" , "mccid" : "mccid" , "mCity" : "TN" , "mCountry" : "US" , "mState" : "TN" , "mZip" : "37615" , "orgId" : 123 , "orgParentName" : "PropertyManager Pro" , "ownerData" : [ { } ] , "ownType" : "Limited Liability Company" , "pageidentifier" : "null" , "recipientEmailNotification" : true , "resumable" : false , "salesCode" : "salesCode" , "taxfillname" : "Sunshine LLC" , "templateId" : 22 , "websiteAddress" : "www.example.com" , "whencharged" : "When Service Provided" , "whendelivered" : "0-7 Days" , "whenProvided" : "30 Days or Less" , "whenrefund" : "Exchange Only" } ] , "Summary" : { "pageIdentifier" : "null" , "pageSize" : 20 , "totalAmount" : 77.22 , "totalNetAmount" : 77.22 , "totalPages" : 2 , "totalRecords" : 2 } };
         
@@ -1491,8 +1541,9 @@ describe("BoardingClient", () => {
     });
           
     test("ListApplications (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1509,8 +1560,9 @@ describe("BoardingClient", () => {
     });
           
     test("ListApplications (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1527,8 +1579,9 @@ describe("BoardingClient", () => {
     });
           
     test("ListApplications (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1545,8 +1598,9 @@ describe("BoardingClient", () => {
     });
           
     test("ListApplications (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1563,8 +1617,9 @@ describe("BoardingClient", () => {
     });
           
     test("ListBoardingLinks (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "Records" : [ { "AcceptOauth" : false , "AcceptRegister" : false , "EntryAttributes" : "EntryAttributes" , "Id" : 1 , "LastUpdated" : "2022-07-01T15:00:01Z" , "OrgParentName" : "PropertyManager Pro" , "ReferenceName" : "payabli-00710" , "ReferenceTemplateId" : 1830 , "TemplateCode" : "TemplateCode" , "TemplateName" : "SMB" } ] , "Summary" : { "pageIdentifier" : "null" , "pageSize" : 20 , "totalAmount" : 77.22 , "totalNetAmount" : 77.22 , "totalPages" : 2 , "totalRecords" : 2 } };
         
@@ -1587,8 +1642,9 @@ describe("BoardingClient", () => {
     });
           
     test("ListBoardingLinks (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1605,8 +1661,9 @@ describe("BoardingClient", () => {
     });
           
     test("ListBoardingLinks (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1623,8 +1680,9 @@ describe("BoardingClient", () => {
     });
           
     test("ListBoardingLinks (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1641,8 +1699,9 @@ describe("BoardingClient", () => {
     });
           
     test("ListBoardingLinks (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1659,8 +1718,9 @@ describe("BoardingClient", () => {
     });
           
     test("AddServiceToPaypointFromApp (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { "paypointId" : 3040 , "templateId" : 456 , "recipientEmail" : "merchant@example.com" , "returnBoardingAccessInfoInLine" : true , "onCreate" : [ "submitApplication" ] };
         const rawResponseBody = { "responseCode" : 1 , "roomId" : 66594 , "isSuccess" : true , "responseText" : "Success" , "responseData" : { "appId" : 66594 , "boardingLink" : "https://boarding-sandbox.payabli.com/boarding/externalapp/load/10422?mode=25&email=merchant@example.com&referenceId=YpYNRPDOcGsm" } };
         
@@ -1686,8 +1746,9 @@ describe("BoardingClient", () => {
     });
           
     test("AddServiceToPaypointFromApp (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { "paypointId" : 1000000 , "templateId" : 1000000 , "recipientEmail" : "recipientEmail" };
         const rawResponseBody = { "key" : "value" };
         
@@ -1709,8 +1770,9 @@ describe("BoardingClient", () => {
     });
           
     test("AddServiceToPaypointFromApp (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { "paypointId" : 1000000 , "templateId" : 1000000 , "recipientEmail" : "recipientEmail" };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1732,8 +1794,9 @@ describe("BoardingClient", () => {
     });
           
     test("AddServiceToPaypointFromApp (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { "paypointId" : 1000000 , "templateId" : 1000000 , "recipientEmail" : "recipientEmail" };
         const rawResponseBody = { "key" : "value" };
         
@@ -1755,8 +1818,9 @@ describe("BoardingClient", () => {
     });
           
     test("AddServiceToPaypointFromApp (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { "paypointId" : 1000000 , "templateId" : 1000000 , "recipientEmail" : "recipientEmail" };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1778,8 +1842,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetApplicationsByPaypointId (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "Records" : [ { "idApplication" : 68388 , "orgId" : 123 , "dbaName" : "Meadowbrook Phase II HOA A" , "legalName" : "Meadowbrook Phase II HOA B" , "ein" : "601907058" , "boardingStatus" : 7 , "boardingSubStatus" : 0 , "templateId" : 8233 , "boardingLinkId" : 6344 , "contactData" : [ { "contactName" : "Gary Heaney" , "contactEmail" : "hello@meadowbrookphaseii.com" , "contactTitle" : "Human Group Designer" , "contactPhone" : "7863078875" } ] , "generalEvents" : [ { "description" : "Created" , "eventTime" : "2026-03-17T18:56:39.8854072Z" } , { "description" : "Linked to paypoint 6257" , "eventTime" : "2026-03-17T18:56:39.885413Z" } , { "description" : "Updated Status: 7, 0" , "eventTime" : "2026-03-18T19:32:39.4012114Z" } ] } ] , "Summary" : { "pageIdentifier" : "null" , "pageSize" : 0 , "totalAmount" : 0 , "totalNetAmount" : 0 , "totalPages" : 0 , "totalRecords" : 1 } };
         
@@ -1798,8 +1863,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetApplicationsByPaypointId (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1816,8 +1882,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetApplicationsByPaypointId (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -1834,8 +1901,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetApplicationsByPaypointId (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -1852,8 +1920,9 @@ describe("BoardingClient", () => {
     });
           
     test("GetApplicationsByPaypointId (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         

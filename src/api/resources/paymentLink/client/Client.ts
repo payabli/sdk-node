@@ -168,12 +168,13 @@ export class PaymentLinkClient {
     }
 
     private async __addPayLinkFromInvoice(idInvoice: number, request: Payabli.PayLinkDataInvoice, requestOptions?: PaymentLinkClient.RequestOptions): Promise<core.WithRawResponse<Payabli.PayabliApiResponsePaymentLinks>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { amountFixed, mail2, idempotencyKey, ..._body } = request;
         const _queryParams: Record<string, unknown> = {
             amountFixed,
             mail2
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, mergeOnlyDefinedHeaders({ "idempotencyKey": idempotencyKey }), requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `PaymentLink/${core.url.encodePathParam(idInvoice)}`),
@@ -186,6 +187,7 @@ export class PaymentLinkClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -352,12 +354,13 @@ export class PaymentLinkClient {
     }
 
     private async __addPayLinkFromBill(billId: number, request: Payabli.PayLinkDataBill, requestOptions?: PaymentLinkClient.RequestOptions): Promise<core.WithRawResponse<Payabli.PayabliApiResponsePaymentLinks>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { amountFixed, mail2, idempotencyKey, ..._body } = request;
         const _queryParams: Record<string, unknown> = {
             amountFixed,
             mail2
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, mergeOnlyDefinedHeaders({ "idempotencyKey": idempotencyKey }), requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `PaymentLink/bill/${core.url.encodePathParam(billId)}`),
@@ -370,6 +373,7 @@ export class PaymentLinkClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -413,7 +417,8 @@ export class PaymentLinkClient {
     }
 
     private async __deletePayLinkFromId(payLinkId: string, requestOptions?: PaymentLinkClient.RequestOptions): Promise<core.WithRawResponse<Payabli.PayabliApiResponsePaymentLinks>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `PaymentLink/${core.url.encodePathParam(payLinkId)}`),
@@ -423,6 +428,7 @@ export class PaymentLinkClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -466,7 +472,8 @@ export class PaymentLinkClient {
     }
 
     private async __getPayLinkFromId(paylinkId: string, requestOptions?: PaymentLinkClient.RequestOptions): Promise<core.WithRawResponse<Payabli.GetPayLinkFromIdResponse>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `PaymentLink/load/${core.url.encodePathParam(paylinkId)}`),
@@ -476,6 +483,7 @@ export class PaymentLinkClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -529,7 +537,8 @@ export class PaymentLinkClient {
     }
 
     private async __pushPayLinkFromId(payLinkId: string, request: Payabli.PushPayLinkRequest, requestOptions?: PaymentLinkClient.RequestOptions): Promise<core.WithRawResponse<Payabli.PayabliApiResponsePaymentLinks>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `PaymentLink/push/${core.url.encodePathParam(payLinkId)}`),
@@ -542,6 +551,7 @@ export class PaymentLinkClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -586,11 +596,12 @@ export class PaymentLinkClient {
     }
 
     private async __refreshPayLinkFromId(payLinkId: string, request: Payabli.RefreshPayLinkFromIdRequest = {}, requestOptions?: PaymentLinkClient.RequestOptions): Promise<core.WithRawResponse<Payabli.PayabliApiResponsePaymentLinks>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { amountFixed } = request;
         const _queryParams: Record<string, unknown> = {
             amountFixed
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `PaymentLink/refresh/${core.url.encodePathParam(payLinkId)}`),
@@ -600,6 +611,7 @@ export class PaymentLinkClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -648,12 +660,13 @@ export class PaymentLinkClient {
     }
 
     private async __sendPayLinkFromId(payLinkId: string, request: Payabli.SendPayLinkFromIdRequest = {}, requestOptions?: PaymentLinkClient.RequestOptions): Promise<core.WithRawResponse<Payabli.PayabliApiResponsePaymentLinks>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { attachfile, mail2 } = request;
         const _queryParams: Record<string, unknown> = {
             attachfile,
             mail2
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `PaymentLink/send/${core.url.encodePathParam(payLinkId)}`),
@@ -663,6 +676,7 @@ export class PaymentLinkClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -720,7 +734,8 @@ export class PaymentLinkClient {
     }
 
     private async __updatePayLinkFromId(payLinkId: string, request: Payabli.PayLinkUpdateData = {}, requestOptions?: PaymentLinkClient.RequestOptions): Promise<core.WithRawResponse<Payabli.PayabliApiResponsePaymentLinks>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `PaymentLink/update/${core.url.encodePathParam(payLinkId)}`),
@@ -733,6 +748,7 @@ export class PaymentLinkClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -835,6 +851,7 @@ export class PaymentLinkClient {
     }
 
     private async __addPayLinkFromBillLotNumber(lotNumber: string, request: Payabli.PayLinkDataOut, requestOptions?: PaymentLinkClient.RequestOptions): Promise<core.WithRawResponse<Payabli.PayabliApiResponsePaymentLinks>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { entryPoint, vendorNumber, mail2, amountFixed, ..._body } = request;
         const _queryParams: Record<string, unknown> = {
             entryPoint,
@@ -842,7 +859,7 @@ export class PaymentLinkClient {
             mail2,
             amountFixed
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `PaymentLink/bill/lotNumber/${core.url.encodePathParam(lotNumber)}`),
@@ -855,6 +872,7 @@ export class PaymentLinkClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -932,7 +950,8 @@ export class PaymentLinkClient {
     }
 
     private async __patchOutPaymentLink(paylinkId: string, request: Payabli.PatchOutPaymentLinkRequest = {}, requestOptions?: PaymentLinkClient.RequestOptions): Promise<core.WithRawResponse<Payabli.PayabliApiResponsePaymentLinks>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `PaymentLink/out/${core.url.encodePathParam(paylinkId)}`),
@@ -945,6 +964,7 @@ export class PaymentLinkClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -1071,7 +1091,8 @@ export class PaymentLinkClient {
     }
 
     private async __updatePayLinkOutFromId(paylinkId: string, request: Payabli.PaymentPageRequestBodyOut, requestOptions?: PaymentLinkClient.RequestOptions): Promise<core.WithRawResponse<Payabli.PayabliApiResponsePaymentLinks>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `PaymentLink/updateOut/${core.url.encodePathParam(paylinkId)}`),
@@ -1084,6 +1105,7 @@ export class PaymentLinkClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });

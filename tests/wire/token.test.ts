@@ -8,7 +8,7 @@ describe("TokenClient", () => {
     
     test("createServerSideToken (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" };
         const rawResponseBody = { "token_type" : "Bearer" , "access_token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.example.token" , "expires_in" : 3600 };
         
@@ -32,7 +32,7 @@ describe("TokenClient", () => {
           
     test("createServerSideToken (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { "clientId" : "x" , "clientSecret" : "x" };
         const rawResponseBody = { "key" : "value" };
         

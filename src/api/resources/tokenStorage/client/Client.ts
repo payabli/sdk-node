@@ -130,6 +130,7 @@ export class TokenStorageClient {
     }
 
     private async __addMethod(request: Payabli.AddMethodRequest, requestOptions?: TokenStorageClient.RequestOptions): Promise<core.WithRawResponse<Payabli.AddMethodResponse>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { achValidation, createAnonymous, forceCustomerCreation, temporary, idempotencyKey, ..._body } = request;
         const _queryParams: Record<string, unknown> = {
             achValidation,
@@ -137,7 +138,7 @@ export class TokenStorageClient {
             forceCustomerCreation,
             temporary
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, mergeOnlyDefinedHeaders({ "idempotencyKey": idempotencyKey }), requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), "TokenStorage/add"),
@@ -150,6 +151,7 @@ export class TokenStorageClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -197,12 +199,13 @@ export class TokenStorageClient {
     }
 
     private async __getMethod(methodId: string, request: Payabli.GetMethodRequest = {}, requestOptions?: TokenStorageClient.RequestOptions): Promise<core.WithRawResponse<Payabli.GetMethodResponse>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { cardExpirationFormat, includeTemporary } = request;
         const _queryParams: Record<string, unknown> = {
             cardExpirationFormat,
             includeTemporary
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `TokenStorage/${core.url.encodePathParam(methodId)}`),
@@ -212,6 +215,7 @@ export class TokenStorageClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -302,11 +306,12 @@ export class TokenStorageClient {
     }
 
     private async __updateMethod(methodId: string, request: Payabli.UpdateMethodRequest, requestOptions?: TokenStorageClient.RequestOptions): Promise<core.WithRawResponse<Payabli.PayabliApiResponsePaymethodDelete>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { achValidation, ..._body } = request;
         const _queryParams: Record<string, unknown> = {
             achValidation
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `TokenStorage/${core.url.encodePathParam(methodId)}`),
@@ -319,6 +324,7 @@ export class TokenStorageClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -356,7 +362,8 @@ export class TokenStorageClient {
     }
 
     private async __removeMethod(methodId: string, requestOptions?: TokenStorageClient.RequestOptions): Promise<core.WithRawResponse<Payabli.PayabliApiResponsePaymethodDelete>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `TokenStorage/${core.url.encodePathParam(methodId)}`),
@@ -366,6 +373,7 @@ export class TokenStorageClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });

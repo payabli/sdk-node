@@ -3,12 +3,14 @@
 import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
+import { mockBearerAuth } from "./mockAuth";
 
 describe("FundingClient", () => {
     
     test("DepositFunds (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { "amount" : 10 , "entrypoint" : "48acde49" , "accountId" : "333" };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "Success" , "responseData" : null , "pageIdentifier" : null };
         
@@ -32,8 +34,9 @@ describe("FundingClient", () => {
     });
           
     test("DepositFunds (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { "amount" : 1.1 , "entrypoint" : "entrypoint" , "accountId" : "accountId" };
         const rawResponseBody = { "key" : "value" };
         
@@ -55,8 +58,9 @@ describe("FundingClient", () => {
     });
           
     test("DepositFunds (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { "amount" : 1.1 , "entrypoint" : "entrypoint" , "accountId" : "accountId" };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -78,8 +82,9 @@ describe("FundingClient", () => {
     });
           
     test("DepositFunds (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { "amount" : 1.1 , "entrypoint" : "entrypoint" , "accountId" : "accountId" };
         const rawResponseBody = { "key" : "value" };
         
@@ -101,8 +106,9 @@ describe("FundingClient", () => {
     });
           
     test("DepositFunds (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { "amount" : 1.1 , "entrypoint" : "entrypoint" , "accountId" : "accountId" };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         

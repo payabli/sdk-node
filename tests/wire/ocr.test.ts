@@ -3,12 +3,14 @@
 import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
+import { mockBearerAuth } from "./mockAuth";
 
 describe("OcrClient", () => {
     
     test("OcrDocumentForm (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" , "responseCode" : 1 , "responseData" : { "resultData" : { "billNumber" : "billNumber" , "netAmount" : 1.1 , "billDate" : "2024-01-15T09:30:00Z" , "dueDate" : "2024-01-15T09:30:00Z" , "comments" : "comments" , "billItems" : [ { } ] , "mode" : 1 , "accountingField1" : "accountingField1" , "accountingField2" : "accountingField2" , "endDate" : "2024-01-15T09:30:00Z" , "frequency" : "frequency" , "terms" : "terms" , "status" : 1 , "lotNumber" : "lotNumber" , "attachments" : [ { } ] } } };
         
@@ -28,8 +30,9 @@ describe("OcrClient", () => {
     });
           
     test("OcrDocumentForm (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "key" : "value" };
         
@@ -47,8 +50,9 @@ describe("OcrClient", () => {
     });
           
     test("OcrDocumentForm (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -66,8 +70,9 @@ describe("OcrClient", () => {
     });
           
     test("OcrDocumentForm (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "key" : "value" };
         
@@ -85,8 +90,9 @@ describe("OcrClient", () => {
     });
           
     test("OcrDocumentForm (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -104,8 +110,9 @@ describe("OcrClient", () => {
     });
           
     test("OcrDocumentJson", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" , "responseCode" : 1 , "responseData" : { "resultData" : { "billNumber" : "billNumber" , "netAmount" : 1.1 , "billDate" : "2024-01-15T09:30:00Z" , "dueDate" : "2024-01-15T09:30:00Z" , "comments" : "comments" , "billItems" : [ { } ] , "mode" : 1 , "accountingField1" : "accountingField1" , "accountingField2" : "accountingField2" , "endDate" : "2024-01-15T09:30:00Z" , "frequency" : "frequency" , "terms" : "terms" , "status" : 1 , "lotNumber" : "lotNumber" , "attachments" : [ { } ] } } };
         

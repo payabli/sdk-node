@@ -80,11 +80,12 @@ export class InvoiceClient {
     }
 
     private async __addInvoice(entry: string, request: Payabli.AddInvoiceRequest, requestOptions?: InvoiceClient.RequestOptions): Promise<core.WithRawResponse<Payabli.InvoiceResponseWithoutData>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { forceCustomerCreation, idempotencyKey, ..._body } = request;
         const _queryParams: Record<string, unknown> = {
             forceCustomerCreation
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, mergeOnlyDefinedHeaders({ "idempotencyKey": idempotencyKey }), requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Invoice/${core.url.encodePathParam(entry)}`),
@@ -97,6 +98,7 @@ export class InvoiceClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -144,11 +146,12 @@ export class InvoiceClient {
     }
 
     private async __getAttachedFileFromInvoice(idInvoice: number, filename: string, request: Payabli.GetAttachedFileFromInvoiceRequest = {}, requestOptions?: InvoiceClient.RequestOptions): Promise<core.WithRawResponse<Payabli.FileContent>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { returnObject } = request;
         const _queryParams: Record<string, unknown> = {
             returnObject
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Invoice/attachedFileFromInvoice/${core.url.encodePathParam(idInvoice)}/${core.url.encodePathParam(filename)}`),
@@ -158,6 +161,7 @@ export class InvoiceClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -204,7 +208,8 @@ export class InvoiceClient {
     }
 
     private async __deleteAttachedFromInvoice(idInvoice: number, filename: string, requestOptions?: InvoiceClient.RequestOptions): Promise<core.WithRawResponse<Payabli.InvoiceResponseWithoutData>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Invoice/attachedFileFromInvoice/${core.url.encodePathParam(idInvoice)}/${core.url.encodePathParam(filename)}`),
@@ -214,6 +219,7 @@ export class InvoiceClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -257,7 +263,8 @@ export class InvoiceClient {
     }
 
     private async __getInvoice(idInvoice: number, requestOptions?: InvoiceClient.RequestOptions): Promise<core.WithRawResponse<Payabli.GetInvoiceRecord>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Invoice/${core.url.encodePathParam(idInvoice)}`),
@@ -267,6 +274,7 @@ export class InvoiceClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -323,11 +331,12 @@ export class InvoiceClient {
     }
 
     private async __editInvoice(idInvoice: number, request: Payabli.EditInvoiceRequest, requestOptions?: InvoiceClient.RequestOptions): Promise<core.WithRawResponse<Payabli.InvoiceResponseWithoutData>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { forceCustomerCreation, ..._body } = request;
         const _queryParams: Record<string, unknown> = {
             forceCustomerCreation
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Invoice/${core.url.encodePathParam(idInvoice)}`),
@@ -340,6 +349,7 @@ export class InvoiceClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -383,7 +393,8 @@ export class InvoiceClient {
     }
 
     private async __deleteInvoice(idInvoice: number, requestOptions?: InvoiceClient.RequestOptions): Promise<core.WithRawResponse<Payabli.InvoiceResponseWithoutData>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Invoice/${core.url.encodePathParam(idInvoice)}`),
@@ -393,6 +404,7 @@ export class InvoiceClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -436,7 +448,8 @@ export class InvoiceClient {
     }
 
     private async __getInvoiceNumber(entry: string, requestOptions?: InvoiceClient.RequestOptions): Promise<core.WithRawResponse<Payabli.InvoiceNumberResponse>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Invoice/getNumber/${core.url.encodePathParam(entry)}`),
@@ -446,6 +459,7 @@ export class InvoiceClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -494,6 +508,7 @@ export class InvoiceClient {
     }
 
     private async __listInvoices(entry: string, request: Payabli.ListInvoicesRequest = {}, requestOptions?: InvoiceClient.RequestOptions): Promise<core.WithRawResponse<Payabli.QueryInvoiceResponse>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
         const _queryParams: Record<string, unknown> = {
             exportFormat: exportFormat != null ? exportFormat : undefined,
@@ -502,7 +517,7 @@ export class InvoiceClient {
             parameters: parameters != null ? toJson(parameters) : undefined,
             sortBy
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Query/invoices/${core.url.encodePathParam(entry)}`),
@@ -512,6 +527,7 @@ export class InvoiceClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -560,6 +576,7 @@ export class InvoiceClient {
     }
 
     private async __listInvoicesOrg(orgId: number, request: Payabli.ListInvoicesOrgRequest = {}, requestOptions?: InvoiceClient.RequestOptions): Promise<core.WithRawResponse<Payabli.QueryInvoiceResponse>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { exportFormat, fromRecord, limitRecord, parameters, sortBy } = request;
         const _queryParams: Record<string, unknown> = {
             exportFormat: exportFormat != null ? exportFormat : undefined,
@@ -568,7 +585,7 @@ export class InvoiceClient {
             parameters: parameters != null ? toJson(parameters) : undefined,
             sortBy
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Query/invoices/org/${core.url.encodePathParam(orgId)}`),
@@ -578,6 +595,7 @@ export class InvoiceClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -625,12 +643,13 @@ export class InvoiceClient {
     }
 
     private async __sendInvoice(idInvoice: number, request: Payabli.SendInvoiceRequest = {}, requestOptions?: InvoiceClient.RequestOptions): Promise<core.WithRawResponse<Payabli.SendInvoiceResponse>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { attachfile, mail2 } = request;
         const _queryParams: Record<string, unknown> = {
             attachfile,
             mail2
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Invoice/send/${core.url.encodePathParam(idInvoice)}`),
@@ -640,6 +659,7 @@ export class InvoiceClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -683,7 +703,8 @@ export class InvoiceClient {
     }
 
     private async __getInvoicePdf(idInvoice: number, requestOptions?: InvoiceClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/invoicePdf/${core.url.encodePathParam(idInvoice)}`),
@@ -693,6 +714,7 @@ export class InvoiceClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });

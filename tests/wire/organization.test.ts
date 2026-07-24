@@ -3,12 +3,14 @@
 import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
+import { mockBearerAuth } from "./mockAuth";
 
 describe("OrganizationClient", () => {
     
     test("AddOrganization (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { "billingInfo" : { "achAccount" : "123123123" , "achRouting" : "123123123" , "billingAddress" : "123 Walnut Street" , "billingCity" : "Johnson City" , "billingCountry" : "US" , "billingState" : "TN" , "billingZip" : "37615" } , "contacts" : [ { "contactEmail" : "herman@hermanscoatings.com" , "contactName" : "Herman Martinez" , "contactPhone" : "3055550000" , "contactTitle" : "Owner" } ] , "hasBilling" : true , "hasResidual" : true , "orgAddress" : "123 Walnut Street" , "orgCity" : "Johnson City" , "orgCountry" : "US" , "orgEntryName" : "pilgrim-planner" , "orgId" : "123" , "orgLogo" : { "fContent" : "TXkgdGVzdCBmaWxlHJ==..." , "filename" : "my-doc.pdf" , "ftype" : "pdf" , "furl" : "https://mysite.com/my-doc.pdf" } , "orgName" : "Pilgrim Planner" , "orgParentId" : 236 , "orgState" : "TN" , "orgTimezone" : -5 , "orgType" : 0 , "orgWebsite" : "www.pilgrimageplanner.com" , "orgZip" : "37615" , "replyToEmail" : "email@example.com" };
         const rawResponseBody = { "isSuccess" : true , "responseData" : 245 , "responseText" : "Success" };
         
@@ -67,8 +69,9 @@ describe("OrganizationClient", () => {
     });
           
     test("AddOrganization (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { "orgName" : "orgName" , "orgType" : 1 , "replyToEmail" : "replyToEmail" };
         const rawResponseBody = { "key" : "value" };
         
@@ -90,8 +93,9 @@ describe("OrganizationClient", () => {
     });
           
     test("AddOrganization (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { "orgName" : "orgName" , "orgType" : 1 , "replyToEmail" : "replyToEmail" };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -113,8 +117,9 @@ describe("OrganizationClient", () => {
     });
           
     test("AddOrganization (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { "orgName" : "orgName" , "orgType" : 1 , "replyToEmail" : "replyToEmail" };
         const rawResponseBody = { "key" : "value" };
         
@@ -136,8 +141,9 @@ describe("OrganizationClient", () => {
     });
           
     test("AddOrganization (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { "orgName" : "orgName" , "orgType" : 1 , "replyToEmail" : "replyToEmail" };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -159,8 +165,9 @@ describe("OrganizationClient", () => {
     });
           
     test("EditOrganization (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { "contacts" : [ { "contactEmail" : "herman@hermanscoatings.com" , "contactName" : "Herman Martinez" , "contactPhone" : "3055550000" , "contactTitle" : "Owner" } ] , "orgAddress" : "123 Walnut Street" , "orgCity" : "Johnson City" , "orgCountry" : "US" , "orgEntryName" : "pilgrim-planner" , "orgId" : "123" , "orgName" : "Pilgrim Planner" , "orgState" : "TN" , "orgTimezone" : -5 , "orgType" : 0 , "orgWebsite" : "www.pilgrimageplanner.com" , "orgZip" : "37615" };
         const rawResponseBody = { "isSuccess" : true , "responseCode" : 1 , "responseData" : 2442 , "responseText" : "Success" };
         
@@ -198,8 +205,9 @@ describe("OrganizationClient", () => {
     });
           
     test("EditOrganization (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "key" : "value" };
         
@@ -217,8 +225,9 @@ describe("OrganizationClient", () => {
     });
           
     test("EditOrganization (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -236,8 +245,9 @@ describe("OrganizationClient", () => {
     });
           
     test("EditOrganization (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "key" : "value" };
         
@@ -255,8 +265,9 @@ describe("OrganizationClient", () => {
     });
           
     test("EditOrganization (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         const rawRequestBody = { };
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -274,8 +285,9 @@ describe("OrganizationClient", () => {
     });
           
     test("DeleteOrganization (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseData" : 245 , "responseText" : "Success" };
         
@@ -294,8 +306,9 @@ describe("OrganizationClient", () => {
     });
           
     test("DeleteOrganization (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -312,8 +325,9 @@ describe("OrganizationClient", () => {
     });
           
     test("DeleteOrganization (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -330,8 +344,9 @@ describe("OrganizationClient", () => {
     });
           
     test("DeleteOrganization (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -348,8 +363,9 @@ describe("OrganizationClient", () => {
     });
           
     test("DeleteOrganization (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -366,8 +382,9 @@ describe("OrganizationClient", () => {
     });
           
     test("GetBasicOrganization (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "services" : [ { "description" : "description" , "enabled" : true , "monthlyCost" : 1.1 , "name" : "name" , "reseller" : true , "setupCost" : 1.1 , "txCost" : 1.1 , "txPercentCost" : 1.1 } ] , "billingInfo" : { "achAccount" : "123123123" , "achRouting" : "123123123" , "billingAddress" : "123 Walnut Street" , "billingCity" : "Johnson City" , "billingCountry" : "US" , "billingState" : "TN" , "billingZip" : "37615" } , "contacts" : [ { "contactEmail" : "example@email.com" , "contactName" : "Herman Martinez" , "contactPhone" : "3055550000" , "contactTitle" : "Owner" } ] , "createdAt" : "2022-07-01T15:00:01Z" , "hasBilling" : true , "hasResidual" : true , "idOrg" : 123 , "isRoot" : false , "orgAddress" : "123 Walnut Street" , "orgCity" : "Johnson City" , "orgCountry" : "US" , "orgEntryName" : "pilgrim-planner" , "orgId" : "123" , "orgLogo" : { "fContent" : "TXkgdGVzdCBmaWxlHJ==..." , "filename" : "my-doc.pdf" , "ftype" : "pdf" , "furl" : "https://mysite.com/my-doc.pdf" } , "orgName" : "Pilgrim Planner" , "orgParentId" : 236 , "orgParentName" : "PropertyManager Pro" , "orgState" : "TN" , "orgTimezone" : -5 , "orgType" : 0 , "orgWebsite" : "www.pilgrimageplanner.com" , "orgZip" : "orgZip" , "recipientEmailNotification" : true , "replyToEmail" : "example@email.com" , "resumable" : false , "summary" : { "amountSubs" : 1.1 , "amountTx" : 1.1 , "childOrgs" : 1 , "childPaypoints" : 1 , "countSubs" : 1 , "countTx" : 1 } , "users" : [ { "Access" : [ { "roleValue" : true } ] , "AdditionalData" : "AdditionalData" , "createdAt" : "2022-07-01T15:00:01Z" , "Email" : "example@email.com" , "language" : "en" , "lastAccess" : "2022-07-01T15:00:01Z" , "Name" : "Sean Smith" , "Phone" : "5555555555" , "Scope" : [ { "orgType" : 0 } ] , "snData" : "snData" , "snIdentifier" : "snIdentifier" , "snProvider" : "google" , "timeZone" : -5 , "userId" : 1000000 , "UsrMFA" : false , "UsrMFAMode" : 0 , "UsrStatus" : 1 } ] };
         
@@ -386,8 +403,9 @@ describe("OrganizationClient", () => {
     });
           
     test("GetBasicOrganization (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -404,8 +422,9 @@ describe("OrganizationClient", () => {
     });
           
     test("GetBasicOrganization (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -422,8 +441,9 @@ describe("OrganizationClient", () => {
     });
           
     test("GetBasicOrganization (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -440,8 +460,9 @@ describe("OrganizationClient", () => {
     });
           
     test("GetBasicOrganization (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -458,8 +479,9 @@ describe("OrganizationClient", () => {
     });
           
     test("GetBasicOrganizationById (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "services" : [ { "description" : "description" , "enabled" : true , "monthlyCost" : 1.1 , "name" : "name" , "reseller" : true , "setupCost" : 1.1 , "txCost" : 1.1 , "txPercentCost" : 1.1 } ] , "billingInfo" : { "achAccount" : "123123123" , "achRouting" : "123123123" , "billingAddress" : "123 Walnut Street" , "billingCity" : "Johnson City" , "billingCountry" : "US" , "billingState" : "TN" , "billingZip" : "37615" } , "contacts" : [ { "contactEmail" : "example@email.com" , "contactName" : "Herman Martinez" , "contactPhone" : "3055550000" , "contactTitle" : "Owner" } ] , "createdAt" : "2022-07-01T15:00:01Z" , "hasBilling" : true , "hasResidual" : true , "idOrg" : 123 , "isRoot" : false , "orgAddress" : "123 Walnut Street" , "orgCity" : "Johnson City" , "orgCountry" : "US" , "orgEntryName" : "pilgrim-planner" , "orgId" : "123" , "orgLogo" : { "fContent" : "TXkgdGVzdCBmaWxlHJ==..." , "filename" : "my-doc.pdf" , "ftype" : "pdf" , "furl" : "https://mysite.com/my-doc.pdf" } , "orgName" : "Pilgrim Planner" , "orgParentId" : 236 , "orgParentName" : "PropertyManager Pro" , "orgState" : "TN" , "orgTimezone" : -5 , "orgType" : 0 , "orgWebsite" : "www.pilgrimageplanner.com" , "orgZip" : "orgZip" , "recipientEmailNotification" : true , "replyToEmail" : "example@email.com" , "resumable" : false , "summary" : { "amountSubs" : 1.1 , "amountTx" : 1.1 , "childOrgs" : 1 , "childPaypoints" : 1 , "countSubs" : 1 , "countTx" : 1 } , "users" : [ { "Access" : [ { "roleValue" : true } ] , "AdditionalData" : "AdditionalData" , "createdAt" : "2022-07-01T15:00:01Z" , "Email" : "example@email.com" , "language" : "en" , "lastAccess" : "2022-07-01T15:00:01Z" , "Name" : "Sean Smith" , "Phone" : "5555555555" , "Scope" : [ { "orgType" : 0 } ] , "snData" : "snData" , "snIdentifier" : "snIdentifier" , "snProvider" : "google" , "timeZone" : -5 , "userId" : 1000000 , "UsrMFA" : false , "UsrMFAMode" : 0 , "UsrStatus" : 1 } ] };
         
@@ -478,8 +500,9 @@ describe("OrganizationClient", () => {
     });
           
     test("GetBasicOrganizationById (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -496,8 +519,9 @@ describe("OrganizationClient", () => {
     });
           
     test("GetBasicOrganizationById (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -514,8 +538,9 @@ describe("OrganizationClient", () => {
     });
           
     test("GetBasicOrganizationById (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -532,8 +557,9 @@ describe("OrganizationClient", () => {
     });
           
     test("GetBasicOrganizationById (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -550,8 +576,9 @@ describe("OrganizationClient", () => {
     });
           
     test("GetOrganization (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "services" : [ { "description" : "description" , "enabled" : true , "monthlyCost" : 1.1 , "name" : "name" , "reseller" : true , "setupCost" : 1.1 , "txCost" : 1.1 , "txPercentCost" : 1.1 } ] , "billingInfo" : { "achAccount" : "123123123" , "achRouting" : "123123123" , "billingAddress" : "123 Walnut Street" , "billingCity" : "Johnson City" , "billingCountry" : "US" , "billingState" : "TN" , "billingZip" : "37615" } , "contacts" : [ { "contactEmail" : "example@email.com" , "contactName" : "Herman Martinez" , "contactPhone" : "3055550000" , "contactTitle" : "Owner" } ] , "createdAt" : "2022-07-01T15:00:01Z" , "hasBilling" : true , "hasResidual" : true , "idOrg" : 123 , "isRoot" : false , "orgAddress" : "123 Walnut Street" , "orgCity" : "Johnson City" , "orgCountry" : "US" , "orgEntryName" : "pilgrim-planner" , "orgId" : "123" , "orgLogo" : { "fContent" : "TXkgdGVzdCBmaWxlHJ==..." , "filename" : "my-doc.pdf" , "ftype" : "pdf" , "furl" : "https://mysite.com/my-doc.pdf" } , "orgName" : "Pilgrim Planner" , "orgParentId" : 236 , "orgParentName" : "PropertyManager Pro" , "orgState" : "TN" , "orgTimezone" : -5 , "orgType" : 0 , "orgWebsite" : "www.pilgrimageplanner.com" , "orgZip" : "orgZip" , "recipientEmailNotification" : true , "replyToEmail" : "example@email.com" , "resumable" : false , "summary" : { "amountSubs" : 1.1 , "amountTx" : 1.1 , "childOrgs" : 1 , "childPaypoints" : 1 , "countSubs" : 1 , "countTx" : 1 } , "users" : [ { "Access" : [ { "roleValue" : true } ] , "AdditionalData" : "AdditionalData" , "createdAt" : "2022-07-01T15:00:01Z" , "Email" : "example@email.com" , "language" : "en" , "lastAccess" : "2022-07-01T15:00:01Z" , "Name" : "Sean Smith" , "Phone" : "5555555555" , "Scope" : [ { "orgType" : 0 } ] , "snData" : "snData" , "snIdentifier" : "snIdentifier" , "snProvider" : "google" , "timeZone" : -5 , "userId" : 1000000 , "UsrMFA" : false , "UsrMFAMode" : 0 , "UsrStatus" : 1 } ] };
         
@@ -570,8 +597,9 @@ describe("OrganizationClient", () => {
     });
           
     test("GetOrganization (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -588,8 +616,9 @@ describe("OrganizationClient", () => {
     });
           
     test("GetOrganization (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -606,8 +635,9 @@ describe("OrganizationClient", () => {
     });
           
     test("GetOrganization (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -624,8 +654,9 @@ describe("OrganizationClient", () => {
     });
           
     test("GetOrganization (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -642,8 +673,9 @@ describe("OrganizationClient", () => {
     });
           
     test("GetSettingsOrganization (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "customFields" : [ { "key" : "key" , "readOnly" : false , "value" : "value" } ] , "forInvoices" : [ { "key" : "key" , "readOnly" : false , "value" : "value" } ] , "forPayOuts" : [ { "key" : "key" , "readOnly" : false , "value" : "value" } ] , "forWallets" : [ { "key" : "isGooglePayEnabled" , "readOnly" : false , "value" : "true" } ] , "general" : [ { "key" : "key" , "readOnly" : false , "value" : "value" } ] , "identifiers" : [ { "key" : "key" , "readOnly" : false , "value" : "value" } ] };
         
@@ -662,8 +694,9 @@ describe("OrganizationClient", () => {
     });
           
     test("GetSettingsOrganization (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -680,8 +713,9 @@ describe("OrganizationClient", () => {
     });
           
     test("GetSettingsOrganization (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         
@@ -698,8 +732,9 @@ describe("OrganizationClient", () => {
     });
           
     test("GetSettingsOrganization (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "key" : "value" };
         
@@ -716,8 +751,9 @@ describe("OrganizationClient", () => {
     });
           
     test("GetSettingsOrganization (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const server = mockServerPool.createServer();mockBearerAuth(server);
+
+        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
         
         const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
         

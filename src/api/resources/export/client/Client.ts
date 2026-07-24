@@ -61,6 +61,7 @@ export class ExportClient {
     }
 
     private async __exportApplications(format: Payabli.ExportFormat1, orgId: number, request: Payabli.ExportApplicationsRequest = {}, requestOptions?: ExportClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { columnsExport, fromRecord, limitRecord, parameters } = request;
         const _queryParams: Record<string, unknown> = {
             columnsExport,
@@ -68,7 +69,7 @@ export class ExportClient {
             limitRecord,
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/boarding/${core.url.encodePathParam(format)}/${core.url.encodePathParam(orgId)}`),
@@ -78,6 +79,7 @@ export class ExportClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -133,6 +135,7 @@ export class ExportClient {
     }
 
     private async __exportBatchDetails(format: Payabli.ExportFormat1, entry: string, request: Payabli.ExportBatchDetailsRequest = {}, requestOptions?: ExportClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { columnsExport, fromRecord, limitRecord, parameters } = request;
         const _queryParams: Record<string, unknown> = {
             columnsExport,
@@ -140,7 +143,7 @@ export class ExportClient {
             limitRecord,
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/batchDetails/${core.url.encodePathParam(format)}/${core.url.encodePathParam(entry)}`),
@@ -150,6 +153,7 @@ export class ExportClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -205,6 +209,7 @@ export class ExportClient {
     }
 
     private async __exportBatchDetailsOrg(format: Payabli.ExportFormat1, orgId: number, request: Payabli.ExportBatchDetailsOrgRequest = {}, requestOptions?: ExportClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { columnsExport, fromRecord, limitRecord, parameters } = request;
         const _queryParams: Record<string, unknown> = {
             columnsExport,
@@ -212,7 +217,7 @@ export class ExportClient {
             limitRecord,
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/batchDetails/${core.url.encodePathParam(format)}/org/${core.url.encodePathParam(orgId)}`),
@@ -222,6 +227,7 @@ export class ExportClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -277,6 +283,7 @@ export class ExportClient {
     }
 
     private async __exportBatches(format: Payabli.ExportFormat1, entry: string, request: Payabli.ExportBatchesRequest = {}, requestOptions?: ExportClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { columnsExport, fromRecord, limitRecord, parameters } = request;
         const _queryParams: Record<string, unknown> = {
             columnsExport,
@@ -284,7 +291,7 @@ export class ExportClient {
             limitRecord,
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/batches/${core.url.encodePathParam(format)}/${core.url.encodePathParam(entry)}`),
@@ -294,6 +301,7 @@ export class ExportClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -349,6 +357,7 @@ export class ExportClient {
     }
 
     private async __exportBatchesOrg(format: Payabli.ExportFormat1, orgId: number, request: Payabli.ExportBatchesOrgRequest = {}, requestOptions?: ExportClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { columnsExport, fromRecord, limitRecord, parameters } = request;
         const _queryParams: Record<string, unknown> = {
             columnsExport,
@@ -356,7 +365,7 @@ export class ExportClient {
             limitRecord,
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/batches/${core.url.encodePathParam(format)}/org/${core.url.encodePathParam(orgId)}`),
@@ -366,6 +375,7 @@ export class ExportClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -421,6 +431,7 @@ export class ExportClient {
     }
 
     private async __exportBatchesOut(format: Payabli.ExportFormat1, entry: string, request: Payabli.ExportBatchesOutRequest = {}, requestOptions?: ExportClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { columnsExport, fromRecord, limitRecord, parameters } = request;
         const _queryParams: Record<string, unknown> = {
             columnsExport,
@@ -428,7 +439,7 @@ export class ExportClient {
             limitRecord,
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/batchesOut/${core.url.encodePathParam(format)}/${core.url.encodePathParam(entry)}`),
@@ -438,6 +449,7 @@ export class ExportClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -493,6 +505,7 @@ export class ExportClient {
     }
 
     private async __exportBatchesOutOrg(format: Payabli.ExportFormat1, orgId: number, request: Payabli.ExportBatchesOutOrgRequest = {}, requestOptions?: ExportClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { columnsExport, fromRecord, limitRecord, parameters } = request;
         const _queryParams: Record<string, unknown> = {
             columnsExport,
@@ -500,7 +513,7 @@ export class ExportClient {
             limitRecord,
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/batchesOut/${core.url.encodePathParam(format)}/org/${core.url.encodePathParam(orgId)}`),
@@ -510,6 +523,7 @@ export class ExportClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -565,6 +579,7 @@ export class ExportClient {
     }
 
     private async __exportBills(format: Payabli.ExportFormat1, entry: string, request: Payabli.ExportBillsRequest = {}, requestOptions?: ExportClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { columnsExport, fromRecord, limitRecord, parameters } = request;
         const _queryParams: Record<string, unknown> = {
             columnsExport,
@@ -572,7 +587,7 @@ export class ExportClient {
             limitRecord,
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/bills/${core.url.encodePathParam(format)}/${core.url.encodePathParam(entry)}`),
@@ -582,6 +597,7 @@ export class ExportClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -637,6 +653,7 @@ export class ExportClient {
     }
 
     private async __exportBillsOrg(format: Payabli.ExportFormat1, orgId: number, request: Payabli.ExportBillsOrgRequest = {}, requestOptions?: ExportClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { columnsExport, fromRecord, limitRecord, parameters } = request;
         const _queryParams: Record<string, unknown> = {
             columnsExport,
@@ -644,7 +661,7 @@ export class ExportClient {
             limitRecord,
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/bills/${core.url.encodePathParam(format)}/org/${core.url.encodePathParam(orgId)}`),
@@ -654,6 +671,7 @@ export class ExportClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -709,6 +727,7 @@ export class ExportClient {
     }
 
     private async __exportChargebacks(format: Payabli.ExportFormat1, entry: string, request: Payabli.ExportChargebacksRequest = {}, requestOptions?: ExportClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { columnsExport, fromRecord, limitRecord, parameters } = request;
         const _queryParams: Record<string, unknown> = {
             columnsExport,
@@ -716,7 +735,7 @@ export class ExportClient {
             limitRecord,
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/chargebacks/${core.url.encodePathParam(format)}/${core.url.encodePathParam(entry)}`),
@@ -726,6 +745,7 @@ export class ExportClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -781,6 +801,7 @@ export class ExportClient {
     }
 
     private async __exportChargebacksOrg(format: Payabli.ExportFormat1, orgId: number, request: Payabli.ExportChargebacksOrgRequest = {}, requestOptions?: ExportClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { columnsExport, fromRecord, limitRecord, parameters } = request;
         const _queryParams: Record<string, unknown> = {
             columnsExport,
@@ -788,7 +809,7 @@ export class ExportClient {
             limitRecord,
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/chargebacks/${core.url.encodePathParam(format)}/org/${core.url.encodePathParam(orgId)}`),
@@ -798,6 +819,7 @@ export class ExportClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -853,6 +875,7 @@ export class ExportClient {
     }
 
     private async __exportCustomers(format: Payabli.ExportFormat1, entry: string, request: Payabli.ExportCustomersRequest = {}, requestOptions?: ExportClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { columnsExport, fromRecord, limitRecord, parameters } = request;
         const _queryParams: Record<string, unknown> = {
             columnsExport,
@@ -860,7 +883,7 @@ export class ExportClient {
             limitRecord,
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/customers/${core.url.encodePathParam(format)}/${core.url.encodePathParam(entry)}`),
@@ -870,6 +893,7 @@ export class ExportClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -925,6 +949,7 @@ export class ExportClient {
     }
 
     private async __exportCustomersOrg(format: Payabli.ExportFormat1, orgId: number, request: Payabli.ExportCustomersOrgRequest = {}, requestOptions?: ExportClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { columnsExport, fromRecord, limitRecord, parameters } = request;
         const _queryParams: Record<string, unknown> = {
             columnsExport,
@@ -932,7 +957,7 @@ export class ExportClient {
             limitRecord,
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/customers/${core.url.encodePathParam(format)}/org/${core.url.encodePathParam(orgId)}`),
@@ -942,6 +967,7 @@ export class ExportClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -997,6 +1023,7 @@ export class ExportClient {
     }
 
     private async __exportInvoices(format: Payabli.ExportFormat1, entry: string, request: Payabli.ExportInvoicesRequest = {}, requestOptions?: ExportClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { columnsExport, fromRecord, limitRecord, parameters } = request;
         const _queryParams: Record<string, unknown> = {
             columnsExport,
@@ -1004,7 +1031,7 @@ export class ExportClient {
             limitRecord,
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/invoices/${core.url.encodePathParam(format)}/${core.url.encodePathParam(entry)}`),
@@ -1014,6 +1041,7 @@ export class ExportClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -1069,6 +1097,7 @@ export class ExportClient {
     }
 
     private async __exportInvoicesOrg(format: Payabli.ExportFormat1, orgId: number, request: Payabli.ExportInvoicesOrgRequest = {}, requestOptions?: ExportClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { columnsExport, fromRecord, limitRecord, parameters } = request;
         const _queryParams: Record<string, unknown> = {
             columnsExport,
@@ -1076,7 +1105,7 @@ export class ExportClient {
             limitRecord,
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/invoices/${core.url.encodePathParam(format)}/org/${core.url.encodePathParam(orgId)}`),
@@ -1086,6 +1115,7 @@ export class ExportClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -1141,6 +1171,7 @@ export class ExportClient {
     }
 
     private async __exportOrganizations(format: Payabli.ExportFormat1, orgId: number, request: Payabli.ExportOrganizationsRequest = {}, requestOptions?: ExportClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { columnsExport, fromRecord, limitRecord, parameters } = request;
         const _queryParams: Record<string, unknown> = {
             columnsExport,
@@ -1148,7 +1179,7 @@ export class ExportClient {
             limitRecord,
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/organizations/${core.url.encodePathParam(format)}/org/${core.url.encodePathParam(orgId)}`),
@@ -1158,6 +1189,7 @@ export class ExportClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -1213,6 +1245,7 @@ export class ExportClient {
     }
 
     private async __exportPayout(format: Payabli.ExportFormat1, entry: string, request: Payabli.ExportPayoutRequest = {}, requestOptions?: ExportClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { columnsExport, fromRecord, limitRecord, parameters } = request;
         const _queryParams: Record<string, unknown> = {
             columnsExport,
@@ -1220,7 +1253,7 @@ export class ExportClient {
             limitRecord,
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/payouts/${core.url.encodePathParam(format)}/${core.url.encodePathParam(entry)}`),
@@ -1230,6 +1263,7 @@ export class ExportClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -1285,6 +1319,7 @@ export class ExportClient {
     }
 
     private async __exportPayoutOrg(format: Payabli.ExportFormat1, orgId: number, request: Payabli.ExportPayoutOrgRequest = {}, requestOptions?: ExportClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { columnsExport, fromRecord, limitRecord, parameters } = request;
         const _queryParams: Record<string, unknown> = {
             columnsExport,
@@ -1292,7 +1327,7 @@ export class ExportClient {
             limitRecord,
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/payouts/${core.url.encodePathParam(format)}/org/${core.url.encodePathParam(orgId)}`),
@@ -1302,6 +1337,7 @@ export class ExportClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -1357,6 +1393,7 @@ export class ExportClient {
     }
 
     private async __exportPaypoints(format: Payabli.ExportFormat1, orgId: number, request: Payabli.ExportPaypointsRequest = {}, requestOptions?: ExportClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { columnsExport, fromRecord, limitRecord, parameters } = request;
         const _queryParams: Record<string, unknown> = {
             columnsExport,
@@ -1364,7 +1401,7 @@ export class ExportClient {
             limitRecord,
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/paypoints/${core.url.encodePathParam(format)}/${core.url.encodePathParam(orgId)}`),
@@ -1374,6 +1411,7 @@ export class ExportClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -1429,6 +1467,7 @@ export class ExportClient {
     }
 
     private async __exportSettlements(format: Payabli.ExportFormat1, entry: string, request: Payabli.ExportSettlementsRequest = {}, requestOptions?: ExportClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { columnsExport, fromRecord, limitRecord, parameters } = request;
         const _queryParams: Record<string, unknown> = {
             columnsExport,
@@ -1436,7 +1475,7 @@ export class ExportClient {
             limitRecord,
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/settlements/${core.url.encodePathParam(format)}/${core.url.encodePathParam(entry)}`),
@@ -1446,6 +1485,7 @@ export class ExportClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -1501,6 +1541,7 @@ export class ExportClient {
     }
 
     private async __exportSettlementsOrg(format: Payabli.ExportFormat1, orgId: number, request: Payabli.ExportSettlementsOrgRequest = {}, requestOptions?: ExportClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { columnsExport, fromRecord, limitRecord, parameters } = request;
         const _queryParams: Record<string, unknown> = {
             columnsExport,
@@ -1508,7 +1549,7 @@ export class ExportClient {
             limitRecord,
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/settlements/${core.url.encodePathParam(format)}/org/${core.url.encodePathParam(orgId)}`),
@@ -1518,6 +1559,7 @@ export class ExportClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -1573,6 +1615,7 @@ export class ExportClient {
     }
 
     private async __exportSubscriptions(format: Payabli.ExportFormat1, entry: string, request: Payabli.ExportSubscriptionsRequest = {}, requestOptions?: ExportClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { columnsExport, fromRecord, limitRecord, parameters } = request;
         const _queryParams: Record<string, unknown> = {
             columnsExport,
@@ -1580,7 +1623,7 @@ export class ExportClient {
             limitRecord,
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/subscriptions/${core.url.encodePathParam(format)}/${core.url.encodePathParam(entry)}`),
@@ -1590,6 +1633,7 @@ export class ExportClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -1645,6 +1689,7 @@ export class ExportClient {
     }
 
     private async __exportSubscriptionsOrg(format: Payabli.ExportFormat1, orgId: number, request: Payabli.ExportSubscriptionsOrgRequest = {}, requestOptions?: ExportClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { columnsExport, fromRecord, limitRecord, parameters } = request;
         const _queryParams: Record<string, unknown> = {
             columnsExport,
@@ -1652,7 +1697,7 @@ export class ExportClient {
             limitRecord,
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/subscriptions/${core.url.encodePathParam(format)}/org/${core.url.encodePathParam(orgId)}`),
@@ -1662,6 +1707,7 @@ export class ExportClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -1717,6 +1763,7 @@ export class ExportClient {
     }
 
     private async __exportTransactions(format: Payabli.ExportFormat1, entry: string, request: Payabli.ExportTransactionsRequest = {}, requestOptions?: ExportClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { columnsExport, fromRecord, limitRecord, parameters } = request;
         const _queryParams: Record<string, unknown> = {
             columnsExport,
@@ -1724,7 +1771,7 @@ export class ExportClient {
             limitRecord,
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/transactions/${core.url.encodePathParam(format)}/${core.url.encodePathParam(entry)}`),
@@ -1734,6 +1781,7 @@ export class ExportClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -1789,6 +1837,7 @@ export class ExportClient {
     }
 
     private async __exportTransactionsOrg(format: Payabli.ExportFormat1, orgId: number, request: Payabli.ExportTransactionsOrgRequest = {}, requestOptions?: ExportClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { columnsExport, fromRecord, limitRecord, parameters } = request;
         const _queryParams: Record<string, unknown> = {
             columnsExport,
@@ -1796,7 +1845,7 @@ export class ExportClient {
             limitRecord,
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/transactions/${core.url.encodePathParam(format)}/org/${core.url.encodePathParam(orgId)}`),
@@ -1806,6 +1855,7 @@ export class ExportClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -1863,6 +1913,7 @@ export class ExportClient {
     }
 
     private async __exportTransferDetails(format: Payabli.ExportFormat1, entry: string, transferId: number, request: Payabli.ExportTransferDetailsRequest = {}, requestOptions?: ExportClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { columnsExport, fromRecord, limitRecord, parameters, sortBy } = request;
         const _queryParams: Record<string, unknown> = {
             columnsExport,
@@ -1871,7 +1922,7 @@ export class ExportClient {
             parameters: parameters != null ? toJson(parameters) : undefined,
             sortBy
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/transferDetails/${core.url.encodePathParam(format)}/${core.url.encodePathParam(entry)}/${core.url.encodePathParam(transferId)}`),
@@ -1881,6 +1932,7 @@ export class ExportClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -1936,6 +1988,7 @@ export class ExportClient {
     }
 
     private async __exportTransfers(entry: string, request: Payabli.ExportTransfersRequest = {}, requestOptions?: ExportClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { columnsExport, fromRecord, limitRecord, parameters, sortBy } = request;
         const _queryParams: Record<string, unknown> = {
             columnsExport,
@@ -1944,7 +1997,7 @@ export class ExportClient {
             parameters: parameters != null ? toJson(parameters) : undefined,
             sortBy
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/transfers/${core.url.encodePathParam(entry)}`),
@@ -1954,6 +2007,7 @@ export class ExportClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -2009,6 +2063,7 @@ export class ExportClient {
     }
 
     private async __exportVendors(format: Payabli.ExportFormat1, entry: string, request: Payabli.ExportVendorsRequest = {}, requestOptions?: ExportClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { columnsExport, fromRecord, limitRecord, parameters } = request;
         const _queryParams: Record<string, unknown> = {
             columnsExport,
@@ -2016,7 +2071,7 @@ export class ExportClient {
             limitRecord,
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/vendors/${core.url.encodePathParam(format)}/${core.url.encodePathParam(entry)}`),
@@ -2026,6 +2081,7 @@ export class ExportClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
@@ -2076,6 +2132,7 @@ export class ExportClient {
     }
 
     private async __exportVendorsOrg(format: Payabli.ExportFormat1, orgId: number, request: Payabli.ExportVendorsOrgRequest = {}, requestOptions?: ExportClient.RequestOptions): Promise<core.WithRawResponse<Payabli.File_>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const { columnsExport, fromRecord, limitRecord, parameters } = request;
         const _queryParams: Record<string, unknown> = {
             columnsExport,
@@ -2083,7 +2140,7 @@ export class ExportClient {
             limitRecord,
             parameters: parameters != null ? toJson(parameters) : undefined
         };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({ endpointMetadata: _metadata });
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), `Export/vendors/${core.url.encodePathParam(format)}/org/${core.url.encodePathParam(orgId)}`),
@@ -2093,6 +2150,7 @@ export class ExportClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });

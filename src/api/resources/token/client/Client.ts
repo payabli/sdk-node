@@ -46,6 +46,7 @@ export class TokenClient {
     }
 
     private async __createServerSideToken(request: Payabli.CreateServerSideTokenRequest, requestOptions?: TokenClient.RequestOptions): Promise<core.WithRawResponse<Payabli.PayabliAccessTokenResponse>> {
+        const _metadata: core.EndpointMetadata = { security: undefined };
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(this._options?.headers, requestOptions?.headers);
         const _response = await core.fetcher({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? (await core.Supplier.get(this._options.environment) ?? environments.PayabliEnvironment.Sandbox), "v2/Token/serverside"),
@@ -58,6 +59,7 @@ export class TokenClient {
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
             fetchFn: this._options?.fetch,
             logging: this._options.logging
         });
