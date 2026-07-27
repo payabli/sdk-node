@@ -2,7 +2,7 @@
 
 /** Describes when goods or services are provided, from time of transaction. */
 export const Whenprovided = {
-        ThirtyDaysOrLess: "30 Days or Less",
-        ThirtyOneTo60Days: "31 to 60 Days"
-    } as const;
-export type Whenprovided = typeof Whenprovided[keyof typeof Whenprovided];
+    ThirtyDaysOrLess: "30 Days or Less",
+    ThirtyOneTo60Days: "31 to 60 Days",
+} as const;
+export type Whenprovided = (typeof Whenprovided)[keyof typeof Whenprovided];

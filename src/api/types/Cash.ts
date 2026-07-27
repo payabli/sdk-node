@@ -8,7 +8,7 @@ export interface Cash {
 export namespace Cash {
     /** Method to use for the transaction. For cash transactions, use `cash`. */
     export const Method = {
-            Cash: "cash"
-        } as const;
-    export type Method = typeof Method[keyof typeof Method];
+        Cash: "cash",
+    } as const;
+    export type Method = (typeof Method)[keyof typeof Method];
 }

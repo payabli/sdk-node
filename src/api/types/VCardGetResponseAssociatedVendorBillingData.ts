@@ -31,5 +31,5 @@ export interface VCardGetResponseAssociatedVendorBillingData {
     /** Services associated with the account. */
     services?: unknown[] | undefined;
     /** Indicates if this is the default billing account. */
-    "default"?: boolean | undefined;
+    default?: boolean | undefined;
 }

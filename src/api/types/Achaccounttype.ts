@@ -2,7 +2,7 @@
 
 /** Bank account type: Checking or Savings. */
 export const Achaccounttype = {
-        Checking: "Checking",
-        Savings: "Savings"
-    } as const;
-export type Achaccounttype = typeof Achaccounttype[keyof typeof Achaccounttype];
+    Checking: "Checking",
+    Savings: "Savings",
+} as const;
+export type Achaccounttype = (typeof Achaccounttype)[keyof typeof Achaccounttype];

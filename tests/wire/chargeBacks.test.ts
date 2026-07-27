@@ -3,307 +3,613 @@
 import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
-import { mockBearerAuth } from "./mockAuth";
 
 describe("ChargeBacksClient", () => {
-    
     test("AddResponse (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseData: 126, responseText: "Success" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "isSuccess" : true , "responseData" : 126 , "responseText" : "Success" };
-        
         server
             .mockEndpoint()
-            .post("/ChargeBacks/response/1000000").header("idempotencyKey", "6B29FC40-CA47-1067-B31D-00DD010662DA")
-                    .jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .post("/ChargeBacks/response/1000000")
+            .header("idempotencyKey", "6B29FC40-CA47-1067-B31D-00DD010662DA")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.chargeBacks.addResponse(1000000, {
-    idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA"
-});
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        const response = await client.chargeBacks.addResponse(1000000, {
+            idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA",
+        });
+        expect(response).toEqual(rawResponseBody);
     });
-          
+
     test("AddResponse (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "key" : "value" };
-        
         server
             .mockEndpoint()
-            .post("/ChargeBacks/response/1000000").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(400).jsonBody(rawResponseBody)
-                .build();
+            .post("/ChargeBacks/response/1000000")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.chargeBacks.addResponse(1000000)
-            }).rejects.toThrow(Payabli.BadRequestError);
+        await expect(async () => {
+            return await client.chargeBacks.addResponse(1000000);
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
-          
+
     test("AddResponse (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
         server
             .mockEndpoint()
-            .post("/ChargeBacks/response/1000000").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(401).jsonBody(rawResponseBody)
-                .build();
+            .post("/ChargeBacks/response/1000000")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.chargeBacks.addResponse(1000000)
-            }).rejects.toThrow(Payabli.UnauthorizedError);
+        await expect(async () => {
+            return await client.chargeBacks.addResponse(1000000);
+        }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-          
+
     test("AddResponse (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "key" : "value" };
-        
         server
             .mockEndpoint()
-            .post("/ChargeBacks/response/1000000").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(500).jsonBody(rawResponseBody)
-                .build();
+            .post("/ChargeBacks/response/1000000")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.chargeBacks.addResponse(1000000)
-            }).rejects.toThrow(Payabli.InternalServerError);
+        await expect(async () => {
+            return await client.chargeBacks.addResponse(1000000);
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
-          
+
     test("AddResponse (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
         server
             .mockEndpoint()
-            .post("/ChargeBacks/response/1000000").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(503).jsonBody(rawResponseBody)
-                .build();
+            .post("/ChargeBacks/response/1000000")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.chargeBacks.addResponse(1000000)
-            }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        await expect(async () => {
+            return await client.chargeBacks.addResponse(1000000);
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-          
+
     test("GetChargeback (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "Id" : 201 , "ChargebackDate" : "2022-06-25T00:00:00Z" , "CaseNumber" : "TZ45678" , "ReasonCode" : "reasonCode" , "Reason" : "Buyer dispute" , "ReferenceNumber" : "referenceNumber" , "LastFour" : "6789" , "AccountType" : "visa" , "Status" : 1 , "Method" : "card" , "CreatedAt" : "2022-07-01T15:00:01Z" , "ReplyBy" : "2022-07-15T23:59:59Z" , "PaymentTransId" : "226-fe55ec0348e34702bd91b4be198ce7ec" , "ScheduleReference" : 0 , "OrderId" : "O-5140" , "NetAmount" : 3762.87 , "TransactionTime" : "2024-01-15T09:30:00Z" , "Customer" : { "BillingAddress1" : "1111 West 1st Street" , "BillingAddress2" : "Suite 200" , "BillingCity" : "Miami" , "BillingCountry" : "US" , "BillingEmail" : "example@email.com" , "BillingPhone" : "5555555555" , "BillingState" : "FL" , "BillingZip" : "45567" , "CompanyName" : "Sunshine LLC" , "customerId" : 4440 , "CustomerNumber" : "C-90010" , "customerStatus" : 1 , "FirstName" : "John" , "Identifiers" : [ "firstname" , "lastname" , "email" , "customId" ] , "LastName" : "Doe" , "ShippingAddress1" : "123 Walnut St" , "ShippingAddress2" : "STE 900" , "ShippingCity" : "Johnson City" , "ShippingCountry" : "US" , "ShippingState" : "TN" , "ShippingZip" : "37619" } , "PaymentData" : { "AccountExp" : "11/29" , "accountId" : "accountId" , "AccountType" : "visa" , "AccountZip" : "90210" , "binData" : { "binMatchedLength" : "6" , "binCardBrand" : "Visa" , "binCardType" : "Credit" , "binCardCategory" : "PLATINUM" , "binCardIssuer" : "Bank of Example" , "binCardIssuerCountry" : "United States" , "binCardIssuerCountryCodeA2" : "US" , "binCardIssuerCountryNumber" : "840" , "binCardIsRegulated" : "false" , "binCardUseCategory" : "Consumer" , "binCardIssuerCountryCodeA3" : "USA" } , "HolderName" : "Chad Mercia" , "Initiator" : "payor" , "MaskedAccount" : "4XXXXXXXX1111" , "orderDescription" : "Deposit for materials for 123 Walnut St" , "paymentDetails" : { "categories" : [ { "amount" : 1000 , "label" : "Deposit" } ] , "checkImage" : { "key" : "value" } , "checkNumber" : "107" , "currency" : "USD" , "serviceFee" : 0 , "splitFunding" : [ { } ] , "totalAmount" : 100 } , "Sequence" : "subsequent" , "SignatureData" : "SignatureData" , "StoredId" : "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440" , "StoredMethodUsageType" : "subscription" } , "PaypointLegalname" : "Sunshine Services, LLC" , "PaypointDbaname" : "Sunshine Gutters" , "ParentOrgName" : "PropertyManager Pro" , "ParentOrgId" : 123 , "PaypointEntryname" : "d193cf9a46" , "Responses" : [ { "contactEmail" : "example@email.com" , "contactName" : "John Doe" , "createdAt" : "2022-07-01T15:00:01Z" , "id" : 672 , "notes" : "any note here" } ] , "Transaction" : { "AchHolderType" : "personal" , "AchSecCode" : "AchSecCode" , "BatchAmount" : 30.22 , "BatchNumber" : "batch_226_ach_12-30-2023" , "CfeeTransactions" : [ { "transactionTime" : "2024-01-15T09:30:00Z" } ] , "ConnectorName" : "gp" , "Customer" : { "BillingAddress1" : "1111 West 1st Street" , "BillingAddress2" : "Suite 200" , "BillingCity" : "Miami" , "BillingCountry" : "US" , "BillingEmail" : "example@email.com" , "BillingPhone" : "5555555555" , "BillingState" : "FL" , "BillingZip" : "45567" , "CompanyName" : "Sunshine LLC" , "customerId" : 4440 , "CustomerNumber" : "C-90010" , "customerStatus" : 1 , "FirstName" : "John" , "Identifiers" : [ "firstname" , "lastname" , "email" , "customId" ] , "LastName" : "Doe" , "ShippingAddress1" : "123 Walnut St" , "ShippingAddress2" : "STE 900" , "ShippingCity" : "Johnson City" , "ShippingCountry" : "US" , "ShippingState" : "TN" , "ShippingZip" : "37619" } , "DeviceId" : "499585-389fj484-3jcj8hj3" , "EntrypageId" : 0 , "ExternalProcessorInformation" : "[MER_xxxxxxxxxxxxxx]/[NNNNNNNNN]" , "FeeAmount" : 1 , "GatewayTransId" : "TRN_xwCAjQorWAYX1nAhAoHZVfN8iYHbI0" , "invoiceData" : { "attachments" : [ { } ] , "company" : "ACME, INC" , "discount" : 10 , "dutyAmount" : 0 , "firstName" : "Chad" , "freightAmount" : 10 , "frequency" : "onetime" , "invoiceAmount" : 105 , "invoiceDate" : "2025-07-01" , "invoiceDueDate" : "2025-07-01" , "invoiceEndDate" : "2025-07-01" , "invoiceNumber" : "INV-2345" , "invoiceStatus" : 1 , "invoiceType" : 0 , "items" : [ { "itemCost" : 5 , "itemProductName" : "Materials deposit" , "itemQty" : 1 } ] , "lastName" : "Mercia" , "notes" : "Example notes." , "paymentTerms" : "PIA" , "purchaseOrder" : "PO-345" , "shippingAddress1" : "123 Walnut St" , "shippingAddress2" : "STE 900" , "shippingCity" : "Johnson City" , "shippingCountry" : "US" , "shippingEmail" : "example@email.com" , "shippingFromZip" : "30040" , "shippingPhone" : "5555555555" , "shippingState" : "TN" , "shippingZip" : "37619" , "summaryCommodityCode" : "501718" , "tax" : 2.05 , "termsConditions" : "Must be paid before work scheduled." } , "Method" : "ach" , "NetAmount" : 3762.87 , "Operation" : "Sale" , "OrderId" : "O-5140" , "OrgId" : 123 , "ParentOrgName" : "PropertyManager Pro" , "PaymentData" : { "AccountExp" : "11/29" , "accountId" : "accountId" , "AccountType" : "visa" , "AccountZip" : "90210" , "binData" : { "binMatchedLength" : "6" , "binCardBrand" : "Visa" , "binCardType" : "Credit" , "binCardCategory" : "PLATINUM" , "binCardIssuer" : "Bank of Example" , "binCardIssuerCountry" : "United States" , "binCardIssuerCountryCodeA2" : "US" , "binCardIssuerCountryNumber" : "840" , "binCardIsRegulated" : "false" , "binCardUseCategory" : "Consumer" , "binCardIssuerCountryCodeA3" : "USA" } , "HolderName" : "Chad Mercia" , "Initiator" : "payor" , "MaskedAccount" : "4XXXXXXXX1111" , "orderDescription" : "Deposit for materials for 123 Walnut St" , "paymentDetails" : { "totalAmount" : 100 } , "Sequence" : "subsequent" , "SignatureData" : "SignatureData" , "StoredId" : "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440" , "StoredMethodUsageType" : "subscription" } , "PaymentTransId" : "226-fe55ec0348e34702bd91b4be198ce7ec" , "PayorId" : 1551 , "PaypointDbaname" : "Sunshine Gutters" , "PaypointEntryname" : "d193cf9a46" , "PaypointId" : 3040 , "PaypointLegalname" : "Sunshine Services, LLC" , "PendingFeeAmount" : 2 , "RefundId" : 0 , "ResponseData" : { "authcode" : "authcode" , "avsresponse" : "avsresponse" , "avsresponse_text" : "avsresponse_text" , "cvvresponse" : "cvvresponse" , "cvvresponse_text" : "cvvresponse_text" , "emv_auth_response_data" : "emv_auth_response_data" , "orderid" : "O-5140" , "response" : "response" , "response_code" : "XXX" , "response_code_text" : "Transaction was approved." , "responsetext" : "CAPTURED" , "transactionid" : "TRN_XXXXXGOa87juzW" , "type" : "type" } , "ReturnedId" : 0 , "ScheduleReference" : 0 , "SettlementStatus" : 2 , "Source" : "api" , "splitFundingInstructions" : [ { } ] , "splitCount" : 0 , "TotalAmount" : 30.22 , "TransactionEvents" : [ { } ] , "TransactionTime" : "2025-10-19T00:00:00Z" , "TransAdditionalData" : { "key" : "value" } , "TransStatus" : 1 } , "messages" : [ { "Id" : 1 , "RoomId" : 100 , "UserId" : 555 , "UserName" : "John Admin" , "Content" : "Chargeback initiated by customer" , "CreatedAt" : "2022-06-25T10:30:00Z" , "MessageType" : 1 , "MessageProperties" : { "status" : "initial" } } ] , "ServiceGroup" : " " , "DisputeType" : "chargeback" , "ProcessorName" : "Global Payments" };
-        
+        const rawResponseBody = {
+            Id: 201,
+            ChargebackDate: "2022-06-25T00:00:00Z",
+            CaseNumber: "TZ45678",
+            ReasonCode: "reasonCode",
+            Reason: "Buyer dispute",
+            ReferenceNumber: "referenceNumber",
+            LastFour: "6789",
+            AccountType: "visa",
+            Status: 1,
+            Method: "card",
+            CreatedAt: "2022-07-01T15:00:01Z",
+            ReplyBy: "2022-07-15T23:59:59Z",
+            PaymentTransId: "226-fe55ec0348e34702bd91b4be198ce7ec",
+            ScheduleReference: 0,
+            OrderId: "O-5140",
+            NetAmount: 3762.87,
+            TransactionTime: "2024-01-15T09:30:00Z",
+            Customer: {
+                BillingAddress1: "1111 West 1st Street",
+                BillingAddress2: "Suite 200",
+                BillingCity: "Miami",
+                BillingCountry: "US",
+                BillingEmail: "example@email.com",
+                BillingPhone: "5555555555",
+                BillingState: "FL",
+                BillingZip: "45567",
+                CompanyName: "Sunshine LLC",
+                customerId: 4440,
+                CustomerNumber: "C-90010",
+                customerStatus: 1,
+                FirstName: "John",
+                Identifiers: ["firstname", "lastname", "email", "customId"],
+                LastName: "Doe",
+                ShippingAddress1: "123 Walnut St",
+                ShippingAddress2: "STE 900",
+                ShippingCity: "Johnson City",
+                ShippingCountry: "US",
+                ShippingState: "TN",
+                ShippingZip: "37619",
+            },
+            PaymentData: {
+                AccountExp: "11/29",
+                accountId: "accountId",
+                AccountType: "visa",
+                AccountZip: "90210",
+                binData: {
+                    binMatchedLength: "6",
+                    binCardBrand: "Visa",
+                    binCardType: "Credit",
+                    binCardCategory: "PLATINUM",
+                    binCardIssuer: "Bank of Example",
+                    binCardIssuerCountry: "United States",
+                    binCardIssuerCountryCodeA2: "US",
+                    binCardIssuerCountryNumber: "840",
+                    binCardIsRegulated: "false",
+                    binCardUseCategory: "Consumer",
+                    binCardIssuerCountryCodeA3: "USA",
+                },
+                HolderName: "Chad Mercia",
+                Initiator: "payor",
+                MaskedAccount: "4XXXXXXXX1111",
+                orderDescription: "Deposit for materials for 123 Walnut St",
+                paymentDetails: {
+                    categories: [{ amount: 1000, label: "Deposit" }],
+                    checkImage: { key: "value" },
+                    checkNumber: "107",
+                    currency: "USD",
+                    serviceFee: 0,
+                    splitFunding: [{}],
+                    totalAmount: 100,
+                },
+                Sequence: "subsequent",
+                SignatureData: "SignatureData",
+                StoredId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+                StoredMethodUsageType: "subscription",
+            },
+            PaypointLegalname: "Sunshine Services, LLC",
+            PaypointDbaname: "Sunshine Gutters",
+            ParentOrgName: "PropertyManager Pro",
+            ParentOrgId: 123,
+            PaypointEntryname: "d193cf9a46",
+            Responses: [
+                {
+                    contactEmail: "example@email.com",
+                    contactName: "John Doe",
+                    createdAt: "2022-07-01T15:00:01Z",
+                    id: 672,
+                    notes: "any note here",
+                },
+            ],
+            Transaction: {
+                AchHolderType: "personal",
+                AchSecCode: "AchSecCode",
+                BatchAmount: 30.22,
+                BatchNumber: "batch_226_ach_12-30-2023",
+                CfeeTransactions: [{ transactionTime: "2024-01-15T09:30:00Z" }],
+                ConnectorName: "gp",
+                Customer: {
+                    BillingAddress1: "1111 West 1st Street",
+                    BillingAddress2: "Suite 200",
+                    BillingCity: "Miami",
+                    BillingCountry: "US",
+                    BillingEmail: "example@email.com",
+                    BillingPhone: "5555555555",
+                    BillingState: "FL",
+                    BillingZip: "45567",
+                    CompanyName: "Sunshine LLC",
+                    customerId: 4440,
+                    CustomerNumber: "C-90010",
+                    customerStatus: 1,
+                    FirstName: "John",
+                    Identifiers: ["firstname", "lastname", "email", "customId"],
+                    LastName: "Doe",
+                    ShippingAddress1: "123 Walnut St",
+                    ShippingAddress2: "STE 900",
+                    ShippingCity: "Johnson City",
+                    ShippingCountry: "US",
+                    ShippingState: "TN",
+                    ShippingZip: "37619",
+                },
+                DeviceId: "499585-389fj484-3jcj8hj3",
+                EntrypageId: 0,
+                ExternalProcessorInformation: "[MER_xxxxxxxxxxxxxx]/[NNNNNNNNN]",
+                FeeAmount: 1,
+                GatewayTransId: "TRN_xwCAjQorWAYX1nAhAoHZVfN8iYHbI0",
+                invoiceData: {
+                    attachments: [{}],
+                    company: "ACME, INC",
+                    discount: 10,
+                    dutyAmount: 0,
+                    firstName: "Chad",
+                    freightAmount: 10,
+                    frequency: "onetime",
+                    invoiceAmount: 105,
+                    invoiceDate: "2025-07-01",
+                    invoiceDueDate: "2025-07-01",
+                    invoiceEndDate: "2025-07-01",
+                    invoiceNumber: "INV-2345",
+                    invoiceStatus: 1,
+                    invoiceType: 0,
+                    items: [{ itemCost: 5, itemProductName: "Materials deposit", itemQty: 1 }],
+                    lastName: "Mercia",
+                    notes: "Example notes.",
+                    paymentTerms: "PIA",
+                    purchaseOrder: "PO-345",
+                    shippingAddress1: "123 Walnut St",
+                    shippingAddress2: "STE 900",
+                    shippingCity: "Johnson City",
+                    shippingCountry: "US",
+                    shippingEmail: "example@email.com",
+                    shippingFromZip: "30040",
+                    shippingPhone: "5555555555",
+                    shippingState: "TN",
+                    shippingZip: "37619",
+                    summaryCommodityCode: "501718",
+                    tax: 2.05,
+                    termsConditions: "Must be paid before work scheduled.",
+                },
+                Method: "ach",
+                NetAmount: 3762.87,
+                Operation: "Sale",
+                OrderId: "O-5140",
+                OrgId: 123,
+                ParentOrgName: "PropertyManager Pro",
+                PaymentData: {
+                    AccountExp: "11/29",
+                    accountId: "accountId",
+                    AccountType: "visa",
+                    AccountZip: "90210",
+                    binData: {
+                        binMatchedLength: "6",
+                        binCardBrand: "Visa",
+                        binCardType: "Credit",
+                        binCardCategory: "PLATINUM",
+                        binCardIssuer: "Bank of Example",
+                        binCardIssuerCountry: "United States",
+                        binCardIssuerCountryCodeA2: "US",
+                        binCardIssuerCountryNumber: "840",
+                        binCardIsRegulated: "false",
+                        binCardUseCategory: "Consumer",
+                        binCardIssuerCountryCodeA3: "USA",
+                    },
+                    HolderName: "Chad Mercia",
+                    Initiator: "payor",
+                    MaskedAccount: "4XXXXXXXX1111",
+                    orderDescription: "Deposit for materials for 123 Walnut St",
+                    paymentDetails: { totalAmount: 100 },
+                    Sequence: "subsequent",
+                    SignatureData: "SignatureData",
+                    StoredId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+                    StoredMethodUsageType: "subscription",
+                },
+                PaymentTransId: "226-fe55ec0348e34702bd91b4be198ce7ec",
+                PayorId: 1551,
+                PaypointDbaname: "Sunshine Gutters",
+                PaypointEntryname: "d193cf9a46",
+                PaypointId: 3040,
+                PaypointLegalname: "Sunshine Services, LLC",
+                PendingFeeAmount: 2,
+                RefundId: 0,
+                ResponseData: {
+                    authcode: "authcode",
+                    avsresponse: "avsresponse",
+                    avsresponse_text: "avsresponse_text",
+                    cvvresponse: "cvvresponse",
+                    cvvresponse_text: "cvvresponse_text",
+                    emv_auth_response_data: "emv_auth_response_data",
+                    orderid: "O-5140",
+                    response: "response",
+                    response_code: "XXX",
+                    response_code_text: "Transaction was approved.",
+                    responsetext: "CAPTURED",
+                    transactionid: "TRN_XXXXXGOa87juzW",
+                    type: "type",
+                },
+                ReturnedId: 0,
+                ScheduleReference: 0,
+                SettlementStatus: 2,
+                Source: "api",
+                splitFundingInstructions: [{}],
+                splitCount: 0,
+                TotalAmount: 30.22,
+                TransactionEvents: [{}],
+                TransactionTime: "2025-10-19T00:00:00Z",
+                TransAdditionalData: { key: "value" },
+                TransStatus: 1,
+            },
+            messages: [
+                {
+                    Id: 1,
+                    RoomId: 100,
+                    UserId: 555,
+                    UserName: "John Admin",
+                    Content: "Chargeback initiated by customer",
+                    CreatedAt: "2022-06-25T10:30:00Z",
+                    MessageType: 1,
+                    MessageProperties: { status: "initial" },
+                },
+            ],
+            ServiceGroup: " ",
+            DisputeType: "chargeback",
+            ProcessorName: "Global Payments",
+        };
+
         server
             .mockEndpoint()
-            .get("/ChargeBacks/read/1000000").respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .get("/ChargeBacks/read/1000000")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.chargeBacks.getChargeback(1000000);
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        const response = await client.chargeBacks.getChargeback(1000000);
+        expect(response).toEqual(rawResponseBody);
     });
-          
+
     test("GetChargeback (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
+        const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
-            .get("/ChargeBacks/read/1000000").respondWith()
-            .statusCode(400).jsonBody(rawResponseBody)
-                .build();
+            .get("/ChargeBacks/read/1000000")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.chargeBacks.getChargeback(1000000)
-            }).rejects.toThrow(Payabli.BadRequestError);
+        await expect(async () => {
+            return await client.chargeBacks.getChargeback(1000000);
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
-          
+
     test("GetChargeback (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
         server
             .mockEndpoint()
-            .get("/ChargeBacks/read/1000000").respondWith()
-            .statusCode(401).jsonBody(rawResponseBody)
-                .build();
+            .get("/ChargeBacks/read/1000000")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.chargeBacks.getChargeback(1000000)
-            }).rejects.toThrow(Payabli.UnauthorizedError);
+        await expect(async () => {
+            return await client.chargeBacks.getChargeback(1000000);
+        }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-          
+
     test("GetChargeback (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
+        const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
-            .get("/ChargeBacks/read/1000000").respondWith()
-            .statusCode(500).jsonBody(rawResponseBody)
-                .build();
+            .get("/ChargeBacks/read/1000000")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.chargeBacks.getChargeback(1000000)
-            }).rejects.toThrow(Payabli.InternalServerError);
+        await expect(async () => {
+            return await client.chargeBacks.getChargeback(1000000);
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
-          
+
     test("GetChargeback (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
         server
             .mockEndpoint()
-            .get("/ChargeBacks/read/1000000").respondWith()
-            .statusCode(503).jsonBody(rawResponseBody)
-                .build();
+            .get("/ChargeBacks/read/1000000")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.chargeBacks.getChargeback(1000000)
-            }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        await expect(async () => {
+            return await client.chargeBacks.getChargeback(1000000);
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-          
+
     test("getChargebackAttachment (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
         const rawResponseBody = "string";
-        
+
         server
             .mockEndpoint()
-            .get("/ChargeBacks/getChargebackAttachments/1000000/fileName").respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .get("/ChargeBacks/getChargebackAttachments/1000000/fileName")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.chargeBacks.getChargebackAttachment(1000000, "fileName");
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        const response = await client.chargeBacks.getChargebackAttachment(1000000, "fileName");
+        expect(response).toEqual(rawResponseBody);
     });
-          
+
     test("getChargebackAttachment (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
+        const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
-            .get("/ChargeBacks/getChargebackAttachments/1000000/fileName").respondWith()
-            .statusCode(400).jsonBody(rawResponseBody)
-                .build();
+            .get("/ChargeBacks/getChargebackAttachments/1000000/fileName")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.chargeBacks.getChargebackAttachment(1000000, "fileName")
-            }).rejects.toThrow(Payabli.BadRequestError);
+        await expect(async () => {
+            return await client.chargeBacks.getChargebackAttachment(1000000, "fileName");
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
-          
+
     test("getChargebackAttachment (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
         server
             .mockEndpoint()
-            .get("/ChargeBacks/getChargebackAttachments/1000000/fileName").respondWith()
-            .statusCode(401).jsonBody(rawResponseBody)
-                .build();
+            .get("/ChargeBacks/getChargebackAttachments/1000000/fileName")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.chargeBacks.getChargebackAttachment(1000000, "fileName")
-            }).rejects.toThrow(Payabli.UnauthorizedError);
+        await expect(async () => {
+            return await client.chargeBacks.getChargebackAttachment(1000000, "fileName");
+        }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-          
+
     test("getChargebackAttachment (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
+        const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
-            .get("/ChargeBacks/getChargebackAttachments/1000000/fileName").respondWith()
-            .statusCode(500).jsonBody(rawResponseBody)
-                .build();
+            .get("/ChargeBacks/getChargebackAttachments/1000000/fileName")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.chargeBacks.getChargebackAttachment(1000000, "fileName")
-            }).rejects.toThrow(Payabli.InternalServerError);
+        await expect(async () => {
+            return await client.chargeBacks.getChargebackAttachment(1000000, "fileName");
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
-          
+
     test("getChargebackAttachment (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
         server
             .mockEndpoint()
-            .get("/ChargeBacks/getChargebackAttachments/1000000/fileName").respondWith()
-            .statusCode(503).jsonBody(rawResponseBody)
-                .build();
+            .get("/ChargeBacks/getChargebackAttachments/1000000/fileName")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.chargeBacks.getChargebackAttachment(1000000, "fileName")
-            }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        await expect(async () => {
+            return await client.chargeBacks.getChargebackAttachment(1000000, "fileName");
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-          
 });

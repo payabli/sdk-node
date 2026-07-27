@@ -2,7 +2,8 @@
 
 /** The card validation method. */
 export const RequestPaymentValidatePaymentMethodMethod = {
-        Card: "card",
-        Cloud: "cloud"
-    } as const;
-export type RequestPaymentValidatePaymentMethodMethod = typeof RequestPaymentValidatePaymentMethodMethod[keyof typeof RequestPaymentValidatePaymentMethodMethod];
+    Card: "card",
+    Cloud: "cloud",
+} as const;
+export type RequestPaymentValidatePaymentMethodMethod =
+    (typeof RequestPaymentValidatePaymentMethodMethod)[keyof typeof RequestPaymentValidatePaymentMethodMethod];

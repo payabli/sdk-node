@@ -6,8 +6,9 @@
  * for more information.
  */
 export const MethodElementSettingsApplePayButtonStyle = {
-        Black: "black",
-        WhiteOutline: "white-outline",
-        White: "white"
-    } as const;
-export type MethodElementSettingsApplePayButtonStyle = typeof MethodElementSettingsApplePayButtonStyle[keyof typeof MethodElementSettingsApplePayButtonStyle];
+    Black: "black",
+    WhiteOutline: "white-outline",
+    White: "white",
+} as const;
+export type MethodElementSettingsApplePayButtonStyle =
+    (typeof MethodElementSettingsApplePayButtonStyle)[keyof typeof MethodElementSettingsApplePayButtonStyle];

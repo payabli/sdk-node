@@ -9,7 +9,8 @@
  * for more.
  */
 export const NotificationReportRequestMethod = {
-        ReportEmail: "report-email",
-        ReportWeb: "report-web"
-    } as const;
-export type NotificationReportRequestMethod = typeof NotificationReportRequestMethod[keyof typeof NotificationReportRequestMethod];
+    ReportEmail: "report-email",
+    ReportWeb: "report-web",
+} as const;
+export type NotificationReportRequestMethod =
+    (typeof NotificationReportRequestMethod)[keyof typeof NotificationReportRequestMethod];

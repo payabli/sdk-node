@@ -6,7 +6,7 @@
  * - `5`: Paid — Marks the check transaction as paid.
  */
 export const AllowedCheckPaymentStatus = {
-        Cancelled: "0",
-        Paid: "5"
-    } as const;
-export type AllowedCheckPaymentStatus = typeof AllowedCheckPaymentStatus[keyof typeof AllowedCheckPaymentStatus];
+    Cancelled: "0",
+    Paid: "5",
+} as const;
+export type AllowedCheckPaymentStatus = (typeof AllowedCheckPaymentStatus)[keyof typeof AllowedCheckPaymentStatus];

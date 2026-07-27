@@ -3,132 +3,199 @@
 import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
-import { mockBearerAuth } from "./mockAuth";
 
 describe("OcrClient", () => {
-    
     test("OcrDocumentForm (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = {
+            isSuccess: true,
+            responseText: "responseText",
+            responseCode: 1,
+            responseData: {
+                resultData: {
+                    billNumber: "billNumber",
+                    netAmount: 1.1,
+                    billDate: "2024-01-15T09:30:00Z",
+                    dueDate: "2024-01-15T09:30:00Z",
+                    comments: "comments",
+                    billItems: [{}],
+                    mode: 1,
+                    accountingField1: "accountingField1",
+                    accountingField2: "accountingField2",
+                    endDate: "2024-01-15T09:30:00Z",
+                    frequency: "frequency",
+                    terms: "terms",
+                    status: 1,
+                    lotNumber: "lotNumber",
+                    attachments: [{}],
+                },
+            },
+        };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" , "responseCode" : 1 , "responseData" : { "resultData" : { "billNumber" : "billNumber" , "netAmount" : 1.1 , "billDate" : "2024-01-15T09:30:00Z" , "dueDate" : "2024-01-15T09:30:00Z" , "comments" : "comments" , "billItems" : [ { } ] , "mode" : 1 , "accountingField1" : "accountingField1" , "accountingField2" : "accountingField2" , "endDate" : "2024-01-15T09:30:00Z" , "frequency" : "frequency" , "terms" : "terms" , "status" : 1 , "lotNumber" : "lotNumber" , "attachments" : [ { } ] } } };
-        
         server
             .mockEndpoint()
-            .post("/Import/ocrDocumentForm/typeResult").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .post("/Import/ocrDocumentForm/typeResult")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.ocr.ocrDocumentForm("typeResult", {});
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        const response = await client.ocr.ocrDocumentForm("typeResult", {});
+        expect(response).toEqual(rawResponseBody);
     });
-          
+
     test("OcrDocumentForm (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "key" : "value" };
-        
         server
             .mockEndpoint()
-            .post("/Import/ocrDocumentForm/typeResult").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(400).jsonBody(rawResponseBody)
-                .build();
+            .post("/Import/ocrDocumentForm/typeResult")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.ocr.ocrDocumentForm("typeResult", {})
-            }).rejects.toThrow(Payabli.BadRequestError);
+        await expect(async () => {
+            return await client.ocr.ocrDocumentForm("typeResult", {});
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
-          
+
     test("OcrDocumentForm (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
         server
             .mockEndpoint()
-            .post("/Import/ocrDocumentForm/typeResult").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(401).jsonBody(rawResponseBody)
-                .build();
+            .post("/Import/ocrDocumentForm/typeResult")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.ocr.ocrDocumentForm("typeResult", {})
-            }).rejects.toThrow(Payabli.UnauthorizedError);
+        await expect(async () => {
+            return await client.ocr.ocrDocumentForm("typeResult", {});
+        }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-          
+
     test("OcrDocumentForm (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "key" : "value" };
-        
         server
             .mockEndpoint()
-            .post("/Import/ocrDocumentForm/typeResult").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(500).jsonBody(rawResponseBody)
-                .build();
+            .post("/Import/ocrDocumentForm/typeResult")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.ocr.ocrDocumentForm("typeResult", {})
-            }).rejects.toThrow(Payabli.InternalServerError);
+        await expect(async () => {
+            return await client.ocr.ocrDocumentForm("typeResult", {});
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
-          
+
     test("OcrDocumentForm (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
         server
             .mockEndpoint()
-            .post("/Import/ocrDocumentForm/typeResult").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(503).jsonBody(rawResponseBody)
-                .build();
+            .post("/Import/ocrDocumentForm/typeResult")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.ocr.ocrDocumentForm("typeResult", {})
-            }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        await expect(async () => {
+            return await client.ocr.ocrDocumentForm("typeResult", {});
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-          
+
     test("OcrDocumentJson", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = {
+            isSuccess: true,
+            responseText: "responseText",
+            responseCode: 1,
+            responseData: {
+                resultData: {
+                    billNumber: "billNumber",
+                    netAmount: 1.1,
+                    billDate: "2024-01-15T09:30:00Z",
+                    dueDate: "2024-01-15T09:30:00Z",
+                    comments: "comments",
+                    billItems: [{}],
+                    mode: 1,
+                    accountingField1: "accountingField1",
+                    accountingField2: "accountingField2",
+                    endDate: "2024-01-15T09:30:00Z",
+                    frequency: "frequency",
+                    terms: "terms",
+                    status: 1,
+                    lotNumber: "lotNumber",
+                    attachments: [{}],
+                },
+            },
+        };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" , "responseCode" : 1 , "responseData" : { "resultData" : { "billNumber" : "billNumber" , "netAmount" : 1.1 , "billDate" : "2024-01-15T09:30:00Z" , "dueDate" : "2024-01-15T09:30:00Z" , "comments" : "comments" , "billItems" : [ { } ] , "mode" : 1 , "accountingField1" : "accountingField1" , "accountingField2" : "accountingField2" , "endDate" : "2024-01-15T09:30:00Z" , "frequency" : "frequency" , "terms" : "terms" , "status" : 1 , "lotNumber" : "lotNumber" , "attachments" : [ { } ] } } };
-        
         server
             .mockEndpoint()
-            .post("/Import/ocrDocumentJson/typeResult").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .post("/Import/ocrDocumentJson/typeResult")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.ocr.ocrDocumentJson("typeResult", {});
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        const response = await client.ocr.ocrDocumentJson("typeResult", {});
+        expect(response).toEqual(rawResponseBody);
     });
-          
 });

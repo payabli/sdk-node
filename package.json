@@ -1,6 +1,6 @@
 {
     "name": "@payabli/sdk-node",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "private": false,
     "repository": {
         "type": "git",
@@ -404,15 +404,13 @@
         "build:cjs": "tsc --project ./tsconfig.cjs.json",
         "build:esm": "tsc --project ./tsconfig.esm.json && node scripts/rename-to-esm-files.js dist/esm",
         "test": "vitest",
-        "test:unit": "vitest --project unit",
-        "test:wire": "vitest --project wire"
+        "test:unit": "vitest --project unit"
     },
     "dependencies": {},
     "devDependencies": {
         "webpack": "^5.105.4",
         "ts-loader": "^9.5.4",
         "vitest": "^4.1.1",
-        "msw": "2.11.2",
         "@types/node": "^20.0.0",
         "typescript": "~5.9.3",
         "@biomejs/biome": "2.4.10"

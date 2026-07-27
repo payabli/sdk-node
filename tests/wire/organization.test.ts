@@ -3,770 +3,1204 @@
 import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
-import { mockBearerAuth } from "./mockAuth";
 
 describe("OrganizationClient", () => {
-    
     test("AddOrganization (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            billingInfo: {
+                achAccount: "123123123",
+                achRouting: "123123123",
+                billingAddress: "123 Walnut Street",
+                billingCity: "Johnson City",
+                billingCountry: "US",
+                billingState: "TN",
+                billingZip: "37615",
+            },
+            contacts: [
+                {
+                    contactEmail: "herman@hermanscoatings.com",
+                    contactName: "Herman Martinez",
+                    contactPhone: "3055550000",
+                    contactTitle: "Owner",
+                },
+            ],
+            hasBilling: true,
+            hasResidual: true,
+            orgAddress: "123 Walnut Street",
+            orgCity: "Johnson City",
+            orgCountry: "US",
+            orgEntryName: "pilgrim-planner",
+            orgId: "123",
+            orgLogo: {
+                fContent: "TXkgdGVzdCBmaWxlHJ==...",
+                filename: "my-doc.pdf",
+                ftype: "pdf",
+                furl: "https://mysite.com/my-doc.pdf",
+            },
+            orgName: "Pilgrim Planner",
+            orgParentId: 236,
+            orgState: "TN",
+            orgTimezone: -5,
+            orgType: 0,
+            orgWebsite: "www.pilgrimageplanner.com",
+            orgZip: "37615",
+            replyToEmail: "email@example.com",
+        };
+        const rawResponseBody = { isSuccess: true, responseData: 245, responseText: "Success" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "billingInfo" : { "achAccount" : "123123123" , "achRouting" : "123123123" , "billingAddress" : "123 Walnut Street" , "billingCity" : "Johnson City" , "billingCountry" : "US" , "billingState" : "TN" , "billingZip" : "37615" } , "contacts" : [ { "contactEmail" : "herman@hermanscoatings.com" , "contactName" : "Herman Martinez" , "contactPhone" : "3055550000" , "contactTitle" : "Owner" } ] , "hasBilling" : true , "hasResidual" : true , "orgAddress" : "123 Walnut Street" , "orgCity" : "Johnson City" , "orgCountry" : "US" , "orgEntryName" : "pilgrim-planner" , "orgId" : "123" , "orgLogo" : { "fContent" : "TXkgdGVzdCBmaWxlHJ==..." , "filename" : "my-doc.pdf" , "ftype" : "pdf" , "furl" : "https://mysite.com/my-doc.pdf" } , "orgName" : "Pilgrim Planner" , "orgParentId" : 236 , "orgState" : "TN" , "orgTimezone" : -5 , "orgType" : 0 , "orgWebsite" : "www.pilgrimageplanner.com" , "orgZip" : "37615" , "replyToEmail" : "email@example.com" };
-        const rawResponseBody = { "isSuccess" : true , "responseData" : 245 , "responseText" : "Success" };
-        
         server
             .mockEndpoint()
-            .post("/Organization").header("idempotencyKey", "6B29FC40-CA47-1067-B31D-00DD010662DA")
-                    .jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .post("/Organization")
+            .header("idempotencyKey", "6B29FC40-CA47-1067-B31D-00DD010662DA")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.organization.addOrganization({
-    idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA",
-    billingInfo: {
-        achAccount: "123123123",
-        achRouting: "123123123",
-        billingAddress: "123 Walnut Street",
-        billingCity: "Johnson City",
-        billingCountry: "US",
-        billingState: "TN",
-        billingZip: "37615"
-    },
-    contacts: [{
-            contactEmail: "herman@hermanscoatings.com",
-            contactName: "Herman Martinez",
-            contactPhone: "3055550000",
-            contactTitle: "Owner"
-        }],
-    hasBilling: true,
-    hasResidual: true,
-    orgAddress: "123 Walnut Street",
-    orgCity: "Johnson City",
-    orgCountry: "US",
-    orgEntryName: "pilgrim-planner",
-    orgId: "123",
-    orgLogo: {
-        fContent: "TXkgdGVzdCBmaWxlHJ==...",
-        filename: "my-doc.pdf",
-        ftype: "pdf",
-        furl: "https://mysite.com/my-doc.pdf"
-    },
-    orgName: "Pilgrim Planner",
-    orgParentId: 236,
-    orgState: "TN",
-    orgTimezone: -5,
-    orgType: 0,
-    orgWebsite: "www.pilgrimageplanner.com",
-    orgZip: "37615",
-    replyToEmail: "email@example.com"
-});
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        const response = await client.organization.addOrganization({
+            idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA",
+            billingInfo: {
+                achAccount: "123123123",
+                achRouting: "123123123",
+                billingAddress: "123 Walnut Street",
+                billingCity: "Johnson City",
+                billingCountry: "US",
+                billingState: "TN",
+                billingZip: "37615",
+            },
+            contacts: [
+                {
+                    contactEmail: "herman@hermanscoatings.com",
+                    contactName: "Herman Martinez",
+                    contactPhone: "3055550000",
+                    contactTitle: "Owner",
+                },
+            ],
+            hasBilling: true,
+            hasResidual: true,
+            orgAddress: "123 Walnut Street",
+            orgCity: "Johnson City",
+            orgCountry: "US",
+            orgEntryName: "pilgrim-planner",
+            orgId: "123",
+            orgLogo: {
+                fContent: "TXkgdGVzdCBmaWxlHJ==...",
+                filename: "my-doc.pdf",
+                ftype: "pdf",
+                furl: "https://mysite.com/my-doc.pdf",
+            },
+            orgName: "Pilgrim Planner",
+            orgParentId: 236,
+            orgState: "TN",
+            orgTimezone: -5,
+            orgType: 0,
+            orgWebsite: "www.pilgrimageplanner.com",
+            orgZip: "37615",
+            replyToEmail: "email@example.com",
+        });
+        expect(response).toEqual(rawResponseBody);
     });
-          
+
     test("AddOrganization (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { orgName: "orgName", orgType: 1, replyToEmail: "replyToEmail" };
+        const rawResponseBody = { key: "value" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "orgName" : "orgName" , "orgType" : 1 , "replyToEmail" : "replyToEmail" };
-        const rawResponseBody = { "key" : "value" };
-        
         server
             .mockEndpoint()
-            .post("/Organization").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(400).jsonBody(rawResponseBody)
-                .build();
+            .post("/Organization")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.organization.addOrganization({
-    orgName: "orgName",
-    orgType: 1,
-    replyToEmail: "replyToEmail"
-})
-            }).rejects.toThrow(Payabli.BadRequestError);
+        await expect(async () => {
+            return await client.organization.addOrganization({
+                orgName: "orgName",
+                orgType: 1,
+                replyToEmail: "replyToEmail",
+            });
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
-          
+
     test("AddOrganization (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { orgName: "orgName", orgType: 1, replyToEmail: "replyToEmail" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "orgName" : "orgName" , "orgType" : 1 , "replyToEmail" : "replyToEmail" };
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
         server
             .mockEndpoint()
-            .post("/Organization").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(401).jsonBody(rawResponseBody)
-                .build();
+            .post("/Organization")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.organization.addOrganization({
-    orgName: "orgName",
-    orgType: 1,
-    replyToEmail: "replyToEmail"
-})
-            }).rejects.toThrow(Payabli.UnauthorizedError);
+        await expect(async () => {
+            return await client.organization.addOrganization({
+                orgName: "orgName",
+                orgType: 1,
+                replyToEmail: "replyToEmail",
+            });
+        }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-          
+
     test("AddOrganization (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { orgName: "orgName", orgType: 1, replyToEmail: "replyToEmail" };
+        const rawResponseBody = { key: "value" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "orgName" : "orgName" , "orgType" : 1 , "replyToEmail" : "replyToEmail" };
-        const rawResponseBody = { "key" : "value" };
-        
         server
             .mockEndpoint()
-            .post("/Organization").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(500).jsonBody(rawResponseBody)
-                .build();
+            .post("/Organization")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.organization.addOrganization({
-    orgName: "orgName",
-    orgType: 1,
-    replyToEmail: "replyToEmail"
-})
-            }).rejects.toThrow(Payabli.InternalServerError);
+        await expect(async () => {
+            return await client.organization.addOrganization({
+                orgName: "orgName",
+                orgType: 1,
+                replyToEmail: "replyToEmail",
+            });
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
-          
+
     test("AddOrganization (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { orgName: "orgName", orgType: 1, replyToEmail: "replyToEmail" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "orgName" : "orgName" , "orgType" : 1 , "replyToEmail" : "replyToEmail" };
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
         server
             .mockEndpoint()
-            .post("/Organization").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(503).jsonBody(rawResponseBody)
-                .build();
+            .post("/Organization")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.organization.addOrganization({
-    orgName: "orgName",
-    orgType: 1,
-    replyToEmail: "replyToEmail"
-})
-            }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        await expect(async () => {
+            return await client.organization.addOrganization({
+                orgName: "orgName",
+                orgType: 1,
+                replyToEmail: "replyToEmail",
+            });
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-          
+
     test("EditOrganization (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            contacts: [
+                {
+                    contactEmail: "herman@hermanscoatings.com",
+                    contactName: "Herman Martinez",
+                    contactPhone: "3055550000",
+                    contactTitle: "Owner",
+                },
+            ],
+            orgAddress: "123 Walnut Street",
+            orgCity: "Johnson City",
+            orgCountry: "US",
+            orgEntryName: "pilgrim-planner",
+            orgId: "123",
+            orgName: "Pilgrim Planner",
+            orgState: "TN",
+            orgTimezone: -5,
+            orgType: 0,
+            orgWebsite: "www.pilgrimageplanner.com",
+            orgZip: "37615",
+        };
+        const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 2442, responseText: "Success" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "contacts" : [ { "contactEmail" : "herman@hermanscoatings.com" , "contactName" : "Herman Martinez" , "contactPhone" : "3055550000" , "contactTitle" : "Owner" } ] , "orgAddress" : "123 Walnut Street" , "orgCity" : "Johnson City" , "orgCountry" : "US" , "orgEntryName" : "pilgrim-planner" , "orgId" : "123" , "orgName" : "Pilgrim Planner" , "orgState" : "TN" , "orgTimezone" : -5 , "orgType" : 0 , "orgWebsite" : "www.pilgrimageplanner.com" , "orgZip" : "37615" };
-        const rawResponseBody = { "isSuccess" : true , "responseCode" : 1 , "responseData" : 2442 , "responseText" : "Success" };
-        
         server
             .mockEndpoint()
-            .put("/Organization/123").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .put("/Organization/123")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.organization.editOrganization(123, {
-    contacts: [{
-            contactEmail: "herman@hermanscoatings.com",
-            contactName: "Herman Martinez",
-            contactPhone: "3055550000",
-            contactTitle: "Owner"
-        }],
-    orgAddress: "123 Walnut Street",
-    orgCity: "Johnson City",
-    orgCountry: "US",
-    orgEntryName: "pilgrim-planner",
-    orgId: "123",
-    orgName: "Pilgrim Planner",
-    orgState: "TN",
-    orgTimezone: -5,
-    orgType: 0,
-    orgWebsite: "www.pilgrimageplanner.com",
-    orgZip: "37615"
-});
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        const response = await client.organization.editOrganization(123, {
+            contacts: [
+                {
+                    contactEmail: "herman@hermanscoatings.com",
+                    contactName: "Herman Martinez",
+                    contactPhone: "3055550000",
+                    contactTitle: "Owner",
+                },
+            ],
+            orgAddress: "123 Walnut Street",
+            orgCity: "Johnson City",
+            orgCountry: "US",
+            orgEntryName: "pilgrim-planner",
+            orgId: "123",
+            orgName: "Pilgrim Planner",
+            orgState: "TN",
+            orgTimezone: -5,
+            orgType: 0,
+            orgWebsite: "www.pilgrimageplanner.com",
+            orgZip: "37615",
+        });
+        expect(response).toEqual(rawResponseBody);
     });
-          
+
     test("EditOrganization (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "key" : "value" };
-        
         server
             .mockEndpoint()
-            .put("/Organization/1").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(400).jsonBody(rawResponseBody)
-                .build();
+            .put("/Organization/1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.organization.editOrganization(1)
-            }).rejects.toThrow(Payabli.BadRequestError);
+        await expect(async () => {
+            return await client.organization.editOrganization(1);
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
-          
+
     test("EditOrganization (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
         server
             .mockEndpoint()
-            .put("/Organization/1").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(401).jsonBody(rawResponseBody)
-                .build();
+            .put("/Organization/1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.organization.editOrganization(1)
-            }).rejects.toThrow(Payabli.UnauthorizedError);
+        await expect(async () => {
+            return await client.organization.editOrganization(1);
+        }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-          
+
     test("EditOrganization (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "key" : "value" };
-        
         server
             .mockEndpoint()
-            .put("/Organization/1").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(500).jsonBody(rawResponseBody)
-                .build();
+            .put("/Organization/1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.organization.editOrganization(1)
-            }).rejects.toThrow(Payabli.InternalServerError);
+        await expect(async () => {
+            return await client.organization.editOrganization(1);
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
-          
+
     test("EditOrganization (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
         server
             .mockEndpoint()
-            .put("/Organization/1").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(503).jsonBody(rawResponseBody)
-                .build();
+            .put("/Organization/1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.organization.editOrganization(1)
-            }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        await expect(async () => {
+            return await client.organization.editOrganization(1);
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-          
+
     test("DeleteOrganization (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseData" : 245 , "responseText" : "Success" };
-        
+        const rawResponseBody = { isSuccess: true, responseData: 245, responseText: "Success" };
+
         server
             .mockEndpoint()
-            .delete("/Organization/123").respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .delete("/Organization/123")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.organization.deleteOrganization(123);
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        const response = await client.organization.deleteOrganization(123);
+        expect(response).toEqual(rawResponseBody);
     });
-          
+
     test("DeleteOrganization (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
-        server
-            .mockEndpoint()
-            .delete("/Organization/1").respondWith()
-            .statusCode(400).jsonBody(rawResponseBody)
-                .build();
+        const rawResponseBody = { key: "value" };
 
-        
-            await expect(async () => {
-                return await client.organization.deleteOrganization(1)
-            }).rejects.toThrow(Payabli.BadRequestError);
+        server.mockEndpoint().delete("/Organization/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.organization.deleteOrganization(1);
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
-          
+
     test("DeleteOrganization (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
-        server
-            .mockEndpoint()
-            .delete("/Organization/1").respondWith()
-            .statusCode(401).jsonBody(rawResponseBody)
-                .build();
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        
-            await expect(async () => {
-                return await client.organization.deleteOrganization(1)
-            }).rejects.toThrow(Payabli.UnauthorizedError);
+        server.mockEndpoint().delete("/Organization/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.organization.deleteOrganization(1);
+        }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-          
+
     test("DeleteOrganization (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
-        server
-            .mockEndpoint()
-            .delete("/Organization/1").respondWith()
-            .statusCode(500).jsonBody(rawResponseBody)
-                .build();
+        const rawResponseBody = { key: "value" };
 
-        
-            await expect(async () => {
-                return await client.organization.deleteOrganization(1)
-            }).rejects.toThrow(Payabli.InternalServerError);
+        server.mockEndpoint().delete("/Organization/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.organization.deleteOrganization(1);
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
-          
+
     test("DeleteOrganization (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
-        server
-            .mockEndpoint()
-            .delete("/Organization/1").respondWith()
-            .statusCode(503).jsonBody(rawResponseBody)
-                .build();
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        
-            await expect(async () => {
-                return await client.organization.deleteOrganization(1)
-            }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        server.mockEndpoint().delete("/Organization/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.organization.deleteOrganization(1);
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-          
+
     test("GetBasicOrganization (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "services" : [ { "description" : "description" , "enabled" : true , "monthlyCost" : 1.1 , "name" : "name" , "reseller" : true , "setupCost" : 1.1 , "txCost" : 1.1 , "txPercentCost" : 1.1 } ] , "billingInfo" : { "achAccount" : "123123123" , "achRouting" : "123123123" , "billingAddress" : "123 Walnut Street" , "billingCity" : "Johnson City" , "billingCountry" : "US" , "billingState" : "TN" , "billingZip" : "37615" } , "contacts" : [ { "contactEmail" : "example@email.com" , "contactName" : "Herman Martinez" , "contactPhone" : "3055550000" , "contactTitle" : "Owner" } ] , "createdAt" : "2022-07-01T15:00:01Z" , "hasBilling" : true , "hasResidual" : true , "idOrg" : 123 , "isRoot" : false , "orgAddress" : "123 Walnut Street" , "orgCity" : "Johnson City" , "orgCountry" : "US" , "orgEntryName" : "pilgrim-planner" , "orgId" : "123" , "orgLogo" : { "fContent" : "TXkgdGVzdCBmaWxlHJ==..." , "filename" : "my-doc.pdf" , "ftype" : "pdf" , "furl" : "https://mysite.com/my-doc.pdf" } , "orgName" : "Pilgrim Planner" , "orgParentId" : 236 , "orgParentName" : "PropertyManager Pro" , "orgState" : "TN" , "orgTimezone" : -5 , "orgType" : 0 , "orgWebsite" : "www.pilgrimageplanner.com" , "orgZip" : "orgZip" , "recipientEmailNotification" : true , "replyToEmail" : "example@email.com" , "resumable" : false , "summary" : { "amountSubs" : 1.1 , "amountTx" : 1.1 , "childOrgs" : 1 , "childPaypoints" : 1 , "countSubs" : 1 , "countTx" : 1 } , "users" : [ { "Access" : [ { "roleValue" : true } ] , "AdditionalData" : "AdditionalData" , "createdAt" : "2022-07-01T15:00:01Z" , "Email" : "example@email.com" , "language" : "en" , "lastAccess" : "2022-07-01T15:00:01Z" , "Name" : "Sean Smith" , "Phone" : "5555555555" , "Scope" : [ { "orgType" : 0 } ] , "snData" : "snData" , "snIdentifier" : "snIdentifier" , "snProvider" : "google" , "timeZone" : -5 , "userId" : 1000000 , "UsrMFA" : false , "UsrMFAMode" : 0 , "UsrStatus" : 1 } ] };
-        
+        const rawResponseBody = {
+            services: [
+                {
+                    description: "description",
+                    enabled: true,
+                    monthlyCost: 1.1,
+                    name: "name",
+                    reseller: true,
+                    setupCost: 1.1,
+                    txCost: 1.1,
+                    txPercentCost: 1.1,
+                },
+            ],
+            billingInfo: {
+                achAccount: "123123123",
+                achRouting: "123123123",
+                billingAddress: "123 Walnut Street",
+                billingCity: "Johnson City",
+                billingCountry: "US",
+                billingState: "TN",
+                billingZip: "37615",
+            },
+            contacts: [
+                {
+                    contactEmail: "example@email.com",
+                    contactName: "Herman Martinez",
+                    contactPhone: "3055550000",
+                    contactTitle: "Owner",
+                },
+            ],
+            createdAt: "2022-07-01T15:00:01Z",
+            hasBilling: true,
+            hasResidual: true,
+            idOrg: 123,
+            isRoot: false,
+            orgAddress: "123 Walnut Street",
+            orgCity: "Johnson City",
+            orgCountry: "US",
+            orgEntryName: "pilgrim-planner",
+            orgId: "123",
+            orgLogo: {
+                fContent: "TXkgdGVzdCBmaWxlHJ==...",
+                filename: "my-doc.pdf",
+                ftype: "pdf",
+                furl: "https://mysite.com/my-doc.pdf",
+            },
+            orgName: "Pilgrim Planner",
+            orgParentId: 236,
+            orgParentName: "PropertyManager Pro",
+            orgState: "TN",
+            orgTimezone: -5,
+            orgType: 0,
+            orgWebsite: "www.pilgrimageplanner.com",
+            orgZip: "orgZip",
+            recipientEmailNotification: true,
+            replyToEmail: "example@email.com",
+            resumable: false,
+            summary: { amountSubs: 1.1, amountTx: 1.1, childOrgs: 1, childPaypoints: 1, countSubs: 1, countTx: 1 },
+            users: [
+                {
+                    Access: [{ roleValue: true }],
+                    AdditionalData: "AdditionalData",
+                    createdAt: "2022-07-01T15:00:01Z",
+                    Email: "example@email.com",
+                    language: "en",
+                    lastAccess: "2022-07-01T15:00:01Z",
+                    Name: "Sean Smith",
+                    Phone: "5555555555",
+                    Scope: [{ orgType: 0 }],
+                    snData: "snData",
+                    snIdentifier: "snIdentifier",
+                    snProvider: "google",
+                    timeZone: -5,
+                    userId: 1000000,
+                    UsrMFA: false,
+                    UsrMFAMode: 0,
+                    UsrStatus: 1,
+                },
+            ],
+        };
+
         server
             .mockEndpoint()
-            .get("/Organization/basic/8cfec329267").respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .get("/Organization/basic/8cfec329267")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.organization.getBasicOrganization("8cfec329267");
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        const response = await client.organization.getBasicOrganization("8cfec329267");
+        expect(response).toEqual(rawResponseBody);
     });
-          
+
     test("GetBasicOrganization (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
+        const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
-            .get("/Organization/basic/entry").respondWith()
-            .statusCode(400).jsonBody(rawResponseBody)
-                .build();
+            .get("/Organization/basic/entry")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.organization.getBasicOrganization("entry")
-            }).rejects.toThrow(Payabli.BadRequestError);
+        await expect(async () => {
+            return await client.organization.getBasicOrganization("entry");
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
-          
+
     test("GetBasicOrganization (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
         server
             .mockEndpoint()
-            .get("/Organization/basic/entry").respondWith()
-            .statusCode(401).jsonBody(rawResponseBody)
-                .build();
+            .get("/Organization/basic/entry")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.organization.getBasicOrganization("entry")
-            }).rejects.toThrow(Payabli.UnauthorizedError);
+        await expect(async () => {
+            return await client.organization.getBasicOrganization("entry");
+        }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-          
+
     test("GetBasicOrganization (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
+        const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
-            .get("/Organization/basic/entry").respondWith()
-            .statusCode(500).jsonBody(rawResponseBody)
-                .build();
+            .get("/Organization/basic/entry")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.organization.getBasicOrganization("entry")
-            }).rejects.toThrow(Payabli.InternalServerError);
+        await expect(async () => {
+            return await client.organization.getBasicOrganization("entry");
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
-          
+
     test("GetBasicOrganization (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
         server
             .mockEndpoint()
-            .get("/Organization/basic/entry").respondWith()
-            .statusCode(503).jsonBody(rawResponseBody)
-                .build();
+            .get("/Organization/basic/entry")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.organization.getBasicOrganization("entry")
-            }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        await expect(async () => {
+            return await client.organization.getBasicOrganization("entry");
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-          
+
     test("GetBasicOrganizationById (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "services" : [ { "description" : "description" , "enabled" : true , "monthlyCost" : 1.1 , "name" : "name" , "reseller" : true , "setupCost" : 1.1 , "txCost" : 1.1 , "txPercentCost" : 1.1 } ] , "billingInfo" : { "achAccount" : "123123123" , "achRouting" : "123123123" , "billingAddress" : "123 Walnut Street" , "billingCity" : "Johnson City" , "billingCountry" : "US" , "billingState" : "TN" , "billingZip" : "37615" } , "contacts" : [ { "contactEmail" : "example@email.com" , "contactName" : "Herman Martinez" , "contactPhone" : "3055550000" , "contactTitle" : "Owner" } ] , "createdAt" : "2022-07-01T15:00:01Z" , "hasBilling" : true , "hasResidual" : true , "idOrg" : 123 , "isRoot" : false , "orgAddress" : "123 Walnut Street" , "orgCity" : "Johnson City" , "orgCountry" : "US" , "orgEntryName" : "pilgrim-planner" , "orgId" : "123" , "orgLogo" : { "fContent" : "TXkgdGVzdCBmaWxlHJ==..." , "filename" : "my-doc.pdf" , "ftype" : "pdf" , "furl" : "https://mysite.com/my-doc.pdf" } , "orgName" : "Pilgrim Planner" , "orgParentId" : 236 , "orgParentName" : "PropertyManager Pro" , "orgState" : "TN" , "orgTimezone" : -5 , "orgType" : 0 , "orgWebsite" : "www.pilgrimageplanner.com" , "orgZip" : "orgZip" , "recipientEmailNotification" : true , "replyToEmail" : "example@email.com" , "resumable" : false , "summary" : { "amountSubs" : 1.1 , "amountTx" : 1.1 , "childOrgs" : 1 , "childPaypoints" : 1 , "countSubs" : 1 , "countTx" : 1 } , "users" : [ { "Access" : [ { "roleValue" : true } ] , "AdditionalData" : "AdditionalData" , "createdAt" : "2022-07-01T15:00:01Z" , "Email" : "example@email.com" , "language" : "en" , "lastAccess" : "2022-07-01T15:00:01Z" , "Name" : "Sean Smith" , "Phone" : "5555555555" , "Scope" : [ { "orgType" : 0 } ] , "snData" : "snData" , "snIdentifier" : "snIdentifier" , "snProvider" : "google" , "timeZone" : -5 , "userId" : 1000000 , "UsrMFA" : false , "UsrMFAMode" : 0 , "UsrStatus" : 1 } ] };
-        
+        const rawResponseBody = {
+            services: [
+                {
+                    description: "description",
+                    enabled: true,
+                    monthlyCost: 1.1,
+                    name: "name",
+                    reseller: true,
+                    setupCost: 1.1,
+                    txCost: 1.1,
+                    txPercentCost: 1.1,
+                },
+            ],
+            billingInfo: {
+                achAccount: "123123123",
+                achRouting: "123123123",
+                billingAddress: "123 Walnut Street",
+                billingCity: "Johnson City",
+                billingCountry: "US",
+                billingState: "TN",
+                billingZip: "37615",
+            },
+            contacts: [
+                {
+                    contactEmail: "example@email.com",
+                    contactName: "Herman Martinez",
+                    contactPhone: "3055550000",
+                    contactTitle: "Owner",
+                },
+            ],
+            createdAt: "2022-07-01T15:00:01Z",
+            hasBilling: true,
+            hasResidual: true,
+            idOrg: 123,
+            isRoot: false,
+            orgAddress: "123 Walnut Street",
+            orgCity: "Johnson City",
+            orgCountry: "US",
+            orgEntryName: "pilgrim-planner",
+            orgId: "123",
+            orgLogo: {
+                fContent: "TXkgdGVzdCBmaWxlHJ==...",
+                filename: "my-doc.pdf",
+                ftype: "pdf",
+                furl: "https://mysite.com/my-doc.pdf",
+            },
+            orgName: "Pilgrim Planner",
+            orgParentId: 236,
+            orgParentName: "PropertyManager Pro",
+            orgState: "TN",
+            orgTimezone: -5,
+            orgType: 0,
+            orgWebsite: "www.pilgrimageplanner.com",
+            orgZip: "orgZip",
+            recipientEmailNotification: true,
+            replyToEmail: "example@email.com",
+            resumable: false,
+            summary: { amountSubs: 1.1, amountTx: 1.1, childOrgs: 1, childPaypoints: 1, countSubs: 1, countTx: 1 },
+            users: [
+                {
+                    Access: [{ roleValue: true }],
+                    AdditionalData: "AdditionalData",
+                    createdAt: "2022-07-01T15:00:01Z",
+                    Email: "example@email.com",
+                    language: "en",
+                    lastAccess: "2022-07-01T15:00:01Z",
+                    Name: "Sean Smith",
+                    Phone: "5555555555",
+                    Scope: [{ orgType: 0 }],
+                    snData: "snData",
+                    snIdentifier: "snIdentifier",
+                    snProvider: "google",
+                    timeZone: -5,
+                    userId: 1000000,
+                    UsrMFA: false,
+                    UsrMFAMode: 0,
+                    UsrStatus: 1,
+                },
+            ],
+        };
+
         server
             .mockEndpoint()
-            .get("/Organization/basicById/123").respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .get("/Organization/basicById/123")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.organization.getBasicOrganizationById(123);
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        const response = await client.organization.getBasicOrganizationById(123);
+        expect(response).toEqual(rawResponseBody);
     });
-          
+
     test("GetBasicOrganizationById (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
+        const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
-            .get("/Organization/basicById/1").respondWith()
-            .statusCode(400).jsonBody(rawResponseBody)
-                .build();
+            .get("/Organization/basicById/1")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.organization.getBasicOrganizationById(1)
-            }).rejects.toThrow(Payabli.BadRequestError);
+        await expect(async () => {
+            return await client.organization.getBasicOrganizationById(1);
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
-          
+
     test("GetBasicOrganizationById (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
         server
             .mockEndpoint()
-            .get("/Organization/basicById/1").respondWith()
-            .statusCode(401).jsonBody(rawResponseBody)
-                .build();
+            .get("/Organization/basicById/1")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.organization.getBasicOrganizationById(1)
-            }).rejects.toThrow(Payabli.UnauthorizedError);
+        await expect(async () => {
+            return await client.organization.getBasicOrganizationById(1);
+        }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-          
+
     test("GetBasicOrganizationById (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
+        const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
-            .get("/Organization/basicById/1").respondWith()
-            .statusCode(500).jsonBody(rawResponseBody)
-                .build();
+            .get("/Organization/basicById/1")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.organization.getBasicOrganizationById(1)
-            }).rejects.toThrow(Payabli.InternalServerError);
+        await expect(async () => {
+            return await client.organization.getBasicOrganizationById(1);
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
-          
+
     test("GetBasicOrganizationById (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
         server
             .mockEndpoint()
-            .get("/Organization/basicById/1").respondWith()
-            .statusCode(503).jsonBody(rawResponseBody)
-                .build();
+            .get("/Organization/basicById/1")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.organization.getBasicOrganizationById(1)
-            }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        await expect(async () => {
+            return await client.organization.getBasicOrganizationById(1);
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-          
+
     test("GetOrganization (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "services" : [ { "description" : "description" , "enabled" : true , "monthlyCost" : 1.1 , "name" : "name" , "reseller" : true , "setupCost" : 1.1 , "txCost" : 1.1 , "txPercentCost" : 1.1 } ] , "billingInfo" : { "achAccount" : "123123123" , "achRouting" : "123123123" , "billingAddress" : "123 Walnut Street" , "billingCity" : "Johnson City" , "billingCountry" : "US" , "billingState" : "TN" , "billingZip" : "37615" } , "contacts" : [ { "contactEmail" : "example@email.com" , "contactName" : "Herman Martinez" , "contactPhone" : "3055550000" , "contactTitle" : "Owner" } ] , "createdAt" : "2022-07-01T15:00:01Z" , "hasBilling" : true , "hasResidual" : true , "idOrg" : 123 , "isRoot" : false , "orgAddress" : "123 Walnut Street" , "orgCity" : "Johnson City" , "orgCountry" : "US" , "orgEntryName" : "pilgrim-planner" , "orgId" : "123" , "orgLogo" : { "fContent" : "TXkgdGVzdCBmaWxlHJ==..." , "filename" : "my-doc.pdf" , "ftype" : "pdf" , "furl" : "https://mysite.com/my-doc.pdf" } , "orgName" : "Pilgrim Planner" , "orgParentId" : 236 , "orgParentName" : "PropertyManager Pro" , "orgState" : "TN" , "orgTimezone" : -5 , "orgType" : 0 , "orgWebsite" : "www.pilgrimageplanner.com" , "orgZip" : "orgZip" , "recipientEmailNotification" : true , "replyToEmail" : "example@email.com" , "resumable" : false , "summary" : { "amountSubs" : 1.1 , "amountTx" : 1.1 , "childOrgs" : 1 , "childPaypoints" : 1 , "countSubs" : 1 , "countTx" : 1 } , "users" : [ { "Access" : [ { "roleValue" : true } ] , "AdditionalData" : "AdditionalData" , "createdAt" : "2022-07-01T15:00:01Z" , "Email" : "example@email.com" , "language" : "en" , "lastAccess" : "2022-07-01T15:00:01Z" , "Name" : "Sean Smith" , "Phone" : "5555555555" , "Scope" : [ { "orgType" : 0 } ] , "snData" : "snData" , "snIdentifier" : "snIdentifier" , "snProvider" : "google" , "timeZone" : -5 , "userId" : 1000000 , "UsrMFA" : false , "UsrMFAMode" : 0 , "UsrStatus" : 1 } ] };
-        
+        const rawResponseBody = {
+            services: [
+                {
+                    description: "description",
+                    enabled: true,
+                    monthlyCost: 1.1,
+                    name: "name",
+                    reseller: true,
+                    setupCost: 1.1,
+                    txCost: 1.1,
+                    txPercentCost: 1.1,
+                },
+            ],
+            billingInfo: {
+                achAccount: "123123123",
+                achRouting: "123123123",
+                billingAddress: "123 Walnut Street",
+                billingCity: "Johnson City",
+                billingCountry: "US",
+                billingState: "TN",
+                billingZip: "37615",
+            },
+            contacts: [
+                {
+                    contactEmail: "example@email.com",
+                    contactName: "Herman Martinez",
+                    contactPhone: "3055550000",
+                    contactTitle: "Owner",
+                },
+            ],
+            createdAt: "2022-07-01T15:00:01Z",
+            hasBilling: true,
+            hasResidual: true,
+            idOrg: 123,
+            isRoot: false,
+            orgAddress: "123 Walnut Street",
+            orgCity: "Johnson City",
+            orgCountry: "US",
+            orgEntryName: "pilgrim-planner",
+            orgId: "123",
+            orgLogo: {
+                fContent: "TXkgdGVzdCBmaWxlHJ==...",
+                filename: "my-doc.pdf",
+                ftype: "pdf",
+                furl: "https://mysite.com/my-doc.pdf",
+            },
+            orgName: "Pilgrim Planner",
+            orgParentId: 236,
+            orgParentName: "PropertyManager Pro",
+            orgState: "TN",
+            orgTimezone: -5,
+            orgType: 0,
+            orgWebsite: "www.pilgrimageplanner.com",
+            orgZip: "orgZip",
+            recipientEmailNotification: true,
+            replyToEmail: "example@email.com",
+            resumable: false,
+            summary: { amountSubs: 1.1, amountTx: 1.1, childOrgs: 1, childPaypoints: 1, countSubs: 1, countTx: 1 },
+            users: [
+                {
+                    Access: [{ roleValue: true }],
+                    AdditionalData: "AdditionalData",
+                    createdAt: "2022-07-01T15:00:01Z",
+                    Email: "example@email.com",
+                    language: "en",
+                    lastAccess: "2022-07-01T15:00:01Z",
+                    Name: "Sean Smith",
+                    Phone: "5555555555",
+                    Scope: [{ orgType: 0 }],
+                    snData: "snData",
+                    snIdentifier: "snIdentifier",
+                    snProvider: "google",
+                    timeZone: -5,
+                    userId: 1000000,
+                    UsrMFA: false,
+                    UsrMFAMode: 0,
+                    UsrStatus: 1,
+                },
+            ],
+        };
+
         server
             .mockEndpoint()
-            .get("/Organization/read/123").respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .get("/Organization/read/123")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.organization.getOrganization(123);
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        const response = await client.organization.getOrganization(123);
+        expect(response).toEqual(rawResponseBody);
     });
-          
+
     test("GetOrganization (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
+        const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
-            .get("/Organization/read/1").respondWith()
-            .statusCode(400).jsonBody(rawResponseBody)
-                .build();
+            .get("/Organization/read/1")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.organization.getOrganization(1)
-            }).rejects.toThrow(Payabli.BadRequestError);
+        await expect(async () => {
+            return await client.organization.getOrganization(1);
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
-          
+
     test("GetOrganization (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
         server
             .mockEndpoint()
-            .get("/Organization/read/1").respondWith()
-            .statusCode(401).jsonBody(rawResponseBody)
-                .build();
+            .get("/Organization/read/1")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.organization.getOrganization(1)
-            }).rejects.toThrow(Payabli.UnauthorizedError);
+        await expect(async () => {
+            return await client.organization.getOrganization(1);
+        }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-          
+
     test("GetOrganization (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
+        const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
-            .get("/Organization/read/1").respondWith()
-            .statusCode(500).jsonBody(rawResponseBody)
-                .build();
+            .get("/Organization/read/1")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.organization.getOrganization(1)
-            }).rejects.toThrow(Payabli.InternalServerError);
+        await expect(async () => {
+            return await client.organization.getOrganization(1);
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
-          
+
     test("GetOrganization (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
         server
             .mockEndpoint()
-            .get("/Organization/read/1").respondWith()
-            .statusCode(503).jsonBody(rawResponseBody)
-                .build();
+            .get("/Organization/read/1")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.organization.getOrganization(1)
-            }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        await expect(async () => {
+            return await client.organization.getOrganization(1);
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-          
+
     test("GetSettingsOrganization (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "customFields" : [ { "key" : "key" , "readOnly" : false , "value" : "value" } ] , "forInvoices" : [ { "key" : "key" , "readOnly" : false , "value" : "value" } ] , "forPayOuts" : [ { "key" : "key" , "readOnly" : false , "value" : "value" } ] , "forWallets" : [ { "key" : "isGooglePayEnabled" , "readOnly" : false , "value" : "true" } ] , "general" : [ { "key" : "key" , "readOnly" : false , "value" : "value" } ] , "identifiers" : [ { "key" : "key" , "readOnly" : false , "value" : "value" } ] };
-        
+        const rawResponseBody = {
+            customFields: [{ key: "key", readOnly: false, value: "value" }],
+            forInvoices: [{ key: "key", readOnly: false, value: "value" }],
+            forPayOuts: [{ key: "key", readOnly: false, value: "value" }],
+            forWallets: [{ key: "isGooglePayEnabled", readOnly: false, value: "true" }],
+            general: [{ key: "key", readOnly: false, value: "value" }],
+            identifiers: [{ key: "key", readOnly: false, value: "value" }],
+        };
+
         server
             .mockEndpoint()
-            .get("/Organization/settings/123").respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .get("/Organization/settings/123")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.organization.getSettingsOrganization(123);
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        const response = await client.organization.getSettingsOrganization(123);
+        expect(response).toEqual(rawResponseBody);
     });
-          
+
     test("GetSettingsOrganization (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
+        const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
-            .get("/Organization/settings/1").respondWith()
-            .statusCode(400).jsonBody(rawResponseBody)
-                .build();
+            .get("/Organization/settings/1")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.organization.getSettingsOrganization(1)
-            }).rejects.toThrow(Payabli.BadRequestError);
+        await expect(async () => {
+            return await client.organization.getSettingsOrganization(1);
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
-          
+
     test("GetSettingsOrganization (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
         server
             .mockEndpoint()
-            .get("/Organization/settings/1").respondWith()
-            .statusCode(401).jsonBody(rawResponseBody)
-                .build();
+            .get("/Organization/settings/1")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.organization.getSettingsOrganization(1)
-            }).rejects.toThrow(Payabli.UnauthorizedError);
+        await expect(async () => {
+            return await client.organization.getSettingsOrganization(1);
+        }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-          
+
     test("GetSettingsOrganization (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
+        const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
-            .get("/Organization/settings/1").respondWith()
-            .statusCode(500).jsonBody(rawResponseBody)
-                .build();
+            .get("/Organization/settings/1")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.organization.getSettingsOrganization(1)
-            }).rejects.toThrow(Payabli.InternalServerError);
+        await expect(async () => {
+            return await client.organization.getSettingsOrganization(1);
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
-          
+
     test("GetSettingsOrganization (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
         server
             .mockEndpoint()
-            .get("/Organization/settings/1").respondWith()
-            .statusCode(503).jsonBody(rawResponseBody)
-                .build();
+            .get("/Organization/settings/1")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.organization.getSettingsOrganization(1)
-            }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        await expect(async () => {
+            return await client.organization.getSettingsOrganization(1);
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-          
 });

@@ -6,9 +6,10 @@
  * only.
  */
 export const NotificationContentReportName = {
-        Transaction: "Transaction",
-        Settlement: "Settlement",
-        Boarding: "Boarding",
-        Returned: "Returned"
-    } as const;
-export type NotificationContentReportName = typeof NotificationContentReportName[keyof typeof NotificationContentReportName];
+    Transaction: "Transaction",
+    Settlement: "Settlement",
+    Boarding: "Boarding",
+    Returned: "Returned",
+} as const;
+export type NotificationContentReportName =
+    (typeof NotificationContentReportName)[keyof typeof NotificationContentReportName];

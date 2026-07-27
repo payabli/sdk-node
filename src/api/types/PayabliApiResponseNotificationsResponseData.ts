@@ -4,6 +4,4 @@
  * When the request was successful, this contains the notification ID, or
  * `nID` used to manage the notification.
  */
-export type PayabliApiResponseNotificationsResponseData = 
-    | number
-    | string;
+export type PayabliApiResponseNotificationsResponseData = number | string;

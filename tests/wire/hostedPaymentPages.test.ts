@@ -3,312 +3,477 @@
 import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
-import { mockBearerAuth } from "./mockAuth";
 
 describe("HostedPaymentPagesClient", () => {
-    
     test("loadPage (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "AdditionalData" : { "key1" : { "key" : "value" } , "key2" : { "key" : "value" } , "key3" : { "key" : "value" } } , "Credentials" : [ { "accountId" : "accountId" , "cfeeFix" : 1.1 , "cfeeFloat" : 1.1 , "cfeeMax" : 1.1 , "cfeeMin" : 1.1 , "maxticket" : 1.1 , "minticket" : 1.1 , "mode" : 1 , "referenceId" : 1000000 , "service" : "service" } ] , "LastAccess" : "2022-06-30T15:01:00Z" , "PageContent" : { "amount" : { "categories" : [ { } ] , "enabled" : true , "order" : 1 } , "autopay" : { "enabled" : true , "frequencySelected" : "frequencySelected" , "header" : "header" , "order" : 1 , "startDate" : "1, 5-10" } , "contactUs" : { "emailLabel" : "emailLabel" , "enabled" : true , "header" : "header" , "order" : 1 , "paymentIcons" : true , "phoneLabel" : "phoneLabel" } , "entry" : "8cfec329267" , "invoices" : { "enabled" : true , "invoiceLink" : { "enabled" : true } , "order" : 1 , "viewInvoiceDetails" : { "enabled" : true } } , "logo" : { "enabled" : true , "order" : 1 } , "messageBeforePaying" : { "enabled" : true , "label" : "label" , "order" : 1 } , "name" : "name" , "notes" : { "enabled" : true , "header" : "header" , "order" : 1 , "placeholder" : "placeholder" , "value" : "value" } , "page" : { "description" : "description" , "enabled" : true , "header" : "header" , "order" : 1 } , "paymentButton" : { "enabled" : true , "label" : "label" , "order" : 1 } , "paymentMethods" : { "allMethodsChecked" : true , "showSaveMethod" : true , "enabled" : true , "header" : "header" , "methods" : { "amex" : true , "applePay" : true , "discover" : false , "eCheck" : false , "mastercard" : true , "visa" : true } , "order" : 1 } , "payor" : { "enabled" : true , "fields" : [ { } ] , "header" : "header" , "order" : 1 } , "review" : { "enabled" : true , "header" : "header" , "order" : 1 } , "subdomain" : "mypage-1" } , "pageIdentifier" : "null" , "PageSettings" : { "color" : "color" , "customCssUrl" : "customCssUrl" , "language" : "language" , "pageLogo" : { "fContent" : "TXkgdGVzdCBmaWxlHJ==..." , "filename" : "my-doc.pdf" , "ftype" : "pdf" , "furl" : "https://mysite.com/my-doc.pdf" } , "paymentButton" : { "label" : "label" , "size" : "sm" } , "redirectAfterApprove" : true , "redirectAfterApproveUrl" : "redirectAfterApproveUrl" } , "published" : 1 , "ReceiptContent" : { "amount" : { "enabled" : true , "order" : 1 } , "contactUs" : { "enabled" : true , "order" : 1 } , "details" : { "enabled" : true , "order" : 1 } , "logo" : { "enabled" : true , "order" : 1 } , "messageBeforeButton" : { "enabled" : true , "label" : "label" , "order" : 1 } , "page" : { "description" : "description" , "enabled" : true , "header" : "header" , "order" : 1 } , "paymentButton" : { "enabled" : true , "label" : "label" , "order" : 1 } , "paymentInformation" : { "enabled" : true , "order" : 1 } , "settings" : { "enabled" : true , "fields" : [ { } ] , "order" : 1 , "sendAuto" : true , "sendManual" : true } } , "Subdomain" : "mypage-1" , "totalAmount" : 1.1 , "validationCode" : "validationCode" };
-        
+        const rawResponseBody = {
+            AdditionalData: { key1: { key: "value" }, key2: { key: "value" }, key3: { key: "value" } },
+            Credentials: [
+                {
+                    accountId: "accountId",
+                    cfeeFix: 1.1,
+                    cfeeFloat: 1.1,
+                    cfeeMax: 1.1,
+                    cfeeMin: 1.1,
+                    maxticket: 1.1,
+                    minticket: 1.1,
+                    mode: 1,
+                    referenceId: 1000000,
+                    service: "service",
+                },
+            ],
+            LastAccess: "2022-06-30T15:01:00Z",
+            PageContent: {
+                amount: { categories: [{}], enabled: true, order: 1 },
+                autopay: {
+                    enabled: true,
+                    frequencySelected: "frequencySelected",
+                    header: "header",
+                    order: 1,
+                    startDate: "1, 5-10",
+                },
+                contactUs: {
+                    emailLabel: "emailLabel",
+                    enabled: true,
+                    header: "header",
+                    order: 1,
+                    paymentIcons: true,
+                    phoneLabel: "phoneLabel",
+                },
+                entry: "8cfec329267",
+                invoices: {
+                    enabled: true,
+                    invoiceLink: { enabled: true },
+                    order: 1,
+                    viewInvoiceDetails: { enabled: true },
+                },
+                logo: { enabled: true, order: 1 },
+                messageBeforePaying: { enabled: true, label: "label", order: 1 },
+                name: "name",
+                notes: { enabled: true, header: "header", order: 1, placeholder: "placeholder", value: "value" },
+                page: { description: "description", enabled: true, header: "header", order: 1 },
+                paymentButton: { enabled: true, label: "label", order: 1 },
+                paymentMethods: {
+                    allMethodsChecked: true,
+                    showSaveMethod: true,
+                    enabled: true,
+                    header: "header",
+                    methods: {
+                        amex: true,
+                        applePay: true,
+                        discover: false,
+                        eCheck: false,
+                        mastercard: true,
+                        visa: true,
+                    },
+                    order: 1,
+                },
+                payor: { enabled: true, fields: [{}], header: "header", order: 1 },
+                review: { enabled: true, header: "header", order: 1 },
+                subdomain: "mypage-1",
+            },
+            pageIdentifier: "null",
+            PageSettings: {
+                color: "color",
+                customCssUrl: "customCssUrl",
+                language: "language",
+                pageLogo: {
+                    fContent: "TXkgdGVzdCBmaWxlHJ==...",
+                    filename: "my-doc.pdf",
+                    ftype: "pdf",
+                    furl: "https://mysite.com/my-doc.pdf",
+                },
+                paymentButton: { label: "label", size: "sm" },
+                redirectAfterApprove: true,
+                redirectAfterApproveUrl: "redirectAfterApproveUrl",
+            },
+            published: 1,
+            ReceiptContent: {
+                amount: { enabled: true, order: 1 },
+                contactUs: { enabled: true, order: 1 },
+                details: { enabled: true, order: 1 },
+                logo: { enabled: true, order: 1 },
+                messageBeforeButton: { enabled: true, label: "label", order: 1 },
+                page: { description: "description", enabled: true, header: "header", order: 1 },
+                paymentButton: { enabled: true, label: "label", order: 1 },
+                paymentInformation: { enabled: true, order: 1 },
+                settings: { enabled: true, fields: [{}], order: 1, sendAuto: true, sendManual: true },
+            },
+            Subdomain: "mypage-1",
+            totalAmount: 1.1,
+            validationCode: "validationCode",
+        };
+
         server
             .mockEndpoint()
-            .get("/Paypoint/load/8cfec329267/pay-your-fees-1").respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .get("/Paypoint/load/8cfec329267/pay-your-fees-1")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.hostedPaymentPages.loadPage("8cfec329267", "pay-your-fees-1");
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        const response = await client.hostedPaymentPages.loadPage("8cfec329267", "pay-your-fees-1");
+        expect(response).toEqual(rawResponseBody);
     });
-          
+
     test("loadPage (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
+        const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
-            .get("/Paypoint/load/entry/subdomain").respondWith()
-            .statusCode(400).jsonBody(rawResponseBody)
-                .build();
+            .get("/Paypoint/load/entry/subdomain")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.hostedPaymentPages.loadPage("entry", "subdomain")
-            }).rejects.toThrow(Payabli.BadRequestError);
+        await expect(async () => {
+            return await client.hostedPaymentPages.loadPage("entry", "subdomain");
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
-          
+
     test("loadPage (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
         server
             .mockEndpoint()
-            .get("/Paypoint/load/entry/subdomain").respondWith()
-            .statusCode(401).jsonBody(rawResponseBody)
-                .build();
+            .get("/Paypoint/load/entry/subdomain")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.hostedPaymentPages.loadPage("entry", "subdomain")
-            }).rejects.toThrow(Payabli.UnauthorizedError);
+        await expect(async () => {
+            return await client.hostedPaymentPages.loadPage("entry", "subdomain");
+        }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-          
+
     test("loadPage (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
+        const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
-            .get("/Paypoint/load/entry/subdomain").respondWith()
-            .statusCode(500).jsonBody(rawResponseBody)
-                .build();
+            .get("/Paypoint/load/entry/subdomain")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.hostedPaymentPages.loadPage("entry", "subdomain")
-            }).rejects.toThrow(Payabli.InternalServerError);
+        await expect(async () => {
+            return await client.hostedPaymentPages.loadPage("entry", "subdomain");
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
-          
+
     test("loadPage (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
         server
             .mockEndpoint()
-            .get("/Paypoint/load/entry/subdomain").respondWith()
-            .statusCode(503).jsonBody(rawResponseBody)
-                .build();
+            .get("/Paypoint/load/entry/subdomain")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.hostedPaymentPages.loadPage("entry", "subdomain")
-            }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        await expect(async () => {
+            return await client.hostedPaymentPages.loadPage("entry", "subdomain");
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-          
+
     test("newPage (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = {
+            isSuccess: true,
+            pageIdentifier: "null",
+            responseCode: 1,
+            responseData: "responseData",
+            responseText: "Success",
+        };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "isSuccess" : true , "pageIdentifier" : "null" , "responseCode" : 1 , "responseData" : "responseData" , "responseText" : "Success" };
-        
         server
             .mockEndpoint()
-            .post("/Paypoint/8cfec329267").header("idempotencyKey", "6B29FC40-CA47-1067-B31D-00DD010662DA")
-                    .jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .post("/Paypoint/8cfec329267")
+            .header("idempotencyKey", "6B29FC40-CA47-1067-B31D-00DD010662DA")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.hostedPaymentPages.newPage("8cfec329267", {
-    idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA"
-});
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        const response = await client.hostedPaymentPages.newPage("8cfec329267", {
+            idempotencyKey: "6B29FC40-CA47-1067-B31D-00DD010662DA",
+        });
+        expect(response).toEqual(rawResponseBody);
     });
-          
+
     test("newPage (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "key" : "value" };
-        
         server
             .mockEndpoint()
-            .post("/Paypoint/entry").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(400).jsonBody(rawResponseBody)
-                .build();
+            .post("/Paypoint/entry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.hostedPaymentPages.newPage("entry", {})
-            }).rejects.toThrow(Payabli.BadRequestError);
+        await expect(async () => {
+            return await client.hostedPaymentPages.newPage("entry", {});
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
-          
+
     test("newPage (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
         server
             .mockEndpoint()
-            .post("/Paypoint/entry").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(401).jsonBody(rawResponseBody)
-                .build();
+            .post("/Paypoint/entry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.hostedPaymentPages.newPage("entry", {})
-            }).rejects.toThrow(Payabli.UnauthorizedError);
+        await expect(async () => {
+            return await client.hostedPaymentPages.newPage("entry", {});
+        }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-          
+
     test("newPage (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "key" : "value" };
-        
         server
             .mockEndpoint()
-            .post("/Paypoint/entry").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(500).jsonBody(rawResponseBody)
-                .build();
+            .post("/Paypoint/entry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.hostedPaymentPages.newPage("entry", {})
-            }).rejects.toThrow(Payabli.InternalServerError);
+        await expect(async () => {
+            return await client.hostedPaymentPages.newPage("entry", {});
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
-          
+
     test("newPage (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
         server
             .mockEndpoint()
-            .post("/Paypoint/entry").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(503).jsonBody(rawResponseBody)
-                .build();
+            .post("/Paypoint/entry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.hostedPaymentPages.newPage("entry", {})
-            }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        await expect(async () => {
+            return await client.hostedPaymentPages.newPage("entry", {});
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-          
+
     test("savePage (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: "string", responseText: "Updated" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "isSuccess" : true , "responseCode" : 1 , "responseData" : "string" , "responseText" : "Updated" };
-        
         server
             .mockEndpoint()
-            .put("/Paypoint/8cfec329267/pay-your-fees-1").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .put("/Paypoint/8cfec329267/pay-your-fees-1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.hostedPaymentPages.savePage("8cfec329267", "pay-your-fees-1", {});
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        const response = await client.hostedPaymentPages.savePage("8cfec329267", "pay-your-fees-1", {});
+        expect(response).toEqual(rawResponseBody);
     });
-          
+
     test("savePage (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "key" : "value" };
-        
         server
             .mockEndpoint()
-            .put("/Paypoint/entry/subdomain").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(400).jsonBody(rawResponseBody)
-                .build();
+            .put("/Paypoint/entry/subdomain")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.hostedPaymentPages.savePage("entry", "subdomain", {})
-            }).rejects.toThrow(Payabli.BadRequestError);
+        await expect(async () => {
+            return await client.hostedPaymentPages.savePage("entry", "subdomain", {});
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
-          
+
     test("savePage (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
         server
             .mockEndpoint()
-            .put("/Paypoint/entry/subdomain").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(401).jsonBody(rawResponseBody)
-                .build();
+            .put("/Paypoint/entry/subdomain")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.hostedPaymentPages.savePage("entry", "subdomain", {})
-            }).rejects.toThrow(Payabli.UnauthorizedError);
+        await expect(async () => {
+            return await client.hostedPaymentPages.savePage("entry", "subdomain", {});
+        }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-          
+
     test("savePage (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "key" : "value" };
-        
         server
             .mockEndpoint()
-            .put("/Paypoint/entry/subdomain").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(500).jsonBody(rawResponseBody)
-                .build();
+            .put("/Paypoint/entry/subdomain")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.hostedPaymentPages.savePage("entry", "subdomain", {})
-            }).rejects.toThrow(Payabli.InternalServerError);
+        await expect(async () => {
+            return await client.hostedPaymentPages.savePage("entry", "subdomain", {});
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
-          
+
     test("savePage (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
         server
             .mockEndpoint()
-            .put("/Paypoint/entry/subdomain").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(503).jsonBody(rawResponseBody)
-                .build();
+            .put("/Paypoint/entry/subdomain")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.hostedPaymentPages.savePage("entry", "subdomain", {})
-            }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        await expect(async () => {
+            return await client.hostedPaymentPages.savePage("entry", "subdomain", {});
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-          
 });

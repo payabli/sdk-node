@@ -2,9 +2,10 @@
 
 /** Preferred payment method for vendor. */
 export const VendorDataResponsePaymentMethod = {
-        Vcard: "vcard",
-        Ach: "ach",
-        Check: "check",
-        Card: "card"
-    } as const;
-export type VendorDataResponsePaymentMethod = typeof VendorDataResponsePaymentMethod[keyof typeof VendorDataResponsePaymentMethod];
+    Vcard: "vcard",
+    Ach: "ach",
+    Check: "check",
+    Card: "card",
+} as const;
+export type VendorDataResponsePaymentMethod =
+    (typeof VendorDataResponsePaymentMethod)[keyof typeof VendorDataResponsePaymentMethod];

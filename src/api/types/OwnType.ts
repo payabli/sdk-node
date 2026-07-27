@@ -2,13 +2,13 @@
 
 /** The business ownership type. */
 export const OwnType = {
-        LimitedLiabilityCompany: "Limited Liability Company",
-        NonProfitOrg: "Non-Profit Org",
-        Partnership: "Partnership",
-        PrivateCorp: "Private Corp",
-        PublicCorp: "Public Corp",
-        TaxExempt: "Tax Exempt",
-        Government: "Government",
-        SoleProprietor: "Sole Proprietor"
-    } as const;
-export type OwnType = typeof OwnType[keyof typeof OwnType];
+    LimitedLiabilityCompany: "Limited Liability Company",
+    NonProfitOrg: "Non-Profit Org",
+    Partnership: "Partnership",
+    PrivateCorp: "Private Corp",
+    PublicCorp: "Public Corp",
+    TaxExempt: "Tax Exempt",
+    Government: "Government",
+    SoleProprietor: "Sole Proprietor",
+} as const;
+export type OwnType = (typeof OwnType)[keyof typeof OwnType];

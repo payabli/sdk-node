@@ -5,51 +5,62 @@ import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
 describe("TokenClient", () => {
-    
     test("createServerSideToken (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" };
-        const rawResponseBody = { "token_type" : "Bearer" , "access_token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.example.token" , "expires_in" : 3600 };
-        
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" };
+        const rawResponseBody = {
+            token_type: "Bearer",
+            access_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.example.token",
+            expires_in: 3600,
+        };
+
         server
             .mockEndpoint()
-            .post("/v2/Token/serverside").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .post("/v2/Token/serverside")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.token.createServerSideToken({
-    clientId: "YOUR_CLIENT_ID",
-    clientSecret: "YOUR_CLIENT_SECRET"
-});
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        const response = await client.token.createServerSideToken({
+            clientId: "YOUR_CLIENT_ID",
+            clientSecret: "YOUR_CLIENT_SECRET",
+        });
+        expect(response).toEqual(rawResponseBody);
     });
-          
+
     test("createServerSideToken (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "clientId" : "x" , "clientSecret" : "x" };
-        const rawResponseBody = { "key" : "value" };
-        
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { clientId: "x", clientSecret: "x" };
+        const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
-            .post("/v2/Token/serverside").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(400).jsonBody(rawResponseBody)
-                .build();
+            .post("/v2/Token/serverside")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.token.createServerSideToken({
-    clientId: "x",
-    clientSecret: "x"
-})
-            }).rejects.toThrow(Payabli.BadRequestError);
+        await expect(async () => {
+            return await client.token.createServerSideToken({
+                clientId: "x",
+                clientSecret: "x",
+            });
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
-          
 });

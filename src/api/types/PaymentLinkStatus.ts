@@ -2,9 +2,9 @@
 
 /** The status of a payment link. */
 export const PaymentLinkStatus = {
-        Active: "Active",
-        Expired: "Expired",
-        Canceled: "Canceled",
-        Deleted: "Deleted"
-    } as const;
-export type PaymentLinkStatus = typeof PaymentLinkStatus[keyof typeof PaymentLinkStatus];
+    Active: "Active",
+    Expired: "Expired",
+    Canceled: "Canceled",
+    Deleted: "Deleted",
+} as const;
+export type PaymentLinkStatus = (typeof PaymentLinkStatus)[keyof typeof PaymentLinkStatus];

@@ -3,555 +3,666 @@
 import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
-import { mockBearerAuth } from "./mockAuth";
 
 describe("NotificationClient", () => {
-    
     test("AddNotification (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            content: { eventType: "CreatedApplication" },
+            frequency: "untilcancelled",
+            method: "web",
+            ownerId: 236,
+            ownerType: 0,
+            status: 1,
+            target: "https://webhook.site/2871b8f8-edc7-441a-b376-98d8c8e33275",
+        };
+        const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 1717, responseText: "Success" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "content" : { "eventType" : "CreatedApplication" } , "frequency" : "untilcancelled" , "method" : "web" , "ownerId" : 236 , "ownerType" : 0 , "status" : 1 , "target" : "https://webhook.site/2871b8f8-edc7-441a-b376-98d8c8e33275" };
-        const rawResponseBody = { "isSuccess" : true , "responseCode" : 1 , "responseData" : 1717 , "responseText" : "Success" };
-        
         server
             .mockEndpoint()
-            .post("/Notification").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .post("/Notification")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.notification.addNotification({
-    content: {
-        eventType: "CreatedApplication"
-    },
-    frequency: "untilcancelled",
-    method: "web",
-    ownerId: 236,
-    ownerType: 0,
-    status: 1,
-    target: "https://webhook.site/2871b8f8-edc7-441a-b376-98d8c8e33275"
-});
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        const response = await client.notification.addNotification({
+            content: {
+                eventType: "CreatedApplication",
+            },
+            frequency: "untilcancelled",
+            method: "web",
+            ownerId: 236,
+            ownerType: 0,
+            status: 1,
+            target: "https://webhook.site/2871b8f8-edc7-441a-b376-98d8c8e33275",
+        });
+        expect(response).toEqual(rawResponseBody);
     });
-          
+
     test("AddNotification (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            content: { eventType: "ApprovedPayment" },
+            frequency: "untilcancelled",
+            method: "web",
+            ownerId: 236,
+            ownerType: 0,
+            status: 1,
+            target: "https://cfe9dc390ce2.ngrok-free.app/webhook",
+        };
+        const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 1717, responseText: "Success" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "content" : { "eventType" : "ApprovedPayment" } , "frequency" : "untilcancelled" , "method" : "web" , "ownerId" : 236 , "ownerType" : 0 , "status" : 1 , "target" : "https://cfe9dc390ce2.ngrok-free.app/webhook" };
-        const rawResponseBody = { "isSuccess" : true , "responseCode" : 1 , "responseData" : 1717 , "responseText" : "Success" };
-        
         server
             .mockEndpoint()
-            .post("/Notification").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .post("/Notification")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.notification.addNotification({
-    content: {
-        eventType: "ApprovedPayment"
-    },
-    frequency: "untilcancelled",
-    method: "web",
-    ownerId: 236,
-    ownerType: 0,
-    status: 1,
-    target: "https://cfe9dc390ce2.ngrok-free.app/webhook"
-});
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        const response = await client.notification.addNotification({
+            content: {
+                eventType: "ApprovedPayment",
+            },
+            frequency: "untilcancelled",
+            method: "web",
+            ownerId: 236,
+            ownerType: 0,
+            status: 1,
+            target: "https://cfe9dc390ce2.ngrok-free.app/webhook",
+        });
+        expect(response).toEqual(rawResponseBody);
     });
-          
+
     test("AddNotification (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            content: {
+                eventType: "Report",
+                fileFormat: "json",
+                reportName: "Transaction",
+                timeZone: -5,
+                transactionId: "0",
+            },
+            frequency: "biweekly",
+            method: "report-email",
+            ownerId: 236,
+            ownerType: 0,
+            status: 1,
+            target: "admin@example.com",
+        };
+        const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 1717, responseText: "Success" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "content" : { "eventType" : "Report" , "fileFormat" : "json" , "reportName" : "Transaction" , "timeZone" : -5 , "transactionId" : "0" } , "frequency" : "biweekly" , "method" : "report-email" , "ownerId" : 236 , "ownerType" : 0 , "status" : 1 , "target" : "admin@example.com" };
-        const rawResponseBody = { "isSuccess" : true , "responseCode" : 1 , "responseData" : 1717 , "responseText" : "Success" };
-        
         server
             .mockEndpoint()
-            .post("/Notification").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .post("/Notification")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.notification.addNotification({
-    content: {
-        eventType: "Report",
-        fileFormat: "json",
-        reportName: "Transaction",
-        timeZone: -5,
-        transactionId: "0"
-    },
-    frequency: "biweekly",
-    method: "report-email",
-    ownerId: 236,
-    ownerType: 0,
-    status: 1,
-    target: "admin@example.com"
-});
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        const response = await client.notification.addNotification({
+            content: {
+                eventType: "Report",
+                fileFormat: "json",
+                reportName: "Transaction",
+                timeZone: -5,
+                transactionId: "0",
+            },
+            frequency: "biweekly",
+            method: "report-email",
+            ownerId: 236,
+            ownerType: 0,
+            status: 1,
+            target: "admin@example.com",
+        });
+        expect(response).toEqual(rawResponseBody);
     });
-          
+
     test("AddNotification (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { frequency: "one-time", method: "email", ownerType: 1, target: "target" };
+        const rawResponseBody = { key: "value" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "frequency" : "one-time" , "method" : "email" , "ownerType" : 1 , "target" : "target" };
-        const rawResponseBody = { "key" : "value" };
-        
         server
             .mockEndpoint()
-            .post("/Notification").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(400).jsonBody(rawResponseBody)
-                .build();
+            .post("/Notification")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.notification.addNotification({
-    frequency: "one-time",
-    method: "email",
-    ownerType: 1,
-    target: "target"
-})
-            }).rejects.toThrow(Payabli.BadRequestError);
+        await expect(async () => {
+            return await client.notification.addNotification({
+                frequency: "one-time",
+                method: "email",
+                ownerType: 1,
+                target: "target",
+            });
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
-          
+
     test("AddNotification (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { frequency: "one-time", method: "email", ownerType: 1, target: "target" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "frequency" : "one-time" , "method" : "email" , "ownerType" : 1 , "target" : "target" };
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
         server
             .mockEndpoint()
-            .post("/Notification").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(401).jsonBody(rawResponseBody)
-                .build();
+            .post("/Notification")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.notification.addNotification({
-    frequency: "one-time",
-    method: "email",
-    ownerType: 1,
-    target: "target"
-})
-            }).rejects.toThrow(Payabli.UnauthorizedError);
+        await expect(async () => {
+            return await client.notification.addNotification({
+                frequency: "one-time",
+                method: "email",
+                ownerType: 1,
+                target: "target",
+            });
+        }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-          
+
     test("AddNotification (6)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { frequency: "one-time", method: "email", ownerType: 1, target: "target" };
+        const rawResponseBody = { key: "value" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "frequency" : "one-time" , "method" : "email" , "ownerType" : 1 , "target" : "target" };
-        const rawResponseBody = { "key" : "value" };
-        
         server
             .mockEndpoint()
-            .post("/Notification").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(500).jsonBody(rawResponseBody)
-                .build();
+            .post("/Notification")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.notification.addNotification({
-    frequency: "one-time",
-    method: "email",
-    ownerType: 1,
-    target: "target"
-})
-            }).rejects.toThrow(Payabli.InternalServerError);
+        await expect(async () => {
+            return await client.notification.addNotification({
+                frequency: "one-time",
+                method: "email",
+                ownerType: 1,
+                target: "target",
+            });
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
-          
+
     test("AddNotification (7)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { frequency: "one-time", method: "email", ownerType: 1, target: "target" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "frequency" : "one-time" , "method" : "email" , "ownerType" : 1 , "target" : "target" };
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
         server
             .mockEndpoint()
-            .post("/Notification").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(503).jsonBody(rawResponseBody)
-                .build();
+            .post("/Notification")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.notification.addNotification({
-    frequency: "one-time",
-    method: "email",
-    ownerType: 1,
-    target: "target"
-})
-            }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        await expect(async () => {
+            return await client.notification.addNotification({
+                frequency: "one-time",
+                method: "email",
+                ownerType: 1,
+                target: "target",
+            });
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-          
+
     test("GetNotification (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "content" : { "fileFormat" : "csv" , "reportName" : "Returned" } , "createdAt" : "2024-02-21T09:16:31Z" , "frequency" : "weekly" , "lastUpdated" : "2024-02-21T09:16:31Z" , "method" : "report-email" , "notificationId" : 1717 , "ownerId" : 123 , "ownerName" : "The Pilgrim Planner" , "ownerType" : 0 , "status" : 1 , "target" : "admin@business.com" };
-        
-        server
-            .mockEndpoint()
-            .get("/Notification/1717").respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+        const rawResponseBody = {
+            content: { fileFormat: "csv", reportName: "Returned" },
+            createdAt: "2024-02-21T09:16:31Z",
+            frequency: "weekly",
+            lastUpdated: "2024-02-21T09:16:31Z",
+            method: "report-email",
+            notificationId: 1717,
+            ownerId: 123,
+            ownerName: "The Pilgrim Planner",
+            ownerType: 0,
+            status: 1,
+            target: "admin@business.com",
+        };
 
-        
-                        
-                                const response = await client.notification.getNotification("1717");
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        server.mockEndpoint().get("/Notification/1717").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const response = await client.notification.getNotification("1717");
+        expect(response).toEqual(rawResponseBody);
     });
-          
+
     test("GetNotification (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
-        server
-            .mockEndpoint()
-            .get("/Notification/nId").respondWith()
-            .statusCode(400).jsonBody(rawResponseBody)
-                .build();
+        const rawResponseBody = { key: "value" };
 
-        
-            await expect(async () => {
-                return await client.notification.getNotification("nId")
-            }).rejects.toThrow(Payabli.BadRequestError);
+        server.mockEndpoint().get("/Notification/nId").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.notification.getNotification("nId");
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
-          
+
     test("GetNotification (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
-        server
-            .mockEndpoint()
-            .get("/Notification/nId").respondWith()
-            .statusCode(401).jsonBody(rawResponseBody)
-                .build();
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        
-            await expect(async () => {
-                return await client.notification.getNotification("nId")
-            }).rejects.toThrow(Payabli.UnauthorizedError);
+        server.mockEndpoint().get("/Notification/nId").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.notification.getNotification("nId");
+        }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-          
+
     test("GetNotification (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
-        server
-            .mockEndpoint()
-            .get("/Notification/nId").respondWith()
-            .statusCode(500).jsonBody(rawResponseBody)
-                .build();
+        const rawResponseBody = { key: "value" };
 
-        
-            await expect(async () => {
-                return await client.notification.getNotification("nId")
-            }).rejects.toThrow(Payabli.InternalServerError);
+        server.mockEndpoint().get("/Notification/nId").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.notification.getNotification("nId");
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
-          
+
     test("GetNotification (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
-        server
-            .mockEndpoint()
-            .get("/Notification/nId").respondWith()
-            .statusCode(503).jsonBody(rawResponseBody)
-                .build();
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        
-            await expect(async () => {
-                return await client.notification.getNotification("nId")
-            }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        server.mockEndpoint().get("/Notification/nId").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.notification.getNotification("nId");
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-          
+
     test("UpdateNotification (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            content: { eventType: "ApprovedPayment" },
+            frequency: "untilcancelled",
+            method: "email",
+            ownerId: 136,
+            ownerType: 0,
+            status: 1,
+            target: "newemail@email.com",
+        };
+        const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 1717, responseText: "Success" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "content" : { "eventType" : "ApprovedPayment" } , "frequency" : "untilcancelled" , "method" : "email" , "ownerId" : 136 , "ownerType" : 0 , "status" : 1 , "target" : "newemail@email.com" };
-        const rawResponseBody = { "isSuccess" : true , "responseCode" : 1 , "responseData" : 1717 , "responseText" : "Success" };
-        
         server
             .mockEndpoint()
-            .put("/Notification/1717").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .put("/Notification/1717")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.notification.updateNotification("1717", {
-    content: {
-        eventType: "ApprovedPayment"
-    },
-    frequency: "untilcancelled",
-    method: "email",
-    ownerId: 136,
-    ownerType: 0,
-    status: 1,
-    target: "newemail@email.com"
-});
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        const response = await client.notification.updateNotification("1717", {
+            content: {
+                eventType: "ApprovedPayment",
+            },
+            frequency: "untilcancelled",
+            method: "email",
+            ownerId: 136,
+            ownerType: 0,
+            status: 1,
+            target: "newemail@email.com",
+        });
+        expect(response).toEqual(rawResponseBody);
     });
-          
+
     test("UpdateNotification (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { frequency: "one-time", method: "email", ownerType: 1, target: "target" };
+        const rawResponseBody = { key: "value" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "frequency" : "one-time" , "method" : "email" , "ownerType" : 1 , "target" : "target" };
-        const rawResponseBody = { "key" : "value" };
-        
         server
             .mockEndpoint()
-            .put("/Notification/nId").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(400).jsonBody(rawResponseBody)
-                .build();
+            .put("/Notification/nId")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.notification.updateNotification("nId", {
-    frequency: "one-time",
-    method: "email",
-    ownerType: 1,
-    target: "target"
-})
-            }).rejects.toThrow(Payabli.BadRequestError);
+        await expect(async () => {
+            return await client.notification.updateNotification("nId", {
+                frequency: "one-time",
+                method: "email",
+                ownerType: 1,
+                target: "target",
+            });
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
-          
+
     test("UpdateNotification (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { frequency: "one-time", method: "email", ownerType: 1, target: "target" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "frequency" : "one-time" , "method" : "email" , "ownerType" : 1 , "target" : "target" };
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
         server
             .mockEndpoint()
-            .put("/Notification/nId").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(401).jsonBody(rawResponseBody)
-                .build();
+            .put("/Notification/nId")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.notification.updateNotification("nId", {
-    frequency: "one-time",
-    method: "email",
-    ownerType: 1,
-    target: "target"
-})
-            }).rejects.toThrow(Payabli.UnauthorizedError);
+        await expect(async () => {
+            return await client.notification.updateNotification("nId", {
+                frequency: "one-time",
+                method: "email",
+                ownerType: 1,
+                target: "target",
+            });
+        }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-          
+
     test("UpdateNotification (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { frequency: "one-time", method: "email", ownerType: 1, target: "target" };
+        const rawResponseBody = { key: "value" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "frequency" : "one-time" , "method" : "email" , "ownerType" : 1 , "target" : "target" };
-        const rawResponseBody = { "key" : "value" };
-        
         server
             .mockEndpoint()
-            .put("/Notification/nId").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(500).jsonBody(rawResponseBody)
-                .build();
+            .put("/Notification/nId")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.notification.updateNotification("nId", {
-    frequency: "one-time",
-    method: "email",
-    ownerType: 1,
-    target: "target"
-})
-            }).rejects.toThrow(Payabli.InternalServerError);
+        await expect(async () => {
+            return await client.notification.updateNotification("nId", {
+                frequency: "one-time",
+                method: "email",
+                ownerType: 1,
+                target: "target",
+            });
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
-          
+
     test("UpdateNotification (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { frequency: "one-time", method: "email", ownerType: 1, target: "target" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "frequency" : "one-time" , "method" : "email" , "ownerType" : 1 , "target" : "target" };
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
         server
             .mockEndpoint()
-            .put("/Notification/nId").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(503).jsonBody(rawResponseBody)
-                .build();
+            .put("/Notification/nId")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.notification.updateNotification("nId", {
-    frequency: "one-time",
-    method: "email",
-    ownerType: 1,
-    target: "target"
-})
-            }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        await expect(async () => {
+            return await client.notification.updateNotification("nId", {
+                frequency: "one-time",
+                method: "email",
+                ownerType: 1,
+                target: "target",
+            });
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-          
+
     test("DeleteNotification (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseCode" : 1 , "responseData" : 1717 , "responseText" : "Success" };
-        
+        const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 1717, responseText: "Success" };
+
         server
             .mockEndpoint()
-            .delete("/Notification/1717").respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .delete("/Notification/1717")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.notification.deleteNotification("1717");
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        const response = await client.notification.deleteNotification("1717");
+        expect(response).toEqual(rawResponseBody);
     });
-          
+
     test("DeleteNotification (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
+        const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
-            .delete("/Notification/nId").respondWith()
-            .statusCode(400).jsonBody(rawResponseBody)
-                .build();
+            .delete("/Notification/nId")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.notification.deleteNotification("nId")
-            }).rejects.toThrow(Payabli.BadRequestError);
+        await expect(async () => {
+            return await client.notification.deleteNotification("nId");
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
-          
+
     test("DeleteNotification (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
         server
             .mockEndpoint()
-            .delete("/Notification/nId").respondWith()
-            .statusCode(401).jsonBody(rawResponseBody)
-                .build();
+            .delete("/Notification/nId")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.notification.deleteNotification("nId")
-            }).rejects.toThrow(Payabli.UnauthorizedError);
+        await expect(async () => {
+            return await client.notification.deleteNotification("nId");
+        }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-          
+
     test("DeleteNotification (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
+        const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
-            .delete("/Notification/nId").respondWith()
-            .statusCode(500).jsonBody(rawResponseBody)
-                .build();
+            .delete("/Notification/nId")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.notification.deleteNotification("nId")
-            }).rejects.toThrow(Payabli.InternalServerError);
+        await expect(async () => {
+            return await client.notification.deleteNotification("nId");
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
-          
+
     test("DeleteNotification (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
         server
             .mockEndpoint()
-            .delete("/Notification/nId").respondWith()
-            .statusCode(503).jsonBody(rawResponseBody)
-                .build();
+            .delete("/Notification/nId")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.notification.deleteNotification("nId")
-            }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        await expect(async () => {
+            return await client.notification.deleteNotification("nId");
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-          
+
     test("GetReportFile", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
+        const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
-            .get("/Export/notificationReport/1000000").respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .get("/Export/notificationReport/1000000")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.notification.getReportFile(1000000);
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        const response = await client.notification.getReportFile(1000000);
+        expect(response).toEqual(rawResponseBody);
     });
-          
 });

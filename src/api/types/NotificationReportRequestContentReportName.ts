@@ -2,9 +2,10 @@
 
 /** The kind of report to generate. */
 export const NotificationReportRequestContentReportName = {
-        Transaction: "Transaction",
-        Settlement: "Settlement",
-        Boarding: "Boarding",
-        Returned: "Returned"
-    } as const;
-export type NotificationReportRequestContentReportName = typeof NotificationReportRequestContentReportName[keyof typeof NotificationReportRequestContentReportName];
+    Transaction: "Transaction",
+    Settlement: "Settlement",
+    Boarding: "Boarding",
+    Returned: "Returned",
+} as const;
+export type NotificationReportRequestContentReportName =
+    (typeof NotificationReportRequestContentReportName)[keyof typeof NotificationReportRequestContentReportName];

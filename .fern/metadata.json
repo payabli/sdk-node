@@ -1,18 +1,19 @@
 {
-  "cliVersion": "5.56.0",
-  "generatorName": "fernapi/fern-typescript-node-sdk",
-  "generatorVersion": "3.75.1",
-  "generatorConfig": {
-    "namespaceExport": "Payabli",
-    "noSerdeLayer": true,
-    "inlinePathParameters": false,
-    "flattenRequestParameters": true,
-    "enableInlineTypes": true
-  },
-  "originGitCommit": "bba6b6215757725a8aada77eabcb84166221f24e",
-  "originGitCommitIsDirty": true,
-  "invokedBy": "ci",
-  "requestedVersion": "1.0.7",
-  "ciProvider": "github",
-  "sdkVersion": "1.0.7"
+    "cliVersion": "5.56.0",
+    "generatorName": "fernapi/fern-typescript-node-sdk",
+    "generatorVersion": "3.83.2",
+    "generatorConfig": {
+        "namespaceExport": "Payabli",
+        "noSerdeLayer": true,
+        "inlinePathParameters": false,
+        "flattenRequestParameters": true,
+        "enableInlineTypes": true,
+        "generateWireTests": false
+    },
+    "originGitCommit": "7c2bff41e6b83cd69ef466e00bf075eb4f58fdb1",
+    "originGitCommitIsDirty": true,
+    "invokedBy": "ci",
+    "requestedVersion": "1.0.8",
+    "ciProvider": "github",
+    "sdkVersion": "1.0.8"
 }

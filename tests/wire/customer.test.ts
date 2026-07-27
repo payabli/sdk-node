@@ -3,620 +3,893 @@
 import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
-import { mockBearerAuth } from "./mockAuth";
 
 describe("CustomerClient", () => {
-    
     test("AddCustomer (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            customerNumber: "C-90010",
+            firstname: "Irene",
+            lastname: "Canizales",
+            address1: "123 Bishop's Trail",
+            city: "Mountain City",
+            state: "TN",
+            zip: "37612",
+            country: "US",
+            email: "irene@canizalesconcrete.com",
+            identifierFields: ["email"],
+            timeZone: -5,
+        };
+        const rawResponseBody = {
+            isSuccess: true,
+            responseData: {
+                customerId: 4440,
+                customerNumber: "C-90010",
+                customerStatus: 0,
+                Firstname: "Irene",
+                Lastname: "Canizales",
+                Email: "irene@canizalesconcrete.com",
+                Address1: "123 Bishop's Trail",
+                City: "Mountain City",
+                State: "TN",
+                Zip: "37612",
+                Country: "US",
+                Balance: 0,
+                TimeZone: -5,
+                MFA: false,
+                MFAMode: 0,
+                LastUpdated: "2024-03-13T12:49:56Z",
+                Created: "2024-03-13T12:49:56Z",
+                AdditionalFields: { key: "value" },
+                IdentifierFields: ["email"],
+                customerSummary: {
+                    NumberofTransactions: 30,
+                    RecentTransactions: [
+                        {
+                            EntrypageId: 0,
+                            FeeAmount: 1,
+                            PayorId: 1551,
+                            PaypointId: 3040,
+                            SettlementStatus: 2,
+                            splitCount: 0,
+                            TotalAmount: 30.22,
+                            TransStatus: 1,
+                        },
+                    ],
+                    TotalAmountTransactions: 1500,
+                    TotalNetAmountTransactions: 1500,
+                },
+                PaypointLegalname: "Gruzya Adventure Outfitters, LLC",
+                PaypointDbaname: "Gruzya Adventure Outfitters",
+                ParentOrgName: "The Pilgrim Planner",
+                ParentOrgId: 123,
+                PaypointEntryname: "41035afaa7",
+                pageidentifier: "null",
+            },
+            responseText: "Success",
+        };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "customerNumber" : "C-90010" , "firstname" : "Irene" , "lastname" : "Canizales" , "address1" : "123 Bishop's Trail" , "city" : "Mountain City" , "state" : "TN" , "zip" : "37612" , "country" : "US" , "email" : "irene@canizalesconcrete.com" , "identifierFields" : [ "email" ] , "timeZone" : -5 };
-        const rawResponseBody = { "isSuccess" : true , "responseData" : { "customerId" : 4440 , "customerNumber" : "C-90010" , "customerStatus" : 0 , "Firstname" : "Irene" , "Lastname" : "Canizales" , "Email" : "irene@canizalesconcrete.com" , "Address1" : "123 Bishop's Trail" , "City" : "Mountain City" , "State" : "TN" , "Zip" : "37612" , "Country" : "US" , "Balance" : 0 , "TimeZone" : -5 , "MFA" : false , "MFAMode" : 0 , "LastUpdated" : "2024-03-13T12:49:56Z" , "Created" : "2024-03-13T12:49:56Z" , "AdditionalFields" : { "key" : "value" } , "IdentifierFields" : [ "email" ] , "customerSummary" : { "NumberofTransactions" : 30 , "RecentTransactions" : [ { "EntrypageId" : 0 , "FeeAmount" : 1 , "PayorId" : 1551 , "PaypointId" : 3040 , "SettlementStatus" : 2 , "splitCount" : 0 , "TotalAmount" : 30.22 , "TransStatus" : 1 } ] , "TotalAmountTransactions" : 1500 , "TotalNetAmountTransactions" : 1500 } , "PaypointLegalname" : "Gruzya Adventure Outfitters, LLC" , "PaypointDbaname" : "Gruzya Adventure Outfitters" , "ParentOrgName" : "The Pilgrim Planner" , "ParentOrgId" : 123 , "PaypointEntryname" : "41035afaa7" , "pageidentifier" : "null" } , "responseText" : "Success" };
-        
         server
             .mockEndpoint()
-            .post("/Customer/single/8cfec329267").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .post("/Customer/single/8cfec329267")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.customer.addCustomer("8cfec329267", {
-    customerNumber: "C-90010",
-    firstname: "Irene",
-    lastname: "Canizales",
-    address1: "123 Bishop's Trail",
-    city: "Mountain City",
-    state: "TN",
-    zip: "37612",
-    country: "US",
-    email: "irene@canizalesconcrete.com",
-    identifierFields: ["email"],
-    timeZone: -5
-});
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        const response = await client.customer.addCustomer("8cfec329267", {
+            customerNumber: "C-90010",
+            firstname: "Irene",
+            lastname: "Canizales",
+            address1: "123 Bishop's Trail",
+            city: "Mountain City",
+            state: "TN",
+            zip: "37612",
+            country: "US",
+            email: "irene@canizalesconcrete.com",
+            identifierFields: ["email"],
+            timeZone: -5,
+        });
+        expect(response).toEqual(rawResponseBody);
     });
-          
+
     test("AddCustomer (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "key" : "value" };
-        
         server
             .mockEndpoint()
-            .post("/Customer/single/entry").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(400).jsonBody(rawResponseBody)
-                .build();
+            .post("/Customer/single/entry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.customer.addCustomer("entry", {})
-            }).rejects.toThrow(Payabli.BadRequestError);
+        await expect(async () => {
+            return await client.customer.addCustomer("entry", {});
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
-          
+
     test("AddCustomer (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
         server
             .mockEndpoint()
-            .post("/Customer/single/entry").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(401).jsonBody(rawResponseBody)
-                .build();
+            .post("/Customer/single/entry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.customer.addCustomer("entry", {})
-            }).rejects.toThrow(Payabli.UnauthorizedError);
+        await expect(async () => {
+            return await client.customer.addCustomer("entry", {});
+        }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-          
+
     test("AddCustomer (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "key" : "value" };
-        
         server
             .mockEndpoint()
-            .post("/Customer/single/entry").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(500).jsonBody(rawResponseBody)
-                .build();
+            .post("/Customer/single/entry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.customer.addCustomer("entry", {})
-            }).rejects.toThrow(Payabli.InternalServerError);
+        await expect(async () => {
+            return await client.customer.addCustomer("entry", {});
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
-          
+
     test("AddCustomer (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
         server
             .mockEndpoint()
-            .post("/Customer/single/entry").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(503).jsonBody(rawResponseBody)
-                .build();
+            .post("/Customer/single/entry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.customer.addCustomer("entry", {})
-            }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        await expect(async () => {
+            return await client.customer.addCustomer("entry", {});
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-          
+
     test("GetCustomer (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "customerId" : 4440 , "customerNumber" : "C-90010" , "customerUsername" : "myusername" , "customerStatus" : 1 , "Company" : "AA LLC" , "Firstname" : "John" , "Lastname" : "Smith" , "Phone" : "1234567890" , "Email" : "example@email.com" , "Address" : "3245 Main St" , "Address1" : "STE 900" , "City" : "Miami" , "State" : "FL" , "Zip" : "77777" , "Country" : "US" , "ShippingAddress" : "123 Walnut St" , "ShippingAddress1" : "STE 900" , "ShippingCity" : "Johnson City" , "ShippingState" : "TN" , "ShippingZip" : "37619" , "ShippingCountry" : "US" , "Balance" : 1.1 , "TimeZone" : -5 , "MFA" : false , "MFAMode" : 0 , "snProvider" : "facebook" , "snIdentifier" : "6677fgttyudd999" , "snData" : "" , "LastUpdated" : "2021-06-16T05:00:00Z" , "Created" : "2021-06-10T05:00:00Z" , "AdditionalFields" : { "property1" : "string" , "property2" : "string" } , "IdentifierFields" : [ "email" ] , "Subscriptions" : [ { "CreatedAt" : "2022-07-01T15:00:01Z" , "EndDate" : "2025-10-19T00:00:00Z" , "EntrypageId" : 0 , "ExternalPaypointID" : "Paypoint-100" , "FeeAmount" : 3 , "Frequency" : "monthly" , "IdSub" : 396 , "LastRun" : "2025-10-19T00:00:00Z" , "LastUpdated" : "2022-07-01T15:00:01Z" , "LeftCycles" : 15 , "Method" : "card" , "NetAmount" : 3762.87 , "NextDate" : "2025-10-19T00:00:00Z" , "ParentOrgName" : "PropertyManager Pro" , "PaymentData" : { "paymentDetails" : { "totalAmount" : 100 } } , "PaypointDbaname" : "Sunshine Gutters" , "PaypointEntryname" : "d193cf9a46" , "PaypointId" : 3040 , "PaypointLegalname" : "Sunshine Services, LLC" , "PlanId" : 0 , "Source" : "api" , "StartDate" : "2025-10-19T00:00:00Z" , "SubEvents" : [ { "description" : "TransferCreated" , "eventTime" : "2023-07-05T22:31:06Z" } ] , "SubStatus" : 1 , "TotalAmount" : 103 , "TotalCycles" : 24 , "UntilCancelled" : true } ] , "StoredMethods" : [ { "IdPmethod" : "6edcbb56-9c0e-4003-b3d1-99abf149ba0e" , "Method" : "card" , "Descriptor" : "visa" , "MaskedAccount" : "4XXXXXXXX1111" , "ExpDate" : "1227" , "HolderName" : "Chad Mercia" , "BIN" : "411111" , "binData" : { "binMatchedLength" : "6" , "binCardBrand" : "Visa" , "binCardType" : "Credit" , "binCardCategory" : "PLATINUM" , "binCardIssuer" : "Bank of Example" , "binCardIssuerCountry" : "United States" , "binCardIssuerCountryCodeA2" : "US" , "binCardIssuerCountryNumber" : "840" , "binCardIsRegulated" : "false" , "binCardUseCategory" : "Consumer" , "binCardIssuerCountryCodeA3" : "USA" } , "LastUpdated" : "2022-07-01T15:00:01Z" } ] , "customerSummary" : { "NumberofTransactions" : 30 , "RecentTransactions" : [ { "EntrypageId" : 0 , "FeeAmount" : 1 , "PayorId" : 1551 , "PaypointId" : 3040 , "SettlementStatus" : 2 , "splitCount" : 0 , "TotalAmount" : 30.22 , "TransStatus" : 1 } ] , "TotalAmountTransactions" : 1500 , "TotalNetAmountTransactions" : 1500 } , "PaypointLegalname" : "Sunshine Services, LLC" , "PaypointDbaname" : "Sunshine Gutters" , "ParentOrgName" : "PropertyManager Pro" , "ParentOrgId" : 123 , "PaypointEntryname" : "d193cf9a46" , "pageidentifier" : "null" , "externalPaypointID" : "Paypoint-100" , "customerConsent" : { "eCommunication" : { "status" : 1 , "updatedAt" : "2022-07-01T15:00:01Z" } , "sms" : { "status" : 1 , "updatedAt" : "2022-07-01T15:00:01Z" } } };
-        
-        server
-            .mockEndpoint()
-            .get("/Customer/4440").respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+        const rawResponseBody = {
+            customerId: 4440,
+            customerNumber: "C-90010",
+            customerUsername: "myusername",
+            customerStatus: 1,
+            Company: "AA LLC",
+            Firstname: "John",
+            Lastname: "Smith",
+            Phone: "1234567890",
+            Email: "example@email.com",
+            Address: "3245 Main St",
+            Address1: "STE 900",
+            City: "Miami",
+            State: "FL",
+            Zip: "77777",
+            Country: "US",
+            ShippingAddress: "123 Walnut St",
+            ShippingAddress1: "STE 900",
+            ShippingCity: "Johnson City",
+            ShippingState: "TN",
+            ShippingZip: "37619",
+            ShippingCountry: "US",
+            Balance: 1.1,
+            TimeZone: -5,
+            MFA: false,
+            MFAMode: 0,
+            snProvider: "facebook",
+            snIdentifier: "6677fgttyudd999",
+            snData: "",
+            LastUpdated: "2021-06-16T05:00:00Z",
+            Created: "2021-06-10T05:00:00Z",
+            AdditionalFields: { property1: "string", property2: "string" },
+            IdentifierFields: ["email"],
+            Subscriptions: [
+                {
+                    CreatedAt: "2022-07-01T15:00:01Z",
+                    EndDate: "2025-10-19T00:00:00Z",
+                    EntrypageId: 0,
+                    ExternalPaypointID: "Paypoint-100",
+                    FeeAmount: 3,
+                    Frequency: "monthly",
+                    IdSub: 396,
+                    LastRun: "2025-10-19T00:00:00Z",
+                    LastUpdated: "2022-07-01T15:00:01Z",
+                    LeftCycles: 15,
+                    Method: "card",
+                    NetAmount: 3762.87,
+                    NextDate: "2025-10-19T00:00:00Z",
+                    ParentOrgName: "PropertyManager Pro",
+                    PaymentData: { paymentDetails: { totalAmount: 100 } },
+                    PaypointDbaname: "Sunshine Gutters",
+                    PaypointEntryname: "d193cf9a46",
+                    PaypointId: 3040,
+                    PaypointLegalname: "Sunshine Services, LLC",
+                    PlanId: 0,
+                    Source: "api",
+                    StartDate: "2025-10-19T00:00:00Z",
+                    SubEvents: [{ description: "TransferCreated", eventTime: "2023-07-05T22:31:06Z" }],
+                    SubStatus: 1,
+                    TotalAmount: 103,
+                    TotalCycles: 24,
+                    UntilCancelled: true,
+                },
+            ],
+            StoredMethods: [
+                {
+                    IdPmethod: "6edcbb56-9c0e-4003-b3d1-99abf149ba0e",
+                    Method: "card",
+                    Descriptor: "visa",
+                    MaskedAccount: "4XXXXXXXX1111",
+                    ExpDate: "1227",
+                    HolderName: "Chad Mercia",
+                    BIN: "411111",
+                    binData: {
+                        binMatchedLength: "6",
+                        binCardBrand: "Visa",
+                        binCardType: "Credit",
+                        binCardCategory: "PLATINUM",
+                        binCardIssuer: "Bank of Example",
+                        binCardIssuerCountry: "United States",
+                        binCardIssuerCountryCodeA2: "US",
+                        binCardIssuerCountryNumber: "840",
+                        binCardIsRegulated: "false",
+                        binCardUseCategory: "Consumer",
+                        binCardIssuerCountryCodeA3: "USA",
+                    },
+                    LastUpdated: "2022-07-01T15:00:01Z",
+                },
+            ],
+            customerSummary: {
+                NumberofTransactions: 30,
+                RecentTransactions: [
+                    {
+                        EntrypageId: 0,
+                        FeeAmount: 1,
+                        PayorId: 1551,
+                        PaypointId: 3040,
+                        SettlementStatus: 2,
+                        splitCount: 0,
+                        TotalAmount: 30.22,
+                        TransStatus: 1,
+                    },
+                ],
+                TotalAmountTransactions: 1500,
+                TotalNetAmountTransactions: 1500,
+            },
+            PaypointLegalname: "Sunshine Services, LLC",
+            PaypointDbaname: "Sunshine Gutters",
+            ParentOrgName: "PropertyManager Pro",
+            ParentOrgId: 123,
+            PaypointEntryname: "d193cf9a46",
+            pageidentifier: "null",
+            externalPaypointID: "Paypoint-100",
+            customerConsent: {
+                eCommunication: { status: 1, updatedAt: "2022-07-01T15:00:01Z" },
+                sms: { status: 1, updatedAt: "2022-07-01T15:00:01Z" },
+            },
+        };
 
-        
-                        
-                                const response = await client.customer.getCustomer(4440);
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        server.mockEndpoint().get("/Customer/4440").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const response = await client.customer.getCustomer(4440);
+        expect(response).toEqual(rawResponseBody);
     });
-          
+
     test("GetCustomer (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
-        server
-            .mockEndpoint()
-            .get("/Customer/1").respondWith()
-            .statusCode(400).jsonBody(rawResponseBody)
-                .build();
+        const rawResponseBody = { key: "value" };
 
-        
-            await expect(async () => {
-                return await client.customer.getCustomer(1)
-            }).rejects.toThrow(Payabli.BadRequestError);
+        server.mockEndpoint().get("/Customer/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.customer.getCustomer(1);
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
-          
+
     test("GetCustomer (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
-        server
-            .mockEndpoint()
-            .get("/Customer/1").respondWith()
-            .statusCode(401).jsonBody(rawResponseBody)
-                .build();
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        
-            await expect(async () => {
-                return await client.customer.getCustomer(1)
-            }).rejects.toThrow(Payabli.UnauthorizedError);
+        server.mockEndpoint().get("/Customer/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.customer.getCustomer(1);
+        }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-          
+
     test("GetCustomer (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
-        server
-            .mockEndpoint()
-            .get("/Customer/1").respondWith()
-            .statusCode(500).jsonBody(rawResponseBody)
-                .build();
+        const rawResponseBody = { key: "value" };
 
-        
-            await expect(async () => {
-                return await client.customer.getCustomer(1)
-            }).rejects.toThrow(Payabli.InternalServerError);
+        server.mockEndpoint().get("/Customer/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.customer.getCustomer(1);
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
-          
+
     test("GetCustomer (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
-        server
-            .mockEndpoint()
-            .get("/Customer/1").respondWith()
-            .statusCode(503).jsonBody(rawResponseBody)
-                .build();
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        
-            await expect(async () => {
-                return await client.customer.getCustomer(1)
-            }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        server.mockEndpoint().get("/Customer/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.customer.getCustomer(1);
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-          
+
     test("UpdateCustomer (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            firstname: "Irene",
+            lastname: "Canizales",
+            address1: "145 Bishop's Trail",
+            city: "Mountain City",
+            state: "TN",
+            zip: "37612",
+            country: "US",
+        };
+        const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: " ", responseText: "Success" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "firstname" : "Irene" , "lastname" : "Canizales" , "address1" : "145 Bishop's Trail" , "city" : "Mountain City" , "state" : "TN" , "zip" : "37612" , "country" : "US" };
-        const rawResponseBody = { "isSuccess" : true , "responseCode" : 1 , "responseData" : " " , "responseText" : "Success" };
-        
         server
             .mockEndpoint()
-            .put("/Customer/4440").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .put("/Customer/4440")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.customer.updateCustomer(4440, {
-    firstname: "Irene",
-    lastname: "Canizales",
-    address1: "145 Bishop's Trail",
-    city: "Mountain City",
-    state: "TN",
-    zip: "37612",
-    country: "US"
-});
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        const response = await client.customer.updateCustomer(4440, {
+            firstname: "Irene",
+            lastname: "Canizales",
+            address1: "145 Bishop's Trail",
+            city: "Mountain City",
+            state: "TN",
+            zip: "37612",
+            country: "US",
+        });
+        expect(response).toEqual(rawResponseBody);
     });
-          
+
     test("UpdateCustomer (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "key" : "value" };
-        
         server
             .mockEndpoint()
-            .put("/Customer/1").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(400).jsonBody(rawResponseBody)
-                .build();
+            .put("/Customer/1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.customer.updateCustomer(1, {})
-            }).rejects.toThrow(Payabli.BadRequestError);
+        await expect(async () => {
+            return await client.customer.updateCustomer(1, {});
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
-          
+
     test("UpdateCustomer (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
         server
             .mockEndpoint()
-            .put("/Customer/1").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(401).jsonBody(rawResponseBody)
-                .build();
+            .put("/Customer/1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.customer.updateCustomer(1, {})
-            }).rejects.toThrow(Payabli.UnauthorizedError);
+        await expect(async () => {
+            return await client.customer.updateCustomer(1, {});
+        }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-          
+
     test("UpdateCustomer (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "key" : "value" };
-        
         server
             .mockEndpoint()
-            .put("/Customer/1").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(500).jsonBody(rawResponseBody)
-                .build();
+            .put("/Customer/1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.customer.updateCustomer(1, {})
-            }).rejects.toThrow(Payabli.InternalServerError);
+        await expect(async () => {
+            return await client.customer.updateCustomer(1, {});
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
-          
+
     test("UpdateCustomer (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {};
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { };
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
         server
             .mockEndpoint()
-            .put("/Customer/1").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(503).jsonBody(rawResponseBody)
-                .build();
+            .put("/Customer/1")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.customer.updateCustomer(1, {})
-            }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        await expect(async () => {
+            return await client.customer.updateCustomer(1, {});
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-          
+
     test("DeleteCustomer (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "responseCode" : 1 , "isSuccess" : true , "pageIdentifier" : "null" , "roomId" : 0 , "responseData" : " " , "responseText" : "Success" };
-        
-        server
-            .mockEndpoint()
-            .delete("/Customer/4440").respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+        const rawResponseBody = {
+            responseCode: 1,
+            isSuccess: true,
+            pageIdentifier: "null",
+            roomId: 0,
+            responseData: " ",
+            responseText: "Success",
+        };
 
-        
-                        
-                                const response = await client.customer.deleteCustomer(4440);
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        server.mockEndpoint().delete("/Customer/4440").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const response = await client.customer.deleteCustomer(4440);
+        expect(response).toEqual(rawResponseBody);
     });
-          
+
     test("DeleteCustomer (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
-        server
-            .mockEndpoint()
-            .delete("/Customer/1").respondWith()
-            .statusCode(400).jsonBody(rawResponseBody)
-                .build();
+        const rawResponseBody = { key: "value" };
 
-        
-            await expect(async () => {
-                return await client.customer.deleteCustomer(1)
-            }).rejects.toThrow(Payabli.BadRequestError);
+        server.mockEndpoint().delete("/Customer/1").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.customer.deleteCustomer(1);
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
-          
+
     test("DeleteCustomer (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
-        server
-            .mockEndpoint()
-            .delete("/Customer/1").respondWith()
-            .statusCode(401).jsonBody(rawResponseBody)
-                .build();
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        
-            await expect(async () => {
-                return await client.customer.deleteCustomer(1)
-            }).rejects.toThrow(Payabli.UnauthorizedError);
+        server.mockEndpoint().delete("/Customer/1").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.customer.deleteCustomer(1);
+        }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-          
+
     test("DeleteCustomer (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
-        server
-            .mockEndpoint()
-            .delete("/Customer/1").respondWith()
-            .statusCode(500).jsonBody(rawResponseBody)
-                .build();
+        const rawResponseBody = { key: "value" };
 
-        
-            await expect(async () => {
-                return await client.customer.deleteCustomer(1)
-            }).rejects.toThrow(Payabli.InternalServerError);
+        server.mockEndpoint().delete("/Customer/1").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.customer.deleteCustomer(1);
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
-          
+
     test("DeleteCustomer (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
-        server
-            .mockEndpoint()
-            .delete("/Customer/1").respondWith()
-            .statusCode(503).jsonBody(rawResponseBody)
-                .build();
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        
-            await expect(async () => {
-                return await client.customer.deleteCustomer(1)
-            }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        server.mockEndpoint().delete("/Customer/1").respondWith().statusCode(503).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.customer.deleteCustomer(1);
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-          
+
     test("RequestConsent (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "pageIdentifier" : "null" , "responseCode" : 1 , "responseData" : " " , "responseText" : "Success" };
-        
+        const rawResponseBody = {
+            isSuccess: true,
+            pageIdentifier: "null",
+            responseCode: 1,
+            responseData: " ",
+            responseText: "Success",
+        };
+
         server
             .mockEndpoint()
-            .post("/Customer/4440/consent").respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .post("/Customer/4440/consent")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.customer.requestConsent(4440);
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        const response = await client.customer.requestConsent(4440);
+        expect(response).toEqual(rawResponseBody);
     });
-          
+
     test("RequestConsent (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
+        const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
-            .post("/Customer/1/consent").respondWith()
-            .statusCode(400).jsonBody(rawResponseBody)
-                .build();
+            .post("/Customer/1/consent")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.customer.requestConsent(1)
-            }).rejects.toThrow(Payabli.BadRequestError);
+        await expect(async () => {
+            return await client.customer.requestConsent(1);
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
-          
+
     test("RequestConsent (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
         server
             .mockEndpoint()
-            .post("/Customer/1/consent").respondWith()
-            .statusCode(401).jsonBody(rawResponseBody)
-                .build();
+            .post("/Customer/1/consent")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.customer.requestConsent(1)
-            }).rejects.toThrow(Payabli.UnauthorizedError);
+        await expect(async () => {
+            return await client.customer.requestConsent(1);
+        }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-          
+
     test("RequestConsent (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
+        const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
-            .post("/Customer/1/consent").respondWith()
-            .statusCode(500).jsonBody(rawResponseBody)
-                .build();
+            .post("/Customer/1/consent")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.customer.requestConsent(1)
-            }).rejects.toThrow(Payabli.InternalServerError);
+        await expect(async () => {
+            return await client.customer.requestConsent(1);
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
-          
+
     test("RequestConsent (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
         server
             .mockEndpoint()
-            .post("/Customer/1/consent").respondWith()
-            .statusCode(503).jsonBody(rawResponseBody)
-                .build();
+            .post("/Customer/1/consent")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.customer.requestConsent(1)
-            }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        await expect(async () => {
+            return await client.customer.requestConsent(1);
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-          
+
     test("LinkCustomerTransaction (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "responseCode" : 1 , "pageIdentifier" : "null" , "roomId" : 0 , "isSuccess" : true , "responseText" : "Success" , "responseData" : " " };
-        
+        const rawResponseBody = {
+            responseCode: 1,
+            pageIdentifier: "null",
+            roomId: 0,
+            isSuccess: true,
+            responseText: "Success",
+            responseData: " ",
+        };
+
         server
             .mockEndpoint()
-            .get("/Customer/link/4440/45-as456777hhhhhhhhhh77777777-324").respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .get("/Customer/link/4440/45-as456777hhhhhhhhhh77777777-324")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.customer.linkCustomerTransaction(4440, "45-as456777hhhhhhhhhh77777777-324");
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        const response = await client.customer.linkCustomerTransaction(4440, "45-as456777hhhhhhhhhh77777777-324");
+        expect(response).toEqual(rawResponseBody);
     });
-          
+
     test("LinkCustomerTransaction (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
+        const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
-            .get("/Customer/link/1/transId").respondWith()
-            .statusCode(400).jsonBody(rawResponseBody)
-                .build();
+            .get("/Customer/link/1/transId")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.customer.linkCustomerTransaction(1, "transId")
-            }).rejects.toThrow(Payabli.BadRequestError);
+        await expect(async () => {
+            return await client.customer.linkCustomerTransaction(1, "transId");
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
-          
+
     test("LinkCustomerTransaction (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
         server
             .mockEndpoint()
-            .get("/Customer/link/1/transId").respondWith()
-            .statusCode(401).jsonBody(rawResponseBody)
-                .build();
+            .get("/Customer/link/1/transId")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.customer.linkCustomerTransaction(1, "transId")
-            }).rejects.toThrow(Payabli.UnauthorizedError);
+        await expect(async () => {
+            return await client.customer.linkCustomerTransaction(1, "transId");
+        }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-          
+
     test("LinkCustomerTransaction (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
+        const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
-            .get("/Customer/link/1/transId").respondWith()
-            .statusCode(500).jsonBody(rawResponseBody)
-                .build();
+            .get("/Customer/link/1/transId")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.customer.linkCustomerTransaction(1, "transId")
-            }).rejects.toThrow(Payabli.InternalServerError);
+        await expect(async () => {
+            return await client.customer.linkCustomerTransaction(1, "transId");
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
-          
+
     test("LinkCustomerTransaction (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
         server
             .mockEndpoint()
-            .get("/Customer/link/1/transId").respondWith()
-            .statusCode(503).jsonBody(rawResponseBody)
-                .build();
+            .get("/Customer/link/1/transId")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.customer.linkCustomerTransaction(1, "transId")
-            }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        await expect(async () => {
+            return await client.customer.linkCustomerTransaction(1, "transId");
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-          
 });

@@ -2,9 +2,9 @@
 
 /** The status to set on the card. Not all transitions are valid: `Active` can change to `Inactive`, `Cancelled`, or `Expired`. `Inactive` can change to `Active`. `Expired` can change to `Active` (renews the card). `Cancelled` is terminal and can't be changed. */
 export const CardStatus = {
-        Active: "Active",
-        Inactive: "Inactive",
-        Cancelled: "Cancelled",
-        Expired: "Expired"
-    } as const;
-export type CardStatus = typeof CardStatus[keyof typeof CardStatus];
+    Active: "Active",
+    Inactive: "Inactive",
+    Cancelled: "Cancelled",
+    Expired: "Expired",
+} as const;
+export type CardStatus = (typeof CardStatus)[keyof typeof CardStatus];

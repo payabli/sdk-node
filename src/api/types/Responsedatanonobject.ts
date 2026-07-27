@@ -3,6 +3,4 @@
 /**
  * The response data.
  */
-export type Responsedatanonobject = 
-    | string
-    | number;
+export type Responsedatanonobject = string | number;

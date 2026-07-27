@@ -3,287 +3,396 @@
 import * as Payabli from "../../src/api/index";
 import { PayabliClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
-import { mockBearerAuth } from "./mockAuth";
 
 describe("GhostCardClient", () => {
-    
     test("CreateGhostCard (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            vendorId: 456,
+            expenseLimit: 500,
+            amount: 500,
+            maxNumberOfUses: 3,
+            exactAmount: false,
+            expenseLimitPeriod: "monthly",
+            billingCycle: "monthly",
+            billingCycleDay: "1",
+            dailyTransactionCount: 5,
+            dailyAmountLimit: 200,
+            transactionAmountLimit: 100,
+            mcc: "5411",
+            tcc: "R",
+            misc1: "PO-98765",
+            misc2: "Dept-Finance",
+        };
+        const rawResponseBody = {
+            isSuccess: true,
+            responseText: "Success",
+            responseData: { ReferenceId: "129-219", ResultCode: 1, ResultText: "Ghost Card created" },
+        };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "vendorId" : 456 , "expenseLimit" : 500 , "amount" : 500 , "maxNumberOfUses" : 3 , "exactAmount" : false , "expenseLimitPeriod" : "monthly" , "billingCycle" : "monthly" , "billingCycleDay" : "1" , "dailyTransactionCount" : 5 , "dailyAmountLimit" : 200 , "transactionAmountLimit" : 100 , "mcc" : "5411" , "tcc" : "R" , "misc1" : "PO-98765" , "misc2" : "Dept-Finance" };
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "Success" , "responseData" : { "ReferenceId" : "129-219" , "ResultCode" : 1 , "ResultText" : "Ghost Card created" } };
-        
         server
             .mockEndpoint()
-            .post("/MoneyOutCard/GhostCard/8cfec329267").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .post("/MoneyOutCard/GhostCard/8cfec329267")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.ghostCard.createGhostCard("8cfec329267", {
-    vendorId: 456,
-    expenseLimit: 500,
-    amount: 500,
-    maxNumberOfUses: 3,
-    exactAmount: false,
-    expenseLimitPeriod: "monthly",
-    billingCycle: "monthly",
-    billingCycleDay: "1",
-    dailyTransactionCount: 5,
-    dailyAmountLimit: 200,
-    transactionAmountLimit: 100,
-    mcc: "5411",
-    tcc: "R",
-    misc1: "PO-98765",
-    misc2: "Dept-Finance"
-});
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        const response = await client.ghostCard.createGhostCard("8cfec329267", {
+            vendorId: 456,
+            expenseLimit: 500,
+            amount: 500,
+            maxNumberOfUses: 3,
+            exactAmount: false,
+            expenseLimitPeriod: "monthly",
+            billingCycle: "monthly",
+            billingCycleDay: "1",
+            dailyTransactionCount: 5,
+            dailyAmountLimit: 200,
+            transactionAmountLimit: 100,
+            mcc: "5411",
+            tcc: "R",
+            misc1: "PO-98765",
+            misc2: "Dept-Finance",
+        });
+        expect(response).toEqual(rawResponseBody);
     });
-          
+
     test("CreateGhostCard (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            vendorId: 1000000,
+            expenseLimit: 1.1,
+            amount: 1.1,
+            maxNumberOfUses: 1,
+            exactAmount: true,
+            expenseLimitPeriod: "expenseLimitPeriod",
+            billingCycle: "billingCycle",
+            billingCycleDay: "billingCycleDay",
+            dailyTransactionCount: 1,
+            dailyAmountLimit: 1.1,
+            transactionAmountLimit: 1,
+        };
+        const rawResponseBody = { key: "value" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "vendorId" : 1000000 , "expenseLimit" : 1.1 , "amount" : 1.1 , "maxNumberOfUses" : 1 , "exactAmount" : true , "expenseLimitPeriod" : "expenseLimitPeriod" , "billingCycle" : "billingCycle" , "billingCycleDay" : "billingCycleDay" , "dailyTransactionCount" : 1 , "dailyAmountLimit" : 1.1 , "transactionAmountLimit" : 1 };
-        const rawResponseBody = { "key" : "value" };
-        
         server
             .mockEndpoint()
-            .post("/MoneyOutCard/GhostCard/entry").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(400).jsonBody(rawResponseBody)
-                .build();
+            .post("/MoneyOutCard/GhostCard/entry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.ghostCard.createGhostCard("entry", {
-    vendorId: 1000000,
-    expenseLimit: 1.1,
-    amount: 1.1,
-    maxNumberOfUses: 1,
-    exactAmount: true,
-    expenseLimitPeriod: "expenseLimitPeriod",
-    billingCycle: "billingCycle",
-    billingCycleDay: "billingCycleDay",
-    dailyTransactionCount: 1,
-    dailyAmountLimit: 1.1,
-    transactionAmountLimit: 1
-})
-            }).rejects.toThrow(Payabli.BadRequestError);
+        await expect(async () => {
+            return await client.ghostCard.createGhostCard("entry", {
+                vendorId: 1000000,
+                expenseLimit: 1.1,
+                amount: 1.1,
+                maxNumberOfUses: 1,
+                exactAmount: true,
+                expenseLimitPeriod: "expenseLimitPeriod",
+                billingCycle: "billingCycle",
+                billingCycleDay: "billingCycleDay",
+                dailyTransactionCount: 1,
+                dailyAmountLimit: 1.1,
+                transactionAmountLimit: 1,
+            });
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
-          
+
     test("CreateGhostCard (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            vendorId: 1000000,
+            expenseLimit: 1.1,
+            amount: 1.1,
+            maxNumberOfUses: 1,
+            exactAmount: true,
+            expenseLimitPeriod: "expenseLimitPeriod",
+            billingCycle: "billingCycle",
+            billingCycleDay: "billingCycleDay",
+            dailyTransactionCount: 1,
+            dailyAmountLimit: 1.1,
+            transactionAmountLimit: 1,
+        };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "vendorId" : 1000000 , "expenseLimit" : 1.1 , "amount" : 1.1 , "maxNumberOfUses" : 1 , "exactAmount" : true , "expenseLimitPeriod" : "expenseLimitPeriod" , "billingCycle" : "billingCycle" , "billingCycleDay" : "billingCycleDay" , "dailyTransactionCount" : 1 , "dailyAmountLimit" : 1.1 , "transactionAmountLimit" : 1 };
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
         server
             .mockEndpoint()
-            .post("/MoneyOutCard/GhostCard/entry").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(401).jsonBody(rawResponseBody)
-                .build();
+            .post("/MoneyOutCard/GhostCard/entry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.ghostCard.createGhostCard("entry", {
-    vendorId: 1000000,
-    expenseLimit: 1.1,
-    amount: 1.1,
-    maxNumberOfUses: 1,
-    exactAmount: true,
-    expenseLimitPeriod: "expenseLimitPeriod",
-    billingCycle: "billingCycle",
-    billingCycleDay: "billingCycleDay",
-    dailyTransactionCount: 1,
-    dailyAmountLimit: 1.1,
-    transactionAmountLimit: 1
-})
-            }).rejects.toThrow(Payabli.UnauthorizedError);
+        await expect(async () => {
+            return await client.ghostCard.createGhostCard("entry", {
+                vendorId: 1000000,
+                expenseLimit: 1.1,
+                amount: 1.1,
+                maxNumberOfUses: 1,
+                exactAmount: true,
+                expenseLimitPeriod: "expenseLimitPeriod",
+                billingCycle: "billingCycle",
+                billingCycleDay: "billingCycleDay",
+                dailyTransactionCount: 1,
+                dailyAmountLimit: 1.1,
+                transactionAmountLimit: 1,
+            });
+        }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-          
+
     test("CreateGhostCard (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            vendorId: 1000000,
+            expenseLimit: 1.1,
+            amount: 1.1,
+            maxNumberOfUses: 1,
+            exactAmount: true,
+            expenseLimitPeriod: "expenseLimitPeriod",
+            billingCycle: "billingCycle",
+            billingCycleDay: "billingCycleDay",
+            dailyTransactionCount: 1,
+            dailyAmountLimit: 1.1,
+            transactionAmountLimit: 1,
+        };
+        const rawResponseBody = { key: "value" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "vendorId" : 1000000 , "expenseLimit" : 1.1 , "amount" : 1.1 , "maxNumberOfUses" : 1 , "exactAmount" : true , "expenseLimitPeriod" : "expenseLimitPeriod" , "billingCycle" : "billingCycle" , "billingCycleDay" : "billingCycleDay" , "dailyTransactionCount" : 1 , "dailyAmountLimit" : 1.1 , "transactionAmountLimit" : 1 };
-        const rawResponseBody = { "key" : "value" };
-        
         server
             .mockEndpoint()
-            .post("/MoneyOutCard/GhostCard/entry").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(500).jsonBody(rawResponseBody)
-                .build();
+            .post("/MoneyOutCard/GhostCard/entry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.ghostCard.createGhostCard("entry", {
-    vendorId: 1000000,
-    expenseLimit: 1.1,
-    amount: 1.1,
-    maxNumberOfUses: 1,
-    exactAmount: true,
-    expenseLimitPeriod: "expenseLimitPeriod",
-    billingCycle: "billingCycle",
-    billingCycleDay: "billingCycleDay",
-    dailyTransactionCount: 1,
-    dailyAmountLimit: 1.1,
-    transactionAmountLimit: 1
-})
-            }).rejects.toThrow(Payabli.InternalServerError);
+        await expect(async () => {
+            return await client.ghostCard.createGhostCard("entry", {
+                vendorId: 1000000,
+                expenseLimit: 1.1,
+                amount: 1.1,
+                maxNumberOfUses: 1,
+                exactAmount: true,
+                expenseLimitPeriod: "expenseLimitPeriod",
+                billingCycle: "billingCycle",
+                billingCycleDay: "billingCycleDay",
+                dailyTransactionCount: 1,
+                dailyAmountLimit: 1.1,
+                transactionAmountLimit: 1,
+            });
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
-          
+
     test("CreateGhostCard (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            vendorId: 1000000,
+            expenseLimit: 1.1,
+            amount: 1.1,
+            maxNumberOfUses: 1,
+            exactAmount: true,
+            expenseLimitPeriod: "expenseLimitPeriod",
+            billingCycle: "billingCycle",
+            billingCycleDay: "billingCycleDay",
+            dailyTransactionCount: 1,
+            dailyAmountLimit: 1.1,
+            transactionAmountLimit: 1,
+        };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "vendorId" : 1000000 , "expenseLimit" : 1.1 , "amount" : 1.1 , "maxNumberOfUses" : 1 , "exactAmount" : true , "expenseLimitPeriod" : "expenseLimitPeriod" , "billingCycle" : "billingCycle" , "billingCycleDay" : "billingCycleDay" , "dailyTransactionCount" : 1 , "dailyAmountLimit" : 1.1 , "transactionAmountLimit" : 1 };
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
         server
             .mockEndpoint()
-            .post("/MoneyOutCard/GhostCard/entry").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(503).jsonBody(rawResponseBody)
-                .build();
+            .post("/MoneyOutCard/GhostCard/entry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.ghostCard.createGhostCard("entry", {
-    vendorId: 1000000,
-    expenseLimit: 1.1,
-    amount: 1.1,
-    maxNumberOfUses: 1,
-    exactAmount: true,
-    expenseLimitPeriod: "expenseLimitPeriod",
-    billingCycle: "billingCycle",
-    billingCycleDay: "billingCycleDay",
-    dailyTransactionCount: 1,
-    dailyAmountLimit: 1.1,
-    transactionAmountLimit: 1
-})
-            }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        await expect(async () => {
+            return await client.ghostCard.createGhostCard("entry", {
+                vendorId: 1000000,
+                expenseLimit: 1.1,
+                amount: 1.1,
+                maxNumberOfUses: 1,
+                exactAmount: true,
+                expenseLimitPeriod: "expenseLimitPeriod",
+                billingCycle: "billingCycle",
+                billingCycleDay: "billingCycleDay",
+                dailyTransactionCount: 1,
+                dailyAmountLimit: 1.1,
+                transactionAmountLimit: 1,
+            });
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-          
+
     test("UpdateCard (1)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { cardToken: "gc_abc123def456", status: "Cancelled" };
+        const rawResponseBody = { isSuccess: true, responseText: "Success" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "cardToken" : "gc_abc123def456" , "status" : "Cancelled" };
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "Success" };
-        
         server
             .mockEndpoint()
-            .patch("/MoneyOutCard/card/8cfec329267").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .patch("/MoneyOutCard/card/8cfec329267")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.ghostCard.updateCard("8cfec329267", {
-    cardToken: "gc_abc123def456",
-    status: "Cancelled"
-});
-                                expect(response).toEqual(rawResponseBody);
-                              
-                    
+        const response = await client.ghostCard.updateCard("8cfec329267", {
+            cardToken: "gc_abc123def456",
+            status: "Cancelled",
+        });
+        expect(response).toEqual(rawResponseBody);
     });
-          
+
     test("UpdateCard (2)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { cardToken: "cardToken" };
+        const rawResponseBody = { key: "value" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "cardToken" : "cardToken" };
-        const rawResponseBody = { "key" : "value" };
-        
         server
             .mockEndpoint()
-            .patch("/MoneyOutCard/card/entry").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(400).jsonBody(rawResponseBody)
-                .build();
+            .patch("/MoneyOutCard/card/entry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.ghostCard.updateCard("entry", {
-    cardToken: "cardToken"
-})
-            }).rejects.toThrow(Payabli.BadRequestError);
+        await expect(async () => {
+            return await client.ghostCard.updateCard("entry", {
+                cardToken: "cardToken",
+            });
+        }).rejects.toThrow(Payabli.BadRequestError);
     });
-          
+
     test("UpdateCard (3)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { cardToken: "cardToken" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "cardToken" : "cardToken" };
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
         server
             .mockEndpoint()
-            .patch("/MoneyOutCard/card/entry").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(401).jsonBody(rawResponseBody)
-                .build();
+            .patch("/MoneyOutCard/card/entry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.ghostCard.updateCard("entry", {
-    cardToken: "cardToken"
-})
-            }).rejects.toThrow(Payabli.UnauthorizedError);
+        await expect(async () => {
+            return await client.ghostCard.updateCard("entry", {
+                cardToken: "cardToken",
+            });
+        }).rejects.toThrow(Payabli.UnauthorizedError);
     });
-          
+
     test("UpdateCard (4)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { cardToken: "cardToken" };
+        const rawResponseBody = { key: "value" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "cardToken" : "cardToken" };
-        const rawResponseBody = { "key" : "value" };
-        
         server
             .mockEndpoint()
-            .patch("/MoneyOutCard/card/entry").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(500).jsonBody(rawResponseBody)
-                .build();
+            .patch("/MoneyOutCard/card/entry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.ghostCard.updateCard("entry", {
-    cardToken: "cardToken"
-})
-            }).rejects.toThrow(Payabli.InternalServerError);
+        await expect(async () => {
+            return await client.ghostCard.updateCard("entry", {
+                cardToken: "cardToken",
+            });
+        }).rejects.toThrow(Payabli.InternalServerError);
     });
-          
+
     test("UpdateCard (5)", async () => {
-        const server = mockServerPool.createServer();mockBearerAuth(server);
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = { cardToken: "cardToken" };
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
-        const client = new PayabliClient({ "maxRetries" : 0 , "bearerAuth" : { "clientId" : "YOUR_CLIENT_ID" , "clientSecret" : "YOUR_CLIENT_SECRET" } , "apiKeyAuth" : { "apiKey" : "test" } , "environment" : server.baseUrl });
-        const rawRequestBody = { "cardToken" : "cardToken" };
-        const rawResponseBody = { "isSuccess" : true , "responseText" : "responseText" };
-        
         server
             .mockEndpoint()
-            .patch("/MoneyOutCard/card/entry").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(503).jsonBody(rawResponseBody)
-                .build();
+            .patch("/MoneyOutCard/card/entry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-            await expect(async () => {
-                return await client.ghostCard.updateCard("entry", {
-    cardToken: "cardToken"
-})
-            }).rejects.toThrow(Payabli.ServiceUnavailableError);
+        await expect(async () => {
+            return await client.ghostCard.updateCard("entry", {
+                cardToken: "cardToken",
+            });
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
-          
 });
