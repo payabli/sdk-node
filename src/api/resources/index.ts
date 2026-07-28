@@ -2,6 +2,8 @@ export * from "./bill/client/requests/index.js";
 export * as bill from "./bill/index.js";
 export * from "./boarding/client/requests/index.js";
 export * as boarding from "./boarding/index.js";
+export * from "./caseManagement/client/requests/index.js";
+export * as caseManagement from "./caseManagement/index.js";
 export * from "./chargeBacks/client/requests/index.js";
 export * as chargeBacks from "./chargeBacks/index.js";
 export * from "./checkCapture/client/requests/index.js";

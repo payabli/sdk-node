@@ -31,7 +31,7 @@ export class MoneyOutClient {
      *
      * If you don't pass `autoCapture` with a value of `true`, authorized transactions aren't flagged for settlement until captured. Use the `referenceId` returned in the response to capture the transaction.
      *
-     * When `autoCapture` is `true`, Payabli captures the transaction asynchronously after authorization. The response confirms only that the transaction was authorized; it doesn't confirm that capture succeeded. To confirm capture, listen for the [`payout_transaction_approvedcaptured`](/developers/api-reference/webhooks-overview/payout-transaction-approved-captured) webhook event.
+     * When `autoCapture` is `true`, Payabli captures the transaction asynchronously after authorization. The response confirms only that the transaction was authorized; it doesn't confirm that capture succeeded. To confirm capture, listen for the [`payout_transaction_approvedcaptured`](/developers/webhooks/payout-transaction-approved-captured) webhook event.
      *
      * If a velocity fraud alert is triggered, the endpoint returns a `202` response with `responseCode` `9051`, and the authorization is held for risk review rather than rejected. If a risk policy blocks the transaction, the endpoint returns a `422` response with `responseCode` `9005`, a terminal rejection.
      *
@@ -238,11 +238,19 @@ export class MoneyOutClient {
         requestOptions?: MoneyOutClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.AuthCapturePayoutResponse>> {
         const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
-        const { allowDuplicatedBills, doNotCreateBills, forceVendorCreation, idempotencyKey, ..._body } = request;
+        const {
+            allowDuplicatedBills,
+            doNotCreateBills,
+            forceVendorCreation,
+            sameDayACH: sameDayAch,
+            idempotencyKey,
+            ..._body
+        } = request;
         const _queryParams: Record<string, unknown> = {
             allowDuplicatedBills,
             doNotCreateBills,
             forceVendorCreation,
+            sameDayACH: sameDayAch,
         };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({
             endpointMetadata: _metadata,
@@ -614,7 +622,10 @@ export class MoneyOutClient {
         requestOptions?: MoneyOutClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.CaptureAllOutResponse>> {
         const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
-        const { idempotencyKey, body: _body } = request;
+        const { autoConvertSameDayAch, idempotencyKey, body: _body } = request;
+        const _queryParams: Record<string, unknown> = {
+            autoConvertSameDayAch,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({
             endpointMetadata: _metadata,
         });
@@ -634,7 +645,11 @@ export class MoneyOutClient {
             method: "POST",
             headers: _headers,
             contentType: "application/json",
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             requestType: "json",
             body: mergeAdditionalBodyParameters(_body, requestOptions?.additionalBodyParameters),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
@@ -710,7 +725,10 @@ export class MoneyOutClient {
         requestOptions?: MoneyOutClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.AuthCapturePayoutResponse>> {
         const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
-        const { idempotencyKey } = request;
+        const { autoConvertSameDayAch, idempotencyKey } = request;
+        const _queryParams: Record<string, unknown> = {
+            autoConvertSameDayAch,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({
             endpointMetadata: _metadata,
         });
@@ -729,7 +747,11 @@ export class MoneyOutClient {
             ),
             method: "GET",
             headers: _headers,
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,

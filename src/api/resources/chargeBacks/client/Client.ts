@@ -124,7 +124,7 @@ export class ChargeBacksClient {
     /**
      * Retrieves a chargeback record and its details.
      *
-     * @param {number} Id - ID of the chargeback or return record. This is returned as `chargebackID` in the [ReceivedChargeBack](/guides/pay-ops-webhooks-payloads#receivedchargeback) and [ReceivedAchReturn](/guides/pay-ops-webhooks-payloads#receivedachreturn) webhook notifications.
+     * @param {number} Id - ID of the chargeback or return record. This is returned as `chargebackID` in the [ReceivedChargeBack](/developers/webhooks/payops-chargeback-received) and [ReceivedAchReturn](/developers/webhooks/payops-ach-return-received) webhook notifications.
      * @param {ChargeBacksClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Payabli.BadRequestError}

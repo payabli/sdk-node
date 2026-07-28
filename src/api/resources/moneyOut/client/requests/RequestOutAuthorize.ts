@@ -188,6 +188,12 @@ export interface RequestOutAuthorize {
     doNotCreateBills?: boolean;
     /** When `true`, the request creates a new vendor record, regardless of whether the vendor already exists. */
     forceVendorCreation?: boolean;
+    /**
+     * When `true`, Payabli authorizes the payout for same-day ACH processing instead of standard ACH. Same-day ACH must be enabled for the paypoint, otherwise the authorization fails with a `400` response and `responseCode` `3492`. Only ACH payouts honor this flag. Wire and RTP payouts ignore it.
+     *
+     * Same-day ACH has a daily cutoff. Capture the transaction before the cutoff, or pass `autoConvertSameDayAch` with a value of `true` when you capture it.
+     */
+    sameDayACH?: boolean;
     /** _Optional but recommended_ A unique ID that you can include to prevent duplicating objects or transactions in the case that a request is sent more than once. This key isn't generated in Payabli, you must generate it yourself. This key persists for 2 minutes. After 2 minutes, you can reuse the key if needed. */
     idempotencyKey?: Payabli.IdempotencyKey;
     entryPoint: Payabli.Entrypointfield;

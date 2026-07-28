@@ -2,6 +2,7 @@
 
 import { BillClient } from "./api/resources/bill/client/Client.js";
 import { BoardingClient } from "./api/resources/boarding/client/Client.js";
+import { CaseManagementClient } from "./api/resources/caseManagement/client/Client.js";
 import { ChargeBacksClient } from "./api/resources/chargeBacks/client/Client.js";
 import { CheckCaptureClient } from "./api/resources/checkCapture/client/Client.js";
 import { CloudClient } from "./api/resources/cloud/client/Client.js";
@@ -78,6 +79,7 @@ export class PayabliClient {
     protected _wallet: WalletClient | undefined;
     protected _payoutSubscription: PayoutSubscriptionClient | undefined;
     protected _chargeBacks: ChargeBacksClient | undefined;
+    protected _caseManagement: CaseManagementClient | undefined;
 
     constructor(options: PayabliClient.Options = {}) {
         this._options = normalizeClientOptionsWithAuth(options);
@@ -213,6 +215,10 @@ export class PayabliClient {
 
     public get chargeBacks(): ChargeBacksClient {
         return (this._chargeBacks ??= new ChargeBacksClient(this._options));
+    }
+
+    public get caseManagement(): CaseManagementClient {
+        return (this._caseManagement ??= new CaseManagementClient(this._options));
     }
 
     /**

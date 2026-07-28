@@ -15939,7 +15939,7 @@ Create a new notification or auto-generated report.
 ```typescript
 await client.notification.addNotification({
     content: {
-        eventType: "CreatedApplication"
+        eventType: "createdapplication"
     },
     frequency: "untilcancelled",
     method: "web",
@@ -16075,7 +16075,7 @@ Update a notification or auto-generated report.
 ```typescript
 await client.notification.updateNotification("1717", {
     content: {
-        eventType: "ApprovedPayment"
+        eventType: "approvedpayment"
     },
     frequency: "untilcancelled",
     method: "email",
@@ -17764,7 +17764,7 @@ Authorizes a transaction for payout.
 
 If you don't pass `autoCapture` with a value of `true`, authorized transactions aren't flagged for settlement until captured. Use the `referenceId` returned in the response to capture the transaction.
 
-When `autoCapture` is `true`, Payabli captures the transaction asynchronously after authorization. The response confirms only that the transaction was authorized; it doesn't confirm that capture succeeded. To confirm capture, listen for the [`payout_transaction_approvedcaptured`](/developers/api-reference/webhooks-overview/payout-transaction-approved-captured) webhook event.
+When `autoCapture` is `true`, Payabli captures the transaction asynchronously after authorization. The response confirms only that the transaction was authorized; it doesn't confirm that capture succeeded. To confirm capture, listen for the [`payout_transaction_approvedcaptured`](/developers/webhooks/payout-transaction-approved-captured) webhook event.
 
 If a velocity fraud alert is triggered, the endpoint returns a `202` response with `responseCode` `9051`, and the authorization is held for risk review rather than rejected. If a risk policy blocks the transaction, the endpoint returns a `422` response with `responseCode` `9005`, a terminal rejection.
 
@@ -19409,7 +19409,7 @@ await client.chargeBacks.getChargeback(1000000);
 <dl>
 <dd>
 
-**Id:** `number` — ID of the chargeback or return record. This is returned as `chargebackID` in the [ReceivedChargeBack](/guides/pay-ops-webhooks-payloads#receivedchargeback) and [ReceivedAchReturn](/guides/pay-ops-webhooks-payloads#receivedachreturn) webhook notifications.
+**Id:** `number` — ID of the chargeback or return record. This is returned as `chargebackID` in the [ReceivedChargeBack](/developers/webhooks/payops-chargeback-received) and [ReceivedAchReturn](/developers/webhooks/payops-ach-return-received) webhook notifications.
     
 </dd>
 </dl>
@@ -19489,6 +19489,995 @@ await client.chargeBacks.getChargebackAttachment(1000000, "fileName");
 <dd>
 
 **requestOptions:** `ChargeBacksClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Case Management
+<details><summary><code>client.caseManagement.<a href="/src/api/resources/caseManagement/client/Client.ts">validateBankAccountChange</a>(paypointId, { ...params }) -> Payabli.PreCreationValidationResult</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Validates a bank account change for a paypoint without creating a case.
+Runs the same checks the create endpoint runs, and returns blocking
+conditions and warnings. Blocking conditions prevent creation; warnings
+don't.
+
+Available to both Platform and Enterprise Partners.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.caseManagement.validateBankAccountChange(3040, {
+    routingNumber: "123456789",
+    accountNumber: "987654321",
+    accountType: "checking",
+    bankAccountHolderType: "business",
+    bankAccountFunction: "Deposits",
+    services: {
+        moneyIn: ["Ach"],
+        moneyOut: ["Ach"]
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**paypointId:** `number` — The paypoint's numeric identifier.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.ValidateBankAccountChangeRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CaseManagementClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.caseManagement.<a href="/src/api/resources/caseManagement/client/Client.ts">createBankAccountChange</a>(paypointId, { ...params }) -> Payabli.CaseResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a bank-account-change case for a paypoint. The account and
+routing numbers are validated and tokenized before the case is saved —
+the raw numbers are never stored or returned. The account holder name is
+taken from the paypoint's legal name. On success the case is created in
+`Submitted` and asynchronous verification starts.
+
+Available to both Platform and Enterprise Partners.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.caseManagement.createBankAccountChange(3040, {
+    nickname: "Main Settlement Account",
+    bankName: "First National Bank",
+    routingNumber: "123456789",
+    accountNumber: "987654321",
+    accountType: "checking",
+    bankAccountHolderType: "business",
+    bankAccountFunction: "Deposits",
+    services: {
+        moneyIn: ["Ach"],
+        moneyOut: ["Ach"]
+    },
+    "default": true
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**paypointId:** `number` — The paypoint's numeric identifier.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.CreateBankAccountChangeCaseRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CaseManagementClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.caseManagement.<a href="/src/api/resources/caseManagement/client/Client.ts">getCase</a>(uuid) -> Payabli.CaseResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a case by its UUID, including its current state, parameters,
+state history, verification metadata, and attachments.
+
+Available to both Platform and Enterprise Partners.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.caseManagement.getCase("9c2b7e14-3a5f-4d21-b8e0-1f6a4c9d2e70");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**uuid:** `string` — The case's UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CaseManagementClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.caseManagement.<a href="/src/api/resources/caseManagement/client/Client.ts">listCases</a>(organizationId, { ...params }) -> Payabli.CaseListResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists cases for an organization, climbing the platform org hierarchy.
+Supports pagination and sorting through query parameters, and filtering
+through repeatable `parameters[field(op)]=value` query parameters (for
+example `parameters[state(in)]=Assigned|PendingReview`). Filterable
+fields include `state`, `caseType`, `paypointId`, `createdAt`,
+`updatedAt`, `scheduleFor`, and `createdBy`.
+
+Available to both Platform and Enterprise Partners.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.caseManagement.listCases(123, {
+    fromRecord: 0,
+    limitRecord: 20
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**organizationId:** `number` — The organization's numeric identifier.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.ListCasesCaseManagementRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CaseManagementClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.caseManagement.<a href="/src/api/resources/caseManagement/client/Client.ts">listMessages</a>(caseUuid, { ...params }) -> Payabli.MessagePage</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the notes on a case, ordered oldest to newest. Cursor-paginated.
+
+Available to both Platform and Enterprise Partners.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.caseManagement.listMessages("9c2b7e14-3a5f-4d21-b8e0-1f6a4c9d2e70");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**caseUuid:** `string` — The case's UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.ListMessagesCaseManagementRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CaseManagementClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.caseManagement.<a href="/src/api/resources/caseManagement/client/Client.ts">postMessage</a>(caseUuid, { ...params }) -> Payabli.PostedMessage</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Adds a note to a case.
+
+Available to both Platform and Enterprise Partners.
+
+This endpoint is in development and not yet available for API use. To
+add a note for now, use Case Management in the
+[Payabli Portal](/guides/pay-ops-portal-bank-account-changes-manage).
+To read existing notes on a case, use
+[List case notes](/developers/api-reference/caseManagement/list-case-notes).
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.caseManagement.postMessage("9c2b7e14-3a5f-4d21-b8e0-1f6a4c9d2e70", {
+    content: "Reviewed supporting documents; account ownership confirmed."
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**caseUuid:** `string` — The case's UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.PostCaseMessageRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CaseManagementClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.caseManagement.<a href="/src/api/resources/caseManagement/client/Client.ts">listTransitions</a>(uuid) -> Payabli.AvailableTransitionsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the review actions currently available on a case. The list is
+empty when no user action is available (for example while the case is
+mid-automation).
+
+Available to both Platform and Enterprise Partners, though only
+Enterprise Partners can fire the returned actions.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.caseManagement.listTransitions("9c2b7e14-3a5f-4d21-b8e0-1f6a4c9d2e70");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**uuid:** `string` — The case's UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CaseManagementClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.caseManagement.<a href="/src/api/resources/caseManagement/client/Client.ts">transition</a>(uuid, { ...params }) -> Payabli.CaseResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Fires a review action on a case, such as `Approve`, `Deny`, `Escalate`,
+or `RequestReview`. Assigning a case uses the dedicated assign endpoint,
+not this one. Firing an action that isn't valid for the case's current
+state returns `409`.
+
+Available to Enterprise Partners only.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.caseManagement.transition("9c2b7e14-3a5f-4d21-b8e0-1f6a4c9d2e70", {
+    trigger: "Approve",
+    reason: "Account ownership confirmed with the merchant by phone."
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**uuid:** `string` — The case's UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.TransitionCaseRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CaseManagementClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.caseManagement.<a href="/src/api/resources/caseManagement/client/Client.ts">assignCase</a>(uuid, { ...params }) -> Payabli.CaseResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Assigns a case to a reviewer.
+
+Available to Enterprise Partners only.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.caseManagement.assignCase("9c2b7e14-3a5f-4d21-b8e0-1f6a4c9d2e70", {
+    assigneeId: 4238,
+    reason: "Routing to the risk team for review."
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**uuid:** `string` — The case's UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.AssignCaseRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CaseManagementClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.caseManagement.<a href="/src/api/resources/caseManagement/client/Client.ts">listAttachments</a>(caseUuid) -> Payabli.AttachmentResponse[]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the files attached to a case.
+
+Available to both Platform and Enterprise Partners.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.caseManagement.listAttachments("9c2b7e14-3a5f-4d21-b8e0-1f6a4c9d2e70");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**caseUuid:** `string` — The case's UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CaseManagementClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.caseManagement.<a href="/src/api/resources/caseManagement/client/Client.ts">uploadAttachment</a>(caseUuid, { ...params }) -> Payabli.AttachmentResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Uploads a file to a case as multipart form data. The maximum size is
+25 MiB, and the content type must be an allowed type such as PDF, PNG,
+JPEG, CSV, XLSX, DOCX, or plain text.
+
+Available to both Platform and Enterprise Partners.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.caseManagement.uploadAttachment("caseUuid", {
+    file: fs.createReadStream("/path/to/your/file")
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**caseUuid:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.UploadAttachmentCaseManagementRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CaseManagementClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.caseManagement.<a href="/src/api/resources/caseManagement/client/Client.ts">getAttachment</a>(caseUuid, attachmentId) -> core.BinaryResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Streams the file content of an attachment.
+
+Available to both Platform and Enterprise Partners.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.caseManagement.getAttachment("caseUuid", "attachmentId");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**caseUuid:** `string` — The case's UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**attachmentId:** `string` — The attachment's UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CaseManagementClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.caseManagement.<a href="/src/api/resources/caseManagement/client/Client.ts">deleteAttachment</a>(caseUuid, attachmentId) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes an attachment from a case.
+
+Available to both Platform and Enterprise Partners.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.caseManagement.deleteAttachment("caseUuid", "attachmentId");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**caseUuid:** `string` — The case's UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**attachmentId:** `string` — The attachment's UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CaseManagementClient.RequestOptions` 
     
 </dd>
 </dl>

@@ -14,7 +14,7 @@ describe("NotificationClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {
-            content: { eventType: "CreatedApplication" },
+            content: { eventType: "createdapplication" },
             frequency: "untilcancelled",
             method: "web",
             ownerId: 236,
@@ -35,7 +35,7 @@ describe("NotificationClient", () => {
 
         const response = await client.notification.addNotification({
             content: {
-                eventType: "CreatedApplication",
+                eventType: "createdapplication",
             },
             frequency: "untilcancelled",
             method: "web",
@@ -56,7 +56,7 @@ describe("NotificationClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {
-            content: { eventType: "ApprovedPayment" },
+            content: { eventType: "approvedpayment" },
             frequency: "untilcancelled",
             method: "web",
             ownerId: 236,
@@ -77,7 +77,7 @@ describe("NotificationClient", () => {
 
         const response = await client.notification.addNotification({
             content: {
-                eventType: "ApprovedPayment",
+                eventType: "approvedpayment",
             },
             frequency: "untilcancelled",
             method: "web",
@@ -371,7 +371,7 @@ describe("NotificationClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {
-            content: { eventType: "ApprovedPayment" },
+            content: { eventType: "approvedpayment" },
             frequency: "untilcancelled",
             method: "email",
             ownerId: 136,
@@ -392,7 +392,7 @@ describe("NotificationClient", () => {
 
         const response = await client.notification.updateNotification("1717", {
             content: {
-                eventType: "ApprovedPayment",
+                eventType: "approvedpayment",
             },
             frequency: "untilcancelled",
             method: "email",
@@ -405,6 +405,57 @@ describe("NotificationClient", () => {
     });
 
     test("UpdateNotification (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            content: {
+                eventType: "approvedpayment",
+                webHeaderParameters: [{ key: "Authorization", value: "Basic dXNlcjpwYXNzd29yZA==" }],
+            },
+            frequency: "untilcancelled",
+            method: "web",
+            ownerId: 136,
+            ownerType: 0,
+            status: 1,
+            target: "https://webhook.site/2871b8f8-edc7-441a-b376-98d8c8e33275",
+        };
+        const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 1717, responseText: "Success" };
+
+        server
+            .mockEndpoint()
+            .put("/Notification/1717")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.notification.updateNotification("1717", {
+            content: {
+                eventType: "approvedpayment",
+                webHeaderParameters: [
+                    {
+                        key: "Authorization",
+                        value: "Basic dXNlcjpwYXNzd29yZA==",
+                    },
+                ],
+            },
+            frequency: "untilcancelled",
+            method: "web",
+            ownerId: 136,
+            ownerType: 0,
+            status: 1,
+            target: "https://webhook.site/2871b8f8-edc7-441a-b376-98d8c8e33275",
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("UpdateNotification (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -434,7 +485,7 @@ describe("NotificationClient", () => {
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
-    test("UpdateNotification (3)", async () => {
+    test("UpdateNotification (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -464,7 +515,7 @@ describe("NotificationClient", () => {
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
-    test("UpdateNotification (4)", async () => {
+    test("UpdateNotification (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -494,7 +545,7 @@ describe("NotificationClient", () => {
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
-    test("UpdateNotification (5)", async () => {
+    test("UpdateNotification (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,

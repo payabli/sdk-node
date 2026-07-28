@@ -1,6 +1,6 @@
 {
     "name": "@payabli/sdk-node",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "private": false,
     "repository": {
         "type": "git",
@@ -384,6 +384,17 @@
                 "default": "./dist/cjs/api/resources/chargeBacks/exports.js"
             },
             "default": "./dist/cjs/api/resources/chargeBacks/exports.js"
+        },
+        "./caseManagement": {
+            "import": {
+                "types": "./dist/esm/api/resources/caseManagement/exports.d.mts",
+                "default": "./dist/esm/api/resources/caseManagement/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/caseManagement/exports.d.ts",
+                "default": "./dist/cjs/api/resources/caseManagement/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/caseManagement/exports.js"
         },
         "./package.json": "./package.json"
     },

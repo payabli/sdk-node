@@ -10,10 +10,10 @@
         "enableInlineTypes": true,
         "generateWireTests": false
     },
-    "originGitCommit": "7c2bff41e6b83cd69ef466e00bf075eb4f58fdb1",
+    "originGitCommit": "85dc6dd780991f47e9c2d71ad221647a62bccf93",
     "originGitCommitIsDirty": true,
     "invokedBy": "ci",
-    "requestedVersion": "1.0.8",
+    "requestedVersion": "1.0.9",
     "ciProvider": "github",
-    "sdkVersion": "1.0.8"
+    "sdkVersion": "1.0.9"
 }

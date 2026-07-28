@@ -42,7 +42,7 @@ export class NotificationClient {
      * @example
      *     await client.notification.addNotification({
      *         content: {
-     *             eventType: "CreatedApplication"
+     *             eventType: "createdapplication"
      *         },
      *         frequency: "untilcancelled",
      *         method: "web",
@@ -55,7 +55,7 @@ export class NotificationClient {
      * @example
      *     await client.notification.addNotification({
      *         content: {
-     *             eventType: "ApprovedPayment"
+     *             eventType: "approvedpayment"
      *         },
      *         frequency: "untilcancelled",
      *         method: "web",
@@ -259,7 +259,7 @@ export class NotificationClient {
      * @example
      *     await client.notification.updateNotification("1717", {
      *         content: {
-     *             eventType: "ApprovedPayment"
+     *             eventType: "approvedpayment"
      *         },
      *         frequency: "untilcancelled",
      *         method: "email",
@@ -267,6 +267,23 @@ export class NotificationClient {
      *         ownerType: 0,
      *         status: 1,
      *         target: "newemail@email.com"
+     *     })
+     *
+     * @example
+     *     await client.notification.updateNotification("1717", {
+     *         content: {
+     *             eventType: "approvedpayment",
+     *             webHeaderParameters: [{
+     *                     key: "Authorization",
+     *                     value: "Basic dXNlcjpwYXNzd29yZA=="
+     *                 }]
+     *         },
+     *         frequency: "untilcancelled",
+     *         method: "web",
+     *         ownerId: 136,
+     *         ownerType: 0,
+     *         status: 1,
+     *         target: "https://webhook.site/2871b8f8-edc7-441a-b376-98d8c8e33275"
      *     })
      */
     public updateNotification(
