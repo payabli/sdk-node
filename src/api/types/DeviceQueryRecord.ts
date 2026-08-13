@@ -43,10 +43,18 @@ export interface DeviceQueryRecord {
     paypointLegal: string | null;
     /** Entry identifier for the paypoint. */
     paypointEntry: string | null;
+    /** URL of the paypoint's logo, when available. */
+    paypointLogo: string | null;
     /** External identifier for the paypoint. */
     externalPaypointId: string | null;
     /** Numeric identifier for the parent organization. */
     parentOrgId: number | null;
     /** Name of the parent organization. */
     parentOrgName: string | null;
+    /** URL of the parent organization's logo, when available. */
+    parentOrgLogo: string | null;
+    /** Total number of transactions processed by this device. */
+    transactionCount: number;
+    /** Total volume processed by this device, as the sum of net transaction amounts. */
+    volumeProcessed: number;
 }

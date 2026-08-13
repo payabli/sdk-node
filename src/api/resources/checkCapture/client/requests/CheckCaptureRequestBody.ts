@@ -13,9 +13,9 @@ import type * as Payabli from "../../../../index.js";
  */
 export interface CheckCaptureRequestBody {
     entryPoint: Payabli.Entry;
-    /** Base64-encoded front check image. Must be JPEG or PNG format and less than 1MB. Image must show the entire check clearly with no partial, blurry, or illegible portions. */
+    /** Base64-encoded front check image. Must be JPEG or PNG format and less than 1MB. Image must show the entire check with no partial, blurry, or illegible portions. */
     frontImage: string;
-    /** Base64-encoded rear check image. Must be JPEG or PNG format and less than 1MB. Image must show the entire check clearly with no partial, blurry, or illegible portions. */
+    /** Base64-encoded rear check image. Must be JPEG or PNG format and less than 1MB. Image must show the entire check with no partial, blurry, or illegible portions. */
     rearImage: string;
     /** Check amount in cents (maximum 32-bit integer value). */
     checkAmount: number;

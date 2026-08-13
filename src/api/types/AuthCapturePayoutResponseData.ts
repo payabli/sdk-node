@@ -4,7 +4,8 @@ import type * as Payabli from "../index.js";
 
 export interface AuthCapturePayoutResponseData {
     authCode: Payabli.Authcode | null;
-    referenceId: Payabli.Referenceidtrans;
+    /** The transaction reference ID, used to capture the transaction. Returns `null` when no transaction is created, such as a declined authorization. */
+    referenceId: Payabli.Referenceidtrans | null;
     resultCode: Payabli.ResultCode;
     resultText: Payabli.Resulttext;
     avsResponseText: Payabli.AvsResponseText | null;

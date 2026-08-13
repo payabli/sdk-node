@@ -23,7 +23,7 @@ export interface VendorDataResponse {
     City: string;
     /** Vendor's state. Must be a two-character state code. */
     State: string;
-    /** Vendor's zip code. */
+    /** Vendor's ZIP code. */
     Zip: string;
     /** Vendor's country. Payabli supports only US and Canadian vendors. */
     Country: string;

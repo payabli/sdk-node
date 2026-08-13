@@ -4,9 +4,17 @@ import type * as Payabli from "../index.js";
 
 export interface VendorOutData {
     additionalData?: Payabli.AdditionalData | undefined;
-    /** Vendor's street address. Allowed characters are letters, numbers, spaces, and `. , */
+    /**
+     * Vendor's street address. Allowed characters are letters, numbers, spaces, and `. ,
+     *
+     * For a PO Box address, this field holds only the PO Box, for example `PO Box 29652`, and the rest of the address, such as a department number, is in `Address2`.
+     */
     Address1?: Payabli.AddressNullable | undefined;
-    /** Additional line for vendor's address, such as a suite or unit number. */
+    /**
+     * Additional line for vendor's address, such as a suite or unit number.
+     *
+     * For a PO Box address, this field holds the part of the address that follows the PO Box, for example `Dept# 880662`.
+     */
     Address2?: Payabli.AddressAddtlNullable | undefined;
     /** Object containing vendor's bank information. */
     BillingData?: Payabli.BillingData | undefined;

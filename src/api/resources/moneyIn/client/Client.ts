@@ -2026,9 +2026,6 @@ export class MoneyInClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.moneyIn.refundv2("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", {})
-     *
-     * @example
      *     await client.moneyIn.refundv2("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", {
      *         source: "api",
      *         orderDescription: "Materials deposit",
@@ -2128,7 +2125,7 @@ export class MoneyInClient {
      * This is the v2 version of the refund endpoint, and returns the unified response format. See [Pay In unified response codes reference](/guides/pay-in-unified-response-codes-reference) for more information.
      *
      * <Note>
-     *   To refund a split-funded transaction, include split instructions in the request body. Omit the body for a standard refund.
+     *   For a standard refund, whether full (`amount` set to 0) or partial, send no request body. Include a request body only to refund a split-funded transaction, with split instructions in `refundDetails`.
      * </Note>
      *
      * @param {string} transId - ReferenceId for the transaction (PaymentId).
@@ -2142,12 +2139,6 @@ export class MoneyInClient {
      * @throws {@link Payabli.InternalServerError}
      * @throws {@link errors.PayabliError}
      * @throws {@link errors.PayabliTimeoutError}
-     *
-     * @example
-     *     await client.moneyIn.refundv2Amount("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0, {})
-     *
-     * @example
-     *     await client.moneyIn.refundv2Amount("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 100.99, {})
      *
      * @example
      *     await client.moneyIn.refundv2Amount("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 70, {

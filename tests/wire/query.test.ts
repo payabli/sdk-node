@@ -2228,9 +2228,13 @@ describe("QueryClient", () => {
                     paypointDba: "Gruzya Adventure Outfitters",
                     paypointLegal: "Gruzya Adventure Outfitters, LLC",
                     paypointEntry: "8cfec329267",
+                    paypointLogo: "https://payabli-public-objects.s3.amazonaws.com/pe3040.png",
                     externalPaypointId: "GRUZYA-01",
                     parentOrgId: 100,
                     parentOrgName: "Example Corp",
+                    parentOrgLogo: "https://payabli-public-objects.s3.amazonaws.com/o100.png",
+                    transactionCount: 4,
+                    volumeProcessed: 7.42,
                 },
             ],
         };
@@ -2381,9 +2385,13 @@ describe("QueryClient", () => {
                     paypointDba: "Gruzya Adventure Outfitters",
                     paypointLegal: "Gruzya Adventure Outfitters, LLC",
                     paypointEntry: "8cfec329267",
+                    paypointLogo: "https://payabli-public-objects.s3.amazonaws.com/pe3040.png",
                     externalPaypointId: "GRUZYA-01",
                     parentOrgId: 100,
                     parentOrgName: "Example Corp",
+                    parentOrgLogo: "https://payabli-public-objects.s3.amazonaws.com/o100.png",
+                    transactionCount: 4,
+                    volumeProcessed: 7.42,
                 },
             ],
         };
@@ -3378,6 +3386,7 @@ describe("QueryClient", () => {
                     RiskActionCode: 0,
                     PayoutProgram: "ODP",
                     EntityId: "01J0ABCDEF9FWATVWMBWGE6MPP",
+                    allowedActions: ["cancel"],
                 },
             ],
             Summary: {
@@ -3643,6 +3652,7 @@ describe("QueryClient", () => {
                     RiskActionCode: 0,
                     PayoutProgram: "ODP",
                     EntityId: "01J0ABCDEF9FWATVWMBWGE6MPP",
+                    allowedActions: ["cancel"],
                 },
             ],
             Summary: {

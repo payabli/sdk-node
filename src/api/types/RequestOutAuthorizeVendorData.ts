@@ -12,6 +12,11 @@ export interface RequestOutAuthorizeVendorData {
     ein?: Payabli.VendorEin | undefined;
     phone?: Payabli.VendorPhone | undefined;
     email?: Payabli.Email | undefined;
+    /**
+     * Vendor's address
+     *
+     * For a PO Box address, include only the PO Box in this field, for example `PO Box 29652`. Put the rest of the address, such as a department number, in `address2`.
+     */
     address1?: Payabli.AddressNullable | undefined;
     city?: string | undefined;
     state?: string | undefined;
@@ -31,6 +36,11 @@ export interface RequestOutAuthorizeVendorData {
     customField1?: string | undefined;
     customField2?: string | undefined;
     additionalData?: Payabli.AdditionalData | undefined;
+    /**
+     * Additional line for vendor's address.
+     *
+     * For a PO Box address, this field holds the part of the address that follows the PO Box, for example `Dept# 880662`.
+     */
     address2?: Payabli.AddressAddtlNullable | undefined;
     internalReferenceId?: number | undefined;
     locationCode?: Payabli.LocationCode | undefined;

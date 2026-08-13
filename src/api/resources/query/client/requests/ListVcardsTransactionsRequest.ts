@@ -19,9 +19,7 @@ export interface ListVcardsTransactionsRequest {
      * <Info>
      *   **You must remove `parameters=` from the request before you send it, otherwise Payabli will ignore the filters.**
      *
-     *   Because of a technical limitation, you can't make a request that includes filters from the API console on this page. The response won't be filtered. Instead, copy the request, remove `parameters=` and run the request in a different client.
-     *
-     *   For example:
+     *   Because of a technical limitation, you can't make a request that includes filters from the API console on this page. The response won't be filtered. Instead, copy the request, remove `parameters=` and run the request in a different client, for example:
      *
      *   --url https://api-sandbox.payabli.com/api/Query/vcardsTransactions/8cfec329267?parameters=transactionAmount(gt)=100&limitRecord=20
      *
@@ -30,7 +28,7 @@ export interface ListVcardsTransactionsRequest {
      *   --url https://api-sandbox.payabli.com/api/Query/vcardsTransactions/8cfec329267?transactionAmount(gt)=100&limitRecord=20
      * </Info>
      *
-     * List of field names accepted:
+     * Accepted field names:
      *
      *   - `identifier` (eq, ne, ct, nct)
      *   - `transactionType` (eq, ne, ct, nct)
@@ -55,7 +53,7 @@ export interface ListVcardsTransactionsRequest {
      *   - `externalPaypointID` (ct, nct, eq, ne)
      *   - `paypointId` (gt, lt, eq, ne)
      *
-     * List of comparison accepted - enclosed between parentheses:
+     * Accepted comparison operators - enclosed between parentheses:
      *
      *   - eq or empty => equal
      *   - gt => greater than

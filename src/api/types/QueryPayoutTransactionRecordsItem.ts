@@ -76,4 +76,19 @@ export interface QueryPayoutTransactionRecordsItem {
     AchTraceNumber?: (string | null) | undefined;
     /** Unique identifier (ULID) of the payout transaction. */
     EntityId?: string | undefined;
+    /** Operations currently permitted for this payout, derived from its status. Always present; empty for terminal statuses such as paid or canceled. Read this array directly rather than inferring available actions from `PaymentStatus`. */
+    allowedActions: QueryPayoutTransactionRecordsItem.AllowedActions.Item[];
+}
+
+export namespace QueryPayoutTransactionRecordsItem {
+    export type AllowedActions = AllowedActions.Item[];
+
+    export namespace AllowedActions {
+        export const Item = {
+            Capture: "capture",
+            Cancel: "cancel",
+            Reissue: "reissue",
+        } as const;
+        export type Item = (typeof Item)[keyof typeof Item];
+    }
 }

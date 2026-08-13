@@ -5,6 +5,8 @@ import * as errors from "../../errors/index.js";
 import type * as Payabli from "../index.js";
 
 export class PaymentRequiredError extends errors.PayabliError {
+    public declare readonly body: Payabli.V2DeclinedTransactionResponseWrapper;
+
     constructor(body: Payabli.V2DeclinedTransactionResponseWrapper, rawResponse?: core.RawResponse) {
         super({
             message: "PaymentRequiredError",

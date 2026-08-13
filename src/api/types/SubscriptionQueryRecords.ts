@@ -3,7 +3,7 @@
 import type * as Payabli from "../index.js";
 
 export interface SubscriptionQueryRecords {
-    /** Timestamp of when the subscription ws created, in UTC. */
+    /** Timestamp of when the subscription was created, in UTC. */
     CreatedAt?: Payabli.CreatedAt | undefined;
     Customer?: Payabli.QueryTransactionPayorData | undefined;
     /** The subscription's end date. */

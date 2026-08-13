@@ -5,6 +5,8 @@ import * as errors from "../../errors/index.js";
 import type * as Payabli from "../index.js";
 
 export class ServiceUnavailableError extends errors.PayabliError {
+    public declare readonly body: Payabli.PayabliErrorBody;
+
     constructor(body: Payabli.PayabliErrorBody, rawResponse?: core.RawResponse) {
         super({
             message: "ServiceUnavailableError",

@@ -157,7 +157,7 @@ export class OrganizationClient {
     /**
      * Updates an organization's details by ID.
      *
-     * @param {number} orgId - The numeric identifier for organization, assigned by Payabli.
+     * @param {number} orgIdPathParam - The numeric identifier for organization, assigned by Payabli.
      * @param {Payabli.OrganizationData} request
      * @param {OrganizationClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -190,15 +190,15 @@ export class OrganizationClient {
      *     })
      */
     public editOrganization(
-        orgId: number,
+        orgIdPathParam: number,
         request: Payabli.OrganizationData = {},
         requestOptions?: OrganizationClient.RequestOptions,
     ): core.HttpResponsePromise<Payabli.EditOrganizationResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__editOrganization(orgId, request, requestOptions));
+        return core.HttpResponsePromise.fromPromise(this.__editOrganization(orgIdPathParam, request, requestOptions));
     }
 
     private async __editOrganization(
-        orgId: number,
+        orgIdPathParam: number,
         request: Payabli.OrganizationData = {},
         requestOptions?: OrganizationClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.EditOrganizationResponse>> {
@@ -216,7 +216,7 @@ export class OrganizationClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.PayabliEnvironment.Sandbox,
-                `Organization/${core.url.encodePathParam(orgId)}`,
+                `Organization/${core.url.encodePathParam(orgIdPathParam)}`,
             ),
             method: "PUT",
             headers: _headers,
@@ -260,7 +260,12 @@ export class OrganizationClient {
             }
         }
 
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/Organization/{orgId}");
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "PUT",
+            "/Organization/{orgIdPathParam}",
+        );
     }
 
     /**

@@ -18,7 +18,7 @@ export interface V2BadRequestError {
     instance: string;
     /** Payabli's unified response code for validation errors. Starts with 'E'. See [Pay In unified response codes reference](/guides/pay-in-unified-response-codes-reference) for more information. */
     code: string;
-    /** Dictionary of field-specific validation errors. Keys are field paths (e.g., "paymentMethod.cardnumber") and values are arrays of error details. */
+    /** Dictionary of field-specific validation errors. Keys are field paths (for example, "paymentMethod.cardnumber") and values are arrays of error details. */
     errors: Record<string, Payabli.V2BadRequestErrorDetail[]>;
     /** Pagination token (equivalent to pageIdentifier in v1 APIs). Usually null for errors. */
     token: string | null;

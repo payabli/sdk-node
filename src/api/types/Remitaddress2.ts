@@ -3,5 +3,8 @@
 /**
  * Remittance address additional line, such as a suite or unit number. Used
  * for mailing paper checks. Always optional.
+ *
+ * For a PO Box address, this field holds the part of the address that
+ * follows the PO Box, for example `Dept# 880662`.
  */
 export type Remitaddress2 = string;
