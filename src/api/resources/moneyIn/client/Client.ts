@@ -2026,6 +2026,9 @@ export class MoneyInClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
+     *     await client.moneyIn.refundv2("10-3ffa27df-b171-44e0-b251-e95fbfc7a723")
+     *
+     * @example
      *     await client.moneyIn.refundv2("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", {
      *         source: "api",
      *         orderDescription: "Materials deposit",
@@ -2047,7 +2050,7 @@ export class MoneyInClient {
      */
     public refundv2(
         transId: string,
-        request: Payabli.RefundV2Request,
+        request?: Payabli.RefundV2Request,
         requestOptions?: MoneyInClient.RequestOptions,
     ): core.HttpResponsePromise<Payabli.V2TransactionResponseWrapper> {
         return core.HttpResponsePromise.fromPromise(this.__refundv2(transId, request, requestOptions));
@@ -2055,7 +2058,7 @@ export class MoneyInClient {
 
     private async __refundv2(
         transId: string,
-        request: Payabli.RefundV2Request,
+        request?: Payabli.RefundV2Request,
         requestOptions?: MoneyInClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.V2TransactionResponseWrapper>> {
         const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
@@ -2141,6 +2144,12 @@ export class MoneyInClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
+     *     await client.moneyIn.refundv2Amount("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0)
+     *
+     * @example
+     *     await client.moneyIn.refundv2Amount("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 100.99)
+     *
+     * @example
      *     await client.moneyIn.refundv2Amount("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 70, {
      *         source: "api",
      *         orderDescription: "Materials deposit",
@@ -2162,7 +2171,7 @@ export class MoneyInClient {
     public refundv2Amount(
         transId: string,
         amount: number,
-        request: Payabli.RefundV2Request,
+        request?: Payabli.RefundV2Request,
         requestOptions?: MoneyInClient.RequestOptions,
     ): core.HttpResponsePromise<Payabli.V2TransactionResponseWrapper> {
         return core.HttpResponsePromise.fromPromise(this.__refundv2Amount(transId, amount, request, requestOptions));
@@ -2171,7 +2180,7 @@ export class MoneyInClient {
     private async __refundv2Amount(
         transId: string,
         amount: number,
-        request: Payabli.RefundV2Request,
+        request?: Payabli.RefundV2Request,
         requestOptions?: MoneyInClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.V2TransactionResponseWrapper>> {
         const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };

@@ -5726,6 +5726,227 @@ describe("MoneyInClient", () => {
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
+    test("refundv2 (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+
+        const rawResponseBody = {
+            code: "A0004",
+            reason: "Refunded",
+            explanation: "Transaction refunded",
+            action: "No action required",
+            data: {
+                parentOrgName: "Mrinal's Pet Supplies",
+                paypointDbaname: "Mrinal's Pet Shop North",
+                paypointLegalname: "Mrinal's Pet Shop North",
+                paypointEntryname: "495147f647",
+                paymentTransId: "3040-96dfa9a7c4ed4f82a3dd4a4a12ad28ae",
+                connectorName: "gp",
+                externalProcessorInformation: "",
+                gatewayTransId: "TRN_Ih68D6UZdip7OEQ2QFXat1yQSLF2nB",
+                orderId: null,
+                method: "card",
+                batchNumber: "3040_combined_20251201_3a50747d-6b5c-40ef-9f69-93a9cc7fcb49",
+                batchAmount: 420,
+                payorId: 4440,
+                paymentData: {
+                    maskedAccount: "4XXXXXXXXXXX5439",
+                    accountType: "visa",
+                    accountExp: "12/25",
+                    holderName: "John Cassian",
+                    storedId: null,
+                    initiator: null,
+                    storedMethodUsageType: null,
+                    sequence: null,
+                    orderDescription: "",
+                    accountId: null,
+                    signatureData: null,
+                    binData: {
+                        binMatchedLength: "6",
+                        binCardBrand: "VISA",
+                        binCardType: "CREDIT",
+                        binCardCategory: "CLASSIC",
+                        binCardIssuer: "",
+                        binCardIssuerCountry: "RUSSIAN FEDERATION",
+                        binCardIssuerCountryCodeA2: "RU",
+                        binCardIssuerCountryNumber: "643",
+                        binCardIsRegulated: "",
+                        binCardUseCategory: "",
+                        binCardIssuerCountryCodeA3: "",
+                    },
+                    paymentDetails: {
+                        totalAmount: 105,
+                        serviceFee: 5,
+                        checkNumber: null,
+                        checkImage: null,
+                        checkUniqueId: "",
+                        currency: "USD",
+                        orderDescription: null,
+                        orderId: null,
+                        orderIdAlternative: null,
+                        paymentDescription: null,
+                        groupNumber: null,
+                        source: null,
+                        payabliTransId: null,
+                        unbundled: null,
+                        categories: [],
+                        splitFunding: [],
+                    },
+                },
+                transStatus: 1,
+                paypointId: 3040,
+                totalAmount: 105,
+                netAmount: 100,
+                feeAmount: 5,
+                settlementStatus: 0,
+                operation: "Sale",
+                responseData: {
+                    response: null,
+                    resultCode: "A0000",
+                    resultCodeText: "Approved",
+                    responsetext: "CAPTURED",
+                    authcode: "AXS425",
+                    transactionid: "TRN_Xo4dpKfmx3OxSc9svd2ccI6OOnyB2I",
+                    avsresponse: "N",
+                    avsresponse_text: "No Match, No address or ZIP match",
+                    cvvresponse: "M",
+                    cvvresponse_text: "CVV2/CVC2 match",
+                    orderid: null,
+                    type: null,
+                    response_code: "100",
+                    response_code_text: "Operation successful",
+                    customer_vault_id: null,
+                    emv_auth_response_data: null,
+                },
+                source: "api",
+                scheduleReference: 0,
+                orgId: 123,
+                refundId: 0,
+                returnedId: 0,
+                chargebackId: 0,
+                retrievalId: 0,
+                transAdditionalData: null,
+                invoiceData: {
+                    invoiceNumber: null,
+                    invoiceDate: null,
+                    invoiceDueDate: null,
+                    invoiceEndDate: null,
+                    invoiceStatus: null,
+                    invoiceType: null,
+                    frequency: null,
+                    paymentTerms: null,
+                    termsConditions: null,
+                    notes: null,
+                    tax: null,
+                    discount: null,
+                    invoiceAmount: null,
+                    freightAmount: null,
+                    dutyAmount: null,
+                    purchaseOrder: null,
+                    firstName: null,
+                    lastName: null,
+                    company: null,
+                    shippingAddress1: null,
+                    shippingAddress2: null,
+                    shippingCity: null,
+                    shippingState: null,
+                    shippingZip: null,
+                    shippingCountry: null,
+                    shippingEmail: null,
+                    shippingPhone: null,
+                    shippingFromZip: null,
+                    summaryCommodityCode: null,
+                    items: null,
+                    attachments: null,
+                    additionalData: null,
+                },
+                entrypageId: 0,
+                externalPaypointID: "",
+                isValidatedACH: false,
+                transactionTime: "2025-12-01T09:50:03.559",
+                customer: {
+                    identifiers: null,
+                    firstName: "David",
+                    lastName: "Beckham",
+                    companyName: "Driving School LLC",
+                    billingAddress1: "Home Address",
+                    billingAddress2: "",
+                    billingCity: "",
+                    billingState: "",
+                    billingZip: "45157",
+                    billingCountry: "US",
+                    billingPhone: "+15555555555",
+                    billingEmail: "example@payabli.com",
+                    customerNumber: "C-90010",
+                    shippingAddress1: "Home Address",
+                    shippingAddress2: "",
+                    shippingCity: "",
+                    shippingState: "",
+                    shippingZip: "45157",
+                    shippingCountry: "US",
+                    customerId: 4440,
+                    customerStatus: 0,
+                    additionalData: null,
+                },
+                splitFundingInstructions: null,
+                cfeeTransactions: [
+                    {
+                        cFeeTransid: "3040-96dfa9a7c4ed4f82a3dd4a4a12ad28ae",
+                        transStatus: 1,
+                        feeAmount: 5,
+                        settlementStatus: 0,
+                        operation: "Sale",
+                        responseData: {},
+                        refundId: 0,
+                        transactionTime: "2025-12-01T09:50:03.559",
+                    },
+                ],
+                transactionEvents: [
+                    {
+                        transEvent: "Created",
+                        eventData: "0HNHD68HATSUC:00000001",
+                        eventTime: "2025-12-01T09:50:02.558651",
+                    },
+                    {
+                        transEvent: "Approved",
+                        eventData: "0HNHD68HATSUC:00000001",
+                        eventTime: "2025-12-01T09:50:03.609111",
+                    },
+                ],
+                pendingFeeAmount: 0,
+                riskFlagged: false,
+                riskFlaggedOn: "2025-12-01T09:50:02.5474568",
+                riskStatus: "PASSED",
+                riskReason: "",
+                riskAction: "",
+                riskActionCode: 0,
+                deviceId: "",
+                achSecCode: "",
+                achHolderType: "personal",
+                ipAddress: "255.255.255.255",
+                isSameDayACH: false,
+                walletType: null,
+            },
+            token: null,
+        };
+
+        server
+            .mockEndpoint()
+            .post("/v2/MoneyIn/refund/10-3ffa27df-b171-44e0-b251-e95fbfc7a723")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.moneyIn.refundv2("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
+        expect(response).toEqual(rawResponseBody);
+    });
+
     test("refundv2 (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
@@ -5998,20 +6219,19 @@ describe("MoneyInClient", () => {
             apiKeyAuth: { apiKey: "test" },
             environment: server.baseUrl,
         });
-        const rawRequestBody = {};
+
         const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/refund/transId")
-            .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(400)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
-            return await client.moneyIn.refundv2("transId", {});
+            return await client.moneyIn.refundv2("transId");
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
@@ -6023,20 +6243,19 @@ describe("MoneyInClient", () => {
             apiKeyAuth: { apiKey: "test" },
             environment: server.baseUrl,
         });
-        const rawRequestBody = {};
+
         const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/refund/transId")
-            .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(401)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
-            return await client.moneyIn.refundv2("transId", {});
+            return await client.moneyIn.refundv2("transId");
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
@@ -6048,7 +6267,7 @@ describe("MoneyInClient", () => {
             apiKeyAuth: { apiKey: "test" },
             environment: server.baseUrl,
         });
-        const rawRequestBody = {};
+
         const rawResponseBody = {
             code: "code",
             reason: "reason",
@@ -6217,14 +6436,13 @@ describe("MoneyInClient", () => {
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/refund/transId")
-            .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(402)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
-            return await client.moneyIn.refundv2("transId", {});
+            return await client.moneyIn.refundv2("transId");
         }).rejects.toThrow(Payabli.PaymentRequiredError);
     });
 
@@ -6236,21 +6454,462 @@ describe("MoneyInClient", () => {
             apiKeyAuth: { apiKey: "test" },
             environment: server.baseUrl,
         });
-        const rawRequestBody = {};
+
         const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/refund/transId")
-            .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(500)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
-            return await client.moneyIn.refundv2("transId", {});
+            return await client.moneyIn.refundv2("transId");
         }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("refundv2amount (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+
+        const rawResponseBody = {
+            code: "A0004",
+            reason: "Refunded",
+            explanation: "Transaction refunded",
+            action: "No action required",
+            data: {
+                parentOrgName: "Mrinal's Pet Supplies",
+                paypointDbaname: "Mrinal's Pet Shop North",
+                paypointLegalname: "Mrinal's Pet Shop North",
+                paypointEntryname: "495147f647",
+                paymentTransId: "3040-96dfa9a7c4ed4f82a3dd4a4a12ad28ae",
+                connectorName: "gp",
+                externalProcessorInformation: "",
+                gatewayTransId: "TRN_Ih68D6UZdip7OEQ2QFXat1yQSLF2nB",
+                orderId: null,
+                method: "card",
+                batchNumber: "3040_combined_20251201_3a50747d-6b5c-40ef-9f69-93a9cc7fcb49",
+                batchAmount: 420,
+                payorId: 4440,
+                paymentData: {
+                    maskedAccount: "4XXXXXXXXXXX5439",
+                    accountType: "visa",
+                    accountExp: "12/25",
+                    holderName: "John Cassian",
+                    storedId: null,
+                    initiator: null,
+                    storedMethodUsageType: null,
+                    sequence: null,
+                    orderDescription: "",
+                    accountId: null,
+                    signatureData: null,
+                    binData: {
+                        binMatchedLength: "6",
+                        binCardBrand: "VISA",
+                        binCardType: "CREDIT",
+                        binCardCategory: "CLASSIC",
+                        binCardIssuer: "",
+                        binCardIssuerCountry: "RUSSIAN FEDERATION",
+                        binCardIssuerCountryCodeA2: "RU",
+                        binCardIssuerCountryNumber: "643",
+                        binCardIsRegulated: "",
+                        binCardUseCategory: "",
+                        binCardIssuerCountryCodeA3: "",
+                    },
+                    paymentDetails: {
+                        totalAmount: 105,
+                        serviceFee: 5,
+                        checkNumber: null,
+                        checkImage: null,
+                        checkUniqueId: "",
+                        currency: "USD",
+                        orderDescription: null,
+                        orderId: null,
+                        orderIdAlternative: null,
+                        paymentDescription: null,
+                        groupNumber: null,
+                        source: null,
+                        payabliTransId: null,
+                        unbundled: null,
+                        categories: [],
+                        splitFunding: [],
+                    },
+                },
+                transStatus: 1,
+                paypointId: 3040,
+                totalAmount: 105,
+                netAmount: 100,
+                feeAmount: 5,
+                settlementStatus: 0,
+                operation: "Sale",
+                responseData: {
+                    response: null,
+                    resultCode: "A0000",
+                    resultCodeText: "Approved",
+                    responsetext: "CAPTURED",
+                    authcode: "AXS425",
+                    transactionid: "TRN_Xo4dpKfmx3OxSc9svd2ccI6OOnyB2I",
+                    avsresponse: "N",
+                    avsresponse_text: "No Match, No address or ZIP match",
+                    cvvresponse: "M",
+                    cvvresponse_text: "CVV2/CVC2 match",
+                    orderid: null,
+                    type: null,
+                    response_code: "100",
+                    response_code_text: "Operation successful",
+                    customer_vault_id: null,
+                    emv_auth_response_data: null,
+                },
+                source: "api",
+                scheduleReference: 0,
+                orgId: 123,
+                refundId: 0,
+                returnedId: 0,
+                chargebackId: 0,
+                retrievalId: 0,
+                transAdditionalData: null,
+                invoiceData: {
+                    invoiceNumber: null,
+                    invoiceDate: null,
+                    invoiceDueDate: null,
+                    invoiceEndDate: null,
+                    invoiceStatus: null,
+                    invoiceType: null,
+                    frequency: null,
+                    paymentTerms: null,
+                    termsConditions: null,
+                    notes: null,
+                    tax: null,
+                    discount: null,
+                    invoiceAmount: null,
+                    freightAmount: null,
+                    dutyAmount: null,
+                    purchaseOrder: null,
+                    firstName: null,
+                    lastName: null,
+                    company: null,
+                    shippingAddress1: null,
+                    shippingAddress2: null,
+                    shippingCity: null,
+                    shippingState: null,
+                    shippingZip: null,
+                    shippingCountry: null,
+                    shippingEmail: null,
+                    shippingPhone: null,
+                    shippingFromZip: null,
+                    summaryCommodityCode: null,
+                    items: null,
+                    attachments: null,
+                    additionalData: null,
+                },
+                entrypageId: 0,
+                externalPaypointID: "",
+                isValidatedACH: false,
+                transactionTime: "2025-12-01T09:50:03.559",
+                customer: {
+                    identifiers: null,
+                    firstName: "David",
+                    lastName: "Beckham",
+                    companyName: "Driving School LLC",
+                    billingAddress1: "Home Address",
+                    billingAddress2: "",
+                    billingCity: "",
+                    billingState: "",
+                    billingZip: "45157",
+                    billingCountry: "US",
+                    billingPhone: "+15555555555",
+                    billingEmail: "example@payabli.com",
+                    customerNumber: "C-90010",
+                    shippingAddress1: "Home Address",
+                    shippingAddress2: "",
+                    shippingCity: "",
+                    shippingState: "",
+                    shippingZip: "45157",
+                    shippingCountry: "US",
+                    customerId: 4440,
+                    customerStatus: 0,
+                    additionalData: null,
+                },
+                splitFundingInstructions: null,
+                cfeeTransactions: [
+                    {
+                        cFeeTransid: "3040-96dfa9a7c4ed4f82a3dd4a4a12ad28ae",
+                        transStatus: 1,
+                        feeAmount: 5,
+                        settlementStatus: 0,
+                        operation: "Sale",
+                        responseData: {},
+                        refundId: 0,
+                        transactionTime: "2025-12-01T09:50:03.559",
+                    },
+                ],
+                transactionEvents: [
+                    {
+                        transEvent: "Created",
+                        eventData: "0HNHD68HATSUC:00000001",
+                        eventTime: "2025-12-01T09:50:02.558651",
+                    },
+                    {
+                        transEvent: "Approved",
+                        eventData: "0HNHD68HATSUC:00000001",
+                        eventTime: "2025-12-01T09:50:03.609111",
+                    },
+                ],
+                pendingFeeAmount: 0,
+                riskFlagged: false,
+                riskFlaggedOn: "2025-12-01T09:50:02.5474568",
+                riskStatus: "PASSED",
+                riskReason: "",
+                riskAction: "",
+                riskActionCode: 0,
+                deviceId: "",
+                achSecCode: "",
+                achHolderType: "personal",
+                ipAddress: "255.255.255.255",
+                isSameDayACH: false,
+                walletType: null,
+            },
+            token: null,
+        };
+
+        server
+            .mockEndpoint()
+            .post("/v2/MoneyIn/refund/10-3ffa27df-b171-44e0-b251-e95fbfc7a723/0")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.moneyIn.refundv2Amount("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0);
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("refundv2amount (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+
+        const rawResponseBody = {
+            code: "A0004",
+            reason: "Refunded",
+            explanation: "Transaction refunded",
+            action: "No action required",
+            data: {
+                parentOrgName: "Mrinal's Pet Supplies",
+                paypointDbaname: "Mrinal's Pet Shop North",
+                paypointLegalname: "Mrinal's Pet Shop North",
+                paypointEntryname: "495147f647",
+                paymentTransId: "3040-96dfa9a7c4ed4f82a3dd4a4a12ad28ae",
+                connectorName: "gp",
+                externalProcessorInformation: "",
+                gatewayTransId: "TRN_Ih68D6UZdip7OEQ2QFXat1yQSLF2nB",
+                orderId: null,
+                method: "card",
+                batchNumber: "3040_combined_20251201_3a50747d-6b5c-40ef-9f69-93a9cc7fcb49",
+                batchAmount: 420,
+                payorId: 4440,
+                paymentData: {
+                    maskedAccount: "4XXXXXXXXXXX5439",
+                    accountType: "visa",
+                    accountExp: "12/25",
+                    holderName: "John Cassian",
+                    storedId: null,
+                    initiator: null,
+                    storedMethodUsageType: null,
+                    sequence: null,
+                    orderDescription: "",
+                    accountId: null,
+                    signatureData: null,
+                    binData: {
+                        binMatchedLength: "6",
+                        binCardBrand: "VISA",
+                        binCardType: "CREDIT",
+                        binCardCategory: "CLASSIC",
+                        binCardIssuer: "",
+                        binCardIssuerCountry: "RUSSIAN FEDERATION",
+                        binCardIssuerCountryCodeA2: "RU",
+                        binCardIssuerCountryNumber: "643",
+                        binCardIsRegulated: "",
+                        binCardUseCategory: "",
+                        binCardIssuerCountryCodeA3: "",
+                    },
+                    paymentDetails: {
+                        totalAmount: 105,
+                        serviceFee: 5,
+                        checkNumber: null,
+                        checkImage: null,
+                        checkUniqueId: "",
+                        currency: "USD",
+                        orderDescription: null,
+                        orderId: null,
+                        orderIdAlternative: null,
+                        paymentDescription: null,
+                        groupNumber: null,
+                        source: null,
+                        payabliTransId: null,
+                        unbundled: null,
+                        categories: [],
+                        splitFunding: [],
+                    },
+                },
+                transStatus: 1,
+                paypointId: 3040,
+                totalAmount: 105,
+                netAmount: 100,
+                feeAmount: 5,
+                settlementStatus: 0,
+                operation: "Sale",
+                responseData: {
+                    response: null,
+                    resultCode: "A0000",
+                    resultCodeText: "Approved",
+                    responsetext: "CAPTURED",
+                    authcode: "AXS425",
+                    transactionid: "TRN_Xo4dpKfmx3OxSc9svd2ccI6OOnyB2I",
+                    avsresponse: "N",
+                    avsresponse_text: "No Match, No address or ZIP match",
+                    cvvresponse: "M",
+                    cvvresponse_text: "CVV2/CVC2 match",
+                    orderid: null,
+                    type: null,
+                    response_code: "100",
+                    response_code_text: "Operation successful",
+                    customer_vault_id: null,
+                    emv_auth_response_data: null,
+                },
+                source: "api",
+                scheduleReference: 0,
+                orgId: 123,
+                refundId: 0,
+                returnedId: 0,
+                chargebackId: 0,
+                retrievalId: 0,
+                transAdditionalData: null,
+                invoiceData: {
+                    invoiceNumber: null,
+                    invoiceDate: null,
+                    invoiceDueDate: null,
+                    invoiceEndDate: null,
+                    invoiceStatus: null,
+                    invoiceType: null,
+                    frequency: null,
+                    paymentTerms: null,
+                    termsConditions: null,
+                    notes: null,
+                    tax: null,
+                    discount: null,
+                    invoiceAmount: null,
+                    freightAmount: null,
+                    dutyAmount: null,
+                    purchaseOrder: null,
+                    firstName: null,
+                    lastName: null,
+                    company: null,
+                    shippingAddress1: null,
+                    shippingAddress2: null,
+                    shippingCity: null,
+                    shippingState: null,
+                    shippingZip: null,
+                    shippingCountry: null,
+                    shippingEmail: null,
+                    shippingPhone: null,
+                    shippingFromZip: null,
+                    summaryCommodityCode: null,
+                    items: null,
+                    attachments: null,
+                    additionalData: null,
+                },
+                entrypageId: 0,
+                externalPaypointID: "",
+                isValidatedACH: false,
+                transactionTime: "2025-12-01T09:50:03.559",
+                customer: {
+                    identifiers: null,
+                    firstName: "David",
+                    lastName: "Beckham",
+                    companyName: "Driving School LLC",
+                    billingAddress1: "Home Address",
+                    billingAddress2: "",
+                    billingCity: "",
+                    billingState: "",
+                    billingZip: "45157",
+                    billingCountry: "US",
+                    billingPhone: "+15555555555",
+                    billingEmail: "example@payabli.com",
+                    customerNumber: "C-90010",
+                    shippingAddress1: "Home Address",
+                    shippingAddress2: "",
+                    shippingCity: "",
+                    shippingState: "",
+                    shippingZip: "45157",
+                    shippingCountry: "US",
+                    customerId: 4440,
+                    customerStatus: 0,
+                    additionalData: null,
+                },
+                splitFundingInstructions: null,
+                cfeeTransactions: [
+                    {
+                        cFeeTransid: "3040-96dfa9a7c4ed4f82a3dd4a4a12ad28ae",
+                        transStatus: 1,
+                        feeAmount: 5,
+                        settlementStatus: 0,
+                        operation: "Sale",
+                        responseData: {},
+                        refundId: 0,
+                        transactionTime: "2025-12-01T09:50:03.559",
+                    },
+                ],
+                transactionEvents: [
+                    {
+                        transEvent: "Created",
+                        eventData: "0HNHD68HATSUC:00000001",
+                        eventTime: "2025-12-01T09:50:02.558651",
+                    },
+                    {
+                        transEvent: "Approved",
+                        eventData: "0HNHD68HATSUC:00000001",
+                        eventTime: "2025-12-01T09:50:03.609111",
+                    },
+                ],
+                pendingFeeAmount: 0,
+                riskFlagged: false,
+                riskFlaggedOn: "2025-12-01T09:50:02.5474568",
+                riskStatus: "PASSED",
+                riskReason: "",
+                riskAction: "",
+                riskActionCode: 0,
+                deviceId: "",
+                achSecCode: "",
+                achHolderType: "personal",
+                ipAddress: "255.255.255.255",
+                isSameDayACH: false,
+                walletType: null,
+            },
+            token: null,
+        };
+
+        server
+            .mockEndpoint()
+            .post("/v2/MoneyIn/refund/10-3ffa27df-b171-44e0-b251-e95fbfc7a723/100.99")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.moneyIn.refundv2Amount("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 100.99);
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("refundv2amount (3)", async () => {
@@ -6523,20 +7182,19 @@ describe("MoneyInClient", () => {
             apiKeyAuth: { apiKey: "test" },
             environment: server.baseUrl,
         });
-        const rawRequestBody = {};
+
         const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/refund/transId/1.1")
-            .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(400)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
-            return await client.moneyIn.refundv2Amount("transId", 1.1, {});
+            return await client.moneyIn.refundv2Amount("transId", 1.1);
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
@@ -6548,20 +7206,19 @@ describe("MoneyInClient", () => {
             apiKeyAuth: { apiKey: "test" },
             environment: server.baseUrl,
         });
-        const rawRequestBody = {};
+
         const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/refund/transId/1.1")
-            .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(401)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
-            return await client.moneyIn.refundv2Amount("transId", 1.1, {});
+            return await client.moneyIn.refundv2Amount("transId", 1.1);
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
@@ -6573,7 +7230,7 @@ describe("MoneyInClient", () => {
             apiKeyAuth: { apiKey: "test" },
             environment: server.baseUrl,
         });
-        const rawRequestBody = {};
+
         const rawResponseBody = {
             code: "code",
             reason: "reason",
@@ -6742,14 +7399,13 @@ describe("MoneyInClient", () => {
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/refund/transId/1.1")
-            .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(402)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
-            return await client.moneyIn.refundv2Amount("transId", 1.1, {});
+            return await client.moneyIn.refundv2Amount("transId", 1.1);
         }).rejects.toThrow(Payabli.PaymentRequiredError);
     });
 
@@ -6761,20 +7417,19 @@ describe("MoneyInClient", () => {
             apiKeyAuth: { apiKey: "test" },
             environment: server.baseUrl,
         });
-        const rawRequestBody = {};
+
         const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
             .post("/v2/MoneyIn/refund/transId/1.1")
-            .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(500)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
-            return await client.moneyIn.refundv2Amount("transId", 1.1, {});
+            return await client.moneyIn.refundv2Amount("transId", 1.1);
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 

@@ -2593,6 +2593,168 @@ await client.moneyIn.capturev2("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", {
 </dl>
 </details>
 
+<details><summary><code>client.moneyIn.<a href="/src/api/resources/moneyIn/client/Client.ts">refundv2</a>(transId, { ...params }) -> Payabli.V2TransactionResponseWrapper</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Give a full refund for a transaction that has settled and send money back to the account holder. To perform a partial refund, see [Partially refund a transaction](/developers/api-reference/moneyinV2/partial-refund-a-settled-transaction).
+
+This is the v2 version of the refund endpoint, and returns the unified response format. See [Pay In unified response codes reference](/guides/pay-in-unified-response-codes-reference) for more information.
+
+<Note>
+  To refund a split-funded transaction, include split instructions in the request body. Omit the body for a standard refund.
+</Note>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.moneyIn.refundv2("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**transId:** `string` — ReferenceId for the transaction (PaymentId).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.RefundV2Request` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `MoneyInClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.moneyIn.<a href="/src/api/resources/moneyIn/client/Client.ts">refundv2Amount</a>(transId, amount, { ...params }) -> Payabli.V2TransactionResponseWrapper</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Refund a transaction that has settled and send money back to the account holder. If `amount` is set to 0, performs a full refund. When a non-zero `amount` is provided, this endpoint performs a partial refund.
+
+This is the v2 version of the refund endpoint, and returns the unified response format. See [Pay In unified response codes reference](/guides/pay-in-unified-response-codes-reference) for more information.
+
+<Note>
+  For a standard refund, whether full (`amount` set to 0) or partial, send no request body. Include a request body only to refund a split-funded transaction, with split instructions in `refundDetails`.
+</Note>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.moneyIn.refundv2Amount("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0);
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**transId:** `string` — ReferenceId for the transaction (PaymentId).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**amount:** `number` — Amount to refund from original transaction, minus any service fees charged on the original transaction. If set to 0, performs a full refund.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.RefundV2Request` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `MoneyInClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.moneyIn.<a href="/src/api/resources/moneyIn/client/Client.ts">voidv2</a>(transId) -> Payabli.V2TransactionResponseWrapper</code></summary>
 <dl>
 <dd>
