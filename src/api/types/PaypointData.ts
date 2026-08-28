@@ -26,7 +26,7 @@ export interface PaypointData {
      * This business description is captured during boarding. It differs from `summary`, which
      * reports counts of customers, transactions, and subscriptions attached to the paypoint.
      */
-    Summary: string | null;
+    Summary?: string | undefined;
     summary?: Payabli.PaypointSummary | undefined;
     TimeZone?: Payabli.Timezone | undefined;
     WebsiteAddress?: Payabli.Website | undefined;

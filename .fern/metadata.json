@@ -11,10 +11,10 @@
         "generateWireTests": false,
         "respectOptionalRequestBody": true
     },
-    "originGitCommit": "aa2ca5e48aaac43d3a95cb68a4326a796855ec16",
+    "originGitCommit": "2adc358322dabc538c0685e4f8aba68a245a8501",
     "originGitCommitIsDirty": true,
     "invokedBy": "ci",
-    "requestedVersion": "1.0.12",
+    "requestedVersion": "1.0.13",
     "ciProvider": "github",
-    "sdkVersion": "1.0.12"
+    "sdkVersion": "1.0.13"
 }
