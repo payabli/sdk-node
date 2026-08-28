@@ -8,6 +8,12 @@ import type * as Payabli from "../../../../index.js";
  *         cardToken: "gc_abc123def456",
  *         status: "Cancelled"
  *     }
+ *
+ * @example
+ *     {
+ *         cardToken: "20231206142225226104",
+ *         status: "Cancelled"
+ *     }
  */
 export interface UpdateCardRequestBody {
     /** Token that uniquely identifies the card. This is the `ReferenceId` returned when the card was created. */

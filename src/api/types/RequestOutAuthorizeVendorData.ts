@@ -3,49 +3,12 @@
 import type * as Payabli from "../index.js";
 
 /**
- * Object containing vendor data.
+ * Vendor to pay with this payout. Create the vendor first with
+ * [Create vendor](/developers/api-reference/vendor/create-vendor), then
+ * reference it here by `vendorNumber` or `vendorId`.
  */
 export interface RequestOutAuthorizeVendorData {
     vendorNumber?: Payabli.VendorNumber | undefined;
-    name1?: Payabli.VendorName1 | undefined;
-    name2?: Payabli.VendorName2 | undefined;
-    ein?: Payabli.VendorEin | undefined;
-    phone?: Payabli.VendorPhone | undefined;
-    email?: Payabli.Email | undefined;
-    /**
-     * Vendor's address
-     *
-     * For a PO Box address, include only the PO Box in this field, for example `PO Box 29652`. Put the rest of the address, such as a department number, in `address2`.
-     */
-    address1?: Payabli.AddressNullable | undefined;
-    city?: string | undefined;
-    state?: string | undefined;
-    zip?: string | undefined;
-    country?: string | undefined;
-    mcc?: Payabli.Mcc | undefined;
-    contacts?: Payabli.ContactsField | undefined;
-    billingData?: Payabli.RequestOutAuthorizeVendorBillingData | undefined;
-    vendorStatus?: Payabli.Vendorstatus | undefined;
-    remitAddress1?: Payabli.Remitaddress1 | undefined;
-    remitAddress2?: Payabli.Remitaddress2 | undefined;
-    remitCity?: Payabli.Remitcity | undefined;
-    remitState?: Payabli.Remitstate | undefined;
-    remitZip?: Payabli.Remitzip | undefined;
-    remitCountry?: Payabli.Remitcountry | undefined;
-    customerVendorAccount?: string | undefined;
-    customField1?: string | undefined;
-    customField2?: string | undefined;
-    additionalData?: Payabli.AdditionalData | undefined;
-    /**
-     * Additional line for vendor's address.
-     *
-     * For a PO Box address, this field holds the part of the address that follows the PO Box, for example `Dept# 880662`.
-     */
-    address2?: Payabli.AddressAddtlNullable | undefined;
-    internalReferenceId?: number | undefined;
-    locationCode?: Payabli.LocationCode | undefined;
-    payeeName1?: Payabli.PayeeName | undefined;
-    payeeName2?: Payabli.PayeeName | undefined;
-    paymentMethod?: Payabli.VendorPaymentMethod | undefined;
+    /** Payabli identifier for the vendor record. Required when `vendorNumber` isn't included. */
     vendorId?: Payabli.Vendorid | undefined;
 }

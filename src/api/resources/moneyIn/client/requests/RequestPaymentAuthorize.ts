@@ -5,22 +5,12 @@ import type * as Payabli from "../../../../index.js";
 /**
  * @example
  *     {
- *         customerData: {
- *             customerId: 4440
- *         },
- *         entryPoint: "8cfec329267",
- *         ipaddress: "255.255.255.255",
  *         paymentDetails: {
- *             serviceFee: 0,
- *             totalAmount: 100
+ *             totalAmount: 1.1
  *         },
  *         paymentMethod: {
- *             cardcvv: "999",
- *             cardexp: "02/27",
- *             cardHolder: "John Cassian",
- *             cardnumber: "4111111111111111",
- *             cardzip: "12345",
- *             initiator: "payor",
+ *             cardexp: "cardexp",
+ *             cardnumber: "cardnumber",
  *             method: "card"
  *         }
  *     }

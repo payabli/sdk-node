@@ -5,6 +5,7 @@ export const Methodall = {
     Card: "card",
     Ach: "ach",
     Cloud: "cloud",
+    Device: "device",
     Check: "check",
     Cash: "cash",
 } as const;

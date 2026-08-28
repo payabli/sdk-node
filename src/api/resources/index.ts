@@ -15,6 +15,7 @@ export * from "./cloud/client/requests/index.js";
 export * as cloud from "./cloud/index.js";
 export * from "./customer/client/requests/index.js";
 export * as customer from "./customer/index.js";
+export * as device from "./device/index.js";
 export * from "./export/client/requests/index.js";
 export * as export_ from "./export/index.js";
 export * from "./funding/client/requests/index.js";

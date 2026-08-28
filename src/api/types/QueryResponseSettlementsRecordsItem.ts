@@ -55,7 +55,7 @@ export interface QueryResponseSettlementsRecordsItem {
     /** Events associated with this transaction. */
     TransactionEvents?: Payabli.QueryTransactionEvents[] | undefined;
     TransactionTime?: Payabli.TransactionTime | undefined;
-    /** Payment method used: card or ach. */
+    /** The payment method used for the transaction, for example card, ach, or device. */
     TransMethod?: string | undefined;
     /** The transaction type: credit or debit. */
     Type?: string | undefined;

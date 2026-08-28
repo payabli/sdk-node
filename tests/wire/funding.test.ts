@@ -13,7 +13,7 @@ describe("FundingClient", () => {
             apiKeyAuth: { apiKey: "test" },
             environment: server.baseUrl,
         });
-        const rawRequestBody = { amount: 10, entrypoint: "48acde49", accountId: "333" };
+        const rawRequestBody = { amount: 1500, entrypoint: "48acde49", accountId: "333" };
         const rawResponseBody = { isSuccess: true, responseText: "Success", responseData: null, pageIdentifier: null };
 
         server
@@ -26,7 +26,7 @@ describe("FundingClient", () => {
             .build();
 
         const response = await client.funding.depositFunds({
-            amount: 10,
+            amount: 1500,
             entrypoint: "48acde49",
             accountId: "333",
         });

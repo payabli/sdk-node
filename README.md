@@ -75,8 +75,8 @@ await client.moneyIn.getpaidv2({
         totalAmount: 100
     },
     paymentMethod: {
-        device: "6c361c7d-674c-44cc-b790-382b75d1xxx",
-        method: "cloud",
+        device: "499585-389fj484-3jcj8hj3",
+        method: "device",
         saveIfSuccess: true
     }
 });

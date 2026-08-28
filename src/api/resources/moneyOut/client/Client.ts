@@ -73,19 +73,14 @@ export class MoneyOutClient {
      *         entryPoint: "8cfec329267",
      *         autoCapture: true,
      *         invoiceData: [{
-     *                 billId: 54323,
-     *                 attachments: [{
-     *                         filename: "bill.pdf",
-     *                         ftype: "pdf",
-     *                         furl: "https://example.com/bill.pdf"
-     *                     }]
+     *                 billId: 54323
      *             }],
      *         orderDescription: "Window Painting",
      *         paymentDetails: {
      *             totalAmount: 47
      *         },
      *         paymentMethod: {
-     *             method: "managed"
+     *             method: "vcard"
      *         },
      *         vendorData: {
      *             vendorNumber: "VEN-123"
@@ -175,56 +170,6 @@ export class MoneyOutClient {
      *             vendorNumber: "7895433"
      *         }
      *     })
-     *
-     * @example
-     *     await client.moneyOut.authorizeOut({
-     *         entryPoint: "8cfec329267",
-     *         paymentMethod: {
-     *             method: "ach",
-     *             achHolder: "John Doe",
-     *             achRouting: "011401533",
-     *             achAccount: "123456789",
-     *             achAccountType: "checking",
-     *             achHolderType: "business"
-     *         },
-     *         paymentDetails: {
-     *             totalAmount: 978.32
-     *         },
-     *         vendorData: {
-     *             vendorNumber: "VEN-123",
-     *             name1: "Heritage Pro Company",
-     *             name2: "",
-     *             ein: "473771889",
-     *             phone: "7868342364",
-     *             email: "contact570@heritagepro.com",
-     *             address1: "478 Mittie Roads",
-     *             city: "Jakubowskifield",
-     *             state: "WI",
-     *             zip: "45993",
-     *             country: "US",
-     *             mcc: "0763",
-     *             locationCode: "tpa",
-     *             contacts: [{
-     *                     contactName: "Dax",
-     *                     contactEmail: "Mandy65@heritagepro.com",
-     *                     contactPhone: "996-325-5420 x31028"
-     *                 }],
-     *             vendorStatus: 1,
-     *             remitAddress1: "727 Terrell Streets",
-     *             remitAddress2: "Apt. 773",
-     *             remitCity: "South Nicholeside",
-     *             remitState: "ID",
-     *             remitZip: "72951-9790",
-     *             remitCountry: "US"
-     *         },
-     *         invoiceData: [{
-     *                 invoiceNumber: "INV-2345",
-     *                 netAmount: "1",
-     *                 invoiceDate: "2026-09-03",
-     *                 dueDate: "2026-11-04",
-     *                 comments: "Building Repairs - Community event setup (System updates)"
-     *             }]
-     *     })
      */
     public authorizeOut(
         request: Payabli.RequestOutAuthorize,
@@ -238,18 +183,10 @@ export class MoneyOutClient {
         requestOptions?: MoneyOutClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.AuthCapturePayoutResponse>> {
         const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
-        const {
-            allowDuplicatedBills,
-            doNotCreateBills,
-            forceVendorCreation,
-            sameDayACH: sameDayAch,
-            idempotencyKey,
-            ..._body
-        } = request;
+        const { allowDuplicatedBills, doNotCreateBills, sameDayACH: sameDayAch, idempotencyKey, ..._body } = request;
         const _queryParams: Record<string, unknown> = {
             allowDuplicatedBills,
             doNotCreateBills,
-            forceVendorCreation,
             sameDayACH: sameDayAch,
         };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({
@@ -1116,7 +1053,7 @@ export class MoneyOutClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.PayabliEnvironment.Sandbox,
-                "vcard/send-card-link",
+                "MoneyOut/vcard/send-card-link",
             ),
             method: "POST",
             headers: _headers,
@@ -1160,7 +1097,12 @@ export class MoneyOutClient {
             }
         }
 
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/vcard/send-card-link");
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/MoneyOut/vcard/send-card-link",
+        );
     }
 
     /**

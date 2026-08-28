@@ -12,7 +12,7 @@ export interface V2TransactionDetailResponseData {
     responsetext: Payabli.Resulttext;
     authcode: Payabli.Authcode | null;
     /** Unique identifier for the transaction assigned by the payment processor. */
-    transactionid: string;
+    transactionid: string | null;
     avsresponse: Payabli.AvsResponse | null;
     avsresponse_text: Payabli.AvsResponseText | null;
     cvvresponse: Payabli.CvvResponse | null;

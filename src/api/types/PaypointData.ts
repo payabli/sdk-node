@@ -22,6 +22,11 @@ export interface PaypointData {
     Phone?: Payabli.PhoneNumber | undefined;
     ServiceData?: Payabli.Services | undefined;
     State?: Payabli.StateNullable | undefined;
+    /**
+     * This business description is captured during boarding. It differs from `summary`, which
+     * reports counts of customers, transactions, and subscriptions attached to the paypoint.
+     */
+    Summary: string | null;
     summary?: Payabli.PaypointSummary | undefined;
     TimeZone?: Payabli.Timezone | undefined;
     WebsiteAddress?: Payabli.Website | undefined;

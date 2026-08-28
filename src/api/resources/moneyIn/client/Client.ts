@@ -50,22 +50,12 @@ export class MoneyInClient {
      *
      * @example
      *     await client.moneyIn.authorize({
-     *         customerData: {
-     *             customerId: 4440
-     *         },
-     *         entryPoint: "8cfec329267",
-     *         ipaddress: "255.255.255.255",
      *         paymentDetails: {
-     *             serviceFee: 0,
-     *             totalAmount: 100
+     *             totalAmount: 1.1
      *         },
      *         paymentMethod: {
-     *             cardcvv: "999",
-     *             cardexp: "02/27",
-     *             cardHolder: "John Cassian",
-     *             cardnumber: "4111111111111111",
-     *             cardzip: "12345",
-     *             initiator: "payor",
+     *             cardexp: "cardexp",
+     *             cardnumber: "cardnumber",
      *             method: "card"
      *         }
      *     })
@@ -173,7 +163,7 @@ export class MoneyInClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.moneyIn.capture("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", 0)
+     *     await client.moneyIn.capture("transId", 1.1)
      */
     public capture(
         transId: string,
@@ -274,25 +264,9 @@ export class MoneyInClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.moneyIn.captureAuth("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", {
+     *     await client.moneyIn.captureAuth("transId", {
      *         paymentDetails: {
-     *             totalAmount: 105,
-     *             serviceFee: 5
-     *         }
-     *     })
-     *
-     * @example
-     *     await client.moneyIn.captureAuth("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", {
-     *         paymentDetails: {
-     *             totalAmount: 89,
-     *             serviceFee: 4
-     *         }
-     *     })
-     *
-     * @example
-     *     await client.moneyIn.captureAuth("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", {
-     *         paymentDetails: {
-     *             totalAmount: 100
+     *             totalAmount: 1.1
      *         }
      *     })
      */
@@ -528,6 +502,9 @@ export class MoneyInClient {
      *
      * @example
      *     await client.moneyIn.details("45-as456777hhhhhhhhhh77777777-324")
+     *
+     * @example
+     *     await client.moneyIn.details("3040-96dfa9a7c4ed4f82a3dd4a4a12ad28ae")
      */
     public details(
         transId: string,
@@ -622,161 +599,12 @@ export class MoneyInClient {
      *
      * @example
      *     await client.moneyIn.getpaid({
-     *         customerData: {
-     *             customerId: 4440
-     *         },
-     *         entryPoint: "8cfec329267",
-     *         ipaddress: "255.255.255.255",
      *         paymentDetails: {
-     *             serviceFee: 0,
-     *             totalAmount: 100
+     *             totalAmount: 1.1
      *         },
      *         paymentMethod: {
-     *             cardcvv: "999",
-     *             cardexp: "02/27",
-     *             cardHolder: "John Cassian",
-     *             cardnumber: "4111111111111111",
-     *             cardzip: "12345",
-     *             initiator: "payor",
-     *             method: "card"
-     *         }
-     *     })
-     *
-     * @example
-     *     await client.moneyIn.getpaid({
-     *         customerData: {
-     *             customerId: 4440
-     *         },
-     *         entryPoint: "8cfec329267",
-     *         ipaddress: "255.255.255.255",
-     *         paymentDetails: {
-     *             serviceFee: 0,
-     *             totalAmount: 100
-     *         },
-     *         paymentMethod: {
-     *             initiator: "payor",
-     *             method: "card",
-     *             storedMethodId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-     *             storedMethodUsageType: "unscheduled"
-     *         }
-     *     })
-     *
-     * @example
-     *     await client.moneyIn.getpaid({
-     *         customerData: {
-     *             customerId: 4440
-     *         },
-     *         entryPoint: "8cfec329267",
-     *         ipaddress: "255.255.255.255",
-     *         paymentDetails: {
-     *             serviceFee: 0,
-     *             totalAmount: 100
-     *         },
-     *         paymentMethod: {
-     *             device: "6c361c7d-674c-44cc-b790-382b75d1xxx",
-     *             method: "cloud",
-     *             saveIfSuccess: true
-     *         }
-     *     })
-     *
-     * @example
-     *     await client.moneyIn.getpaid({
-     *         customerData: {
-     *             customerId: 4440
-     *         },
-     *         entryPoint: "8cfec329267",
-     *         ipaddress: "255.255.255.255",
-     *         paymentDetails: {
-     *             serviceFee: 0,
-     *             totalAmount: 100
-     *         },
-     *         paymentMethod: {
-     *             achAccount: "123123123",
-     *             achAccountType: "Checking",
-     *             achCode: "WEB",
-     *             achHolder: "John Cassian",
-     *             achHolderType: "personal",
-     *             achRouting: "123123123",
-     *             method: "ach"
-     *         }
-     *     })
-     *
-     * @example
-     *     await client.moneyIn.getpaid({
-     *         customerData: {
-     *             customerId: 4440
-     *         },
-     *         entryPoint: "8cfec329267",
-     *         ipaddress: "255.255.255.255",
-     *         paymentDetails: {
-     *             checkUniqueId: "abc123def456",
-     *             serviceFee: 0,
-     *             totalAmount: 125.5
-     *         },
-     *         paymentMethod: {
-     *             achAccount: "123456",
-     *             achAccountType: "Checking",
-     *             achCode: "BOC",
-     *             achHolder: "John Doe",
-     *             achRouting: "123456789",
-     *             method: "ach"
-     *         }
-     *     })
-     *
-     * @example
-     *     await client.moneyIn.getpaid({
-     *         customerData: {
-     *             billingAddress1: "123 Walnut Street",
-     *             billingCity: "Johnson City",
-     *             billingCountry: "US",
-     *             billingEmail: "john@email.com",
-     *             billingPhone: "1234567890",
-     *             billingState: "Johnson City",
-     *             billingZip: "37615",
-     *             customerNumber: "C-90010",
-     *             firstName: "John",
-     *             lastName: "Cassian"
-     *         },
-     *         entryPoint: "8cfec329267",
-     *         ipaddress: "255.255.255.255",
-     *         orderDescription: "New customer package",
-     *         orderId: "982-102",
-     *         paymentDetails: {
-     *             serviceFee: 0,
-     *             totalAmount: 1000
-     *         },
-     *         paymentMethod: {
-     *             cardcvv: "123",
-     *             cardexp: "12/29",
-     *             cardHolder: "John Cassian",
-     *             cardnumber: "4111111111111111",
-     *             cardzip: "12345",
-     *             initiator: "payor",
-     *             method: "card",
-     *             saveIfSuccess: true
-     *         },
-     *         source: "web"
-     *     })
-     *
-     * @example
-     *     await client.moneyIn.getpaid({
-     *         customerData: {
-     *             customerId: 4440
-     *         },
-     *         entryPoint: "8cfec329267",
-     *         ipaddress: "255.255.255.255",
-     *         paymentDetails: {
-     *             serviceFee: 0,
-     *             totalAmount: 100,
-     *             currency: "CAD"
-     *         },
-     *         paymentMethod: {
-     *             cardcvv: "999",
-     *             cardexp: "02/27",
-     *             cardHolder: "John Cassian",
-     *             cardnumber: "4111111111111111",
-     *             cardzip: "12345",
-     *             initiator: "payor",
+     *             cardexp: "cardexp",
+     *             cardnumber: "cardnumber",
      *             method: "card"
      *         }
      *     })
@@ -890,10 +718,7 @@ export class MoneyInClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.moneyIn.reverse("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0)
-     *
-     * @example
-     *     await client.moneyIn.reverse("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 53.76)
+     *     await client.moneyIn.reverse("transId", 1.1)
      */
     public reverse(
         transId: string,
@@ -996,10 +821,7 @@ export class MoneyInClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.moneyIn.refund("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0)
-     *
-     * @example
-     *     await client.moneyIn.refund("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 100.99)
+     *     await client.moneyIn.refund("transId", 1.1)
      */
     public refund(
         transId: string,
@@ -1098,46 +920,7 @@ export class MoneyInClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.moneyIn.refundWithInstructions("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", {
-     *         idempotencyKey: "8A29FC40-CA47-1067-B31D-00DD010662DB",
-     *         source: "api",
-     *         orderDescription: "Materials deposit",
-     *         amount: 100,
-     *         refundDetails: {
-     *             splitRefunding: [{
-     *                     originationEntryPoint: "7f1a381696",
-     *                     accountId: "187-342",
-     *                     description: "Refunding undelivered materials",
-     *                     amount: 60
-     *                 }, {
-     *                     originationEntryPoint: "7f1a381696",
-     *                     accountId: "187-343",
-     *                     description: "Refunding deposit for undelivered materials",
-     *                     amount: 40
-     *                 }]
-     *         }
-     *     })
-     *
-     * @example
-     *     await client.moneyIn.refundWithInstructions("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", {
-     *         idempotencyKey: "8A29FC40-CA47-1067-B31D-00DD010662DB",
-     *         source: "api",
-     *         orderDescription: "Materials deposit",
-     *         amount: 70,
-     *         refundDetails: {
-     *             splitRefunding: [{
-     *                     originationEntryPoint: "7f1a381696",
-     *                     accountId: "187-342",
-     *                     description: "Refunding undelivered materials",
-     *                     amount: 40
-     *                 }, {
-     *                     originationEntryPoint: "7f1a381696",
-     *                     accountId: "187-343",
-     *                     description: "Refunding deposit for undelivered materials",
-     *                     amount: 30
-     *                 }]
-     *         }
-     *     })
+     *     await client.moneyIn.refundWithInstructions("transId")
      */
     public refundWithInstructions(
         transId: string,
@@ -1531,7 +1314,7 @@ export class MoneyInClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.moneyIn.void("10-3ffa27df-b171-44e0-b251-e95fbfc7a723")
+     *     await client.moneyIn.void("transId")
      */
     public void(
         transId: string,
@@ -1691,7 +1474,69 @@ export class MoneyInClient {
      *         },
      *         paymentMethod: {
      *             device: "6c361c7d-674c-44cc-b790-382b75d1xxx",
-     *             method: "cloud",
+     *             method: "cloud"
+     *         }
+     *     })
+     *
+     * @example
+     *     await client.moneyIn.getpaidv2({
+     *         customerData: {
+     *             customerId: 4440
+     *         },
+     *         entryPoint: "8cfec329267",
+     *         ipaddress: "255.255.255.255",
+     *         paymentDetails: {
+     *             serviceFee: 0,
+     *             totalAmount: 100,
+     *             currency: "CAD"
+     *         },
+     *         paymentMethod: {
+     *             cardcvv: "999",
+     *             cardexp: "02/27",
+     *             cardHolder: "John Cassian",
+     *             cardnumber: "4111111111111111",
+     *             cardzip: "12345",
+     *             initiator: "payor",
+     *             method: "card"
+     *         }
+     *     })
+     *
+     * @example
+     *     await client.moneyIn.getpaidv2({
+     *         customerData: {
+     *             customerId: 4440
+     *         },
+     *         entryPoint: "8cfec329267",
+     *         ipaddress: "255.255.255.255",
+     *         paymentDetails: {
+     *             checkUniqueId: "abc123def456",
+     *             serviceFee: 0,
+     *             totalAmount: 125.5
+     *         },
+     *         paymentMethod: {
+     *             achAccount: "123456",
+     *             achAccountType: "Checking",
+     *             achCode: "BOC",
+     *             achHolder: "John Doe",
+     *             achRouting: "123456789",
+     *             method: "ach"
+     *         }
+     *     })
+     *
+     * @example
+     *     await client.moneyIn.getpaidv2({
+     *         customerData: {
+     *             customerId: 4440
+     *         },
+     *         entryPoint: "8cfec329267",
+     *         ipaddress: "255.255.255.255",
+     *         paymentDetails: {
+     *             serviceFee: 0,
+     *             totalAmount: 100
+     *         },
+     *         paymentMethod: {
+     *             device: "499585-389fj484-3jcj8hj3",
+     *             method: "device",
      *             saveIfSuccess: true
      *         }
      *     })

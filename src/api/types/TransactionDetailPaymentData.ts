@@ -6,8 +6,8 @@ import type * as Payabli from "../index.js";
  * Payment method and transaction details
  */
 export interface TransactionDetailPaymentData {
-    maskedAccount: Payabli.Maskedaccount;
-    accountType: Payabli.Accounttype;
+    maskedAccount: Payabli.Maskedaccount | null;
+    accountType: Payabli.Accounttype | null;
     accountExp: Payabli.Accountexp | null;
     holderName: Payabli.Holdername;
     storedId: Payabli.Storedmethodid | null;

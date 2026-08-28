@@ -8,6 +8,7 @@ import { ChargeBacksClient } from "./api/resources/chargeBacks/client/Client.js"
 import { CheckCaptureClient } from "./api/resources/checkCapture/client/Client.js";
 import { CloudClient } from "./api/resources/cloud/client/Client.js";
 import { CustomerClient } from "./api/resources/customer/client/Client.js";
+import { DeviceClient } from "./api/resources/device/client/Client.js";
 import { ExportClient } from "./api/resources/export/client/Client.js";
 import { FundingClient } from "./api/resources/funding/client/Client.js";
 import { GhostCardClient } from "./api/resources/ghostCard/client/Client.js";
@@ -63,6 +64,7 @@ export class PayabliClient {
     protected _query: QueryClient | undefined;
     protected _ocr: OcrClient | undefined;
     protected _notificationlogs: NotificationlogsClient | undefined;
+    protected _device: DeviceClient | undefined;
     protected _cloud: CloudClient | undefined;
     protected _lineItem: LineItemClient | undefined;
     protected _boarding: BoardingClient | undefined;
@@ -149,6 +151,10 @@ export class PayabliClient {
 
     public get notificationlogs(): NotificationlogsClient {
         return (this._notificationlogs ??= new NotificationlogsClient(this._options));
+    }
+
+    public get device(): DeviceClient {
+        return (this._device ??= new DeviceClient(this._options));
     }
 
     public get cloud(): CloudClient {

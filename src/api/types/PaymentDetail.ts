@@ -19,7 +19,7 @@ export interface PaymentDetail {
     currency?: string | undefined;
     /** Service fee to be deducted from the total amount. This amount must be a number, percentages aren't accepted. If you are using a percentage-based fee schedule, you must calculate the value manually. */
     serviceFee?: number | undefined;
-    /** Split funding instructions for the transaction. See [Split a Transaction](/developers/developer-guides/money-in-split-funding) for more. */
+    /** Split funding instructions for the transaction. See [Split a Transaction](/guides/pay-in-developer-routing-split-funds) for more. */
     splitFunding?: Payabli.SplitFunding | undefined;
     /** Unique identifier for a processed check image. Required for RDC (Remote Deposit Capture) transactions where `achCode` is `BOC`. Use the `id` value from the [check processing](/developers/api-reference/moneyin/check-capture) response. */
     checkUniqueId?: string | undefined;

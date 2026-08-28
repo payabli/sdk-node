@@ -10,6 +10,7 @@ export type PaymentMethod =
     | Payabli.PayMethodAch
     | Payabli.PayMethodStoredMethod
     | Payabli.PayMethodCloud
+    | Payabli.PayMethodDevice
     | Payabli.Check
     | Payabli.Cash
     | Payabli.PayMethodBodyAllFields;

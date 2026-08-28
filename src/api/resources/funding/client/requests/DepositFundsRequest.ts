@@ -5,7 +5,7 @@ import type * as Payabli from "../../../../index.js";
 /**
  * @example
  *     {
- *         amount: 10,
+ *         amount: 1500,
  *         entrypoint: "48acde49",
  *         accountId: "333"
  *     }

@@ -14,31 +14,22 @@ describe("MoneyInClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {
-            customerData: { customerId: 4440 },
-            entryPoint: "8cfec329267",
-            ipaddress: "255.255.255.255",
-            paymentDetails: { serviceFee: 0, totalAmount: 100 },
-            paymentMethod: {
-                cardcvv: "999",
-                cardexp: "02/27",
-                cardHolder: "John Cassian",
-                cardnumber: "4111111111111111",
-                cardzip: "12345",
-                initiator: "payor",
-                method: "card",
-            },
+            paymentDetails: { totalAmount: 1.1 },
+            paymentMethod: { cardexp: "cardexp", cardnumber: "cardnumber", method: "card" },
         };
         const rawResponseBody = {
-            responseText: "Success",
+            responseText: "responseText",
             isSuccess: true,
+            pageIdentifier: "pageIdentifier",
             responseData: {
-                authCode: "123456",
-                referenceId: "129-219",
+                authCode: "authCode",
+                referenceId: "referenceId",
                 resultCode: 1,
-                resultText: "Authorized",
-                avsResponseText: "No address or ZIP match only",
-                cvvResponseText: "CVV2/CVC2 no match",
-                customerId: 4440,
+                resultText: "resultText",
+                avsResponseText: "avsResponseText",
+                cvvResponseText: "cvvResponseText",
+                customerId: 1000000,
+                methodReferenceId: "methodReferenceId",
             },
         };
 
@@ -52,22 +43,12 @@ describe("MoneyInClient", () => {
             .build();
 
         const response = await client.moneyIn.authorize({
-            customerData: {
-                customerId: 4440,
-            },
-            entryPoint: "8cfec329267",
-            ipaddress: "255.255.255.255",
             paymentDetails: {
-                serviceFee: 0,
-                totalAmount: 100,
+                totalAmount: 1.1,
             },
             paymentMethod: {
-                cardcvv: "999",
-                cardexp: "02/27",
-                cardHolder: "John Cassian",
-                cardnumber: "4111111111111111",
-                cardzip: "12345",
-                initiator: "payor",
+                cardexp: "cardexp",
+                cardnumber: "cardnumber",
                 method: "card",
             },
         });
@@ -233,31 +214,31 @@ describe("MoneyInClient", () => {
 
         const rawResponseBody = {
             responseCode: 1,
-            pageIdentifier: null,
-            roomId: 0,
+            pageIdentifier: "pageIdentifier",
+            roomId: 1000000,
             isSuccess: true,
-            responseText: "Success",
+            responseText: "responseText",
             responseData: {
-                authCode: "123456",
-                referenceId: "129-219",
+                authCode: "authCode",
+                referenceId: "referenceId",
                 resultCode: 1,
-                resultText: "SUCCESS",
-                avsResponseText: null,
-                cvvResponseText: null,
-                customerId: null,
-                methodReferenceId: null,
+                resultText: "resultText",
+                avsResponseText: "avsResponseText",
+                cvvResponseText: "cvvResponseText",
+                customerId: 1000000,
+                methodReferenceId: "methodReferenceId",
             },
         };
 
         server
             .mockEndpoint()
-            .get("/MoneyIn/capture/10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13/0")
+            .get("/MoneyIn/capture/transId/1.1")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.moneyIn.capture("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", 0);
+        const response = await client.moneyIn.capture("transId", 1.1);
         expect(response).toEqual(rawResponseBody);
     });
 
@@ -365,133 +346,43 @@ describe("MoneyInClient", () => {
             apiKeyAuth: { apiKey: "test" },
             environment: server.baseUrl,
         });
-        const rawRequestBody = { paymentDetails: { totalAmount: 105, serviceFee: 5 } };
+        const rawRequestBody = { paymentDetails: { totalAmount: 1.1 } };
         const rawResponseBody = {
             responseCode: 1,
-            pageIdentifier: null,
-            roomId: 0,
+            pageIdentifier: "pageIdentifier",
+            roomId: 1000000,
             isSuccess: true,
-            responseText: "Success",
+            responseText: "responseText",
             responseData: {
-                authCode: "123456",
-                referenceId: "129-219",
+                authCode: "authCode",
+                referenceId: "referenceId",
                 resultCode: 1,
-                resultText: "SUCCESS",
-                avsResponseText: null,
-                cvvResponseText: null,
-                customerId: null,
-                methodReferenceId: null,
+                resultText: "resultText",
+                avsResponseText: "avsResponseText",
+                cvvResponseText: "cvvResponseText",
+                customerId: 1000000,
+                methodReferenceId: "methodReferenceId",
             },
         };
 
         server
             .mockEndpoint()
-            .post("/MoneyIn/capture/10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13")
+            .post("/MoneyIn/capture/transId")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.moneyIn.captureAuth("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", {
+        const response = await client.moneyIn.captureAuth("transId", {
             paymentDetails: {
-                totalAmount: 105,
-                serviceFee: 5,
+                totalAmount: 1.1,
             },
         });
         expect(response).toEqual(rawResponseBody);
     });
 
     test("CaptureAuth (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({
-            maxRetries: 0,
-            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
-            apiKeyAuth: { apiKey: "test" },
-            environment: server.baseUrl,
-        });
-        const rawRequestBody = { paymentDetails: { totalAmount: 89, serviceFee: 4 } };
-        const rawResponseBody = {
-            responseCode: 1,
-            pageIdentifier: null,
-            roomId: 0,
-            isSuccess: true,
-            responseText: "Success",
-            responseData: {
-                authCode: "123456",
-                referenceId: "129-219",
-                resultCode: 1,
-                resultText: "SUCCESS",
-                avsResponseText: null,
-                cvvResponseText: null,
-                customerId: null,
-                methodReferenceId: null,
-            },
-        };
-
-        server
-            .mockEndpoint()
-            .post("/MoneyIn/capture/10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.moneyIn.captureAuth("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", {
-            paymentDetails: {
-                totalAmount: 89,
-                serviceFee: 4,
-            },
-        });
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("CaptureAuth (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({
-            maxRetries: 0,
-            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
-            apiKeyAuth: { apiKey: "test" },
-            environment: server.baseUrl,
-        });
-        const rawRequestBody = { paymentDetails: { totalAmount: 100 } };
-        const rawResponseBody = {
-            responseCode: 1,
-            pageIdentifier: null,
-            roomId: 0,
-            isSuccess: true,
-            responseText: "Success",
-            responseData: {
-                authCode: "123456",
-                referenceId: "129-219",
-                resultCode: 1,
-                resultText: "SUCCESS",
-                avsResponseText: null,
-                cvvResponseText: null,
-                customerId: null,
-                methodReferenceId: null,
-            },
-        };
-
-        server
-            .mockEndpoint()
-            .post("/MoneyIn/capture/10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.moneyIn.captureAuth("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", {
-            paymentDetails: {
-                totalAmount: 100,
-            },
-        });
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("CaptureAuth (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -520,7 +411,7 @@ describe("MoneyInClient", () => {
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
-    test("CaptureAuth (5)", async () => {
+    test("CaptureAuth (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -549,7 +440,7 @@ describe("MoneyInClient", () => {
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
-    test("CaptureAuth (6)", async () => {
+    test("CaptureAuth (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -578,7 +469,7 @@ describe("MoneyInClient", () => {
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
-    test("CaptureAuth (7)", async () => {
+    test("CaptureAuth (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -1123,6 +1014,86 @@ describe("MoneyInClient", () => {
             environment: server.baseUrl,
         });
 
+        const rawResponseBody = {
+            ParentOrgName: "Riverside Pet Supply",
+            PaypointDbaname: "Riverside Pet Store",
+            PaypointLegalname: "Riverside Pet Store",
+            PaypointEntryname: "495147f647",
+            PaypointId: 3040,
+            PaymentTransId: "3040-96dfa9a7c4ed4f82a3dd4a4a12ad28ae",
+            ConnectorName: "FV",
+            GatewayTransId: "020080b14c2541444bc985621033c1b7ccda",
+            Method: "device",
+            DeviceId: "499585-389fj484-3jcj8hj3",
+            OrderId: "",
+            Operation: "Sale",
+            Source: "api",
+            PayorId: 4440,
+            TotalAmount: 100,
+            NetAmount: 100,
+            FeeAmount: 0,
+            PendingFeeAmount: 0,
+            BatchAmount: 100,
+            BatchNumber: "3040_device_20260401_1a2b3c4d",
+            SettlementStatus: 0,
+            TransStatus: 1,
+            ScheduleReference: 0,
+            RefundId: 0,
+            ReturnedId: 0,
+            splitCount: 0,
+            PaymentData: {
+                MaskedAccount: "4xxxxxxxxxxx1111",
+                AccountType: "visa",
+                AccountExp: "07/28",
+                HolderName: "",
+                paymentDetails: { totalAmount: 100, serviceFee: 0, currency: "USD", categories: [], splitFunding: [] },
+            },
+            ResponseData: {
+                resultCode: "A0000",
+                resultCodeText: "Approved",
+                responsetext: "Approved",
+                authcode: "OK2576",
+                transactionid: "020080b14c2541444bc985621033c1b7ccda",
+                response_code: "100",
+                response_code_text: "Operation successful",
+            },
+            Customer: {
+                customerId: 4440,
+                CustomerNumber: "C-90010",
+                FirstName: "Elizabeta",
+                LastName: "Marion",
+                BillingEmail: "elizabeta.marion@email.com",
+                customerStatus: 1,
+            },
+            TransactionEvents: [
+                { TransEvent: "Created", EventTime: "2026-04-09T14:49:39Z" },
+                { TransEvent: "Initiated", EventTime: "2026-04-09T14:49:39Z" },
+                { TransEvent: "Approved", EventTime: "2026-04-09T14:49:44Z" },
+            ],
+            TransactionTime: "2026-04-09T14:49:44Z",
+        };
+
+        server
+            .mockEndpoint()
+            .get("/MoneyIn/details/3040-96dfa9a7c4ed4f82a3dd4a4a12ad28ae")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.moneyIn.details("3040-96dfa9a7c4ed4f82a3dd4a4a12ad28ae");
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("Details (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+
         const rawResponseBody = { key: "value" };
 
         server
@@ -1138,7 +1109,7 @@ describe("MoneyInClient", () => {
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
-    test("Details (3)", async () => {
+    test("Details (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -1162,7 +1133,7 @@ describe("MoneyInClient", () => {
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
-    test("Details (4)", async () => {
+    test("Details (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -1186,7 +1157,7 @@ describe("MoneyInClient", () => {
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
-    test("Details (5)", async () => {
+    test("Details (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -1219,32 +1190,178 @@ describe("MoneyInClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = {
-            customerData: { customerId: 4440 },
-            entryPoint: "8cfec329267",
-            ipaddress: "255.255.255.255",
-            paymentDetails: { serviceFee: 0, totalAmount: 100 },
-            paymentMethod: {
-                cardcvv: "999",
-                cardexp: "02/27",
-                cardHolder: "John Cassian",
-                cardnumber: "4111111111111111",
-                cardzip: "12345",
-                initiator: "payor",
-                method: "card",
-            },
+            paymentDetails: { totalAmount: 1.1 },
+            paymentMethod: { cardexp: "cardexp", cardnumber: "cardnumber", method: "card" },
         };
         const rawResponseBody = {
-            responseText: "Success",
+            responseText: "responseText",
             isSuccess: true,
+            pageIdentifier: "pageIdentifier",
             responseData: {
-                authCode: "VTLMC1",
-                referenceId: "129-219",
+                authCode: "authCode",
+                transactionDetails: {
+                    parentOrgName: "parentOrgName",
+                    paypointDbaname: "paypointDbaname",
+                    paypointLegalname: "paypointLegalname",
+                    paypointEntryname: "paypointEntryname",
+                    paymentTransId: "paymentTransId",
+                    connectorName: "connectorName",
+                    externalProcessorInformation: "externalProcessorInformation",
+                    gatewayTransId: "gatewayTransId",
+                    orderId: "orderId",
+                    method: "ach",
+                    batchNumber: "batchNumber",
+                    batchAmount: 1.1,
+                    payorId: 1000000,
+                    paymentData: {
+                        maskedAccount: null,
+                        accountType: null,
+                        accountExp: null,
+                        holderName: "holderName",
+                        storedId: null,
+                        initiator: null,
+                        storedMethodUsageType: null,
+                        sequence: null,
+                        orderDescription: null,
+                        accountId: null,
+                        signatureData: null,
+                        binData: null,
+                        paymentDetails: {
+                            totalAmount: 1.1,
+                            serviceFee: 1.1,
+                            checkNumber: null,
+                            checkImage: null,
+                            checkUniqueId: "checkUniqueId",
+                            currency: "currency",
+                            orderDescription: null,
+                            orderId: null,
+                            orderIdAlternative: null,
+                            paymentDescription: null,
+                            groupNumber: null,
+                            source: null,
+                            payabliTransId: null,
+                            unbundled: null,
+                            categories: [],
+                            splitFunding: [],
+                        },
+                    },
+                    transStatus: 1,
+                    paypointId: 1000000,
+                    totalAmount: 1.1,
+                    netAmount: 1.1,
+                    feeAmount: 1.1,
+                    settlementStatus: 1,
+                    operation: "operation",
+                    responseData: {
+                        response: null,
+                        responsetext: "responsetext",
+                        authcode: null,
+                        transactionid: "transactionid",
+                        avsresponse: null,
+                        avsresponse_text: null,
+                        cvvresponse: null,
+                        cvvresponse_text: null,
+                        orderid: null,
+                        type: null,
+                        response_code: "response_code",
+                        response_code_text: "response_code_text",
+                        customer_vault_id: null,
+                        emv_auth_response_data: null,
+                    },
+                    source: "source",
+                    scheduleReference: 1000000,
+                    orgId: 1000000,
+                    refundId: 1000000,
+                    returnedId: 1000000,
+                    chargebackId: 1000000,
+                    retrievalId: 1000000,
+                    transAdditionalData: { key: "value" },
+                    invoiceData: {
+                        invoiceNumber: null,
+                        invoiceDate: null,
+                        invoiceDueDate: null,
+                        invoiceEndDate: null,
+                        invoiceStatus: null,
+                        invoiceType: null,
+                        frequency: null,
+                        paymentTerms: null,
+                        termsConditions: null,
+                        notes: null,
+                        tax: null,
+                        discount: null,
+                        invoiceAmount: null,
+                        freightAmount: null,
+                        dutyAmount: null,
+                        purchaseOrder: null,
+                        firstName: null,
+                        lastName: null,
+                        company: null,
+                        shippingAddress1: null,
+                        shippingAddress2: null,
+                        shippingCity: null,
+                        shippingState: null,
+                        shippingZip: null,
+                        shippingCountry: null,
+                        shippingEmail: null,
+                        shippingPhone: null,
+                        shippingFromZip: null,
+                        summaryCommodityCode: null,
+                        items: null,
+                        attachments: null,
+                        additionalData: null,
+                    },
+                    entrypageId: 1000000,
+                    externalPaypointID: "externalPaypointID",
+                    isValidatedACH: true,
+                    transactionTime: "transactionTime",
+                    customer: {
+                        identifiers: null,
+                        firstName: "firstName",
+                        lastName: "lastName",
+                        companyName: null,
+                        billingAddress1: null,
+                        billingAddress2: null,
+                        billingCity: null,
+                        billingState: null,
+                        billingZip: null,
+                        billingCountry: null,
+                        billingPhone: null,
+                        billingEmail: null,
+                        customerNumber: null,
+                        shippingAddress1: null,
+                        shippingAddress2: null,
+                        shippingCity: null,
+                        shippingState: null,
+                        shippingZip: null,
+                        shippingCountry: null,
+                        customerId: 1000000,
+                        customerStatus: 1,
+                        additionalData: null,
+                    },
+                    splitFundingInstructions: [{}],
+                    cfeeTransactions: [{}],
+                    transactionEvents: [{ transEvent: "transEvent", eventData: "eventData", eventTime: "eventTime" }],
+                    pendingFeeAmount: 1.1,
+                    riskFlagged: true,
+                    riskFlaggedOn: "2024-01-15T09:30:00Z",
+                    riskStatus: "riskStatus",
+                    riskReason: "riskReason",
+                    riskAction: "riskAction",
+                    riskActionCode: 1,
+                    deviceId: "deviceId",
+                    achSecCode: "achSecCode",
+                    achHolderType: "personal",
+                    ipAddress: "ipAddress",
+                    isSameDayACH: true,
+                    walletType: "walletType",
+                },
+                referenceId: "referenceId",
                 resultCode: 1,
-                resultText: "Approved",
-                avsResponseText: "Exact match, Street address and 5-digit ZIP code both match",
-                cvvResponseText:
-                    "Not processed. Indicates that the expiration date was not provided with the request, or that the card does not have a valid CVV2 code. If the expiration date was not included with the request, resubmit the request with the expiration date.",
-                customerId: 4440,
+                resultText: "resultText",
+                avsResponseText: "avsResponseText",
+                cvvResponseText: "cvvResponseText",
+                customerId: 1000000,
+                methodReferenceId: "methodReferenceId",
             },
         };
 
@@ -1258,22 +1375,12 @@ describe("MoneyInClient", () => {
             .build();
 
         const response = await client.moneyIn.getpaid({
-            customerData: {
-                customerId: 4440,
-            },
-            entryPoint: "8cfec329267",
-            ipaddress: "255.255.255.255",
             paymentDetails: {
-                serviceFee: 0,
-                totalAmount: 100,
+                totalAmount: 1.1,
             },
             paymentMethod: {
-                cardcvv: "999",
-                cardexp: "02/27",
-                cardHolder: "John Cassian",
-                cardnumber: "4111111111111111",
-                cardzip: "12345",
-                initiator: "payor",
+                cardexp: "cardexp",
+                cardnumber: "cardnumber",
                 method: "card",
             },
         });
@@ -1281,501 +1388,6 @@ describe("MoneyInClient", () => {
     });
 
     test("getpaid (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({
-            maxRetries: 0,
-            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
-            apiKeyAuth: { apiKey: "test" },
-            environment: server.baseUrl,
-        });
-        const rawRequestBody = {
-            customerData: { customerId: 4440 },
-            entryPoint: "8cfec329267",
-            ipaddress: "255.255.255.255",
-            paymentDetails: { serviceFee: 0, totalAmount: 100 },
-            paymentMethod: {
-                initiator: "payor",
-                method: "card",
-                storedMethodId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                storedMethodUsageType: "unscheduled",
-            },
-        };
-        const rawResponseBody = {
-            responseText: "Success",
-            isSuccess: true,
-            responseData: {
-                authCode: "AuthCode",
-                referenceId: "129-219",
-                resultCode: 1,
-                resultText: "Approved",
-                avsResponseText: "No address or ZIP match only",
-                cvvResponseText: "CVV2/CVC2 no match",
-                customerId: 4440,
-                methodReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-            },
-        };
-
-        server
-            .mockEndpoint()
-            .post("/MoneyIn/getpaid")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.moneyIn.getpaid({
-            customerData: {
-                customerId: 4440,
-            },
-            entryPoint: "8cfec329267",
-            ipaddress: "255.255.255.255",
-            paymentDetails: {
-                serviceFee: 0,
-                totalAmount: 100,
-            },
-            paymentMethod: {
-                initiator: "payor",
-                method: "card",
-                storedMethodId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                storedMethodUsageType: "unscheduled",
-            },
-        });
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("getpaid (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({
-            maxRetries: 0,
-            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
-            apiKeyAuth: { apiKey: "test" },
-            environment: server.baseUrl,
-        });
-        const rawRequestBody = {
-            customerData: { customerId: 4440 },
-            entryPoint: "8cfec329267",
-            ipaddress: "255.255.255.255",
-            paymentDetails: { serviceFee: 0, totalAmount: 100 },
-            paymentMethod: { device: "6c361c7d-674c-44cc-b790-382b75d1xxx", method: "cloud", saveIfSuccess: true },
-        };
-        const rawResponseBody = {
-            responseText: "Success",
-            isSuccess: true,
-            responseData: {
-                authCode: "AuthCode",
-                referenceId: "129-219",
-                resultCode: 1,
-                resultText: "Approved",
-                avsResponseText: "No address or ZIP match only",
-                cvvResponseText: "CVV2/CVC2 no match",
-                customerId: 4440,
-            },
-        };
-
-        server
-            .mockEndpoint()
-            .post("/MoneyIn/getpaid")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.moneyIn.getpaid({
-            customerData: {
-                customerId: 4440,
-            },
-            entryPoint: "8cfec329267",
-            ipaddress: "255.255.255.255",
-            paymentDetails: {
-                serviceFee: 0,
-                totalAmount: 100,
-            },
-            paymentMethod: {
-                device: "6c361c7d-674c-44cc-b790-382b75d1xxx",
-                method: "cloud",
-                saveIfSuccess: true,
-            },
-        });
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("getpaid (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({
-            maxRetries: 0,
-            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
-            apiKeyAuth: { apiKey: "test" },
-            environment: server.baseUrl,
-        });
-        const rawRequestBody = {
-            customerData: { customerId: 4440 },
-            entryPoint: "8cfec329267",
-            ipaddress: "255.255.255.255",
-            paymentDetails: { serviceFee: 0, totalAmount: 100 },
-            paymentMethod: {
-                achAccount: "123123123",
-                achAccountType: "Checking",
-                achCode: "WEB",
-                achHolder: "John Cassian",
-                achHolderType: "personal",
-                achRouting: "123123123",
-                method: "ach",
-            },
-        };
-        const rawResponseBody = {
-            responseText: "Success",
-            isSuccess: true,
-            responseData: {
-                authCode: "123456",
-                referenceId: "129-219",
-                resultCode: 1,
-                resultText: "Approved",
-                avsResponseText: "",
-                cvvResponseText: "",
-                customerId: 4440,
-            },
-        };
-
-        server
-            .mockEndpoint()
-            .post("/MoneyIn/getpaid")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.moneyIn.getpaid({
-            customerData: {
-                customerId: 4440,
-            },
-            entryPoint: "8cfec329267",
-            ipaddress: "255.255.255.255",
-            paymentDetails: {
-                serviceFee: 0,
-                totalAmount: 100,
-            },
-            paymentMethod: {
-                achAccount: "123123123",
-                achAccountType: "Checking",
-                achCode: "WEB",
-                achHolder: "John Cassian",
-                achHolderType: "personal",
-                achRouting: "123123123",
-                method: "ach",
-            },
-        });
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("getpaid (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({
-            maxRetries: 0,
-            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
-            apiKeyAuth: { apiKey: "test" },
-            environment: server.baseUrl,
-        });
-        const rawRequestBody = {
-            customerData: { customerId: 4440 },
-            entryPoint: "8cfec329267",
-            ipaddress: "255.255.255.255",
-            paymentDetails: { checkUniqueId: "abc123def456", serviceFee: 0, totalAmount: 125.5 },
-            paymentMethod: {
-                achAccount: "123456",
-                achAccountType: "Checking",
-                achCode: "BOC",
-                achHolder: "John Doe",
-                achRouting: "123456789",
-                method: "ach",
-            },
-        };
-        const rawResponseBody = {
-            responseText: "Success",
-            isSuccess: true,
-            responseData: {
-                authCode: "123456",
-                referenceId: "129-219",
-                resultCode: 1,
-                resultText: "Approved",
-                avsResponseText: "",
-                cvvResponseText: "",
-                customerId: 4440,
-            },
-        };
-
-        server
-            .mockEndpoint()
-            .post("/MoneyIn/getpaid")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.moneyIn.getpaid({
-            customerData: {
-                customerId: 4440,
-            },
-            entryPoint: "8cfec329267",
-            ipaddress: "255.255.255.255",
-            paymentDetails: {
-                checkUniqueId: "abc123def456",
-                serviceFee: 0,
-                totalAmount: 125.5,
-            },
-            paymentMethod: {
-                achAccount: "123456",
-                achAccountType: "Checking",
-                achCode: "BOC",
-                achHolder: "John Doe",
-                achRouting: "123456789",
-                method: "ach",
-            },
-        });
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("getpaid (6)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({
-            maxRetries: 0,
-            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
-            apiKeyAuth: { apiKey: "test" },
-            environment: server.baseUrl,
-        });
-        const rawRequestBody = {
-            customerData: {
-                billingAddress1: "123 Walnut Street",
-                billingCity: "Johnson City",
-                billingCountry: "US",
-                billingEmail: "john@email.com",
-                billingPhone: "1234567890",
-                billingState: "Johnson City",
-                billingZip: "37615",
-                customerNumber: "C-90010",
-                firstName: "John",
-                lastName: "Cassian",
-            },
-            entryPoint: "8cfec329267",
-            ipaddress: "255.255.255.255",
-            orderDescription: "New customer package",
-            orderId: "982-102",
-            paymentDetails: { serviceFee: 0, totalAmount: 1000 },
-            paymentMethod: {
-                cardcvv: "123",
-                cardexp: "12/29",
-                cardHolder: "John Cassian",
-                cardnumber: "4111111111111111",
-                cardzip: "12345",
-                initiator: "payor",
-                method: "card",
-                saveIfSuccess: true,
-            },
-            source: "web",
-        };
-        const rawResponseBody = {
-            responseText: "Success",
-            isSuccess: true,
-            responseData: {
-                authCode: "AuthCode",
-                referenceId: "129-219",
-                resultCode: 1,
-                resultText: "Approved",
-                avsResponseText: "Exact match, Street address and 5-digit ZIP code both match",
-                cvvResponseText: "CVV2/CVC2 match",
-                customerId: 4440,
-                methodReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-            },
-        };
-
-        server
-            .mockEndpoint()
-            .post("/MoneyIn/getpaid")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.moneyIn.getpaid({
-            customerData: {
-                billingAddress1: "123 Walnut Street",
-                billingCity: "Johnson City",
-                billingCountry: "US",
-                billingEmail: "john@email.com",
-                billingPhone: "1234567890",
-                billingState: "Johnson City",
-                billingZip: "37615",
-                customerNumber: "C-90010",
-                firstName: "John",
-                lastName: "Cassian",
-            },
-            entryPoint: "8cfec329267",
-            ipaddress: "255.255.255.255",
-            orderDescription: "New customer package",
-            orderId: "982-102",
-            paymentDetails: {
-                serviceFee: 0,
-                totalAmount: 1000,
-            },
-            paymentMethod: {
-                cardcvv: "123",
-                cardexp: "12/29",
-                cardHolder: "John Cassian",
-                cardnumber: "4111111111111111",
-                cardzip: "12345",
-                initiator: "payor",
-                method: "card",
-                saveIfSuccess: true,
-            },
-            source: "web",
-        });
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("getpaid (7)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({
-            maxRetries: 0,
-            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
-            apiKeyAuth: { apiKey: "test" },
-            environment: server.baseUrl,
-        });
-        const rawRequestBody = {
-            customerData: { customerId: 4440 },
-            entryPoint: "8cfec329267",
-            ipaddress: "255.255.255.255",
-            paymentDetails: { serviceFee: 0, totalAmount: 100, currency: "CAD" },
-            paymentMethod: {
-                cardcvv: "999",
-                cardexp: "02/27",
-                cardHolder: "John Cassian",
-                cardnumber: "4111111111111111",
-                cardzip: "12345",
-                initiator: "payor",
-                method: "card",
-            },
-        };
-        const rawResponseBody = {
-            responseText: "Success",
-            isSuccess: true,
-            responseData: {
-                authCode: "VTLMC1",
-                referenceId: "129-219",
-                resultCode: 1,
-                resultText: "Approved",
-                avsResponseText: " ",
-                cvvResponseText: "CVV2/CVC2 match",
-                customerId: 4440,
-            },
-        };
-
-        server
-            .mockEndpoint()
-            .post("/MoneyIn/getpaid")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.moneyIn.getpaid({
-            customerData: {
-                customerId: 4440,
-            },
-            entryPoint: "8cfec329267",
-            ipaddress: "255.255.255.255",
-            paymentDetails: {
-                serviceFee: 0,
-                totalAmount: 100,
-                currency: "CAD",
-            },
-            paymentMethod: {
-                cardcvv: "999",
-                cardexp: "02/27",
-                cardHolder: "John Cassian",
-                cardnumber: "4111111111111111",
-                cardzip: "12345",
-                initiator: "payor",
-                method: "card",
-            },
-        });
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("getpaid (8)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({
-            maxRetries: 0,
-            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
-            apiKeyAuth: { apiKey: "test" },
-            environment: server.baseUrl,
-        });
-        const rawRequestBody = {
-            customerData: { customerId: 4440 },
-            entryPoint: "8cfec329267",
-            ipaddress: "255.255.255.255",
-            paymentDetails: { serviceFee: 0, totalAmount: 100 },
-            paymentMethod: {
-                cardcvv: "999",
-                cardexp: "02/27",
-                cardHolder: "John Cassian",
-                cardnumber: "4111111111111111",
-                cardzip: "12345",
-                initiator: "payor",
-                method: "card",
-            },
-        };
-        const rawResponseBody = {
-            responseText: "Declined",
-            isSuccess: false,
-            responseData: {
-                authCode: null,
-                referenceId: "129-219",
-                resultCode: 1,
-                resultText: "200: Transaction was declined by processor.. DECLINE",
-                avsResponseText: "No address or ZIP match only",
-                cvvResponseText: "CVV2/CVC2 no match",
-                customerId: 4440,
-            },
-        };
-
-        server
-            .mockEndpoint()
-            .post("/MoneyIn/getpaid")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.moneyIn.getpaid({
-            customerData: {
-                customerId: 4440,
-            },
-            entryPoint: "8cfec329267",
-            ipaddress: "255.255.255.255",
-            paymentDetails: {
-                serviceFee: 0,
-                totalAmount: 100,
-            },
-            paymentMethod: {
-                cardcvv: "999",
-                cardexp: "02/27",
-                cardHolder: "John Cassian",
-                cardnumber: "4111111111111111",
-                cardzip: "12345",
-                initiator: "payor",
-                method: "card",
-            },
-        });
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("getpaid (9)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -1812,7 +1424,7 @@ describe("MoneyInClient", () => {
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
-    test("getpaid (10)", async () => {
+    test("getpaid (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -1849,7 +1461,7 @@ describe("MoneyInClient", () => {
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
-    test("getpaid (11)", async () => {
+    test("getpaid (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -1886,7 +1498,7 @@ describe("MoneyInClient", () => {
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
-    test("getpaid (12)", async () => {
+    test("getpaid (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -1934,70 +1546,36 @@ describe("MoneyInClient", () => {
 
         const rawResponseBody = {
             responseCode: 1,
-            roomId: 0,
+            pageIdentifier: "pageIdentifier",
+            roomId: 1,
             isSuccess: true,
-            responseText: "Success",
+            responseText: "responseText",
             responseData: {
-                authCode: "A0000",
-                referenceId: "129-219",
+                authCode: "authCode",
+                expectedProcessingDateTime: "2024-01-15T09:30:00Z",
+                avsResponseText: "avsResponseText",
+                customerId: 1000000,
+                cvvResponseText: "cvvResponseText",
+                methodReferenceId: "methodReferenceId",
+                referenceId: "referenceId",
                 resultCode: 1,
-                resultText: "REVERSED",
-                cvvResponseText: null,
-                customerId: null,
-                methodReferenceId: null,
+                resultText: "resultText",
             },
         };
 
         server
             .mockEndpoint()
-            .get("/MoneyIn/reverse/10-3ffa27df-b171-44e0-b251-e95fbfc7a723/0")
+            .get("/MoneyIn/reverse/transId/1.1")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.moneyIn.reverse("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0);
+        const response = await client.moneyIn.reverse("transId", 1.1);
         expect(response).toEqual(rawResponseBody);
     });
 
     test("Reverse (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({
-            maxRetries: 0,
-            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
-            apiKeyAuth: { apiKey: "test" },
-            environment: server.baseUrl,
-        });
-
-        const rawResponseBody = {
-            responseCode: 1,
-            roomId: 0,
-            isSuccess: true,
-            responseText: "Success",
-            responseData: {
-                authCode: "A0000",
-                referenceId: "129-219",
-                resultCode: 10,
-                resultText: "INITIATED",
-                cvvResponseText: null,
-                customerId: null,
-                methodReferenceId: null,
-            },
-        };
-
-        server
-            .mockEndpoint()
-            .get("/MoneyIn/reverse/10-3ffa27df-b171-44e0-b251-e95fbfc7a723/53.76")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.moneyIn.reverse("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 53.76);
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("Reverse (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -2021,7 +1599,7 @@ describe("MoneyInClient", () => {
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
-    test("Reverse (4)", async () => {
+    test("Reverse (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -2045,7 +1623,7 @@ describe("MoneyInClient", () => {
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
-    test("Reverse (5)", async () => {
+    test("Reverse (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -2069,7 +1647,7 @@ describe("MoneyInClient", () => {
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
-    test("Reverse (6)", async () => {
+    test("Reverse (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -2103,68 +1681,35 @@ describe("MoneyInClient", () => {
         });
 
         const rawResponseBody = {
-            responseText: "Success",
+            responseText: "responseText",
             isSuccess: true,
             responseData: {
-                authCode: "A0000",
-                expectedProcessingDateTime: "2025-02-15 10:30:00+00:00",
-                referenceId: "129-219",
-                resultCode: 10,
-                resultText: "INITIATED",
-                cvvResponseText: null,
-                customerId: null,
-                methodReferenceId: null,
+                authCode: "authCode",
+                expectedProcessingDateTime: "2024-01-15T09:30:00Z",
+                avsResponseText: "avsResponseText",
+                customerId: 1000000,
+                cvvResponseText: "cvvResponseText",
+                methodReferenceId: "methodReferenceId",
+                referenceId: "referenceId",
+                resultCode: 1,
+                resultText: "resultText",
             },
+            pageidentifier: "pageidentifier",
         };
 
         server
             .mockEndpoint()
-            .get("/MoneyIn/refund/10-3ffa27df-b171-44e0-b251-e95fbfc7a723/0")
+            .get("/MoneyIn/refund/transId/1.1")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.moneyIn.refund("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0);
+        const response = await client.moneyIn.refund("transId", 1.1);
         expect(response).toEqual(rawResponseBody);
     });
 
     test("Refund (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({
-            maxRetries: 0,
-            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
-            apiKeyAuth: { apiKey: "test" },
-            environment: server.baseUrl,
-        });
-
-        const rawResponseBody = {
-            responseText: "Success",
-            isSuccess: true,
-            responseData: {
-                authCode: "A0000",
-                referenceId: "129-219",
-                resultCode: 1,
-                resultText: "CAPTURED",
-                cvvResponseText: null,
-                customerId: null,
-                methodReferenceId: null,
-            },
-        };
-
-        server
-            .mockEndpoint()
-            .get("/MoneyIn/refund/10-3ffa27df-b171-44e0-b251-e95fbfc7a723/100.99")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.moneyIn.refund("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 100.99);
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("Refund (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -2188,7 +1733,7 @@ describe("MoneyInClient", () => {
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
-    test("Refund (4)", async () => {
+    test("Refund (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -2212,7 +1757,7 @@ describe("MoneyInClient", () => {
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
-    test("Refund (5)", async () => {
+    test("Refund (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -2236,7 +1781,7 @@ describe("MoneyInClient", () => {
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
-    test("Refund (6)", async () => {
+    test("Refund (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -2268,155 +1813,38 @@ describe("MoneyInClient", () => {
             apiKeyAuth: { apiKey: "test" },
             environment: server.baseUrl,
         });
-        const rawRequestBody = {
-            source: "api",
-            orderDescription: "Materials deposit",
-            amount: 100,
-            refundDetails: {
-                splitRefunding: [
-                    {
-                        originationEntryPoint: "7f1a381696",
-                        accountId: "187-342",
-                        description: "Refunding undelivered materials",
-                        amount: 60,
-                    },
-                    {
-                        originationEntryPoint: "7f1a381696",
-                        accountId: "187-343",
-                        description: "Refunding deposit for undelivered materials",
-                        amount: 40,
-                    },
-                ],
-            },
-        };
+        const rawRequestBody = {};
         const rawResponseBody = {
-            responseText: "Success",
+            responseText: "responseText",
             isSuccess: true,
             responseData: {
-                authCode: "",
-                referenceId: "129-219",
+                authCode: "authCode",
+                expectedProcessingDateTime: "2024-01-15T09:30:00Z",
+                avsResponseText: "avsResponseText",
+                customerId: 1000000,
+                cvvResponseText: "cvvResponseText",
+                methodReferenceId: "methodReferenceId",
+                referenceId: "referenceId",
                 resultCode: 1,
-                resultText: "CAPTURED",
-                cvvResponseText: null,
-                customerId: null,
-                methodReferenceId: null,
+                resultText: "resultText",
             },
+            pageidentifier: "pageidentifier",
         };
 
         server
             .mockEndpoint()
-            .post("/MoneyIn/refund/10-3ffa27df-b171-44e0-b251-e95fbfc7a723")
-            .header("idempotencyKey", "8A29FC40-CA47-1067-B31D-00DD010662DB")
+            .post("/MoneyIn/refund/transId")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.moneyIn.refundWithInstructions("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", {
-            idempotencyKey: "8A29FC40-CA47-1067-B31D-00DD010662DB",
-            source: "api",
-            orderDescription: "Materials deposit",
-            amount: 100,
-            refundDetails: {
-                splitRefunding: [
-                    {
-                        originationEntryPoint: "7f1a381696",
-                        accountId: "187-342",
-                        description: "Refunding undelivered materials",
-                        amount: 60,
-                    },
-                    {
-                        originationEntryPoint: "7f1a381696",
-                        accountId: "187-343",
-                        description: "Refunding deposit for undelivered materials",
-                        amount: 40,
-                    },
-                ],
-            },
-        });
+        const response = await client.moneyIn.refundWithInstructions("transId");
         expect(response).toEqual(rawResponseBody);
     });
 
     test("RefundWithInstructions (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new PayabliClient({
-            maxRetries: 0,
-            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
-            apiKeyAuth: { apiKey: "test" },
-            environment: server.baseUrl,
-        });
-        const rawRequestBody = {
-            source: "api",
-            orderDescription: "Materials deposit",
-            amount: 70,
-            refundDetails: {
-                splitRefunding: [
-                    {
-                        originationEntryPoint: "7f1a381696",
-                        accountId: "187-342",
-                        description: "Refunding undelivered materials",
-                        amount: 40,
-                    },
-                    {
-                        originationEntryPoint: "7f1a381696",
-                        accountId: "187-343",
-                        description: "Refunding deposit for undelivered materials",
-                        amount: 30,
-                    },
-                ],
-            },
-        };
-        const rawResponseBody = {
-            responseText: "Success",
-            isSuccess: true,
-            responseData: {
-                authCode: "",
-                referenceId: "129-219",
-                resultCode: 1,
-                resultText: "CAPTURED",
-                cvvResponseText: null,
-                customerId: null,
-                methodReferenceId: null,
-            },
-        };
-
-        server
-            .mockEndpoint()
-            .post("/MoneyIn/refund/10-3ffa27df-b171-44e0-b251-e95fbfc7a723")
-            .header("idempotencyKey", "8A29FC40-CA47-1067-B31D-00DD010662DB")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.moneyIn.refundWithInstructions("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", {
-            idempotencyKey: "8A29FC40-CA47-1067-B31D-00DD010662DB",
-            source: "api",
-            orderDescription: "Materials deposit",
-            amount: 70,
-            refundDetails: {
-                splitRefunding: [
-                    {
-                        originationEntryPoint: "7f1a381696",
-                        accountId: "187-342",
-                        description: "Refunding undelivered materials",
-                        amount: 40,
-                    },
-                    {
-                        originationEntryPoint: "7f1a381696",
-                        accountId: "187-343",
-                        description: "Refunding deposit for undelivered materials",
-                        amount: 30,
-                    },
-                ],
-            },
-        });
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("RefundWithInstructions (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -2441,7 +1869,7 @@ describe("MoneyInClient", () => {
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
-    test("RefundWithInstructions (4)", async () => {
+    test("RefundWithInstructions (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -2466,7 +1894,7 @@ describe("MoneyInClient", () => {
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
-    test("RefundWithInstructions (5)", async () => {
+    test("RefundWithInstructions (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -2491,7 +1919,7 @@ describe("MoneyInClient", () => {
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
-    test("RefundWithInstructions (6)", async () => {
+    test("RefundWithInstructions (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -3007,26 +2435,31 @@ describe("MoneyInClient", () => {
 
         const rawResponseBody = {
             responseCode: 1,
-            roomId: 0,
+            pageIdentifier: "pageIdentifier",
+            roomId: 1000000,
             isSuccess: true,
-            responseText: "Success",
+            responseText: "responseText",
             responseData: {
-                authCode: "123456",
-                referenceId: "129-219",
+                authCode: "authCode",
+                referenceId: "referenceId",
                 resultCode: 1,
-                resultText: "Transaction Void Successful",
+                resultText: "resultText",
+                avsResponseText: "avsResponseText",
+                cvvResponseText: "cvvResponseText",
+                customerId: 1000000,
+                methodReferenceId: "methodReferenceId",
             },
         };
 
         server
             .mockEndpoint()
-            .get("/MoneyIn/void/10-3ffa27df-b171-44e0-b251-e95fbfc7a723")
+            .get("/MoneyIn/void/transId")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.moneyIn.void("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
+        const response = await client.moneyIn.void("transId");
         expect(response).toEqual(rawResponseBody);
     });
 
@@ -3155,9 +2588,9 @@ describe("MoneyInClient", () => {
             explanation: "Transaction approved",
             action: "No action required",
             data: {
-                parentOrgName: "Mrinal's Pet Supplies",
-                paypointDbaname: "Mrinal's Pet Shop North",
-                paypointLegalname: "Mrinal's Pet Shop North",
+                parentOrgName: "Riverside Pet Supply",
+                paypointDbaname: "Riverside Pet Store",
+                paypointLegalname: "Riverside Pet Store",
                 paypointEntryname: "495147f647",
                 paymentTransId: "3040-96dfa9a7c4ed4f82a3dd4a4a12ad28ae",
                 connectorName: "gp",
@@ -3285,23 +2718,23 @@ describe("MoneyInClient", () => {
                 transactionTime: "2025-12-01T09:50:03.559",
                 customer: {
                     identifiers: null,
-                    firstName: "David",
-                    lastName: "Beckham",
-                    companyName: "Driving School LLC",
-                    billingAddress1: "Home Address",
+                    firstName: "John",
+                    lastName: "Cassian",
+                    companyName: null,
+                    billingAddress1: "728 Larkspur Lane",
                     billingAddress2: "",
-                    billingCity: "",
-                    billingState: "",
-                    billingZip: "45157",
+                    billingCity: "Asheville",
+                    billingState: "NC",
+                    billingZip: "28801",
                     billingCountry: "US",
-                    billingPhone: "+15555555555",
-                    billingEmail: "example@payabli.com",
+                    billingPhone: "+18285550147",
+                    billingEmail: "john.cassian@example.com",
                     customerNumber: "C-90010",
-                    shippingAddress1: "Home Address",
+                    shippingAddress1: "728 Larkspur Lane",
                     shippingAddress2: "",
-                    shippingCity: "",
-                    shippingState: "",
-                    shippingZip: "45157",
+                    shippingCity: "Asheville",
+                    shippingState: "NC",
+                    shippingZip: "28801",
                     shippingCountry: "US",
                     customerId: 4440,
                     customerStatus: 0,
@@ -3407,9 +2840,9 @@ describe("MoneyInClient", () => {
             explanation: "Transaction approved",
             action: "No action required",
             data: {
-                parentOrgName: "Mrinal's Pet Supplies",
-                paypointDbaname: "Mrinal's Pet Shop North",
-                paypointLegalname: "Mrinal's Pet Shop North",
+                parentOrgName: "Riverside Pet Supply",
+                paypointDbaname: "Riverside Pet Store",
+                paypointLegalname: "Riverside Pet Store",
                 paypointEntryname: "495147f647",
                 paymentTransId: "3040-9708542b00354726ad8a6b0c65bc7a54",
                 connectorName: "gp",
@@ -3424,7 +2857,7 @@ describe("MoneyInClient", () => {
                     maskedAccount: "3XXXXXXXXXX0227",
                     accountType: "amex",
                     accountExp: "12/25",
-                    holderName: "Alexa Amazon",
+                    holderName: "John Cassian",
                     storedId: "fb1f5ec2-1ba4-4ba6-9839-20c2cc4baf5a-4440",
                     initiator: "merchant",
                     storedMethodUsageType: "unscheduled",
@@ -3537,23 +2970,23 @@ describe("MoneyInClient", () => {
                 transactionTime: "2025-12-01T09:56:33.967",
                 customer: {
                     identifiers: null,
-                    firstName: "David",
-                    lastName: "Beckham",
-                    companyName: "Driving School LLC",
-                    billingAddress1: "Home Address",
+                    firstName: "John",
+                    lastName: "Cassian",
+                    companyName: null,
+                    billingAddress1: "728 Larkspur Lane",
                     billingAddress2: "",
-                    billingCity: "",
-                    billingState: "",
-                    billingZip: "45157",
+                    billingCity: "Asheville",
+                    billingState: "NC",
+                    billingZip: "28801",
                     billingCountry: "US",
-                    billingPhone: "+15555555555",
-                    billingEmail: "example@payabli.com",
+                    billingPhone: "+18285550147",
+                    billingEmail: "john.cassian@example.com",
                     customerNumber: "C-90010",
-                    shippingAddress1: "Home Address",
+                    shippingAddress1: "728 Larkspur Lane",
                     shippingAddress2: "",
-                    shippingCity: "",
-                    shippingState: "",
-                    shippingZip: "45157",
+                    shippingCity: "Asheville",
+                    shippingState: "NC",
+                    shippingZip: "28801",
                     shippingCountry: "US",
                     customerId: 4440,
                     customerStatus: 0,
@@ -3886,7 +3319,7 @@ describe("MoneyInClient", () => {
             entryPoint: "8cfec329267",
             ipaddress: "255.255.255.255",
             paymentDetails: { serviceFee: 0, totalAmount: 100 },
-            paymentMethod: { device: "6c361c7d-674c-44cc-b790-382b75d1xxx", method: "cloud", saveIfSuccess: true },
+            paymentMethod: { device: "6c361c7d-674c-44cc-b790-382b75d1xxx", method: "cloud" },
         };
         const rawResponseBody = {
             code: "A0000",
@@ -3894,9 +3327,9 @@ describe("MoneyInClient", () => {
             explanation: "Transaction approved",
             action: "No action required",
             data: {
-                parentOrgName: "Mrinal's Pet Supplies",
-                paypointDbaname: "Mrinal's Pet Shop North",
-                paypointLegalname: "Mrinal's Pet Shop North",
+                parentOrgName: "Riverside Pet Supply",
+                paypointDbaname: "Riverside Pet Store",
+                paypointLegalname: "Riverside Pet Store",
                 paypointEntryname: "495147f647",
                 paymentTransId: "3040-96dfa9a7c4ed4f82a3dd4a4a12ad28ae",
                 connectorName: "gp",
@@ -4024,23 +3457,23 @@ describe("MoneyInClient", () => {
                 transactionTime: "2025-12-01T09:50:03.559",
                 customer: {
                     identifiers: null,
-                    firstName: "David",
-                    lastName: "Beckham",
-                    companyName: "Driving School LLC",
-                    billingAddress1: "Home Address",
+                    firstName: "John",
+                    lastName: "Cassian",
+                    companyName: null,
+                    billingAddress1: "728 Larkspur Lane",
                     billingAddress2: "",
-                    billingCity: "",
-                    billingState: "",
-                    billingZip: "45157",
+                    billingCity: "Asheville",
+                    billingState: "NC",
+                    billingZip: "28801",
                     billingCountry: "US",
-                    billingPhone: "+15555555555",
-                    billingEmail: "example@payabli.com",
+                    billingPhone: "+18285550147",
+                    billingEmail: "john.cassian@example.com",
                     customerNumber: "C-90010",
-                    shippingAddress1: "Home Address",
+                    shippingAddress1: "728 Larkspur Lane",
                     shippingAddress2: "",
-                    shippingCity: "",
-                    shippingState: "",
-                    shippingZip: "45157",
+                    shippingCity: "Asheville",
+                    shippingState: "NC",
+                    shippingZip: "28801",
                     shippingCountry: "US",
                     customerId: 4440,
                     customerStatus: 0,
@@ -4110,13 +3543,708 @@ describe("MoneyInClient", () => {
             paymentMethod: {
                 device: "6c361c7d-674c-44cc-b790-382b75d1xxx",
                 method: "cloud",
-                saveIfSuccess: true,
             },
         });
         expect(response).toEqual(rawResponseBody);
     });
 
     test("getpaidv2 (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            customerData: { customerId: 4440 },
+            entryPoint: "8cfec329267",
+            ipaddress: "255.255.255.255",
+            paymentDetails: { serviceFee: 0, totalAmount: 100, currency: "CAD" },
+            paymentMethod: {
+                cardcvv: "999",
+                cardexp: "02/27",
+                cardHolder: "John Cassian",
+                cardnumber: "4111111111111111",
+                cardzip: "12345",
+                initiator: "payor",
+                method: "card",
+            },
+        };
+        const rawResponseBody = {
+            code: "A0000",
+            reason: "Approved",
+            explanation: "Transaction approved",
+            action: "No action required",
+            data: {
+                parentOrgName: "Northern Lights Services",
+                paypointDbaname: "Northern Lights Auto",
+                paypointLegalname: "Northern Lights Automotive Services Inc",
+                paypointEntryname: "8cfec329267",
+                paymentTransId: "3040-96dfa9a7c4ed4f82a3dd4a4a12ad28ae",
+                connectorName: "gp",
+                externalProcessorInformation: "",
+                gatewayTransId: "TRN_Ih68D6UZdip7OEQ2QFXat1yQSLF2nB",
+                orderId: null,
+                method: "card",
+                batchNumber: "3040_combined_20251201_3a50747d-6b5c-40ef-9f69-93a9cc7fcb49",
+                batchAmount: 420,
+                payorId: 4440,
+                paymentData: {
+                    maskedAccount: "4XXXXXXXXXXX1111",
+                    accountType: "visa",
+                    accountExp: "02/27",
+                    holderName: "John Cassian",
+                    storedId: null,
+                    initiator: null,
+                    storedMethodUsageType: null,
+                    sequence: null,
+                    orderDescription: "",
+                    accountId: null,
+                    signatureData: null,
+                    binData: {
+                        binMatchedLength: "6",
+                        binCardBrand: "VISA",
+                        binCardType: "CREDIT",
+                        binCardCategory: "CLASSIC",
+                        binCardIssuer: "",
+                        binCardIssuerCountry: "CANADA",
+                        binCardIssuerCountryCodeA2: "CA",
+                        binCardIssuerCountryNumber: "124",
+                        binCardIsRegulated: "",
+                        binCardUseCategory: "",
+                        binCardIssuerCountryCodeA3: "CAN",
+                    },
+                    paymentDetails: {
+                        totalAmount: 100,
+                        serviceFee: 0,
+                        checkNumber: null,
+                        checkImage: null,
+                        checkUniqueId: "",
+                        currency: "CAD",
+                        orderDescription: null,
+                        orderId: null,
+                        orderIdAlternative: null,
+                        paymentDescription: null,
+                        groupNumber: null,
+                        source: null,
+                        payabliTransId: null,
+                        unbundled: null,
+                        categories: [],
+                        splitFunding: [],
+                    },
+                },
+                transStatus: 1,
+                paypointId: 3040,
+                totalAmount: 100,
+                netAmount: 100,
+                feeAmount: 0,
+                settlementStatus: 0,
+                operation: "Sale",
+                responseData: {
+                    response: null,
+                    resultCode: "A0000",
+                    resultCodeText: "Approved",
+                    responsetext: "CAPTURED",
+                    authcode: "AXS425",
+                    transactionid: "TRN_Xo4dpKfmx3OxSc9svd2ccI6OOnyB2I",
+                    avsresponse: "N",
+                    avsresponse_text: "No Match, No address or ZIP match",
+                    cvvresponse: "M",
+                    cvvresponse_text: "CVV2/CVC2 match",
+                    orderid: null,
+                    type: null,
+                    response_code: "100",
+                    response_code_text: "Operation successful",
+                    customer_vault_id: null,
+                    emv_auth_response_data: null,
+                },
+                source: "api",
+                scheduleReference: 0,
+                orgId: 123,
+                refundId: 0,
+                returnedId: 0,
+                chargebackId: 0,
+                retrievalId: 0,
+                transAdditionalData: null,
+                invoiceData: {
+                    invoiceNumber: null,
+                    invoiceDate: null,
+                    invoiceDueDate: null,
+                    invoiceEndDate: null,
+                    invoiceStatus: null,
+                    invoiceType: null,
+                    frequency: null,
+                    paymentTerms: null,
+                    termsConditions: null,
+                    notes: null,
+                    tax: null,
+                    discount: null,
+                    invoiceAmount: null,
+                    freightAmount: null,
+                    dutyAmount: null,
+                    purchaseOrder: null,
+                    firstName: null,
+                    lastName: null,
+                    company: null,
+                    shippingAddress1: null,
+                    shippingAddress2: null,
+                    shippingCity: null,
+                    shippingState: null,
+                    shippingZip: null,
+                    shippingCountry: null,
+                    shippingEmail: null,
+                    shippingPhone: null,
+                    shippingFromZip: null,
+                    summaryCommodityCode: null,
+                    items: null,
+                    attachments: null,
+                    additionalData: null,
+                },
+                entrypageId: 0,
+                externalPaypointID: "",
+                isValidatedACH: false,
+                transactionTime: "2025-12-01T09:50:03.559",
+                customer: {
+                    identifiers: null,
+                    firstName: "John",
+                    lastName: "Cassian",
+                    companyName: "Cassian Consulting",
+                    billingAddress1: "200 Bay Street",
+                    billingAddress2: "",
+                    billingCity: "Toronto",
+                    billingState: "ON",
+                    billingZip: "M5J 2J2",
+                    billingCountry: "CA",
+                    billingPhone: "+14165555555",
+                    billingEmail: "example@payabli.com",
+                    customerNumber: "C-90010",
+                    shippingAddress1: "200 Bay Street",
+                    shippingAddress2: "",
+                    shippingCity: "Toronto",
+                    shippingState: "ON",
+                    shippingZip: "M5J 2J2",
+                    shippingCountry: "CA",
+                    customerId: 4440,
+                    customerStatus: 0,
+                    additionalData: null,
+                },
+                splitFundingInstructions: null,
+                cfeeTransactions: [],
+                transactionEvents: [
+                    {
+                        transEvent: "Created",
+                        eventData: "0HNHD68HATSUC:00000001",
+                        eventTime: "2025-12-01T09:50:02.558651",
+                    },
+                    {
+                        transEvent: "Approved",
+                        eventData: "0HNHD68HATSUC:00000001",
+                        eventTime: "2025-12-01T09:50:03.609111",
+                    },
+                ],
+                pendingFeeAmount: 0,
+                riskFlagged: false,
+                riskFlaggedOn: "2025-12-01T09:50:02.5474568",
+                riskStatus: "PASSED",
+                riskReason: "",
+                riskAction: "",
+                riskActionCode: 0,
+                deviceId: "",
+                achSecCode: "",
+                achHolderType: "personal",
+                ipAddress: "255.255.255.255",
+                isSameDayACH: false,
+                walletType: null,
+            },
+            token: null,
+        };
+
+        server
+            .mockEndpoint()
+            .post("/v2/MoneyIn/getpaid")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.moneyIn.getpaidv2({
+            customerData: {
+                customerId: 4440,
+            },
+            entryPoint: "8cfec329267",
+            ipaddress: "255.255.255.255",
+            paymentDetails: {
+                serviceFee: 0,
+                totalAmount: 100,
+                currency: "CAD",
+            },
+            paymentMethod: {
+                cardcvv: "999",
+                cardexp: "02/27",
+                cardHolder: "John Cassian",
+                cardnumber: "4111111111111111",
+                cardzip: "12345",
+                initiator: "payor",
+                method: "card",
+            },
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("getpaidv2 (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            customerData: { customerId: 4440 },
+            entryPoint: "8cfec329267",
+            ipaddress: "255.255.255.255",
+            paymentDetails: { checkUniqueId: "abc123def456", serviceFee: 0, totalAmount: 125.5 },
+            paymentMethod: {
+                achAccount: "123456",
+                achAccountType: "Checking",
+                achCode: "BOC",
+                achHolder: "John Doe",
+                achRouting: "123456789",
+                method: "ach",
+            },
+        };
+        const rawResponseBody = {
+            code: "A0000",
+            reason: "Approved",
+            explanation: "Transaction approved",
+            action: "No action required",
+            data: {
+                parentOrgName: "Mountain View Services",
+                paypointDbaname: "Mountain View Auto",
+                paypointLegalname: "Mountain View Automotive Services LLC",
+                paypointEntryname: "8cfec329267",
+                paymentTransId: "2145-7b8fa3c9d5e64f73b2ee5a6b14bd39cd",
+                connectorName: "checkcommerce",
+                externalProcessorInformation: "",
+                gatewayTransId: "ACH_TRN_8K92D7VZexp8PFR3RGYbu2zRTMG3oC",
+                orderId: null,
+                method: "ach",
+                batchNumber: "checkcommerce_2145_ach_12-01-2025",
+                batchAmount: 525,
+                payorId: 4440,
+                paymentData: {
+                    maskedAccount: "XXXXX3456",
+                    accountType: "Checking",
+                    accountExp: null,
+                    holderName: "John Doe",
+                    storedId: null,
+                    initiator: null,
+                    storedMethodUsageType: null,
+                    sequence: null,
+                    orderDescription: "",
+                    accountId: null,
+                    signatureData: null,
+                    binData: null,
+                    paymentDetails: {
+                        totalAmount: 125.5,
+                        serviceFee: 0,
+                        checkNumber: null,
+                        checkImage: null,
+                        checkUniqueId: "abc123def456",
+                        currency: "USD",
+                        orderDescription: null,
+                        orderId: null,
+                        orderIdAlternative: null,
+                        paymentDescription: null,
+                        groupNumber: null,
+                        source: null,
+                        payabliTransId: null,
+                        unbundled: null,
+                        categories: [],
+                        splitFunding: [],
+                    },
+                },
+                transStatus: 1,
+                paypointId: 3040,
+                totalAmount: 125.5,
+                netAmount: 125.5,
+                feeAmount: 0,
+                settlementStatus: 0,
+                operation: "Sale",
+                responseData: {
+                    response: null,
+                    resultCode: "A0000",
+                    resultCodeText: "Approved",
+                    responsetext: "CAPTURED",
+                    authcode: "AXS425",
+                    transactionid: "ACH_TRN_8K92D7VZexp8PFR3RGYbu2zRTMG3oC",
+                    avsresponse: null,
+                    avsresponse_text: null,
+                    cvvresponse: null,
+                    cvvresponse_text: null,
+                    orderid: null,
+                    type: null,
+                    response_code: "100",
+                    response_code_text: "Operation successful",
+                    customer_vault_id: null,
+                    emv_auth_response_data: null,
+                },
+                source: "api",
+                scheduleReference: 0,
+                orgId: 123,
+                refundId: 0,
+                returnedId: 0,
+                chargebackId: 0,
+                retrievalId: 0,
+                transAdditionalData: null,
+                invoiceData: {
+                    invoiceNumber: null,
+                    invoiceDate: null,
+                    invoiceDueDate: null,
+                    invoiceEndDate: null,
+                    invoiceStatus: null,
+                    invoiceType: null,
+                    frequency: null,
+                    paymentTerms: null,
+                    termsConditions: null,
+                    notes: null,
+                    tax: null,
+                    discount: null,
+                    invoiceAmount: null,
+                    freightAmount: null,
+                    dutyAmount: null,
+                    purchaseOrder: null,
+                    firstName: null,
+                    lastName: null,
+                    company: null,
+                    shippingAddress1: null,
+                    shippingAddress2: null,
+                    shippingCity: null,
+                    shippingState: null,
+                    shippingZip: null,
+                    shippingCountry: null,
+                    shippingEmail: null,
+                    shippingPhone: null,
+                    shippingFromZip: null,
+                    summaryCommodityCode: null,
+                    items: null,
+                    attachments: null,
+                    additionalData: null,
+                },
+                entrypageId: 0,
+                externalPaypointID: "",
+                isValidatedACH: false,
+                transactionTime: "2025-12-01T10:15:28.742",
+                customer: {
+                    identifiers: null,
+                    firstName: "John",
+                    lastName: "Doe",
+                    companyName: null,
+                    billingAddress1: "456 Oak Avenue",
+                    billingAddress2: "",
+                    billingCity: "Portland",
+                    billingState: "OR",
+                    billingZip: "97201",
+                    billingCountry: "US",
+                    billingPhone: "+15035551234",
+                    billingEmail: "example@payabli.com",
+                    customerNumber: "C-90010",
+                    shippingAddress1: "456 Oak Avenue",
+                    shippingAddress2: "",
+                    shippingCity: "Portland",
+                    shippingState: "OR",
+                    shippingZip: "97201",
+                    shippingCountry: "US",
+                    customerId: 4440,
+                    customerStatus: 0,
+                    additionalData: null,
+                },
+                splitFundingInstructions: null,
+                cfeeTransactions: [],
+                transactionEvents: [
+                    {
+                        transEvent: "Created",
+                        eventData: "0HNHD69JBVWXP:00000001",
+                        eventTime: "2025-12-01T10:15:27.682442",
+                    },
+                    {
+                        transEvent: "Approved",
+                        eventData: "0HNHD69JBVWXP:00000001",
+                        eventTime: "2025-12-01T10:15:28.751283",
+                    },
+                ],
+                pendingFeeAmount: 0,
+                riskFlagged: false,
+                riskFlaggedOn: "2025-12-01T10:15:27.6712346",
+                riskStatus: "PASSED",
+                riskReason: "",
+                riskAction: "",
+                riskActionCode: 0,
+                deviceId: "",
+                achSecCode: "BOC",
+                achHolderType: "personal",
+                ipAddress: "255.255.255.255",
+                isSameDayACH: false,
+                walletType: null,
+            },
+            token: null,
+        };
+
+        server
+            .mockEndpoint()
+            .post("/v2/MoneyIn/getpaid")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.moneyIn.getpaidv2({
+            customerData: {
+                customerId: 4440,
+            },
+            entryPoint: "8cfec329267",
+            ipaddress: "255.255.255.255",
+            paymentDetails: {
+                checkUniqueId: "abc123def456",
+                serviceFee: 0,
+                totalAmount: 125.5,
+            },
+            paymentMethod: {
+                achAccount: "123456",
+                achAccountType: "Checking",
+                achCode: "BOC",
+                achHolder: "John Doe",
+                achRouting: "123456789",
+                method: "ach",
+            },
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("getpaidv2 (7)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            customerData: { customerId: 4440 },
+            entryPoint: "8cfec329267",
+            ipaddress: "255.255.255.255",
+            paymentDetails: { serviceFee: 0, totalAmount: 100 },
+            paymentMethod: { device: "499585-389fj484-3jcj8hj3", method: "device", saveIfSuccess: true },
+        };
+        const rawResponseBody = {
+            code: "A0001",
+            reason: "Initiated",
+            explanation: "Transaction initiated",
+            action: "No action required",
+            data: {
+                parentOrgName: "Riverside Pet Supply",
+                paypointDbaname: "Riverside Pet Store",
+                paypointLegalname: "Riverside Pet Store",
+                paypointEntryname: "495147f647",
+                paymentTransId: "3040-96dfa9a7c4ed4f82a3dd4a4a12ad28ae",
+                connectorName: "FV",
+                externalProcessorInformation: "",
+                gatewayTransId: null,
+                orderId: "",
+                method: "device",
+                batchNumber: "",
+                batchAmount: 0,
+                payorId: 4440,
+                paymentData: {
+                    maskedAccount: null,
+                    accountType: null,
+                    accountExp: null,
+                    holderName: "",
+                    storedId: null,
+                    initiator: null,
+                    storedMethodUsageType: null,
+                    sequence: null,
+                    orderDescription: null,
+                    accountId: null,
+                    signatureData: null,
+                    binData: null,
+                    paymentDetails: {
+                        totalAmount: 100,
+                        serviceFee: 0,
+                        checkNumber: null,
+                        checkImage: null,
+                        checkUniqueId: "",
+                        currency: "USD",
+                        orderDescription: null,
+                        orderId: null,
+                        orderIdAlternative: null,
+                        paymentDescription: "",
+                        groupNumber: null,
+                        source: null,
+                        payabliTransId: null,
+                        unbundled: null,
+                        categories: [],
+                        splitFunding: [],
+                    },
+                },
+                transStatus: 10,
+                paypointId: 3040,
+                totalAmount: 100,
+                netAmount: 100,
+                feeAmount: 0,
+                settlementStatus: 0,
+                operation: "Sale",
+                responseData: {
+                    response: null,
+                    resultCode: "A0001",
+                    resultCodeText: "Initiated",
+                    responsetext: "Initiated",
+                    authcode: null,
+                    transactionid: null,
+                    avsresponse: null,
+                    avsresponse_text: null,
+                    cvvresponse: null,
+                    cvvresponse_text: null,
+                    orderid: null,
+                    type: null,
+                    response_code: "100",
+                    response_code_text: "Operation successful",
+                    customer_vault_id: null,
+                    emv_auth_response_data: null,
+                },
+                source: "api",
+                scheduleReference: 0,
+                orgId: 123,
+                refundId: 0,
+                returnedId: 0,
+                chargebackId: 0,
+                retrievalId: 0,
+                transAdditionalData: null,
+                invoiceData: {
+                    invoiceNumber: null,
+                    invoiceDate: null,
+                    invoiceDueDate: null,
+                    invoiceEndDate: null,
+                    invoiceStatus: null,
+                    invoiceType: null,
+                    frequency: null,
+                    paymentTerms: null,
+                    termsConditions: null,
+                    notes: null,
+                    tax: null,
+                    discount: null,
+                    invoiceAmount: null,
+                    freightAmount: null,
+                    dutyAmount: null,
+                    purchaseOrder: null,
+                    firstName: null,
+                    lastName: null,
+                    company: null,
+                    shippingAddress1: null,
+                    shippingAddress2: null,
+                    shippingCity: null,
+                    shippingState: null,
+                    shippingZip: null,
+                    shippingCountry: null,
+                    shippingEmail: null,
+                    shippingPhone: null,
+                    shippingFromZip: null,
+                    summaryCommodityCode: null,
+                    items: null,
+                    attachments: null,
+                    additionalData: null,
+                },
+                entrypageId: 0,
+                externalPaypointID: "",
+                isValidatedACH: false,
+                transactionTime: "2025-12-01T09:50:03.559",
+                customer: {
+                    identifiers: null,
+                    firstName: "John",
+                    lastName: "Cassian",
+                    companyName: null,
+                    billingAddress1: "728 Larkspur Lane",
+                    billingAddress2: "",
+                    billingCity: "Asheville",
+                    billingState: "NC",
+                    billingZip: "28801",
+                    billingCountry: "US",
+                    billingPhone: "+18285550147",
+                    billingEmail: "john.cassian@example.com",
+                    customerNumber: "C-90010",
+                    shippingAddress1: "728 Larkspur Lane",
+                    shippingAddress2: "",
+                    shippingCity: "Asheville",
+                    shippingState: "NC",
+                    shippingZip: "28801",
+                    shippingCountry: "US",
+                    customerId: 4440,
+                    customerStatus: 0,
+                    additionalData: null,
+                },
+                splitFundingInstructions: null,
+                cfeeTransactions: [],
+                transactionEvents: [
+                    {
+                        transEvent: "Created",
+                        eventData: "0HNHD68HATSUC:00000001",
+                        eventTime: "2025-12-01T09:50:02.558651",
+                    },
+                    {
+                        transEvent: "Initiated",
+                        eventData: "0HNHD68HATSUC:00000001",
+                        eventTime: "2025-12-01T09:50:03.609111",
+                    },
+                ],
+                pendingFeeAmount: 0,
+                riskFlagged: false,
+                riskFlaggedOn: "2025-12-01T09:50:02.5474568",
+                riskStatus: "PASSED",
+                riskReason: "",
+                riskAction: "",
+                riskActionCode: 0,
+                deviceId: "499585-389fj484-3jcj8hj3",
+                achSecCode: "",
+                achHolderType: "personal",
+                ipAddress: "255.255.255.255",
+                isSameDayACH: false,
+                walletType: null,
+            },
+            token: null,
+        };
+
+        server
+            .mockEndpoint()
+            .post("/v2/MoneyIn/getpaid")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.moneyIn.getpaidv2({
+            customerData: {
+                customerId: 4440,
+            },
+            entryPoint: "8cfec329267",
+            ipaddress: "255.255.255.255",
+            paymentDetails: {
+                serviceFee: 0,
+                totalAmount: 100,
+            },
+            paymentMethod: {
+                device: "499585-389fj484-3jcj8hj3",
+                method: "device",
+                saveIfSuccess: true,
+            },
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("getpaidv2 (8)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -4153,7 +4281,7 @@ describe("MoneyInClient", () => {
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
-    test("getpaidv2 (6)", async () => {
+    test("getpaidv2 (9)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -4190,7 +4318,7 @@ describe("MoneyInClient", () => {
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
-    test("getpaidv2 (7)", async () => {
+    test("getpaidv2 (10)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -4215,15 +4343,15 @@ describe("MoneyInClient", () => {
                 paymentTransId: "paymentTransId",
                 connectorName: "connectorName",
                 externalProcessorInformation: "externalProcessorInformation",
-                gatewayTransId: "gatewayTransId",
+                gatewayTransId: null,
                 orderId: null,
                 method: "method",
                 batchNumber: "batchNumber",
                 batchAmount: 1.1,
                 payorId: 1000000,
                 paymentData: {
-                    maskedAccount: "maskedAccount",
-                    accountType: "accountType",
+                    maskedAccount: null,
+                    accountType: null,
                     accountExp: null,
                     holderName: "holderName",
                     storedId: null,
@@ -4266,7 +4394,7 @@ describe("MoneyInClient", () => {
                     response: null,
                     responsetext: "responsetext",
                     authcode: null,
-                    transactionid: "transactionid",
+                    transactionid: null,
                     avsresponse: null,
                     avsresponse_text: null,
                     cvvresponse: null,
@@ -4390,7 +4518,7 @@ describe("MoneyInClient", () => {
         }).rejects.toThrow(Payabli.PaymentRequiredError);
     });
 
-    test("getpaidv2 (8)", async () => {
+    test("getpaidv2 (11)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -4586,23 +4714,23 @@ describe("MoneyInClient", () => {
                 transactionTime: "2025-12-01T09:50:03.559",
                 customer: {
                     identifiers: null,
-                    firstName: "David",
-                    lastName: "Beckham",
-                    companyName: "Driving School LLC",
-                    billingAddress1: "Home Address",
+                    firstName: "John",
+                    lastName: "Cassian",
+                    companyName: null,
+                    billingAddress1: "728 Larkspur Lane",
                     billingAddress2: "",
-                    billingCity: "",
-                    billingState: "",
-                    billingZip: "45157",
+                    billingCity: "Asheville",
+                    billingState: "NC",
+                    billingZip: "28801",
                     billingCountry: "US",
-                    billingPhone: "+15555555555",
-                    billingEmail: "example@payabli.com",
+                    billingPhone: "+18285550147",
+                    billingEmail: "john.cassian@example.com",
                     customerNumber: "C-90010",
-                    shippingAddress1: "Home Address",
+                    shippingAddress1: "728 Larkspur Lane",
                     shippingAddress2: "",
-                    shippingCity: "",
-                    shippingState: "",
-                    shippingZip: "45157",
+                    shippingCity: "Asheville",
+                    shippingState: "NC",
+                    shippingZip: "28801",
                     shippingCountry: "US",
                     customerId: 4440,
                     customerStatus: 0,
@@ -4781,15 +4909,15 @@ describe("MoneyInClient", () => {
                 paymentTransId: "paymentTransId",
                 connectorName: "connectorName",
                 externalProcessorInformation: "externalProcessorInformation",
-                gatewayTransId: "gatewayTransId",
+                gatewayTransId: null,
                 orderId: null,
                 method: "method",
                 batchNumber: "batchNumber",
                 batchAmount: 1.1,
                 payorId: 1000000,
                 paymentData: {
-                    maskedAccount: "maskedAccount",
-                    accountType: "accountType",
+                    maskedAccount: null,
+                    accountType: null,
                     accountExp: null,
                     holderName: "holderName",
                     storedId: null,
@@ -4832,7 +4960,7 @@ describe("MoneyInClient", () => {
                     response: null,
                     responsetext: "responsetext",
                     authcode: null,
-                    transactionid: "transactionid",
+                    transactionid: null,
                     avsresponse: null,
                     avsresponse_text: null,
                     cvvresponse: null,
@@ -5138,23 +5266,23 @@ describe("MoneyInClient", () => {
                 transactionTime: "2025-12-01T09:50:03.559",
                 customer: {
                     identifiers: null,
-                    firstName: "David",
-                    lastName: "Beckham",
-                    companyName: "Driving School LLC",
-                    billingAddress1: "Home Address",
+                    firstName: "John",
+                    lastName: "Cassian",
+                    companyName: null,
+                    billingAddress1: "728 Larkspur Lane",
                     billingAddress2: "",
-                    billingCity: "",
-                    billingState: "",
-                    billingZip: "45157",
+                    billingCity: "Asheville",
+                    billingState: "NC",
+                    billingZip: "28801",
                     billingCountry: "US",
-                    billingPhone: "+15555555555",
-                    billingEmail: "example@payabli.com",
+                    billingPhone: "+18285550147",
+                    billingEmail: "john.cassian@example.com",
                     customerNumber: "C-90010",
-                    shippingAddress1: "Home Address",
+                    shippingAddress1: "728 Larkspur Lane",
                     shippingAddress2: "",
-                    shippingCity: "",
-                    shippingState: "",
-                    shippingZip: "45157",
+                    shippingCity: "Asheville",
+                    shippingState: "NC",
+                    shippingZip: "28801",
                     shippingCountry: "US",
                     customerId: 4440,
                     customerStatus: 0,
@@ -5365,23 +5493,23 @@ describe("MoneyInClient", () => {
                 transactionTime: "2025-12-01T09:50:03.559",
                 customer: {
                     identifiers: null,
-                    firstName: "David",
-                    lastName: "Beckham",
-                    companyName: "Driving School LLC",
-                    billingAddress1: "Home Address",
+                    firstName: "John",
+                    lastName: "Cassian",
+                    companyName: null,
+                    billingAddress1: "728 Larkspur Lane",
                     billingAddress2: "",
-                    billingCity: "",
-                    billingState: "",
-                    billingZip: "45157",
+                    billingCity: "Asheville",
+                    billingState: "NC",
+                    billingZip: "28801",
                     billingCountry: "US",
-                    billingPhone: "+15555555555",
-                    billingEmail: "example@payabli.com",
+                    billingPhone: "+18285550147",
+                    billingEmail: "john.cassian@example.com",
                     customerNumber: "C-90010",
-                    shippingAddress1: "Home Address",
+                    shippingAddress1: "728 Larkspur Lane",
                     shippingAddress2: "",
-                    shippingCity: "",
-                    shippingState: "",
-                    shippingZip: "45157",
+                    shippingCity: "Asheville",
+                    shippingState: "NC",
+                    shippingZip: "28801",
                     shippingCountry: "US",
                     customerId: 4440,
                     customerStatus: 0,
@@ -5527,15 +5655,15 @@ describe("MoneyInClient", () => {
                 paymentTransId: "paymentTransId",
                 connectorName: "connectorName",
                 externalProcessorInformation: "externalProcessorInformation",
-                gatewayTransId: "gatewayTransId",
+                gatewayTransId: null,
                 orderId: null,
                 method: "method",
                 batchNumber: "batchNumber",
                 batchAmount: 1.1,
                 payorId: 1000000,
                 paymentData: {
-                    maskedAccount: "maskedAccount",
-                    accountType: "accountType",
+                    maskedAccount: null,
+                    accountType: null,
                     accountExp: null,
                     holderName: "holderName",
                     storedId: null,
@@ -5578,7 +5706,7 @@ describe("MoneyInClient", () => {
                     response: null,
                     responsetext: "responsetext",
                     authcode: null,
-                    transactionid: "transactionid",
+                    transactionid: null,
                     avsresponse: null,
                     avsresponse_text: null,
                     cvvresponse: null,
@@ -5871,23 +5999,23 @@ describe("MoneyInClient", () => {
                 transactionTime: "2025-12-01T09:50:03.559",
                 customer: {
                     identifiers: null,
-                    firstName: "David",
-                    lastName: "Beckham",
-                    companyName: "Driving School LLC",
-                    billingAddress1: "Home Address",
+                    firstName: "John",
+                    lastName: "Cassian",
+                    companyName: null,
+                    billingAddress1: "728 Larkspur Lane",
                     billingAddress2: "",
-                    billingCity: "",
-                    billingState: "",
-                    billingZip: "45157",
+                    billingCity: "Asheville",
+                    billingState: "NC",
+                    billingZip: "28801",
                     billingCountry: "US",
-                    billingPhone: "+15555555555",
-                    billingEmail: "example@payabli.com",
+                    billingPhone: "+18285550147",
+                    billingEmail: "john.cassian@example.com",
                     customerNumber: "C-90010",
-                    shippingAddress1: "Home Address",
+                    shippingAddress1: "728 Larkspur Lane",
                     shippingAddress2: "",
-                    shippingCity: "",
-                    shippingState: "",
-                    shippingZip: "45157",
+                    shippingCity: "Asheville",
+                    shippingState: "NC",
+                    shippingZip: "28801",
                     shippingCountry: "US",
                     customerId: 4440,
                     customerStatus: 0,
@@ -6112,23 +6240,23 @@ describe("MoneyInClient", () => {
                 transactionTime: "2025-12-01T09:50:03.559",
                 customer: {
                     identifiers: null,
-                    firstName: "David",
-                    lastName: "Beckham",
-                    companyName: "Driving School LLC",
-                    billingAddress1: "Home Address",
+                    firstName: "John",
+                    lastName: "Cassian",
+                    companyName: null,
+                    billingAddress1: "728 Larkspur Lane",
                     billingAddress2: "",
-                    billingCity: "",
-                    billingState: "",
-                    billingZip: "45157",
+                    billingCity: "Asheville",
+                    billingState: "NC",
+                    billingZip: "28801",
                     billingCountry: "US",
-                    billingPhone: "+15555555555",
-                    billingEmail: "example@payabli.com",
+                    billingPhone: "+18285550147",
+                    billingEmail: "john.cassian@example.com",
                     customerNumber: "C-90010",
-                    shippingAddress1: "Home Address",
+                    shippingAddress1: "728 Larkspur Lane",
                     shippingAddress2: "",
-                    shippingCity: "",
-                    shippingState: "",
-                    shippingZip: "45157",
+                    shippingCity: "Asheville",
+                    shippingState: "NC",
+                    shippingZip: "28801",
                     shippingCountry: "US",
                     customerId: 4440,
                     customerStatus: 0,
@@ -6281,15 +6409,15 @@ describe("MoneyInClient", () => {
                 paymentTransId: "paymentTransId",
                 connectorName: "connectorName",
                 externalProcessorInformation: "externalProcessorInformation",
-                gatewayTransId: "gatewayTransId",
+                gatewayTransId: null,
                 orderId: null,
                 method: "method",
                 batchNumber: "batchNumber",
                 batchAmount: 1.1,
                 payorId: 1000000,
                 paymentData: {
-                    maskedAccount: "maskedAccount",
-                    accountType: "accountType",
+                    maskedAccount: null,
+                    accountType: null,
                     accountExp: null,
                     holderName: "holderName",
                     storedId: null,
@@ -6332,7 +6460,7 @@ describe("MoneyInClient", () => {
                     response: null,
                     responsetext: "responsetext",
                     authcode: null,
-                    transactionid: "transactionid",
+                    transactionid: null,
                     avsresponse: null,
                     avsresponse_text: null,
                     cvvresponse: null,
@@ -6615,23 +6743,23 @@ describe("MoneyInClient", () => {
                 transactionTime: "2025-12-01T09:50:03.559",
                 customer: {
                     identifiers: null,
-                    firstName: "David",
-                    lastName: "Beckham",
-                    companyName: "Driving School LLC",
-                    billingAddress1: "Home Address",
+                    firstName: "John",
+                    lastName: "Cassian",
+                    companyName: null,
+                    billingAddress1: "728 Larkspur Lane",
                     billingAddress2: "",
-                    billingCity: "",
-                    billingState: "",
-                    billingZip: "45157",
+                    billingCity: "Asheville",
+                    billingState: "NC",
+                    billingZip: "28801",
                     billingCountry: "US",
-                    billingPhone: "+15555555555",
-                    billingEmail: "example@payabli.com",
+                    billingPhone: "+18285550147",
+                    billingEmail: "john.cassian@example.com",
                     customerNumber: "C-90010",
-                    shippingAddress1: "Home Address",
+                    shippingAddress1: "728 Larkspur Lane",
                     shippingAddress2: "",
-                    shippingCity: "",
-                    shippingState: "",
-                    shippingZip: "45157",
+                    shippingCity: "Asheville",
+                    shippingState: "NC",
+                    shippingZip: "28801",
                     shippingCountry: "US",
                     customerId: 4440,
                     customerStatus: 0,
@@ -6836,23 +6964,23 @@ describe("MoneyInClient", () => {
                 transactionTime: "2025-12-01T09:50:03.559",
                 customer: {
                     identifiers: null,
-                    firstName: "David",
-                    lastName: "Beckham",
-                    companyName: "Driving School LLC",
-                    billingAddress1: "Home Address",
+                    firstName: "John",
+                    lastName: "Cassian",
+                    companyName: null,
+                    billingAddress1: "728 Larkspur Lane",
                     billingAddress2: "",
-                    billingCity: "",
-                    billingState: "",
-                    billingZip: "45157",
+                    billingCity: "Asheville",
+                    billingState: "NC",
+                    billingZip: "28801",
                     billingCountry: "US",
-                    billingPhone: "+15555555555",
-                    billingEmail: "example@payabli.com",
+                    billingPhone: "+18285550147",
+                    billingEmail: "john.cassian@example.com",
                     customerNumber: "C-90010",
-                    shippingAddress1: "Home Address",
+                    shippingAddress1: "728 Larkspur Lane",
                     shippingAddress2: "",
-                    shippingCity: "",
-                    shippingState: "",
-                    shippingZip: "45157",
+                    shippingCity: "Asheville",
+                    shippingState: "NC",
+                    shippingZip: "28801",
                     shippingCountry: "US",
                     customerId: 4440,
                     customerStatus: 0,
@@ -7076,23 +7204,23 @@ describe("MoneyInClient", () => {
                 transactionTime: "2025-12-01T09:50:03.559",
                 customer: {
                     identifiers: null,
-                    firstName: "David",
-                    lastName: "Beckham",
-                    companyName: "Driving School LLC",
-                    billingAddress1: "Home Address",
+                    firstName: "John",
+                    lastName: "Cassian",
+                    companyName: null,
+                    billingAddress1: "728 Larkspur Lane",
                     billingAddress2: "",
-                    billingCity: "",
-                    billingState: "",
-                    billingZip: "45157",
+                    billingCity: "Asheville",
+                    billingState: "NC",
+                    billingZip: "28801",
                     billingCountry: "US",
-                    billingPhone: "+15555555555",
-                    billingEmail: "example@payabli.com",
+                    billingPhone: "+18285550147",
+                    billingEmail: "john.cassian@example.com",
                     customerNumber: "C-90010",
-                    shippingAddress1: "Home Address",
+                    shippingAddress1: "728 Larkspur Lane",
                     shippingAddress2: "",
-                    shippingCity: "",
-                    shippingState: "",
-                    shippingZip: "45157",
+                    shippingCity: "Asheville",
+                    shippingState: "NC",
+                    shippingZip: "28801",
                     shippingCountry: "US",
                     customerId: 4440,
                     customerStatus: 0,
@@ -7244,15 +7372,15 @@ describe("MoneyInClient", () => {
                 paymentTransId: "paymentTransId",
                 connectorName: "connectorName",
                 externalProcessorInformation: "externalProcessorInformation",
-                gatewayTransId: "gatewayTransId",
+                gatewayTransId: null,
                 orderId: null,
                 method: "method",
                 batchNumber: "batchNumber",
                 batchAmount: 1.1,
                 payorId: 1000000,
                 paymentData: {
-                    maskedAccount: "maskedAccount",
-                    accountType: "accountType",
+                    maskedAccount: null,
+                    accountType: null,
                     accountExp: null,
                     holderName: "holderName",
                     storedId: null,
@@ -7295,7 +7423,7 @@ describe("MoneyInClient", () => {
                     response: null,
                     responsetext: "responsetext",
                     authcode: null,
-                    transactionid: "transactionid",
+                    transactionid: null,
                     avsresponse: null,
                     avsresponse_text: null,
                     cvvresponse: null,
@@ -7578,23 +7706,23 @@ describe("MoneyInClient", () => {
                 transactionTime: "2025-12-01T09:50:03.559",
                 customer: {
                     identifiers: null,
-                    firstName: "David",
-                    lastName: "Beckham",
-                    companyName: "Driving School LLC",
-                    billingAddress1: "Home Address",
+                    firstName: "John",
+                    lastName: "Cassian",
+                    companyName: null,
+                    billingAddress1: "728 Larkspur Lane",
                     billingAddress2: "",
-                    billingCity: "",
-                    billingState: "",
-                    billingZip: "45157",
+                    billingCity: "Asheville",
+                    billingState: "NC",
+                    billingZip: "28801",
                     billingCountry: "US",
-                    billingPhone: "+15555555555",
-                    billingEmail: "example@payabli.com",
+                    billingPhone: "+18285550147",
+                    billingEmail: "john.cassian@example.com",
                     customerNumber: "C-90010",
-                    shippingAddress1: "Home Address",
+                    shippingAddress1: "728 Larkspur Lane",
                     shippingAddress2: "",
-                    shippingCity: "",
-                    shippingState: "",
-                    shippingZip: "45157",
+                    shippingCity: "Asheville",
+                    shippingState: "NC",
+                    shippingZip: "28801",
                     shippingCountry: "US",
                     customerId: 4440,
                     customerStatus: 0,
@@ -7724,15 +7852,15 @@ describe("MoneyInClient", () => {
                 paymentTransId: "paymentTransId",
                 connectorName: "connectorName",
                 externalProcessorInformation: "externalProcessorInformation",
-                gatewayTransId: "gatewayTransId",
+                gatewayTransId: null,
                 orderId: null,
                 method: "method",
                 batchNumber: "batchNumber",
                 batchAmount: 1.1,
                 payorId: 1000000,
                 paymentData: {
-                    maskedAccount: "maskedAccount",
-                    accountType: "accountType",
+                    maskedAccount: null,
+                    accountType: null,
                     accountExp: null,
                     holderName: "holderName",
                     storedId: null,
@@ -7775,7 +7903,7 @@ describe("MoneyInClient", () => {
                     response: null,
                     responsetext: "responsetext",
                     authcode: null,
-                    transactionid: "transactionid",
+                    transactionid: null,
                     avsresponse: null,
                     avsresponse_text: null,
                     cvvresponse: null,

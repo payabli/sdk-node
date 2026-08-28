@@ -79,7 +79,69 @@ import type * as Payabli from "../../../../index.js";
  *         },
  *         paymentMethod: {
  *             device: "6c361c7d-674c-44cc-b790-382b75d1xxx",
- *             method: "cloud",
+ *             method: "cloud"
+ *         }
+ *     }
+ *
+ * @example
+ *     {
+ *         customerData: {
+ *             customerId: 4440
+ *         },
+ *         entryPoint: "8cfec329267",
+ *         ipaddress: "255.255.255.255",
+ *         paymentDetails: {
+ *             serviceFee: 0,
+ *             totalAmount: 100,
+ *             currency: "CAD"
+ *         },
+ *         paymentMethod: {
+ *             cardcvv: "999",
+ *             cardexp: "02/27",
+ *             cardHolder: "John Cassian",
+ *             cardnumber: "4111111111111111",
+ *             cardzip: "12345",
+ *             initiator: "payor",
+ *             method: "card"
+ *         }
+ *     }
+ *
+ * @example
+ *     {
+ *         customerData: {
+ *             customerId: 4440
+ *         },
+ *         entryPoint: "8cfec329267",
+ *         ipaddress: "255.255.255.255",
+ *         paymentDetails: {
+ *             checkUniqueId: "abc123def456",
+ *             serviceFee: 0,
+ *             totalAmount: 125.5
+ *         },
+ *         paymentMethod: {
+ *             achAccount: "123456",
+ *             achAccountType: "Checking",
+ *             achCode: "BOC",
+ *             achHolder: "John Doe",
+ *             achRouting: "123456789",
+ *             method: "ach"
+ *         }
+ *     }
+ *
+ * @example
+ *     {
+ *         customerData: {
+ *             customerId: 4440
+ *         },
+ *         entryPoint: "8cfec329267",
+ *         ipaddress: "255.255.255.255",
+ *         paymentDetails: {
+ *             serviceFee: 0,
+ *             totalAmount: 100
+ *         },
+ *         paymentMethod: {
+ *             device: "499585-389fj484-3jcj8hj3",
+ *             method: "device",
  *             saveIfSuccess: true
  *         }
  *     }

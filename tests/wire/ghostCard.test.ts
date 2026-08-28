@@ -296,6 +296,33 @@ describe("GhostCardClient", () => {
             apiKeyAuth: { apiKey: "test" },
             environment: server.baseUrl,
         });
+        const rawRequestBody = { cardToken: "20231206142225226104", status: "Cancelled" };
+        const rawResponseBody = { isSuccess: true, responseText: "Success" };
+
+        server
+            .mockEndpoint()
+            .patch("/MoneyOutCard/card/8cfec329267")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.ghostCard.updateCard("8cfec329267", {
+            cardToken: "20231206142225226104",
+            status: "Cancelled",
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("UpdateCard (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
         const rawRequestBody = { cardToken: "cardToken" };
         const rawResponseBody = { key: "value" };
 
@@ -315,7 +342,7 @@ describe("GhostCardClient", () => {
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
-    test("UpdateCard (3)", async () => {
+    test("UpdateCard (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -342,7 +369,7 @@ describe("GhostCardClient", () => {
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
-    test("UpdateCard (4)", async () => {
+    test("UpdateCard (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -369,7 +396,7 @@ describe("GhostCardClient", () => {
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
-    test("UpdateCard (5)", async () => {
+    test("UpdateCard (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,

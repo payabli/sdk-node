@@ -28,19 +28,14 @@ import type * as Payabli from "../../../../index.js";
  *         entryPoint: "8cfec329267",
  *         autoCapture: true,
  *         invoiceData: [{
- *                 billId: 54323,
- *                 attachments: [{
- *                         filename: "bill.pdf",
- *                         ftype: "pdf",
- *                         furl: "https://example.com/bill.pdf"
- *                     }]
+ *                 billId: 54323
  *             }],
  *         orderDescription: "Window Painting",
  *         paymentDetails: {
  *             totalAmount: 47
  *         },
  *         paymentMethod: {
- *             method: "managed"
+ *             method: "vcard"
  *         },
  *         vendorData: {
  *             vendorNumber: "VEN-123"
@@ -130,64 +125,12 @@ import type * as Payabli from "../../../../index.js";
  *             vendorNumber: "7895433"
  *         }
  *     }
- *
- * @example
- *     {
- *         entryPoint: "8cfec329267",
- *         paymentMethod: {
- *             method: "ach",
- *             achHolder: "John Doe",
- *             achRouting: "011401533",
- *             achAccount: "123456789",
- *             achAccountType: "checking",
- *             achHolderType: "business"
- *         },
- *         paymentDetails: {
- *             totalAmount: 978.32
- *         },
- *         vendorData: {
- *             vendorNumber: "VEN-123",
- *             name1: "Heritage Pro Company",
- *             name2: "",
- *             ein: "473771889",
- *             phone: "7868342364",
- *             email: "contact570@heritagepro.com",
- *             address1: "478 Mittie Roads",
- *             city: "Jakubowskifield",
- *             state: "WI",
- *             zip: "45993",
- *             country: "US",
- *             mcc: "0763",
- *             locationCode: "tpa",
- *             contacts: [{
- *                     contactName: "Dax",
- *                     contactEmail: "Mandy65@heritagepro.com",
- *                     contactPhone: "996-325-5420 x31028"
- *                 }],
- *             vendorStatus: 1,
- *             remitAddress1: "727 Terrell Streets",
- *             remitAddress2: "Apt. 773",
- *             remitCity: "South Nicholeside",
- *             remitState: "ID",
- *             remitZip: "72951-9790",
- *             remitCountry: "US"
- *         },
- *         invoiceData: [{
- *                 invoiceNumber: "INV-2345",
- *                 netAmount: "1",
- *                 invoiceDate: "2026-09-03",
- *                 dueDate: "2026-11-04",
- *                 comments: "Building Repairs - Community event setup (System updates)"
- *             }]
- *     }
  */
 export interface RequestOutAuthorize {
     /** When `true`, the authorization bypasses the requirement for unique bills, identified by vendor invoice number. This allows you to make more than one payout authorization for a bill, like a split payment. */
     allowDuplicatedBills?: boolean;
     /** When `true`, Payabli won't automatically create a bill for this payout transaction. */
     doNotCreateBills?: boolean;
-    /** When `true`, the request creates a new vendor record, regardless of whether the vendor already exists. */
-    forceVendorCreation?: boolean;
     /**
      * When `true`, Payabli authorizes the payout for same-day ACH processing instead of standard ACH. Same-day ACH must be enabled for the paypoint, otherwise the authorization fails with a `400` response and `responseCode` `3492`. Only ACH payouts honor this flag. Wire and RTP payouts ignore it.
      *
@@ -205,8 +148,8 @@ export interface RequestOutAuthorize {
     paymentDetails: Payabli.RequestOutAuthorizePaymentDetails;
     /** Object containing vendor data. */
     vendorData: Payabli.RequestOutAuthorizeVendorData;
-    /** Array of bills associated to the transaction */
-    invoiceData: Payabli.RequestOutAuthorizeInvoiceData[];
+    /** Bills to pay with this payout, each referenced by `billId`. */
+    invoiceData?: Payabli.RequestOutAuthorizeInvoiceData[];
     accountId?: Payabli.AccountId;
     subdomain?: Payabli.Subdomain;
     subscriptionId?: Payabli.Subscriptionid;

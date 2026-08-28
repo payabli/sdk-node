@@ -2,20 +2,11 @@
 
 import type * as Payabli from "../index.js";
 
+/**
+ * Bill to pay with this payout. Create the bill first with
+ * [Add bill](/developers/api-reference/bill/add-bill), then reference it here
+ * by `billId`.
+ */
 export interface RequestOutAuthorizeInvoiceData {
-    invoiceNumber?: Payabli.InvoiceNumber | undefined;
-    netAmount?: Payabli.NetAmountstring | undefined;
-    /** Invoice date in any of the accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
-    invoiceDate?: string | undefined;
-    /** Invoice due date in any of the accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
-    dueDate?: string | undefined;
-    comments?: Payabli.Comments | undefined;
-    lotNumber?: Payabli.LotNumber | undefined;
-    billId?: Payabli.BillId | undefined;
-    discount?: Payabli.Discount | undefined;
-    terms?: Payabli.Terms | undefined;
-    accountingField1?: Payabli.AccountingField | undefined;
-    accountingField2?: Payabli.AccountingField | undefined;
-    additionalData?: Payabli.AdditionalDataString | undefined;
-    attachments?: Payabli.Attachments | undefined;
+    billId: Payabli.BillId;
 }

@@ -53,7 +53,7 @@ export interface TransferDetailRecord {
     /** Internal identifier used for processing */
     GatewayTransId: string | null;
     OrderId: Payabli.OrderId | null;
-    /** Payment method used: card, ach, or wallet */
+    /** The payment method used for the transaction, for example card, ach, or device. */
     Method: string | null;
     BatchNumber: Payabli.BatchNumber | null;
     /** The amount of the batch */

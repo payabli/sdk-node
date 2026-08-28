@@ -4,46 +4,7 @@ import type * as Payabli from "../../../../index.js";
 
 /**
  * @example
- *     {
- *         idempotencyKey: "8A29FC40-CA47-1067-B31D-00DD010662DB",
- *         source: "api",
- *         orderDescription: "Materials deposit",
- *         amount: 100,
- *         refundDetails: {
- *             splitRefunding: [{
- *                     originationEntryPoint: "7f1a381696",
- *                     accountId: "187-342",
- *                     description: "Refunding undelivered materials",
- *                     amount: 60
- *                 }, {
- *                     originationEntryPoint: "7f1a381696",
- *                     accountId: "187-343",
- *                     description: "Refunding deposit for undelivered materials",
- *                     amount: 40
- *                 }]
- *         }
- *     }
- *
- * @example
- *     {
- *         idempotencyKey: "8A29FC40-CA47-1067-B31D-00DD010662DB",
- *         source: "api",
- *         orderDescription: "Materials deposit",
- *         amount: 70,
- *         refundDetails: {
- *             splitRefunding: [{
- *                     originationEntryPoint: "7f1a381696",
- *                     accountId: "187-342",
- *                     description: "Refunding undelivered materials",
- *                     amount: 40
- *                 }, {
- *                     originationEntryPoint: "7f1a381696",
- *                     accountId: "187-343",
- *                     description: "Refunding deposit for undelivered materials",
- *                     amount: 30
- *                 }]
- *         }
- *     }
+ *     {}
  */
 export interface RequestRefund {
     /** _Optional but recommended_ A unique ID that you can include to prevent duplicating objects or transactions in the case that a request is sent more than once. This key isn't generated in Payabli, you must generate it yourself. This key persists for 2 minutes. After 2 minutes, you can reuse the key if needed. */

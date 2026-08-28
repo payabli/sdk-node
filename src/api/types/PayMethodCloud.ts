@@ -6,7 +6,6 @@ export interface PayMethodCloud {
     device?: Payabli.Device | undefined;
     /** Method to use for the transaction. For cloud device transactions, the method is `cloud`. */
     method: PayMethodCloud.Method;
-    saveIfSuccess?: Payabli.SaveIfSuccess | undefined;
 }
 
 export namespace PayMethodCloud {

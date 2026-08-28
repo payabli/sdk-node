@@ -4,60 +4,62 @@ import type { BaseClientOptions, BaseRequestOptions } from "../../../../BaseClie
 import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "../../../../BaseClient.js";
 import { mergeHeaders } from "../../../../core/headers.js";
 import * as core from "../../../../core/index.js";
-import { mergeAdditionalBodyParameters } from "../../../../core/requestBody.js";
 import * as environments from "../../../../environments.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
 import * as Payabli from "../../../index.js";
 
-export declare namespace FundingClient {
+export declare namespace DeviceClient {
     export type Options = BaseClientOptions;
 
     export interface RequestOptions extends BaseRequestOptions {}
 }
 
 /**
- * The Funding service manages deposits into a paypoint's available payout balance. Use it to fund the balance that instant payout rails (wire and RTP) draw against. Deposited funds enter a pending state and become available for instant payouts once confirmed through FBO reconciliation.
+ * The Device service handles activation of semi-integrated card-present devices. Generate a one-time verification code that an operator enters on a device's terminal to register it to a paypoint, then send transactions to the activated device through the MoneyIn service.
  */
-export class FundingClient {
-    protected readonly _options: NormalizedClientOptionsWithAuth<FundingClient.Options>;
+export class DeviceClient {
+    protected readonly _options: NormalizedClientOptionsWithAuth<DeviceClient.Options>;
 
-    constructor(options: FundingClient.Options = {}) {
+    constructor(options: DeviceClient.Options = {}) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
     /**
-     * Deposits funds into a paypoint's available payout balance. Deposited funds enter a pending state and aren't available for instant payouts until confirmed through FBO reconciliation.
+     * Generates a one-time, 6-digit verification code for activating a
+     * semi-integrated card-present device in a paypoint. After calling this endpoint, an operator enters the returned code
+     * on the device's terminal, along with a device name, to register the
+     * device to the paypoint resolved from `{entry}`.
      *
-     * @param {Payabli.DepositFundsRequest} request
-     * @param {FundingClient.RequestOptions} requestOptions - Request-specific configuration.
+     * A code expires 5 minutes after it's issued. A paypoint can have several
+     * codes active at once — for example, when activating a batch of devices —
+     * and a code binds to whichever device enters it first.
      *
-     * @throws {@link Payabli.BadRequestError}
+     * Authenticate with an OAuth2 Bearer token that has the `device_registry` scope.
+     *
+     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {DeviceClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
      * @throws {@link Payabli.UnauthorizedError}
      * @throws {@link Payabli.InternalServerError}
-     * @throws {@link Payabli.ServiceUnavailableError}
      * @throws {@link errors.PayabliError}
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.funding.depositFunds({
-     *         amount: 1500,
-     *         entrypoint: "48acde49",
-     *         accountId: "333"
-     *     })
+     *     await client.device.challenge("8cfec329267")
      */
-    public depositFunds(
-        request: Payabli.DepositFundsRequest,
-        requestOptions?: FundingClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.DepositFundsResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__depositFunds(request, requestOptions));
+    public challenge(
+        entry: string,
+        requestOptions?: DeviceClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.DeviceChallengeResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__challenge(entry, requestOptions));
     }
 
-    private async __depositFunds(
-        request: Payabli.DepositFundsRequest,
-        requestOptions?: FundingClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.DepositFundsResponse>> {
-        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
+    private async __challenge(
+        entry: string,
+        requestOptions?: DeviceClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.DeviceChallengeResponse>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }] };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({
             endpointMetadata: _metadata,
         });
@@ -71,14 +73,11 @@ export class FundingClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.PayabliEnvironment.Sandbox,
-                "Funding/depositFunds",
+                `Device/challenge/${core.url.encodePathParam(entry)}`,
             ),
             method: "POST",
             headers: _headers,
-            contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            requestType: "json",
-            body: mergeAdditionalBodyParameters(request, requestOptions?.additionalBodyParameters),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -87,13 +86,11 @@ export class FundingClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Payabli.DepositFundsResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as Payabli.DeviceChallengeResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
                     throw new Payabli.UnauthorizedError(
                         _response.error.body as Payabli.PayabliErrorBody,
@@ -101,11 +98,6 @@ export class FundingClient {
                     );
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
-                case 503:
-                    throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliErrorBody,
-                        _response.rawResponse,
-                    );
                 default:
                     throw new errors.PayabliError({
                         statusCode: _response.error.statusCode,
@@ -115,6 +107,6 @@ export class FundingClient {
             }
         }
 
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/Funding/depositFunds");
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/Device/challenge/{entry}");
     }
 }

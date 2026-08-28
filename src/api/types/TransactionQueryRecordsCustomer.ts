@@ -20,7 +20,7 @@ export interface TransactionQueryRecordsCustomer {
     /** Internal identifier used for processing. */
     GatewayTransId?: string | undefined;
     invoiceData?: Payabli.BillData | undefined;
-    /** Payment method used: card, ach, or wallet. */
+    /** The payment method used for the transaction, for example card, ach, or device. */
     Method?: string | undefined;
     /** Net amount paid. */
     NetAmount?: Payabli.Netamountnullable | undefined;

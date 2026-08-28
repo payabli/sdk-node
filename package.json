@@ -1,6 +1,6 @@
 {
     "name": "@payabli/sdk-node",
-    "version": "1.0.11",
+    "version": "1.0.12",
     "private": false,
     "repository": {
         "type": "git",
@@ -197,6 +197,17 @@
                 "default": "./dist/cjs/api/resources/notificationlogs/exports.js"
             },
             "default": "./dist/cjs/api/resources/notificationlogs/exports.js"
+        },
+        "./device": {
+            "import": {
+                "types": "./dist/esm/api/resources/device/exports.d.mts",
+                "default": "./dist/esm/api/resources/device/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/device/exports.d.ts",
+                "default": "./dist/cjs/api/resources/device/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/device/exports.js"
         },
         "./cloud": {
             "import": {

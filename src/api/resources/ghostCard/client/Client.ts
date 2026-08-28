@@ -158,6 +158,12 @@ export class GhostCardClient {
      *         cardToken: "gc_abc123def456",
      *         status: "Cancelled"
      *     })
+     *
+     * @example
+     *     await client.ghostCard.updateCard("8cfec329267", {
+     *         cardToken: "20231206142225226104",
+     *         status: "Cancelled"
+     *     })
      */
     public updateCard(
         entry: Payabli.Entry,

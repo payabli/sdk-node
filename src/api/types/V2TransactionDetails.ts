@@ -16,7 +16,7 @@ export interface V2TransactionDetails {
     connectorName: string;
     externalProcessorInformation: Payabli.ExternalProcessorInformation;
     /** Gateway transaction identifier. */
-    gatewayTransId: string;
+    gatewayTransId: string | null;
     orderId: Payabli.OrderId | null;
     /** Payment method used for the transaction. */
     method: string;
