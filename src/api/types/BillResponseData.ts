@@ -12,6 +12,10 @@ export interface BillResponseData {
     Discount?: number | undefined;
     /** Total amount for the bill. */
     TotalAmount?: number | undefined;
+    /** The amount paid toward the bill so far. */
+    PaidAmount?: number | undefined;
+    /** The amount still owed on the bill, calculated as `NetAmount` minus `PaidAmount`. */
+    OutstandingBalance?: number | undefined;
     /** Date of bill. Accepted formats: YYYY-MM-DD, MM/DD/YYYY */
     BillDate: string | null;
     /** Due Date of bill. Accepted formats: YYYY-MM-DD, MM/DD/YYYY */

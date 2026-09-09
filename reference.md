@@ -9984,7 +9984,7 @@ await client.query.listVcardsOrg(123, {
 <dl>
 <dd>
 
-Use this endpoint to upload an image file for OCR processing. The accepted file formats include PDF, JPG, JPEG, PNG, and GIF. Specify the desired type of result (either 'bill' or 'invoice') in the path parameter `typeResult`. The response will contain the OCR processing results, including extracted data such as bill number, vendor information, bill items, and more.
+Use this endpoint to upload a document file for OCR processing as `multipart/form-data`, with the file in a field named `file`. The accepted file formats include PDF, JPG, JPEG, PNG, and GIF. Specify the desired type of result (either 'bill' or 'invoice') in the path parameter `typeResult`. The response will contain the OCR processing results, including extracted data such as bill number, vendor information, bill items, and more. To send the file as a Base64-encoded string in a JSON body instead, use `ocrDocumentJson`.
 </dd>
 </dl>
 </dd>
@@ -9999,7 +9999,9 @@ Use this endpoint to upload an image file for OCR processing. The accepted file 
 <dd>
 
 ```typescript
-await client.ocr.ocrDocumentForm("typeResult", {});
+await client.ocr.ocrDocumentForm("typeResult", {
+    file: fs.createReadStream("/path/to/your/file")
+});
 
 ```
 </dd>
@@ -10015,7 +10017,7 @@ await client.ocr.ocrDocumentForm("typeResult", {});
 <dl>
 <dd>
 
-**typeResult:** `Payabli.TypeResult` — The type of object to create in Payabli. Accepted values are `bill` and `invoice`.
+**typeResult:** `Payabli.TypeResult` 
     
 </dd>
 </dl>
@@ -10023,7 +10025,7 @@ await client.ocr.ocrDocumentForm("typeResult", {});
 <dl>
 <dd>
 
-**request:** `Payabli.FileContentImageOnly` 
+**request:** `Payabli.OcrDocumentFormRequest` 
     
 </dd>
 </dl>
@@ -10070,7 +10072,7 @@ Use this endpoint to submit a Base64-encoded image file for OCR processing. The 
 <dd>
 
 ```typescript
-await client.ocr.ocrDocumentJson("typeResult", {});
+await client.ocr.ocrDocumentJson("typeResult");
 
 ```
 </dd>
@@ -10094,7 +10096,7 @@ await client.ocr.ocrDocumentJson("typeResult", {});
 <dl>
 <dd>
 
-**request:** `Payabli.FileContentImageOnly` 
+**request:** `Payabli.OcrDocumentJsonRequest` 
     
 </dd>
 </dl>
@@ -18178,6 +18180,90 @@ await client.moneyOut.captureOut("129-219");
 <dd>
 
 **request:** `Payabli.CaptureOutRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `MoneyOutClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.moneyOut.<a href="/src/api/resources/moneyOut/client/Client.ts">payout</a>({ ...params }) -> Payabli.AuthCapturePayoutResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Authorizes a payout and captures it in the same request, returning the capture result. Use this endpoint when you need the capture outcome synchronously: it does the same work as calling `POST /MoneyOut/authorize` followed by `GET /MoneyOut/capture/{referenceId}`, in a single call.
+
+Risk and fraud review runs at both the authorize and capture stages, exactly as it does for the two-call flow.
+
+Payabli ignores the `autoCapture` field in the request body, since this endpoint always captures inline.
+
+If the capture fails, the payout stays authorized. Retry the capture with `GET /MoneyOut/capture/{referenceId}` using the `referenceId` from the error response rather than resubmitting, which would create a second payout. See the [Manage payouts guide](/guides/pay-out-developer-payouts-manage#authorize-and-capture-in-one-call) for details.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.moneyOut.payout({
+    entryPoint: "8cfec329267",
+    invoiceData: [{
+            billId: 54323
+        }],
+    orderDescription: "Window Painting",
+    paymentDetails: {
+        totalAmount: 47
+    },
+    paymentMethod: {
+        method: "managed"
+    },
+    vendorData: {
+        vendorNumber: "VEN-123"
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Payabli.PayoutRequest` 
     
 </dd>
 </dl>

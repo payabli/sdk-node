@@ -66,6 +66,10 @@ export interface BillQueryRecord2 {
     Terms: Payabli.Terms | null;
     /** Total amount of the bill including taxes and fees. */
     TotalAmount: number | null;
+    /** The amount paid toward the bill so far. */
+    PaidAmount: number | null;
+    /** The amount still owed on the bill, calculated as `NetAmount` minus `PaidAmount`. */
+    OutstandingBalance: number | null;
     /** MoneyOut transaction associated to the bill. */
     Transaction: Payabli.TransactionOutQueryRecord | null;
     Vendor: Payabli.VendorOutData | null;

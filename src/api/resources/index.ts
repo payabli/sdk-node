@@ -39,6 +39,7 @@ export * as moneyOut from "./moneyOut/index.js";
 export * as notification from "./notification/index.js";
 export * from "./notificationlogs/client/requests/index.js";
 export * as notificationlogs from "./notificationlogs/index.js";
+export * from "./ocr/client/requests/index.js";
 export * as ocr from "./ocr/index.js";
 export * from "./organization/client/requests/index.js";
 export * as organization from "./organization/index.js";

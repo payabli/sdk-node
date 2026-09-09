@@ -18,6 +18,7 @@ export interface QueryPayoutTransactionRecordsItem {
     /** Internal status of transaction. */
     Status?: number | undefined;
     PaymentId?: Payabli.PaymentIdString | undefined;
+    orderId?: Payabli.OrderId | undefined;
     /** ID of the transaction linked to this payout, when applicable. */
     TransId?: (string | null) | undefined;
     /** Status of the linked transaction. */

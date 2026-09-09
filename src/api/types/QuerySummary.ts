@@ -3,7 +3,8 @@
 import type * as Payabli from "../index.js";
 
 export interface QuerySummary {
-    pageIdentifier?: Payabli.PageIdentifier | undefined;
+    /** Pagination token for retrieving the next page of results. Returns `null` when there's no additional page. */
+    pageidentifier: Payabli.PageIdentifier | null;
     pageSize?: Payabli.Pagesize | undefined;
     /** Total amount for the records. */
     totalAmount?: number | undefined;

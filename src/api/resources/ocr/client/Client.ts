@@ -2,7 +2,7 @@
 
 import type { BaseClientOptions, BaseRequestOptions } from "../../../../BaseClient.js";
 import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "../../../../BaseClient.js";
-import { mergeHeaders } from "../../../../core/headers.js";
+import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../core/headers.js";
 import * as core from "../../../../core/index.js";
 import { mergeAdditionalBodyParameters } from "../../../../core/requestBody.js";
 import * as environments from "../../../../environments.js";
@@ -24,10 +24,10 @@ export class OcrClient {
     }
 
     /**
-     * Use this endpoint to upload an image file for OCR processing. The accepted file formats include PDF, JPG, JPEG, PNG, and GIF. Specify the desired type of result (either 'bill' or 'invoice') in the path parameter `typeResult`. The response will contain the OCR processing results, including extracted data such as bill number, vendor information, bill items, and more.
+     * Use this endpoint to upload a document file for OCR processing as `multipart/form-data`, with the file in a field named `file`. The accepted file formats include PDF, JPG, JPEG, PNG, and GIF. Specify the desired type of result (either 'bill' or 'invoice') in the path parameter `typeResult`. The response will contain the OCR processing results, including extracted data such as bill number, vendor information, bill items, and more. To send the file as a Base64-encoded string in a JSON body instead, use `ocrDocumentJson`.
      *
-     * @param {Payabli.TypeResult} typeResult - The type of object to create in Payabli. Accepted values are `bill` and `invoice`.
-     * @param {Payabli.FileContentImageOnly} request
+     * @param {Payabli.TypeResult} typeResult
+     * @param {Payabli.OcrDocumentFormRequest} request
      * @param {OcrClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Payabli.BadRequestError}
@@ -38,11 +38,14 @@ export class OcrClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.ocr.ocrDocumentForm("typeResult", {})
+     *     import { createReadStream } from "fs";
+     *     await client.ocr.ocrDocumentForm("typeResult", {
+     *         file: fs.createReadStream("/path/to/your/file")
+     *     })
      */
     public ocrDocumentForm(
         typeResult: Payabli.TypeResult,
-        request: Payabli.FileContentImageOnly,
+        request: Payabli.OcrDocumentFormRequest,
         requestOptions?: OcrClient.RequestOptions,
     ): core.HttpResponsePromise<Payabli.PayabliApiResponseOcr> {
         return core.HttpResponsePromise.fromPromise(this.__ocrDocumentForm(typeResult, request, requestOptions));
@@ -50,16 +53,20 @@ export class OcrClient {
 
     private async __ocrDocumentForm(
         typeResult: Payabli.TypeResult,
-        request: Payabli.FileContentImageOnly,
+        request: Payabli.OcrDocumentFormRequest,
         requestOptions?: OcrClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.PayabliApiResponseOcr>> {
         const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
+        const _body = await core.newFormData();
+        await _body.appendFile("file", request.file);
+        const _maybeEncodedRequest = await _body.getRequest();
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({
             endpointMetadata: _metadata,
         });
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
+            mergeOnlyDefinedHeaders({ ..._maybeEncodedRequest.headers }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -71,10 +78,10 @@ export class OcrClient {
             ),
             method: "POST",
             headers: _headers,
-            contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            requestType: "json",
-            body: mergeAdditionalBodyParameters(request, requestOptions?.additionalBodyParameters),
+            requestType: "file",
+            duplex: _maybeEncodedRequest.duplex,
+            body: _maybeEncodedRequest.body,
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -123,18 +130,18 @@ export class OcrClient {
      * Use this endpoint to submit a Base64-encoded image file for OCR processing. The accepted file formats include PDF, JPG, JPEG, PNG, and GIF. Specify the desired type of result (either 'bill' or 'invoice') in the path parameter `typeResult`. The response will contain the OCR processing results, including extracted data such as bill number, vendor information, bill items, and more.
      *
      * @param {Payabli.TypeResult} typeResult - The type of object to create in Payabli. Accepted values are `bill` and `invoice`.
-     * @param {Payabli.FileContentImageOnly} request
+     * @param {Payabli.OcrDocumentJsonRequest} request
      * @param {OcrClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link errors.PayabliError}
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.ocr.ocrDocumentJson("typeResult", {})
+     *     await client.ocr.ocrDocumentJson("typeResult")
      */
     public ocrDocumentJson(
         typeResult: Payabli.TypeResult,
-        request: Payabli.FileContentImageOnly,
+        request: Payabli.OcrDocumentJsonRequest = {},
         requestOptions?: OcrClient.RequestOptions,
     ): core.HttpResponsePromise<Payabli.PayabliApiResponseOcr> {
         return core.HttpResponsePromise.fromPromise(this.__ocrDocumentJson(typeResult, request, requestOptions));
@@ -142,7 +149,7 @@ export class OcrClient {
 
     private async __ocrDocumentJson(
         typeResult: Payabli.TypeResult,
-        request: Payabli.FileContentImageOnly,
+        request: Payabli.OcrDocumentJsonRequest = {},
         requestOptions?: OcrClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.PayabliApiResponseOcr>> {
         const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };

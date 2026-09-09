@@ -2842,7 +2842,7 @@ describe("BoardingClient", () => {
                 },
             ],
             Summary: {
-                pageIdentifier: "null",
+                pageidentifier: "null",
                 pageSize: 20,
                 totalAmount: 77.22,
                 totalNetAmount: 77.22,
@@ -2964,7 +2964,7 @@ describe("BoardingClient", () => {
                 },
             ],
             Summary: {
-                pageIdentifier: "null",
+                pageidentifier: "null",
                 pageSize: 20,
                 totalAmount: 77.22,
                 totalNetAmount: 77.22,
@@ -3284,7 +3284,7 @@ describe("BoardingClient", () => {
                 },
             ],
             Summary: {
-                pageIdentifier: "null",
+                pageidentifier: "null",
                 pageSize: 0,
                 totalAmount: 0,
                 totalNetAmount: 0,

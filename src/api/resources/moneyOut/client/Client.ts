@@ -639,6 +639,7 @@ export class MoneyOutClient {
      *
      * @throws {@link Payabli.BadRequestError}
      * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.ConflictError}
      * @throws {@link Payabli.UnprocessableEntityError}
      * @throws {@link Payabli.InternalServerError}
      * @throws {@link Payabli.ServiceUnavailableError}
@@ -709,6 +710,8 @@ export class MoneyOutClient {
                         _response.error.body as Payabli.PayabliErrorBody,
                         _response.rawResponse,
                     );
+                case 409:
+                    throw new Payabli.ConflictError(_response.error.body as unknown, _response.rawResponse);
                 case 422:
                     throw new Payabli.UnprocessableEntityError(
                         _response.error.body as Payabli.PayabliErrorBody,
@@ -736,6 +739,145 @@ export class MoneyOutClient {
             "GET",
             "/MoneyOut/capture/{referenceId}",
         );
+    }
+
+    /**
+     * Authorizes a payout and captures it in the same request, returning the capture result. Use this endpoint when you need the capture outcome synchronously: it does the same work as calling `POST /MoneyOut/authorize` followed by `GET /MoneyOut/capture/{referenceId}`, in a single call.
+     *
+     * Risk and fraud review runs at both the authorize and capture stages, exactly as it does for the two-call flow.
+     *
+     * Payabli ignores the `autoCapture` field in the request body, since this endpoint always captures inline.
+     *
+     * If the capture fails, the payout stays authorized. Retry the capture with `GET /MoneyOut/capture/{referenceId}` using the `referenceId` from the error response rather than resubmitting, which would create a second payout. See the [Manage payouts guide](/guides/pay-out-developer-payouts-manage#authorize-and-capture-in-one-call) for details.
+     *
+     * @param {Payabli.PayoutRequest} request
+     * @param {MoneyOutClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.ConflictError}
+     * @throws {@link Payabli.UnprocessableEntityError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     * @throws {@link errors.PayabliError}
+     * @throws {@link errors.PayabliTimeoutError}
+     *
+     * @example
+     *     await client.moneyOut.payout({
+     *         entryPoint: "8cfec329267",
+     *         invoiceData: [{
+     *                 billId: 54323
+     *             }],
+     *         orderDescription: "Window Painting",
+     *         paymentDetails: {
+     *             totalAmount: 47
+     *         },
+     *         paymentMethod: {
+     *             method: "managed"
+     *         },
+     *         vendorData: {
+     *             vendorNumber: "VEN-123"
+     *         }
+     *     })
+     */
+    public payout(
+        request: Payabli.PayoutRequest,
+        requestOptions?: MoneyOutClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.AuthCapturePayoutResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__payout(request, requestOptions));
+    }
+
+    private async __payout(
+        request: Payabli.PayoutRequest,
+        requestOptions?: MoneyOutClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.AuthCapturePayoutResponse>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
+        const {
+            sameDayACH: sameDayAch,
+            doNotCreateBills,
+            allowDuplicatedBills,
+            updateVendorPaymentMethod,
+            autoConvertSameDayAch,
+            idempotencyKey,
+            ..._body
+        } = request;
+        const _queryParams: Record<string, unknown> = {
+            sameDayACH: sameDayAch,
+            doNotCreateBills,
+            allowDuplicatedBills,
+            updateVendorPaymentMethod,
+            autoConvertSameDayAch,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({
+            endpointMetadata: _metadata,
+        });
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ idempotencyKey: idempotencyKey }),
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                "MoneyOut/payout",
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
+            requestType: "json",
+            body: mergeAdditionalBodyParameters(_body, requestOptions?.additionalBodyParameters),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.AuthCapturePayoutResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 409:
+                    throw new Payabli.ConflictError(_response.error.body as unknown, _response.rawResponse);
+                case 422:
+                    throw new Payabli.UnprocessableEntityError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/MoneyOut/payout");
     }
 
     /**

@@ -1556,7 +1556,7 @@ describe("QueryClient", () => {
                 },
             ],
             Summary: {
-                pageIdentifier: "null",
+                pageidentifier: "null",
                 pageSize: 20,
                 totalAmount: 1.56,
                 totalNetAmount: 1.5,
@@ -1727,7 +1727,7 @@ describe("QueryClient", () => {
                 },
             ],
             Summary: {
-                pageIdentifier: "null",
+                pageidentifier: "null",
                 pageSize: 20,
                 totalAmount: 77.22,
                 totalNetAmount: 77.22,
@@ -1900,7 +1900,7 @@ describe("QueryClient", () => {
                 },
             ],
             Summary: {
-                pageIdentifier: "XXXXXXXXXXXXXX",
+                pageidentifier: "XXXXXXXXXXXXXX",
                 pageSize: 20,
                 totalAmount: 0,
                 totalNetAmount: 0,
@@ -2073,7 +2073,7 @@ describe("QueryClient", () => {
                 },
             ],
             Summary: {
-                pageIdentifier: "XXXXXXXXXXXXXX",
+                pageidentifier: "XXXXXXXXXXXXXX",
                 pageSize: 20,
                 totalAmount: 0,
                 totalNetAmount: 0,
@@ -2204,7 +2204,14 @@ describe("QueryClient", () => {
         });
 
         const rawResponseBody = {
-            Summary: { pageSize: 20, totalAmount: 0, totalNetAmount: 0, totalPages: 2, totalRecords: 28 },
+            Summary: {
+                pageidentifier: null,
+                pageSize: 20,
+                totalAmount: 0,
+                totalNetAmount: 0,
+                totalPages: 2,
+                totalRecords: 28,
+            },
             Records: [
                 {
                     deviceId: "499585-389fj484-3jcj8hj3",
@@ -2360,7 +2367,14 @@ describe("QueryClient", () => {
         });
 
         const rawResponseBody = {
-            Summary: { pageSize: 20, totalAmount: 0, totalNetAmount: 0, totalPages: 2, totalRecords: 28 },
+            Summary: {
+                pageidentifier: null,
+                pageSize: 20,
+                totalAmount: 0,
+                totalNetAmount: 0,
+                totalPages: 2,
+                totalRecords: 28,
+            },
             Records: [
                 {
                     deviceId: "499585-389fj484-3jcj8hj3",
@@ -2525,7 +2539,7 @@ describe("QueryClient", () => {
                 },
             ],
             Summary: {
-                pageIdentifier: "null",
+                pageidentifier: "null",
                 pageSize: 20,
                 totalAmount: 0,
                 totalNetAmount: 0,
@@ -2665,7 +2679,7 @@ describe("QueryClient", () => {
                 },
             ],
             Summary: {
-                pageIdentifier: "null",
+                pageidentifier: "null",
                 pageSize: 20,
                 totalAmount: 0,
                 totalNetAmount: 0,
@@ -3135,7 +3149,7 @@ describe("QueryClient", () => {
                 },
             ],
             Summary: {
-                pageIdentifier: "null",
+                pageidentifier: "null",
                 pageSize: 20,
                 totalAmount: 77.22,
                 totalNetAmount: 77.22,
@@ -3319,6 +3333,7 @@ describe("QueryClient", () => {
                     PaypointId: 3040,
                     Status: 1,
                     PaymentId: "01J0ABCDEF2WQ4VS323V5WKZP3",
+                    orderId: "O-5140",
                     LastUpdated: "2024-01-15T15:00:01Z",
                     TotalAmount: 110.25,
                     NetAmount: 100,
@@ -3585,6 +3600,7 @@ describe("QueryClient", () => {
                     PaypointId: 3040,
                     Status: 1,
                     PaymentId: "01J0ABCDEF2WQ4VS323V5WKZP3",
+                    orderId: "O-5140",
                     LastUpdated: "2024-01-15T15:00:01Z",
                     TotalAmount: 110.25,
                     NetAmount: 100,
@@ -3861,7 +3877,7 @@ describe("QueryClient", () => {
                 },
             ],
             Summary: {
-                pageIdentifier: "null",
+                pageidentifier: "null",
                 pageSize: 20,
                 totalAmount: 77.22,
                 totalNetAmount: 77.22,
@@ -4622,7 +4638,7 @@ describe("QueryClient", () => {
                 },
             ],
             Summary: {
-                pageIdentifier: "XXXXXXXXXXXXXXXXXXX",
+                pageidentifier: "XXXXXXXXXXXXXXXXXXX",
                 pageSize: 20,
                 totalAmount: 150.22,
                 totalNetAmount: 150.22,
@@ -4897,7 +4913,7 @@ describe("QueryClient", () => {
                 },
             ],
             Summary: {
-                pageIdentifier: "XXXXXXXXXXXXXXXXXXX",
+                pageidentifier: "XXXXXXXXXXXXXXXXXXX",
                 pageSize: 20,
                 totalAmount: 150.22,
                 totalNetAmount: 150.22,
@@ -5034,7 +5050,7 @@ describe("QueryClient", () => {
                 totalNetAmount: 500,
                 totalPages: 1,
                 pageSize: 20,
-                pageIdentifier: "XXXXXXXXXXXXXXXXXXX",
+                pageidentifier: "XXXXXXXXXXXXXXXXXXX",
             },
             Records: [
                 {
@@ -5309,7 +5325,7 @@ describe("QueryClient", () => {
                 totalNetAmount: 500,
                 totalPages: 1,
                 pageSize: 20,
-                pageIdentifier: "XXXXXXXXXXXXXXXXXXX",
+                pageidentifier: "XXXXXXXXXXXXXXXXXXX",
             },
             Records: [
                 {
@@ -5742,7 +5758,7 @@ describe("QueryClient", () => {
                 },
             ],
             Summary: {
-                pageIdentifier: "XXXXXXXXXXXXXXXXXXX",
+                pageidentifier: "XXXXXXXXXXXXXXXXXXX",
                 pageSize: 20,
                 totalAmount: 177.22,
                 totalNetAmount: 177.22,
@@ -6024,7 +6040,7 @@ describe("QueryClient", () => {
                 },
             ],
             Summary: {
-                pageIdentifier: "null",
+                pageidentifier: "null",
                 pageSize: 20,
                 totalAmount: 77.22,
                 totalNetAmount: 77.22,
@@ -7562,7 +7578,7 @@ describe("QueryClient", () => {
                 },
             ],
             Summary: {
-                pageIdentifier: "null",
+                pageidentifier: "null",
                 pageSize: 20,
                 totalAmount: 77.22,
                 totalNetAmount: 77.22,
@@ -7691,7 +7707,7 @@ describe("QueryClient", () => {
                 },
             ],
             Summary: {
-                pageIdentifier: "null",
+                pageidentifier: "null",
                 pageSize: 20,
                 totalAmount: 77.22,
                 totalNetAmount: 77.22,
@@ -7913,7 +7929,7 @@ describe("QueryClient", () => {
                 },
             ],
             Summary: {
-                pageIdentifier: "null",
+                pageidentifier: "null",
                 pageSize: 20,
                 totalAmount: 200,
                 totalNetAmount: 77.22,
@@ -8135,7 +8151,7 @@ describe("QueryClient", () => {
                 },
             ],
             Summary: {
-                pageIdentifier: "null",
+                pageidentifier: "null",
                 pageSize: 20,
                 totalAmount: 200,
                 totalNetAmount: 77.22,

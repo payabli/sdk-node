@@ -13,6 +13,10 @@ export interface BillDetailsResponse {
     invoiceNumber?: Payabli.InvoiceNumber | undefined;
     /** Net Amount owed in bill. Required when adding a bill. */
     netAmount?: Payabli.NetAmountstring | undefined;
+    /** The amount paid toward the bill so far. */
+    paidAmount?: string | undefined;
+    /** The amount still owed on the bill, calculated as `netAmount` minus `paidAmount`. */
+    outstandingBalance?: string | undefined;
     /** Bill discount amount. */
     discount?: string | undefined;
     /** Bill due date in format YYYY-MM-DD or MM/DD/YYYY. */
