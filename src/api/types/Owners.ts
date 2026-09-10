@@ -33,5 +33,5 @@ export interface Owners {
     ostate?: string | undefined;
     /** Owner address ZIP. */
     ozip?: string | undefined;
-    additionalData?: Payabli.AdditionalDataString | undefined;
+    additionalData?: Payabli.AdditionalDataMap | undefined;
 }

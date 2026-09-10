@@ -1807,6 +1807,7 @@ describe("BoardingClient", () => {
                     ownerssn: "123456789",
                     ownertitle: "CEO",
                     ozip: "55555",
+                    additionalData: {},
                 },
             ],
             ownType: "Limited Liability Company",
