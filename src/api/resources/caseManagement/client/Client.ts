@@ -116,10 +116,7 @@ export class CaseManagementClient {
                         _response.rawResponse,
                     );
                 case 403:
-                    throw new Payabli.ForbiddenError(
-                        _response.error.body as Payabli.PayabliErrorBody,
-                        _response.rawResponse,
-                    );
+                    throw new Payabli.ForbiddenError(_response.error.body as unknown, _response.rawResponse);
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 default:
@@ -233,10 +230,7 @@ export class CaseManagementClient {
                         _response.rawResponse,
                     );
                 case 403:
-                    throw new Payabli.ForbiddenError(
-                        _response.error.body as Payabli.PayabliErrorBody,
-                        _response.rawResponse,
-                    );
+                    throw new Payabli.ForbiddenError(_response.error.body as unknown, _response.rawResponse);
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 default:
@@ -324,10 +318,7 @@ export class CaseManagementClient {
                         _response.rawResponse,
                     );
                 case 403:
-                    throw new Payabli.ForbiddenError(
-                        _response.error.body as Payabli.PayabliErrorBody,
-                        _response.rawResponse,
-                    );
+                    throw new Payabli.ForbiddenError(_response.error.body as unknown, _response.rawResponse);
                 case 404:
                     throw new Payabli.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 case 500:
@@ -434,10 +425,7 @@ export class CaseManagementClient {
                         _response.rawResponse,
                     );
                 case 403:
-                    throw new Payabli.ForbiddenError(
-                        _response.error.body as Payabli.PayabliErrorBody,
-                        _response.rawResponse,
-                    );
+                    throw new Payabli.ForbiddenError(_response.error.body as unknown, _response.rawResponse);
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 default:
@@ -536,10 +524,7 @@ export class CaseManagementClient {
                         _response.rawResponse,
                     );
                 case 403:
-                    throw new Payabli.ForbiddenError(
-                        _response.error.body as Payabli.PayabliErrorBody,
-                        _response.rawResponse,
-                    );
+                    throw new Payabli.ForbiddenError(_response.error.body as unknown, _response.rawResponse);
                 case 404:
                     throw new Payabli.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 case 500:
@@ -640,10 +625,7 @@ export class CaseManagementClient {
                         _response.rawResponse,
                     );
                 case 403:
-                    throw new Payabli.ForbiddenError(
-                        _response.error.body as Payabli.PayabliErrorBody,
-                        _response.rawResponse,
-                    );
+                    throw new Payabli.ForbiddenError(_response.error.body as unknown, _response.rawResponse);
                 case 404:
                     throw new Payabli.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 case 500:
@@ -735,10 +717,7 @@ export class CaseManagementClient {
                         _response.rawResponse,
                     );
                 case 403:
-                    throw new Payabli.ForbiddenError(
-                        _response.error.body as Payabli.PayabliErrorBody,
-                        _response.rawResponse,
-                    );
+                    throw new Payabli.ForbiddenError(_response.error.body as unknown, _response.rawResponse);
                 case 404:
                     throw new Payabli.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 case 500:
@@ -838,10 +817,7 @@ export class CaseManagementClient {
                         _response.rawResponse,
                     );
                 case 403:
-                    throw new Payabli.ForbiddenError(
-                        _response.error.body as Payabli.PayabliErrorBody,
-                        _response.rawResponse,
-                    );
+                    throw new Payabli.ForbiddenError(_response.error.body as unknown, _response.rawResponse);
                 case 404:
                     throw new Payabli.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 case 409:
@@ -940,10 +916,7 @@ export class CaseManagementClient {
                         _response.rawResponse,
                     );
                 case 403:
-                    throw new Payabli.ForbiddenError(
-                        _response.error.body as Payabli.PayabliErrorBody,
-                        _response.rawResponse,
-                    );
+                    throw new Payabli.ForbiddenError(_response.error.body as unknown, _response.rawResponse);
                 case 404:
                     throw new Payabli.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 case 409:
@@ -1029,10 +1002,7 @@ export class CaseManagementClient {
                         _response.rawResponse,
                     );
                 case 403:
-                    throw new Payabli.ForbiddenError(
-                        _response.error.body as Payabli.PayabliErrorBody,
-                        _response.rawResponse,
-                    );
+                    throw new Payabli.ForbiddenError(_response.error.body as unknown, _response.rawResponse);
                 case 404:
                     throw new Payabli.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 case 500:
@@ -1139,10 +1109,7 @@ export class CaseManagementClient {
                         _response.rawResponse,
                     );
                 case 403:
-                    throw new Payabli.ForbiddenError(
-                        _response.error.body as Payabli.PayabliErrorBody,
-                        _response.rawResponse,
-                    );
+                    throw new Payabli.ForbiddenError(_response.error.body as unknown, _response.rawResponse);
                 case 404:
                     throw new Payabli.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 case 500:
@@ -1228,10 +1195,7 @@ export class CaseManagementClient {
                         _response.rawResponse,
                     );
                 case 403:
-                    throw new Payabli.ForbiddenError(
-                        _response.error.body as Payabli.PayabliErrorBody,
-                        _response.rawResponse,
-                    );
+                    throw new Payabli.ForbiddenError(_response.error.body as unknown, _response.rawResponse);
                 case 404:
                     throw new Payabli.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 case 500:
@@ -1323,10 +1287,7 @@ export class CaseManagementClient {
                         _response.rawResponse,
                     );
                 case 403:
-                    throw new Payabli.ForbiddenError(
-                        _response.error.body as Payabli.PayabliErrorBody,
-                        _response.rawResponse,
-                    );
+                    throw new Payabli.ForbiddenError(_response.error.body as unknown, _response.rawResponse);
                 case 404:
                     throw new Payabli.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 case 500:

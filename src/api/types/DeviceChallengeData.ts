@@ -11,7 +11,7 @@ export interface DeviceChallengeData {
      */
     code: string;
     /**
-     * UTC time when the code expires, in ISO-8601 round-trip format. A code is
+     * UTC time when the code expires, in ISO 8601 round-trip format. A code is
      * valid for 5 minutes after it's issued.
      */
     expiresAt: string;

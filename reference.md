@@ -3092,10 +3092,10 @@ await client.subscription.newSubscription({
         method: "card"
     },
     scheduleDetails: {
-        endDate: "2025-03-20",
+        endDate: "2027-12-31",
         frequency: "weekly",
         planId: 1,
-        startDate: "2024-09-20"
+        startDate: "2027-01-01"
     }
 });
 
@@ -10400,15 +10400,17 @@ await client.notificationlogs.bulkRetryNotificationLogs(["550e8400-e29b-41d4-a71
 <dd>
 
 Generates a one-time, 6-digit verification code for activating a
-semi-integrated card-present device in a paypoint. After calling this endpoint, an operator enters the returned code
-on the device's terminal, along with a device name, to register the
-device to the paypoint resolved from `{entry}`.
+semi-integrated card-present device in a paypoint. This endpoint is
+for AXIUM devices only. After calling this endpoint, an operator
+enters the returned code on the device's terminal, along with a
+device name, to register the device to the paypoint resolved from
+`{entry}`.
 
 A code expires 5 minutes after it's issued. A paypoint can have several
 codes active at once — for example, when activating a batch of devices —
 and a code binds to whichever device enters it first.
 
-Authenticate with an OAuth2 Bearer token that has the `device_registry` scope.
+Authenticate with an OAuth2 bearer token that has the `device_registry` scope.
 </dd>
 </dl>
 </dd>
@@ -10448,6 +10450,85 @@ await client.device.challenge("8cfec329267");
 <dd>
 
 **requestOptions:** `DeviceClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## TapToPay
+<details><summary><code>client.taptopay.<a href="/src/api/resources/taptopay/client/Client.ts">activationChallenge</a>({ ...params }) -> Payabli.TapToPayActivationChallengeResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Issues a short-lived activation code for a Tap to Pay device in the
+`Pending` state. This endpoint is for Tap to Pay devices only.
+Deliver the code to the device to complete activation.
+
+A code is valid for 30 minutes after it's issued. Calling this
+endpoint again for the same device before the code expires returns
+the same code, with `alreadyIssued` set to `true`, instead of
+generating a new one. A new code is only generated when no valid
+code exists.
+
+Authenticate with an OAuth2 bearer token that has the `pos_create`
+permission. See [Accept Tap to Pay payments](/guides/pay-in-developer-tap-to-pay)
+for the full integration guide.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.taptopay.activationChallenge({
+    entry: "8cfec329267",
+    deviceId: "499585-389fj484-3jcj8hj3"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Payabli.TapToPayActivationChallengeRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `TaptopayClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -15512,7 +15593,7 @@ await client.management.verifyAccountDetails("8cfec329267", {
 <dl>
 <dd>
 
-Retrieves the basic statistics for an organization or a paypoint, for a given time period, grouped by a particular frequency.
+Retrieves the basic statistics for an organization or a paypoint over a date range, grouped by a frequency. The response returns one row per time bucket. Counts and volumes cover approved transactions only and leave out declines. Volumes are net of fees.
 </dd>
 </dl>
 </dd>
@@ -15626,7 +15707,7 @@ The entry level for the request:
 </dl>
 </details>
 
-<details><summary><code>client.statistic.<a href="/src/api/resources/statistic/client/Client.ts">customerBasicStats</a>(mode, freq, customerId, { ...params }) -> Payabli.SubscriptionStatsQueryRecord[]</code></summary>
+<details><summary><code>client.statistic.<a href="/src/api/resources/statistic/client/Client.ts">customerBasicStats</a>(mode, freq, customerId) -> Payabli.StatCustomerBasicQueryRecord[]</code></summary>
 <dl>
 <dd>
 
@@ -15638,7 +15719,7 @@ The entry level for the request:
 <dl>
 <dd>
 
-Retrieves the basic statistics for a customer for a specific time period, grouped by a selected frequency.
+Retrieves the basic statistics for a customer over a date range, grouped by a frequency. This is a Pay In view: it counts the customer's approved transactions and returns one row per time bucket. Volume here is the gross amount, before fees.
 </dd>
 </dl>
 </dd>
@@ -15653,7 +15734,7 @@ Retrieves the basic statistics for a customer for a specific time period, groupe
 <dd>
 
 ```typescript
-await client.statistic.customerBasicStats("ytd", "m", 4440);
+await client.statistic.customerBasicStats("m12", "m", 4440);
 
 ```
 </dd>
@@ -15716,14 +15797,6 @@ For example, `w` groups the results by week.
 <dl>
 <dd>
 
-**request:** `Payabli.CustomerBasicStatsRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **requestOptions:** `StatisticClient.RequestOptions` 
     
 </dd>
@@ -15736,7 +15809,7 @@ For example, `w` groups the results by week.
 </dl>
 </details>
 
-<details><summary><code>client.statistic.<a href="/src/api/resources/statistic/client/Client.ts">subStats</a>(interval, level, entryId, { ...params }) -> Payabli.StatBasicQueryRecord[]</code></summary>
+<details><summary><code>client.statistic.<a href="/src/api/resources/statistic/client/Client.ts">subStats</a>(interval, level, entryId) -> Payabli.SubscriptionStatsQueryRecord[]</code></summary>
 <dl>
 <dd>
 
@@ -15748,7 +15821,7 @@ For example, `w` groups the results by week.
 <dl>
 <dd>
 
-Retrieves the subscription statistics for a given interval for a paypoint or organization.
+Retrieves subscription statistics for a paypoint or organization, bucketed by how soon active subscriptions are due to renew. This is a forward-looking forecast of upcoming renewals, not charges already taken. Request a single window with `interval`, or `all` to return every window in one call.
 </dd>
 </dl>
 </dd>
@@ -15763,7 +15836,7 @@ Retrieves the subscription statistics for a given interval for a paypoint or org
 <dd>
 
 ```typescript
-await client.statistic.subStats("30", 2, 1000000);
+await client.statistic.subStats("all", 2, 1000000);
 
 ```
 </dd>
@@ -15815,14 +15888,6 @@ The entry level for the request:
 <dl>
 <dd>
 
-**request:** `Payabli.SubStatsRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **requestOptions:** `StatisticClient.RequestOptions` 
     
 </dd>
@@ -15835,7 +15900,7 @@ The entry level for the request:
 </dl>
 </details>
 
-<details><summary><code>client.statistic.<a href="/src/api/resources/statistic/client/Client.ts">vendorBasicStats</a>(mode, freq, idVendor, { ...params }) -> Payabli.StatisticsVendorQueryRecord[]</code></summary>
+<details><summary><code>client.statistic.<a href="/src/api/resources/statistic/client/Client.ts">vendorBasicStats</a>(mode, freq, idVendor) -> Payabli.StatisticsVendorQueryRecord[]</code></summary>
 <dl>
 <dd>
 
@@ -15847,7 +15912,7 @@ The entry level for the request:
 <dl>
 <dd>
 
-Retrieve the basic statistics about a vendor for a given time period, grouped by frequency.
+Retrieve the basic statistics about a vendor over a date range, grouped by frequency. The response returns one row per time bucket, breaking the vendor's bills down by bill state (active, sent to approval, approved, in transit, paid, and so on). Volumes are net of fees.
 </dd>
 </dl>
 </dd>
@@ -15918,14 +15983,6 @@ For example, `w` groups the results by week.
 <dd>
 
 **idVendor:** `number` — Vendor ID.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Payabli.VendorBasicStatsRequest` 
     
 </dd>
 </dl>
@@ -17111,7 +17168,7 @@ Creates a vendor in an entrypoint.
 await client.vendor.addVendor("8cfec329267", {
     vendorNumber: "VEN-123",
     name1: "Herman's Coatings and Masonry",
-    name2: "<string>",
+    name2: "HCM Services",
     ein: "12-3456789",
     phone: "5555555555",
     email: "example@email.com",
@@ -17147,8 +17204,8 @@ await client.vendor.addVendor("8cfec329267", {
     remitState: "FL",
     remitZip: "31113",
     remitCountry: "US",
-    payeeName1: "<string>",
-    payeeName2: "<string>",
+    payeeName1: "Herman Martinez",
+    payeeName2: "Herman Coatings",
     customerVendorAccount: "A-37622",
     internalReferenceId: 123
 });
@@ -17899,7 +17956,7 @@ Cancels an array of payout transactions.
 <dd>
 
 ```typescript
-await client.moneyOut.cancelAllOut(["2-29", "2-28", "2-27"]);
+await client.moneyOut.cancelAllOut(["129-230", "129-219"]);
 
 ```
 </dd>
@@ -18089,7 +18146,7 @@ Captures an array of authorized payout transactions for settlement. The maximum 
 
 ```typescript
 await client.moneyOut.captureAllOut({
-    body: ["2-29", "2-28", "2-27"]
+    body: ["129-230", "129-219"]
 });
 
 ```
@@ -19169,12 +19226,12 @@ await client.payoutSubscription.createPayoutSubscription({
     billData: [{
             invoiceNumber: "INV-2345",
             netAmount: "500",
-            invoiceDate: "2025-08-01",
-            dueDate: "2025-08-15"
+            invoiceDate: "2027-08-01",
+            dueDate: "2027-08-15"
         }],
     scheduleDetails: {
-        startDate: "09/01/2027",
-        endDate: "09/01/2026",
+        startDate: "01/01/2027",
+        endDate: "12/31/2027",
         frequency: "monthly"
     }
 });

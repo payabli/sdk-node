@@ -23,10 +23,10 @@ import type * as Payabli from "../../../../index.js";
  *             method: "card"
  *         },
  *         scheduleDetails: {
- *             endDate: "2025-03-20",
+ *             endDate: "2027-12-31",
  *             frequency: "weekly",
  *             planId: 1,
- *             startDate: "2024-09-20"
+ *             startDate: "2027-01-01"
  *         }
  *     }
  *
@@ -50,10 +50,10 @@ import type * as Payabli from "../../../../index.js";
  *             method: "ach"
  *         },
  *         scheduleDetails: {
- *             endDate: "2025-03-20",
+ *             endDate: "2027-12-31",
  *             frequency: "weekly",
  *             planId: 1,
- *             startDate: "2024-09-20"
+ *             startDate: "2027-01-01"
  *         }
  *     }
  *
@@ -73,10 +73,10 @@ import type * as Payabli from "../../../../index.js";
  *             storedMethodUsageType: "recurring"
  *         },
  *         scheduleDetails: {
- *             endDate: "2025-03-20",
+ *             endDate: "2027-12-31",
  *             frequency: "weekly",
  *             planId: 1,
- *             startDate: "2024-09-20"
+ *             startDate: "2027-01-01"
  *         }
  *     }
  *

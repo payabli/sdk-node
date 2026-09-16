@@ -1,6 +1,6 @@
 {
     "name": "@payabli/sdk-node",
-    "version": "1.0.15",
+    "version": "1.0.16",
     "private": false,
     "repository": {
         "type": "git",
@@ -208,6 +208,17 @@
                 "default": "./dist/cjs/api/resources/device/exports.js"
             },
             "default": "./dist/cjs/api/resources/device/exports.js"
+        },
+        "./taptopay": {
+            "import": {
+                "types": "./dist/esm/api/resources/taptopay/exports.d.mts",
+                "default": "./dist/esm/api/resources/taptopay/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/taptopay/exports.d.ts",
+                "default": "./dist/cjs/api/resources/taptopay/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/taptopay/exports.js"
         },
         "./cloud": {
             "import": {

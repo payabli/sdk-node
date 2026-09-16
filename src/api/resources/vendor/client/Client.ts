@@ -44,7 +44,7 @@ export class VendorClient {
      *     await client.vendor.addVendor("8cfec329267", {
      *         vendorNumber: "VEN-123",
      *         name1: "Herman's Coatings and Masonry",
-     *         name2: "<string>",
+     *         name2: "HCM Services",
      *         ein: "12-3456789",
      *         phone: "5555555555",
      *         email: "example@email.com",
@@ -80,8 +80,8 @@ export class VendorClient {
      *         remitState: "FL",
      *         remitZip: "31113",
      *         remitCountry: "US",
-     *         payeeName1: "<string>",
-     *         payeeName2: "<string>",
+     *         payeeName1: "Herman Martinez",
+     *         payeeName2: "Herman Coatings",
      *         customerVendorAccount: "A-37622",
      *         internalReferenceId: 123
      *     })

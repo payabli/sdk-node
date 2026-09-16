@@ -147,7 +147,7 @@ describe("CaseManagementClient", () => {
             bankAccountFunction: "Deposits",
             services: {},
         };
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -398,7 +398,7 @@ describe("CaseManagementClient", () => {
             services: {},
             default: true,
         };
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -603,7 +603,7 @@ describe("CaseManagementClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const rawResponseBody = { key: "value" };
 
         server.mockEndpoint().get("/v2/cases/uuid").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
@@ -776,7 +776,7 @@ describe("CaseManagementClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -871,7 +871,7 @@ describe("CaseManagementClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -1023,7 +1023,7 @@ describe("CaseManagementClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { content: "content" };
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -1151,7 +1151,7 @@ describe("CaseManagementClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -1375,7 +1375,7 @@ describe("CaseManagementClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { trigger: "Submit", reason: "reason" };
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -1634,7 +1634,7 @@ describe("CaseManagementClient", () => {
             environment: server.baseUrl,
         });
         const rawRequestBody = { assigneeId: 1000000 };
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -1800,7 +1800,7 @@ describe("CaseManagementClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -1916,7 +1916,7 @@ describe("CaseManagementClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()

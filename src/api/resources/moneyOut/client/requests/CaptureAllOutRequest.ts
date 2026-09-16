@@ -5,7 +5,7 @@ import type * as Payabli from "../../../../index.js";
 /**
  * @example
  *     {
- *         body: ["2-29", "2-28", "2-27"]
+ *         body: ["129-230", "129-219"]
  *     }
  */
 export interface CaptureAllOutRequest {

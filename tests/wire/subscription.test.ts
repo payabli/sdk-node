@@ -425,7 +425,7 @@ describe("SubscriptionClient", () => {
         });
         const rawRequestBody = {
             paymentDetails: { serviceFee: 0, totalAmount: 100 },
-            scheduleDetails: { endDate: "2025-03-20", frequency: "weekly", planId: 1, startDate: "2024-09-20" },
+            scheduleDetails: { endDate: "2027-12-31", frequency: "weekly", planId: 1, startDate: "2027-01-01" },
         };
         const rawResponseBody = {
             responseText: "Success",
@@ -449,10 +449,10 @@ describe("SubscriptionClient", () => {
                 totalAmount: 100,
             },
             scheduleDetails: {
-                endDate: "2025-03-20",
+                endDate: "2027-12-31",
                 frequency: "weekly",
                 planId: 1,
-                startDate: "2024-09-20",
+                startDate: "2027-01-01",
             },
         });
         expect(response).toEqual(rawResponseBody);
@@ -574,7 +574,7 @@ describe("SubscriptionClient", () => {
                 initiator: "payor",
                 method: "card",
             },
-            scheduleDetails: { endDate: "2025-03-20", frequency: "weekly", planId: 1, startDate: "2024-09-20" },
+            scheduleDetails: { endDate: "2027-12-31", frequency: "weekly", planId: 1, startDate: "2027-01-01" },
         };
         const rawResponseBody = { responseText: "Success", isSuccess: true, responseData: 396, customerId: 4440 };
 
@@ -606,10 +606,10 @@ describe("SubscriptionClient", () => {
                 method: "card",
             },
             scheduleDetails: {
-                endDate: "2025-03-20",
+                endDate: "2027-12-31",
                 frequency: "weekly",
                 planId: 1,
-                startDate: "2024-09-20",
+                startDate: "2027-01-01",
             },
         });
         expect(response).toEqual(rawResponseBody);
@@ -636,7 +636,7 @@ describe("SubscriptionClient", () => {
                 achRouting: "021000021",
                 method: "ach",
             },
-            scheduleDetails: { endDate: "2025-03-20", frequency: "weekly", planId: 1, startDate: "2024-09-20" },
+            scheduleDetails: { endDate: "2027-12-31", frequency: "weekly", planId: 1, startDate: "2027-01-01" },
         };
         const rawResponseBody = { responseText: "Success", isSuccess: true, responseData: 396, customerId: 4440 };
 
@@ -668,10 +668,10 @@ describe("SubscriptionClient", () => {
                 method: "ach",
             },
             scheduleDetails: {
-                endDate: "2025-03-20",
+                endDate: "2027-12-31",
                 frequency: "weekly",
                 planId: 1,
-                startDate: "2024-09-20",
+                startDate: "2027-01-01",
             },
         });
         expect(response).toEqual(rawResponseBody);
@@ -694,7 +694,7 @@ describe("SubscriptionClient", () => {
                 storedMethodId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
                 storedMethodUsageType: "recurring",
             },
-            scheduleDetails: { endDate: "2025-03-20", frequency: "weekly", planId: 1, startDate: "2024-09-20" },
+            scheduleDetails: { endDate: "2027-12-31", frequency: "weekly", planId: 1, startDate: "2027-01-01" },
         };
         const rawResponseBody = { responseText: "Success", isSuccess: true, responseData: 396, customerId: 4440 };
 
@@ -722,10 +722,10 @@ describe("SubscriptionClient", () => {
                 storedMethodUsageType: "recurring",
             },
             scheduleDetails: {
-                endDate: "2025-03-20",
+                endDate: "2027-12-31",
                 frequency: "weekly",
                 planId: 1,
-                startDate: "2024-09-20",
+                startDate: "2027-01-01",
             },
         });
         expect(response).toEqual(rawResponseBody);

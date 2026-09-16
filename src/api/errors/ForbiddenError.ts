@@ -2,12 +2,9 @@
 
 import type * as core from "../../core/index.js";
 import * as errors from "../../errors/index.js";
-import type * as Payabli from "../index.js";
 
 export class ForbiddenError extends errors.PayabliError {
-    public declare readonly body: Payabli.PayabliErrorBody;
-
-    constructor(body: Payabli.PayabliErrorBody, rawResponse?: core.RawResponse) {
+    constructor(body?: unknown, rawResponse?: core.RawResponse) {
         super({
             message: "ForbiddenError",
             statusCode: 403,

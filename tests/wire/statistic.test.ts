@@ -180,17 +180,17 @@ describe("StatisticClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = [{ interval: "2023-03", count: 45, volume: 12500.75 }];
+        const rawResponseBody = [{ statX: "2023-03", inTransactions: 45, inTransactionsVolume: 12500.75 }];
 
         server
             .mockEndpoint()
-            .get("/Statistic/customerbasic/ytd/m/4440")
+            .get("/Statistic/customerbasic/m12/m/4440")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.statistic.customerBasicStats("ytd", "m", 4440);
+        const response = await client.statistic.customerBasicStats("m12", "m", 4440);
         expect(response).toEqual(rawResponseBody);
     });
 
@@ -300,24 +300,21 @@ describe("StatisticClient", () => {
         });
 
         const rawResponseBody = [
-            {
-                statX: "2023-03",
-                inTransactions: 150,
-                inTransactionsVolume: 25000.5,
-                inWalletTransactions: 10,
-                inWalletVolume: 1000.5,
-            },
+            { interval: "30", count: 23, volume: 1609.62 },
+            { interval: "60", count: 0, volume: 0 },
+            { interval: "90", count: 0, volume: 0 },
+            { interval: "+90", count: 0, volume: 0 },
         ];
 
         server
             .mockEndpoint()
-            .get("/Statistic/subscriptions/30/2/1000000")
+            .get("/Statistic/subscriptions/all/2/1000000")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.statistic.subStats("30", 2, 1000000);
+        const response = await client.statistic.subStats("all", 2, 1000000);
         expect(response).toEqual(rawResponseBody);
     });
 

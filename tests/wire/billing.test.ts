@@ -166,7 +166,7 @@ describe("BillingClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()
@@ -331,7 +331,7 @@ describe("BillingClient", () => {
             environment: server.baseUrl,
         });
 
-        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+        const rawResponseBody = { key: "value" };
 
         server
             .mockEndpoint()

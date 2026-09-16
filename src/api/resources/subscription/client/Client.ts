@@ -138,10 +138,10 @@ export class SubscriptionClient {
      *             totalAmount: 100
      *         },
      *         scheduleDetails: {
-     *             endDate: "2025-03-20",
+     *             endDate: "2027-12-31",
      *             frequency: "weekly",
      *             planId: 1,
-     *             startDate: "2024-09-20"
+     *             startDate: "2027-01-01"
      *         }
      *     })
      */
@@ -320,10 +320,10 @@ export class SubscriptionClient {
      *             method: "card"
      *         },
      *         scheduleDetails: {
-     *             endDate: "2025-03-20",
+     *             endDate: "2027-12-31",
      *             frequency: "weekly",
      *             planId: 1,
-     *             startDate: "2024-09-20"
+     *             startDate: "2027-01-01"
      *         }
      *     })
      *
@@ -347,10 +347,10 @@ export class SubscriptionClient {
      *             method: "ach"
      *         },
      *         scheduleDetails: {
-     *             endDate: "2025-03-20",
+     *             endDate: "2027-12-31",
      *             frequency: "weekly",
      *             planId: 1,
-     *             startDate: "2024-09-20"
+     *             startDate: "2027-01-01"
      *         }
      *     })
      *
@@ -370,10 +370,10 @@ export class SubscriptionClient {
      *             storedMethodUsageType: "recurring"
      *         },
      *         scheduleDetails: {
-     *             endDate: "2025-03-20",
+     *             endDate: "2027-12-31",
      *             frequency: "weekly",
      *             planId: 1,
-     *             startDate: "2024-09-20"
+     *             startDate: "2027-01-01"
      *         }
      *     })
      *

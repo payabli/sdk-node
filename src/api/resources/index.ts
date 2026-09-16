@@ -57,6 +57,8 @@ export * from "./statistic/client/requests/index.js";
 export * as statistic from "./statistic/index.js";
 export * from "./subscription/client/requests/index.js";
 export * as subscription from "./subscription/index.js";
+export * from "./taptopay/client/requests/index.js";
+export * as taptopay from "./taptopay/index.js";
 export * from "./templates/client/requests/index.js";
 export * as templates from "./templates/index.js";
 export * from "./token/client/requests/index.js";

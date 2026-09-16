@@ -57,12 +57,12 @@ export class PayoutSubscriptionClient {
      *         billData: [{
      *                 invoiceNumber: "INV-2345",
      *                 netAmount: "500",
-     *                 invoiceDate: "2025-08-01",
-     *                 dueDate: "2025-08-15"
+     *                 invoiceDate: "2027-08-01",
+     *                 dueDate: "2027-08-15"
      *             }],
      *         scheduleDetails: {
-     *             startDate: "09/01/2027",
-     *             endDate: "09/01/2026",
+     *             startDate: "01/01/2027",
+     *             endDate: "12/31/2027",
      *             frequency: "monthly"
      *         }
      *     })

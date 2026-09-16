@@ -4,7 +4,6 @@ import type { BaseClientOptions, BaseRequestOptions } from "../../../../BaseClie
 import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "../../../../BaseClient.js";
 import { mergeHeaders } from "../../../../core/headers.js";
 import * as core from "../../../../core/index.js";
-import { toJson } from "../../../../core/json.js";
 import * as environments from "../../../../environments.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
@@ -27,7 +26,7 @@ export class StatisticClient {
     }
 
     /**
-     * Retrieves the basic statistics for an organization or a paypoint, for a given time period, grouped by a particular frequency.
+     * Retrieves the basic statistics for an organization or a paypoint over a date range, grouped by a frequency. The response returns one row per time bucket. Counts and volumes cover approved transactions only and leave out declines. Volumes are net of fees.
      *
      * @param {string} mode - Mode for the request. Allowed values:
      *
@@ -93,10 +92,9 @@ export class StatisticClient {
         requestOptions?: StatisticClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.StatBasicExtendedQueryRecord[]>> {
         const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
-        const { endDate, parameters, startDate } = request;
+        const { endDate, startDate } = request;
         const _queryParams: Record<string, unknown> = {
             endDate,
-            parameters: parameters != null ? toJson(parameters) : undefined,
             startDate,
         };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({
@@ -169,7 +167,7 @@ export class StatisticClient {
     }
 
     /**
-     * Retrieves the basic statistics for a customer for a specific time period, grouped by a selected frequency.
+     * Retrieves the basic statistics for a customer over a date range, grouped by a frequency. This is a Pay In view: it counts the customer's approved transactions and returns one row per time bucket. Volume here is the gross amount, before fees.
      *
      * @param {string} mode - Mode for request. Allowed values:
      *
@@ -193,7 +191,6 @@ export class StatisticClient {
      *
      *                        For example, `w` groups the results by week.
      * @param {number} customerId - Payabli-generated customer ID. Maps to "Customer ID" column in the Payabli Portal.
-     * @param {Payabli.CustomerBasicStatsRequest} request
      * @param {StatisticClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Payabli.BadRequestError}
@@ -204,32 +201,24 @@ export class StatisticClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.statistic.customerBasicStats("ytd", "m", 4440)
+     *     await client.statistic.customerBasicStats("m12", "m", 4440)
      */
     public customerBasicStats(
         mode: string,
         freq: string,
         customerId: number,
-        request: Payabli.CustomerBasicStatsRequest = {},
         requestOptions?: StatisticClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.SubscriptionStatsQueryRecord[]> {
-        return core.HttpResponsePromise.fromPromise(
-            this.__customerBasicStats(mode, freq, customerId, request, requestOptions),
-        );
+    ): core.HttpResponsePromise<Payabli.StatCustomerBasicQueryRecord[]> {
+        return core.HttpResponsePromise.fromPromise(this.__customerBasicStats(mode, freq, customerId, requestOptions));
     }
 
     private async __customerBasicStats(
         mode: string,
         freq: string,
         customerId: number,
-        request: Payabli.CustomerBasicStatsRequest = {},
         requestOptions?: StatisticClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.SubscriptionStatsQueryRecord[]>> {
+    ): Promise<core.WithRawResponse<Payabli.StatCustomerBasicQueryRecord[]>> {
         const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
-        const { parameters } = request;
-        const _queryParams: Record<string, unknown> = {
-            parameters: parameters != null ? toJson(parameters) : undefined,
-        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({
             endpointMetadata: _metadata,
         });
@@ -247,11 +236,114 @@ export class StatisticClient {
             ),
             method: "GET",
             headers: _headers,
-            queryString: core.url
-                .queryBuilder()
-                .addMany(_queryParams)
-                .mergeAdditional(requestOptions?.queryParams)
-                .build(),
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as Payabli.StatCustomerBasicQueryRecord[],
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/Statistic/customerbasic/{mode}/{freq}/{customerId}",
+        );
+    }
+
+    /**
+     * Retrieves subscription statistics for a paypoint or organization, bucketed by how soon active subscriptions are due to renew. This is a forward-looking forecast of upcoming renewals, not charges already taken. Request a single window with `interval`, or `all` to return every window in one call.
+     *
+     * @param {string} interval - Interval to get the data. Allowed values:
+     *
+     *                            - `all` - all intervals
+     *                            - `30` - 1-30 days
+     *                            - `60` - 31-60 days
+     *                            - `90` - 61-90 days
+     *                            - `plus` - +90 days
+     * @param {number} level - The entry level for the request:
+     *                           - 0 for Organization
+     *                           - 2 for Paypoint
+     * @param {number} entryId - Identifier in Payabli for the entity.
+     * @param {StatisticClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     * @throws {@link errors.PayabliError}
+     * @throws {@link errors.PayabliTimeoutError}
+     *
+     * @example
+     *     await client.statistic.subStats("all", 2, 1000000)
+     */
+    public subStats(
+        interval: string,
+        level: number,
+        entryId: number,
+        requestOptions?: StatisticClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.SubscriptionStatsQueryRecord[]> {
+        return core.HttpResponsePromise.fromPromise(this.__subStats(interval, level, entryId, requestOptions));
+    }
+
+    private async __subStats(
+        interval: string,
+        level: number,
+        entryId: number,
+        requestOptions?: StatisticClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.SubscriptionStatsQueryRecord[]>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({
+            endpointMetadata: _metadata,
+        });
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `Statistic/subscriptions/${core.url.encodePathParam(interval)}/${core.url.encodePathParam(level)}/${core.url.encodePathParam(entryId)}`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -295,127 +387,12 @@ export class StatisticClient {
             _response.error,
             _response.rawResponse,
             "GET",
-            "/Statistic/customerbasic/{mode}/{freq}/{customerId}",
-        );
-    }
-
-    /**
-     * Retrieves the subscription statistics for a given interval for a paypoint or organization.
-     *
-     * @param {string} interval - Interval to get the data. Allowed values:
-     *
-     *                            - `all` - all intervals
-     *                            - `30` - 1-30 days
-     *                            - `60` - 31-60 days
-     *                            - `90` - 61-90 days
-     *                            - `plus` - +90 days
-     * @param {number} level - The entry level for the request:
-     *                           - 0 for Organization
-     *                           - 2 for Paypoint
-     * @param {number} entryId - Identifier in Payabli for the entity.
-     * @param {Payabli.SubStatsRequest} request
-     * @param {StatisticClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Payabli.BadRequestError}
-     * @throws {@link Payabli.UnauthorizedError}
-     * @throws {@link Payabli.InternalServerError}
-     * @throws {@link Payabli.ServiceUnavailableError}
-     * @throws {@link errors.PayabliError}
-     * @throws {@link errors.PayabliTimeoutError}
-     *
-     * @example
-     *     await client.statistic.subStats("30", 2, 1000000)
-     */
-    public subStats(
-        interval: string,
-        level: number,
-        entryId: number,
-        request: Payabli.SubStatsRequest = {},
-        requestOptions?: StatisticClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.StatBasicQueryRecord[]> {
-        return core.HttpResponsePromise.fromPromise(this.__subStats(interval, level, entryId, request, requestOptions));
-    }
-
-    private async __subStats(
-        interval: string,
-        level: number,
-        entryId: number,
-        request: Payabli.SubStatsRequest = {},
-        requestOptions?: StatisticClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.StatBasicQueryRecord[]>> {
-        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
-        const { parameters } = request;
-        const _queryParams: Record<string, unknown> = {
-            parameters: parameters != null ? toJson(parameters) : undefined,
-        };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({
-            endpointMetadata: _metadata,
-        });
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await core.fetcher({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.PayabliEnvironment.Sandbox,
-                `Statistic/subscriptions/${core.url.encodePathParam(interval)}/${core.url.encodePathParam(level)}/${core.url.encodePathParam(entryId)}`,
-            ),
-            method: "GET",
-            headers: _headers,
-            queryString: core.url
-                .queryBuilder()
-                .addMany(_queryParams)
-                .mergeAdditional(requestOptions?.queryParams)
-                .build(),
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            endpointMetadata: _metadata,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return { data: _response.body as Payabli.StatBasicQueryRecord[], rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 401:
-                    throw new Payabli.UnauthorizedError(
-                        _response.error.body as Payabli.PayabliErrorBody,
-                        _response.rawResponse,
-                    );
-                case 500:
-                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
-                case 503:
-                    throw new Payabli.ServiceUnavailableError(
-                        _response.error.body as Payabli.PayabliErrorBody,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.PayabliError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(
-            _response.error,
-            _response.rawResponse,
-            "GET",
             "/Statistic/subscriptions/{interval}/{level}/{entryId}",
         );
     }
 
     /**
-     * Retrieve the basic statistics about a vendor for a given time period, grouped by frequency.
+     * Retrieve the basic statistics about a vendor over a date range, grouped by frequency. The response returns one row per time bucket, breaking the vendor's bills down by bill state (active, sent to approval, approved, in transit, paid, and so on). Volumes are net of fees.
      *
      * @param {string} mode - Mode for request. Allowed values:
      *
@@ -439,7 +416,6 @@ export class StatisticClient {
      *
      *                        For example, `w` groups the results by week.
      * @param {number} idVendor - Vendor ID.
-     * @param {Payabli.VendorBasicStatsRequest} request
      * @param {StatisticClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Payabli.BadRequestError}
@@ -456,26 +432,18 @@ export class StatisticClient {
         mode: string,
         freq: string,
         idVendor: number,
-        request: Payabli.VendorBasicStatsRequest = {},
         requestOptions?: StatisticClient.RequestOptions,
     ): core.HttpResponsePromise<Payabli.StatisticsVendorQueryRecord[]> {
-        return core.HttpResponsePromise.fromPromise(
-            this.__vendorBasicStats(mode, freq, idVendor, request, requestOptions),
-        );
+        return core.HttpResponsePromise.fromPromise(this.__vendorBasicStats(mode, freq, idVendor, requestOptions));
     }
 
     private async __vendorBasicStats(
         mode: string,
         freq: string,
         idVendor: number,
-        request: Payabli.VendorBasicStatsRequest = {},
         requestOptions?: StatisticClient.RequestOptions,
     ): Promise<core.WithRawResponse<Payabli.StatisticsVendorQueryRecord[]>> {
         const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
-        const { parameters } = request;
-        const _queryParams: Record<string, unknown> = {
-            parameters: parameters != null ? toJson(parameters) : undefined,
-        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({
             endpointMetadata: _metadata,
         });
@@ -493,11 +461,7 @@ export class StatisticClient {
             ),
             method: "GET",
             headers: _headers,
-            queryString: core.url
-                .queryBuilder()
-                .addMany(_queryParams)
-                .mergeAdditional(requestOptions?.queryParams)
-                .build(),
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,

@@ -30,6 +30,7 @@ import { PaypointClient } from "./api/resources/paypoint/client/Client.js";
 import { QueryClient } from "./api/resources/query/client/Client.js";
 import { StatisticClient } from "./api/resources/statistic/client/Client.js";
 import { SubscriptionClient } from "./api/resources/subscription/client/Client.js";
+import { TaptopayClient } from "./api/resources/taptopay/client/Client.js";
 import { TemplatesClient } from "./api/resources/templates/client/Client.js";
 import { TokenClient } from "./api/resources/token/client/Client.js";
 import { TokenStorageClient } from "./api/resources/tokenStorage/client/Client.js";
@@ -65,6 +66,7 @@ export class PayabliClient {
     protected _ocr: OcrClient | undefined;
     protected _notificationlogs: NotificationlogsClient | undefined;
     protected _device: DeviceClient | undefined;
+    protected _taptopay: TaptopayClient | undefined;
     protected _cloud: CloudClient | undefined;
     protected _lineItem: LineItemClient | undefined;
     protected _boarding: BoardingClient | undefined;
@@ -155,6 +157,10 @@ export class PayabliClient {
 
     public get device(): DeviceClient {
         return (this._device ??= new DeviceClient(this._options));
+    }
+
+    public get taptopay(): TaptopayClient {
+        return (this._taptopay ??= new TaptopayClient(this._options));
     }
 
     public get cloud(): CloudClient {

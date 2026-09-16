@@ -273,7 +273,7 @@ export class MoneyOutClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.moneyOut.cancelAllOut(["2-29", "2-28", "2-27"])
+     *     await client.moneyOut.cancelAllOut(["129-230", "129-219"])
      */
     public cancelAllOut(
         request: string[],
@@ -544,7 +544,7 @@ export class MoneyOutClient {
      *
      * @example
      *     await client.moneyOut.captureAllOut({
-     *         body: ["2-29", "2-28", "2-27"]
+     *         body: ["129-230", "129-219"]
      *     })
      */
     public captureAllOut(
@@ -1570,10 +1570,7 @@ export class MoneyOutClient {
                         _response.rawResponse,
                     );
                 case 403:
-                    throw new Payabli.ForbiddenError(
-                        _response.error.body as Payabli.PayabliErrorBody,
-                        _response.rawResponse,
-                    );
+                    throw new Payabli.ForbiddenError(_response.error.body as unknown, _response.rawResponse);
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
