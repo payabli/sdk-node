@@ -4,7 +4,7 @@ import type * as Payabli from "../index.js";
 
 export interface UserQueryRecord {
     Access?: Payabli.UsrAccess[] | undefined;
-    AdditionalData?: Payabli.AdditionalDataString | undefined;
+    AdditionalData?: Payabli.AdditionalDataMap | undefined;
     /** The timestamp for the user's creation, in UTC. */
     createdAt?: Payabli.CreatedAt | undefined;
     /** The user's email address. */

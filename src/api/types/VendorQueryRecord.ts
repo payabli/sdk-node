@@ -3,67 +3,71 @@
 import type * as Payabli from "../index.js";
 
 export interface VendorQueryRecord {
-    VendorNumber?: Payabli.VendorNumber | undefined;
-    Name1?: string | undefined;
-    Name2?: (string | null) | undefined;
-    EIN?: (Payabli.Ein | null) | undefined;
-    Phone?: string | undefined;
-    Email?: Payabli.Email | undefined;
-    RemitEmail?: (Payabli.RemitEmail | null) | undefined;
-    Address1?: Payabli.AddressNullable | undefined;
-    Address2?: Payabli.AddressAddtlNullable | undefined;
-    City?: Payabli.CityNullable | undefined;
-    State?: Payabli.StateNullable | undefined;
-    Zip?: Payabli.Zip | undefined;
-    Country?: string | undefined;
-    Mcc?: Payabli.Mcc | undefined;
-    LocationCode?: string | undefined;
+    VendorNumber: Payabli.VendorNumber;
+    Name1: string;
+    Name2: string | null;
+    EIN: Payabli.Ein | null;
+    Phone: string | null;
+    Email: Payabli.Email | null;
+    RemitEmail: Payabli.RemitEmail | null;
+    /** The address. */
+    Address1: string | null;
+    /** Additional line for the address. */
+    Address2: string | null;
+    /** The city. */
+    City: string | null;
+    /** The state or province. */
+    State: string | null;
+    Zip: Payabli.Zip | null;
+    Country: string | null;
+    Mcc: Payabli.Mcc | null;
+    LocationCode: string | null;
     /** Array of objects describing the vendor's contacts. */
-    Contacts?: Payabli.ContactsResponse[] | undefined;
-    BillingData?: Payabli.BillingDataResponse | undefined;
-    PaymentMethod?: Payabli.VendorPaymentMethodString | undefined;
-    VendorStatus?: Payabli.Vendorstatus | undefined;
-    VendorId?: Payabli.Vendorid | undefined;
-    EnrollmentStatus?: Payabli.EnrollmentStatus | undefined;
-    Summary?: Payabli.VendorSummary | undefined;
-    PaypointLegalname?: Payabli.Legalname | undefined;
+    Contacts: Payabli.ContactsResponse[] | null;
+    BillingData: Payabli.BillingDataResponse | null;
+    PaymentMethod: Payabli.VendorPaymentMethodString | null;
+    VendorStatus: Payabli.Vendorstatus;
+    VendorId: Payabli.Vendorid;
+    EnrollmentStatus: Payabli.EnrollmentStatus | null;
+    Summary: Payabli.VendorSummary | null;
+    PaypointLegalname: Payabli.Legalname;
     /** The paypoint's ID. This is different from the entryname. */
-    PaypointId?: (number | null) | undefined;
-    PaypointDbaname?: Payabli.Dbaname | undefined;
-    PaypointEntryname?: Payabli.Entrypointfield | undefined;
-    ParentOrgName?: Payabli.OrgParentName | undefined;
-    ParentOrgId?: Payabli.OrgParentId | undefined;
-    CreatedDate?: Payabli.CreatedAt | undefined;
-    LastUpdated?: Payabli.LastModified | undefined;
-    remitAddress1?: Payabli.Remitaddress1 | undefined;
-    remitAddress2?: Payabli.Remitaddress2 | undefined;
-    remitCity?: Payabli.Remitcity | undefined;
-    remitState?: Payabli.Remitstate | undefined;
-    remitZip?: Payabli.Remitzip | undefined;
-    remitCountry?: Payabli.Remitcountry | undefined;
-    payeeName1?: Payabli.PayeeName | undefined;
-    payeeName2?: Payabli.PayeeName | undefined;
-    customField1?: string | undefined;
-    customField2?: string | undefined;
-    customerVendorAccount?: string | undefined;
-    InternalReferenceId?: Payabli.InternalReferenceId | undefined;
+    PaypointId: number | null;
+    PaypointDbaname: Payabli.Dbaname;
+    PaypointEntryname: Payabli.Entrypointfield;
+    ParentOrgName: Payabli.OrgParentName;
+    ParentOrgId: Payabli.OrgParentId;
+    CreatedDate: Payabli.CreatedAt;
+    LastUpdated: Payabli.LastModified;
+    remitAddress1: Payabli.Remitaddress1 | null;
+    remitAddress2: Payabli.Remitaddress2 | null;
+    remitCity: Payabli.Remitcity | null;
+    remitState: Payabli.Remitstate | null;
+    remitZip: Payabli.Remitzip | null;
+    remitCountry: Payabli.Remitcountry | null;
+    payeeName1: Payabli.PayeeName | null;
+    payeeName2: Payabli.PayeeName | null;
+    customField1: string | null;
+    customField2: string | null;
+    customerVendorAccount: string | null;
+    InternalReferenceId: Payabli.InternalReferenceId;
     /** URL for the vendor's online payment portal, if known. Populated by the vendor enrichment pipeline. */
-    PaymentPortalUrl?: string | undefined;
+    PaymentPortalUrl: string | null;
     /** Whether the vendor accepts card payments. Values are `yes`, `no`, or `unable to determine`. Populated by the vendor enrichment pipeline. */
-    CardAccepted?: string | undefined;
+    CardAccepted: string | null;
     /** Whether the vendor accepts ACH payments. Values are `yes`, `no`, or `unable to determine`. Populated by the vendor enrichment pipeline. */
-    AchAccepted?: string | undefined;
+    AchAccepted: string | null;
     /** Whether the vendor accepts check payments. Values are `yes`, `no`, or `unable to determine`. Populated by the vendor enrichment pipeline. */
-    CheckAccepted?: string | undefined;
+    CheckAccepted: string | null;
     /** Current enrichment state of the vendor. Values are `not_enriched`, `partially_enriched`, `fully_enriched`, or `fallback_applied`. */
-    EnrichmentStatus?: string | undefined;
+    EnrichmentStatus: string;
     /** Which enrichment method resolved the vendor's payment acceptance info. Values are `invoice_scan`, `web_search`, `vendor_network`, or `manual`. */
-    EnrichedBy?: string | undefined;
+    EnrichedBy: string | null;
     /** When the vendor was last enriched (UTC). */
-    EnrichedAt?: string | undefined;
+    EnrichedAt: string | null;
     /** Identifier for the enrichment request that last updated this vendor. */
-    EnrichmentId?: string | undefined;
-    additionalData?: Payabli.AdditionalDataMap | undefined;
-    externalPaypointID?: Payabli.ExternalPaypointId | undefined;
-    StoredMethods?: Payabli.VendorResponseStoredMethod[] | undefined;
+    EnrichmentId: string | null;
+    additionalData: Payabli.AdditionalDataMap | null;
+    externalPaypointID: Payabli.ExternalPaypointId | null;
+    StoredMethods: Payabli.VendorResponseStoredMethod[] | null;
 }

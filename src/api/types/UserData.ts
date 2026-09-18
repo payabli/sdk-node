@@ -4,7 +4,7 @@ import type * as Payabli from "../index.js";
 
 export interface UserData {
     access?: Payabli.UsrAccess[] | undefined;
-    additionalData?: Payabli.AdditionalData | undefined;
+    additionalData?: Payabli.AdditionalDataMap | undefined;
     /** The user's email address. */
     email?: Payabli.Email | undefined;
     language?: Payabli.Language | undefined;

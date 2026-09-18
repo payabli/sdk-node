@@ -21,7 +21,7 @@ export interface BillPayOutDataRequest {
     terms?: Payabli.Terms | undefined;
     accountingField1?: Payabli.AccountingField | undefined;
     accountingField2?: Payabli.AccountingField | undefined;
-    additionalData?: Payabli.AdditionalDataString | undefined;
+    additionalData?: Payabli.AdditionalDataMap | undefined;
     /** Bill image attachment. Send the bill image as Base64-encoded string, or as a publicly accessible link. For full details on using this field with a payout authorization, see [the documentation](/developers/developer-guides/pay-out-manage-payouts). */
     attachments?: Payabli.Attachments | undefined;
 }

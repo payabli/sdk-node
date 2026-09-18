@@ -45,7 +45,7 @@ export interface AddBillRequest {
     idempotencyKey?: Payabli.IdempotencyKey;
     accountingField1?: Payabli.AccountingField;
     accountingField2?: Payabli.AccountingField;
-    additionalData?: Payabli.AdditionalDataString;
+    additionalData?: Payabli.AdditionalDataMap;
     /**
      * An array of bill images. Attachments aren't required, but we strongly
      * recommend including them. Including a bill image can make payouts

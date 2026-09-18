@@ -140,7 +140,7 @@ describe("UserClient", () => {
 
         const rawResponseBody = {
             Access: [{ roleLabel: "customers", roleValue: true }],
-            AdditionalData: "AdditionalData",
+            AdditionalData: { key1: "value1", key2: "value2" },
             createdAt: "2022-07-01T15:00:01Z",
             Email: "example@email.com",
             language: "en",

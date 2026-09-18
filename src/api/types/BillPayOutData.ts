@@ -11,7 +11,7 @@ export interface BillPayOutData {
     AccountingField2?: Payabli.AccountingField | undefined;
     /** Description of payment terms. */
     Terms?: Payabli.Terms | undefined;
-    AdditionalData?: Payabli.AdditionalDataString | undefined;
+    AdditionalData: Payabli.AdditionalDataMap | null;
     /** Bill image attachment. Send the bill image as Base64-encoded string, or as a publicly accessible link. For full details on using this field with a payout authorization, see [the documentation](/developers/developer-guides/pay-out-manage-payouts). */
     attachments?: Payabli.Attachments | undefined;
     /** Custom number identifying the bill. Must be unique in paypoint. **Required** for new bill and when `billId` isn't provided. */

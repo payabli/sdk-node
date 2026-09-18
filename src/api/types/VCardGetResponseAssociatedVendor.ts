@@ -80,8 +80,7 @@ export interface VCardGetResponseAssociatedVendor {
     customerVendorAccount?: string | undefined;
     /** Internal reference ID used within the system. */
     InternalReferenceId?: number | undefined;
-    /** Field for additional data, if any. */
-    additionalData?: string | undefined;
+    additionalData: Payabli.AdditionalDataMap | null;
     externalPaypointID?: Payabli.ExternalPaypointId | undefined;
     /** Stored payment methods for the vendor. */
     StoredMethods?: string | undefined;

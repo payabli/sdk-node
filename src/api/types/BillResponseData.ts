@@ -16,9 +16,9 @@ export interface BillResponseData {
     PaidAmount?: number | undefined;
     /** The amount still owed on the bill, calculated as `NetAmount` minus `PaidAmount`. */
     OutstandingBalance?: number | undefined;
-    /** Date of bill. Accepted formats: YYYY-MM-DD, MM/DD/YYYY */
+    /** Date of bill, returned as a timestamp. */
     BillDate: string | null;
-    /** Due Date of bill. Accepted formats: YYYY-MM-DD, MM/DD/YYYY */
+    /** Due date of bill, returned as a timestamp. */
     DueDate: string | null;
     /** Comments associated with the bill. For managed payables, the character limit is 200. For on demand payouts, the characters limit is 250. */
     Comments?: string | undefined;
@@ -37,7 +37,7 @@ export interface BillResponseData {
     Terms?: Payabli.Terms | undefined;
     /** The source of the bill, such as "API" or "UI". */
     Source?: string | undefined;
-    AdditionalData?: Payabli.AdditionalDataString | undefined;
+    AdditionalData: Payabli.AdditionalDataMap | null;
     Vendor?: Payabli.VendorDataResponse | undefined;
     Status?: Payabli.Billstatus | undefined;
     CreatedAt?: Payabli.CreatedAt | undefined;

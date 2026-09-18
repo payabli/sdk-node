@@ -8,7 +8,7 @@ import type * as Payabli from "../index.js";
 export interface BillOutData {
     accountingField1?: Payabli.AccountingField | undefined;
     accountingField2?: Payabli.AccountingField | undefined;
-    additionalData?: Payabli.AdditionalDataString | undefined;
+    additionalData?: Payabli.AdditionalDataMap | undefined;
     /**
      * An array of bill images. Attachments aren't required, but we strongly
      * recommend including them. Including a bill image can make payouts

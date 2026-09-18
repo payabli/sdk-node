@@ -10,7 +10,7 @@ export interface BillQueryRecord2 {
     /** Batch number associated with the bill. */
     BatchNumber: string | null;
     billApprovals: Payabli.BillQueryRecord2BillApprovalsItem[] | null;
-    /** Bill creation date in one of the accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
+    /** Bill creation date, returned as a timestamp. */
     BillDate: string | null;
     /** Events associated with the bill. */
     billEvents: Payabli.GeneralEvents[] | null;
@@ -26,7 +26,7 @@ export interface BillQueryRecord2 {
     Discount: number | null;
     /** Reference to documents associated with the bill. */
     DocumentsRef: string | null;
-    /** Bill due date in one of the accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
+    /** Bill due date, returned as a timestamp. */
     DueDate: string | null;
     /** End date for the bill. */
     EndDate: string | null;
