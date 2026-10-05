@@ -2,19 +2,46 @@
 
 import type * as Payabli from "../index.js";
 
-export interface GetMethodResponseResponseDataCustomersItem extends Payabli.PayorDataRequest {
+/**
+ * The customer record that owns the stored payment method.
+ */
+export interface GetMethodResponseResponseDataCustomersItem {
+    /** List of additional custom fields in format key:value. */
+    additionalFields?: Record<string, string> | undefined;
+    /** Customer address. */
+    address?: string | undefined;
+    /** Additional line for customer address. */
+    address1?: string | undefined;
     /** Customer's current balance */
     balance?: number | undefined;
+    /** Customer city. */
+    city?: string | undefined;
+    /** Company name. */
+    company?: string | undefined;
+    /** Customer country. */
+    country?: string | undefined;
     /** Creation timestamp */
     created?: string | undefined;
     /** Customer consent information */
     customerConsent?: Record<string, unknown> | undefined;
+    /** Events recorded for the customer. */
+    customerEvents?: unknown[] | undefined;
+    customerId?: Payabli.CustomerId | undefined;
+    customerNumber?: Payabli.CustomerNumberNullable | undefined;
+    customerPortal?: (string | null) | undefined;
     /** Status code for the customer */
     customerStatus?: number | undefined;
     customerSummary?: Payabli.CustomerSummaryRecord | undefined;
     /** Username of the customer */
     customerUsername?: string | undefined;
+    /** Customer email address. */
+    email?: Payabli.Email | undefined;
     externalPaypointID?: Payabli.ExternalPaypointId | undefined;
+    /** Customer first name. */
+    firstname?: string | undefined;
+    identifierFields?: Payabli.Identifierfields | undefined;
+    /** Customer last name. */
+    lastname?: string | undefined;
     /** Last update timestamp */
     lastUpdated?: string | undefined;
     /** Multi-factor authentication status */
@@ -29,16 +56,28 @@ export interface GetMethodResponseResponseDataCustomersItem extends Payabli.Payo
     /** The paypoint entryname the customer is associated with */
     paypointEntryname?: string | undefined;
     paypointLegalname?: Payabli.Legalname | undefined;
+    /** Customer phone number. */
+    phone?: string | undefined;
+    shippingAddress?: Payabli.Shippingaddress | undefined;
+    shippingAddress1?: Payabli.Shippingaddressadditional | undefined;
+    shippingCity?: Payabli.Shippingcity | undefined;
+    shippingCountry?: Payabli.Shippingcountry | undefined;
+    shippingState?: Payabli.Shippingstate | undefined;
+    shippingZip?: Payabli.Shippingzip | undefined;
     /** Social network data */
     snData?: Record<string, unknown> | undefined;
     /** Social network identifier */
     snIdentifier?: string | undefined;
     /** Social network provider */
     snProvider?: string | undefined;
+    /** Customer state. */
+    state?: string | undefined;
     /** List of payment methods associated to the customer */
     storedMethods?: Payabli.MethodQueryRecords[] | undefined;
     /** List of subscriptions associated to the customer */
     subscriptions?: Payabli.SubscriptionQueryRecords[] | undefined;
     /** Customer's timezone */
     timeZone?: number | undefined;
+    /** Customer postal code. */
+    zip?: string | undefined;
 }

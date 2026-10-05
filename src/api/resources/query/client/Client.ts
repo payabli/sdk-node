@@ -1078,7 +1078,7 @@ export class QueryClient {
     }
 
     /**
-     * Returns a list of cloud devices for a single paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
+     * Returns a list of cloud and AXIUM devices for a single paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
      *
      * @param {Payabli.Entry} entry - The entity's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {Payabli.ListDevicesRequest} request
@@ -1182,7 +1182,7 @@ export class QueryClient {
     }
 
     /**
-     * Returns a list of cloud devices for a single organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
+     * Returns a list of cloud and AXIUM devices for a single organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
      *
      * @param {number} orgId - The numeric identifier for organization, assigned by Payabli.
      * @param {Payabli.ListDevicesOrgRequest} request

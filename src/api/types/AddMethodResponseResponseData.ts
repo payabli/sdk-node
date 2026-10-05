@@ -13,5 +13,19 @@ export interface AddMethodResponseResponseData {
      * Returns `0` if the method wasn't assigned to an existing customer or no customer was created.
      */
     customerId?: Payabli.CustomerId | undefined;
+    /** Only returned when the request is declined. */
+    authCode?: (Payabli.Authcode | null) | undefined;
+    /** Only returned when the request is declined. */
+    avsResponseText?: (Payabli.AvsResponseText | null) | undefined;
+    /** Only returned when the request is declined. */
+    cvvResponseText?: (Payabli.CvvResponseText | null) | undefined;
+    /** Only returned when the request is declined. */
+    vendorId?: (Payabli.Vendorid | null) | undefined;
+    /**
+     * Stored method identifier in Payabli platform. Returns the same value as
+     * `referenceId`. This field isn't returned when you convert a temporary
+     * token to a permanent token, so use `referenceId` to get the stored
+     * method ID.
+     */
     methodReferenceId?: Payabli.MethodReferenceId | undefined;
 }

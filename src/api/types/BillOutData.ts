@@ -26,7 +26,7 @@ export interface BillOutData {
      * for details. Contact Payabli to enable this feature.
      */
     attachments?: Payabli.Attachments | undefined;
-    /** Date of bill. Accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
+    /** Date of bill. Send the date in YYYY-MM-DD format. The API also accepts ISO 8601 date-time values but keeps only the date. */
     billDate?: string | undefined;
     billItems?: Payabli.Billitems | undefined;
     /** Unique identifier for the bill. Required when adding a bill. */
@@ -34,7 +34,7 @@ export interface BillOutData {
     comments?: Payabli.Comments | undefined;
     /** Discount amount applied to the bill. */
     discount?: number | undefined;
-    /** Due date of bill. Accepted formats: YYYY-MM-DD, MM/DD/YYYY. */
+    /** Due date of bill. Send the date in YYYY-MM-DD format. The API also accepts ISO 8601 date-time values but keeps only the date. */
     dueDate?: string | undefined;
     /**
      * End date for scheduled bills. Applied only in `Mode` = 1. Accepted

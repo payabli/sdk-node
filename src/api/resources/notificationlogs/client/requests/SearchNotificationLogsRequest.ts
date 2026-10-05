@@ -9,7 +9,7 @@ import type * as Payabli from "../../../../index.js";
  *         startDate: "2024-01-01T00:00:00Z",
  *         endDate: "2024-01-31T23:59:59Z",
  *         orgId: 123,
- *         notificationEvent: "ActivatedMerchant",
+ *         notificationEvent: "approvedpayment",
  *         succeeded: true
  *     }
  */
@@ -18,16 +18,16 @@ export interface SearchNotificationLogsRequest {
     PageSize?: Payabli.Pagesize;
     /** The page number to retrieve. Defaults to 1 if not provided. */
     Page?: number;
-    /** The start date for the search. */
+    /** The start date for the search. Can't be more than 30 days before `endDate`. */
     startDate: string;
-    /** The end date for the search. */
+    /** The end date for the search. Can't be more than 30 days after `startDate`. */
     endDate: string;
-    /** The type of notification event to filter by. */
+    /** The event to filter by, such as `approvedpayment`. Case-insensitive. */
     notificationEvent?: string;
-    /** Indicates whether the notification was successful. */
+    /** Filter by delivery outcome. Set to `false` to return only failed notifications. */
     succeeded?: boolean;
-    /** The ID of the organization to filter by. */
+    /** The ID of the organization to filter by. Either `orgId` or `paypointId` is required. */
     orgId?: number;
-    /** The ID of the paypoint to filter by. */
+    /** The ID of the paypoint to filter by. Either `orgId` or `paypointId` is required. */
     paypointId?: number;
 }

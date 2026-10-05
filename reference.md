@@ -5042,7 +5042,7 @@ await client.paymentLink.updatePayLinkOutFromId("2325-XXXXXXX-90b1-4598-b6c7-44c
 <dl>
 <dd>
 
-Saves a payment method for reuse. This call exchanges sensitive payment information for a token that can be used to process future transactions. The `ReferenceId` value in the response is the `storedMethodId` to use with transactions.
+Saves a payment method for reuse. This call exchanges sensitive payment information for a token that can be used to process future transactions. The `referenceId` value in the response is the `storedMethodId` to use with transactions, and the `methodId` to use when you manage the saved payment method.
 </dd>
 </dl>
 </dd>
@@ -7558,7 +7558,7 @@ await client.query.listCustomersOrg(123, {
 <dl>
 <dd>
 
-Returns a list of cloud devices for a single paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
+Returns a list of cloud and AXIUM devices for a single paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 </dd>
 </dl>
 </dd>
@@ -7633,7 +7633,7 @@ await client.query.listDevices("8cfec329267", {
 <dl>
 <dd>
 
-Returns a list of cloud devices for a single organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
+Returns a list of cloud and AXIUM devices for a single organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 </dd>
 </dl>
 </dd>
@@ -10153,7 +10153,7 @@ await client.notificationlogs.searchNotificationLogs({
     startDate: "2024-01-01T00:00:00Z",
     endDate: "2024-01-31T23:59:59Z",
     orgId: 123,
-    notificationEvent: "ActivatedMerchant",
+    notificationEvent: "approvedpayment",
     succeeded: true
 });
 
@@ -10255,7 +10255,7 @@ await client.notificationlogs.getNotificationLog("550e8400-e29b-41d4-a716-446655
 </dl>
 </details>
 
-<details><summary><code>client.notificationlogs.<a href="/src/api/resources/notificationlogs/client/Client.ts">retryNotificationLog</a>(uuid) -> Payabli.NotificationLogDetail</code></summary>
+<details><summary><code>client.notificationlogs.<a href="/src/api/resources/notificationlogs/client/Client.ts">retryNotificationLog</a>(uuid) -> Payabli.NotificationRetryResponse</code></summary>
 <dl>
 <dd>
 
@@ -10320,7 +10320,7 @@ await client.notificationlogs.retryNotificationLog("550e8400-e29b-41d4-a716-4466
 </dl>
 </details>
 
-<details><summary><code>client.notificationlogs.<a href="/src/api/resources/notificationlogs/client/Client.ts">bulkRetryNotificationLogs</a>({ ...params }) -> void</code></summary>
+<details><summary><code>client.notificationlogs.<a href="/src/api/resources/notificationlogs/client/Client.ts">bulkRetryNotificationLogs</a>({ ...params }) -> string</code></summary>
 <dl>
 <dd>
 
@@ -10350,7 +10350,7 @@ This endpoint requires the `notifications_create` permission.
 <dd>
 
 ```typescript
-await client.notificationlogs.bulkRetryNotificationLogs(["550e8400-e29b-41d4-a716-446655440000", "550e8400-e29b-41d4-a716-446655440001", "550e8400-e29b-41d4-a716-446655440002"]);
+await client.notificationlogs.bulkRetryNotificationLogs(["string", "string"]);
 
 ```
 </dd>
@@ -18783,6 +18783,8 @@ Reissues a payout transaction with a new payment method. This creates a new tran
 The original transaction must be in **Processing** or **Processed** status. The payment method in the request body is used directly. The endpoint doesn't fall back to vendor-managed payment methods.
 
 The new transaction goes through the standard authorize-and-capture flow automatically. Both the original and new transactions are linked through their event histories for audit purposes.
+
+The reissue request doesn't accept a service fee. Payabli always charges the fee configured in the paypoint's ACH payout pricing, even when the pricing allows fee overrides. The new transaction keeps the original payout's total amount. The vendor receives that amount minus the configured fee.
 </dd>
 </dl>
 </dd>

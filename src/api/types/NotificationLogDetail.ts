@@ -2,8 +2,14 @@
 
 import type * as Payabli from "../index.js";
 
-export interface NotificationLogDetail extends Payabli.NotificationLog {
-    webHeaders?: Payabli.StringStringKeyValuePair[] | undefined;
-    responseHeaders?: Payabli.KeyValueArray[] | undefined;
-    responseContent?: string | undefined;
+/**
+ * A notification log entry returned by the detail and retry endpoints, including the request and response captured for the delivery.
+ */
+export interface NotificationLogDetail extends Payabli.NotificationLogBase {
+    /** The custom headers Payabli sent with the notification, if any. */
+    webHeaders: Payabli.StringStringKeyValuePair[] | null;
+    /** The headers the target returned. Null when the target sent no response. */
+    responseHeaders: Payabli.KeyValueArray[] | null;
+    /** The body the target returned. Empty when the target sent no response. */
+    responseContent: string;
 }

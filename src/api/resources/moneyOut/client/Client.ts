@@ -1467,6 +1467,8 @@ export class MoneyOutClient {
      *
      * The new transaction goes through the standard authorize-and-capture flow automatically. Both the original and new transactions are linked through their event histories for audit purposes.
      *
+     * The reissue request doesn't accept a service fee. Payabli always charges the fee configured in the paypoint's ACH payout pricing, even when the pricing allows fee overrides. The new transaction keeps the original payout's total amount. The vendor receives that amount minus the configured fee.
+     *
      * @param {Payabli.ReissueOutRequest} request
      * @param {MoneyOutClient.RequestOptions} requestOptions - Request-specific configuration.
      *

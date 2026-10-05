@@ -49,7 +49,7 @@ export class NotificationlogsClient {
      *         startDate: "2024-01-01T00:00:00Z",
      *         endDate: "2024-01-31T23:59:59Z",
      *         orgId: 123,
-     *         notificationEvent: "ActivatedMerchant",
+     *         notificationEvent: "approvedpayment",
      *         succeeded: true
      *     })
      */
@@ -241,14 +241,14 @@ export class NotificationlogsClient {
     public retryNotificationLog(
         uuid: string,
         requestOptions?: NotificationlogsClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.NotificationLogDetail> {
+    ): core.HttpResponsePromise<Payabli.NotificationRetryResponse> {
         return core.HttpResponsePromise.fromPromise(this.__retryNotificationLog(uuid, requestOptions));
     }
 
     private async __retryNotificationLog(
         uuid: string,
         requestOptions?: NotificationlogsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.NotificationLogDetail>> {
+    ): Promise<core.WithRawResponse<Payabli.NotificationRetryResponse>> {
         const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({
             endpointMetadata: _metadata,
@@ -276,7 +276,7 @@ export class NotificationlogsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Payabli.NotificationLogDetail, rawResponse: _response.rawResponse };
+            return { data: _response.body as Payabli.NotificationRetryResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -325,19 +325,19 @@ export class NotificationlogsClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.notificationlogs.bulkRetryNotificationLogs(["550e8400-e29b-41d4-a716-446655440000", "550e8400-e29b-41d4-a716-446655440001", "550e8400-e29b-41d4-a716-446655440002"])
+     *     await client.notificationlogs.bulkRetryNotificationLogs(["string", "string"])
      */
     public bulkRetryNotificationLogs(
         request: Payabli.BulkRetryRequest,
         requestOptions?: NotificationlogsClient.RequestOptions,
-    ): core.HttpResponsePromise<void> {
+    ): core.HttpResponsePromise<string> {
         return core.HttpResponsePromise.fromPromise(this.__bulkRetryNotificationLogs(request, requestOptions));
     }
 
     private async __bulkRetryNotificationLogs(
         request: Payabli.BulkRetryRequest,
         requestOptions?: NotificationlogsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<void>> {
+    ): Promise<core.WithRawResponse<string>> {
         const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({
             endpointMetadata: _metadata,
@@ -360,6 +360,7 @@ export class NotificationlogsClient {
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
             body: mergeAdditionalBodyParameters(request, requestOptions?.additionalBodyParameters),
+            responseType: "text",
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -368,7 +369,7 @@ export class NotificationlogsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: undefined, rawResponse: _response.rawResponse };
+            return { data: _response.body as string, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {

@@ -32,4 +32,6 @@ export interface GetMethodResponseResponseData {
     /** The payment method postal code */
     postalCode?: string | undefined;
     vendors?: Payabli.GetMethodResponseResponseDataVendorsItem[] | undefined;
+    /** Digital wallet type if applicable. */
+    walletType?: (string | null) | undefined;
 }

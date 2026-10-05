@@ -3,5 +3,7 @@
 import type * as Payabli from "../index.js";
 
 export interface AddMethodResponse extends Payabli.PayabliApiResponseGeneric2Part {
+    /** Returned only when the request succeeds. Not returned when the request is declined, or when you convert a temporary token to a permanent token. */
+    pageIdentifier?: (Payabli.PageIdentifier | null) | undefined;
     responseData?: Payabli.AddMethodResponseResponseData | undefined;
 }

@@ -30,15 +30,15 @@ describe("TokenStorageClient", () => {
             source: "api",
         };
         const rawResponseBody = {
+            responseText: "Success",
             isSuccess: true,
             responseData: {
+                referenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+                resultCode: 1,
+                resultText: "Added",
                 customerId: 4440,
                 methodReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                referenceId: "129-219",
-                resultCode: 1,
-                resultText: "Approved",
             },
-            responseText: "Success",
         };
 
         server
@@ -92,14 +92,14 @@ describe("TokenStorageClient", () => {
             },
         };
         const rawResponseBody = {
+            responseText: "Success",
             isSuccess: true,
             responseData: {
-                methodReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                referenceId: "129-219",
+                referenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
                 resultCode: 1,
-                resultText: "Approved",
+                resultText: "Added",
+                methodReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
             },
-            responseText: "Success",
         };
 
         server
@@ -143,15 +143,14 @@ describe("TokenStorageClient", () => {
             paymentMethod: { method: "card", tokenId: "c9700e93-b2ed-4b75-b1e4-ca4fb04fbe45-224" },
         };
         const rawResponseBody = {
+            responseText: "Success",
             isSuccess: true,
             responseData: {
-                customerId: 4440,
-                methodReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                referenceId: "129-219",
+                referenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
                 resultCode: 1,
-                resultText: "Approved",
+                resultText: "Added",
+                customerId: 4440,
             },
-            responseText: "Success",
         };
 
         server
@@ -200,15 +199,15 @@ describe("TokenStorageClient", () => {
             },
         };
         const rawResponseBody = {
+            responseText: "Success",
             isSuccess: true,
             responseData: {
+                referenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
+                resultCode: 1,
+                resultText: "Added",
                 customerId: 4440,
                 methodReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                referenceId: "129-219",
-                resultCode: 1,
-                resultText: "Approved",
             },
-            responseText: "Success",
         };
 
         server
@@ -261,15 +260,15 @@ describe("TokenStorageClient", () => {
             vendorData: { vendorId: 456 },
         };
         const rawResponseBody = {
+            responseText: "Success",
             isSuccess: true,
             responseData: {
-                customerId: 4440,
-                methodReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                referenceId: "129-219",
+                referenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
                 resultCode: 1,
-                resultText: "Approved",
+                resultText: "Added",
+                customerId: 456,
+                methodReferenceId: "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
             },
-            responseText: "Success",
         };
 
         server
@@ -431,30 +430,39 @@ describe("TokenStorageClient", () => {
                 },
                 customers: [
                     {
-                        additionalData: { key1: { key: "value" }, key2: { key: "value" }, key3: { key: "value" } },
-                        balance: 250,
-                        billingPhone: "1234567890",
-                        company: "Bluesky Tech Inc",
-                        created: "2023-06-01T14:30:00Z",
                         customerId: 4440,
                         customerNumber: "C-90010",
-                        customerStatus: 1,
                         customerUsername: "Marcus",
-                        identifierFields: ["firstname", "email"],
-                        lastUpdated: "2024-12-15T09:45:32Z",
-                        mfa: true,
-                        mfaMode: 1,
-                        parentOrgId: 5,
-                        parentOrgName: "TechCorp",
-                        paypointDbaname: "Bluesky Tech",
-                        paypointEntryname: "45782932fcc",
-                        paypointLegalname: "Bluesky Technologies LLC",
+                        customerStatus: 1,
+                        company: "Bluesky Tech Inc",
+                        firstname: "Marcus",
+                        lastname: "Chen",
+                        phone: "1234567890",
+                        email: "marcus.chen@example.com",
+                        address1: "123 Market St",
+                        city: "San Francisco",
+                        state: "CA",
+                        zip: "94105",
+                        country: "US",
                         shippingAddress1: "Suite 500",
                         shippingCity: "San Francisco",
-                        shippingCountry: "US",
                         shippingState: "CA",
                         shippingZip: "94105",
+                        shippingCountry: "US",
+                        balance: 250,
                         timeZone: -8,
+                        mfa: true,
+                        mfaMode: 1,
+                        lastUpdated: "2024-12-15T09:45:32Z",
+                        created: "2023-06-01T14:30:00Z",
+                        additionalFields: {},
+                        identifierFields: ["firstname", "email"],
+                        paypointLegalname: "Bluesky Technologies LLC",
+                        paypointDbaname: "Bluesky Tech",
+                        parentOrgName: "TechCorp",
+                        parentOrgId: 5,
+                        paypointEntryname: "45782932fcc",
+                        customerEvents: [],
                     },
                 ],
                 descriptor: "visa",
@@ -503,32 +511,39 @@ describe("TokenStorageClient", () => {
                 bin: "",
                 customers: [
                     {
-                        additionalData: { key1: { key: "value" }, key2: { key: "value" }, key3: { key: "value" } },
-                        balance: 250,
-                        billingPhone: "1234567890",
-                        company: "Bluesky Tech Inc",
-                        created: "2023-06-01T14:30:00Z",
                         customerId: 4440,
                         customerNumber: "C-90010",
-                        customerStatus: 1,
                         customerUsername: "Marcus",
-                        identifierFields: ["firstname", "email"],
-                        lastUpdated: "2024-12-15T09:45:32Z",
-                        mfa: true,
-                        mfaMode: 1,
-                        parentOrgId: 5,
-                        parentOrgName: "TechCorp",
-                        paypointDbaname: "Bluesky Tech",
-                        paypointEntryname: "45782932fcc",
-                        paypointLegalname: "Bluesky Technologies LLC",
+                        customerStatus: 1,
+                        company: "Bluesky Tech Inc",
+                        firstname: "Marcus",
+                        lastname: "Chen",
+                        phone: "1234567890",
+                        email: "marcus.chen@example.com",
+                        address1: "123 Market St",
+                        city: "San Francisco",
+                        state: "CA",
+                        zip: "94105",
+                        country: "US",
                         shippingAddress1: "Suite 500",
                         shippingCity: "San Francisco",
-                        shippingCountry: "US",
                         shippingState: "CA",
                         shippingZip: "94105",
-                        snIdentifier: "null",
-                        snProvider: "google",
+                        shippingCountry: "US",
+                        balance: 250,
                         timeZone: -8,
+                        mfa: true,
+                        mfaMode: 1,
+                        lastUpdated: "2024-12-15T09:45:32Z",
+                        created: "2023-06-01T14:30:00Z",
+                        additionalFields: {},
+                        identifierFields: ["firstname", "email"],
+                        paypointLegalname: "Bluesky Technologies LLC",
+                        paypointDbaname: "Bluesky Tech",
+                        parentOrgName: "TechCorp",
+                        parentOrgId: 5,
+                        paypointEntryname: "45782932fcc",
+                        customerEvents: [],
                     },
                 ],
                 descriptor: "Checking",
@@ -768,9 +783,9 @@ describe("TokenStorageClient", () => {
             },
         };
         const rawResponseBody = {
-            isSuccess: true,
-            responseData: { referenceId: "129-219", resultCode: 1, resultText: "Updated" },
             responseText: "Success",
+            isSuccess: true,
+            responseData: { referenceId: "32-8877drt00045632-678", resultCode: 1, resultText: "Updated" },
         };
 
         server
@@ -822,9 +837,9 @@ describe("TokenStorageClient", () => {
             },
         };
         const rawResponseBody = {
-            isSuccess: true,
-            responseData: { referenceId: "129-219", resultCode: 1, resultText: "Updated" },
             responseText: "Success",
+            isSuccess: true,
+            responseData: { referenceId: "32-8877drt00045632-678", resultCode: 1, resultText: "Updated" },
         };
 
         server
@@ -877,9 +892,9 @@ describe("TokenStorageClient", () => {
             vendorData: { vendorId: 456 },
         };
         const rawResponseBody = {
-            isSuccess: true,
-            responseData: { referenceId: "129-219", resultCode: 1, resultText: "Updated" },
             responseText: "Success",
+            isSuccess: true,
+            responseData: { referenceId: "32-8877drt00045632-678", resultCode: 1, resultText: "Updated" },
         };
 
         server
@@ -922,9 +937,9 @@ describe("TokenStorageClient", () => {
         });
 
         const rawResponseBody = {
-            isSuccess: true,
-            responseData: { referenceId: "129-219", resultCode: 1, resultText: "Removed" },
             responseText: "Success",
+            isSuccess: true,
+            responseData: { referenceId: "32-8877drt00045632-678", resultCode: 1, resultText: "Removed" },
         };
 
         server

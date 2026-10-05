@@ -4,7 +4,20 @@ import type * as Payabli from "../index.js";
 
 export interface OcrResultData {
     billNumber?: string | undefined;
+    /**
+     * Subtotal of the document's line items, before tax.
+     *
+     * This isn't the amount due. When you create a bill from this result,
+     * set the bill's `netAmount` from `totalAmount`.
+     */
     netAmount?: number | undefined;
+    /**
+     * Discount on the document. This is often `null` even when the
+     * document shows a discount. `totalAmount` already reflects any discount.
+     */
+    discount?: (number | null) | undefined;
+    /** Total amount due on the document, after any discount and including tax. */
+    totalAmount?: number | undefined;
     billDate?: string | undefined;
     dueDate?: string | undefined;
     comments?: string | undefined;
