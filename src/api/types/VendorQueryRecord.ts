@@ -69,5 +69,6 @@ export interface VendorQueryRecord {
     EnrichmentId: string | null;
     additionalData: Payabli.AdditionalDataMap | null;
     externalPaypointID: Payabli.ExternalPaypointId | null;
-    StoredMethods: Payabli.VendorResponseStoredMethod[] | null;
+    StoredMethods: Payabli.VendorStoredMethod[] | null;
+    VendorPortal?: (Payabli.VendorPortalAccess | null) | undefined;
 }

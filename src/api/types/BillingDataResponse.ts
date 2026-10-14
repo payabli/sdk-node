@@ -6,7 +6,7 @@ export interface BillingDataResponse {
     /** The bank's ID in Payabli. */
     id: number;
     /** An identifier for the bank account. If not provided during creation or update, the system generates one in the format `acct-{first_digit}xxxxx{last_4_digits}` based on the account number. If a duplicate exists within the same service at the paypoint, a numeric suffix is appended, such as `-2`. This value is also used as the identifier for the bank account's associated payment connector. */
-    accountId?: Payabli.AccountId | undefined;
+    accountId?: (Payabli.AccountId | null) | undefined;
     nickname: string;
     bankName: Payabli.BankName;
     routingAccount: Payabli.RoutingAccount;
@@ -25,4 +25,6 @@ export interface BillingDataResponse {
     status: number;
     services: unknown[];
     default: boolean;
+    /** Country code of the bank account, in ISO 3166-1 alpha-2 format (for example, `US` or `CA`). */
+    country?: (string | null) | undefined;
 }

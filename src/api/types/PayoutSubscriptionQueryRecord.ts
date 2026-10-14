@@ -12,11 +12,19 @@ export interface PayoutSubscriptionQueryRecord {
      */
     status?: number | undefined;
     /** Events associated with the payout subscription. */
-    events?: Payabli.GeneralEvents[] | undefined;
-    vendor?: Payabli.VendorQueryRecord | undefined;
+    events?: (Payabli.GeneralEvents[] | null) | undefined;
+    vendor?: Payabli.PayoutSubscriptionVendor | undefined;
     /** Bills associated with the payout subscription. */
-    billData?: Payabli.BillPayOutData[] | undefined;
+    billData?: Payabli.PayoutSubscriptionBill[] | undefined;
     externalPaypointID?: Payabli.ExternalPaypointId | undefined;
+    /** When `true`, the payout subscription's payouts are processed as same-day ACH instead of standard ACH. Same-day ACH must be enabled for the paypoint. Only ACH payouts honor this setting. */
+    sameDayAch?: boolean | undefined;
+    /** When `true`, Payabli doesn't automatically create a bill for the payout subscription's payouts. */
+    doNotCreateBills?: boolean | undefined;
+    /** When `true`, the payout subscription bypasses the requirement for unique bills, identified by vendor invoice number. */
+    allowDuplicatedBills?: boolean | undefined;
+    /** When `true`, a same-day ACH payout captured after the same-day ACH cutoff is converted to a standard ACH payment. When `false`, the capture is declined. Has no effect when `sameDayAch` is `false`. */
+    autoConvertSameDayAch?: boolean | undefined;
     /** The payout subscription's payment method. */
     method?: string | undefined;
     paypointId?: Payabli.PaypointId | undefined;
@@ -26,7 +34,7 @@ export interface PayoutSubscriptionQueryRecord {
     netAmount?: Payabli.Netamountnullable | undefined;
     /** Fee applied to the payout subscription. */
     feeAmount?: number | undefined;
-    paymentData?: Payabli.QueryPaymentData | undefined;
+    paymentData?: Payabli.PayoutSubscriptionPaymentData | undefined;
     /** The payout subscription start date. */
     startDate: string | null;
     /** The payout subscription's end date. */
@@ -57,4 +65,6 @@ export interface PayoutSubscriptionQueryRecord {
     parentOrgName?: Payabli.OrgParentName | undefined;
     parentOrgId?: Payabli.OrgParentId | undefined;
     source?: Payabli.Source | undefined;
+    /** Subscription type. Always `null` for payout subscriptions. */
+    subscriptionType?: (string | null) | undefined;
 }

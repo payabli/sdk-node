@@ -4,16 +4,16 @@ import type * as Payabli from "../index.js";
 
 export interface BillPayOutData {
     /** Bill ID in Payabli. */
-    billId?: number | undefined;
+    billId?: (number | null) | undefined;
     /** Lot number associated with the bill. */
     LotNumber?: (string | null) | undefined;
-    AccountingField1?: Payabli.AccountingField | undefined;
-    AccountingField2?: Payabli.AccountingField | undefined;
+    AccountingField1?: (Payabli.AccountingField | null) | undefined;
+    AccountingField2?: (Payabli.AccountingField | null) | undefined;
     /** Description of payment terms. */
-    Terms?: Payabli.Terms | undefined;
+    Terms?: (Payabli.Terms | null) | undefined;
     AdditionalData: Payabli.AdditionalDataMap | null;
     /** Bill image attachment. Send the bill image as Base64-encoded string, or as a publicly accessible link. For full details on using this field with a payout authorization, see [the documentation](/developers/developer-guides/pay-out-manage-payouts). */
-    attachments?: Payabli.Attachments | undefined;
+    attachments?: (Payabli.Attachments | null) | undefined;
     /** Custom number identifying the bill. Must be unique in paypoint. **Required** for new bill and when `billId` isn't provided. */
     invoiceNumber?: Payabli.InvoiceNumber | undefined;
     /** Net Amount owed in bill. Required when adding a bill. */
@@ -23,11 +23,11 @@ export interface BillPayOutData {
     /** Bill due date in format YYYY-MM-DD or MM/DD/YYYY. */
     dueDate: string | null;
     /** Any comments about bill. **For managed payouts, this field has a limit of 100 characters**. */
-    comments?: Payabli.Comments | undefined;
+    comments?: (Payabli.Comments | null) | undefined;
     /** Custom identifier for the bill. */
     identifier?: (string | null) | undefined;
     /** Bill discount amount. */
-    discount?: string | undefined;
+    discount?: (string | null) | undefined;
     /** Total amount of the bill. */
     totalAmount?: (string | null) | undefined;
 }

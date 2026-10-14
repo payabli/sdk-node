@@ -12,11 +12,19 @@ export interface PayoutSubscriptionQueryRecordPascal {
      */
     Status?: number | undefined;
     /** Events associated with the payout subscription. */
-    Events?: Payabli.GeneralEvents[] | undefined;
+    Events?: (Payabli.GeneralEvents[] | null) | undefined;
     Vendor?: Payabli.VendorQueryRecord | undefined;
     /** Bills associated with the payout subscription. */
     BillData?: Payabli.BillPayOutData[] | undefined;
     ExternalPaypointID?: Payabli.ExternalPaypointId | undefined;
+    /** When `true`, the payout subscription's payouts are processed as same-day ACH instead of standard ACH. Same-day ACH must be enabled for the paypoint. Only ACH payouts honor this setting. */
+    SameDayAch?: boolean | undefined;
+    /** When `true`, Payabli doesn't automatically create a bill for the payout subscription's payouts. */
+    DoNotCreateBills?: boolean | undefined;
+    /** When `true`, the payout subscription bypasses the requirement for unique bills, identified by vendor invoice number. */
+    AllowDuplicatedBills?: boolean | undefined;
+    /** When `true`, a same-day ACH payout captured after the same-day ACH cutoff is converted to a standard ACH payment. When `false`, the capture is declined. Has no effect when `SameDayAch` is `false`. */
+    AutoConvertSameDayAch?: boolean | undefined;
     /** The payout subscription's payment method. */
     Method?: string | undefined;
     PaypointId?: Payabli.PaypointId | undefined;
@@ -26,7 +34,7 @@ export interface PayoutSubscriptionQueryRecordPascal {
     NetAmount?: Payabli.Netamountnullable | undefined;
     /** Fee applied to the payout subscription. */
     FeeAmount?: number | undefined;
-    PaymentData?: Payabli.QueryPaymentData | undefined;
+    PaymentData?: Payabli.PayoutSubscriptionPaymentDataPascal | undefined;
     /** The payout subscription start date. */
     StartDate: string | null;
     /** The payout subscription's end date. */
@@ -57,4 +65,6 @@ export interface PayoutSubscriptionQueryRecordPascal {
     ParentOrgName?: Payabli.OrgParentName | undefined;
     ParentOrgId?: Payabli.OrgParentId | undefined;
     Source?: Payabli.Source | undefined;
+    /** Subscription type. Always `null` for payout subscriptions. */
+    SubscriptionType?: (string | null) | undefined;
 }
