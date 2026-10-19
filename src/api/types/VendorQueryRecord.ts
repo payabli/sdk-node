@@ -22,6 +22,7 @@ export interface VendorQueryRecord {
     Country: string | null;
     Mcc: Payabli.Mcc | null;
     LocationCode: string | null;
+    Issue1099: Payabli.Issue1099;
     /** Array of objects describing the vendor's contacts. */
     Contacts: Payabli.ContactsResponse[] | null;
     BillingData: Payabli.BillingDataResponse | null;

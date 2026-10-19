@@ -56,6 +56,7 @@ export class VendorClient {
      *         country: "US",
      *         mcc: "7777",
      *         locationCode: "MIA123",
+     *         issue1099: true,
      *         contacts: [{
      *                 contactName: "Herman Martinez",
      *                 contactEmail: "example@email.com",
@@ -241,6 +242,11 @@ export class VendorClient {
      * @example
      *     await client.vendor.editVendor(1, {
      *         name1: "Theodore's Janitorial"
+     *     })
+     *
+     * @example
+     *     await client.vendor.editVendor(3890, {
+     *         issue1099: true
      *     })
      */
     public editVendor(

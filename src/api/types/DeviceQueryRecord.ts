@@ -15,10 +15,35 @@ export interface DeviceQueryRecord {
     make: string | null;
     /** Model name of the device. */
     model: string | null;
+    /** Version of the Payabli app running on the device. */
+    appVersion: string | null;
+    /** Version of Android running on the device. */
+    osVersion: string | null;
     /** Type of device. */
     deviceType: number | null;
-    /** Current status of the device. */
+    /**
+     * Lifecycle status of the device, as an integer. A value of `1` means the
+     * device is active. This field doesn't show whether the device is running
+     * a command. To check whether the device can accept a transaction now,
+     * use `operationalStatus`.
+     */
     deviceStatus: number | null;
+    /**
+     * Shows whether the device can accept a transaction now. The value
+     * reflects the device's state when you send the query.
+     *
+     * - `online`: The device is active and isn't running a command. It can
+     *   accept a transaction.
+     * - `busy`: The device is running a command that's pending, dispatched,
+     *   or processing, and the command hasn't expired. A new transaction sent
+     *   to the device fails with error `E7069` (Device busy). Wait for the
+     *   command to finish or expire, then query the device again.
+     * - `offline`: The device isn't active, so it can't accept transactions.
+     *   Its lifecycle status (`deviceStatus`) isn't active.
+     *
+     * Check this field before you send a transaction to a device.
+     */
+    operationalStatus: DeviceQueryRecord.OperationalStatus;
     /** Operating system of the device. */
     deviceOs: number | null;
     /** MAC address of the device. */
@@ -57,4 +82,28 @@ export interface DeviceQueryRecord {
     transactionCount: number;
     /** Total volume processed by this device, as the sum of net transaction amounts. */
     volumeProcessed: number;
+}
+
+export namespace DeviceQueryRecord {
+    /**
+     * Shows whether the device can accept a transaction now. The value
+     * reflects the device's state when you send the query.
+     *
+     * - `online`: The device is active and isn't running a command. It can
+     *   accept a transaction.
+     * - `busy`: The device is running a command that's pending, dispatched,
+     *   or processing, and the command hasn't expired. A new transaction sent
+     *   to the device fails with error `E7069` (Device busy). Wait for the
+     *   command to finish or expire, then query the device again.
+     * - `offline`: The device isn't active, so it can't accept transactions.
+     *   Its lifecycle status (`deviceStatus`) isn't active.
+     *
+     * Check this field before you send a transaction to a device.
+     */
+    export const OperationalStatus = {
+        Online: "online",
+        Busy: "busy",
+        Offline: "offline",
+    } as const;
+    export type OperationalStatus = (typeof OperationalStatus)[keyof typeof OperationalStatus];
 }

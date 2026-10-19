@@ -17,6 +17,14 @@ import type * as Payabli from "../../../../index.js";
  *             "operation(eq)": "Reject"
  *         }
  *     }
+ *
+ * @example
+ *     {
+ *         limitRecord: 2,
+ *         parameters: {
+ *             "method(eq)": "device"
+ *         }
+ *     }
  */
 export interface ListTransactionsRequest {
     /** Export format for file downloads. When specified, returns data as a file instead of JSON. */
@@ -93,6 +101,7 @@ export interface ListTransactionsRequest {
      * - `customerShippingState` (ct, nct, eq, ne)
      * - `customerShippingCountry` (ct, nct, eq, ne)
      * - `deviceId` (ct, nct, in, nin, eq, ne)
+     * - `DeviceEntryMode` (eq, ne, in, nin). Filters by how the device read the card: `Chip`, `Contactless`, `Swipe`, `Manual`, `Fallback`, or `None`. Case-insensitive. Separate multiple values with `|`, for example `DeviceEntryMode(in)=Chip|Contactless`. `ne` and `nin` also return transactions with no entry mode, such as non-device transactions. An unrecognized value is ignored, so the filter isn't applied.
      * - `AchSecCode` ( ct, nct, in, nin, eq, ne)
      * - `AchHolderType` (ct, nct, in, nin, eq, and ne)
      * - `additional-xxx` (ne, eq, ct, nct) where xxx is the additional field name related to customer data

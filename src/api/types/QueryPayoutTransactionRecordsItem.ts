@@ -77,7 +77,7 @@ export interface QueryPayoutTransactionRecordsItem {
     AchTraceNumber?: (string | null) | undefined;
     /** Unique identifier (ULID) of the payout transaction. */
     EntityId?: string | undefined;
-    /** Operations currently permitted for this payout, derived from its status. Always present; empty for terminal statuses such as paid or canceled. Read this array directly rather than inferring available actions from `PaymentStatus`. */
+    /** Operations currently permitted for this payout, derived from its status and other payout details such as payment method. For example, a returned ACH payout can include `cancel` and `reissue`. Always present; empty for terminal statuses such as paid or canceled. Read this array directly rather than inferring available actions from `PaymentStatus`. */
     allowedActions: QueryPayoutTransactionRecordsItem.AllowedActions.Item[];
 }
 

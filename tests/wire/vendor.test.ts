@@ -28,6 +28,7 @@ describe("VendorClient", () => {
             country: "US",
             mcc: "7777",
             locationCode: "MIA123",
+            issue1099: true,
             contacts: [
                 {
                     contactName: "Herman Martinez",
@@ -85,6 +86,7 @@ describe("VendorClient", () => {
             country: "US",
             mcc: "7777",
             locationCode: "MIA123",
+            issue1099: true,
             contacts: [
                 {
                     contactName: "Herman Martinez",
@@ -244,6 +246,7 @@ describe("VendorClient", () => {
             Country: "US",
             Mcc: "7777",
             LocationCode: "LOC123",
+            Issue1099: false,
             Contacts: [
                 {
                     ContactEmail: "eric@martinezcoatings.com",
@@ -363,6 +366,32 @@ describe("VendorClient", () => {
             apiKeyAuth: { apiKey: "test" },
             environment: server.baseUrl,
         });
+        const rawRequestBody = { issue1099: true };
+        const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 3890, responseText: "Success" };
+
+        server
+            .mockEndpoint()
+            .put("/Vendor/3890")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.vendor.editVendor(3890, {
+            issue1099: true,
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("EditVendor (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
 
@@ -380,7 +409,7 @@ describe("VendorClient", () => {
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
-    test("EditVendor (3)", async () => {
+    test("EditVendor (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -405,7 +434,7 @@ describe("VendorClient", () => {
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
-    test("EditVendor (4)", async () => {
+    test("EditVendor (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -430,7 +459,7 @@ describe("VendorClient", () => {
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
-    test("EditVendor (5)", async () => {
+    test("EditVendor (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,

@@ -27,6 +27,7 @@ export interface AssociatedVendor {
     Country?: string | undefined;
     Mcc?: Payabli.Mcc | undefined;
     LocationCode?: Payabli.LocationCode | undefined;
+    Issue1099?: Payabli.Issue1099 | undefined;
     /** Array of objects describing the vendor's contacts. */
     Contacts?: Payabli.Contacts[] | undefined;
     BillingData?: Payabli.BillingDataResponse | undefined;

@@ -36,6 +36,7 @@ export interface TransferOutDetailVendor {
     Mcc: string | null;
     /** Location code for the vendor. */
     LocationCode: string | null;
+    Issue1099: Payabli.Issue1099;
     /** List of contacts for the vendor. */
     Contacts: Payabli.ContactsResponse[] | null;
     /** Billing data for the vendor. */

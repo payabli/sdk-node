@@ -33,6 +33,7 @@ export interface VendorOutData {
     /** Internal identifier for global vendor account. */
     InternalReferenceId?: number | undefined;
     LocationCode?: Payabli.LocationCode | undefined;
+    Issue1099?: Payabli.Issue1099 | undefined;
     Mcc?: Payabli.Mcc | undefined;
     /** Primary name for vendor. Required for new vendor. Allowed characters are letters, numbers, spaces, and `. , ' & ( ) */
     Name1: string;

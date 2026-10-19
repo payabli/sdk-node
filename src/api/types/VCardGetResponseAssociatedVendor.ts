@@ -35,6 +35,7 @@ export interface VCardGetResponseAssociatedVendor {
     /** Merchant Category Code for the vendor. */
     Mcc?: string | undefined;
     LocationCode?: Payabli.LocationCode | undefined;
+    Issue1099?: Payabli.Issue1099 | undefined;
     /** Array of objects describing the vendor's contacts. */
     Contacts?: Payabli.VCardGetResponseContact[] | undefined;
     /** Billing data for the vendor. */

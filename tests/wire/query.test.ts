@@ -1503,6 +1503,9 @@ describe("QueryClient", () => {
                             ShippingState: "MT",
                             ShippingZip: "59601",
                         },
+                        DeviceData: null,
+                        DeviceEntryMode: null,
+                        EmvAuthData: null,
                         EntrypageId: 0,
                         FeeAmount: 0.06,
                         GatewayTransId: "8082800000",
@@ -1714,6 +1717,9 @@ describe("QueryClient", () => {
                     ScheduleReference: 0,
                     Status: 3,
                     Transaction: {
+                        DeviceData: null,
+                        DeviceEntryMode: null,
+                        EmvAuthData: null,
                         EntrypageId: 0,
                         FeeAmount: 1,
                         PayorId: 1551,
@@ -2221,8 +2227,11 @@ describe("QueryClient", () => {
                     friendlyName: "Front Counter",
                     make: "",
                     model: "DX8000",
+                    appVersion: "1.1.3",
+                    osVersion: "10",
                     deviceType: 1,
                     deviceStatus: 1,
+                    operationalStatus: "online",
                     deviceOs: null,
                     macAddress: "1A2B3C4D5E6F",
                     lastHealthCheck: "2026-04-09T14:49:42Z",
@@ -2384,8 +2393,11 @@ describe("QueryClient", () => {
                     friendlyName: "Front Counter",
                     make: "",
                     model: "DX8000",
+                    appVersion: "1.1.3",
+                    osVersion: "10",
                     deviceType: 1,
                     deviceStatus: 1,
+                    operationalStatus: "online",
                     deviceOs: null,
                     macAddress: "1A2B3C4D5E6F",
                     lastHealthCheck: "2026-04-09T14:49:42Z",
@@ -3301,6 +3313,7 @@ describe("QueryClient", () => {
                         Country: "US",
                         Mcc: null,
                         LocationCode: null,
+                        Issue1099: false,
                         Contacts: [
                             {
                                 ContactName: "Alex Doe",
@@ -3588,6 +3601,7 @@ describe("QueryClient", () => {
                         Country: "US",
                         Mcc: null,
                         LocationCode: null,
+                        Issue1099: false,
                         Contacts: [
                             {
                                 ContactName: "Alex Doe",
@@ -5120,6 +5134,7 @@ describe("QueryClient", () => {
                         Country: "US",
                         Mcc: "7777",
                         LocationCode: "LOC123",
+                        Issue1099: false,
                         Contacts: [
                             {
                                 ContactEmail: "eric@martinezcoatings.com",
@@ -5406,6 +5421,7 @@ describe("QueryClient", () => {
                         Country: "US",
                         Mcc: "7777",
                         LocationCode: "LOC123",
+                        Issue1099: false,
                         Contacts: [
                             {
                                 ContactEmail: "eric@martinezcoatings.com",
@@ -5693,7 +5709,10 @@ describe("QueryClient", () => {
                         ShippingState: "string",
                         ShippingZip: "string",
                     },
-                    DeviceId: "499585-389fj484-3jcj8hj3",
+                    DeviceId: "",
+                    DeviceData: null,
+                    DeviceEntryMode: null,
+                    EmvAuthData: null,
                     EntrypageId: 0,
                     ExternalProcessorInformation: " ",
                     FeeAmount: 10.25,
@@ -5917,6 +5936,9 @@ describe("QueryClient", () => {
                             EventTime: "2026-03-02T18:56:23.352035",
                         },
                     ],
+                    DeviceData: null,
+                    DeviceEntryMode: null,
+                    EmvAuthData: null,
                 },
             ],
             Summary: { totalRecords: 14, totalAmount: -79.48, totalNetAmount: -74.41, totalPages: 14, pageSize: 1 },
@@ -5948,6 +5970,101 @@ describe("QueryClient", () => {
             environment: server.baseUrl,
         });
 
+        const rawResponseBody = {
+            Records: [
+                {
+                    PaymentTransId: "3040-1d1abbd8caf54ae691dc670a863b1f2b",
+                    Method: "device",
+                    TransStatus: 1,
+                    ResponseData: { resultCode: "A0000", authcode: "OK9870" },
+                    Source: "Device",
+                    splitCount: 0,
+                    TransactionTime: "2026-09-24T15:12:40Z",
+                    DeviceId: "499585-389fj484-3jcj8hj3",
+                    DeviceData: {
+                        deviceType: "SemiIntegrated",
+                        deviceOs: null,
+                        friendlyName: "Front counter",
+                        serialNumber: "SN-90210-XR",
+                        make: "",
+                        model: "DX8000",
+                        macAddress: "02:00:00:00:00:00",
+                        deviceStatus: "Active",
+                    },
+                    DeviceEntryMode: "Swipe",
+                    EmvAuthData: null,
+                },
+                {
+                    PaymentTransId: "3040-2da01510567d460cb828042b8a9e0248",
+                    Method: "device",
+                    BatchNumber: "",
+                    PaymentData: {},
+                    TransStatus: -1,
+                    SettlementStatus: 0,
+                    Source: "Device",
+                    splitCount: 0,
+                    TransactionTime: "2026-09-24T14:00:53Z",
+                    TransactionEvents: [
+                        {
+                            TransEvent: "Created",
+                            EventData: "0HNOQ7PMGR7HG:00000087",
+                            EventTime: "2026-09-24T14:00:53Z",
+                        },
+                        {
+                            TransEvent: "Initiated",
+                            EventData: "0HNOQ7PMGR7HG:00000087",
+                            EventTime: "2026-09-24T14:00:53Z",
+                        },
+                        {
+                            TransEvent: "Device Timeout",
+                            EventData: "6345a1d96c4c9df6a391fe20b47e0397",
+                            EventTime: "2026-09-24T14:05:08Z",
+                        },
+                    ],
+                    DeviceId: "499585-389fj484-3jcj8hj3",
+                    DeviceData: {
+                        deviceType: "SemiIntegrated",
+                        deviceOs: null,
+                        friendlyName: "Front counter",
+                        serialNumber: "SN-90210-XR",
+                        make: "",
+                        model: "DX8000",
+                        macAddress: "02:00:00:00:00:00",
+                        deviceStatus: "Active",
+                    },
+                    DeviceEntryMode: null,
+                    EmvAuthData: null,
+                },
+            ],
+            Summary: { totalRecords: 2, totalAmount: 0, totalNetAmount: 0, totalPages: 1, pageSize: 2 },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/Query/transactions/8cfec329267")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.query.listTransactions("8cfec329267", {
+            limitRecord: 2,
+            parameters: {
+                "method(eq)": "device",
+            },
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("ListTransactions (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+
         const rawResponseBody = { key: "value" };
 
         server
@@ -5963,7 +6080,7 @@ describe("QueryClient", () => {
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
-    test("ListTransactions (4)", async () => {
+    test("ListTransactions (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -5987,7 +6104,7 @@ describe("QueryClient", () => {
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
-    test("ListTransactions (5)", async () => {
+    test("ListTransactions (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -6011,7 +6128,7 @@ describe("QueryClient", () => {
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
-    test("ListTransactions (6)", async () => {
+    test("ListTransactions (7)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -6053,7 +6170,10 @@ describe("QueryClient", () => {
                     BatchNumber: "batch_226_ach_12-30-2023",
                     CfeeTransactions: [{ transactionTime: "2024-01-15T09:30:00Z" }],
                     ConnectorName: "gp",
-                    DeviceId: "499585-389fj484-3jcj8hj3",
+                    DeviceId: "",
+                    DeviceData: null,
+                    DeviceEntryMode: null,
+                    EmvAuthData: null,
                     EntrypageId: 0,
                     ExternalProcessorInformation: "[MER_xxxxxxxxxxxxxx]/[NNNNNNNNN]",
                     FeeAmount: 1,
@@ -6199,6 +6319,9 @@ describe("QueryClient", () => {
                             EventTime: "2026-03-02T18:56:23.352035",
                         },
                     ],
+                    DeviceData: null,
+                    DeviceEntryMode: null,
+                    EmvAuthData: null,
                 },
             ],
             Summary: { totalRecords: 14, totalAmount: -79.48, totalNetAmount: -74.41, totalPages: 14, pageSize: 1 },
@@ -6230,6 +6353,101 @@ describe("QueryClient", () => {
             environment: server.baseUrl,
         });
 
+        const rawResponseBody = {
+            Records: [
+                {
+                    PaymentTransId: "3040-1d1abbd8caf54ae691dc670a863b1f2b",
+                    Method: "device",
+                    TransStatus: 1,
+                    ResponseData: { resultCode: "A0000", authcode: "OK9870" },
+                    Source: "Device",
+                    splitCount: 0,
+                    TransactionTime: "2026-09-24T15:12:40Z",
+                    DeviceId: "499585-389fj484-3jcj8hj3",
+                    DeviceData: {
+                        deviceType: "SemiIntegrated",
+                        deviceOs: null,
+                        friendlyName: "Front counter",
+                        serialNumber: "SN-90210-XR",
+                        make: "",
+                        model: "DX8000",
+                        macAddress: "02:00:00:00:00:00",
+                        deviceStatus: "Active",
+                    },
+                    DeviceEntryMode: "Swipe",
+                    EmvAuthData: null,
+                },
+                {
+                    PaymentTransId: "3040-2da01510567d460cb828042b8a9e0248",
+                    Method: "device",
+                    BatchNumber: "",
+                    PaymentData: {},
+                    TransStatus: -1,
+                    SettlementStatus: 0,
+                    Source: "Device",
+                    splitCount: 0,
+                    TransactionTime: "2026-09-24T14:00:53Z",
+                    TransactionEvents: [
+                        {
+                            TransEvent: "Created",
+                            EventData: "0HNOQ7PMGR7HG:00000087",
+                            EventTime: "2026-09-24T14:00:53Z",
+                        },
+                        {
+                            TransEvent: "Initiated",
+                            EventData: "0HNOQ7PMGR7HG:00000087",
+                            EventTime: "2026-09-24T14:00:53Z",
+                        },
+                        {
+                            TransEvent: "Device Timeout",
+                            EventData: "6345a1d96c4c9df6a391fe20b47e0397",
+                            EventTime: "2026-09-24T14:05:08Z",
+                        },
+                    ],
+                    DeviceId: "499585-389fj484-3jcj8hj3",
+                    DeviceData: {
+                        deviceType: "SemiIntegrated",
+                        deviceOs: null,
+                        friendlyName: "Front counter",
+                        serialNumber: "SN-90210-XR",
+                        make: "",
+                        model: "DX8000",
+                        macAddress: "02:00:00:00:00:00",
+                        deviceStatus: "Active",
+                    },
+                    DeviceEntryMode: null,
+                    EmvAuthData: null,
+                },
+            ],
+            Summary: { totalRecords: 2, totalAmount: 0, totalNetAmount: 0, totalPages: 1, pageSize: 2 },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/Query/transactions/org/123")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.query.listTransactionsOrg(123, {
+            limitRecord: 2,
+            parameters: {
+                "method(eq)": "device",
+            },
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("ListTransactionsOrg (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+
         const rawResponseBody = { key: "value" };
 
         server
@@ -6245,7 +6463,7 @@ describe("QueryClient", () => {
         }).rejects.toThrow(Payabli.BadRequestError);
     });
 
-    test("ListTransactionsOrg (4)", async () => {
+    test("ListTransactionsOrg (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -6269,7 +6487,7 @@ describe("QueryClient", () => {
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
-    test("ListTransactionsOrg (5)", async () => {
+    test("ListTransactionsOrg (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -6293,7 +6511,7 @@ describe("QueryClient", () => {
         }).rejects.toThrow(Payabli.InternalServerError);
     });
 
-    test("ListTransactionsOrg (6)", async () => {
+    test("ListTransactionsOrg (7)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,
@@ -7367,6 +7585,7 @@ describe("QueryClient", () => {
                         Country: "US",
                         Mcc: "5039",
                         LocationCode: null,
+                        Issue1099: false,
                         Contacts: [
                             {
                                 ContactName: "Robert Chen",
@@ -7917,6 +8136,7 @@ describe("QueryClient", () => {
                     Country: "US",
                     Mcc: "7777",
                     LocationCode: "LOC123",
+                    Issue1099: false,
                     Contacts: [
                         {
                             ContactEmail: "eric@martinezcoatings.com",
@@ -8145,6 +8365,7 @@ describe("QueryClient", () => {
                     Country: "US",
                     Mcc: "7777",
                     LocationCode: "LOC123",
+                    Issue1099: false,
                     Contacts: [
                         {
                             ContactEmail: "eric@martinezcoatings.com",

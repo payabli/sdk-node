@@ -39,6 +39,7 @@ export interface GetMethodResponseResponseDataVendorsItem {
     lastUpdated?: string | undefined;
     /** Location code for vendor */
     locationCode?: Payabli.LocationCode | undefined;
+    issue1099?: Payabli.Issue1099 | undefined;
     /** Merchant category code */
     mcc?: Payabli.Mcc | undefined;
     /** Primary name for vendor */

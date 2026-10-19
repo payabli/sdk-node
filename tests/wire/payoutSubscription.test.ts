@@ -295,6 +295,7 @@ describe("PayoutSubscriptionClient", () => {
                     country: "US",
                     mcc: "7777",
                     locationCode: "LOC123",
+                    issue1099: false,
                     contacts: [
                         {
                             contactName: "Eric Martinez",

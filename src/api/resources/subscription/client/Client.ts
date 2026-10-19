@@ -144,6 +144,21 @@ export class SubscriptionClient {
      *             startDate: "2027-01-01"
      *         }
      *     })
+     *
+     * @example
+     *     await client.subscription.updateSubscription(231, {
+     *         invoiceData: {
+     *             invoiceAmount: 25,
+     *             invoiceStatus: 1,
+     *             items: [{
+     *                     itemProductName: "Yard Work",
+     *                     itemDescription: "service",
+     *                     itemCost: 25,
+     *                     itemQty: 1,
+     *                     itemTotalAmount: 25
+     *                 }]
+     *         }
+     *     })
      */
     public updateSubscription(
         subId: number,

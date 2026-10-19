@@ -28,7 +28,7 @@ export class GhostCardClient {
      *
      * Unlike single-use virtual cards issued as part of a payout transaction, ghost cards aren't tied to a specific payout. They're issued directly to a vendor and can be reused up to a configurable number of times within the card's spending limits.
      *
-     * Only one ghost card can exist per vendor per paypoint. To issue a new card to the same vendor, cancel the existing card first.
+     * Only one active ghost card can exist per vendor per paypoint. If the vendor already has one, the request fails with error `7067`. To issue a new card to the same vendor, cancel the existing card first. Canceled and expired cards don't count toward this limit. See [Cancel ghost card](/developers/api-reference/cards/cancel-ghost-card).
      *
      * @param {Payabli.Entry} entry - The entity's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
      * @param {Payabli.CreateGhostCardRequestBody} request
@@ -136,6 +136,100 @@ export class GhostCardClient {
             _response.rawResponse,
             "POST",
             "/MoneyOutCard/GhostCard/{entry}",
+        );
+    }
+
+    /**
+     * Cancels a ghost card. This is always a soft delete: Payabli keeps the card record, including its transaction history.
+     *
+     * Canceling a ghost card frees the vendor's slot, so you can issue a new ghost card to the same vendor. A card canceled with this endpoint can't be used, reactivated, or canceled again.
+     *
+     * Requires the `vcard_delete` permission.
+     *
+     * @param {string} cardToken - Token that identifies the ghost card to cancel. This is the `ReferenceId` returned when the card was created.
+     * @param {GhostCardClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     * @throws {@link errors.PayabliError}
+     * @throws {@link errors.PayabliTimeoutError}
+     *
+     * @example
+     *     await client.ghostCard.deleteGhostCard("gc_abc123def456")
+     */
+    public deleteGhostCard(
+        cardToken: string,
+        requestOptions?: GhostCardClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.DeleteGhostCardResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__deleteGhostCard(cardToken, requestOptions));
+    }
+
+    private async __deleteGhostCard(
+        cardToken: string,
+        requestOptions?: GhostCardClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.DeleteGhostCardResponse>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({
+            endpointMetadata: _metadata,
+        });
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `MoneyOutCard/GhostCard/${core.url.encodePathParam(cardToken)}`,
+            ),
+            method: "DELETE",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.DeleteGhostCardResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "DELETE",
+            "/MoneyOutCard/GhostCard/{cardToken}",
         );
     }
 

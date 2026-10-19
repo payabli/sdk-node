@@ -29,6 +29,7 @@ export interface VendorDataResponse {
     Country: string;
     Mcc: Payabli.Mcc;
     LocationCode: Payabli.LocationCode;
+    Issue1099: Payabli.Issue1099;
     /** Array of objects describing the vendor's contacts. */
     Contacts: Payabli.ContactsResponse[];
     /** Object containing vendor's bank information. */

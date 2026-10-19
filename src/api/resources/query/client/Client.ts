@@ -2821,6 +2821,14 @@ export class QueryClient {
      *             "operation(eq)": "Reject"
      *         }
      *     })
+     *
+     * @example
+     *     await client.query.listTransactions("8cfec329267", {
+     *         limitRecord: 2,
+     *         parameters: {
+     *             "method(eq)": "device"
+     *         }
+     *     })
      */
     public listTransactions(
         entry: Payabli.Entry,
@@ -2940,6 +2948,14 @@ export class QueryClient {
      *         limitRecord: 1,
      *         parameters: {
      *             "operation(eq)": "Reject"
+     *         }
+     *     })
+     *
+     * @example
+     *     await client.query.listTransactionsOrg(123, {
+     *         limitRecord: 2,
+     *         parameters: {
+     *             "method(eq)": "device"
      *         }
      *     })
      */

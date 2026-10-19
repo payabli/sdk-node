@@ -14,6 +14,9 @@ export interface TransactionQueryRecords {
     ConnectorName?: string | undefined;
     Customer?: Payabli.QueryTransactionPayorData | undefined;
     DeviceId?: Payabli.Device | undefined;
+    DeviceData: Payabli.QueryDeviceData | null;
+    DeviceEntryMode: Payabli.DeviceEntryMode | null;
+    EmvAuthData: Payabli.EmvAuthData | null;
     EntrypageId?: Payabli.EntrypageId | undefined;
     ExternalProcessorInformation?: Payabli.ExternalProcessorInformation | undefined;
     FeeAmount?: Payabli.FeeAmount | undefined;

@@ -458,6 +458,58 @@ describe("SubscriptionClient", () => {
         expect(response).toEqual(rawResponseBody);
     });
 
+    test("UpdateSubscription (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+        const rawRequestBody = {
+            invoiceData: {
+                invoiceAmount: 25,
+                invoiceStatus: 1,
+                items: [
+                    {
+                        itemProductName: "Yard Work",
+                        itemDescription: "service",
+                        itemCost: 25,
+                        itemQty: 1,
+                        itemTotalAmount: 25,
+                    },
+                ],
+            },
+        };
+        const rawResponseBody = { responseText: "Success", isSuccess: true, responseData: "231", customerId: 4440 };
+
+        server
+            .mockEndpoint()
+            .put("/Subscription/231")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.subscription.updateSubscription(231, {
+            invoiceData: {
+                invoiceAmount: 25,
+                invoiceStatus: 1,
+                items: [
+                    {
+                        itemProductName: "Yard Work",
+                        itemDescription: "service",
+                        itemCost: 25,
+                        itemQty: 1,
+                        itemTotalAmount: 25,
+                    },
+                ],
+            },
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
     test("RemoveSubscription (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({

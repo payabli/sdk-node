@@ -52,6 +52,9 @@ describe("CustomerClient", () => {
                     NumberofTransactions: 30,
                     RecentTransactions: [
                         {
+                            DeviceData: null,
+                            DeviceEntryMode: null,
+                            EmvAuthData: null,
                             EntrypageId: 0,
                             FeeAmount: 1,
                             PayorId: 1551,
@@ -302,6 +305,9 @@ describe("CustomerClient", () => {
                 NumberofTransactions: 30,
                 RecentTransactions: [
                     {
+                        DeviceData: null,
+                        DeviceEntryMode: null,
+                        EmvAuthData: null,
                         EntrypageId: 0,
                         FeeAmount: 1,
                         PayorId: 1551,

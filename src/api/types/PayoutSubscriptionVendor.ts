@@ -25,6 +25,7 @@ export interface PayoutSubscriptionVendor {
     country: string | null;
     mcc: Payabli.Mcc | null;
     locationCode: string | null;
+    issue1099: Payabli.Issue1099;
     /** Array of objects describing the vendor's contacts. */
     contacts: Payabli.PayoutSubscriptionVendorContact[] | null;
     billingData: Payabli.BillingDataResponse | null;

@@ -261,6 +261,125 @@ describe("GhostCardClient", () => {
         }).rejects.toThrow(Payabli.ServiceUnavailableError);
     });
 
+    test("DeleteGhostCard (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+
+        const rawResponseBody = { isSuccess: true, responseData: { deleteType: "soft", cardToken: "gc_abc123def456" } };
+
+        server
+            .mockEndpoint()
+            .delete("/MoneyOutCard/GhostCard/gc_abc123def456")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.ghostCard.deleteGhostCard("gc_abc123def456");
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("DeleteGhostCard (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .delete("/MoneyOutCard/GhostCard/cardToken")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.ghostCard.deleteGhostCard("cardToken");
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("DeleteGhostCard (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .delete("/MoneyOutCard/GhostCard/cardToken")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.ghostCard.deleteGhostCard("cardToken");
+        }).rejects.toThrow(Payabli.UnauthorizedError);
+    });
+
+    test("DeleteGhostCard (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .delete("/MoneyOutCard/GhostCard/cardToken")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.ghostCard.deleteGhostCard("cardToken");
+        }).rejects.toThrow(Payabli.InternalServerError);
+    });
+
+    test("DeleteGhostCard (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+
+        const rawResponseBody = { isSuccess: true, responseText: "responseText" };
+
+        server
+            .mockEndpoint()
+            .delete("/MoneyOutCard/GhostCard/cardToken")
+            .respondWith()
+            .statusCode(503)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.ghostCard.deleteGhostCard("cardToken");
+        }).rejects.toThrow(Payabli.ServiceUnavailableError);
+    });
+
     test("UpdateCard (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({

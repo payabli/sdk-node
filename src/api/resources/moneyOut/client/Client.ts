@@ -1461,9 +1461,111 @@ export class MoneyOutClient {
     }
 
     /**
+     * Returns a suggested check number for the next check payout from a paypoint's funding account. Payabli suggests the highest check number on the account's check payouts plus one, or `1` if the account has no check history. Canceled check payouts don't count toward the highest number.
+     *
+     *
+     * Use the suggested value with the `checkNumber` field when you reissue a check, or when you create a new check payout.
+     *
+     *
+     * Errors return HTTP `400`: `3005` when the paypoint ID is invalid or inactive, and `3758` when the account ID isn't valid for the paypoint.
+     *
+     * @param {number} paypointId - The ID of the paypoint that owns the funding account.
+     * @param {string} accountId - The `accountId` of the bank account linked to the paypoint's check service, such as `123-456`. Find it in the paypoint's bank account details (`BankData`).
+     * @param {MoneyOutClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Payabli.BadRequestError}
+     * @throws {@link Payabli.UnauthorizedError}
+     * @throws {@link Payabli.ForbiddenError}
+     * @throws {@link Payabli.InternalServerError}
+     * @throws {@link Payabli.ServiceUnavailableError}
+     * @throws {@link errors.PayabliError}
+     * @throws {@link errors.PayabliTimeoutError}
+     *
+     * @example
+     *     await client.moneyOut.getNextCheckNumber(3040, "123-456")
+     */
+    public getNextCheckNumber(
+        paypointId: number,
+        accountId: string,
+        requestOptions?: MoneyOutClient.RequestOptions,
+    ): core.HttpResponsePromise<Payabli.NextCheckNumberResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getNextCheckNumber(paypointId, accountId, requestOptions));
+    }
+
+    private async __getNextCheckNumber(
+        paypointId: number,
+        accountId: string,
+        requestOptions?: MoneyOutClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Payabli.NextCheckNumberResponse>> {
+        const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({
+            endpointMetadata: _metadata,
+        });
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.PayabliEnvironment.Sandbox,
+                `MoneyOut/nextCheckNumber/${core.url.encodePathParam(paypointId)}/${core.url.encodePathParam(accountId)}`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            endpointMetadata: _metadata,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Payabli.NextCheckNumberResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new Payabli.UnauthorizedError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new Payabli.ForbiddenError(_response.error.body as unknown, _response.rawResponse);
+                case 500:
+                    throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
+                case 503:
+                    throw new Payabli.ServiceUnavailableError(
+                        _response.error.body as Payabli.PayabliErrorBody,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.PayabliError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/MoneyOut/nextCheckNumber/{paypointId}/{accountId}",
+        );
+    }
+
+    /**
      * Reissues a payout transaction with a new payment method. This creates a new transaction linked to the original and marks the original transaction as reissued.
      *
-     * The original transaction must be in **Processing** or **Processed** status. The payment method in the request body is used directly. The endpoint doesn't fall back to vendor-managed payment methods.
+     * The original transaction must be in **Processing** or **Processed** status. An ACH payout with a **Returned** status can also be reissued. The payment method in the request body is used directly. The endpoint doesn't fall back to vendor-managed payment methods.
      *
      * The new transaction goes through the standard authorize-and-capture flow automatically. Both the original and new transactions are linked through their event histories for audit purposes.
      *
@@ -1498,7 +1600,8 @@ export class MoneyOutClient {
      *         transId: "129-219",
      *         paymentMethod: {
      *             method: "check"
-     *         }
+     *         },
+     *         checkNumber: "10708"
      *     })
      *
      * @example
