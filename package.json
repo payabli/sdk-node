@@ -1,6 +1,6 @@
 {
     "name": "@payabli/sdk-node",
-    "version": "1.0.21",
+    "version": "1.0.22",
     "private": false,
     "repository": {
         "type": "git",
@@ -241,6 +241,72 @@
                 "default": "./dist/cjs/api/resources/lineItem/exports.js"
             },
             "default": "./dist/cjs/api/resources/lineItem/exports.js"
+        },
+        "./businesses": {
+            "import": {
+                "types": "./dist/esm/api/resources/businesses/exports.d.mts",
+                "default": "./dist/esm/api/resources/businesses/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/businesses/exports.d.ts",
+                "default": "./dist/cjs/api/resources/businesses/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/businesses/exports.js"
+        },
+        "./people": {
+            "import": {
+                "types": "./dist/esm/api/resources/people/exports.d.mts",
+                "default": "./dist/esm/api/resources/people/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/people/exports.d.ts",
+                "default": "./dist/cjs/api/resources/people/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/people/exports.js"
+        },
+        "./paypoints": {
+            "import": {
+                "types": "./dist/esm/api/resources/paypoints/exports.d.mts",
+                "default": "./dist/esm/api/resources/paypoints/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/paypoints/exports.d.ts",
+                "default": "./dist/cjs/api/resources/paypoints/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/paypoints/exports.js"
+        },
+        "./paymentMethods": {
+            "import": {
+                "types": "./dist/esm/api/resources/paymentMethods/exports.d.mts",
+                "default": "./dist/esm/api/resources/paymentMethods/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/paymentMethods/exports.d.ts",
+                "default": "./dist/cjs/api/resources/paymentMethods/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/paymentMethods/exports.js"
+        },
+        "./boardingTemplates": {
+            "import": {
+                "types": "./dist/esm/api/resources/boardingTemplates/exports.d.mts",
+                "default": "./dist/esm/api/resources/boardingTemplates/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/boardingTemplates/exports.d.ts",
+                "default": "./dist/cjs/api/resources/boardingTemplates/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/boardingTemplates/exports.js"
+        },
+        "./applications": {
+            "import": {
+                "types": "./dist/esm/api/resources/applications/exports.d.mts",
+                "default": "./dist/esm/api/resources/applications/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/applications/exports.d.ts",
+                "default": "./dist/cjs/api/resources/applications/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/applications/exports.js"
         },
         "./boarding": {
             "import": {

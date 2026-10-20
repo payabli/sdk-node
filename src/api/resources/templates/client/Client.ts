@@ -27,6 +27,13 @@ export class TemplatesClient {
     }
 
     /**
+     * @deprecated
+     *
+     * <Warning>
+     *   Legacy boarding is deprecated and will be sunset in Q2 2027. Use [Archive a template](/developers/api-reference/boarding-templates/archive-a-template) instead.
+     * </Warning>
+     *
+     *
      * Deletes a template by ID.
      *
      * @param {number} templateId - The boarding template ID. You can find this at the end of the boarding template URL in the Payabli Portal. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
@@ -112,6 +119,13 @@ export class TemplatesClient {
     }
 
     /**
+     * @deprecated
+     *
+     * <Warning>
+     *   Legacy boarding is deprecated and will be sunset in Q2 2027. Intelligent boarding has no matching endpoint. Each application has its own hosted form link instead. See [Send merchants a boarding link](/guides/pay-ops-developer-boarding-legacy-migrate#send-merchants-a-boarding-link).
+     * </Warning>
+     *
+     *
      * Generates a boarding link from a boarding template.
      *
      * @param {number} templateId - The boarding template ID. You can find this at the end of the boarding template URL in the Payabli Portal. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
@@ -205,6 +219,13 @@ export class TemplatesClient {
     }
 
     /**
+     * @deprecated
+     *
+     * <Warning>
+     *   Legacy boarding is deprecated and will be sunset in Q2 2027. Use [Get a template](/developers/api-reference/boarding-templates/get-a-template) instead.
+     * </Warning>
+     *
+     *
      * Retrieves a boarding template's details by ID.
      *
      * @param {number} templateId - The boarding template ID. You can find this at the end of the boarding template URL in the Payabli Portal. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
@@ -290,6 +311,13 @@ export class TemplatesClient {
     }
 
     /**
+     * @deprecated
+     *
+     * <Warning>
+     *   Legacy boarding is deprecated and will be sunset in Q2 2027. Use [List templates](/developers/api-reference/boarding-templates/list-templates) instead.
+     * </Warning>
+     *
+     *
      * Retrieves a list of boarding templates for an organization. Use filters to limit results. You can't make a request that includes filters from the API console in the documentation. The response won't be filtered. Instead, copy the request, remove `parameters=` and run the request in a different client.
      *
      * @param {number} orgId - The numeric identifier for organization, assigned by Payabli.

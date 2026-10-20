@@ -7,7 +7,7 @@ import type * as Payabli from "../index.js";
  */
 export interface BankAccountServices {
     /** Pay In services the account is used for. */
-    moneyIn?: Payabli.MoneyInService[] | undefined;
+    moneyIn?: Payabli.CaseManagementMoneyInService[] | undefined;
     /** Pay Out services the account is used for. */
-    moneyOut?: Payabli.MoneyOutService[] | undefined;
+    moneyOut?: Payabli.CaseManagementMoneyOutService[] | undefined;
 }

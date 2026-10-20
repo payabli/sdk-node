@@ -236,10 +236,7 @@ export class MoneyOutClient {
                         _response.rawResponse,
                     );
                 case 422:
-                    throw new Payabli.UnprocessableEntityError(
-                        _response.error.body as Payabli.PayabliErrorBody,
-                        _response.rawResponse,
-                    );
+                    throw new Payabli.UnprocessableEntityError(_response.error.body as unknown, _response.rawResponse);
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
@@ -713,10 +710,7 @@ export class MoneyOutClient {
                 case 409:
                     throw new Payabli.ConflictError(_response.error.body as unknown, _response.rawResponse);
                 case 422:
-                    throw new Payabli.UnprocessableEntityError(
-                        _response.error.body as Payabli.PayabliErrorBody,
-                        _response.rawResponse,
-                    );
+                    throw new Payabli.UnprocessableEntityError(_response.error.body as unknown, _response.rawResponse);
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:
@@ -857,10 +851,7 @@ export class MoneyOutClient {
                 case 409:
                     throw new Payabli.ConflictError(_response.error.body as unknown, _response.rawResponse);
                 case 422:
-                    throw new Payabli.UnprocessableEntityError(
-                        _response.error.body as Payabli.PayabliErrorBody,
-                        _response.rawResponse,
-                    );
+                    throw new Payabli.UnprocessableEntityError(_response.error.body as unknown, _response.rawResponse);
                 case 500:
                     throw new Payabli.InternalServerError(_response.error.body as unknown, _response.rawResponse);
                 case 503:

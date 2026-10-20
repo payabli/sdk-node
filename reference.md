@@ -11186,6 +11186,3661 @@ await client.lineItem.listLineItems("8cfec329267", {
 </dl>
 </details>
 
+## Businesses
+<details><summary><code>client.businesses.<a href="/src/api/resources/businesses/client/Client.ts">listBusinesses</a>({ ...params }) -> Payabli.ListBusinessesEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists businesses with optional filtering and pagination.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.businesses.listBusinesses({
+    limit: 1,
+    page: 1
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Payabli.ListBusinessesBusinessesRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BusinessesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.businesses.<a href="/src/api/resources/businesses/client/Client.ts">createBusiness</a>({ ...params }) -> Payabli.BusinessCreatedEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a business, the legal entity behind a paypoint. New businesses
+start in `Draft`. Set `parentReference` to the organization 
+the business belongs to, or omit it to use the organization your
+credential belongs to.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.businesses.createBusiness({
+    legalName: "Rose Gardens LLC",
+    legalStructure: "llc",
+    externalId: "rg-001",
+    website: "https://example.com",
+    phone: ["3055551212"],
+    emails: ["ops@example.com"],
+    merchantCatCode: "5814",
+    paymentMethods: [{
+            type: "bank_account",
+            name: "Operating account",
+            financialInstitution: "Bank of Example",
+            ownerType: "business",
+            accountType: "checking",
+            accountNumber: "123456789",
+            routingNumber: "021000021",
+            usage: ["deposits", "billing"],
+            isDefault: true
+        }, {
+            type: "bank_account",
+            name: "Payout account",
+            financialInstitution: "Bank of Example",
+            ownerType: "business",
+            accountType: "checking",
+            accountNumber: "987654321",
+            routingNumber: "021000021",
+            usage: ["payOutFunding"],
+            isDefault: false
+        }],
+    taxReference: "477498993",
+    parentReference: "8cfec329267"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Payabli.CreateBusinessRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BusinessesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.businesses.<a href="/src/api/resources/businesses/client/Client.ts">getBusiness</a>(businessReference) -> Payabli.BusinessDetailEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a business by reference. Sensitive fields such as `taxReference` are masked.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.businesses.getBusiness("019fed1a-3d6e-75d3-a81e-cba3874b0a55");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**businessReference:** `string` — The business reference (`businessUuid`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BusinessesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.businesses.<a href="/src/api/resources/businesses/client/Client.ts">deactivateBusiness</a>(businessReference, { ...params }) -> Payabli.BusinessDeactivatedEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deactivates a business. This is a soft delete: the business moves to
+`Deactivated` and the record is kept.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.businesses.deactivateBusiness("019fed33-615d-77b6-afaa-46e7ac9bf36e", {
+    reason: "Duplicate record"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**businessReference:** `string` — The business reference (`businessUuid`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.DeactivateBusinessRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BusinessesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.businesses.<a href="/src/api/resources/businesses/client/Client.ts">updateBusiness</a>(businessReference, { ...params }) -> Payabli.BusinessUpdatedEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Applies a partial update to a business. Send only the fields you want to change.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.businesses.updateBusiness("019fed1a-3d6e-75d3-a81e-cba3874b0a55", {
+    website: "https://example.org"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**businessReference:** `string` — The business reference (`businessUuid`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.UpdateBusinessRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BusinessesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.businesses.<a href="/src/api/resources/businesses/client/Client.ts">getBusinessUnmasked</a>(businessReference) -> Payabli.BusinessDetailEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a business by reference with sensitive fields unmasked.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.businesses.getBusinessUnmasked("019fed1a-3d6e-75d3-a81e-cba3874b0a55");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**businessReference:** `string` — The business reference (`businessUuid`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BusinessesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.businesses.<a href="/src/api/resources/businesses/client/Client.ts">listBusinessAddresses</a>(businessReference) -> Payabli.BusinessAddressListEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the addresses on a business. Each address is identified by its `businessAddressReference`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.businesses.listBusinessAddresses("019fed1a-3d6e-75d3-a81e-cba3874b0a55");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**businessReference:** `string` — The business reference (`businessUuid`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BusinessesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.businesses.<a href="/src/api/resources/businesses/client/Client.ts">createBusinessAddress</a>(businessReference, { ...params }) -> Payabli.BusinessAddressEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Adds an address to a business. Returns the new address and its `businessAddressReference`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.businesses.createBusinessAddress("019fed1a-3d6e-75d3-a81e-cba3874b0a55", {
+    type: "mailing",
+    location: "warehouse",
+    addressLine1: "202 Warehouse Ln",
+    cityLocality: "Austin",
+    stateProvince: "TX",
+    postalCode: "73302",
+    country: "US"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**businessReference:** `string` — The business reference (`businessUuid`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.CreateBusinessAddressRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BusinessesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.businesses.<a href="/src/api/resources/businesses/client/Client.ts">getBusinessAddress</a>(businessReference, businessAddressReference) -> Payabli.BusinessAddressEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a single business address by its `businessAddressReference`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.businesses.getBusinessAddress("019fed1a-3d6e-75d3-a81e-cba3874b0a55", "019fed1a-84a6-7043-a6c0-e8aa2d4bec36");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**businessReference:** `string` — The business reference (`businessUuid`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**businessAddressReference:** `string` — The business address reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BusinessesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.businesses.<a href="/src/api/resources/businesses/client/Client.ts">deleteBusinessAddress</a>(businessReference, businessAddressReference) -> Payabli.BusinessAddressDeletedEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Removes an address from a business.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.businesses.deleteBusinessAddress("019fed1a-3d6e-75d3-a81e-cba3874b0a55", "019fed1a-67d6-768a-b4cc-29d4299e21d9");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**businessReference:** `string` — The business reference (`businessUuid`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**businessAddressReference:** `string` — The business address reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BusinessesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.businesses.<a href="/src/api/resources/businesses/client/Client.ts">updateBusinessAddress</a>(businessReference, businessAddressReference, { ...params }) -> Payabli.BusinessAddressEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Applies a partial update to a business address. Send only the fields you want to change; omitted fields are kept.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.businesses.updateBusinessAddress("019fed1a-3d6e-75d3-a81e-cba3874b0a55", "019fed1a-67d6-768a-b4cc-29d4299e21d9", {
+    type: "billing"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**businessReference:** `string` — The business reference (`businessUuid`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**businessAddressReference:** `string` — The business address reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.UpdateBusinessAddressRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BusinessesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.businesses.<a href="/src/api/resources/businesses/client/Client.ts">listBusinessPeople</a>(businessReference) -> Payabli.BusinessPersonListEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the people linked to a business, each with the relationship's role, ownership, and relationship-scoped contact details.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.businesses.listBusinessPeople("019fed1a-3d6e-75d3-a81e-cba3874b0a55");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**businessReference:** `string` — The business reference (`businessUuid`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BusinessesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.businesses.<a href="/src/api/resources/businesses/client/Client.ts">linkBusinessPerson</a>(businessReference, { ...params }) -> Payabli.BusinessPersonEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Links an existing person to a business, setting the relationship's role, ownership, primary-controller flag, contact fields, and addresses.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.businesses.linkBusinessPerson("019fed1a-3d6e-75d3-a81e-cba3874b0a55", {
+    personReference: "01a0014d-ce1a-7110-9bac-c4c59647a88d",
+    personType: "Owner",
+    ownershipPercentage: 100,
+    isPrimaryController: true,
+    isSigner: true,
+    title: "CEO",
+    primaryEmail: "contact@example.com",
+    secondaryEmail: "contact.alt@example.net",
+    primaryPhoneNumber: "3055551212",
+    secondaryPhoneNumber: "3055559876",
+    billingAddress: {
+        addressLine1: "123 Main Street",
+        cityLocality: "Miami",
+        stateProvince: "FL",
+        postalCode: "33101",
+        country: "US",
+        type: "billing"
+    },
+    mailingAddress: {
+        addressLine1: "456 Oak Avenue",
+        cityLocality: "Miami",
+        stateProvince: "FL",
+        postalCode: "33102",
+        country: "US",
+        type: "mailing"
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**businessReference:** `string` — The business reference (`businessUuid`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.LinkBusinessPersonRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BusinessesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.businesses.<a href="/src/api/resources/businesses/client/Client.ts">getBusinessPerson</a>(businessReference, personReference) -> Payabli.BusinessPersonEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a single business-person link by the person's reference.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.businesses.getBusinessPerson("019fed1a-3d6e-75d3-a81e-cba3874b0a55", "01a0014d-ce1a-7110-9bac-c4c59647a88d");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**businessReference:** `string` — The business reference (`businessUuid`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**personReference:** `string` — The person reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BusinessesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.businesses.<a href="/src/api/resources/businesses/client/Client.ts">unlinkBusinessPerson</a>(businessReference, personReference) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Removes the link between a person and a business. The person record itself isn't deleted.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.businesses.unlinkBusinessPerson("019fed1a-3d6e-75d3-a81e-cba3874b0a55", "01a0014d-ce1a-7110-9bac-c4c59647a88d");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**businessReference:** `string` — The business reference (`businessUuid`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**personReference:** `string` — The person reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BusinessesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.businesses.<a href="/src/api/resources/businesses/client/Client.ts">updateBusinessPerson</a>(businessReference, personReference, { ...params }) -> Payabli.BusinessPersonEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Applies a partial update to a business-person link. Send only the fields you want to change; omitted fields are kept.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.businesses.updateBusinessPerson("019fed1a-3d6e-75d3-a81e-cba3874b0a55", "01a0014d-ce1a-7110-9bac-c4c59647a88d", {
+    primaryEmail: "updated.contact@example.com",
+    isPrimaryController: true
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**businessReference:** `string` — The business reference (`businessUuid`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**personReference:** `string` — The person reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.UpdateBusinessPersonRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BusinessesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## People
+<details><summary><code>client.people.<a href="/src/api/resources/people/client/Client.ts">listPeople</a>({ ...params }) -> Payabli.ListPeopleEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists people with optional filtering and pagination.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.people.listPeople({
+    limit: 1,
+    page: 1
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Payabli.ListPeoplePeopleRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PeopleClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.people.<a href="/src/api/resources/people/client/Client.ts">createPerson</a>({ ...params }) -> Payabli.PersonDetailEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a person, an individual associated with a business such as an
+owner, director, or signer. Include a `businessRelationship` object to
+link the person to a business on create; the business reference, role
+(`personType`), and `ownershipPercentage` go inside that object.
+
+A person's job `title` and whether they're the signer (`isSigner`) also
+belong to the business link, so send them inside `businessRelationship`.
+A top-level `title` returns a `400` with the message
+`title moved into the businessRelationship object; send them there instead of at the top level.`
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.people.createPerson({
+    firstName: "Marcus",
+    middleName: "James",
+    lastName: "Delgado",
+    primaryEmail: "marcus.delgado@example.com",
+    secondaryEmail: "m.delgado@example.net",
+    primaryPhoneNumber: "3055551212",
+    secondaryPhoneNumber: "3055559876",
+    dateOfBirth: "1985-03-14",
+    ssn: "412-55-9021",
+    nationality: "US",
+    driversLicenseNumber: "D1234567",
+    driversLicenseState: "FL",
+    externalId: "person-001",
+    customData: {
+        "department": "finance"
+    },
+    addresses: [{
+            addressLine1: "123 Main Street",
+            addressLine2: "Suite 400",
+            cityLocality: "Miami",
+            stateProvince: "FL",
+            postalCode: "33101",
+            country: "US",
+            type: "legal"
+        }],
+    identificationDocuments: [{
+            type: "passport",
+            number: "X1234567",
+            issuingCountry: "US",
+            expirationDate: "2030-06-30"
+        }],
+    businessRelationship: {
+        businessReference: "019fed1a-3d6e-75d3-a81e-cba3874b0a55",
+        personType: "Owner",
+        ownershipPercentage: 100,
+        isPrimaryController: true,
+        isSigner: true,
+        title: "CEO",
+        primaryEmail: "contact@example.com",
+        secondaryEmail: "contact.alt@example.net",
+        primaryPhoneNumber: "3055551212",
+        secondaryPhoneNumber: "3055559876",
+        billingAddress: {
+            addressLine1: "123 Main Street",
+            cityLocality: "Miami",
+            stateProvince: "FL",
+            postalCode: "33101",
+            country: "US",
+            type: "billing"
+        },
+        mailingAddress: {
+            addressLine1: "456 Oak Avenue",
+            cityLocality: "Miami",
+            stateProvince: "FL",
+            postalCode: "33102",
+            country: "US",
+            type: "mailing"
+        }
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Payabli.CreatePersonRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PeopleClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.people.<a href="/src/api/resources/people/client/Client.ts">getPerson</a>(personReference) -> Payabli.PersonDetailEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a person by reference. Sensitive fields such as `ssn` are masked.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.people.getPerson("01a0014d-ce1a-7110-9bac-c4c59647a88d");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**personReference:** `string` — The person reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PeopleClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.people.<a href="/src/api/resources/people/client/Client.ts">updatePerson</a>(personReference, { ...params }) -> Payabli.PersonUpdatedEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Applies a partial update to a person. Send only the fields you want to change.
+
+A person's job title belongs to their business link, not the person. Sending `title` in any form, including `null`, returns a `400` with the message `title moved to the business relationship; update it with PATCH /api/v2/businesses/{businessReference}/people/{personReference}.`
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.people.updatePerson("01a0014d-ce1a-7110-9bac-c4c59647a88d", {
+    primaryPhoneNumber: "3055550199"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**personReference:** `string` — The person reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.UpdatePersonRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PeopleClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.people.<a href="/src/api/resources/people/client/Client.ts">getPersonUnmasked</a>(personReference) -> Payabli.PersonDetailEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a person by reference with sensitive fields unmasked.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.people.getPersonUnmasked("01a0014d-ce1a-7110-9bac-c4c59647a88d");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**personReference:** `string` — The person reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PeopleClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.people.<a href="/src/api/resources/people/client/Client.ts">searchPeople</a>({ ...params }) -> Payabli.PeopleSearchEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Searches for people by identity attributes during boarding. The search
+covers every business in your organization, so use it to find a person
+before you create them again. To read the people already on a
+paypoint's business, use a standard `GET` instead.
+Provide at least one of `firstName` or `lastName`. Each result has a
+`matchScore` showing how closely it matches, and an external identity
+vendor can enrich the results. Each result's `dateOfBirth` is masked.
+To get the full value, use the unmasked search.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.people.searchPeople({
+    entry: "8cfec329267",
+    orgId: 123,
+    "firstName": "Marcus",
+    "lastName": "Delgado"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Payabli.SearchPeopleRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PeopleClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.people.<a href="/src/api/resources/people/client/Client.ts">searchPeopleUnmasked</a>({ ...params }) -> Payabli.PeopleSearchEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Searches for people by identity attributes during boarding, and returns
+each result's `dateOfBirth` unmasked. The query parameters, request
+body, and other response fields match the standard people search.
+Provide at least one of `firstName` or `lastName`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.people.searchPeopleUnmasked({
+    entry: "8cfec329267",
+    orgId: 123,
+    "firstName": "Marcus",
+    "lastName": "Delgado"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Payabli.SearchPeopleUnmaskedRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PeopleClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Paypoints
+<details><summary><code>client.paypoints.<a href="/src/api/resources/paypoints/client/Client.ts">listPaypoints</a>({ ...params }) -> Payabli.ListPaypointsEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists paypoints with optional filtering and pagination.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.paypoints.listPaypoints({
+    limit: 1,
+    page: 1
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Payabli.ListPaypointsPaypointsRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PaypointsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.paypoints.<a href="/src/api/resources/paypoints/client/Client.ts">createPaypoint</a>({ ...params }) -> Payabli.PaypointCreatedEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a paypoint. New paypoints start in `pending`. Provide exactly
+one of `businessReference` (an existing business) or `business` (to
+create the business inline).
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.paypoints.createPaypoint({
+    businessReference: "019fed1a-3d6e-75d3-a81e-cba3874b0a55",
+    paypointType: "merchant",
+    doingBusinessAs: "Rose Gardens",
+    description: "Boutique flower shop",
+    website: "https://example.com",
+    customerServiceEmail: "support@example.com",
+    customerServicePhone: "3055551212",
+    timezone: "America/New_York"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Payabli.CreatePaypointPaypointsRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PaypointsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.paypoints.<a href="/src/api/resources/paypoints/client/Client.ts">getPaypoint</a>(paypointReference) -> Payabli.PaypointDetailEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a paypoint by reference.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.paypoints.getPaypoint("019ff064-c690-7679-a73e-688418aadc7c");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**paypointReference:** `string` — The paypoint reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PaypointsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.paypoints.<a href="/src/api/resources/paypoints/client/Client.ts">updatePaypoint</a>(paypointReference, { ...params }) -> Payabli.PaypointUpdatedEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Applies a partial update to a paypoint. Send only the fields you want to change.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.paypoints.updatePaypoint("019ff064-c690-7679-a73e-688418aadc7c", {
+    description: "Updated description"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**paypointReference:** `string` — The paypoint reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.UpdatePaypointRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PaypointsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Payment methods
+<details><summary><code>client.paymentMethods.<a href="/src/api/resources/paymentMethods/client/Client.ts">listPaymentMethods</a>({ ...params }) -> Payabli.ListPaymentMethodsEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists payment methods with optional filtering and pagination.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.paymentMethods.listPaymentMethods({
+    limit: 1,
+    page: 1
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Payabli.ListPaymentMethodsPaymentMethodsRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PaymentMethodsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.paymentMethods.<a href="/src/api/resources/paymentMethods/client/Client.ts">createPaymentMethods</a>({ ...params }) -> Payabli.PaymentMethodsCreatedEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates one or more payment methods for an entity in a single call.
+Set each payment method's `accountOwner` to the entity it belongs to.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.paymentMethods.createPaymentMethods({
+    data: [{
+            type: "bank_account",
+            accountOwner: "019fed1a-3d6e-75d3-a81e-cba3874b0a55",
+            ownerType: "business",
+            accountType: "checking",
+            accountNumber: "123456789",
+            routingNumber: "021000021",
+            nickname: "Operating account",
+            financialInstitution: "Bank of Example",
+            usage: ["deposits", "billing"]
+        }]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Payabli.CreatePaymentMethodsRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PaymentMethodsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.paymentMethods.<a href="/src/api/resources/paymentMethods/client/Client.ts">getPaymentMethod</a>(paymentMethodReference) -> Payabli.PaymentMethodDetailEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a payment method by reference. Sensitive fields such as the account and routing numbers are masked.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.paymentMethods.getPaymentMethod("019ff142-454b-7721-96a3-c8628b9d568f");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**paymentMethodReference:** `string` — The payment method reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PaymentMethodsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.paymentMethods.<a href="/src/api/resources/paymentMethods/client/Client.ts">deactivatePaymentMethod</a>(paymentMethodReference) -> Payabli.PaymentMethodDeactivatedEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deactivates a payment method. This is a soft delete: the payment
+method moves to `INACTIVE` and the record is kept.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.paymentMethods.deactivatePaymentMethod("019ff142-454b-7721-96a3-c8628b9d568f");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**paymentMethodReference:** `string` — The payment method reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PaymentMethodsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.paymentMethods.<a href="/src/api/resources/paymentMethods/client/Client.ts">updatePaymentMethod</a>(paymentMethodReference, { ...params }) -> Payabli.PaymentMethodUpdatedEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Applies a partial update to a payment method. Send only the fields you
+want to change. Only payment methods in `PENDING` status can be updated.
+Once a payment method is active, change it through the bank account
+change process instead.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.paymentMethods.updatePaymentMethod("019ff142-454b-7721-96a3-c8628b9d568f", {
+    nickname: "Primary operating account",
+    usage: ["deposits", "billing"]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**paymentMethodReference:** `string` — The payment method reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.UpdatePaymentMethodRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PaymentMethodsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Boarding templates
+<details><summary><code>client.boardingTemplates.<a href="/src/api/resources/boardingTemplates/client/Client.ts">listTemplates</a>({ ...params }) -> Payabli.ListTemplatesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the boarding templates an organization owns, plus templates
+inherited from ancestor organizations. Scope the listing with the
+required `orgId` query parameter. You can filter by `status`, `name`,
+`slug`, `orgName`, and `inherited`, and page through results.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.boardingTemplates.listTemplates({
+    orgId: 123
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Payabli.ListTemplatesBoardingTemplatesRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BoardingTemplatesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.boardingTemplates.<a href="/src/api/resources/boardingTemplates/client/Client.ts">getTemplate</a>(uuid) -> Payabli.Template</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a boarding template by UUID, including its current content version.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.boardingTemplates.getTemplate("019ff129-d393-7761-9a31-e5afe85b4081");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**uuid:** `string` — The template's UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BoardingTemplatesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.boardingTemplates.<a href="/src/api/resources/boardingTemplates/client/Client.ts">archiveTemplate</a>(uuid) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Archives a boarding template by UUID. Archiving is a soft delete: the
+template stays readable with `status: archived`, so archiving an
+already-archived template returns `409`, not another success. Unknown
+templates return `404`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.boardingTemplates.archiveTemplate("019ff129-d393-7761-9a31-e5afe85b4081");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**uuid:** `string` — The template's UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BoardingTemplatesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.boardingTemplates.<a href="/src/api/resources/boardingTemplates/client/Client.ts">getTemplateVersion</a>(uuid, versionUuid) -> Payabli.TemplateVersion</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a specific immutable content version of a template.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.boardingTemplates.getTemplateVersion("019ff129-d393-7761-9a31-e5afe85b4081", "019ff129-d396-74c4-86da-ae3d082d7ef9");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**uuid:** `string` — The template's UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**versionUuid:** `string` — The version's UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BoardingTemplatesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Applications
+<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">listApplications</a>({ ...params }) -> Payabli.ListApplicationsEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists boarding applications with pagination.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.applications.listApplications();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Payabli.ListApplicationsApplicationsRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ApplicationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">createApplication</a>({ ...params }) -> Payabli.ApplicationEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a boarding application for a business. The business must
+already have a paypoint. New applications start in `draft`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.applications.createApplication({
+    businessReference: "019fed1a-3d6e-75d3-a81e-cba3874b0a55",
+    externalId: "APP-2025-0417",
+    tags: ["priority"]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Payabli.CreateApplicationRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ApplicationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">getApplication</a>(requestsReference) -> Payabli.ApplicationEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a boarding application by reference.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.applications.getApplication("3f3caa7b-bdfe-4bf1-814b-30d54859247c");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestsReference:** `string` — The application reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ApplicationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">updateApplication</a>(requestsReference, { ...params }) -> Payabli.ApplicationEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Applies a partial update to a boarding application. Send only the fields you want to change.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.applications.updateApplication("3f3caa7b-bdfe-4bf1-814b-30d54859247c", {
+    externalId: "APP-2025-0417-REV2",
+    tags: ["priority", "expedited"]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestsReference:** `string` — The application reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.UpdateApplicationRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ApplicationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">validateApplication</a>(requestsReference) -> Payabli.ValidationResultEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Checks whether the records linked to an application (the business, its people, and its payment methods) include everything the application's requested services need. The response lists any missing or invalid fields by section. Validation doesn't change the application, and it doesn't return a validation token. The request has no body.
+
+One owner on the application must be the signer, flagged with `isSigner` on their business link. If no one is flagged, the `people` section returns a `missingFields` entry with `field` set to `people.isSigner`, `label` set to `Signer`, and `reason` set to `required — choose the person who signs the application`. The signer rule isn't reported when the application has no people.
+
+The `people` section also checks ownership. At least one person must be the primary controller, flagged with `isPrimaryController`. If no one is, the entry has `field` set to `people.isPrimaryController`, `label` set to `Primary Controller`, and `reason` set to `required — at least one principal must be designated`. Unless the business's `legalStructure` is `government` or `non-profit`, at least one owner must have an `ownershipPercentage` of 25 or more. If no one does, the entry has `field` set to `people.ownershipPercentage`, `label` set to `Qualifying Owner`, and `reason` set to `at least one principal must have an ownership stake of 25% or more`.
+
+Validation also reports required documents that have nothing uploaded. See [List application document requirements](/developers/api-reference/applications/list-application-document-requirements). The bank statement requirement appears in the `business` section, with `field` set to `documents.bankStatement`. A person document appears in the `people` section, with `field` set to `people.{personReference}.` followed by the requirement's `fieldPath`, such as `people.01a0014d-ce1a-7110-9bac-c4c59647a88d.person.documents.w9`. Submit doesn't enforce document requirements.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.applications.validateApplication("3f3caa7b-bdfe-4bf1-814b-30d54859247c");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestsReference:** `string` — The application reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ApplicationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">submitApplication</a>(requestsReference, { ...params }) -> Payabli.TransitionResultEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Submits a draft application for review. Your integration (the applicant) calls this after the business, its people, payment methods, and services are in place. Verification then runs automatically.
+
+The application must have a signer: an owner flagged with `isSigner` on their business link, or one you name in `signer.personReference`. Payabli records the signer's identity from their person record and business link, so update those before you submit. The `signer` object carries the signature details.
+
+If the application has no signer, the request fails with `422` and the error `SIGNER_REQUIRED`. If `signer.personReference` names a person who isn't an owner, the request fails with `422` and the error `SIGNER_NOT_OWNER`. If the application isn't a draft, the request fails with `409` and the error `BIZ_004`, before any signer check. If `signer.reportedSignerIp` isn't a single valid IPv4 or IPv6 address, the request fails with `400` and the error `VALIDATION_ERROR`, and the application isn't submitted.
+
+Submit doesn't check every rule that [validate](/developers/api-reference/applications/validate-an-application) reports, such as the primary controller and ownership rules. Validate the application and resolve its missing fields before you submit.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.applications.submitApplication("3f3caa7b-bdfe-4bf1-814b-30d54859247c", {
+    signer: {
+        personReference: "01a0014d-ce1a-7110-9bac-c4c59647a88d",
+        signature: "Marcus J Delgado",
+        signatureType: "type",
+        acceptance: true,
+        pciAttestation: true,
+        reportedSignerIp: "203.0.113.7"
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestsReference:** `string` — The application reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.SubmitApplicationRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ApplicationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">provideDocuments</a>(requestsReference) -> Payabli.TransitionResultEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Marks the documents that Payabli requested during review as provided, when the application is in `pendingdocuments`. It returns the application to review. The request has no body.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.applications.provideDocuments("3f3caa7b-bdfe-4bf1-814b-30d54859247c");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestsReference:** `string` — The application reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ApplicationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">provideResponse</a>(requestsReference) -> Payabli.TransitionResultEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Marks the information that Payabli requested during review as provided, when the application is in `pendingresponse`. It returns the application to review. The request has no body.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.applications.provideResponse("3f3caa7b-bdfe-4bf1-814b-30d54859247c");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestsReference:** `string` — The application reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ApplicationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">withdrawApplication</a>(requestsReference, { ...params }) -> Payabli.TransitionResultEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Withdraws a boarding application. The response returns the application's
+new status and the actions now allowed on it.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.applications.withdrawApplication("3f3caa7b-bdfe-4bf1-814b-30d54859247c", {
+    reason: "Duplicate application"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestsReference:** `string` — The application reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.WithdrawApplicationRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ApplicationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">getApplicationHistory</a>(requestsReference) -> Payabli.StatusHistoryEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves the status transition history of a boarding application, oldest first. History records changes only. An approved application that fails enablement the same way on every attempt doesn't add entries, so use [enablement](/developers/api-reference/applications/get-application-enablement-progress) to follow that progress.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.applications.getApplicationHistory("3f3caa7b-bdfe-4bf1-814b-30d54859247c");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestsReference:** `string` — The application reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ApplicationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">getApplicationEnablement</a>(requestsReference) -> Payabli.EnablementEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves the progress of setting up an approved application's services with their processors. An application's status stays `approved` or `autoapproved` while this runs, and it moves to `activated` after every requested service is set up. Use this endpoint to see why an approved merchant isn't live yet.
+
+Enablement doesn't send webhooks, so poll this endpoint to follow it. Until enablement starts, `state` and the other progress fields are `null`, and `services` is empty. That includes applications that are in `draft`, withdrawn, or in `error`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.applications.getApplicationEnablement("3f3caa7b-bdfe-4bf1-814b-30d54859247c");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestsReference:** `string` — The application reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ApplicationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">listApplicationDocumentRequirements</a>(requestsReference) -> Payabli.DocumentRequirementListEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the documents an application asks for, from its template and from Payabli business rules. For example, a business with an annual revenue of $1,000,000 or more needs bank statements. Each requirement gives the `fieldPath` and `subject` to send when you upload, the formats it accepts, how many documents it takes, and how many are uploaded so far.
+
+A person requirement appears once for each owner of the business, with that owner's `personReference`. The list is empty when the application asks for no documents.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.applications.listApplicationDocumentRequirements("3f3caa7b-bdfe-4bf1-814b-30d54859247c");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestsReference:** `string` — The application reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ApplicationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">listApplicationDocuments</a>(requestsReference) -> Payabli.ApplicationDocumentListEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the documents uploaded to an application. The list is empty when none are uploaded.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.applications.listApplicationDocuments("3f3caa7b-bdfe-4bf1-814b-30d54859247c");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestsReference:** `string` — The application reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ApplicationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">uploadApplicationDocument</a>(requestsReference, { ...params }) -> Payabli.ApplicationDocumentEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Uploads one document to an application as multipart form data. [List the application's document requirements](/developers/api-reference/applications/list-application-document-requirements) first. Send the requirement's `fieldPath`, one of its `subjectTypes` as `subject`, and, for a person requirement, its `personReference`.
+
+The file can be up to 10 MB, in a format the requirement accepts. Payabli checks the file's content, not only its name. Each requirement takes up to `maxUploads` documents.
+
+Uploading doesn't change the application's status. When underwriting requests documents, upload them, then call [provide documents](/developers/api-reference/applications/provide-application-documents) to return the application to review.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.applications.uploadApplicationDocument("3f3caa7b-bdfe-4bf1-814b-30d54859247c", {
+    file: fs.createReadStream("/path/to/your/file"),
+    fieldPath: "documents.bankStatement",
+    subject: "business"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestsReference:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.UploadApplicationDocumentRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ApplicationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">deleteApplicationDocument</a>(requestsReference, documentReference) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Removes a document you uploaded from an application. Deleting doesn't change the application's status. A deleted document no longer counts toward its requirement, so you can upload a replacement. Deleting a document that's already deleted returns `404`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.applications.deleteApplicationDocument("3f3caa7b-bdfe-4bf1-814b-30d54859247c", "019ff1d7-6e14-7c8b-a2f5-91d3b7e04c62");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestsReference:** `string` — The application reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**documentReference:** `string` — The document reference, from the upload response or [List application documents](/developers/api-reference/applications/list-application-documents).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ApplicationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Boarding
 <details><summary><code>client.boarding.<a href="/src/api/resources/boarding/client/Client.ts">addApplication</a>({ ...params }) -> Payabli.PayabliApiResponse00Responsedatanonobject</code></summary>
 <dl>
@@ -11198,6 +14853,11 @@ await client.lineItem.listLineItems("8cfec329267", {
 
 <dl>
 <dd>
+
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Use [Create an application](/developers/api-reference/applications/create-an-application) instead. One legacy call becomes several intelligent boarding calls, one for each record. See [Map legacy calls to new endpoints](/guides/pay-ops-developer-boarding-legacy-migrate#map-legacy-calls-to-new-endpoints).
+</Warning>
+
 
 Creates a boarding application in an organization. This endpoint requires an application API token.
 </dd>
@@ -11383,6 +15043,11 @@ await client.boarding.addApplication({
 <dl>
 <dd>
 
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Update the record that holds the data instead, such as [the business](/developers/api-reference/businesses/update-a-business) or [a person](/developers/api-reference/people/update-a-person). Use [Update an application](/developers/api-reference/applications/update-an-application) only for the application's own fields.
+</Warning>
+
+
 Updates a boarding application by ID. This endpoint requires an application API token.
 </dd>
 </dl>
@@ -11454,6 +15119,11 @@ await client.boarding.updateApplication(352, {});
 <dl>
 <dd>
 
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Use [Withdraw an application](/developers/api-reference/applications/withdraw-an-application) instead.
+</Warning>
+
+
 Deletes a boarding application by ID.
 </dd>
 </dl>
@@ -11517,6 +15187,11 @@ await client.boarding.deleteApplication(352);
 <dl>
 <dd>
 
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Use [Get an application](/developers/api-reference/applications/get-an-application) instead.
+</Warning>
+
+
 Retrieves the details for a boarding application by ID.
 </dd>
 </dl>
@@ -11579,6 +15254,11 @@ await client.boarding.getApplication(352);
 
 <dl>
 <dd>
+
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Intelligent boarding has no matching endpoint. Each application has its own hosted form link instead. See [Send merchants a boarding link](/guides/pay-ops-developer-boarding-legacy-migrate#send-merchants-a-boarding-link).
+</Warning>
+
 
 Gets a boarding application by authentication information. This endpoint requires an `application` API token.
 </dd>
@@ -11654,6 +15334,11 @@ await client.boarding.getApplicationByAuth("17E", {
 <dl>
 <dd>
 
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Intelligent boarding has no matching endpoint. Each application has its own hosted form link instead. See [Send merchants a boarding link](/guides/pay-ops-developer-boarding-legacy-migrate#send-merchants-a-boarding-link).
+</Warning>
+
+
 Retrieves details for a boarding link, by ID.
 </dd>
 </dl>
@@ -11717,6 +15402,11 @@ await client.boarding.getByIdLinkApplication(91);
 <dl>
 <dd>
 
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Intelligent boarding has no matching endpoint. Each application has its own hosted form link instead. See [Send merchants a boarding link](/guides/pay-ops-developer-boarding-legacy-migrate#send-merchants-a-boarding-link).
+</Warning>
+
+
 Get details for a boarding link using the boarding template ID. This endpoint requires an application API token.
 </dd>
 </dl>
@@ -11779,6 +15469,11 @@ await client.boarding.getByTemplateIdLinkApplication(80);
 
 <dl>
 <dd>
+
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Intelligent boarding has no matching endpoint. Each application has its own hosted form link instead. See [Send merchants a boarding link](/guides/pay-ops-developer-boarding-legacy-migrate#send-merchants-a-boarding-link).
+</Warning>
+
 
 Retrieves a link and the verification code used to log into an existing boarding application. You can also use this endpoint to send a link and referenceId for an existing boarding application to an email address. The recipient can use the referenceId and email address to access and edit the application.
 </dd>
@@ -11859,6 +15554,11 @@ await client.boarding.getExternalApplication(352, "mail2");
 <dl>
 <dd>
 
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Intelligent boarding has no matching endpoint. Each application has its own hosted form link instead. See [Send merchants a boarding link](/guides/pay-ops-developer-boarding-legacy-migrate#send-merchants-a-boarding-link).
+</Warning>
+
+
 Retrieves the details for a boarding link, by reference name. This endpoint requires an application API token.
 </dd>
 </dl>
@@ -11921,6 +15621,11 @@ await client.boarding.getLinkApplication("myorgaccountname-00091");
 
 <dl>
 <dd>
+
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Use [List applications](/developers/api-reference/applications/list-applications) instead.
+</Warning>
+
 
 Returns a list of boarding applications for an organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 </dd>
@@ -11997,6 +15702,11 @@ await client.boarding.listApplications(123, {
 <dl>
 <dd>
 
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Intelligent boarding has no matching endpoint. Each application has its own hosted form link instead. See [Send merchants a boarding link](/guides/pay-ops-developer-boarding-legacy-migrate#send-merchants-a-boarding-link).
+</Warning>
+
+
 Return a list of boarding links for an organization. Use filters to limit results.
 </dd>
 </dl>
@@ -12072,6 +15782,11 @@ await client.boarding.listBoardingLinks(123, {
 <dl>
 <dd>
 
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Use [Create an application](/developers/api-reference/applications/create-an-application) for a paypoint that's already boarded instead. See [Request more services with the API](/guides/pay-ops-developer-boarding-add-services).
+</Warning>
+
+
 Creates a new boarding application linked to an existing paypoint as part of the multi-product boarding flow. Use this endpoint to add new services to a paypoint without creating a duplicate record. The system copies eligible business, contact, banking, and address data from the paypoint to the new application based on 1:1 field matching. The merchant only needs to provide fields that are specific to the new service. See the [Multi-product boarding](/guides/pay-ops-developer-boarding-multi-product) guide for the full flow.
 </dd>
 </dl>
@@ -12141,6 +15856,11 @@ await client.boarding.addServiceToPaypointFromApp({
 <dl>
 <dd>
 
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Use [List applications](/developers/api-reference/applications/list-applications) instead. It doesn't filter by paypoint.
+</Warning>
+
+
 Returns all boarding applications associated with a specific paypoint, including those created through the multi-product boarding flow. Use this endpoint to track underwriting progress across multiple service additions or to build reporting views. See the [Multi-product boarding](/guides/pay-ops-developer-boarding-multi-product) guide for the full flow.
 </dd>
 </dl>
@@ -12205,6 +15925,11 @@ await client.boarding.getApplicationsByPaypointId(3040);
 <dl>
 <dd>
 
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Use [Archive a template](/developers/api-reference/boarding-templates/archive-a-template) instead.
+</Warning>
+
+
 Deletes a template by ID.
 </dd>
 </dl>
@@ -12267,6 +15992,11 @@ await client.templates.deleteTemplate(80);
 
 <dl>
 <dd>
+
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Intelligent boarding has no matching endpoint. Each application has its own hosted form link instead. See [Send merchants a boarding link](/guides/pay-ops-developer-boarding-legacy-migrate#send-merchants-a-boarding-link).
+</Warning>
+
 
 Generates a boarding link from a boarding template.
 </dd>
@@ -12339,6 +16069,11 @@ await client.templates.getlinkTemplate(80, true);
 <dl>
 <dd>
 
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Use [Get a template](/developers/api-reference/boarding-templates/get-a-template) instead.
+</Warning>
+
+
 Retrieves a boarding template's details by ID.
 </dd>
 </dl>
@@ -12401,6 +16136,11 @@ await client.templates.getTemplate(80);
 
 <dl>
 <dd>
+
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Use [List templates](/developers/api-reference/boarding-templates/list-templates) instead.
+</Warning>
+
 
 Retrieves a list of boarding templates for an organization. Use filters to limit results. You can't make a request that includes filters from the API console in the documentation. The response won't be filtered. Instead, copy the request, remove `parameters=` and run the request in a different client.
 </dd>
@@ -12479,7 +16219,7 @@ await client.templates.listTemplates(123, {
 <dd>
 
 <Warning>
-  This endpoint is deprecated. To export this data, use [List all apps for org](/developers/api-reference/boarding/get-list-of-applications-for-an-organization) with the `exportFormat` query parameter instead.
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Use [List applications](/developers/api-reference/applications/list-applications) instead. It doesn't export files.
 </Warning>
 
 Export a list of boarding applications for an organization. Use filters to limit results.
