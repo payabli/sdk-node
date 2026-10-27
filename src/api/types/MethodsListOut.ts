@@ -8,6 +8,10 @@ export interface MethodsListOut {
     ach?: boolean | undefined;
     /** When `true`, physical check is offered as a payout method. */
     check?: boolean | undefined;
+    /** When `true`, Real-Time Payments (RTP) is offered as a payout method. */
+    rtp?: boolean | undefined;
     /** When `true`, virtual card (vCard) is offered as a payout method. */
     vcard?: boolean | undefined;
+    /** When `true`, wire transfer is offered as a payout method. */
+    wire?: boolean | undefined;
 }

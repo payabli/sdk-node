@@ -7,8 +7,8 @@ export interface PayabliCredentialsPascal {
     Service?: string | undefined;
     /** The payment mode supported by this service. `0` for one-time payments, `1` for recurring payments, `2` for both. */
     Mode?: number | undefined;
-    MinTicket?: Payabli.MinTicket | undefined;
-    MaxTicket?: Payabli.MaxTicket | undefined;
+    Minticket?: Payabli.MinTicket | undefined;
+    Maxticket?: Payabli.MaxTicket | undefined;
     CfeeFix?: number | undefined;
     CfeeFloat?: number | undefined;
     CfeeMin?: number | undefined;

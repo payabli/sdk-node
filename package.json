@@ -1,6 +1,6 @@
 {
     "name": "@payabli/sdk-node",
-    "version": "1.0.22",
+    "version": "1.0.23",
     "private": false,
     "repository": {
         "type": "git",
@@ -274,6 +274,17 @@
                 "default": "./dist/cjs/api/resources/paypoints/exports.js"
             },
             "default": "./dist/cjs/api/resources/paypoints/exports.js"
+        },
+        "./organizations": {
+            "import": {
+                "types": "./dist/esm/api/resources/organizations/exports.d.mts",
+                "default": "./dist/esm/api/resources/organizations/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/organizations/exports.d.ts",
+                "default": "./dist/cjs/api/resources/organizations/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/organizations/exports.js"
         },
         "./paymentMethods": {
             "import": {

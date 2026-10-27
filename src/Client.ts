@@ -26,6 +26,7 @@ import { NotificationClient } from "./api/resources/notification/client/Client.j
 import { NotificationlogsClient } from "./api/resources/notificationlogs/client/Client.js";
 import { OcrClient } from "./api/resources/ocr/client/Client.js";
 import { OrganizationClient } from "./api/resources/organization/client/Client.js";
+import { OrganizationsClient } from "./api/resources/organizations/client/Client.js";
 import { PaymentLinkClient } from "./api/resources/paymentLink/client/Client.js";
 import { PaymentMethodDomainClient } from "./api/resources/paymentMethodDomain/client/Client.js";
 import { PaymentMethodsClient } from "./api/resources/paymentMethods/client/Client.js";
@@ -78,6 +79,7 @@ export class PayabliClient {
     protected _businesses: BusinessesClient | undefined;
     protected _people: PeopleClient | undefined;
     protected _paypoints: PaypointsClient | undefined;
+    protected _organizations: OrganizationsClient | undefined;
     protected _paymentMethods: PaymentMethodsClient | undefined;
     protected _boardingTemplates: BoardingTemplatesClient | undefined;
     protected _applications: ApplicationsClient | undefined;
@@ -193,6 +195,10 @@ export class PayabliClient {
 
     public get paypoints(): PaypointsClient {
         return (this._paypoints ??= new PaypointsClient(this._options));
+    }
+
+    public get organizations(): OrganizationsClient {
+        return (this._organizations ??= new OrganizationsClient(this._options));
     }
 
     public get paymentMethods(): PaymentMethodsClient {

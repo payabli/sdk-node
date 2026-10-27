@@ -110,6 +110,24 @@ describe("PaypointsClient", () => {
             environment: server.baseUrl,
         });
 
+        const rawResponseBody = { key: "value" };
+
+        server.mockEndpoint().get("/v2/paypoints").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.paypoints.listPaypoints();
+        }).rejects.toThrow(Payabli.BadRequestError);
+    });
+
+    test("ListPaypoints (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new PayabliClient({
+            maxRetries: 0,
+            bearerAuth: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+            apiKeyAuth: { apiKey: "test" },
+            environment: server.baseUrl,
+        });
+
         const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server.mockEndpoint().get("/v2/paypoints").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
@@ -119,7 +137,7 @@ describe("PaypointsClient", () => {
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
 
-    test("ListPaypoints (4)", async () => {
+    test("ListPaypoints (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new PayabliClient({
             maxRetries: 0,

@@ -17,9 +17,6 @@ export declare namespace BoardingClient {
     export interface RequestOptions extends BaseRequestOptions {}
 }
 
-/**
- * The Boarding service handles merchant application and onboarding workflows for setting up new payment processing accounts. It manages the complete application lifecycle from submission through approval, supporting multiple processing types including Pay In, Managed Payout, and On-Demand Payout services. The service handles complex application data including business information, ownership details, banking setup, and service configuration. It supports resumable applications allowing merchants to save progress, document attachment management, and configurable boarding templates. The service includes boarding link generation for merchant self-service onboarding, application status tracking, and integration with underwriting workflows.
- */
 export class BoardingClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<BoardingClient.Options>;
 

@@ -13195,6 +13195,294 @@ await client.paypoints.updatePaypoint("019ff064-c690-7679-a73e-688418aadc7c", {
 </dl>
 </details>
 
+## Organizations
+<details><summary><code>client.organizations.<a href="/src/api/resources/organizations/client/Client.ts">listOrganizations</a>({ ...params }) -> Payabli.ListPaypointsEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists organizations with optional filtering and pagination. Only
+organizations are returned. Other paypoints never appear in this list.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.organizations.listOrganizations({
+    businessReference: "6e2b9d14-7a3c-4f58-b1e6-0c9d3a5f8e27"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Payabli.ListOrganizationsOrganizationsRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `OrganizationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.organizations.<a href="/src/api/resources/organizations/client/Client.ts">createOrganization</a>({ ...params }) -> Payabli.PaypointCreatedEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an organization. Provide exactly one of `business` (to create
+the business inline, recommended) or `businessReference` (an existing
+business). In intelligent boarding, an organization is a kind of paypoint, so the
+request takes the paypoint create fields except `paypointType`. Payabli
+sets the organization type itself. An organization isn't underwritten,
+so only the fields needed to create the records are required. New
+organizations start in `pending`. If you don't set
+`parentPaypointReference`, the organization nests under the
+organization your credential belongs to. Returns `409` if an
+organization with the same `externalId` already exists.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.organizations.createOrganization({
+    doingBusinessAs: "PropertyManager Pro",
+    description: "Property management software partner",
+    website: "https://example.com",
+    customerServicePhone: "3055551212",
+    customerServiceEmail: "support@example.com",
+    timezone: "America/New_York",
+    externalId: "pmp-org-001",
+    business: {
+        legalName: "PropertyManager Pro LLC",
+        legalStructure: "llc",
+        externalId: "pmp-biz-001"
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Payabli.CreateOrganizationOrganizationsRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `OrganizationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.organizations.<a href="/src/api/resources/organizations/client/Client.ts">getOrganization</a>(organizationReference) -> Payabli.PaypointDetailEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves an organization by reference.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.organizations.getOrganization("a8806f02-23b3-4f6d-bba3-42e1b94326ea");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**organizationReference:** `string` — The organization reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `OrganizationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.organizations.<a href="/src/api/resources/organizations/client/Client.ts">updateOrganization</a>(organizationReference, { ...params }) -> Payabli.PaypointUpdatedEnvelope</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Applies a partial update to an organization. Send only the fields you want to change. You can't change an organization's type. If you send `paypointType`, the request ignores it and doesn't return an error.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.organizations.updateOrganization("a8806f02-23b3-4f6d-bba3-42e1b94326ea", {
+    description: "Updated description"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**organizationReference:** `string` — The organization reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Payabli.UpdateOrganizationRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `OrganizationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Payment methods
 <details><summary><code>client.paymentMethods.<a href="/src/api/resources/paymentMethods/client/Client.ts">listPaymentMethods</a>({ ...params }) -> Payabli.ListPaymentMethodsEnvelope</code></summary>
 <dl>
@@ -18985,7 +19273,7 @@ await client.organization.deleteOrganization(123);
 </dl>
 </details>
 
-<details><summary><code>client.organization.<a href="/src/api/resources/organization/client/Client.ts">getBasicOrganization</a>(entry) -> Payabli.OrganizationQueryRecord</code></summary>
+<details><summary><code>client.organization.<a href="/src/api/resources/organization/client/Client.ts">getBasicOrganization</a>(entry) -> Payabli.GetBasicOrganizationResponse</code></summary>
 <dl>
 <dd>
 
@@ -19012,7 +19300,7 @@ Gets an organization's basic information by entry name (entrypoint identifier).
 <dd>
 
 ```typescript
-await client.organization.getBasicOrganization("8cfec329267");
+await client.organization.getBasicOrganization("pilgrim-planner");
 
 ```
 </dd>
@@ -19028,7 +19316,7 @@ await client.organization.getBasicOrganization("8cfec329267");
 <dl>
 <dd>
 
-**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
+**entry:** `string` — The organization's entry name (`OrgEntryName`).
     
 </dd>
 </dl>
@@ -19048,7 +19336,7 @@ await client.organization.getBasicOrganization("8cfec329267");
 </dl>
 </details>
 
-<details><summary><code>client.organization.<a href="/src/api/resources/organization/client/Client.ts">getBasicOrganizationById</a>(orgId) -> Payabli.OrganizationQueryRecord</code></summary>
+<details><summary><code>client.organization.<a href="/src/api/resources/organization/client/Client.ts">getBasicOrganizationById</a>(orgId) -> Payabli.GetBasicOrganizationResponse</code></summary>
 <dl>
 <dd>
 

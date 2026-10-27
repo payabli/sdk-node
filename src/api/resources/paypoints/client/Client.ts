@@ -32,6 +32,7 @@ export class PaypointsClient {
      * @param {Payabli.ListPaypointsPaypointsRequest} request
      * @param {PaypointsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
+     * @throws {@link Payabli.BadRequestError}
      * @throws {@link Payabli.UnauthorizedError}
      * @throws {@link Payabli.InternalServerError}
      * @throws {@link errors.PayabliError}
@@ -103,6 +104,8 @@ export class PaypointsClient {
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
+                case 400:
+                    throw new Payabli.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 401:
                     throw new Payabli.UnauthorizedError(
                         _response.error.body as Payabli.PayabliErrorBody,

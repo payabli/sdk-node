@@ -28,6 +28,8 @@ export interface PaypointSummaryResponse {
     customerServicePhone?: (string | null) | undefined;
     /** The customer service email address. */
     customerServiceEmail?: (string | null) | undefined;
+    /** Your own identifier for the paypoint. Omitted when you haven't set one. */
+    externalId?: string | undefined;
     /** The paypoint's entrypoint name, used as the `entry` value on endpoints that target the paypoint. */
     entryName: string;
     /** When the paypoint was created. */

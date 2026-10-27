@@ -3,31 +3,35 @@
 import type * as Payabli from "../index.js";
 
 export interface OrganizationQueryRecord {
-    services?: Payabli.OrganizationQueryRecordServicesItem[] | undefined;
-    billingInfo?: Payabli.Instrument | undefined;
-    contacts?: Payabli.ContactsField | undefined;
+    BillingInfo?: Payabli.InstrumentResponse | undefined;
+    /** List of contacts. */
+    Contacts?: Payabli.ContactsResponse[] | undefined;
     createdAt?: Payabli.CreatedAt | undefined;
-    hasBilling?: boolean | undefined;
-    hasResidual?: boolean | undefined;
+    HasBilling?: boolean | undefined;
+    HasResidual?: boolean | undefined;
     idOrg?: Payabli.Orgid | undefined;
     isRoot?: Payabli.IsRoot | undefined;
-    orgAddress?: Payabli.Orgaddress | undefined;
-    orgCity?: Payabli.Orgcity | undefined;
-    orgCountry?: Payabli.Orgcountry | undefined;
-    orgEntryName?: Payabli.Orgentryname | undefined;
-    orgId?: Payabli.Orgidstring | undefined;
-    orgLogo?: Payabli.FileContent | undefined;
-    orgName?: Payabli.Orgname | undefined;
-    orgParentId?: Payabli.OrgParentId | undefined;
-    orgParentName?: Payabli.OrgParentName | undefined;
-    orgState?: Payabli.Orgstate | undefined;
-    orgTimezone?: Payabli.Orgtimezone | undefined;
-    orgType?: Payabli.Orgtype | undefined;
-    orgWebsite?: Payabli.Orgwebsite | undefined;
-    orgZip?: Payabli.Orgzip | undefined;
+    OrgAddress?: Payabli.Orgaddress | undefined;
+    OrgCity?: Payabli.Orgcity | undefined;
+    OrgCountry?: Payabli.Orgcountry | undefined;
+    OrgEntryName?: Payabli.Orgentryname | undefined;
+    /** URL of the organization's favicon. */
+    OrgFavicon?: string | undefined;
+    OrgId?: Payabli.Orgidstring | undefined;
+    /** URL of the organization's logo. */
+    OrgLogo?: string | undefined;
+    OrgName?: Payabli.Orgname | undefined;
+    OrgParentId?: Payabli.OrgParentId | undefined;
+    OrgParentName?: Payabli.OrgParentName | undefined;
+    OrgState?: Payabli.Orgstate | undefined;
+    OrgTimezone?: Payabli.Orgtimezone | undefined;
+    OrgType?: Payabli.Orgtype | undefined;
+    OrgWebsite?: Payabli.Orgwebsite | undefined;
+    OrgZip?: Payabli.Orgzip | undefined;
     recipientEmailNotification?: Payabli.RecipientEmailNotification | undefined;
-    replyToEmail?: Payabli.ReplyToEmail | undefined;
+    ReplyToEmail?: Payabli.ReplyToEmail | undefined;
     resumable?: Payabli.Resumable | undefined;
+    Services?: Payabli.OrganizationQueryRecordServicesItem[] | undefined;
     summary?: Payabli.SummaryOrg | undefined;
     users?: Payabli.UserQueryRecord[] | undefined;
 }

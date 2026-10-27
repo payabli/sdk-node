@@ -356,7 +356,7 @@ export class OrganizationClient {
     /**
      * Gets an organization's basic information by entry name (entrypoint identifier).
      *
-     * @param {string} entry - The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
+     * @param {string} entry - The organization's entry name (`OrgEntryName`).
      * @param {OrganizationClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Payabli.BadRequestError}
@@ -367,19 +367,19 @@ export class OrganizationClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.organization.getBasicOrganization("8cfec329267")
+     *     await client.organization.getBasicOrganization("pilgrim-planner")
      */
     public getBasicOrganization(
         entry: string,
         requestOptions?: OrganizationClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.OrganizationQueryRecord> {
+    ): core.HttpResponsePromise<Payabli.GetBasicOrganizationResponse> {
         return core.HttpResponsePromise.fromPromise(this.__getBasicOrganization(entry, requestOptions));
     }
 
     private async __getBasicOrganization(
         entry: string,
         requestOptions?: OrganizationClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.OrganizationQueryRecord>> {
+    ): Promise<core.WithRawResponse<Payabli.GetBasicOrganizationResponse>> {
         const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({
             endpointMetadata: _metadata,
@@ -407,7 +407,7 @@ export class OrganizationClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Payabli.OrganizationQueryRecord, rawResponse: _response.rawResponse };
+            return { data: _response.body as Payabli.GetBasicOrganizationResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -457,14 +457,14 @@ export class OrganizationClient {
     public getBasicOrganizationById(
         orgId: number,
         requestOptions?: OrganizationClient.RequestOptions,
-    ): core.HttpResponsePromise<Payabli.OrganizationQueryRecord> {
+    ): core.HttpResponsePromise<Payabli.GetBasicOrganizationResponse> {
         return core.HttpResponsePromise.fromPromise(this.__getBasicOrganizationById(orgId, requestOptions));
     }
 
     private async __getBasicOrganizationById(
         orgId: number,
         requestOptions?: OrganizationClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Payabli.OrganizationQueryRecord>> {
+    ): Promise<core.WithRawResponse<Payabli.GetBasicOrganizationResponse>> {
         const _metadata: core.EndpointMetadata = { security: [{ BearerAuth: [] }, { APIKeyAuth: [] }] };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest({
             endpointMetadata: _metadata,
@@ -492,7 +492,7 @@ export class OrganizationClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as Payabli.OrganizationQueryRecord, rawResponse: _response.rawResponse };
+            return { data: _response.body as Payabli.GetBasicOrganizationResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
