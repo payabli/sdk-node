@@ -37,7 +37,7 @@ describe("OrganizationClient", () => {
             orgCity: "Johnson City",
             orgCountry: "US",
             orgEntryName: "pilgrim-planner",
-            orgId: "123",
+            orgId: "900123",
             orgLogo: {
                 fContent: "TXkgdGVzdCBmaWxlHJ==...",
                 filename: "my-doc.pdf",
@@ -45,7 +45,7 @@ describe("OrganizationClient", () => {
                 furl: "https://mysite.com/my-doc.pdf",
             },
             orgName: "Pilgrim Planner",
-            orgParentId: 236,
+            orgParentId: 900123,
             orgState: "TN",
             orgTimezone: -5,
             orgType: 0,
@@ -90,7 +90,7 @@ describe("OrganizationClient", () => {
             orgCity: "Johnson City",
             orgCountry: "US",
             orgEntryName: "pilgrim-planner",
-            orgId: "123",
+            orgId: "900123",
             orgLogo: {
                 fContent: "TXkgdGVzdCBmaWxlHJ==...",
                 filename: "my-doc.pdf",
@@ -98,7 +98,7 @@ describe("OrganizationClient", () => {
                 furl: "https://mysite.com/my-doc.pdf",
             },
             orgName: "Pilgrim Planner",
-            orgParentId: 236,
+            orgParentId: 900123,
             orgState: "TN",
             orgTimezone: -5,
             orgType: 0,
@@ -246,7 +246,7 @@ describe("OrganizationClient", () => {
             orgCity: "Johnson City",
             orgCountry: "US",
             orgEntryName: "pilgrim-planner",
-            orgId: "123",
+            orgId: "900123",
             orgName: "Pilgrim Planner",
             orgState: "TN",
             orgTimezone: -5,
@@ -258,14 +258,14 @@ describe("OrganizationClient", () => {
 
         server
             .mockEndpoint()
-            .put("/Organization/123")
+            .put("/Organization/900123")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.organization.editOrganization(123, {
+        const response = await client.organization.editOrganization(900123, {
             contacts: [
                 {
                     contactEmail: "herman@hermanscoatings.com",
@@ -278,7 +278,7 @@ describe("OrganizationClient", () => {
             orgCity: "Johnson City",
             orgCountry: "US",
             orgEntryName: "pilgrim-planner",
-            orgId: "123",
+            orgId: "900123",
             orgName: "Pilgrim Planner",
             orgState: "TN",
             orgTimezone: -5,
@@ -402,13 +402,13 @@ describe("OrganizationClient", () => {
 
         server
             .mockEndpoint()
-            .delete("/Organization/123")
+            .delete("/Organization/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.organization.deleteOrganization(123);
+        const response = await client.organization.deleteOrganization(900123);
         expect(response).toEqual(rawResponseBody);
     });
 
@@ -528,17 +528,17 @@ describe("OrganizationClient", () => {
                 createdAt: "2022-07-01T15:00:01Z",
                 HasBilling: true,
                 HasResidual: true,
-                idOrg: 123,
+                idOrg: 900123,
                 isRoot: false,
                 OrgAddress: "123 Walnut Street",
                 OrgCity: "Johnson City",
                 OrgCountry: "US",
                 OrgEntryName: "pilgrim-planner",
                 OrgFavicon: "https://www.pilgrimageplanner.com/favicon.png",
-                OrgId: "123",
+                OrgId: "900123",
                 OrgLogo: "https://www.pilgrimageplanner.com/logo.png",
                 OrgName: "Pilgrim Planner",
-                OrgParentId: 236,
+                OrgParentId: 900123,
                 OrgParentName: "PropertyManager Pro",
                 OrgState: "TN",
                 OrgTimezone: -5,
@@ -726,17 +726,17 @@ describe("OrganizationClient", () => {
                 createdAt: "2022-07-01T15:00:01Z",
                 HasBilling: true,
                 HasResidual: true,
-                idOrg: 123,
+                idOrg: 900123,
                 isRoot: false,
                 OrgAddress: "123 Walnut Street",
                 OrgCity: "Johnson City",
                 OrgCountry: "US",
                 OrgEntryName: "pilgrim-planner",
                 OrgFavicon: "https://www.pilgrimageplanner.com/favicon.png",
-                OrgId: "123",
+                OrgId: "900123",
                 OrgLogo: "https://www.pilgrimageplanner.com/logo.png",
                 OrgName: "Pilgrim Planner",
-                OrgParentId: 236,
+                OrgParentId: 900123,
                 OrgParentName: "PropertyManager Pro",
                 OrgState: "TN",
                 OrgTimezone: -5,
@@ -774,13 +774,13 @@ describe("OrganizationClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Organization/basicById/123")
+            .get("/Organization/basicById/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.organization.getBasicOrganizationById(123);
+        const response = await client.organization.getBasicOrganizationById(900123);
         expect(response).toEqual(rawResponseBody);
     });
 
@@ -922,17 +922,17 @@ describe("OrganizationClient", () => {
             createdAt: "2022-07-01T15:00:01Z",
             HasBilling: true,
             HasResidual: true,
-            idOrg: 123,
+            idOrg: 900123,
             isRoot: false,
             OrgAddress: "123 Walnut Street",
             OrgCity: "Johnson City",
             OrgCountry: "US",
             OrgEntryName: "pilgrim-planner",
             OrgFavicon: "https://www.pilgrimageplanner.com/favicon.png",
-            OrgId: "123",
+            OrgId: "900123",
             OrgLogo: "https://www.pilgrimageplanner.com/logo.png",
             OrgName: "Pilgrim Planner",
-            OrgParentId: 236,
+            OrgParentId: 900123,
             OrgParentName: "PropertyManager Pro",
             OrgState: "TN",
             OrgTimezone: -5,
@@ -968,13 +968,13 @@ describe("OrganizationClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Organization/read/123")
+            .get("/Organization/read/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.organization.getOrganization(123);
+        const response = await client.organization.getOrganization(900123);
         expect(response).toEqual(rawResponseBody);
     });
 
@@ -1094,13 +1094,13 @@ describe("OrganizationClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Organization/settings/123")
+            .get("/Organization/settings/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.organization.getSettingsOrganization(123);
+        const response = await client.organization.getSettingsOrganization(900123);
         expect(response).toEqual(rawResponseBody);
     });
 

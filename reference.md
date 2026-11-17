@@ -799,7 +799,7 @@ Retrieve a list of bills for an organization. Use filters to limit results. Incl
 <dd>
 
 ```typescript
-await client.bill.listBillsOrg(123, {
+await client.bill.listBillsOrg(900123, {
     fromRecord: 251,
     limitRecord: 0,
     sortBy: "desc(field_name)"
@@ -3767,7 +3767,7 @@ Returns a list of invoices for an org. Use filters to limit results. Include the
 <dd>
 
 ```typescript
-await client.invoice.listInvoicesOrg(123, {
+await client.invoice.listInvoicesOrg(900123, {
     fromRecord: 251,
     limitRecord: 0,
     sortBy: "desc(field_name)"
@@ -5559,7 +5559,7 @@ Migrates a paypoint to a new parent organization.
 ```typescript
 await client.paypoint.migrate({
     entryPoint: "8cfec329267",
-    newParentOrganizationId: 123,
+    newParentOrganizationId: 900123,
     notificationRequest: {
         notificationUrl: "https://webhook-test.yoursie.com",
         webHeaderParameters: [{
@@ -6898,7 +6898,7 @@ Retrieve a list of batches and their details, including settled and unsettled tr
 <dd>
 
 ```typescript
-await client.query.listBatchDetailsOrg(123, {
+await client.query.listBatchDetailsOrg(900123, {
     fromRecord: 251,
     limitRecord: 0,
     sortBy: "desc(field_name)"
@@ -7048,7 +7048,7 @@ Retrieve a list of batches for an org. Use filters to limit results. Include the
 <dd>
 
 ```typescript
-await client.query.listBatchesOrg(123, {
+await client.query.listBatchesOrg(900123, {
     fromRecord: 251,
     limitRecord: 0,
     sortBy: "desc(field_name)"
@@ -7198,7 +7198,7 @@ Retrieve a list of MoneyOut batches for an org. Use filters to limit results. In
 <dd>
 
 ```typescript
-await client.query.listBatchesOutOrg(123, {
+await client.query.listBatchesOutOrg(900123, {
     fromRecord: 251,
     limitRecord: 0,
     sortBy: "desc(field_name)"
@@ -7348,7 +7348,7 @@ Retrieve a list of chargebacks and returned transactions for an org. Use filters
 <dd>
 
 ```typescript
-await client.query.listChargebacksOrg(123, {
+await client.query.listChargebacksOrg(900123, {
     fromRecord: 251,
     limitRecord: 0,
     sortBy: "desc(field_name)"
@@ -7498,7 +7498,7 @@ Retrieves a list of customers for an org. Use filters to limit results. Include 
 <dd>
 
 ```typescript
-await client.query.listCustomersOrg(123, {
+await client.query.listCustomersOrg(900123, {
     fromRecord: 251,
     limitRecord: 0,
     sortBy: "desc(field_name)"
@@ -7648,7 +7648,7 @@ Returns a list of cloud and AXIUM devices for a single organization. Use filters
 <dd>
 
 ```typescript
-await client.query.listDevicesOrg(123, {
+await client.query.listDevicesOrg(900123, {
     fromRecord: 0,
     limitRecord: 20,
     sortBy: "desc(createdAt)"
@@ -7798,7 +7798,7 @@ Returns a list of all reports generated in the last 60 days for an organization.
 <dd>
 
 ```typescript
-await client.query.listNotificationReportsOrg(123, {
+await client.query.listNotificationReportsOrg(900123, {
     fromRecord: 251,
     limitRecord: 0,
     sortBy: "desc(field_name)"
@@ -7948,7 +7948,7 @@ Return a list of notifications for an organization. Use filters to limit results
 <dd>
 
 ```typescript
-await client.query.listNotificationsOrg(123, {
+await client.query.listNotificationsOrg(900123, {
     fromRecord: 251,
     limitRecord: 0,
     sortBy: "desc(field_name)"
@@ -8023,7 +8023,7 @@ Retrieves a list of an organization's suborganizations and their full details su
 <dd>
 
 ```typescript
-await client.query.listOrganizations(123, {
+await client.query.listOrganizations(900123, {
     fromRecord: 251,
     limitRecord: 0,
     sortBy: "desc(field_name)"
@@ -8173,7 +8173,7 @@ Retrieves a list of money out transactions (payouts) for an organization. Use fi
 <dd>
 
 ```typescript
-await client.query.listPayoutOrg(123, {
+await client.query.listPayoutOrg(900123, {
     fromRecord: 251,
     limitRecord: 0,
     sortBy: "desc(field_name)"
@@ -8248,7 +8248,7 @@ Returns a list of paypoints in an organization. Use filters to limit results. In
 <dd>
 
 ```typescript
-await client.query.listPaypoints(123, {
+await client.query.listPaypoints(900123, {
     fromRecord: 251,
     limitRecord: 0,
     sortBy: "desc(field_name)"
@@ -8398,7 +8398,7 @@ Retrieve a list of settled transactions for an organization. Include the `export
 <dd>
 
 ```typescript
-await client.query.listSettlementsOrg(123, {
+await client.query.listSettlementsOrg(900123, {
     fromRecord: 251,
     limitRecord: 0,
     sortBy: "desc(field_name)"
@@ -8548,7 +8548,7 @@ Returns a list of subscriptions for a single org. Use filters to limit results. 
 <dd>
 
 ```typescript
-await client.query.listSubscriptionsOrg(123, {
+await client.query.listSubscriptionsOrg(900123, {
     fromRecord: 251,
     limitRecord: 0,
     sortBy: "desc(field_name)"
@@ -8698,7 +8698,7 @@ Returns a list of payout subscriptions for a single org. Use filters to limit re
 <dd>
 
 ```typescript
-await client.query.listPayoutSubscriptionsOrg(123, {
+await client.query.listPayoutSubscriptionsOrg(900123, {
     fromRecord: 0,
     limitRecord: 20,
     sortBy: "desc(field_name)"
@@ -8866,7 +8866,7 @@ curl -X GET "https://api-sandbox.payabli.com/api/Query/transactions/org/1?limitR
 <dd>
 
 ```typescript
-await client.query.listTransactionsOrg(123, {
+await client.query.listTransactionsOrg(900123, {
     fromRecord: 251,
     limitRecord: 0,
     sortBy: "desc(field_name)"
@@ -9094,7 +9094,7 @@ Retrieve a list of transfers for an org. Use filters to limit results. Include t
 <dd>
 
 ```typescript
-await client.query.listTransfersOrg(123, {
+await client.query.listTransfersOrg(900123, {
     fromRecord: 0,
     limitRecord: 20
 });
@@ -9168,7 +9168,7 @@ Retrieve a list of outbound transfers for an organization. Use filters to limit 
 <dd>
 
 ```typescript
-await client.query.listTransfersOutOrg(123, {
+await client.query.listTransfersOutOrg(900123, {
     fromRecord: 0,
     limitRecord: 20
 });
@@ -9398,7 +9398,7 @@ Get list of users for an org. Use filters to limit results.
 <dd>
 
 ```typescript
-await client.query.listUsersOrg(123, {
+await client.query.listUsersOrg(900123, {
     fromRecord: 251,
     limitRecord: 0,
     sortBy: "desc(field_name)"
@@ -9623,7 +9623,7 @@ Retrieve a list of vendors for an organization. Use filters to limit results. In
 <dd>
 
 ```typescript
-await client.query.listVendorsOrg(123, {
+await client.query.listVendorsOrg(900123, {
     fromRecord: 251,
     limitRecord: 0,
     sortBy: "desc(field_name)"
@@ -9848,7 +9848,7 @@ Retrieve a list of virtual card transactions for an organization. Use filters to
 <dd>
 
 ```typescript
-await client.query.listVcardsTransactionsOrg(123, {
+await client.query.listVcardsTransactionsOrg(900123, {
     fromRecord: 0,
     limitRecord: 20,
     sortBy: "desc(CreatedOn)"
@@ -9923,7 +9923,7 @@ Retrieve a list of vcards (virtual credit cards) issued for an organization. Use
 <dd>
 
 ```typescript
-await client.query.listVcardsOrg(123, {
+await client.query.listVcardsOrg(900123, {
     fromRecord: 251,
     limitRecord: 0,
     sortBy: "desc(field_name)"
@@ -10152,7 +10152,7 @@ await client.notificationlogs.searchNotificationLogs({
     PageSize: 20,
     startDate: "2024-01-01T00:00:00Z",
     endDate: "2024-01-31T23:59:59Z",
-    orgId: 123,
+    orgId: 900123,
     notificationEvent: "approvedpayment",
     succeeded: true
 });
@@ -12808,7 +12808,7 @@ To get the full value, use the unmasked search.
 ```typescript
 await client.people.searchPeople({
     entry: "8cfec329267",
-    orgId: 123,
+    orgId: 900123,
     "firstName": "Marcus",
     "lastName": "Delgado"
 });
@@ -12879,7 +12879,7 @@ Provide at least one of `firstName` or `lastName`.
 ```typescript
 await client.people.searchPeopleUnmasked({
     entry: "8cfec329267",
-    orgId: 123,
+    orgId: 900123,
     "firstName": "Marcus",
     "lastName": "Delgado"
 });
@@ -13862,7 +13862,7 @@ required `orgId` query parameter. You can filter by `status`, `name`,
 
 ```typescript
 await client.boardingTemplates.listTemplates({
-    orgId: 123
+    orgId: 900123
 });
 
 ```
@@ -14451,9 +14451,9 @@ await client.applications.validateApplication("3f3caa7b-bdfe-4bf1-814b-30d548592
 
 Submits a draft application for review. Your integration (the applicant) calls this after the business, its people, payment methods, and services are in place. Verification then runs automatically.
 
-The application must have a signer: an owner flagged with `isSigner` on their business link, or one you name in `signer.personReference`. Payabli records the signer's identity from their person record and business link, so update those before you submit. The `signer` object carries the signature details.
+The application must have a signer: an owner flagged with `isSigner` on their business link, or one you name in `signer.personReference`. Payabli records the signer's identity from their person record and business link, so update those before you submit. The `signer` object carries the signature details, and every submit needs `signer.signature` and `signer.signatureType`, even when you send `signer.signedDocumentReference`.
 
-If the application has no signer, the request fails with `422` and the error `SIGNER_REQUIRED`. If `signer.personReference` names a person who isn't an owner, the request fails with `422` and the error `SIGNER_NOT_OWNER`. If the application isn't a draft, the request fails with `409` and the error `BIZ_004`, before any signer check. If `signer.reportedSignerIp` isn't a single valid IPv4 or IPv6 address, the request fails with `400` and the error `VALIDATION_ERROR`, and the application isn't submitted.
+If `signer`, `signer.signature`, or `signer.signatureType` is missing or blank, the request fails with `400` and the error `VALIDATION_ERROR`. If the application has no signer, the request fails with `422` and the error `SIGNER_REQUIRED`. If `signer.personReference` names a person who isn't an owner, the request fails with `422` and the error `SIGNER_NOT_OWNER`. If the application isn't a draft, the request fails with `409` and the error `BIZ_004`, before any signer check. If `signer.reportedSignerIp` isn't a single valid IPv4 or IPv6 address, the request fails with `400` and the error `VALIDATION_ERROR`, and the application isn't submitted.
 
 Submit doesn't check every rule that [validate](/developers/api-reference/applications/validate-an-application) reports, such as the primary controller and ownership rules. Validate the application and resolve its missing fields before you submit.
 </dd>
@@ -15229,7 +15229,7 @@ await client.boarding.addApplication({
     mcountry: "US",
     mstate: "TN",
     mzip: "37615",
-    orgId: 123,
+    orgId: 900123,
     ownership: [{
             oaddress: "33 North St",
             ocity: "Any City",
@@ -15276,7 +15276,7 @@ await client.boarding.addApplication({
     },
     startdate: "01/01/1990",
     taxFillName: "Sunshine LLC",
-    templateId: 22,
+    templateId: 900022,
     ticketamt: 1000,
     website: "www.example.com",
     whenCharged: "When Service Provided",
@@ -15337,6 +15337,9 @@ await client.boarding.addApplication({
 
 
 Updates a boarding application by ID. This endpoint requires an application API token.
+
+
+If you send `ownership`, it replaces the application's owners. Include every owner, and set `primaryOwner` again on the primary owner, or the application loses its primary owner. If you leave `ownership` out, the owners don't change.
 </dd>
 </dl>
 </dd>
@@ -15710,7 +15713,7 @@ Get details for a boarding link using the boarding template ID. This endpoint re
 <dd>
 
 ```typescript
-await client.boarding.getByTemplateIdLinkApplication(80);
+await client.boarding.getByTemplateIdLinkApplication(900022);
 
 ```
 </dd>
@@ -15930,7 +15933,7 @@ Returns a list of boarding applications for an organization. Use filters to limi
 <dd>
 
 ```typescript
-await client.boarding.listApplications(123, {
+await client.boarding.listApplications(900123, {
     fromRecord: 251,
     limitRecord: 0,
     sortBy: "desc(field_name)"
@@ -16010,7 +16013,7 @@ Return a list of boarding links for an organization. Use filters to limit result
 <dd>
 
 ```typescript
-await client.boarding.listBoardingLinks(123, {
+await client.boarding.listBoardingLinks(900123, {
     fromRecord: 251,
     limitRecord: 0,
     sortBy: "desc(field_name)"
@@ -16092,7 +16095,7 @@ Creates a new boarding application linked to an existing paypoint as part of the
 ```typescript
 await client.boarding.addServiceToPaypointFromApp({
     paypointId: 3040,
-    templateId: 456,
+    templateId: 900022,
     recipientEmail: "merchant@example.com",
     returnBoardingAccessInfoInLine: true,
     onCreate: ["submitApplication"]
@@ -16233,7 +16236,7 @@ Deletes a template by ID.
 <dd>
 
 ```typescript
-await client.templates.deleteTemplate(80);
+await client.templates.deleteTemplate(900022);
 
 ```
 </dd>
@@ -16301,7 +16304,7 @@ Generates a boarding link from a boarding template.
 <dd>
 
 ```typescript
-await client.templates.getlinkTemplate(80, true);
+await client.templates.getlinkTemplate(900022, true);
 
 ```
 </dd>
@@ -16377,7 +16380,7 @@ Retrieves a boarding template's details by ID.
 <dd>
 
 ```typescript
-await client.templates.getTemplate(80);
+await client.templates.getTemplate(900022);
 
 ```
 </dd>
@@ -16445,7 +16448,7 @@ Retrieves a list of boarding templates for an organization. Use filters to limit
 <dd>
 
 ```typescript
-await client.templates.listTemplates(123, {
+await client.templates.listTemplates(900123, {
     fromRecord: 251,
     limitRecord: 0,
     sortBy: "desc(field_name)"
@@ -16525,7 +16528,7 @@ Export a list of boarding applications for an organization. Use filters to limit
 <dd>
 
 ```typescript
-await client.export.exportApplications("csv", 123, {
+await client.export.exportApplications("csv", 900123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
     limitRecord: 1000
@@ -16699,7 +16702,7 @@ Export batch details for an organization. Use filters to limit results.
 <dd>
 
 ```typescript
-await client.export.exportBatchDetailsOrg("csv", 123, {
+await client.export.exportBatchDetailsOrg("csv", 900123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
     limitRecord: 1000
@@ -16873,7 +16876,7 @@ Export a list of batches for an organization. Use filters to limit results.
 <dd>
 
 ```typescript
-await client.export.exportBatchesOrg("csv", 123, {
+await client.export.exportBatchesOrg("csv", 900123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
     limitRecord: 1000
@@ -17047,7 +17050,7 @@ Export a list of money out batches for an organization. Use filters to limit res
 <dd>
 
 ```typescript
-await client.export.exportBatchesOutOrg("csv", 123, {
+await client.export.exportBatchesOutOrg("csv", 900123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
     limitRecord: 1000
@@ -17221,7 +17224,7 @@ Export a list of bills for an organization. Use filters to limit results.
 <dd>
 
 ```typescript
-await client.export.exportBillsOrg("csv", 123, {
+await client.export.exportBillsOrg("csv", 900123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
     limitRecord: 1000
@@ -17395,7 +17398,7 @@ Export a list of chargebacks and ACH returns for an organization. Use filters to
 <dd>
 
 ```typescript
-await client.export.exportChargebacksOrg("csv", 123, {
+await client.export.exportChargebacksOrg("csv", 900123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
     limitRecord: 1000
@@ -17569,7 +17572,7 @@ Exports a list of customers for an organization. Use filters to limit results.
 <dd>
 
 ```typescript
-await client.export.exportCustomersOrg("csv", 123, {
+await client.export.exportCustomersOrg("csv", 900123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
     limitRecord: 1000
@@ -17743,7 +17746,7 @@ Export a list of invoices for an organization. Use filters to limit results.
 <dd>
 
 ```typescript
-await client.export.exportInvoicesOrg("csv", 123, {
+await client.export.exportInvoicesOrg("csv", 900123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
     limitRecord: 1000
@@ -17830,7 +17833,7 @@ Export a list of child organizations (suborganizations) for a parent organizatio
 <dd>
 
 ```typescript
-await client.export.exportOrganizations("csv", 123, {
+await client.export.exportOrganizations("csv", 900123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
     limitRecord: 1000
@@ -18004,7 +18007,7 @@ Export a list of payouts and their details for an organization. Use filters to l
 <dd>
 
 ```typescript
-await client.export.exportPayoutOrg("csv", 123, {
+await client.export.exportPayoutOrg("csv", 900123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
     limitRecord: 1000
@@ -18091,7 +18094,7 @@ Export a list of paypoints in an organization. Use filters to limit results.
 <dd>
 
 ```typescript
-await client.export.exportPaypoints("csv", 123, {
+await client.export.exportPaypoints("csv", 900123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
     limitRecord: 1000
@@ -18265,7 +18268,7 @@ Export a list of settled transactions for an organization. Use filters to limit 
 <dd>
 
 ```typescript
-await client.export.exportSettlementsOrg("csv", 123, {
+await client.export.exportSettlementsOrg("csv", 900123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
     limitRecord: 1000
@@ -18439,7 +18442,7 @@ Export a list of subscriptions for an organization. Use filters to limit results
 <dd>
 
 ```typescript
-await client.export.exportSubscriptionsOrg("csv", 123, {
+await client.export.exportSubscriptionsOrg("csv", 900123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
     limitRecord: 1000
@@ -18613,7 +18616,7 @@ Export a list of transactions for an org in a file in XLSX or CSV format. Use fi
 <dd>
 
 ```typescript
-await client.export.exportTransactionsOrg("csv", 123, {
+await client.export.exportTransactionsOrg("csv", 900123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
     limitRecord: 1000
@@ -18963,7 +18966,7 @@ Export a list of vendors for an organization. Use filters to limit results.
 <dd>
 
 ```typescript
-await client.export.exportVendorsOrg("csv", 123, {
+await client.export.exportVendorsOrg("csv", 900123, {
     columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
     fromRecord: 251,
     limitRecord: 1000
@@ -19070,7 +19073,7 @@ await client.organization.addOrganization({
     orgCity: "Johnson City",
     orgCountry: "US",
     orgEntryName: "pilgrim-planner",
-    orgId: "123",
+    orgId: "900123",
     orgLogo: {
         fContent: "TXkgdGVzdCBmaWxlHJ==...",
         filename: "my-doc.pdf",
@@ -19078,7 +19081,7 @@ await client.organization.addOrganization({
         furl: "https://mysite.com/my-doc.pdf"
     },
     orgName: "Pilgrim Planner",
-    orgParentId: 236,
+    orgParentId: 900123,
     orgState: "TN",
     orgTimezone: -5,
     orgType: 0,
@@ -19148,7 +19151,7 @@ Updates an organization's details by ID.
 <dd>
 
 ```typescript
-await client.organization.editOrganization(123, {
+await client.organization.editOrganization(900123, {
     contacts: [{
             contactEmail: "herman@hermanscoatings.com",
             contactName: "Herman Martinez",
@@ -19159,7 +19162,7 @@ await client.organization.editOrganization(123, {
     orgCity: "Johnson City",
     orgCountry: "US",
     orgEntryName: "pilgrim-planner",
-    orgId: "123",
+    orgId: "900123",
     orgName: "Pilgrim Planner",
     orgState: "TN",
     orgTimezone: -5,
@@ -19237,7 +19240,7 @@ Delete an organization by ID.
 <dd>
 
 ```typescript
-await client.organization.deleteOrganization(123);
+await client.organization.deleteOrganization(900123);
 
 ```
 </dd>
@@ -19363,7 +19366,7 @@ Gets an organization's basic details by org ID.
 <dd>
 
 ```typescript
-await client.organization.getBasicOrganizationById(123);
+await client.organization.getBasicOrganizationById(900123);
 
 ```
 </dd>
@@ -19426,7 +19429,7 @@ Retrieves details for an organization by ID.
 <dd>
 
 ```typescript
-await client.organization.getOrganization(123);
+await client.organization.getOrganization(900123);
 
 ```
 </dd>
@@ -19489,7 +19492,7 @@ Retrieves an organization's settings.
 <dd>
 
 ```typescript
-await client.organization.getSettingsOrganization(123);
+await client.organization.getSettingsOrganization(900123);
 
 ```
 </dd>
@@ -20064,7 +20067,7 @@ await client.notification.addNotification({
     },
     frequency: "untilcancelled",
     method: "web",
-    ownerId: 236,
+    ownerId: 900123,
     ownerType: 0,
     status: 1,
     target: "https://webhook.site/2871b8f8-edc7-441a-b376-98d8c8e33275"
@@ -23117,7 +23120,7 @@ Configure and activate Apple Pay for a Payabli organization
 await client.wallet.configureApplePayOrganization({
     cascade: true,
     isEnabled: true,
-    orgId: 123
+    orgId: 900123
 });
 
 ```
@@ -23250,7 +23253,7 @@ Configure and activate Google Pay for a Payabli organization
 await client.wallet.configureGooglePayOrganization({
     cascade: true,
     isEnabled: true,
-    orgId: 123
+    orgId: 900123
 });
 
 ```
@@ -23366,7 +23369,7 @@ await client.wallet.configureGooglePayPaypoint({
 <dl>
 <dd>
 
-Creates a payout subscription to automatically send payouts to a vendor on a recurring schedule. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for a step-by-step guide.
+Creates a payout subscription to automatically send payouts to a vendor on a recurring schedule. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for a step-by-step guide. Temporary API tokens can't call this endpoint, and a request made with one returns HTTP `401` with response code `9001`.
 </dd>
 </dl>
 </dd>
@@ -23520,7 +23523,7 @@ await client.payoutSubscription.getPayoutSubscription(42);
 <dl>
 <dd>
 
-Updates a payout subscription's details. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information.
+Updates a payout subscription's details. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information. Temporary API tokens can't call this endpoint, and a request made with one returns HTTP `401` with response code `9001`.
 </dd>
 </dl>
 </dd>
@@ -23593,7 +23596,7 @@ await client.payoutSubscription.updatePayoutSubscription(42, {
 <dl>
 <dd>
 
-Deletes a payout subscription and prevents future payouts. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information.
+Deletes a payout subscription and prevents future payouts. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information. Temporary API tokens can't call this endpoint, and a request made with one returns HTTP `401` with response code `9001`.
 </dd>
 </dl>
 </dd>
@@ -24129,7 +24132,7 @@ Available to both Platform and Enterprise Partners.
 <dd>
 
 ```typescript
-await client.caseManagement.listCases(123, {
+await client.caseManagement.listCases(900123, {
     fromRecord: 0,
     limitRecord: 20
 });
@@ -24873,7 +24876,7 @@ without it gets `403 Forbidden`.
 <dd>
 
 ```typescript
-await client.billing.listProfiles(123, {
+await client.billing.listProfiles(900123, {
     limitRecord: 20,
     fromRecord: 0
 });
@@ -24955,7 +24958,7 @@ If the entity exists but has no profile assigned, the call returns
 <dd>
 
 ```typescript
-await client.billing.getProfile("PayIn", "Organization", 123);
+await client.billing.getProfile("PayIn", "Organization", 900123);
 
 ```
 </dd>

@@ -22,7 +22,7 @@ export declare namespace ExportClient {
 export class ExportClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<ExportClient.Options>;
 
-    constructor(options: ExportClient.Options = {}) {
+    constructor(options: ExportClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -48,7 +48,7 @@ export class ExportClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.export.exportApplications("csv", 123, {
+     *     await client.export.exportApplications("csv", 900123, {
      *         columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
      *         fromRecord: 251,
      *         limitRecord: 1000
@@ -282,7 +282,7 @@ export class ExportClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.export.exportBatchDetailsOrg("csv", 123, {
+     *     await client.export.exportBatchDetailsOrg("csv", 900123, {
      *         columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
      *         fromRecord: 251,
      *         limitRecord: 1000
@@ -518,7 +518,7 @@ export class ExportClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.export.exportBatchesOrg("csv", 123, {
+     *     await client.export.exportBatchesOrg("csv", 900123, {
      *         columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
      *         fromRecord: 251,
      *         limitRecord: 1000
@@ -752,7 +752,7 @@ export class ExportClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.export.exportBatchesOutOrg("csv", 123, {
+     *     await client.export.exportBatchesOutOrg("csv", 900123, {
      *         columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
      *         fromRecord: 251,
      *         limitRecord: 1000
@@ -986,7 +986,7 @@ export class ExportClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.export.exportBillsOrg("csv", 123, {
+     *     await client.export.exportBillsOrg("csv", 900123, {
      *         columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
      *         fromRecord: 251,
      *         limitRecord: 1000
@@ -1220,7 +1220,7 @@ export class ExportClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.export.exportChargebacksOrg("csv", 123, {
+     *     await client.export.exportChargebacksOrg("csv", 900123, {
      *         columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
      *         fromRecord: 251,
      *         limitRecord: 1000
@@ -1456,7 +1456,7 @@ export class ExportClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.export.exportCustomersOrg("csv", 123, {
+     *     await client.export.exportCustomersOrg("csv", 900123, {
      *         columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
      *         fromRecord: 251,
      *         limitRecord: 1000
@@ -1690,7 +1690,7 @@ export class ExportClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.export.exportInvoicesOrg("csv", 123, {
+     *     await client.export.exportInvoicesOrg("csv", 900123, {
      *         columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
      *         fromRecord: 251,
      *         limitRecord: 1000
@@ -1807,7 +1807,7 @@ export class ExportClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.export.exportOrganizations("csv", 123, {
+     *     await client.export.exportOrganizations("csv", 900123, {
      *         columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
      *         fromRecord: 251,
      *         limitRecord: 1000
@@ -2041,7 +2041,7 @@ export class ExportClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.export.exportPayoutOrg("csv", 123, {
+     *     await client.export.exportPayoutOrg("csv", 900123, {
      *         columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
      *         fromRecord: 251,
      *         limitRecord: 1000
@@ -2158,7 +2158,7 @@ export class ExportClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.export.exportPaypoints("csv", 123, {
+     *     await client.export.exportPaypoints("csv", 900123, {
      *         columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
      *         fromRecord: 251,
      *         limitRecord: 1000
@@ -2392,7 +2392,7 @@ export class ExportClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.export.exportSettlementsOrg("csv", 123, {
+     *     await client.export.exportSettlementsOrg("csv", 900123, {
      *         columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
      *         fromRecord: 251,
      *         limitRecord: 1000
@@ -2628,7 +2628,7 @@ export class ExportClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.export.exportSubscriptionsOrg("csv", 123, {
+     *     await client.export.exportSubscriptionsOrg("csv", 900123, {
      *         columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
      *         fromRecord: 251,
      *         limitRecord: 1000
@@ -2864,7 +2864,7 @@ export class ExportClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.export.exportTransactionsOrg("csv", 123, {
+     *     await client.export.exportTransactionsOrg("csv", 900123, {
      *         columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
      *         fromRecord: 251,
      *         limitRecord: 1000
@@ -3331,7 +3331,7 @@ export class ExportClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.export.exportVendorsOrg("csv", 123, {
+     *     await client.export.exportVendorsOrg("csv", 900123, {
      *         columnsExport: "BatchDate:Batch_Date,PaypointName:Legal_name",
      *         fromRecord: 251,
      *         limitRecord: 1000

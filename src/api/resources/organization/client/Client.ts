@@ -22,7 +22,7 @@ export declare namespace OrganizationClient {
 export class OrganizationClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<OrganizationClient.Options>;
 
-    constructor(options: OrganizationClient.Options = {}) {
+    constructor(options: OrganizationClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -63,7 +63,7 @@ export class OrganizationClient {
      *         orgCity: "Johnson City",
      *         orgCountry: "US",
      *         orgEntryName: "pilgrim-planner",
-     *         orgId: "123",
+     *         orgId: "900123",
      *         orgLogo: {
      *             fContent: "TXkgdGVzdCBmaWxlHJ==...",
      *             filename: "my-doc.pdf",
@@ -71,7 +71,7 @@ export class OrganizationClient {
      *             furl: "https://mysite.com/my-doc.pdf"
      *         },
      *         orgName: "Pilgrim Planner",
-     *         orgParentId: 236,
+     *         orgParentId: 900123,
      *         orgState: "TN",
      *         orgTimezone: -5,
      *         orgType: 0,
@@ -169,7 +169,7 @@ export class OrganizationClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.organization.editOrganization(123, {
+     *     await client.organization.editOrganization(900123, {
      *         contacts: [{
      *                 contactEmail: "herman@hermanscoatings.com",
      *                 contactName: "Herman Martinez",
@@ -180,7 +180,7 @@ export class OrganizationClient {
      *         orgCity: "Johnson City",
      *         orgCountry: "US",
      *         orgEntryName: "pilgrim-planner",
-     *         orgId: "123",
+     *         orgId: "900123",
      *         orgName: "Pilgrim Planner",
      *         orgState: "TN",
      *         orgTimezone: -5,
@@ -282,7 +282,7 @@ export class OrganizationClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.organization.deleteOrganization(123)
+     *     await client.organization.deleteOrganization(900123)
      */
     public deleteOrganization(
         orgId: number,
@@ -452,7 +452,7 @@ export class OrganizationClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.organization.getBasicOrganizationById(123)
+     *     await client.organization.getBasicOrganizationById(900123)
      */
     public getBasicOrganizationById(
         orgId: number,
@@ -542,7 +542,7 @@ export class OrganizationClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.organization.getOrganization(123)
+     *     await client.organization.getOrganization(900123)
      */
     public getOrganization(
         orgId: number,
@@ -627,7 +627,7 @@ export class OrganizationClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.organization.getSettingsOrganization(123)
+     *     await client.organization.getSettingsOrganization(900123)
      */
     public getSettingsOrganization(
         orgId: number,

@@ -16,9 +16,15 @@ describe("TemplatesClient", () => {
 
         const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 3625, responseText: "Success" };
 
-        server.mockEndpoint().delete("/Templates/80").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+        server
+            .mockEndpoint()
+            .delete("/Templates/900022")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        const response = await client.templates.deleteTemplate(80);
+        const response = await client.templates.deleteTemplate(900022);
         expect(response).toEqual(rawResponseBody);
     });
 
@@ -107,13 +113,13 @@ describe("TemplatesClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Templates/getlink/80/true")
+            .get("/Templates/getlink/900022/true")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.templates.getlinkTemplate(80, true);
+        const response = await client.templates.getlinkTemplate(900022, true);
         expect(response).toEqual(rawResponseBody);
     });
 
@@ -271,9 +277,15 @@ describe("TemplatesClient", () => {
             usedBy: 1,
         };
 
-        server.mockEndpoint().get("/Templates/get/80").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+        server
+            .mockEndpoint()
+            .get("/Templates/get/900022")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        const response = await client.templates.getTemplate(80);
+        const response = await client.templates.getTemplate(900022);
         expect(response).toEqual(rawResponseBody);
     });
 
@@ -387,13 +399,13 @@ describe("TemplatesClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/templates/123")
+            .get("/Query/templates/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.templates.listTemplates(123, {
+        const response = await client.templates.listTemplates(900123, {
             fromRecord: 251,
             limitRecord: 0,
             sortBy: "desc(field_name)",

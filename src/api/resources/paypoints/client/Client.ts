@@ -22,7 +22,7 @@ export declare namespace PaypointsClient {
 export class PaypointsClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<PaypointsClient.Options>;
 
-    constructor(options: PaypointsClient.Options = {}) {
+    constructor(options: PaypointsClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 

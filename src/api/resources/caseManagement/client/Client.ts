@@ -22,7 +22,7 @@ export declare namespace CaseManagementClient {
 export class CaseManagementClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<CaseManagementClient.Options>;
 
-    constructor(options: CaseManagementClient.Options = {}) {
+    constructor(options: CaseManagementClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -357,7 +357,7 @@ export class CaseManagementClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.caseManagement.listCases(123, {
+     *     await client.caseManagement.listCases(900123, {
      *         fromRecord: 0,
      *         limitRecord: 20
      *     })

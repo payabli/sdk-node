@@ -22,7 +22,7 @@ export declare namespace TokenClient {
 export class TokenClient {
     protected readonly _options: NormalizedClientOptions<TokenClient.Options>;
 
-    constructor(options: TokenClient.Options = {}) {
+    constructor(options: TokenClient.Options) {
         this._options = normalizeClientOptions(options);
     }
 

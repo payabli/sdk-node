@@ -23,7 +23,7 @@ export declare namespace BillClient {
 export class BillClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<BillClient.Options>;
 
-    constructor(options: BillClient.Options = {}) {
+    constructor(options: BillClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -1053,7 +1053,7 @@ export class BillClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.bill.listBillsOrg(123, {
+     *     await client.bill.listBillsOrg(900123, {
      *         fromRecord: 251,
      *         limitRecord: 0,
      *         sortBy: "desc(field_name)"

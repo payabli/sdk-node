@@ -21,7 +21,7 @@ export declare namespace BoardingTemplatesClient {
 export class BoardingTemplatesClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<BoardingTemplatesClient.Options>;
 
-    constructor(options: BoardingTemplatesClient.Options = {}) {
+    constructor(options: BoardingTemplatesClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -41,7 +41,7 @@ export class BoardingTemplatesClient {
      *
      * @example
      *     await client.boardingTemplates.listTemplates({
-     *         orgId: 123
+     *         orgId: 900123
      *     })
      */
     public listTemplates(

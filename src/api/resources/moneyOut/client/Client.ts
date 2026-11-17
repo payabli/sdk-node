@@ -22,7 +22,7 @@ export declare namespace MoneyOutClient {
 export class MoneyOutClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<MoneyOutClient.Options>;
 
-    constructor(options: MoneyOutClient.Options = {}) {
+    constructor(options: MoneyOutClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 

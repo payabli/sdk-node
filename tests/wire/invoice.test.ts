@@ -1069,7 +1069,7 @@ describe("InvoiceClient", () => {
                     PaypointLegalname: "Emerald City LLC",
                     PaypointDbaname: "Emerald City Trading",
                     PaypointEntryname: "47a30009s",
-                    ParentOrgId: 123,
+                    ParentOrgId: 900123,
                     ParentOrgName: "Emerald Enterprises",
                     AdditionalData: null,
                     DocumentsRef: null,
@@ -1246,7 +1246,7 @@ describe("InvoiceClient", () => {
                     items: [{ itemCost: 50, itemDescription: "service", itemProductName: "Internet", itemQty: 1 }],
                     lastName: "Tan",
                     ParentOrgName: "Emerald Enterprises",
-                    ParentOrgId: 123,
+                    ParentOrgId: 900123,
                     paylinkId: "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
                     paymentTerms: "NET30",
                     PaypointDbaname: "Emerald City Trading",
@@ -1277,13 +1277,13 @@ describe("InvoiceClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/invoices/org/123")
+            .get("/Query/invoices/org/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.invoice.listInvoicesOrg(123, {
+        const response = await client.invoice.listInvoicesOrg(900123, {
             fromRecord: 251,
             limitRecord: 0,
             sortBy: "desc(field_name)",

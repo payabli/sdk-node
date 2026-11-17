@@ -147,7 +147,7 @@ describe("UserClient", () => {
             lastAccess: "2022-07-01T15:00:01Z",
             Name: "Sean Smith",
             Phone: "5555555555",
-            Scope: [{ orgEntry: "pilgrim-planner", orgId: 123, orgType: 0 }],
+            Scope: [{ orgEntry: "pilgrim-planner", orgId: 900123, orgType: 0 }],
             snData: "snData",
             snIdentifier: "snIdentifier",
             snProvider: "google",

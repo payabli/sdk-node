@@ -22,7 +22,7 @@ export declare namespace PeopleClient {
 export class PeopleClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<PeopleClient.Options>;
 
-    constructor(options: PeopleClient.Options = {}) {
+    constructor(options: PeopleClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -564,7 +564,7 @@ export class PeopleClient {
      * @example
      *     await client.people.searchPeople({
      *         entry: "8cfec329267",
-     *         orgId: 123,
+     *         orgId: 900123,
      *         "firstName": "Marcus",
      *         "lastName": "Delgado"
      *     })
@@ -666,7 +666,7 @@ export class PeopleClient {
      * @example
      *     await client.people.searchPeopleUnmasked({
      *         entry: "8cfec329267",
-     *         orgId: 123,
+     *         orgId: 900123,
      *         "firstName": "Marcus",
      *         "lastName": "Delgado"
      *     })

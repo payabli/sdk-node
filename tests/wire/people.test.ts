@@ -849,9 +849,11 @@ describe("PeopleClient", () => {
                         matchScore: 0.6,
                         isTopMatch: true,
                         isFromVendor: false,
+                        primaryAddress: { street: "123 Main Street", city: "Miami", state: "FL", zip: "33101" },
+                        addresses: [{ street: "123 Main Street", city: "Miami", state: "FL", zip: "33101" }],
                         phones: ["+13055551212"],
                         emails: ["marcus.delgado@example.com"],
-                        addressCount: 0,
+                        addressCount: 1,
                         phoneCount: 1,
                         emailCount: 1,
                     },
@@ -872,7 +874,7 @@ describe("PeopleClient", () => {
 
         const response = await client.people.searchPeople({
             entry: "8cfec329267",
-            orgId: 123,
+            orgId: 900123,
             firstName: "Marcus",
             lastName: "Delgado",
         });
@@ -1020,9 +1022,11 @@ describe("PeopleClient", () => {
                         matchScore: 0.6,
                         isTopMatch: true,
                         isFromVendor: false,
+                        primaryAddress: { street: "123 Main Street", city: "Miami", state: "FL", zip: "33101" },
+                        addresses: [{ street: "123 Main Street", city: "Miami", state: "FL", zip: "33101" }],
                         phones: ["+13055551212"],
                         emails: ["marcus.delgado@example.com"],
-                        addressCount: 0,
+                        addressCount: 1,
                         phoneCount: 1,
                         emailCount: 1,
                     },
@@ -1043,7 +1047,7 @@ describe("PeopleClient", () => {
 
         const response = await client.people.searchPeopleUnmasked({
             entry: "8cfec329267",
-            orgId: 123,
+            orgId: 900123,
             firstName: "Marcus",
             lastName: "Delgado",
         });

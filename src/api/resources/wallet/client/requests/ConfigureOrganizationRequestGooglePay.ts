@@ -7,7 +7,7 @@ import type * as Payabli from "../../../../index.js";
  *     {
  *         cascade: true,
  *         isEnabled: true,
- *         orgId: 123
+ *         orgId: 900123
  *     }
  */
 export interface ConfigureOrganizationRequestGooglePay {

@@ -19,7 +19,7 @@ export declare namespace HostedPaymentPagesClient {
 export class HostedPaymentPagesClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<HostedPaymentPagesClient.Options>;
 
-    constructor(options: HostedPaymentPagesClient.Options = {}) {
+    constructor(options: HostedPaymentPagesClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 

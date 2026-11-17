@@ -22,7 +22,7 @@ export declare namespace SubscriptionClient {
 export class SubscriptionClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<SubscriptionClient.Options>;
 
-    constructor(options: SubscriptionClient.Options = {}) {
+    constructor(options: SubscriptionClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 

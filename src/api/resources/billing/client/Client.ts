@@ -21,7 +21,7 @@ export declare namespace BillingClient {
 export class BillingClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<BillingClient.Options>;
 
-    constructor(options: BillingClient.Options = {}) {
+    constructor(options: BillingClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -44,13 +44,13 @@ export class BillingClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.billing.listProfiles(123, {
+     *     await client.billing.listProfiles(900123, {
      *         limitRecord: 20,
      *         fromRecord: 0
      *     })
      *
      * @example
-     *     await client.billing.listProfiles(123, {
+     *     await client.billing.listProfiles(900123, {
      *         serviceVertical: [1],
      *         feeType: [1],
      *         limitRecord: 20,
@@ -170,7 +170,7 @@ export class BillingClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.billing.getProfile("PayIn", "Organization", 123)
+     *     await client.billing.getProfile("PayIn", "Organization", 900123)
      */
     public getProfile(
         serviceGroup: Payabli.GetProfileBillingRequestServiceGroup,

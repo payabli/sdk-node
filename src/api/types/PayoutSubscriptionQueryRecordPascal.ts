@@ -11,6 +11,11 @@ export interface PayoutSubscriptionQueryRecordPascal {
      * - 1: Active
      */
     Status?: number | undefined;
+    /**
+     * The name of the payout subscription's `Status`: `Paused`, `Active`, `Completed`, `Marked
+     * for Deletion`, or `In Progress`. Returns `null` for an unrecognized code.
+     */
+    StatusLabel?: (string | null) | undefined;
     /** Events associated with the payout subscription. */
     Events?: (Payabli.GeneralEvents[] | null) | undefined;
     Vendor?: Payabli.VendorQueryRecord | undefined;

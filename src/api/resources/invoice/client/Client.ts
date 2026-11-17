@@ -23,7 +23,7 @@ export declare namespace InvoiceClient {
 export class InvoiceClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<InvoiceClient.Options>;
 
-    constructor(options: InvoiceClient.Options = {}) {
+    constructor(options: InvoiceClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -847,7 +847,7 @@ export class InvoiceClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.invoice.listInvoicesOrg(123, {
+     *     await client.invoice.listInvoicesOrg(900123, {
      *         fromRecord: 251,
      *         limitRecord: 0,
      *         sortBy: "desc(field_name)"

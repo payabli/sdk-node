@@ -19,7 +19,7 @@ export declare namespace OcrClient {
 export class OcrClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<OcrClient.Options>;
 
-    constructor(options: OcrClient.Options = {}) {
+    constructor(options: OcrClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 

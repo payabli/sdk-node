@@ -22,7 +22,7 @@ export declare namespace NotificationClient {
 export class NotificationClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<NotificationClient.Options>;
 
-    constructor(options: NotificationClient.Options = {}) {
+    constructor(options: NotificationClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -46,7 +46,7 @@ export class NotificationClient {
      *         },
      *         frequency: "untilcancelled",
      *         method: "web",
-     *         ownerId: 236,
+     *         ownerId: 900123,
      *         ownerType: 0,
      *         status: 1,
      *         target: "https://webhook.site/2871b8f8-edc7-441a-b376-98d8c8e33275"
@@ -59,7 +59,7 @@ export class NotificationClient {
      *         },
      *         frequency: "untilcancelled",
      *         method: "web",
-     *         ownerId: 236,
+     *         ownerId: 900123,
      *         ownerType: 0,
      *         status: 1,
      *         target: "https://cfe9dc390ce2.ngrok-free.app/webhook"
@@ -76,7 +76,7 @@ export class NotificationClient {
      *         },
      *         frequency: "biweekly",
      *         method: "report-email",
-     *         ownerId: 236,
+     *         ownerId: 900123,
      *         ownerType: 0,
      *         status: 1,
      *         target: "admin@example.com"

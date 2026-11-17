@@ -51,6 +51,13 @@ export interface BillDetailResponse {
      * | **Paid** | 5 | A payout has been paid and the recipient has redeemed the funds. | Paid (check cleared, vCard used, ACH settled) |
      */
     Status?: number | undefined;
+    /**
+     * The name of the payout's `Status`: `Canceled`, `Captured`, `Processing`, `Processed`,
+     * `Held`, `Paid`, `Authorized`, `Capturing`, `Returned`, `Rejected`, `Reissued`, or
+     * `Refunded`. Returns `null` for an unrecognized code. See
+     * [Pay Out statuses](/guides/pay-out-status-reference#payout-transaction-statuses).
+     */
+    StatusLabel?: (string | null) | undefined;
     /** Text description of the payout transaction status. */
     StatusText?: string | undefined;
     /** Transaction total amount (including service fee or sub-charge). */

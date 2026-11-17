@@ -14,6 +14,13 @@ export interface TransactionOutQueryRecord {
     PaypointLegalname?: Payabli.Legalname | undefined;
     /** Internal status of transaction. */
     Status?: number | undefined;
+    /**
+     * The name of the payout's `Status`: `Canceled`, `Captured`, `Processing`, `Processed`,
+     * `Held`, `Paid`, `Authorized`, `Capturing`, `Returned`, `Rejected`, `Reissued`, or
+     * `Refunded`. Returns `null` for an unrecognized code. See
+     * [Pay Out statuses](/guides/pay-out-status-reference#payout-transaction-statuses).
+     */
+    StatusLabel?: (string | null) | undefined;
     /** Timestamp when payment record was updated, in UTC. */
     LastUpdated?: Payabli.LastModified | undefined;
     /** Transaction total amount (including service fee or sub-charge). */

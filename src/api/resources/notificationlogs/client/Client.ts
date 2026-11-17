@@ -22,7 +22,7 @@ export declare namespace NotificationlogsClient {
 export class NotificationlogsClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<NotificationlogsClient.Options>;
 
-    constructor(options: NotificationlogsClient.Options = {}) {
+    constructor(options: NotificationlogsClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -48,7 +48,7 @@ export class NotificationlogsClient {
      *         PageSize: 20,
      *         startDate: "2024-01-01T00:00:00Z",
      *         endDate: "2024-01-31T23:59:59Z",
-     *         orgId: 123,
+     *         orgId: 900123,
      *         notificationEvent: "approvedpayment",
      *         succeeded: true
      *     })

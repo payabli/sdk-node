@@ -37,6 +37,11 @@ export interface VendorDataResponse {
     /** Preferred payment method for vendor. */
     PaymentMethod: Payabli.VendorDataResponsePaymentMethod;
     VendorStatus: Payabli.Vendorstatus;
+    /**
+     * The name of the `VendorStatus`: `Inactive`, `Active`, or `Deleted`. Returns `null` for
+     * an unrecognized code.
+     */
+    VendorStatusLabel?: (string | null) | undefined;
     VendorId: Payabli.Vendorid;
     /** Vendor enrollment status */
     EnrollmentStatus?: string | undefined;

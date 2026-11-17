@@ -1132,7 +1132,7 @@ describe("ApplicationsClient", () => {
             apiKeyAuth: { apiKey: "test" },
             environment: server.baseUrl,
         });
-        const rawRequestBody = { signer: {} };
+        const rawRequestBody = { signer: { signature: "x", signatureType: "type" } };
         const rawResponseBody = { key: "value" };
 
         server
@@ -1146,7 +1146,10 @@ describe("ApplicationsClient", () => {
 
         await expect(async () => {
             return await client.applications.submitApplication("requestsReference", {
-                signer: {},
+                signer: {
+                    signature: "x",
+                    signatureType: "type",
+                },
             });
         }).rejects.toThrow(Payabli.BadRequestError);
     });
@@ -1159,7 +1162,7 @@ describe("ApplicationsClient", () => {
             apiKeyAuth: { apiKey: "test" },
             environment: server.baseUrl,
         });
-        const rawRequestBody = { signer: {} };
+        const rawRequestBody = { signer: { signature: "x", signatureType: "type" } };
         const rawResponseBody = { isSuccess: true, responseText: "responseText" };
 
         server
@@ -1173,7 +1176,10 @@ describe("ApplicationsClient", () => {
 
         await expect(async () => {
             return await client.applications.submitApplication("requestsReference", {
-                signer: {},
+                signer: {
+                    signature: "x",
+                    signatureType: "type",
+                },
             });
         }).rejects.toThrow(Payabli.UnauthorizedError);
     });
@@ -1186,7 +1192,7 @@ describe("ApplicationsClient", () => {
             apiKeyAuth: { apiKey: "test" },
             environment: server.baseUrl,
         });
-        const rawRequestBody = { signer: {} };
+        const rawRequestBody = { signer: { signature: "x", signatureType: "type" } };
         const rawResponseBody = { key: "value" };
 
         server
@@ -1200,7 +1206,10 @@ describe("ApplicationsClient", () => {
 
         await expect(async () => {
             return await client.applications.submitApplication("requestsReference", {
-                signer: {},
+                signer: {
+                    signature: "x",
+                    signatureType: "type",
+                },
             });
         }).rejects.toThrow(Payabli.NotFoundError);
     });
@@ -1213,7 +1222,7 @@ describe("ApplicationsClient", () => {
             apiKeyAuth: { apiKey: "test" },
             environment: server.baseUrl,
         });
-        const rawRequestBody = { signer: {} };
+        const rawRequestBody = { signer: { signature: "x", signatureType: "type" } };
         const rawResponseBody = { key: "value" };
 
         server
@@ -1227,7 +1236,10 @@ describe("ApplicationsClient", () => {
 
         await expect(async () => {
             return await client.applications.submitApplication("requestsReference", {
-                signer: {},
+                signer: {
+                    signature: "x",
+                    signatureType: "type",
+                },
             });
         }).rejects.toThrow(Payabli.ConflictError);
     });
@@ -1240,7 +1252,7 @@ describe("ApplicationsClient", () => {
             apiKeyAuth: { apiKey: "test" },
             environment: server.baseUrl,
         });
-        const rawRequestBody = { signer: {} };
+        const rawRequestBody = { signer: { signature: "x", signatureType: "type" } };
         const rawResponseBody = { key: "value" };
 
         server
@@ -1254,7 +1266,10 @@ describe("ApplicationsClient", () => {
 
         await expect(async () => {
             return await client.applications.submitApplication("requestsReference", {
-                signer: {},
+                signer: {
+                    signature: "x",
+                    signatureType: "type",
+                },
             });
         }).rejects.toThrow(Payabli.UnprocessableEntityError);
     });
@@ -1267,7 +1282,7 @@ describe("ApplicationsClient", () => {
             apiKeyAuth: { apiKey: "test" },
             environment: server.baseUrl,
         });
-        const rawRequestBody = { signer: {} };
+        const rawRequestBody = { signer: { signature: "x", signatureType: "type" } };
         const rawResponseBody = { key: "value" };
 
         server
@@ -1281,7 +1296,10 @@ describe("ApplicationsClient", () => {
 
         await expect(async () => {
             return await client.applications.submitApplication("requestsReference", {
-                signer: {},
+                signer: {
+                    signature: "x",
+                    signatureType: "type",
+                },
             });
         }).rejects.toThrow(Payabli.InternalServerError);
     });

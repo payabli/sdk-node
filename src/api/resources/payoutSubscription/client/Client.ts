@@ -19,12 +19,12 @@ export declare namespace PayoutSubscriptionClient {
 export class PayoutSubscriptionClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<PayoutSubscriptionClient.Options>;
 
-    constructor(options: PayoutSubscriptionClient.Options = {}) {
+    constructor(options: PayoutSubscriptionClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
     /**
-     * Creates a payout subscription to automatically send payouts to a vendor on a recurring schedule. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for a step-by-step guide.
+     * Creates a payout subscription to automatically send payouts to a vendor on a recurring schedule. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for a step-by-step guide. Temporary API tokens can't call this endpoint, and a request made with one returns HTTP `401` with response code `9001`.
      *
      * @param {Payabli.RequestPayoutSchedule} request
      * @param {PayoutSubscriptionClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -259,7 +259,7 @@ export class PayoutSubscriptionClient {
     }
 
     /**
-     * Updates a payout subscription's details. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information.
+     * Updates a payout subscription's details. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information. Temporary API tokens can't call this endpoint, and a request made with one returns HTTP `401` with response code `9001`.
      *
      * @param {number} id - The payout subscription ID.
      * @param {Payabli.UpdatePayoutSubscriptionBody} request
@@ -373,7 +373,7 @@ export class PayoutSubscriptionClient {
     }
 
     /**
-     * Deletes a payout subscription and prevents future payouts. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information.
+     * Deletes a payout subscription and prevents future payouts. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information. Temporary API tokens can't call this endpoint, and a request made with one returns HTTP `401` with response code `9001`.
      *
      * @param {number} id - The payout subscription ID.
      * @param {PayoutSubscriptionClient.RequestOptions} requestOptions - Request-specific configuration.

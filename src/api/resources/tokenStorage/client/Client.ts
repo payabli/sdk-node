@@ -22,7 +22,7 @@ export declare namespace TokenStorageClient {
 export class TokenStorageClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<TokenStorageClient.Options>;
 
-    constructor(options: TokenStorageClient.Options = {}) {
+    constructor(options: TokenStorageClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 

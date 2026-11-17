@@ -22,7 +22,7 @@ export declare namespace CheckCaptureClient {
 export class CheckCaptureClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<CheckCaptureClient.Options>;
 
-    constructor(options: CheckCaptureClient.Options = {}) {
+    constructor(options: CheckCaptureClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 

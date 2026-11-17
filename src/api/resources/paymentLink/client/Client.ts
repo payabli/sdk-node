@@ -22,7 +22,7 @@ export declare namespace PaymentLinkClient {
 export class PaymentLinkClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<PaymentLinkClient.Options>;
 
-    constructor(options: PaymentLinkClient.Options = {}) {
+    constructor(options: PaymentLinkClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 

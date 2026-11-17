@@ -101,7 +101,7 @@ export class PayabliClient {
     protected _caseManagement: CaseManagementClient | undefined;
     protected _billing: BillingClient | undefined;
 
-    constructor(options: PayabliClient.Options = {}) {
+    constructor(options: PayabliClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 

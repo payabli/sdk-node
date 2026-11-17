@@ -19,7 +19,7 @@ export declare namespace GhostCardClient {
 export class GhostCardClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<GhostCardClient.Options>;
 
-    constructor(options: GhostCardClient.Options = {}) {
+    constructor(options: GhostCardClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 

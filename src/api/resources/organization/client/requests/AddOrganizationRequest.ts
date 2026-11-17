@@ -27,7 +27,7 @@ import type * as Payabli from "../../../../index.js";
  *         orgCity: "Johnson City",
  *         orgCountry: "US",
  *         orgEntryName: "pilgrim-planner",
- *         orgId: "123",
+ *         orgId: "900123",
  *         orgLogo: {
  *             fContent: "TXkgdGVzdCBmaWxlHJ==...",
  *             filename: "my-doc.pdf",
@@ -35,7 +35,7 @@ import type * as Payabli from "../../../../index.js";
  *             furl: "https://mysite.com/my-doc.pdf"
  *         },
  *         orgName: "Pilgrim Planner",
- *         orgParentId: 236,
+ *         orgParentId: 900123,
  *         orgState: "TN",
  *         orgTimezone: -5,
  *         orgType: 0,

@@ -22,7 +22,7 @@ export declare namespace ChargeBacksClient {
 export class ChargeBacksClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<ChargeBacksClient.Options>;
 
-    constructor(options: ChargeBacksClient.Options = {}) {
+    constructor(options: ChargeBacksClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 

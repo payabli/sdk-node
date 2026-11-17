@@ -23,6 +23,7 @@ export interface ListBatchesOutRequest {
      * **Accepted field names**:
      *
      * - `batchDate` (gt, ge, lt, le, eq, ne)
+     * - `transferDate` (gt, ge, lt, le, eq, ne)
      * - `batchNumber` (ne, eq)
      * - `batchAmount` (gt, ge, lt, le, eq, ne)
      * - `parentOrgId` (ne, eq, nin, in)

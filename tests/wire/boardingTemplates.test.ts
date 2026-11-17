@@ -19,7 +19,7 @@ describe("BoardingTemplatesClient", () => {
             Records: [
                 {
                     uuid: "019ff129-d393-7761-9a31-e5afe85b4081",
-                    orgId: 123,
+                    orgId: 900123,
                     orgName: "PropertyManager Pro",
                     name: "Standard boarding template",
                     description: null,
@@ -174,7 +174,7 @@ describe("BoardingTemplatesClient", () => {
         server.mockEndpoint().get("/v2/templates").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.boardingTemplates.listTemplates({
-            orgId: 123,
+            orgId: 900123,
         });
         expect(response).toEqual(rawResponseBody);
     });
@@ -230,7 +230,7 @@ describe("BoardingTemplatesClient", () => {
 
         const rawResponseBody = {
             uuid: "019ff129-d393-7761-9a31-e5afe85b4081",
-            orgId: 123,
+            orgId: 900123,
             orgName: "PropertyManager Pro",
             name: "Standard boarding template",
             description: null,

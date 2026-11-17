@@ -44,7 +44,7 @@ export namespace HeaderAuthProvider {
         `Please provide '${PARAM_KEY}' when initializing the client` as const;
     export type Options = AuthOptions;
     export type AuthOptions = {
-        [WRAPPER_PROPERTY]?: { [PARAM_KEY]?: core.EndpointSupplier<string> };
+        [WRAPPER_PROPERTY]?: { [PARAM_KEY]: core.EndpointSupplier<string> };
     };
 
     export function createInstance(options: Options): core.AuthProvider {

@@ -22,7 +22,7 @@ export declare namespace WalletClient {
 export class WalletClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<WalletClient.Options>;
 
-    constructor(options: WalletClient.Options = {}) {
+    constructor(options: WalletClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -43,7 +43,7 @@ export class WalletClient {
      *     await client.wallet.configureApplePayOrganization({
      *         cascade: true,
      *         isEnabled: true,
-     *         orgId: 123
+     *         orgId: 900123
      *     })
      */
     public configureApplePayOrganization(
@@ -242,7 +242,7 @@ export class WalletClient {
      *     await client.wallet.configureGooglePayOrganization({
      *         cascade: true,
      *         isEnabled: true,
-     *         orgId: 123
+     *         orgId: 900123
      *     })
      */
     public configureGooglePayOrganization(

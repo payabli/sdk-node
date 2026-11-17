@@ -4,7 +4,7 @@
  * @example
  *     {
  *         paypointId: 3040,
- *         templateId: 456,
+ *         templateId: 900022,
  *         recipientEmail: "merchant@example.com",
  *         returnBoardingAccessInfoInLine: true,
  *         onCreate: ["submitApplication"]

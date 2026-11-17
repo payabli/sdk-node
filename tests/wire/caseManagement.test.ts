@@ -244,7 +244,7 @@ describe("CaseManagementClient", () => {
                 services: { moneyIn: ["Ach"], moneyOut: ["Ach"] },
                 default: true,
             },
-            orgId: 123,
+            orgId: 900123,
             paypointId: 3040,
             scheduleFor: null,
             createdAt: "2026-01-15T10:30:00Z",
@@ -256,7 +256,7 @@ describe("CaseManagementClient", () => {
             attachments: [],
             roomId: null,
             metadata: null,
-            org: { id: 123, name: "Example Partner Org" },
+            org: { id: 900123, name: "Example Partner Org" },
             paypoint: { id: 3040, name: "Gruzya Adventure Outfitters" },
             createdByUser: null,
             assignee: null,
@@ -494,7 +494,7 @@ describe("CaseManagementClient", () => {
                 services: { moneyIn: ["Ach"], moneyOut: ["Ach"] },
                 default: true,
             },
-            orgId: 123,
+            orgId: 900123,
             paypointId: 3040,
             scheduleFor: null,
             createdAt: "2026-01-15T10:30:00Z",
@@ -557,7 +557,7 @@ describe("CaseManagementClient", () => {
                 },
                 reviewDecision: null,
             },
-            org: { id: 123, name: "Example Partner Org" },
+            org: { id: 900123, name: "Example Partner Org" },
             paypoint: { id: 3040, name: "Gruzya Adventure Outfitters" },
             createdByUser: null,
             assignee: null,
@@ -683,7 +683,7 @@ describe("CaseManagementClient", () => {
                         services: { moneyIn: ["Ach"], moneyOut: ["Ach"] },
                         default: true,
                     },
-                    orgId: 123,
+                    orgId: 900123,
                     paypointId: 3040,
                     scheduleFor: null,
                     createdAt: "2026-01-15T10:30:00Z",
@@ -695,7 +695,7 @@ describe("CaseManagementClient", () => {
                     attachments: [],
                     roomId: 96369,
                     metadata: null,
-                    org: { id: 123, name: "Example Partner Org" },
+                    org: { id: 900123, name: "Example Partner Org" },
                     paypoint: { id: 3040, name: "Gruzya Adventure Outfitters" },
                     createdByUser: null,
                     assignee: null,
@@ -706,13 +706,13 @@ describe("CaseManagementClient", () => {
 
         server
             .mockEndpoint()
-            .get("/v2/cases/organization/123")
+            .get("/v2/cases/organization/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.caseManagement.listCases(123, {
+        const response = await client.caseManagement.listCases(900123, {
             fromRecord: 0,
             limitRecord: 20,
         });
@@ -1242,7 +1242,7 @@ describe("CaseManagementClient", () => {
                 services: { moneyIn: ["Ach"], moneyOut: ["Ach"] },
                 default: true,
             },
-            orgId: 123,
+            orgId: 900123,
             paypointId: 3040,
             scheduleFor: null,
             createdAt: "2026-01-15T10:30:00Z",
@@ -1287,7 +1287,7 @@ describe("CaseManagementClient", () => {
                 },
                 reviewDecision: null,
             },
-            org: { id: 123, name: "Example Partner Org" },
+            org: { id: 900123, name: "Example Partner Org" },
             paypoint: { id: 3040, name: "Gruzya Adventure Outfitters" },
             createdByUser: null,
             assignee: { id: 4238, name: "Jordan Rivera" },
@@ -1503,7 +1503,7 @@ describe("CaseManagementClient", () => {
                 services: { moneyIn: ["Ach"], moneyOut: ["Ach"] },
                 default: true,
             },
-            orgId: 123,
+            orgId: 900123,
             paypointId: 3040,
             scheduleFor: null,
             createdAt: "2026-01-15T10:30:00Z",
@@ -1548,7 +1548,7 @@ describe("CaseManagementClient", () => {
                 },
                 reviewDecision: null,
             },
-            org: { id: 123, name: "Example Partner Org" },
+            org: { id: 900123, name: "Example Partner Org" },
             paypoint: { id: 3040, name: "Gruzya Adventure Outfitters" },
             createdByUser: null,
             assignee: { id: 4238, name: "Jordan Rivera" },

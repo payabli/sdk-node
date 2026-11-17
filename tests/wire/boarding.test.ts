@@ -80,7 +80,7 @@ describe("BoardingClient", () => {
             mcountry: "US",
             mstate: "TN",
             mzip: "37615",
-            orgId: 123,
+            orgId: 900123,
             ownership: [
                 {
                     oaddress: "33 North St",
@@ -129,7 +129,7 @@ describe("BoardingClient", () => {
             },
             startdate: "01/01/1990",
             taxFillName: "Sunshine LLC",
-            templateId: 22,
+            templateId: 900022,
             ticketamt: 1000,
             website: "www.example.com",
             whenCharged: "When Service Provided",
@@ -220,7 +220,7 @@ describe("BoardingClient", () => {
             mcountry: "US",
             mstate: "TN",
             mzip: "37615",
-            orgId: 123,
+            orgId: 900123,
             ownership: [
                 {
                     oaddress: "33 North St",
@@ -269,7 +269,7 @@ describe("BoardingClient", () => {
             },
             startdate: "01/01/1990",
             taxFillName: "Sunshine LLC",
-            templateId: 22,
+            templateId: 900022,
             ticketamt: 1000,
             website: "www.example.com",
             whenCharged: "When Service Provided",
@@ -354,7 +354,7 @@ describe("BoardingClient", () => {
             mcountry: "US",
             mstate: "FL",
             mzip: "33101",
-            orgId: 123,
+            orgId: 900123,
             ownership: [
                 {
                     oaddress: "123 Palm Avenue",
@@ -402,7 +402,7 @@ describe("BoardingClient", () => {
             },
             startdate: "01/01/2015",
             taxfillname: "Herman's Coatings LLC",
-            templateId: 22,
+            templateId: 900022,
             website: "www.hermanscoatings.com",
         };
         const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 3625, responseText: "Success" };
@@ -482,7 +482,7 @@ describe("BoardingClient", () => {
             mcountry: "US",
             mstate: "FL",
             mzip: "33101",
-            orgId: 123,
+            orgId: 900123,
             ownership: [
                 {
                     oaddress: "123 Palm Avenue",
@@ -530,7 +530,7 @@ describe("BoardingClient", () => {
             },
             startdate: "01/01/2015",
             taxfillname: "Herman's Coatings LLC",
-            templateId: 22,
+            templateId: 900022,
             website: "www.hermanscoatings.com",
         });
         expect(response).toEqual(rawResponseBody);
@@ -623,7 +623,7 @@ describe("BoardingClient", () => {
             mcountry: "US",
             mstate: "FL",
             mzip: "33101",
-            orgId: 123,
+            orgId: 900123,
             ownership: [
                 {
                     oaddress: "123 Palm Avenue",
@@ -675,7 +675,7 @@ describe("BoardingClient", () => {
             },
             startdate: "01/01/2015",
             taxfillname: "Herman's Coatings LLC",
-            templateId: 22,
+            templateId: 900022,
             website: "www.hermanscoatings.com",
         };
         const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 3625, responseText: "Success" };
@@ -777,7 +777,7 @@ describe("BoardingClient", () => {
             mcountry: "US",
             mstate: "FL",
             mzip: "33101",
-            orgId: 123,
+            orgId: 900123,
             ownership: [
                 {
                     oaddress: "123 Palm Avenue",
@@ -829,7 +829,7 @@ describe("BoardingClient", () => {
             },
             startdate: "01/01/2015",
             taxfillname: "Herman's Coatings LLC",
-            templateId: 22,
+            templateId: 900022,
             website: "www.hermanscoatings.com",
         });
         expect(response).toEqual(rawResponseBody);
@@ -920,7 +920,7 @@ describe("BoardingClient", () => {
             mcountry: "US",
             mstate: "FL",
             mzip: "33101",
-            orgId: 123,
+            orgId: 900123,
             ownership: [
                 {
                     oaddress: "123 Palm Avenue",
@@ -932,12 +932,29 @@ describe("BoardingClient", () => {
                     ownerdriver: "FL789456",
                     owneremail: "herman@hermanscoatings.com",
                     ownername: "Herman Martinez",
-                    ownerpercent: 100,
+                    ownerpercent: 60,
                     ownerphone1: "3055550000",
                     ownerphone2: "3055550002",
                     ownerssn: "123456789",
                     ownertitle: "Owner",
                     ozip: "33102",
+                    primaryOwner: true,
+                },
+                {
+                    oaddress: "456 Coral Way",
+                    ocity: "Miami",
+                    ocountry: "US",
+                    odriverstate: "FL",
+                    ostate: "FL",
+                    ownerdob: "09/22/1984",
+                    ownerdriver: "FL123654",
+                    owneremail: "jordan@hermanscoatings.com",
+                    ownername: "Jordan Ellis",
+                    ownerpercent: 40,
+                    ownerphone1: "3055550003",
+                    ownerssn: "987654321",
+                    ownertitle: "Partner",
+                    ozip: "33145",
                 },
             ],
             payoutAverageMonthlyVolume: 50000,
@@ -972,7 +989,7 @@ describe("BoardingClient", () => {
             },
             startdate: "01/01/2015",
             taxfillname: "Herman's Coatings LLC",
-            templateId: 22,
+            templateId: 900022,
             website: "www.hermanscoatings.com",
         };
         const rawResponseBody = { isSuccess: true, responseCode: 1, responseData: 3625, responseText: "Success" };
@@ -1076,7 +1093,7 @@ describe("BoardingClient", () => {
             mcountry: "US",
             mstate: "FL",
             mzip: "33101",
-            orgId: 123,
+            orgId: 900123,
             ownership: [
                 {
                     oaddress: "123 Palm Avenue",
@@ -1088,12 +1105,29 @@ describe("BoardingClient", () => {
                     ownerdriver: "FL789456",
                     owneremail: "herman@hermanscoatings.com",
                     ownername: "Herman Martinez",
-                    ownerpercent: 100,
+                    ownerpercent: 60,
                     ownerphone1: "3055550000",
                     ownerphone2: "3055550002",
                     ownerssn: "123456789",
                     ownertitle: "Owner",
                     ozip: "33102",
+                    primaryOwner: true,
+                },
+                {
+                    oaddress: "456 Coral Way",
+                    ocity: "Miami",
+                    ocountry: "US",
+                    odriverstate: "FL",
+                    ostate: "FL",
+                    ownerdob: "09/22/1984",
+                    ownerdriver: "FL123654",
+                    owneremail: "jordan@hermanscoatings.com",
+                    ownername: "Jordan Ellis",
+                    ownerpercent: 40,
+                    ownerphone1: "3055550003",
+                    ownerssn: "987654321",
+                    ownertitle: "Partner",
+                    ozip: "33145",
                 },
             ],
             payoutAverageMonthlyVolume: 50000,
@@ -1128,7 +1162,7 @@ describe("BoardingClient", () => {
             },
             startdate: "01/01/2015",
             taxfillname: "Herman's Coatings LLC",
-            templateId: 22,
+            templateId: 900022,
             website: "www.hermanscoatings.com",
         });
         expect(response).toEqual(rawResponseBody);
@@ -1788,7 +1822,7 @@ describe("BoardingClient", () => {
             ],
             mState: "TN",
             mZip: "37615",
-            orgId: 123,
+            orgId: 900123,
             orgParentName: "PropertyManager Pro",
             ownerData: [
                 {
@@ -1808,6 +1842,7 @@ describe("BoardingClient", () => {
                     ownertitle: "CEO",
                     ozip: "55555",
                     additionalData: {},
+                    primaryOwner: true,
                 },
             ],
             ownType: "Limited Liability Company",
@@ -1850,7 +1885,7 @@ describe("BoardingClient", () => {
                 },
             },
             taxfillname: "Sunshine LLC",
-            templateId: 22,
+            templateId: 900022,
             websiteAddress: "www.example.com",
             whencharged: "When Service Provided",
             whendelivered: "Over 30 Days",
@@ -2032,7 +2067,7 @@ describe("BoardingClient", () => {
             mCountry: "US",
             mState: "TN",
             mZip: "37615",
-            orgId: 123,
+            orgId: 900123,
             orgParentName: "PropertyManager Pro",
             ownerData: [
                 {
@@ -2051,6 +2086,7 @@ describe("BoardingClient", () => {
                     ownerssn: "123456789",
                     ownertitle: "CEO",
                     ozip: "55555",
+                    primaryOwner: true,
                 },
             ],
             ownType: "Limited Liability Company",
@@ -2087,7 +2123,7 @@ describe("BoardingClient", () => {
                 zip: "55555",
             },
             taxfillname: "Sunshine LLC",
-            templateId: 22,
+            templateId: 900022,
             websiteAddress: "www.example.com",
             whencharged: "When Service Provided",
             whendelivered: "0-7 Days",
@@ -2232,7 +2268,7 @@ describe("BoardingClient", () => {
                 ftype: "pdf",
                 furl: "https://mysite.com/my-doc.pdf",
             },
-            orgId: 123,
+            orgId: 900123,
             "pageIdentifier:": "null",
             recipientEmailNotification: true,
             referenceName: "payabli-00710",
@@ -2369,7 +2405,7 @@ describe("BoardingClient", () => {
                 ftype: "pdf",
                 furl: "https://mysite.com/my-doc.pdf",
             },
-            orgId: 123,
+            orgId: 900123,
             "pageIdentifier:": "null",
             recipientEmailNotification: true,
             referenceName: "payabli-00710",
@@ -2379,13 +2415,13 @@ describe("BoardingClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Boarding/linkbyTemplate/80")
+            .get("/Boarding/linkbyTemplate/900022")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.boarding.getByTemplateIdLinkApplication(80);
+        const response = await client.boarding.getByTemplateIdLinkApplication(900022);
         expect(response).toEqual(rawResponseBody);
     });
 
@@ -2633,7 +2669,7 @@ describe("BoardingClient", () => {
                 ftype: "pdf",
                 furl: "https://mysite.com/my-doc.pdf",
             },
-            orgId: 123,
+            orgId: 900123,
             "pageIdentifier:": "null",
             recipientEmailNotification: true,
             referenceName: "payabli-00710",
@@ -2825,7 +2861,7 @@ describe("BoardingClient", () => {
                     mCountry: "US",
                     mState: "TN",
                     mZip: "37615",
-                    orgId: 123,
+                    orgId: 900123,
                     orgParentName: "PropertyManager Pro",
                     ownerData: [{}],
                     ownType: "Limited Liability Company",
@@ -2834,7 +2870,7 @@ describe("BoardingClient", () => {
                     resumable: false,
                     salesCode: "salesCode",
                     taxfillname: "Sunshine LLC",
-                    templateId: 22,
+                    templateId: 900022,
                     websiteAddress: "www.example.com",
                     whencharged: "When Service Provided",
                     whendelivered: "0-7 Days",
@@ -2854,13 +2890,13 @@ describe("BoardingClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/boarding/123")
+            .get("/Query/boarding/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.boarding.listApplications(123, {
+        const response = await client.boarding.listApplications(900123, {
             fromRecord: 251,
             limitRecord: 0,
             sortBy: "desc(field_name)",
@@ -2976,13 +3012,13 @@ describe("BoardingClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/boardinglinks/123")
+            .get("/Query/boardinglinks/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.boarding.listBoardingLinks(123, {
+        const response = await client.boarding.listBoardingLinks(900123, {
             fromRecord: 251,
             limitRecord: 0,
             sortBy: "desc(field_name)",
@@ -3096,7 +3132,7 @@ describe("BoardingClient", () => {
         });
         const rawRequestBody = {
             paypointId: 3040,
-            templateId: 456,
+            templateId: 900022,
             recipientEmail: "merchant@example.com",
             returnBoardingAccessInfoInLine: true,
             onCreate: ["submitApplication"],
@@ -3124,7 +3160,7 @@ describe("BoardingClient", () => {
 
         const response = await client.boarding.addServiceToPaypointFromApp({
             paypointId: 3040,
-            templateId: 456,
+            templateId: 900022,
             recipientEmail: "merchant@example.com",
             returnBoardingAccessInfoInLine: true,
             onCreate: ["submitApplication"],
@@ -3261,13 +3297,13 @@ describe("BoardingClient", () => {
             Records: [
                 {
                     idApplication: 68388,
-                    orgId: 123,
+                    orgId: 900123,
                     dbaName: "Meadowbrook Phase II HOA A",
                     legalName: "Meadowbrook Phase II HOA B",
                     ein: "601907058",
                     boardingStatus: 7,
                     boardingSubStatus: 0,
-                    templateId: 8233,
+                    templateId: 900022,
                     boardingLinkId: 6344,
                     contactData: [
                         {

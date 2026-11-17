@@ -22,7 +22,7 @@ export declare namespace PaymentMethodsClient {
 export class PaymentMethodsClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<PaymentMethodsClient.Options>;
 
-    constructor(options: PaymentMethodsClient.Options = {}) {
+    constructor(options: PaymentMethodsClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 

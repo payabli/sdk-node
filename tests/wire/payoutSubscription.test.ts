@@ -271,6 +271,7 @@ describe("PayoutSubscriptionClient", () => {
             responseData: {
                 idOutSubscription: 42,
                 status: 1,
+                statusLabel: "Active",
                 events: [
                     {
                         description: "TransferCreated",
@@ -408,7 +409,7 @@ describe("PayoutSubscriptionClient", () => {
                 paypointDbaname: "Sunshine Gutters",
                 paypointEntryname: "d193cf9a46",
                 parentOrgName: "PropertyManager Pro",
-                parentOrgId: 236,
+                parentOrgId: 900123,
                 source: "api",
             },
         };

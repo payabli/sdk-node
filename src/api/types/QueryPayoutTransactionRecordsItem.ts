@@ -17,6 +17,13 @@ export interface QueryPayoutTransactionRecordsItem {
     PaypointId?: Payabli.PaypointId | undefined;
     /** Internal status of transaction. */
     Status?: number | undefined;
+    /**
+     * The name of the payout's `Status`: `Canceled`, `Captured`, `Processing`, `Processed`,
+     * `Held`, `Paid`, `Authorized`, `Capturing`, `Returned`, `Rejected`, `Reissued`, or
+     * `Refunded`. Returns `null` for an unrecognized code. See
+     * [Pay Out statuses](/guides/pay-out-status-reference#payout-transaction-statuses).
+     */
+    StatusLabel?: (string | null) | undefined;
     PaymentId?: Payabli.PaymentIdString | undefined;
     orderId?: Payabli.OrderId | undefined;
     /** ID of the transaction linked to this payout, when applicable. */

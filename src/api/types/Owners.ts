@@ -34,4 +34,12 @@ export interface Owners {
     /** Owner address ZIP. */
     ozip?: string | undefined;
     additionalData?: Payabli.AdditionalDataMap | undefined;
+    /**
+     * When `true`, marks this owner as the primary owner, the main principal that Payabli sends to the processor. Set it on exactly one owner. If you flag more than one owner, the request fails with HTTP 400 and the response text `Only one owner can be primary`.
+     *
+     * If the application has one owner and you don't flag it, Payabli flags that owner as the primary owner. If the application has two or more owners, flag one of them. Payabli accepts an application with no primary owner, but the processor can reject it at submission.
+     *
+     * Responses return `null` for owners that aren't the primary owner.
+     */
+    primaryOwner?: (boolean | null) | undefined;
 }

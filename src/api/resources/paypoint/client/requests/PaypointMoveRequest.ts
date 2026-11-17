@@ -6,7 +6,7 @@ import type * as Payabli from "../../../../index.js";
  * @example
  *     {
  *         entryPoint: "8cfec329267",
- *         newParentOrganizationId: 123,
+ *         newParentOrganizationId: 900123,
  *         notificationRequest: {
  *             notificationUrl: "https://webhook-test.yoursie.com",
  *             webHeaderParameters: [{

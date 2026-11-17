@@ -5,4 +5,25 @@ import type * as Payabli from "../index.js";
 /**
  * An address sent when creating a business. `country` is required.
  */
-export interface BusinessAddressCreate extends Payabli.BusinessAddress {}
+export interface BusinessAddressCreate {
+    /** The two-character ISO country code. */
+    country: string;
+    /** The address role. */
+    type?: Payabli.AddressType | undefined;
+    /** The physical use of the address. Defaults to `other`. */
+    location?: Payabli.BusinessAddressLocation | undefined;
+    /** The first line of the street address. */
+    addressLine1?: string | undefined;
+    /** The second line of the street address. */
+    addressLine2?: string | undefined;
+    /** The city or locality. */
+    cityLocality?: string | undefined;
+    /** The state or province. */
+    stateProvince?: string | undefined;
+    /** The postal or ZIP code. */
+    postalCode?: string | undefined;
+    /** The floor, if applicable. */
+    floor?: string | undefined;
+    /** The suite or apartment number, if applicable. */
+    suiteApartNumber?: string | undefined;
+}

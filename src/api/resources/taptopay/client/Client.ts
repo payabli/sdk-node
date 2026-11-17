@@ -22,7 +22,7 @@ export declare namespace TaptopayClient {
 export class TaptopayClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<TaptopayClient.Options>;
 
-    constructor(options: TaptopayClient.Options = {}) {
+    constructor(options: TaptopayClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 

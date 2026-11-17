@@ -28,6 +28,11 @@ export interface VendorQueryRecord {
     BillingData: Payabli.BillingDataResponse | null;
     PaymentMethod: Payabli.VendorPaymentMethodString | null;
     VendorStatus: Payabli.Vendorstatus;
+    /**
+     * The name of the `VendorStatus`: `Inactive`, `Active`, or `Deleted`. Returns `null` for
+     * an unrecognized code.
+     */
+    VendorStatusLabel?: (string | null) | undefined;
     VendorId: Payabli.Vendorid;
     EnrollmentStatus: Payabli.EnrollmentStatus | null;
     Summary: Payabli.VendorSummary | null;

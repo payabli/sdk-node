@@ -22,7 +22,7 @@ export declare namespace TemplatesClient {
 export class TemplatesClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<TemplatesClient.Options>;
 
-    constructor(options: TemplatesClient.Options = {}) {
+    constructor(options: TemplatesClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -47,7 +47,7 @@ export class TemplatesClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.templates.deleteTemplate(80)
+     *     await client.templates.deleteTemplate(900022)
      */
     public deleteTemplate(
         templateId: number,
@@ -140,7 +140,7 @@ export class TemplatesClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.templates.getlinkTemplate(80, true)
+     *     await client.templates.getlinkTemplate(900022, true)
      */
     public getlinkTemplate(
         templateId: number,
@@ -239,7 +239,7 @@ export class TemplatesClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.templates.getTemplate(80)
+     *     await client.templates.getTemplate(900022)
      */
     public getTemplate(
         templateId: number,
@@ -332,7 +332,7 @@ export class TemplatesClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.templates.listTemplates(123, {
+     *     await client.templates.listTemplates(900123, {
      *         fromRecord: 251,
      *         limitRecord: 0,
      *         sortBy: "desc(field_name)"

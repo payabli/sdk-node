@@ -221,7 +221,7 @@ describe("ChargeBacksClient", () => {
             PaypointLegalname: "Sunshine Services, LLC",
             PaypointDbaname: "Sunshine Gutters",
             ParentOrgName: "PropertyManager Pro",
-            ParentOrgId: 123,
+            ParentOrgId: 900123,
             PaypointEntryname: "d193cf9a46",
             Responses: [
                 {
@@ -307,7 +307,7 @@ describe("ChargeBacksClient", () => {
                 NetAmount: 3762.87,
                 Operation: "Sale",
                 OrderId: "O-5140",
-                OrgId: 123,
+                OrgId: 900123,
                 ParentOrgName: "PropertyManager Pro",
                 PaymentData: {
                     AccountExp: "11/29",

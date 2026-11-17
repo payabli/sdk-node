@@ -15,7 +15,7 @@ import type * as Payabli from "../../../../index.js";
  *         orgCity: "Johnson City",
  *         orgCountry: "US",
  *         orgEntryName: "pilgrim-planner",
- *         orgId: "123",
+ *         orgId: "900123",
  *         orgName: "Pilgrim Planner",
  *         orgState: "TN",
  *         orgTimezone: -5,

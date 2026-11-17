@@ -20,7 +20,7 @@ export declare namespace BoardingClient {
 export class BoardingClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<BoardingClient.Options>;
 
-    constructor(options: BoardingClient.Options = {}) {
+    constructor(options: BoardingClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -112,7 +112,7 @@ export class BoardingClient {
      *         mcountry: "US",
      *         mstate: "TN",
      *         mzip: "37615",
-     *         orgId: 123,
+     *         orgId: 900123,
      *         ownership: [{
      *                 oaddress: "33 North St",
      *                 ocity: "Any City",
@@ -159,7 +159,7 @@ export class BoardingClient {
      *         },
      *         startdate: "01/01/1990",
      *         taxFillName: "Sunshine LLC",
-     *         templateId: 22,
+     *         templateId: 900022,
      *         ticketamt: 1000,
      *         website: "www.example.com",
      *         whenCharged: "When Service Provided",
@@ -229,7 +229,7 @@ export class BoardingClient {
      *         mcountry: "US",
      *         mstate: "FL",
      *         mzip: "33101",
-     *         orgId: 123,
+     *         orgId: 900123,
      *         ownership: [{
      *                 oaddress: "123 Palm Avenue",
      *                 ocity: "Miami",
@@ -275,7 +275,7 @@ export class BoardingClient {
      *         },
      *         startdate: "01/01/2015",
      *         taxfillname: "Herman's Coatings LLC",
-     *         templateId: 22,
+     *         templateId: 900022,
      *         website: "www.hermanscoatings.com"
      *     })
      *
@@ -362,7 +362,7 @@ export class BoardingClient {
      *         mcountry: "US",
      *         mstate: "FL",
      *         mzip: "33101",
-     *         orgId: 123,
+     *         orgId: 900123,
      *         ownership: [{
      *                 oaddress: "123 Palm Avenue",
      *                 ocity: "Miami",
@@ -412,7 +412,7 @@ export class BoardingClient {
      *         },
      *         startdate: "01/01/2015",
      *         taxfillname: "Herman's Coatings LLC",
-     *         templateId: 22,
+     *         templateId: 900022,
      *         website: "www.hermanscoatings.com"
      *     })
      *
@@ -501,7 +501,7 @@ export class BoardingClient {
      *         mcountry: "US",
      *         mstate: "FL",
      *         mzip: "33101",
-     *         orgId: 123,
+     *         orgId: 900123,
      *         ownership: [{
      *                 oaddress: "123 Palm Avenue",
      *                 ocity: "Miami",
@@ -512,12 +512,28 @@ export class BoardingClient {
      *                 ownerdriver: "FL789456",
      *                 owneremail: "herman@hermanscoatings.com",
      *                 ownername: "Herman Martinez",
-     *                 ownerpercent: 100,
+     *                 ownerpercent: 60,
      *                 ownerphone1: "3055550000",
      *                 ownerphone2: "3055550002",
      *                 ownerssn: "123456789",
      *                 ownertitle: "Owner",
-     *                 ozip: "33102"
+     *                 ozip: "33102",
+     *                 primaryOwner: true
+     *             }, {
+     *                 oaddress: "456 Coral Way",
+     *                 ocity: "Miami",
+     *                 ocountry: "US",
+     *                 odriverstate: "FL",
+     *                 ostate: "FL",
+     *                 ownerdob: "09/22/1984",
+     *                 ownerdriver: "FL123654",
+     *                 owneremail: "jordan@hermanscoatings.com",
+     *                 ownername: "Jordan Ellis",
+     *                 ownerpercent: 40,
+     *                 ownerphone1: "3055550003",
+     *                 ownerssn: "987654321",
+     *                 ownertitle: "Partner",
+     *                 ozip: "33145"
      *             }],
      *         payoutAverageMonthlyVolume: 50000,
      *         payoutAverageTicketAmount: 500,
@@ -551,7 +567,7 @@ export class BoardingClient {
      *         },
      *         startdate: "01/01/2015",
      *         taxfillname: "Herman's Coatings LLC",
-     *         templateId: 22,
+     *         templateId: 900022,
      *         website: "www.hermanscoatings.com"
      *     })
      */
@@ -639,6 +655,9 @@ export class BoardingClient {
      *
      *
      * Updates a boarding application by ID. This endpoint requires an application API token.
+     *
+     *
+     * If you send `ownership`, it replaces the application's owners. Include every owner, and set `primaryOwner` again on the primary owner, or the application loses its primary owner. If you leave `ownership` out, the owners don't change.
      *
      * @param {number} appId - Boarding application ID.
      * @param {Payabli.ApplicationData} request
@@ -1137,7 +1156,7 @@ export class BoardingClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.boarding.getByTemplateIdLinkApplication(80)
+     *     await client.boarding.getByTemplateIdLinkApplication(900022)
      */
     public getByTemplateIdLinkApplication(
         templateId: number,
@@ -1445,7 +1464,7 @@ export class BoardingClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.boarding.listApplications(123, {
+     *     await client.boarding.listApplications(900123, {
      *         fromRecord: 251,
      *         limitRecord: 0,
      *         sortBy: "desc(field_name)"
@@ -1559,7 +1578,7 @@ export class BoardingClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.boarding.listBoardingLinks(123, {
+     *     await client.boarding.listBoardingLinks(900123, {
      *         fromRecord: 251,
      *         limitRecord: 0,
      *         sortBy: "desc(field_name)"
@@ -1670,7 +1689,7 @@ export class BoardingClient {
      * @example
      *     await client.boarding.addServiceToPaypointFromApp({
      *         paypointId: 3040,
-     *         templateId: 456,
+     *         templateId: 900022,
      *         recipientEmail: "merchant@example.com",
      *         returnBoardingAccessInfoInLine: true,
      *         onCreate: ["submitApplication"]

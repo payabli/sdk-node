@@ -22,7 +22,7 @@ export declare namespace PaypointClient {
 export class PaypointClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<PaypointClient.Options>;
 
-    constructor(options: PaypointClient.Options = {}) {
+    constructor(options: PaypointClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -311,7 +311,7 @@ export class PaypointClient {
      * @example
      *     await client.paypoint.migrate({
      *         entryPoint: "8cfec329267",
-     *         newParentOrganizationId: 123,
+     *         newParentOrganizationId: 900123,
      *         notificationRequest: {
      *             notificationUrl: "https://webhook-test.yoursie.com",
      *             webHeaderParameters: [{

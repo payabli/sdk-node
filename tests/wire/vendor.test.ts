@@ -273,6 +273,7 @@ describe("VendorClient", () => {
             },
             PaymentMethod: null,
             VendorStatus: 1,
+            VendorStatusLabel: "Active",
             VendorId: 456,
             EnrollmentStatus: null,
             Summary: {

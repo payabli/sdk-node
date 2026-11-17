@@ -6,7 +6,7 @@ import type * as Payabli from "../../../../index.js";
  * @example
  *     {
  *         entry: "8cfec329267",
- *         orgId: 123,
+ *         orgId: 900123,
  *         "firstName": "Marcus",
  *         "lastName": "Delgado"
  *     }

@@ -24,6 +24,12 @@ export interface QueryBatchesOutResponseRecordsItem {
     BatchRecords?: number | undefined;
     /** The batch status. See [Batch Status](/developers/references/money-out-statuses#batch-statuses) for more. */
     BatchStatus?: number | undefined;
+    /**
+     * The name of the `BatchStatus`: `Open`, `Closed`, `Funded`, `Processed`, `Paid`,
+     * `Canceled`, `Funding Pending`, `Held`, or `Released`. Returns `null` for an unrecognized
+     * code. See [Pay Out statuses](/guides/pay-out-status-reference#batch-statuses).
+     */
+    BatchStatusLabel?: (string | null) | undefined;
     /** A text description of the batch status. */
     BatchStatusText?: string | undefined;
     CardAmount?: number | undefined;
@@ -46,6 +52,12 @@ export interface QueryBatchesOutResponseRecordsItem {
     PaypointId?: number | undefined;
     /** Paypoint legal name. */
     PaypointName?: string | undefined;
+    /**
+     * The date and time, in UTC, of the transfer that funds the batch. For a batch that
+     * hasn't been funded yet, this field returns the time of the request instead, and
+     * `transferDate` filters don't match that value.
+     */
+    TransferDate?: string | undefined;
     VcardAmount?: number | undefined;
     VcardRecords?: number | undefined;
     VcardStatus?: number | undefined;

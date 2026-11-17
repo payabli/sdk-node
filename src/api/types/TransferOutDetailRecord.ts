@@ -52,6 +52,13 @@ export interface TransferOutDetailRecord {
     PaypointId: number | null;
     /** Status of the transfer detail. */
     Status: number | null;
+    /**
+     * The name of the payout's `Status`: `Canceled`, `Captured`, `Processing`, `Processed`,
+     * `Held`, `Paid`, `Authorized`, `Capturing`, `Returned`, `Rejected`, `Reissued`, or
+     * `Refunded`. Returns `null` for an unrecognized code. See
+     * [Pay Out statuses](/guides/pay-out-status-reference#payout-transaction-statuses).
+     */
+    StatusLabel: string | null;
     /** Payment ID. */
     PaymentId: string | null;
     /** Transaction ID. */

@@ -21,7 +21,7 @@ export declare namespace DeviceClient {
 export class DeviceClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<DeviceClient.Options>;
 
-    constructor(options: DeviceClient.Options = {}) {
+    constructor(options: DeviceClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 

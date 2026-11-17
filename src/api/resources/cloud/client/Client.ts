@@ -22,7 +22,7 @@ export declare namespace CloudClient {
 export class CloudClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<CloudClient.Options>;
 
-    constructor(options: CloudClient.Options = {}) {
+    constructor(options: CloudClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 

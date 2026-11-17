@@ -10,15 +10,15 @@ export interface TransferOutRecord {
     transferId: number | null;
     /** The ID of the paypoint associated with the transfer. */
     paypointId: number | null;
-    /** The batch number for the transfer. */
+    /** The batch number for the transfer. Vendor enrichment and bank account verification billing transfers aren't tied to a batch, so this is an empty string for those transfers. */
     batchNumber: string | null;
     /** The currency of the batch. */
     batchCurrency: string | null;
-    /** The number of records in the batch. */
+    /** The number of records in the batch. Vendor enrichment and bank account verification billing transfers aren't tied to a batch, so this is `0` for those transfers. */
     batchRecords: number | null;
-    /** An identifier for the transfer. */
+    /** An identifier for the transfer. Vendor enrichment and bank account verification billing transfers use the format `BILL_{paypointId}_{yyyyMMdd}_{feeType}`, where `feeType` is `VendorEnrichment` or `BankAccountVerification`. */
     transferIdentifier: string | null;
-    /** The ID of the batch. */
+    /** The ID of the batch. Vendor enrichment and bank account verification billing transfers aren't tied to a batch, so this is `0` for those transfers. */
     batchId: number | null;
     /** The net amount of the batch. */
     batchNetAmount: number | null;
@@ -46,10 +46,16 @@ export interface TransferOutRecord {
     bankAccount: Payabli.TransferOutBankAccount | null;
     /** The date of the transfer. */
     transferDate: string | null;
-    /** The processor used for the transfer. */
+    /** The processor used for the transfer. This is `billing` for vendor enrichment and bank account verification billing transfers. */
     processor: string | null;
     /** The status of the transfer. */
     transferStatus: number | null;
+    /**
+     * The name of the `transferStatus`: `Pending`, `In Transit`, `Transferred`, `Funded
+     * (settled)`, `Resolved`, `Exception`, `ACH Return or Chargeback`, `Held`, `Released`,
+     * `Refunded`, or `None`. Returns `null` for an unrecognized code.
+     */
+    transferStatusLabel: string | null;
     /** The gross amount of the transfer. */
     grossAmount: number | null;
     /** The chargeback amount deducted from the transfer. */
@@ -74,7 +80,7 @@ export interface TransferOutRecord {
     eventsData: Payabli.TransferOutEventData[] | null;
     /** List of messages associated with the transfer. */
     messages: Payabli.TransferOutMessage[] | null;
-    /** The transfer type. One of `debit`, `credit`, or `billing`. */
+    /** The transfer type. One of `debit`, `credit`, or `billing`. A `billing` transfer is an ACH debit from the paypoint that collects fees. Billing transfers for payout fees belong to the payout's batch. Vendor enrichment and bank account verification charges are collected in a separate daily debit for each paypoint and fee type. These transfers aren't tied to a batch, so `batchId` and `batchRecords` are `0` and `batchNumber` is empty. Their `grossAmount`, `billingFeesAmount`, and `netTransferAmount` each hold the charge total as a negative value. */
     type: string | null;
     /** The payment method for the transfer, such as `ach`, `vcard`, or `check`. */
     method: string | null;

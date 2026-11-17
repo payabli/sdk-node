@@ -88,7 +88,7 @@ describe("QueryClient", () => {
                     },
                     PaypointDbaname: "Gruzya Adventure Outfitters, LLC",
                     ParentOrgName: "Pilgrim Planner",
-                    ParentOrgId: 123,
+                    ParentOrgId: 900123,
                     PaypointEntryname: "7f1a3816XX",
                     DeviceId: "",
                     RetrievalId: 0,
@@ -98,7 +98,7 @@ describe("QueryClient", () => {
                     ConnectorName: "DefaultConnector",
                     EntrypageId: 0,
                     FeeAmount: 0,
-                    OrgId: 123,
+                    OrgId: 900123,
                     PayorId: 2707,
                     PaypointId: 3040,
                     PendingFeeAmount: 0,
@@ -368,7 +368,7 @@ describe("QueryClient", () => {
                     },
                     PaypointDbaname: "Gruzya Adventure Outfitters, LLC",
                     ParentOrgName: "Pilgrim Planner",
-                    ParentOrgId: 123,
+                    ParentOrgId: 900123,
                     PaypointEntryname: "7f1a3816XX",
                     DeviceId: "",
                     RetrievalId: 0,
@@ -378,7 +378,7 @@ describe("QueryClient", () => {
                     ConnectorName: "DefaultConnector",
                     EntrypageId: 0,
                     FeeAmount: 0,
-                    OrgId: 123,
+                    OrgId: 900123,
                     PayorId: 2707,
                     PaypointId: 3040,
                     PendingFeeAmount: 0,
@@ -454,13 +454,13 @@ describe("QueryClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/batchDetails/org/123")
+            .get("/Query/batchDetails/org/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listBatchDetailsOrg(123, {
+        const response = await client.query.listBatchDetailsOrg(900123, {
             fromRecord: 251,
             limitRecord: 0,
             sortBy: "desc(field_name)",
@@ -950,13 +950,13 @@ describe("QueryClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/batches/org/123")
+            .get("/Query/batches/org/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listBatchesOrg(123, {
+        const response = await client.query.listBatchesOrg(900123, {
             fromRecord: 251,
             limitRecord: 0,
             sortBy: "desc(field_name)",
@@ -1089,6 +1089,7 @@ describe("QueryClient", () => {
                     BatchProcessingRecords: 0,
                     BatchRecords: 1,
                     BatchStatus: 1,
+                    BatchStatusLabel: "Closed",
                     BatchStatusText: "Waiting Funds",
                     CardAmount: 0,
                     CardRecords: 0,
@@ -1113,6 +1114,7 @@ describe("QueryClient", () => {
                     WireRecords: 0,
                     WireStatus: 0,
                     WireStatusText: "WireStatusText",
+                    TransferDate: "2024-01-02T01:00:00Z",
                 },
             ],
             Summary: {
@@ -1266,6 +1268,7 @@ describe("QueryClient", () => {
                     BatchProcessingRecords: 0,
                     BatchRecords: 1,
                     BatchStatus: 1,
+                    BatchStatusLabel: "Closed",
                     BatchStatusText: "Waiting Funds",
                     CardAmount: 0,
                     CardRecords: 0,
@@ -1290,6 +1293,7 @@ describe("QueryClient", () => {
                     WireRecords: 0,
                     WireStatus: 0,
                     WireStatusText: "WireStatusText",
+                    TransferDate: "2024-01-02T01:00:00Z",
                 },
             ],
             Summary: {
@@ -1304,13 +1308,13 @@ describe("QueryClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/batchesOut/org/123")
+            .get("/Query/batchesOut/org/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listBatchesOutOrg(123, {
+        const response = await client.query.listBatchesOutOrg(900123, {
             fromRecord: 251,
             limitRecord: 0,
             sortBy: "desc(field_name)",
@@ -1513,7 +1517,7 @@ describe("QueryClient", () => {
                         NetAmount: 1.5,
                         Operation: "Sale",
                         OrderId: "",
-                        OrgId: 123,
+                        OrgId: 900123,
                         PaymentData: {
                             AccountExp: "0330",
                             AccountType: "visa",
@@ -1744,13 +1748,13 @@ describe("QueryClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/chargebacks/org/123")
+            .get("/Query/chargebacks/org/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listChargebacksOrg(123, {
+        const response = await client.query.listChargebacksOrg(900123, {
             fromRecord: 251,
             limitRecord: 0,
             sortBy: "desc(field_name)",
@@ -2090,13 +2094,13 @@ describe("QueryClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/customers/org/123")
+            .get("/Query/customers/org/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listCustomersOrg(123, {
+        const response = await client.query.listCustomersOrg(900123, {
             fromRecord: 251,
             limitRecord: 0,
             sortBy: "desc(field_name)",
@@ -2422,13 +2426,13 @@ describe("QueryClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/devices/org/123")
+            .get("/Query/devices/org/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listDevicesOrg(123, {
+        const response = await client.query.listDevicesOrg(900123, {
             fromRecord: 0,
             limitRecord: 20,
             sortBy: "desc(createdAt)",
@@ -2702,13 +2706,13 @@ describe("QueryClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/notificationReports/org/123")
+            .get("/Query/notificationReports/org/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listNotificationReportsOrg(123, {
+        const response = await client.query.listNotificationReportsOrg(900123, {
             fromRecord: 251,
             limitRecord: 0,
             sortBy: "desc(field_name)",
@@ -3012,13 +3016,13 @@ describe("QueryClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/notifications/org/123")
+            .get("/Query/notifications/org/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listNotificationsOrg(123, {
+        const response = await client.query.listNotificationsOrg(900123, {
             fromRecord: 251,
             limitRecord: 0,
             sortBy: "desc(field_name)",
@@ -3139,16 +3143,16 @@ describe("QueryClient", () => {
                     createdAt: "2022-07-01T15:00:01Z",
                     HasBilling: true,
                     HasResidual: true,
-                    idOrg: 123,
+                    idOrg: 900123,
                     isRoot: false,
                     OrgAddress: "123 Walnut Street",
                     OrgCity: "Johnson City",
                     OrgCountry: "US",
                     OrgEntryName: "pilgrim-planner",
                     OrgFavicon: "https://www.pilgrimageplanner.com/favicon.png",
-                    OrgId: "123",
+                    OrgId: "900123",
                     OrgName: "Pilgrim Planner",
-                    OrgParentId: 236,
+                    OrgParentId: 900123,
                     OrgParentName: "PropertyManager Pro",
                     OrgState: "TN",
                     OrgTimezone: -5,
@@ -3173,13 +3177,13 @@ describe("QueryClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/organizations/123")
+            .get("/Query/organizations/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listOrganizations(123, {
+        const response = await client.query.listOrganizations(900123, {
             fromRecord: 251,
             limitRecord: 0,
             sortBy: "desc(field_name)",
@@ -3326,6 +3330,7 @@ describe("QueryClient", () => {
                         BillingData: null,
                         PaymentMethod: "ach",
                         VendorStatus: 1,
+                        VendorStatusLabel: "Active",
                         VendorId: 456,
                         EnrollmentStatus: null,
                         Summary: null,
@@ -3334,7 +3339,7 @@ describe("QueryClient", () => {
                         PaypointDbaname: "Sunshine Gutters",
                         PaypointEntryname: "8cfec329267",
                         ParentOrgName: "PropertyManager Pro",
-                        ParentOrgId: 123,
+                        ParentOrgId: 900123,
                         CreatedDate: "2024-01-10T15:00:01Z",
                         LastUpdated: "2024-01-12T15:00:01Z",
                         remitAddress1: "100 Main Street",
@@ -3365,6 +3370,7 @@ describe("QueryClient", () => {
                     PaypointLegalname: "Sunshine Services, LLC",
                     PaypointId: 3040,
                     Status: 1,
+                    StatusLabel: "Captured",
                     PaymentId: "01J0ABCDEF2WQ4VS323V5WKZP3",
                     orderId: "O-5140",
                     LastUpdated: "2024-01-15T15:00:01Z",
@@ -3373,7 +3379,7 @@ describe("QueryClient", () => {
                     FeeAmount: 10.25,
                     Source: "api",
                     ParentOrgName: "PropertyManager Pro",
-                    ParentOrgId: 123,
+                    ParentOrgId: 900123,
                     BatchNumber: "BT-2024321",
                     PaymentStatus: "Processed",
                     PaymentMethod: "ach",
@@ -3614,6 +3620,7 @@ describe("QueryClient", () => {
                         BillingData: null,
                         PaymentMethod: "ach",
                         VendorStatus: 1,
+                        VendorStatusLabel: "Active",
                         VendorId: 456,
                         EnrollmentStatus: null,
                         Summary: null,
@@ -3622,7 +3629,7 @@ describe("QueryClient", () => {
                         PaypointDbaname: "Sunshine Gutters",
                         PaypointEntryname: "8cfec329267",
                         ParentOrgName: "PropertyManager Pro",
-                        ParentOrgId: 123,
+                        ParentOrgId: 900123,
                         CreatedDate: "2024-01-10T15:00:01Z",
                         LastUpdated: "2024-01-12T15:00:01Z",
                         remitAddress1: "100 Main Street",
@@ -3653,6 +3660,7 @@ describe("QueryClient", () => {
                     PaypointLegalname: "Sunshine Services, LLC",
                     PaypointId: 3040,
                     Status: 1,
+                    StatusLabel: "Captured",
                     PaymentId: "01J0ABCDEF2WQ4VS323V5WKZP3",
                     orderId: "O-5140",
                     LastUpdated: "2024-01-15T15:00:01Z",
@@ -3661,7 +3669,7 @@ describe("QueryClient", () => {
                     FeeAmount: 10.25,
                     Source: "api",
                     ParentOrgName: "PropertyManager Pro",
-                    ParentOrgId: 123,
+                    ParentOrgId: 900123,
                     BatchNumber: "BT-2024321",
                     PaymentStatus: "Processed",
                     PaymentMethod: "ach",
@@ -3749,13 +3757,13 @@ describe("QueryClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/payouts/org/123")
+            .get("/Query/payouts/org/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listPayoutOrg(123, {
+        const response = await client.query.listPayoutOrg(900123, {
             fromRecord: 251,
             limitRecord: 0,
             sortBy: "desc(field_name)",
@@ -3916,14 +3924,14 @@ describe("QueryClient", () => {
                     MCountry: "US",
                     MState: "TN",
                     MZip: "37615",
-                    OrgId: 123,
+                    OrgId: 900123,
                     OrgParentName: "PropertyManager Pro",
                     OwnerData: [{}],
                     OwnType: "Limited Liability Company",
                     PaypointStatus: 1,
                     SalesCode: "SalesCode",
                     Taxfillname: "Sunshine LLC",
-                    TemplateId: 22,
+                    TemplateId: 900022,
                     WebsiteAddress: "www.example.com",
                     Whencharged: "When Service Provided",
                     Whendelivered: "0-7 Days",
@@ -3943,13 +3951,13 @@ describe("QueryClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/paypoints/123")
+            .get("/Query/paypoints/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listPaypoints(123, {
+        const response = await client.query.listPaypoints(900123, {
             fromRecord: 251,
             limitRecord: 0,
             sortBy: "desc(field_name)",
@@ -4429,13 +4437,13 @@ describe("QueryClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/settlements/org/123")
+            .get("/Query/settlements/org/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listSettlementsOrg(123, {
+        const response = await client.query.listSettlementsOrg(900123, {
             fromRecord: 251,
             limitRecord: 0,
             sortBy: "desc(field_name)",
@@ -4979,13 +4987,13 @@ describe("QueryClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/subscriptions/org/123")
+            .get("/Query/subscriptions/org/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listSubscriptionsOrg(123, {
+        const response = await client.query.listSubscriptionsOrg(900123, {
             fromRecord: 251,
             limitRecord: 0,
             sortBy: "desc(field_name)",
@@ -5111,6 +5119,7 @@ describe("QueryClient", () => {
                 {
                     IdOutSubscription: 42,
                     Status: 1,
+                    StatusLabel: "Active",
                     Events: [
                         {
                             description: "TransferCreated",
@@ -5162,6 +5171,7 @@ describe("QueryClient", () => {
                         },
                         PaymentMethod: null,
                         VendorStatus: 1,
+                        VendorStatusLabel: "Active",
                         VendorId: 456,
                         EnrollmentStatus: null,
                         Summary: {
@@ -5258,7 +5268,7 @@ describe("QueryClient", () => {
                     PaypointDbaname: "Sunshine Gutters",
                     PaypointEntryname: "d193cf9a46",
                     ParentOrgName: "PropertyManager Pro",
-                    ParentOrgId: 236,
+                    ParentOrgId: 900123,
                     Source: "api",
                 },
             ],
@@ -5398,6 +5408,7 @@ describe("QueryClient", () => {
                 {
                     IdOutSubscription: 42,
                     Status: 1,
+                    StatusLabel: "Active",
                     Events: [
                         {
                             description: "TransferCreated",
@@ -5449,6 +5460,7 @@ describe("QueryClient", () => {
                         },
                         PaymentMethod: null,
                         VendorStatus: 1,
+                        VendorStatusLabel: "Active",
                         VendorId: 456,
                         EnrollmentStatus: null,
                         Summary: {
@@ -5545,7 +5557,7 @@ describe("QueryClient", () => {
                     PaypointDbaname: "Sunshine Gutters",
                     PaypointEntryname: "d193cf9a46",
                     ParentOrgName: "PropertyManager Pro",
-                    ParentOrgId: 236,
+                    ParentOrgId: 900123,
                     Source: "api",
                 },
             ],
@@ -5553,13 +5565,13 @@ describe("QueryClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/payoutsubscriptions/org/123")
+            .get("/Query/payoutsubscriptions/org/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listPayoutSubscriptionsOrg(123, {
+        const response = await client.query.listPayoutSubscriptionsOrg(900123, {
             fromRecord: 0,
             limitRecord: 20,
             sortBy: "desc(field_name)",
@@ -5777,7 +5789,7 @@ describe("QueryClient", () => {
                     NetAmount: 100,
                     Operation: "Sale",
                     OrderId: "9876543",
-                    OrgId: 123,
+                    OrgId: 900123,
                     ParentOrgName: "Payabli",
                     PaymentData: {
                         AccountExp: "0426",
@@ -5912,7 +5924,7 @@ describe("QueryClient", () => {
                     SettlementStatus: 0,
                     Operation: "Reject",
                     Source: "api",
-                    OrgId: 123,
+                    OrgId: 900123,
                     TransactionTime: "2026-03-02T18:56:23.109188",
                     Customer: {
                         FirstName: "Blaise",
@@ -6183,7 +6195,7 @@ describe("QueryClient", () => {
                     NetAmount: 3762.87,
                     Operation: "Sale",
                     OrderId: "O-5140",
-                    OrgId: 123,
+                    OrgId: 900123,
                     ParentOrgName: "PropertyManager Pro",
                     PaymentData: { orderDescription: "Monthly subscription", paymentDetails: { totalAmount: 100 } },
                     PaymentTransId: "226-fe55ec0348e34702bd91b4be198ce7ec",
@@ -6234,13 +6246,13 @@ describe("QueryClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/transactions/org/123")
+            .get("/Query/transactions/org/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listTransactionsOrg(123, {
+        const response = await client.query.listTransactionsOrg(900123, {
             fromRecord: 251,
             limitRecord: 0,
             sortBy: "desc(field_name)",
@@ -6295,7 +6307,7 @@ describe("QueryClient", () => {
                     SettlementStatus: 0,
                     Operation: "Reject",
                     Source: "api",
-                    OrgId: 123,
+                    OrgId: 900123,
                     TransactionTime: "2026-03-02T18:56:23.109188",
                     Customer: {
                         FirstName: "Blaise",
@@ -6330,13 +6342,13 @@ describe("QueryClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/transactions/org/123")
+            .get("/Query/transactions/org/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listTransactionsOrg(123, {
+        const response = await client.query.listTransactionsOrg(900123, {
             limitRecord: 1,
             parameters: {
                 "operation(eq)": "Reject",
@@ -6425,13 +6437,13 @@ describe("QueryClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/transactions/org/123")
+            .get("/Query/transactions/org/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listTransactionsOrg(123, {
+        const response = await client.query.listTransactionsOrg(900123, {
             limitRecord: 2,
             parameters: {
                 "method(eq)": "device",
@@ -6641,7 +6653,7 @@ describe("QueryClient", () => {
                     },
                     Source: "web",
                     ScheduleReference: 0,
-                    OrgId: 123,
+                    OrgId: 900123,
                     RefundId: 0,
                     ReturnedId: 0,
                     TransactionTime: "2024-01-05T12:15:30.11",
@@ -7029,13 +7041,13 @@ describe("QueryClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/transfers/org/123")
+            .get("/Query/transfers/org/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listTransfersOrg(123, {
+        const response = await client.query.listTransfersOrg(900123, {
             fromRecord: 0,
             limitRecord: 20,
         });
@@ -7177,6 +7189,7 @@ describe("QueryClient", () => {
                     transferDate: "2025-01-15T14:30:00Z",
                     processor: "BK",
                     transferStatus: null,
+                    transferStatusLabel: null,
                     grossAmount: 2847.5,
                     chargeBackAmount: null,
                     returnedAmount: 0,
@@ -7219,13 +7232,13 @@ describe("QueryClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/transfersOut/org/123")
+            .get("/Query/transfersOut/org/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listTransfersOutOrg(123, {
+        const response = await client.query.listTransfersOutOrg(900123, {
             fromRecord: 0,
             limitRecord: 20,
         });
@@ -7367,6 +7380,7 @@ describe("QueryClient", () => {
                     transferDate: "2025-01-15T14:30:00Z",
                     processor: "BK",
                     transferStatus: null,
+                    transferStatusLabel: null,
                     grossAmount: 2847.5,
                     chargeBackAmount: null,
                     returnedAmount: 0,
@@ -7629,6 +7643,7 @@ describe("QueryClient", () => {
                     PaypointLegalname: "Solid Rock Concrete Coatings LLC",
                     PaypointId: 3040,
                     Status: 2,
+                    StatusLabel: "Processing",
                     PaymentId: "01KXYZ789ABC123DEF456GHI",
                     TransId: null,
                     TransStatus: null,
@@ -7871,13 +7886,13 @@ describe("QueryClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/users/org/123")
+            .get("/Query/users/org/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listUsersOrg(123, {
+        const response = await client.query.listUsersOrg(900123, {
             fromRecord: 251,
             limitRecord: 0,
             sortBy: "desc(field_name)",
@@ -8164,6 +8179,7 @@ describe("QueryClient", () => {
                     },
                     PaymentMethod: null,
                     VendorStatus: 1,
+                    VendorStatusLabel: "Active",
                     VendorId: 456,
                     EnrollmentStatus: null,
                     Summary: {
@@ -8393,6 +8409,7 @@ describe("QueryClient", () => {
                     },
                     PaymentMethod: null,
                     VendorStatus: 1,
+                    VendorStatusLabel: "Active",
                     VendorId: 456,
                     EnrollmentStatus: null,
                     Summary: {
@@ -8458,13 +8475,13 @@ describe("QueryClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/vendors/org/123")
+            .get("/Query/vendors/org/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listVendorsOrg(123, {
+        const response = await client.query.listVendorsOrg(900123, {
             fromRecord: 251,
             limitRecord: 0,
             sortBy: "desc(field_name)",
@@ -8957,13 +8974,13 @@ describe("QueryClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/vcardsTransactions/org/123")
+            .get("/Query/vcardsTransactions/org/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listVcardsTransactionsOrg(123, {
+        const response = await client.query.listVcardsTransactionsOrg(900123, {
             fromRecord: 0,
             limitRecord: 20,
             sortBy: "desc(CreatedOn)",
@@ -9130,13 +9147,13 @@ describe("QueryClient", () => {
 
         server
             .mockEndpoint()
-            .get("/Query/vcards/org/123")
+            .get("/Query/vcards/org/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.query.listVcardsOrg(123, {
+        const response = await client.query.listVcardsOrg(900123, {
             fromRecord: 251,
             limitRecord: 0,
             sortBy: "desc(field_name)",

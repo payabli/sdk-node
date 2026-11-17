@@ -22,7 +22,7 @@ export declare namespace VendorClient {
 export class VendorClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<VendorClient.Options>;
 
-    constructor(options: VendorClient.Options = {}) {
+    constructor(options: VendorClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 

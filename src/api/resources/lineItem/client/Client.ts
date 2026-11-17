@@ -23,7 +23,7 @@ export declare namespace LineItemClient {
 export class LineItemClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<LineItemClient.Options>;
 
-    constructor(options: LineItemClient.Options = {}) {
+    constructor(options: LineItemClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 

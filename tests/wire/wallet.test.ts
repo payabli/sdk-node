@@ -13,7 +13,7 @@ describe("WalletClient", () => {
             apiKeyAuth: { apiKey: "test" },
             environment: server.baseUrl,
         });
-        const rawRequestBody = { cascade: true, isEnabled: true, orgId: 123 };
+        const rawRequestBody = { cascade: true, isEnabled: true, orgId: 900123 };
         const rawResponseBody = {
             isSuccess: true,
             pageIdentifier: "null",
@@ -43,7 +43,7 @@ describe("WalletClient", () => {
         const response = await client.wallet.configureApplePayOrganization({
             cascade: true,
             isEnabled: true,
-            orgId: 123,
+            orgId: 900123,
         });
         expect(response).toEqual(rawResponseBody);
     });
@@ -304,7 +304,7 @@ describe("WalletClient", () => {
             apiKeyAuth: { apiKey: "test" },
             environment: server.baseUrl,
         });
-        const rawRequestBody = { cascade: true, isEnabled: true, orgId: 123 };
+        const rawRequestBody = { cascade: true, isEnabled: true, orgId: 900123 };
         const rawResponseBody = {
             isSuccess: true,
             pageIdentifier: "null",
@@ -334,7 +334,7 @@ describe("WalletClient", () => {
         const response = await client.wallet.configureGooglePayOrganization({
             cascade: true,
             isEnabled: true,
-            orgId: 123,
+            orgId: 900123,
         });
         expect(response).toEqual(rawResponseBody);
     });

@@ -22,7 +22,7 @@ export declare namespace QueryClient {
 export class QueryClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<QueryClient.Options>;
 
-    constructor(options: QueryClient.Options = {}) {
+    constructor(options: QueryClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -146,7 +146,7 @@ export class QueryClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.query.listBatchDetailsOrg(123, {
+     *     await client.query.listBatchDetailsOrg(900123, {
      *         fromRecord: 251,
      *         limitRecord: 0,
      *         sortBy: "desc(field_name)"
@@ -359,7 +359,7 @@ export class QueryClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.query.listBatchesOrg(123, {
+     *     await client.query.listBatchesOrg(900123, {
      *         fromRecord: 251,
      *         limitRecord: 0,
      *         sortBy: "desc(field_name)"
@@ -567,7 +567,7 @@ export class QueryClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.query.listBatchesOutOrg(123, {
+     *     await client.query.listBatchesOutOrg(900123, {
      *         fromRecord: 251,
      *         limitRecord: 0,
      *         sortBy: "desc(field_name)"
@@ -775,7 +775,7 @@ export class QueryClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.query.listChargebacksOrg(123, {
+     *     await client.query.listChargebacksOrg(900123, {
      *         fromRecord: 251,
      *         limitRecord: 0,
      *         sortBy: "desc(field_name)"
@@ -988,7 +988,7 @@ export class QueryClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.query.listCustomersOrg(123, {
+     *     await client.query.listCustomersOrg(900123, {
      *         fromRecord: 251,
      *         limitRecord: 0,
      *         sortBy: "desc(field_name)"
@@ -1196,7 +1196,7 @@ export class QueryClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.query.listDevicesOrg(123, {
+     *     await client.query.listDevicesOrg(900123, {
      *         fromRecord: 0,
      *         limitRecord: 20,
      *         sortBy: "desc(createdAt)"
@@ -1411,7 +1411,7 @@ export class QueryClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.query.listNotificationReportsOrg(123, {
+     *     await client.query.listNotificationReportsOrg(900123, {
      *         fromRecord: 251,
      *         limitRecord: 0,
      *         sortBy: "desc(field_name)"
@@ -1625,7 +1625,7 @@ export class QueryClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.query.listNotificationsOrg(123, {
+     *     await client.query.listNotificationsOrg(900123, {
      *         fromRecord: 251,
      *         limitRecord: 0,
      *         sortBy: "desc(field_name)"
@@ -1733,7 +1733,7 @@ export class QueryClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.query.listOrganizations(123, {
+     *     await client.query.listOrganizations(900123, {
      *         fromRecord: 251,
      *         limitRecord: 0,
      *         sortBy: "desc(field_name)"
@@ -1941,7 +1941,7 @@ export class QueryClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.query.listPayoutOrg(123, {
+     *     await client.query.listPayoutOrg(900123, {
      *         fromRecord: 251,
      *         limitRecord: 0,
      *         sortBy: "desc(field_name)"
@@ -2045,7 +2045,7 @@ export class QueryClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.query.listPaypoints(123, {
+     *     await client.query.listPaypoints(900123, {
      *         fromRecord: 251,
      *         limitRecord: 0,
      *         sortBy: "desc(field_name)"
@@ -2253,7 +2253,7 @@ export class QueryClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.query.listSettlementsOrg(123, {
+     *     await client.query.listSettlementsOrg(900123, {
      *         fromRecord: 251,
      *         limitRecord: 0,
      *         sortBy: "desc(field_name)"
@@ -2466,7 +2466,7 @@ export class QueryClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.query.listSubscriptionsOrg(123, {
+     *     await client.query.listSubscriptionsOrg(900123, {
      *         fromRecord: 251,
      *         limitRecord: 0,
      *         sortBy: "desc(field_name)"
@@ -2687,7 +2687,7 @@ export class QueryClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.query.listPayoutSubscriptionsOrg(123, {
+     *     await client.query.listPayoutSubscriptionsOrg(900123, {
      *         fromRecord: 0,
      *         limitRecord: 20,
      *         sortBy: "desc(field_name)"
@@ -2937,14 +2937,14 @@ export class QueryClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.query.listTransactionsOrg(123, {
+     *     await client.query.listTransactionsOrg(900123, {
      *         fromRecord: 251,
      *         limitRecord: 0,
      *         sortBy: "desc(field_name)"
      *     })
      *
      * @example
-     *     await client.query.listTransactionsOrg(123, {
+     *     await client.query.listTransactionsOrg(900123, {
      *         limitRecord: 1,
      *         parameters: {
      *             "operation(eq)": "Reject"
@@ -2952,7 +2952,7 @@ export class QueryClient {
      *     })
      *
      * @example
-     *     await client.query.listTransactionsOrg(123, {
+     *     await client.query.listTransactionsOrg(900123, {
      *         limitRecord: 2,
      *         parameters: {
      *             "method(eq)": "device"
@@ -3275,7 +3275,7 @@ export class QueryClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.query.listTransfersOrg(123, {
+     *     await client.query.listTransfersOrg(900123, {
      *         fromRecord: 0,
      *         limitRecord: 20
      *     })
@@ -3378,7 +3378,7 @@ export class QueryClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.query.listTransfersOutOrg(123, {
+     *     await client.query.listTransfersOutOrg(900123, {
      *         fromRecord: 0,
      *         limitRecord: 20
      *     })
@@ -3702,7 +3702,7 @@ export class QueryClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.query.listUsersOrg(123, {
+     *     await client.query.listUsersOrg(900123, {
      *         fromRecord: 251,
      *         limitRecord: 0,
      *         sortBy: "desc(field_name)"
@@ -4012,7 +4012,7 @@ export class QueryClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.query.listVendorsOrg(123, {
+     *     await client.query.listVendorsOrg(900123, {
      *         fromRecord: 251,
      *         limitRecord: 0,
      *         sortBy: "desc(field_name)"
@@ -4331,7 +4331,7 @@ export class QueryClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.query.listVcardsTransactionsOrg(123, {
+     *     await client.query.listVcardsTransactionsOrg(900123, {
      *         fromRecord: 0,
      *         limitRecord: 20,
      *         sortBy: "desc(CreatedOn)"
@@ -4438,7 +4438,7 @@ export class QueryClient {
      * @throws {@link errors.PayabliTimeoutError}
      *
      * @example
-     *     await client.query.listVcardsOrg(123, {
+     *     await client.query.listVcardsOrg(900123, {
      *         fromRecord: 251,
      *         limitRecord: 0,
      *         sortBy: "desc(field_name)"

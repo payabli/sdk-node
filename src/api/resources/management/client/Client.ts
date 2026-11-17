@@ -22,7 +22,7 @@ export declare namespace ManagementClient {
 export class ManagementClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<ManagementClient.Options>;
 
-    constructor(options: ManagementClient.Options = {}) {
+    constructor(options: ManagementClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 

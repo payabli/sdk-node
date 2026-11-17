@@ -21,7 +21,7 @@ export declare namespace ImportClient {
 export class ImportClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<ImportClient.Options>;
 
-    constructor(options: ImportClient.Options = {}) {
+    constructor(options: ImportClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 

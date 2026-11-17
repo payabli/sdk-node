@@ -21,7 +21,7 @@ export declare namespace StatisticClient {
 export class StatisticClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<StatisticClient.Options>;
 
-    constructor(options: StatisticClient.Options = {}) {
+    constructor(options: StatisticClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 

@@ -8,7 +8,7 @@ import type * as Payabli from "../../../../index.js";
  *         PageSize: 20,
  *         startDate: "2024-01-01T00:00:00Z",
  *         endDate: "2024-01-31T23:59:59Z",
- *         orgId: 123,
+ *         orgId: 900123,
  *         notificationEvent: "approvedpayment",
  *         succeeded: true
  *     }

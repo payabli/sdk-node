@@ -40,6 +40,13 @@ export interface BillResponseData {
     AdditionalData: Payabli.AdditionalDataMap | null;
     Vendor?: Payabli.VendorDataResponse | undefined;
     Status?: Payabli.Billstatus | undefined;
+    /**
+     * The name of the bill's `Status`: `Canceled`, `None`, `Active`, `Sent to Approval`,
+     * `Partially Approved`, `Rejected`, `Approved`, `In Transit`, `Partially Paid`, or `Paid`.
+     * Returns `null` for an unrecognized code. See
+     * [Pay Out statuses](/guides/pay-out-status-reference#bill-statuses).
+     */
+    StatusLabel?: (string | null) | undefined;
     CreatedAt?: Payabli.CreatedAt | undefined;
     /** End date for scheduled bills. Applied only in `Mode` = 1. */
     EndDate: string | null;

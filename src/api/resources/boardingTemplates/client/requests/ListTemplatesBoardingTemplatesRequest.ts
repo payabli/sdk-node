@@ -5,7 +5,7 @@ import type * as Payabli from "../../../../index.js";
 /**
  * @example
  *     {
- *         orgId: 123
+ *         orgId: 900123
  *     }
  */
 export interface ListTemplatesBoardingTemplatesRequest {

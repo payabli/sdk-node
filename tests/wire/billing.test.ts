@@ -21,28 +21,28 @@ describe("BillingClient", () => {
                     id: 695,
                     versionId: 1322,
                     versionNumber: 1,
-                    business: { entityType: "Organization", entityId: 123 },
+                    business: { entityType: "Organization", entityId: 900123 },
                     serviceVertical: "PayOut",
                     name: "PayOut Default Configuration",
                     feeType: "Flat",
                     createdAt: "2026-01-01T00:00:00Z",
                     updatedAt: "2026-01-01T00:00:00Z",
                     entitiesAssigned: { organizations: 11, paypoints: 2, templates: 2, applications: 357 },
-                    parentId: "1:123",
+                    parentId: "1:900123",
                     countOfEvents: 10,
                 },
                 {
                     id: 1,
                     versionId: 4229,
                     versionNumber: 31,
-                    business: { entityType: "Organization", entityId: 123 },
+                    business: { entityType: "Organization", entityId: 900123 },
                     serviceVertical: "PayIn",
                     name: "Default PayIn Profile",
                     feeType: "Flat",
                     createdAt: "2026-01-01T00:00:00Z",
                     updatedAt: "2026-01-01T00:00:00Z",
                     entitiesAssigned: { organizations: 11, paypoints: 2, templates: 0, applications: 13 },
-                    parentId: "1:123",
+                    parentId: "1:900123",
                     countOfEvents: 11,
                 },
             ],
@@ -50,13 +50,13 @@ describe("BillingClient", () => {
 
         server
             .mockEndpoint()
-            .get("/billing/configuration/org/123")
+            .get("/billing/configuration/org/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.billing.listProfiles(123, {
+        const response = await client.billing.listProfiles(900123, {
             limitRecord: 20,
             fromRecord: 0,
         });
@@ -79,14 +79,14 @@ describe("BillingClient", () => {
                     id: 1,
                     versionId: 4229,
                     versionNumber: 31,
-                    business: { entityType: "Organization", entityId: 123 },
+                    business: { entityType: "Organization", entityId: 900123 },
                     serviceVertical: "PayIn",
                     name: "Default PayIn Profile",
                     feeType: "Flat",
                     createdAt: "2026-01-01T00:00:00Z",
                     updatedAt: "2026-01-01T00:00:00Z",
                     entitiesAssigned: { organizations: 11, paypoints: 2, templates: 0, applications: 13 },
-                    parentId: "1:123",
+                    parentId: "1:900123",
                     countOfEvents: 11,
                 },
             ],
@@ -94,13 +94,13 @@ describe("BillingClient", () => {
 
         server
             .mockEndpoint()
-            .get("/billing/configuration/org/123")
+            .get("/billing/configuration/org/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.billing.listProfiles(123, {
+        const response = await client.billing.listProfiles(900123, {
             serviceVertical: [1],
             feeType: [1],
             limitRecord: 20,
@@ -218,12 +218,12 @@ describe("BillingClient", () => {
             id: 1,
             versionId: 4229,
             versionNumber: 31,
-            business: { entityType: 1, entityId: 123 },
+            business: { entityType: 1, entityId: 900123 },
             name: "Default PayIn Profile",
             feeType: 1,
             createdAt: "2026-01-01T00:00:00Z",
             updatedAt: "2026-01-01T00:00:00Z",
-            parentId: "1:123",
+            parentId: "1:900123",
             billableEvents: [
                 {
                     id: 1,
@@ -241,8 +241,8 @@ describe("BillingClient", () => {
                             value: 0.3,
                             rate: 2.9,
                             passthrough: 0,
-                            payor: { entityType: 1, entityId: 123 },
-                            collector: { entityType: 1, entityId: 123 },
+                            payor: { entityType: 1, entityId: 900123 },
+                            collector: { entityType: 1, entityId: 900123 },
                             overflowPayor: null,
                             overflowCollectionSchedule: null,
                             minimumTotal: null,
@@ -264,13 +264,13 @@ describe("BillingClient", () => {
 
         server
             .mockEndpoint()
-            .get("/billing/configuration/PayIn/Organization/123")
+            .get("/billing/configuration/PayIn/Organization/900123")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.billing.getProfile("PayIn", "Organization", 123);
+        const response = await client.billing.getProfile("PayIn", "Organization", 900123);
         expect(response).toEqual(rawResponseBody);
     });
 

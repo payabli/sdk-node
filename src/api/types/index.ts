@@ -685,6 +685,7 @@ export * from "./PaypointUpdatedResponse.js";
 export * from "./PaypointWritableFields.js";
 export * from "./PciAttestation.js";
 export * from "./PendingFeeAmount.js";
+export * from "./PeopleSearchAddressResponse.js";
 export * from "./PeopleSearchEnvelope.js";
 export * from "./PeopleSearchRequest.js";
 export * from "./PeopleSearchResultResponse.js";
